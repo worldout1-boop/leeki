@@ -1,46 +1,164 @@
 # 관리부 통합 업무일지
 
-안양본사·군포공장·화성공장에서 근무하는 관리부(경영지원) 직원들이 업무를 기록하고, 진행 상황을 실시간으로 공유하며, 일일·주간·월간·연간 보고서를 자동으로 만드는 웹 프로그램입니다. 파일 하나(`index.html`)로 되어 있습니다.
+안양본사·군포공장·화성공장 관리부 직원이 웹 브라우저로 업무를 기록하고 함께 보는 업무일지입니다.
+연간·월간·주간·일일 업무, 진행 상태(예정·진행 중·완료), 현장 사진, 자동 보고서(일일·주간·월간·연간)를 지원합니다.
 
-## 주요 기능
+- 화면(프로그램): **GitHub Pages** 가 무료로 웹 주소를 만들어 줍니다.
+- 로그인·데이터 저장: **Firebase** (Google) 무료 요금제를 씁니다.
 
-- **내 업무**: 한 줄 입력 + Enter로 바로 기록. 상태(완료·진행 중·할 예정), 분야, 건물은 문장 내용으로 자동 선택
-- **파일·사진으로 올리기**: 엑셀(xlsx·xls·csv), 워드(docx), 한글(hwp·hwpx), PDF, 텍스트, 사진을 올리면 내용을 읽어 업무 목록으로 변환한 뒤 검토 후 등록
-- **팀 현황**: 건물별 직원 카드(오늘 기록, 진행 중·완료·지연 건수, 최근 기록), 실시간 진행 피드, 지연 업무, 이번 주 일정, 분야별 진행률
-- **칸반 / 달력 / 목록**: 진행 예정 → 진행 중 → 진행 완료 끌어 옮기기, 달력에서 일정 변경, 목록 엑셀 내려받기
-- **보고서**: 일일·주간·월간·연간 보고서를 분야·세부분류·사업장·담당자·업무구분별로 자동 생성(결재란, 차트, 현장 사진, 종합 의견), HTML(인쇄·PDF용)·엑셀·메신저용 텍스트로 내보내기
-- **업무 분류**: 재무(회계·경리·자금·세무), 인사·총무(인사평가·급여·근태·물품구매 등), 시설(건물·설비·전기·환경·산업안전보건·소방·경비·미화), 대관, 기타 경영지원
-- 반복 업무(매주~매년) 다음 회차 자동 등록, 직원 명단·접속 현황, 사용 안내 화면
+```
+직원 휴대폰·PC 브라우저
+        │  https://worldout1-boop.github.io/leeki/
+        ▼
+  GitHub Pages ── index.html, firebase-config.js (화면)
+        │
+        ▼
+  Firebase ── Authentication (구글·이메일 로그인)
+           └─ Firestore (업무·특이사항·직원 명단·사진 저장, 실시간 공유)
+```
 
-## 실행 환경
+## 파일 구성
 
-이 코드는 **claude.ai 아티팩트**로 게시해서 쓰도록 만들어졌습니다. 데이터 저장(`db`), 사진 업로드(`assets`), 직원 확인(`user`), 파일 내려받기(`downloads`), AI 정리(`sample`)는 claude.ai가 페이지에 제공하는 기능(`window.claude.use(...)`)을 사용합니다.
+| 파일 | 하는 일 | 고칠 곳 |
+|---|---|---|
+| `index.html` | 업무일지 프로그램 전체 (한 파일) | 고치지 않음. 새 버전을 받으면 이 파일만 바꿔 올림 |
+| `firebase-config.js` | Firebase 연결 설정 | **2단계에서 복사한 값 6개를 붙여 넣기** |
+| `firestore.rules` | 데이터베이스 보안 규칙 | 고치지 않음. Firebase 콘솔에 통째로 붙여 넣기 |
+| `README.md` | 이 안내서 | — |
 
-- claude.ai 밖(PC에서 직접 열기, GitHub Pages, 일반 웹서버)에서 열면 **미리보기 모드**로 동작합니다. 화면과 기능은 그대로 볼 수 있지만 입력한 내용은 저장되지 않고 다른 사람과 공유되지 않습니다.
-- 다른 곳에서 실제로 운영하려면 `MemoryDB`와 같은 형태(`doc/collection`, `get/set/update/delete`, `onSnapshot`)의 저장소 어댑터를 Firebase·Supabase·자체 서버 등으로 바꿔 끼우면 됩니다.
+> 같은 `index.html` 을 claude.ai 에서 열면 Claude 저장소를, GitHub Pages 주소로 열면 Firebase 를 자동으로 사용합니다.
 
-## 데이터 구조
+---
 
-| 경로 | 내용 |
+## Firebase 연결 순서 (처음 한 번, 30분 정도)
+
+관리자 한 사람이 PC 에서 진행합니다. 구글 계정이 필요합니다.
+
+### 1단계. Firebase 프로젝트 만들기
+1. https://console.firebase.google.com 에 구글 계정으로 로그인합니다.
+2. **프로젝트 만들기(Create a project)** → 프로젝트 이름 예: `gwanri-worklog` → 계속.
+3. Google 애널리틱스는 꺼도 됩니다 → **프로젝트 만들기**.
+
+### 2단계. 웹 앱 등록하고 설정값 복사하기
+1. 프로젝트 첫 화면의 **`</>` (웹)** 아이콘을 누릅니다. (또는 톱니바퀴 › 프로젝트 설정 › 일반 › 내 앱 › 앱 추가 › 웹)
+2. 앱 닉네임 예: `업무일지` → **앱 등록**. (Firebase 호스팅 체크는 하지 않아도 됩니다)
+3. 화면에 나오는 `const firebaseConfig = { ... }` 안의 6줄을 메모장에 복사해 둡니다.
+   ```
+   apiKey: "AIza....",
+   authDomain: "gwanri-worklog.firebaseapp.com",
+   projectId: "gwanri-worklog",
+   storageBucket: "gwanri-worklog.firebasestorage.app",
+   messagingSenderId: "1234567890",
+   appId: "1:1234567890:web:abcd..."
+   ```
+   나중에 다시 보려면: 톱니바퀴 › **프로젝트 설정** › 일반 › 내 앱 › SDK 설정 및 구성 › **구성(Config)**.
+
+### 3단계. 로그인 켜기 (Authentication)
+1. 왼쪽 메뉴 **Authentication** › **시작하기(Get started)**.
+2. **로그인 방법(Sign-in method)** 탭 › **Google** › 사용 설정 › 프로젝트 지원 이메일 선택 › **저장**.
+3. 같은 탭에서 **이메일/비밀번호(Email/Password)** › 첫 번째 스위치만 사용 설정 › **저장**.
+   (구글 계정이 없는 직원은 회사 메일로 가입할 수 있습니다)
+
+### 4단계. 데이터베이스 만들기 (Firestore) + 보안 규칙 게시
+1. 왼쪽 메뉴 **Firestore Database** (메뉴가 '빌드' 또는 '데이터베이스 및 스토리지' 아래에 있을 수 있음) › **데이터베이스 만들기**.
+2. 버전(Edition)을 물으면 **Standard**, 위치는 **asia-northeast3 (서울)** 을 고릅니다. 위치는 나중에 바꿀 수 없습니다.
+3. 보안 규칙은 **프로덕션 모드(Production mode)** 로 시작 › **만들기**.
+4. 만들어지면 **규칙(Rules)** 탭을 열고, 기존 내용을 모두 지운 뒤 `firestore.rules` 파일 내용을 통째로 붙여 넣고 **게시(Publish)**.
+
+> 테스트 모드는 30일 동안 누구나 읽고 쓸 수 있게 열어 두는 설정이라 쓰지 않습니다.
+
+### 5단계. GitHub 에 파일 올리기 + 설정값 넣기
+1. https://github.com/worldout1-boop/leeki 에서 **Add file › Upload files** 로 `index.html`, `firebase-config.js`, `firestore.rules`, `README.md` 를 올리고 **Commit changes**.
+2. 저장소에서 `firebase-config.js` 를 열고 연필(✏️ Edit) 아이콘을 누릅니다.
+3. `""` 안에 2단계에서 복사한 값을 하나씩 붙여 넣습니다. 따옴표는 지우지 마세요.
+   ```js
+   window.WL_FIREBASE_CONFIG = {
+     apiKey: "AIza....",
+     authDomain: "gwanri-worklog.firebaseapp.com",
+     ...
+   };
+   ```
+4. **Commit changes** 를 누릅니다.
+
+> `apiKey` 는 비밀번호가 아니라 연결 주소라서 공개 저장소에 있어도 괜찮습니다. 데이터는 4단계의 보안 규칙과 '접속 허용 이메일'로 보호됩니다.
+
+### 6단계. GitHub Pages 켜기
+1. 저장소 **Settings › Pages**.
+2. Build and deployment › Source: **Deploy from a branch**, Branch: **main** / **(root)** › **Save**.
+3. 1~2분 뒤 위쪽에 주소가 나옵니다: **https://worldout1-boop.github.io/leeki/**
+
+> GitHub 무료 요금제에서 Pages 를 쓰려면 저장소가 **Public(공개)** 이어야 합니다. 저장소에는 프로그램 코드만 있고 업무 데이터는 Firebase 에 있으므로 공개해도 업무 내용은 보이지 않습니다.
+> 저장소가 Private 이면 Settings › General 맨 아래 Danger Zone › Change visibility 에서 Public 으로 바꿉니다.
+
+### 7단계. 승인된 도메인 추가
+1. Firebase 콘솔 › **Authentication** › **설정(Settings)** 탭 › **승인된 도메인(Authorized domains)** › **도메인 추가**.
+2. `worldout1-boop.github.io` 입력 (https:// 와 /leeki 는 빼고) › 추가.
+
+> 이 단계를 빠뜨리면 로그인할 때 "이 주소가 Firebase에 등록되지 않았습니다" 안내가 나옵니다.
+
+### 8단계. 첫 로그인 → 관리자 지정 → 직원 허용
+1. https://worldout1-boop.github.io/leeki/ 를 엽니다.
+2. **Google 계정으로 로그인** → "처음 설정입니다" 화면에서 **이 계정을 관리자로 지정하고 시작**.
+   - 배포 직후 관리자가 **가장 먼저** 진행하세요. 처음 지정한 사람이 관리자가 됩니다.
+3. 오른쪽 위 톱니바퀴 **설정**:
+   - **직원 명단**: `이름, 근무 건물, 직급·담당` 형식으로 붙여 넣기
+   - **접속 허용 이메일**: 직원이 로그인할 이메일을 한 줄에 하나씩 (예: `hong@gmail.com 홍길동`)
+   - **설정 저장**
+4. **?(사용 안내)** 화면의 **문구 복사** 로 직원 안내문을 카카오톡·메일로 보냅니다.
+
+### 9단계. (선택) claude.ai 에서 쓰던 데이터 옮기기
+1. claude.ai 업무일지 › 설정 › **백업 파일 내려받기** (사진 포함 체크).
+2. GitHub Pages 업무일지에 관리자로 로그인 › 설정 › **백업 파일 불러오기** › 내려받은 `.json` 선택.
+3. 직원 명단·업무·특이사항·사진이 옮겨집니다. (직원은 새 주소에서 이름을 한 번 다시 고릅니다)
+
+---
+
+## 직원이 처음 접속할 때
+1. 받은 주소를 **크롬·사파리·엣지** 로 엽니다. 카카오톡 안에서 열면 구글 로그인이 막히므로 메뉴의 **다른 브라우저로 열기** 를 누릅니다.
+2. **Google 계정으로 로그인**. 구글 계정이 아니면 이메일·새 비밀번호 입력 › **이메일로 가입** › 메일함의 인증 링크 클릭 › **인증 완료했어요**.
+3. "접속 허용 전" 화면이 나오면 관리자에게 화면의 이메일을 알려 주고, 허용되면 **다시 확인**.
+4. 내 이름을 누르면 끝. 휴대폰은 **홈 화면에 추가** 하면 앱처럼 쓸 수 있습니다.
+
+## 비용과 무료 한도 (Spark 요금제)
+
+| 항목 | 무료 한도 | 10명 기준 예상 |
+|---|---|---|
+| Firestore 저장 | 1 GiB | 업무 기록은 수 MB, 사진 1장 약 0.3 MB → 사진 약 3,000장까지 |
+| 읽기 | 하루 50,000건 | 업무를 묶음 문서로 저장해 한 번 열 때 100건 안팎 |
+| 쓰기 | 하루 20,000건 | 하루 수백 건 |
+| 로그인 | 무료 | — |
+
+- 한도를 넘으면 그날은 저장·조회가 멈추고 다음 날(미국 태평양 시간 자정, 한국 오후 4~5시) 풀립니다. 요금이 자동으로 나가지 않습니다.
+- 사진이 많아져 1 GiB 에 가까워지면 Blaze(종량제)로 바꾸고 **예산 알림** 을 걸어 두세요. 10명 규모는 보통 월 몇 백 원~몇 천 원 수준입니다.
+- 사용량 확인: Firebase 콘솔 › Firestore Database › **사용량(Usage)**.
+- 사진은 Cloud Storage 대신 Firestore 에 압축해 저장합니다(Cloud Storage 는 Blaze 요금제가 있어야 쓸 수 있음).
+
+## 새 버전으로 바꿀 때
+`index.html` 한 파일만 다시 올리면 됩니다. `firebase-config.js` 는 그대로 두세요.
+
+## 자주 생기는 문제
+
+| 화면 안내 | 해결 |
 |---|---|
-| `staff/{id}` | 직원 명단(이름, 근무 건물, 직급·담당, 순서, 접속일) |
-| `wl/{연도}/tasks/{id}` | 업무 1건(분야, 세부분류, 사업장, 업무 구분, 상태, 일정, 진척률, 담당, 진행 기록, 사진) |
-| `wl/{연도}/memos/{날짜}` | 일자별 특이사항·건의 |
-| `wl/{연도}/reports/{키}` | 보고서 종합 의견 |
-| `app/config` | 부서명, 사업장 목록, 결재란, 세부분류 |
+| 미리보기로 열었습니다 (상단 노란 띠) | `firebase-config.js` 값이 비어 있거나 따옴표·쉼표가 빠졌습니다. 5단계 다시 확인. 고친 직후라면 1~2분 기다린 뒤 Ctrl+F5(휴대폰은 새로고침) |
+| 이 주소가 Firebase에 등록되지 않았습니다 | 7단계 (승인된 도메인) |
+| 이 로그인 방법이 꺼져 있습니다 | 3단계 (Google, 이메일/비밀번호 사용 설정) |
+| 관리자인데 "접속이 허용되지 않았습니다" | 4단계의 규칙 게시를 확인. 그래도 안 되면 다른 사람이 먼저 관리자로 지정한 것이므로, Firestore 데이터에서 `app` › `members` 문서를 지우고 다시 로그인 |
+| Firestore 데이터베이스가 아직 만들어지지 않았습니다 | 4단계 |
+| 로그인 창(팝업)을 막았습니다 | 주소창 오른쪽의 팝업 차단 표시 › 허용 |
+| Firebase 무료 사용량을 넘었습니다 | 다음 날 자동으로 풀림. 급하면 Blaze 로 전환 |
+
+## 데이터 저장 구조 (참고)
+
+| Firestore 경로 | 내용 |
+|---|---|
+| `app/members` | 접속 허용 이메일, 관리자 이메일 |
+| `app/config` | 부서명, 사업장, 결재란, 세부 분류 |
+| `staff/{직원ID}` | 직원 명단 |
+| `wl/{연도}/tbox/{00~31}` | 업무 (32개 묶음 문서에 나눠 저장 — 읽기 횟수 절약) |
+| `wl/{연도}/mbox/{월}` | 일자별 특이사항 |
+| `wl/{연도}/reports/{키}` | 보고서 종합의견 |
+| `photos/{사진ID}` | 압축 사진 |
 
 ## 사용한 오픈소스
-
-| 라이브러리 | 용도 | 라이선스 |
-|---|---|---|
-| [SortableJS](https://github.com/SortableJS/Sortable) | 칸반 끌어 옮기기 | MIT |
-| [FullCalendar](https://github.com/fullcalendar/fullcalendar) | 달력 | MIT |
-| [Chart.js](https://github.com/chartjs/Chart.js) | 보고서 차트 | MIT |
-| [SheetJS CE](https://github.com/SheetJS/sheetjs) | 엑셀 읽기·쓰기, 한글(hwp) 복합 파일 읽기 | Apache-2.0 |
-| [browser-image-compression](https://github.com/Donaldcwl/browser-image-compression) | 사진 압축 | MIT |
-| [pdf.js](https://github.com/mozilla/pdf.js) | PDF 읽기 | Apache-2.0 |
-| [mammoth.js](https://github.com/mwilliamson/mammoth.js) | 워드(docx) 읽기 | BSD-2-Clause |
-| [JSZip](https://github.com/Stuk/jszip) | 한글(hwpx) 읽기 | MIT |
-| [Kanboard](https://github.com/kanboard/kanboard) | 칸반 운영 방식 참고 | MIT |
-
-라이브러리는 jsDelivr CDN에서 불러오며, 이 저장소에 포함되어 있지 않습니다.
+SortableJS (MIT) · FullCalendar (MIT) · Chart.js (MIT) · SheetJS CE (Apache-2.0) · browser-image-compression (MIT) · pdf.js (Apache-2.0) · mammoth.js (BSD-2-Clause) · JSZip (MIT) · Firebase JS SDK (Apache-2.0) · Kanboard 운영 방식 참고 (MIT)

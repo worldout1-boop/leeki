@@ -1,0 +1,75 @@
+rules_version = '2';
+
+// 관리부 통합 업무일지 — Firestore 보안 규칙
+// Firebase 콘솔 › Firestore Database › 규칙 탭에 이 파일 내용을 통째로 붙여 넣고 [게시]를 누르세요.
+//
+// · 로그인 + 이메일 인증을 마친 사람 중, 업무일지 설정의 '접속 허용 이메일'에 있는 사람만 읽고 쓸 수 있습니다.
+// · 처음 한 번은 맨 먼저 로그인한 사람이 '관리자로 지정'을 눌러 관리자가 됩니다. (배포 직후 바로 진행하세요)
+// · 이메일 주소는 이 파일이 아니라 데이터베이스(app/members 문서)에 저장되므로 공개 저장소에 올려도 됩니다.
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function membersPath() {
+      return /databases/$(database)/documents/app/members;
+    }
+    function signedIn() {
+      return request.auth != null
+        && request.auth.token.email is string
+        && request.auth.token.email_verified == true;
+    }
+    function myEmail() {
+      return request.auth.token.email.lower();
+    }
+    function members() {
+      return get(membersPath()).data;
+    }
+    function isAdmin() {
+      return signedIn() && myEmail() in members().admins;
+    }
+    function isMember() {
+      return signedIn()
+        && (myEmail() in members().emails || myEmail() in members().admins);
+    }
+
+    // 접속 허용 목록 — 관리자만 수정, 처음 한 번만 '관리자로 지정' 가능
+    match /app/members {
+      allow get: if signedIn() && (!exists(membersPath()) || isMember());
+      allow list: if false;
+      allow create: if signedIn()
+        && !exists(membersPath())
+        && request.resource.data.admins == [myEmail()]
+        && request.resource.data.emails == [myEmail()];
+      allow update: if isAdmin()
+        && request.resource.data.admins is list
+        && request.resource.data.emails is list
+        && myEmail() in request.resource.data.admins;
+      allow delete: if false;
+    }
+
+    // 부서 설정 — 모두 읽기, 관리자만 수정
+    match /app/config {
+      allow read: if isMember();
+      allow write: if isAdmin();
+    }
+
+    // 직원 명단
+    match /staff/{staffId} {
+      allow read, write: if isMember();
+    }
+
+    // 업무 · 특이사항 · 보고서 종합의견
+    match /wl/{rest=**} {
+      allow read, write: if isMember();
+    }
+
+    // 현장 사진 (압축한 사진을 문서에 저장 — 무료 요금제용)
+    match /photos/{photoId} {
+      allow read, delete: if isMember();
+      allow create: if isMember()
+        && request.resource.data.d is string
+        && request.resource.data.d.size() < 1000000;
+      allow update: if false;
+    }
+  }
+}

@@ -475,6 +475,31 @@ dialog::backdrop{background:rgba(8,16,28,.5)}
   .fab{display:grid;place-items:center;position:fixed;right:16px;bottom:16px;z-index:40;width:54px;height:54px;border-radius:50%;border:0;background:var(--accent);color:var(--accent-ink);font-size:26px;box-shadow:var(--shadow);cursor:pointer}
   #toasts{bottom:82px}
 }
+/* Firebase 로그인 화면 */
+.gate{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:20px;background:var(--bg);overflow:auto}
+.gate-card{width:min(420px,100%);background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:26px 24px;display:grid;gap:14px}
+.gate-card h1{margin:0;font-size:20px;letter-spacing:-.01em}
+.gate-card .brand{display:flex;align-items:center;gap:10px}
+.gate-card p{margin:0;color:var(--ink-2);font-size:13.5px;line-height:1.6}
+.gate-card .f{display:grid;gap:5px}
+.gate-card label{font-size:12px;font-weight:600;color:var(--ink-2)}
+.gate-card input{height:40px;border:1px solid var(--line);border-radius:7px;padding:0 12px;background:var(--surface);color:var(--ink);font:inherit}
+.gate-card .btn{height:42px;width:100%}
+.gate-card .row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.gate-card .or{display:flex;align-items:center;gap:10px;color:var(--ink-3);font-size:12px}
+.gate-card .or::before,.gate-card .or::after{content:"";flex:1;height:1px;background:var(--line)}
+.gate-card .links{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.gate-card .links button{border:0;background:none;color:var(--accent);font:inherit;font-size:12.5px;cursor:pointer;padding:2px 0;text-decoration:underline}
+.gate-card .msg{font-size:13px;padding:10px 12px;border-radius:7px;background:var(--surface-2);border:1px solid var(--line-2);color:var(--ink)}
+.gate-card .msg.err{border-color:color-mix(in srgb,var(--late) 45%,var(--line));background:color-mix(in srgb,var(--late) 8%,var(--surface))}
+.gate-card .msg.warn{border-color:color-mix(in srgb,var(--doing) 45%,var(--line));background:color-mix(in srgb,var(--doing) 10%,var(--surface))}
+.gate-card .who{font-weight:600;color:var(--ink);word-break:break-all}
+.gate-card small.code{color:var(--ink-3);font-size:11px;word-break:break-all}
+.gbtn{gap:10px}
+.gbtn svg{width:18px;height:18px}
+.sync[data-s="offline"] i{background:var(--late)}
+.set-two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:640px){.set-two{grid-template-columns:1fr}}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
 </style>
 <style id="report-css">
@@ -551,6 +576,7 @@ dialog::backdrop{background:rgba(8,16,28,.5)}
   </div>
 </header>
 <div class="banner" id="banner" hidden></div>
+<div class="gate" id="gate" hidden><div class="gate-card" id="gate-card" role="dialog" aria-modal="true" aria-labelledby="gate-h"></div></div>
 <section class="filters" id="filters" aria-label="필터" hidden>
   <div class="seg" id="f-period" role="group" aria-label="기간">
     <button type="button" data-v="all">전체</button><button type="button" data-v="today">오늘</button><button type="button" data-v="week">이번 주</button><button type="button" data-v="month">이번 달</button><button type="button" data-v="year">올해</button>
@@ -621,11 +647,20 @@ dialog::backdrop{background:rgba(8,16,28,.5)}
         <div class="f" id="s-roster-wrap"><span class="lbl" style="font-size:12px;font-weight:600;color:var(--ink-2)">직원 명단</span><p class="help">미리 등록해 두면 직원은 처음 접속할 때 자기 이름만 누르면 됩니다. 각자 직접 등록해도 됩니다.</p>
           <div class="roster" id="s-roster"></div><div><button type="button" class="btn sm" id="s-roster-add">+ 한 명 추가</button></div>
           <label for="s-roster-bulk" style="margin-top:6px">여러 명 한 번에 추가 (한 줄에 "이름, 근무 건물, 직급·담당")</label><textarea id="s-roster-bulk" rows="3" placeholder="홍길동, 군포공장, 시설관리&#10;김영희, 안양본사, 경리·자금"></textarea></div>
+        <div class="f" id="s-members-wrap" hidden><span class="lbl" style="font-size:12px;font-weight:600;color:var(--ink-2)">접속 허용 이메일</span>
+          <p class="help">여기에 적힌 이메일로 로그인한 사람만 업무일지를 열 수 있습니다. 한 줄에 한 명, 이메일 뒤에 이름을 적어 두면 구분하기 쉽습니다.</p>
+          <textarea id="s-members" rows="6" placeholder="hong@gmail.com 홍길동&#10;kim@company.co.kr 김영희"></textarea>
+          <label for="s-admins" style="margin-top:6px">관리자 이메일 (설정·접속 허용을 바꿀 수 있는 사람, 한 줄에 하나)</label>
+          <textarea id="s-admins" rows="2"></textarea>
+          <p class="help" id="s-members-me"></p></div>
         <div class="f"><label for="s-dept">부서명 (보고서 머리글)</label><input type="text" id="s-dept" maxlength="40"></div>
         <div class="f"><label for="s-sites">사업장 목록 (한 줄에 하나)</label><textarea id="s-sites" rows="4"></textarea></div>
         <div class="f"><label for="s-appr">결재란 (쉼표로 구분)</label><input type="text" id="s-appr" maxlength="80"></div>
         <div class="f"><span class="lbl" style="font-size:12px;font-weight:600;color:var(--ink-2)">분야별 세부 분류 (쉼표로 구분)</span><div class="subs-edit" id="s-subs"></div></div>
         <div class="f"><span class="lbl" style="font-size:12px;font-weight:600;color:var(--ink-2)">저장 공간</span><div id="s-usage"></div></div>
+        <div class="f"><span class="lbl" style="font-size:12px;font-weight:600;color:var(--ink-2)">데이터 백업·옮기기</span><p class="help">업무·특이사항·직원 명단·설정을 파일 하나로 내려받습니다. 다른 버전(claude.ai ↔ Firebase)으로 옮길 때는 옮길 곳에서 '백업 파일 불러오기'를 누르세요.</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><button type="button" class="btn sm" id="s-backup">백업 파일 내려받기</button><label style="display:inline-flex;gap:6px;align-items:center;font-size:12.5px;color:var(--ink-2)"><input type="checkbox" id="s-backup-photos" checked> 사진 포함</label><label class="btn sm" id="s-restore-btn">백업 파일 불러오기<input type="file" id="s-restore" accept=".json,application/json" hidden></label></div>
+          <p class="help" id="s-backup-st"></p></div>
         <div class="f"><span class="lbl" style="font-size:12px;font-weight:600;color:var(--ink-2)">예시 데이터</span><p class="help">처음 사용을 돕기 위해 넣어 둔 [예시] 업무를 한 번에 지웁니다. 법정·정기 업무 일정은 남습니다.</p><div><button type="button" class="btn sm danger" id="s-clear-sample">예시 업무 모두 삭제</button></div></div>
         <div class="f"><span class="lbl" style="font-size:12px;font-weight:600;color:var(--ink-2)">사용한 오픈소스 (GitHub)</span>
           <ul class="oss">
@@ -637,6 +672,7 @@ dialog::backdrop{background:rgba(8,16,28,.5)}
             <li><a href="https://github.com/mozilla/pdf.js">pdf.js</a> — PDF 읽기 (Apache-2.0)</li>
             <li><a href="https://github.com/mwilliamson/mammoth.js">mammoth.js</a> — 워드(docx) 읽기 (BSD-2-Clause)</li>
             <li><a href="https://github.com/Stuk/jszip">JSZip</a> — 한글(hwpx) 읽기 (MIT)</li>
+            <li><a href="https://github.com/firebase/firebase-js-sdk">Firebase JS SDK</a> — GitHub Pages 버전의 로그인·실시간 저장 (Apache-2.0)</li>
             <li><a href="https://github.com/kanboard/kanboard">Kanboard</a> — 칸반 운영 방식 참고 (MIT)</li>
           </ul>
         </div>
@@ -656,8 +692,9 @@ dialog::backdrop{background:rgba(8,16,28,.5)}
       <div class="f"><label for="me-name">이름</label><input type="text" id="me-name" maxlength="20" autocomplete="name"></div>
       <div class="f"><label for="me-site">근무 건물</label><select id="me-site"></select></div>
       <div class="f"><label for="me-role">직급·담당</label><input type="text" id="me-role" maxlength="30" placeholder="예: 과장 · 경리·자금"></div>
+      <p class="help" id="me-account" hidden></p>
     </div></div>
-    <footer class="modal-f"><button type="button" class="btn ghost sm" id="me-switch" hidden>다른 사람으로 바꾸기</button><span class="spacer"></span><button type="button" class="btn" data-close>나중에</button><button type="submit" class="btn primary">저장</button></footer>
+    <footer class="modal-f"><button type="button" class="btn ghost sm" id="me-switch" hidden>다른 사람으로 바꾸기</button><button type="button" class="btn ghost sm" id="me-logout" hidden>로그아웃</button><span class="spacer"></span><button type="button" class="btn" data-close>나중에</button><button type="submit" class="btn primary">저장</button></footer>
   </form>
 </dialog>
 
@@ -787,6 +824,7 @@ function nextTitle(title,r){let t=title;if(r==='monthly')t=t.replace(/(\d{1,2})�
 const S={
   db:null,user:null,assets:null,downloads:null,sample:null,
   me:{id:null,name:''},canWrite:true,canEdit:false,preview:false,ready:false,
+  mode:'',fs:null,email:'',members:null,photoUrls:{},
   byYear:{},tasks:[],memosByYear:{},memos:[],config:{...DEFAULT_CONFIG},
   years:new Set(),loaded:new Set(),unsubs:[],seen:new Set(),
   staff:{},myStaff:null,feedSite:'',personId:null,qa:{text:'',status:'done',date:'',cat:'',sub:'',site:'',catTouched:false,dateTouched:false,siteTouched:false,files:[]},
@@ -832,8 +870,11 @@ function writeError(e){const c=e&&e.code;setSync('err');
   else if(c==='quota_exceeded'){toast('저장 공간이 가득 찼습니다. 지난 업무나 사진을 정리한 뒤 다시 시도하세요.','err');}
   else if(c==='resource_exhausted'){toast('요청이 몰려 저장이 지연되었습니다. 잠시 후 다시 시도하세요.','err');}
   else if(c==='revoked'){toast('접근 권한이 변경되어 저장할 수 없습니다. 페이지를 새로고침하세요.','err');}
+  else if(c==='fb_quota'){toast('Firebase 무료 사용량(하루 한도)을 넘었습니다. 내일 다시 저장되거나, 관리자가 Blaze 요금제로 바꾸면 바로 풀립니다.','err');}
+  else if(c==='fb_denied'){toast('저장 권한이 없습니다. 관리자에게 접속 허용 이메일 등록을 확인해 달라고 하세요.','err');}
+  else if(c==='fb_size'){toast('저장할 내용이 너무 큽니다. 진행 기록이나 사진을 줄여 다시 시도하세요.','err');}
   else if(c!=='readonly'){toast('저장 중 문제가 생겼습니다. 잠시 후 다시 시도하세요.','err');}}
-function setSync(s){const el=$('#sync');if(S.preview&&s==='ok')s='preview';el.dataset.s=s;el.lastElementChild.textContent={ok:'실시간 연결됨',saving:'저장 중…',err:'저장 실패',preview:'미리보기 (저장 안 됨)',wait:'연결 중'}[s]||'';}
+function setSync(s){const el=$('#sync');if(S.preview&&s==='ok')s='preview';if(S.mode==='firebase'&&s==='ok'&&navigator.onLine===false)s='offline';el.dataset.s=s;el.lastElementChild.textContent={ok:'실시간 연결됨',saving:'저장 중…',err:'저장 실패',preview:'미리보기 (저장 안 됨)',wait:'연결 중',offline:'오프라인 · 연결되면 저장'}[s]||'';}
 function toast(msg,kind){const el=document.createElement('div');el.className='toast'+(kind==='err'?' err':'');el.textContent=msg;$('#toasts').append(el);setTimeout(()=>el.remove(),kind==='err'?6000:4200);}
 
 /* ───────── 데이터 정규화·조회 ───────── */
@@ -870,7 +911,11 @@ function whoMatch(t,w){if(!w)return true;if(w==='me')return t.assignees.includes
 function applyFilters(list,opt={}){const f=S.filters;let rng=null;if(f.period!=='all'&&!opt.ignorePeriod)rng=periodRange(f.period==='today'?'day':f.period,today());const q=f.q.trim().toLowerCase();
   return list.filter(t=>(!f.cat||t.cat===f.cat)&&(!f.site||t.site===f.site)&&(!f.scope||t.scope===f.scope)&&whoMatch(t,f.who)&&(!q||(t.title+' '+t.desc+' '+t.sub+' '+t.assigneeText+' '+t.site).toLowerCase().includes(q))&&(!rng||inPeriod(t,rng[0],rng[1])));}
 const lastNote=t=>{for(let i=t.logs.length-1;i>=0;i--){const l=t.logs[i];if(l.text)return l.text;}return '';};
-const photoSrc=id=>S.localBlobs[id]||(isAssetId(id)?'/_blob/'+id:'');
+const PH_BLANK='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
+const photoSrc=id=>{if(S.localBlobs[id])return S.localBlobs[id];if(S.mode==='firebase'){if(S.photoUrls[id])return S.photoUrls[id];fbLoadPhoto(id);return PH_BLANK;}return isAssetId(id)?'/_blob/'+id:'';};
+async function photoDataURL(id){try{if(S.mode==='firebase'){await fbLoadPhoto(id);return S.photoUrls[id]||'';}
+  const src=photoSrc(id);if(!src)return '';return await blobToDataURL(await (await fetch(src)).blob());}catch{return '';}}
+function blobToDataURL(b){return new Promise((res,rej)=>{const fr=new FileReader();fr.onload=()=>res(fr.result);fr.onerror=rej;fr.readAsDataURL(b);});}
 const nameOf=id=>id==='system'?'초기 데이터':(S.staff[id]&&S.staff[id].name)||(S.profiles[id]&&S.profiles[id].name)||'구성원';
 const whoText=t=>[...t.assignees.map(nameOf),t.assigneeText].filter(Boolean).join(', ')||'';
 function whoHTML(t){const a=t.assignees.map(id=>`<span data-uid="${esc(id)}">${esc(nameOf(id))}</span>`);if(t.assigneeText)a.push(esc(t.assigneeText));return a.join(', ')||'<span style="color:#8a929e">미지정</span>';}
@@ -888,13 +933,18 @@ async function patchNames(root=document){
 function ensureYear(y){y=String(y);if(!/^\d{4}$/.test(y)||S.years.has(y)||!S.db)return;S.years.add(y);
   S.unsubs.push(S.db.collection(`wl/${y}/tasks`).onSnapshot(snap=>onTasks(y,snap),subErr));
   S.unsubs.push(S.db.collection(`wl/${y}/memos`).onSnapshot(snap=>onMemos(y,snap),subErr));}
-function subErr(e){const c=e&&e.code;if(c==='revoked'){setSync('err');showBanner('접근 권한이 바뀌어 실시간 연결이 끊겼습니다. 페이지를 새로고침하세요.');}else{setSync('err');toast('실시간 연결이 끊겼습니다. 페이지를 새로고침하면 다시 연결됩니다.','err');}}
+function subErr(e){const c=e&&e.code;
+  if(c==='fb_denied'){setSync('err');showBanner('접속 권한이 없어 데이터를 불러오지 못했습니다. 관리자에게 접속 허용 이메일 등록을 요청하세요. (관리자라면 Firestore 보안 규칙을 게시했는지 확인)');return;}
+  if(c==='fb_quota'){setSync('err');showBanner('Firebase 무료 사용량(하루 한도)을 넘어 데이터를 불러오지 못했습니다. 내일 다시 열리거나, 관리자가 Blaze 요금제로 바꾸면 바로 풀립니다.');return;}
+  if(c==='revoked'){setSync('err');showBanner('접근 권한이 바뀌어 실시간 연결이 끊겼습니다. 페이지를 새로고침하세요.');}else{setSync('err');toast('실시간 연결이 끊겼습니다. 페이지를 새로고침하면 다시 연결됩니다.','err');}}
 function onTasks(y,snap){
   const arr=snap.docs.filter(d=>d.exists).map(d=>normTask({...d.data(),id:d.id,year:y,path:`wl/${y}/tasks/${d.id}`}));
+  const fromCache=!!(snap.metadata&&snap.metadata.fromCache);
   const first=!S.loaded.has(y);S.byYear[y]=arr;rebuild();
   for(const t of arr)for(const l of t.logs){const k=t.path+'|'+l.at+'|'+l.by;if(S.seen.has(k))continue;S.seen.add(k);
     if(!first&&S.ready&&l.by&&l.by!==myId()){const act=l.kind==='status'?`상태를 '${ST[l.to]?ST[l.to].name:''}'(으)로 변경`:l.kind==='create'?'업무를 등록':l.kind==='record'?'완료한 일을 기록':l.kind==='photo'?'사진을 첨부':l.kind==='progress'?`진척률을 ${l.p1??0}%로 변경`:'진행 사항을 기록';const title=t.title,by=l.by;
       (S.user?S.user.profiles([by]).then(ps=>Object.assign(S.profiles,ps)).catch(()=>{}):Promise.resolve()).then(()=>toast(`${nameOf(by)}님이 「${title}」 ${act}했습니다.`));S.fresh=k;}}
+  if(fromCache){scheduleRender();refreshDialog();return;}
   S.loaded.add(y);if(y===today().slice(0,4)&&!S.ready){S.ready=true;setSync('ok');}
   scheduleRender();refreshDialog();}
 function onMemos(y,snap){S.memosByYear[y]=snap.docs.filter(d=>d.exists).map(d=>{const v=d.data()||{};return{id:d.id,date:isDate(v.date)?v.date:d.id,entries:v.entries&&typeof v.entries==='object'?v.entries:{}};});rebuild();scheduleRender();}
@@ -925,12 +975,13 @@ async function uploadImages(files){
   const out=[];setSync('saving');
   for(const f of list){let blob=f;
     const okType=['image/jpeg','image/png','image/webp','image/gif'].includes(f.type);
-    try{if(window.imageCompression&&f.type!=='image/gif'&&(f.size>350*1024||!okType))blob=await imageCompression(f,{maxSizeMB:0.8,maxWidthOrHeight:1920,useWebWorker:false,initialQuality:0.85,...(okType?{}:{fileType:'image/jpeg'})});}catch{}
+    const fbm=S.mode==='firebase';const cmp=fbm?{maxSizeMB:0.3,maxWidthOrHeight:1600,th:280*1024}:{maxSizeMB:0.8,maxWidthOrHeight:1920,th:350*1024};
+    try{if(window.imageCompression&&f.type!=='image/gif'&&(f.size>cmp.th||!okType))blob=await imageCompression(f,{maxSizeMB:cmp.maxSizeMB,maxWidthOrHeight:cmp.maxWidthOrHeight,useWebWorker:false,initialQuality:0.85,...(okType?{}:{fileType:'image/jpeg'})});}catch{}
     if(!okType&&blob===f){toast(`${f.name}: 이 사진 형식은 올릴 수 없습니다. JPG·PNG로 바꿔 올려 주세요.`,'err');continue;}
     let type=['image/jpeg','image/png','image/webp','image/gif'].includes(blob.type)?blob.type:'image/jpeg';
     try{if(S.preview){const id='local'+rid();S.localBlobs[id]=URL.createObjectURL(blob);out.push({id,at:nowISO(),by:myId(),cap:''});}
       else{const r=await S.assets.upload(blob,{type});out.push({id:r.id,at:nowISO(),by:myId(),cap:''});}}
-    catch(e){const c=e&&e.code;toast(c==='too_large'?'사진 용량이 너무 큽니다(20MB 이하).':c==='unsupported_type'?'지원하지 않는 사진 형식입니다. JPG·PNG로 올려 주세요.':c==='quota_or_state'?'사진 저장 공간이 가득 찼습니다.':c==='rate_limited'?'잠시 후 다시 올려 주세요.':'사진을 올리지 못했습니다.','err');}}
+    catch(e){const c=e&&e.code;toast(c==='too_large'?(S.mode==='firebase'?'사진 용량이 너무 큽니다. 더 작은 사진(JPG)으로 올려 주세요.':'사진 용량이 너무 큽니다(20MB 이하).'):c==='fb_quota'?'Firebase 무료 사용량을 넘어 사진을 올리지 못했습니다.':c==='unsupported_type'?'지원하지 않는 사진 형식입니다. JPG·PNG로 올려 주세요.':c==='quota_or_state'?'사진 저장 공간이 가득 찼습니다.':c==='rate_limited'?'잠시 후 다시 올려 주세요.':'사진을 올리지 못했습니다.','err');}}
   setSync('ok');return out;}
 async function deleteAssets(ids){if(!S.assets)return;for(const id of ids){if(!isAssetId(id)||id.startsWith('local'))continue;try{await S.assets.delete(id);}catch{}}}
 async function saveMemo(date,text){const y=date.slice(0,4);ensureYear(y);const uid=myId()||'anon';const path=`wl/${y}/memos/${date}`;const entry={text:text.slice(0,1000),at:nowISO()};
@@ -954,6 +1005,7 @@ function rowHTML(t){const d=ddayInfo(t);const late=isLate(t);
   return `<button type="button" class="trow cat-${t.cat}" data-open="${esc(t.path)}"><span class="stripe"></span><span class="mid"><span class="tt">${esc(t.title)}</span><span class="mt"><span class="catchip">${esc(CAT[t.cat].name)}${t.sub?' · '+esc(t.sub):''}</span><span>${esc(t.site)}</span>${t.due?`<span>마감 ${fmtMD(t.due)}</span>`:''}${t.assignees.length||t.assigneeText?`<span>${whoHTML(t)}</span>`:''}${t.sample?'<span class="tag sample">예시</span>':''}</span></span><span class="rt"><span class="pill s-${late?'late':t.status}">${late?'지연':ST[t.status].name}</span>${d?`<span class="dday ${d.cls}">${d.txt}</span>`:''}</span></button>`;}
 
 /* ───────── 직원 명단·본인 ───────── */
+const meKey=()=>S.mode==='firebase'&&S.me.id?'wl.me.'+S.me.id:'wl.me';
 function lsGet(k){try{return localStorage.getItem(k);}catch{return null;}}
 function lsSet(k,v){try{if(v==null)localStorage.removeItem(k);else localStorage.setItem(k,v);}catch{}}
 const myId=()=>S.myStaff||S.me.id;
@@ -969,7 +1021,7 @@ function onStaff(snap){const m={};for(const d of snap.docs){if(!d.exists)continu
   S.staff=m;resolveMe();scheduleRender();refreshPerson();
   if(S.myStaff&&!S.askedMe&&S.canWrite&&!realSite((S.staff[S.myStaff]||{}).site)){S.askedMe=true;setTimeout(()=>{if(!document.querySelector('dialog[open]'))openMe();},500);}
   if(!S.myStaff&&!S.askedMe&&S.canWrite){S.askedMe=true;setTimeout(()=>{if(!S.myStaff&&!document.querySelector('dialog[open]'))openMe();},500);}}
-function resolveMe(){const ls=lsGet('wl.me');let id=null;const byUid=S.me.id?Object.values(S.staff).find(x=>x.active&&x.uid&&x.uid===S.me.id):null;if(S.me.id&&S.staff[S.me.id]&&S.staff[S.me.id].active)id=S.me.id;else if(byUid)id=byUid.id;else if(ls&&S.staff[ls]&&S.staff[ls].active)id=ls;
+function resolveMe(){const ls=lsGet(meKey());let id=null;const byUid=S.me.id?Object.values(S.staff).find(x=>x.active&&x.uid&&x.uid===S.me.id):null;if(S.me.id&&S.staff[S.me.id]&&S.staff[S.me.id].active)id=S.me.id;else if(byUid)id=byUid.id;else if(ls&&S.staff[ls]&&S.staff[ls].active)id=ls;
   if(S.myStaff!==id){S.myStaff=id;if(!S.qa.siteTouched)S.qa.site='';}updateMeChip();}
 function updateMeChip(){const b=$('#me-chip');if(!b)return;const s=S.staff[S.myStaff];
   b.innerHTML=s?`${avHTML(s.id)}<span class="nm">${esc(s.name)}</span><small>${esc(s.site)}</small>`:`${avHTML('')}<span class="nm">내 정보 등록</span>`;}
@@ -984,12 +1036,13 @@ function openMe(){const d=$('#dlg-me');const s=S.staff[S.myStaff];const list=sta
   if(s&&!realSite(s.site))$('#me-intro').textContent=`${s.name}님, 근무 건물을 선택하고 저장해 주세요. 팀 현황에 건물별로 표시됩니다.`;
   $('#me-name').value=s?s.name:(S.me.name||'');$('#me-role').value=s?s.role:'';
   $('#me-switch').hidden=!(s&&s.id!==S.me.id);
+  const fbm=S.mode==='firebase';$('#me-logout').hidden=!fbm;$('#me-account').hidden=!fbm;if(fbm)$('#me-account').textContent=`로그인 계정: ${S.email}${S.canEdit?' (관리자)':''}`;
   $$('#me-form input,#me-form select').forEach(el=>el.disabled=!S.canWrite);
   if(!d.open)d.showModal();patchNames(d);}
 async function saveMe(e){e.preventDefault();if(!S.canWrite)return;const name=$('#me-name').value.trim();if(!name){$('#me-name').focus();toast('이름을 입력하세요.','err');return;}
   const site=$('#me-site').value,role=$('#me-role').value.trim();let id=S.myStaff||S.me.id||('s-'+rid());const prev=S.staff[id];const now=nowISO();
   try{if(prev)await dbUpdate(`staff/${id}`,{name,site,role,active:true,updatedAt:now});else await dbSet(`staff/${id}`,{name,site,role,active:true,createdAt:now,updatedAt:now,joinedAt:now,...(S.me.id?{uid:S.me.id}:{})});
-    if(id!==S.me.id)lsSet('wl.me',id);S.myStaff=id;S.staff[id]={id,name,site,role,active:true};$('#dlg-me').close();updateMeChip();toast(`${name}님으로 등록했습니다.`);scheduleRender();}catch{}}
+    if(id!==S.me.id)lsSet(meKey(),id);S.myStaff=id;S.staff[id]={id,name,site,role,active:true};$('#dlg-me').close();updateMeChip();toast(`${name}님으로 등록했습니다.`);scheduleRender();}catch{}}
 
 /* ───────── 직원별 집계 ───────── */
 function personStats(id,td){const mine=S.tasks.filter(t=>t.assignees.includes(id));const open=mine.filter(t=>t.status!=='done'&&t.status!=='hold');
@@ -1097,9 +1150,23 @@ async function submitQA(){const q=S.qa;const raw=$('#qa-text').value.trim();if(!
 function myRow(t){const d=ddayInfo(t);const late=isLate(t);const p=esc(t.path);
   return `<div class="mrow cat-${t.cat}"><span class="stripe"></span><button type="button" class="main" data-open="${p}"><span class="tt">${esc(t.title)}</span><span class="mt"><span class="pill s-${late?'late':t.status}">${late?'지연':ST[t.status].name}</span><span class="catchip">${esc(CAT[t.cat].name)}${t.sub?' · '+esc(t.sub):''}</span><span>${esc(t.site)}</span>${t.due?`<span>${t.start&&t.start!==t.due?fmtMD(t.start)+' ~ ':''}${fmtMD(t.due)}</span>`:''}${d?`<span class="dday ${d.cls}">${d.txt}</span>`:''}${t.progress&&t.status!=='done'?`<span>${t.progress}%</span>`:''}</span></button>${S.canWrite?`<span class="acts">${t.status==='plan'?`<button type="button" class="btn sm" data-act="doing" data-path="${p}">시작</button>`:''}<button type="button" class="btn sm" data-act="log" data-path="${p}">기록</button><button type="button" class="btn sm primary" data-act="done" data-path="${p}">완료</button></span>`:''}</div>`;}
 /* ───────── 사용 안내 ───────── */
-const APP_URL='https://claude.ai/artifact/EtAAUqpwCvTQM862ghJNFm';
-function inviteText(){return `[${S.config.dept} 통합 업무일지 사용 안내]
-${S.config.dept} 업무를 웹에서 함께 기록·공유하려고 합니다. 아래 순서대로 접속해 주세요.
+const APP_URL_CLAUDE='https://claude.ai/artifact/EtAAUqpwCvTQM862ghJNFm';
+const appUrl=()=>S.mode==='firebase'?(location.origin+location.pathname).replace(/index\.html$/,''):APP_URL_CLAUDE;
+function inviteText(){const d=S.config.dept;
+  if(S.mode==='firebase')return `[${d} 통합 업무일지 사용 안내]
+${d} 업무를 웹에서 함께 기록·공유하려고 합니다. 아래 순서대로 접속해 주세요.
+
+1) 아래 주소를 크롬·사파리·엣지 같은 브라우저로 여세요.
+   ※ 카카오톡 안에서 열면 구글 로그인이 막힙니다. 오른쪽 아래(또는 위) 메뉴 › '다른 브라우저로 열기'를 누르세요.
+2) 'Google 계정으로 로그인'을 누르세요. 구글 계정이 아닌 이메일은 '이메일로 가입' 후 메일함의 인증 링크를 누르면 됩니다.
+   ※ 관리자에게 알려 준 이메일로 로그인해야 열립니다.
+3) 처음 화면에서 본인 이름을 누르세요. (명단에 없으면 이름·근무 건물·담당을 직접 등록)
+4) '내 업무' 입력창에 오늘 한 일이나 할 일을 한 줄로 적고 Enter를 누르면 끝입니다.
+5) 휴대폰은 '홈 화면에 추가'해 두면 앱처럼 쓸 수 있습니다.
+
+주소: ${appUrl()}`;
+  return `[${d} 통합 업무일지 사용 안내]
+${d} 업무를 웹에서 함께 기록·공유하려고 합니다. 아래 순서대로 접속해 주세요.
 
 1) Claude에서 영어로 된 초대 메일이 옵니다. 메일의 'View invitation'을 누르세요.
 2) 초대받은 이메일 주소 그대로 Claude에 가입(또는 로그인)한 뒤 'Accept and open'을 누르면 업무일지가 열립니다.
@@ -1108,16 +1175,45 @@ ${S.config.dept} 업무를 웹에서 함께 기록·공유하려고 합니다. �
 4) '내 업무' 입력창에 오늘 한 일이나 할 일을 한 줄로 적고 Enter를 누르면 끝입니다.
 5) 휴대폰은 크롬·사파리로 열어 '홈 화면에 추가'해 두면 앱처럼 쓸 수 있습니다.
 
-바로가기(초대 수락 후): ${APP_URL}`;}
-function renderHelp(v){const c=S.config;const roster=staffList();const joined=roster.filter(s=>s.joinedAt).length;
-  v.innerHTML=`<div class="help-wrap">
-  <div class="home-head"><div><h1>사용 안내</h1><p>${esc(c.dept)} 직원이 웹 브라우저로 접속해 업무를 기록·공유하는 방법</p></div><div style="display:flex;gap:8px"><a class="btn" href="#my">내 업무로</a></div></div>
-  <div class="help-grid">
-    <section class="panel"><div class="panel-h"><h2>직원용 — 처음 접속하기</h2></div><ol class="steps">
+바로가기(초대 수락 후): ${APP_URL_CLAUDE}`;}
+function renderHelp(v){const c=S.config;const roster=staffList();const joined=roster.filter(s=>s.joinedAt).length;const fb=S.mode==='firebase';
+  const first=fb?`
+      <li><b>주소 열기</b><span>관리자에게 받은 주소를 크롬·사파리·엣지로 엽니다. 카카오톡 안에서 열었다면 메뉴의 <em>다른 브라우저로 열기</em>를 누르세요(카카오톡 안에서는 구글 로그인이 막힙니다).</span></li>
+      <li><b>로그인</b><span><em>Google 계정으로 로그인</em>을 누릅니다. 회사 메일 등 구글이 아닌 이메일은 <em>이메일로 가입</em> → 메일함의 인증 링크 클릭 → <em>인증 완료</em>.</span></li>
+      <li><b>허용된 이메일인지 확인</b><span>"접속 허용 전" 화면이 나오면 관리자에게 화면에 보이는 이메일을 알려 주세요. 관리자가 허용하면 <em>다시 확인</em>을 누릅니다.</span></li>
+      <li><b>본인 선택</b><span>처음 화면에서 내 이름을 누릅니다. 명단에 없으면 이름·근무 건물·담당 업무를 입력해 등록합니다. 한 번만 하면 됩니다.</span></li>`:`
       <li><b>초대 메일 열기</b><span>Claude에서 보낸 영어 초대 메일의 <em>View invitation</em>을 누릅니다. 메일이 안 보이면 스팸함을 확인하세요.</span></li>
       <li><b>초대받은 이메일로 로그인</b><span>그 이메일 주소로 Claude에 가입하거나 로그인합니다. 주소가 다르면 "You need access"가 뜨고 열리지 않습니다.</span></li>
       <li><b>초대 수락</b><span><em>Accept and open</em>을 누르면 업무일지가 열립니다. PC는 즐겨찾기, 휴대폰은 '홈 화면에 추가'를 해 두세요.</span></li>
-      <li><b>본인 선택</b><span>처음 화면에서 내 이름을 누릅니다. 명단에 없으면 이름·근무 건물·담당 업무를 입력해 등록합니다. 한 번만 하면 됩니다.</span></li>
+      <li><b>본인 선택</b><span>처음 화면에서 내 이름을 누릅니다. 명단에 없으면 이름·근무 건물·담당 업무를 입력해 등록합니다. 한 번만 하면 됩니다.</span></li>`;
+  const admin=fb?`
+    <section class="panel"><div class="panel-h"><h2>관리자용 — 직원 접속 허용하기</h2><span class="sub">관리자 계정으로 로그인해 진행</span></div><ol class="steps">
+      <li><b>직원 명단 등록</b><span><button type="button" class="btn sm" data-open-settings>설정 › 직원 명단</button>에 "이름, 근무 건물, 담당" 형식으로 붙여 넣으면 한 번에 등록됩니다.</span></li>
+      <li><b>접속 허용 이메일 등록</b><span>같은 설정 창의 <em>접속 허용 이메일</em>에 직원이 로그인할 이메일을 한 줄에 하나씩 적고 <em>설정 저장</em>. 여기에 없는 이메일은 로그인해도 열리지 않습니다.</span></li>
+      <li><b>안내 문구 보내기</b><span>아래 안내 문구를 카카오톡·메일로 보냅니다. 주소: <a href="${esc(appUrl())}">${esc(appUrl())}</a></span></li>
+      <li><b>접속 확인</b><span>아래 '접속 현황'에서 아직 접속하지 않은 직원을 확인합니다. 퇴사자는 접속 허용 이메일에서 지우면 바로 차단됩니다.</span></li>
+    </ol></section>`:`
+    <section class="panel"><div class="panel-h"><h2>관리자용 — 직원 초대하기</h2><span class="sub">claude.ai 웹 또는 Claude 데스크톱 앱에서 진행</span></div><ol class="steps">
+      <li><b>직원 명단 등록</b><span><button type="button" class="btn sm" data-open-settings>설정 › 직원 명단</button>에 "이름, 근무 건물, 담당" 형식으로 붙여 넣으면 한 번에 등록됩니다.</span></li>
+      <li><b>이메일로 초대</b><span>업무일지 화면 오른쪽 위 <em>Share</em> → <em>Invite people by email</em>(Team 요금제는 <em>Add people</em>)에 직원 이메일 입력 → 권한 <em>Can edit</em> → <em>Invite</em>. 한 명씩, 최대 50명.</span></li>
+      <li><b>'Anyone with the link'는 켜지 않기</b><span>링크 공개를 함께 켜면 초대한 직원도 모두 보기 전용이 되어 입력할 수 없습니다.</span></li>
+      <li><b>안내 문구 보내기</b><span>초대 메일이 영어라서, 아래 안내 문구를 카카오톡·메일로 함께 보내면 헷갈리지 않습니다.</span></li>
+      <li><b>접속 확인</b><span>아래 '접속 현황'에서 아직 접속하지 않은 직원을 확인합니다. 초대 후 30일 안에 수락하지 않으면 초대가 만료되니 다시 초대하세요.</span></li>
+    </ol></section>`;
+  const faq=fb?`
+      <dt>비용이 드나요?</dt><dd>Firebase 무료(Spark) 요금제 한도 안에서는 무료입니다. 하루 읽기 5만 건·쓰기 2만 건, 저장 1GB까지이며 10명 정도는 보통 한도 안입니다. 한도를 넘으면 그날은 저장이 멈추고 다음 날 풀립니다.</dd>
+      <dt>카카오톡에서 열었더니 구글 로그인이 안 돼요.</dt><dd>카카오톡 내장 브라우저는 구글 로그인을 막습니다. 메뉴의 '다른 브라우저로 열기'를 누르거나, 주소를 복사해 크롬·사파리에 붙여 넣으세요.</dd>
+      <dt>비밀번호를 잊었어요.</dt><dd>로그인 화면의 '비밀번호 재설정'을 누르면 메일로 재설정 링크가 갑니다. 구글 로그인은 구글 계정 비밀번호를 그대로 씁니다.</dd>
+      <dt>다른 기기에서 열었더니 이름을 또 물어봐요.</dt><dd>내 이름을 한 번 더 누르면 됩니다. 기록은 그대로 이어집니다.</dd>
+      <dt>AI 종합의견 버튼이 안 보여요.</dt><dd>AI 기능은 claude.ai에서 연 업무일지에서만 동작합니다. 보고서 작성·내려받기는 그대로 쓸 수 있습니다.</dd>`:`
+      <dt>Claude 계정이 꼭 있어야 하나요?</dt><dd>네. 공유된 업무일지는 Claude 계정으로 로그인해야 열립니다. 초대받은 이메일로 가입하면 됩니다.</dd>
+      <dt>휴대폰 Claude 앱에서도 되나요?</dt><dd>초대 수락은 웹 브라우저에서 해야 합니다. 이후에는 휴대폰 브라우저에서 바로가기 링크를 열어 쓰는 것이 가장 확실합니다.</dd>
+      <dt>다른 기기에서 열었더니 이름을 또 물어봐요.</dt><dd>내 이름을 한 번 더 누르면 됩니다. 기록은 그대로 이어집니다.</dd>
+      <dt>AI 종합의견 버튼이 안 보여요.</dt><dd>초대받은 직원 화면에서는 Claude 기능이 동작하지 않아 버튼이 숨겨집니다. 보고서 자체는 누구나 만들고 내려받을 수 있습니다.</dd>`;
+  v.innerHTML=`<div class="help-wrap">
+  <div class="home-head"><div><h1>사용 안내</h1><p>${esc(c.dept)} 직원이 웹 브라우저로 접속해 업무를 기록·공유하는 방법</p></div><div style="display:flex;gap:8px"><a class="btn" href="#my">내 업무로</a></div></div>
+  <div class="help-grid">
+    <section class="panel"><div class="panel-h"><h2>직원용 — 처음 접속하기</h2></div><ol class="steps">${first}
     </ol></section>
     <section class="panel"><div class="panel-h"><h2>직원용 — 매일 기록하기</h2></div><ol class="steps">
       <li><b>한 줄 입력 + Enter</b><span><a href="#my">내 업무</a> 맨 위 칸에 "군포공장 소화기 42대 압력 점검"처럼 적고 Enter. 분야와 건물은 자동으로 골라집니다.</span></li>
@@ -1126,22 +1222,11 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>파일·사진으로 올리기</b><span>종이 업무일지 사진, 엑셀·한글(hwp·hwpx)·워드·PDF 업무일지는 입력창에 끌어다 놓거나 <em>파일·사진으로 올리기</em>를 누르면 내용을 읽어 목록으로 보여 줍니다. 확인 후 <em>등록</em>.</span></li>
       <li><b>특이사항</b><span>건의·특이사항은 내 업무 오른쪽 아래 칸에 적고 저장합니다. 일일 업무일지에 자동으로 들어갑니다.</span></li>
       <li><b>동료 확인</b><span><a href="#team">팀 현황</a>에서 안양본사·군포공장·화성공장 직원의 오늘 기록을 볼 수 있습니다.</span></li>
-    </ol></section>
-    <section class="panel"><div class="panel-h"><h2>관리자용 — 직원 초대하기</h2><span class="sub">claude.ai 웹 또는 Claude 데스크톱 앱에서 진행</span></div><ol class="steps">
-      <li><b>직원 명단 등록</b><span><button type="button" class="btn sm" data-open-settings>설정 › 직원 명단</button>에 "이름, 근무 건물, 담당" 형식으로 붙여 넣으면 한 번에 등록됩니다.</span></li>
-      <li><b>이메일로 초대</b><span>업무일지 화면 오른쪽 위 <em>Share</em> → <em>Invite people by email</em>(Team 요금제는 <em>Add people</em>)에 직원 이메일 입력 → 권한 <em>Can edit</em> → <em>Invite</em>. 한 명씩, 최대 50명.</span></li>
-      <li><b>'Anyone with the link'는 켜지 않기</b><span>링크 공개를 함께 켜면 초대한 직원도 모두 보기 전용이 되어 입력할 수 없습니다.</span></li>
-      <li><b>안내 문구 보내기</b><span>초대 메일이 영어라서, 아래 안내 문구를 카카오톡·메일로 함께 보내면 헷갈리지 않습니다.</span></li>
-      <li><b>접속 확인</b><span>아래 '접속 현황'에서 아직 접속하지 않은 직원을 확인합니다. 초대 후 30일 안에 수락하지 않으면 초대가 만료되니 다시 초대하세요.</span></li>
-    </ol></section>
+    </ol></section>${admin}
     <section class="panel"><div class="panel-h"><h2>직원에게 보낼 안내 문구</h2><div class="act"><button type="button" class="btn sm primary" id="copy-invite">${ICON.copy}문구 복사</button></div></div><pre class="invite-pre">${esc(inviteText())}</pre></section>
     <section class="panel"><div class="panel-h"><h2>접속 현황</h2><span class="sub">${roster.length?`${joined}/${roster.length}명 접속`:'명단 없음'}</span></div>
       ${roster.length?`<ul class="join-list">${teamSites().map(site=>roster.filter(s=>s.site===site).map(s=>`<li>${avHTML(s.id,'sm')}<span class="jn">${esc(s.name)}</span><small>${esc(s.site)}${s.role?' · '+esc(s.role):''}</small>${s.joinedAt?`<span class="pill s-done">접속 ${fmtMD(localDate(s.joinedAt))}</span>`:'<span class="pill s-hold">아직 접속 전</span>'}</li>`).join('')).join('')}</ul>`:'<div class="empty">설정 › 직원 명단에서 직원을 먼저 등록하세요.</div>'}</section>
-    <section class="panel"><div class="panel-h"><h2>자주 묻는 질문</h2></div><dl class="faq">
-      <dt>Claude 계정이 꼭 있어야 하나요?</dt><dd>네. 공유된 업무일지는 Claude 계정으로 로그인해야 열립니다. 초대받은 이메일로 가입하면 됩니다.</dd>
-      <dt>휴대폰 Claude 앱에서도 되나요?</dt><dd>초대 수락은 웹 브라우저에서 해야 합니다. 이후에는 휴대폰 브라우저에서 바로가기 링크를 열어 쓰는 것이 가장 확실합니다.</dd>
-      <dt>다른 기기에서 열었더니 이름을 또 물어봐요.</dt><dd>내 이름을 한 번 더 누르면 됩니다. 기록은 그대로 이어집니다.</dd>
-      <dt>AI 종합의견 버튼이 안 보여요.</dt><dd>초대받은 직원 화면에서는 Claude 기능이 동작하지 않아 버튼이 숨겨집니다. 보고서 자체는 누구나 만들고 내려받을 수 있습니다.</dd>
+    <section class="panel"><div class="panel-h"><h2>자주 묻는 질문</h2></div><dl class="faq">${faq}
     </dl></section>
   </div></div>`;}
 
@@ -1486,7 +1571,7 @@ async function exportHTML(){const R=S.lastReport;const paper=$('#paper');if(!R||
   $$('.chart-box',clone).forEach(b=>b.style.height='auto');
   const ta=$('textarea.opinion',clone);if(ta){const d=document.createElement('div');d.className='opinion';d.textContent=$('#opinion').value||' ';ta.replaceWith(d);}
   $$('.op-tools',clone).forEach(e=>e.remove());
-  for(const img of $$('img[data-pid]',clone)){try{const r=await fetch(img.getAttribute('src'));const b=await r.blob();img.src=await new Promise(res=>{const fr=new FileReader();fr.onload=()=>res(fr.result);fr.readAsDataURL(b);});img.removeAttribute('loading');}catch{}}
+  for(const img of $$('img[data-pid]',clone)){const d=await photoDataURL(img.dataset.pid);if(d)img.src=d;img.removeAttribute('loading');}
   const html=`<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(R.title)} ${esc(R.periodText)}</title><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Nanum+Myeongjo:wght@700;800&display=swap" rel="stylesheet"><style>body{margin:0;padding:24px;background:#eef1f5}${$('#report-css').textContent}@page{size:A4;margin:12mm}@media print{body{padding:0;background:#fff}.paper{border:0;box-shadow:none;width:auto;padding:0}.paper section{break-inside:auto}.paper tr{break-inside:avoid}}</style></head><body>${clone.outerHTML}</body></html>`;
   const fn=`${S.config.dept}_${R.title.replace(/\s+/g,'')}_${R.ps}.html`;
   try{await S.downloads.save({filename:fn,data:html});}catch(e){if(e&&e.code!=='declined')toast('파일을 내려받지 못했습니다.','err');}}
@@ -1584,14 +1669,19 @@ function closeTask(saved){const d=$('#dlg-task');if(!saved&&S.dlg&&!S.dlg.path&&
 async function openSettings(){const c=S.config;$('#s-roster').innerHTML=staffList().map(rosterRow).join('');$('#s-roster-bulk').value='';$('#s-dept').value=c.dept;$('#s-sites').value=c.sites.join('\n');$('#s-appr').value=c.approvals.join(', ');
   $('#s-subs').innerHTML=CATS.map(cat=>`<div class="row"><span>${esc(cat.name)}</span><textarea id="s-sub-${cat.id}" rows="2" aria-label="${esc(cat.name)} 세부 분류">${esc(subsOf(cat.id).join(', '))}</textarea></div>`).join('');
   const editable=S.canEdit||S.preview;$$('#set-form input,#set-form textarea').forEach(el=>el.disabled=!editable);$('#s-save').hidden=!editable;$('#set-perm').hidden=editable;$('#s-clear-sample').hidden=!editable;$$('#s-roster-wrap button').forEach(b=>b.hidden=!editable);
+  $('#set-perm').textContent=S.mode==='firebase'?'설정 변경은 관리자만 할 수 있습니다.':'설정 변경은 편집 권한이 있는 사람만 할 수 있습니다.';
+  const fbAdmin=S.mode==='firebase'&&S.canEdit;$('#s-members-wrap').hidden=!fbAdmin;
+  if(fbAdmin){const m=S.members||{};const names=m.names||{};$('#s-members').value=(m.emails||[]).map(e=>names[e]?`${e} ${names[e]}`:e).join('\n');$('#s-admins').value=(m.admins||[]).join('\n');$('#s-members-me').textContent=`지금 로그인한 관리자: ${S.email} — 본인 이메일은 관리자 목록에서 지울 수 없습니다.`;}
+  $('#s-backup').hidden=!S.downloads;$('#s-backup-photos').disabled=false;$('#s-backup-photos').closest('label').hidden=!S.downloads;$('#s-restore-btn').hidden=!editable;$('#s-restore').disabled=!editable;$('#s-backup-st').textContent='';
   const n=S.tasks.length+S.memos.length;
-  $('#s-usage').innerHTML=`<p class="help">업무·일지 문서 ${n.toLocaleString()}개 / ${DB_DOC_CAP.toLocaleString()}개 (불러온 연도 기준)</p><div class="meter"><i style="width:${Math.min(100,n/DB_DOC_CAP*100)}%"></i></div><p class="help" id="s-asset-usage"></p>`;
+  $('#s-usage').innerHTML=S.mode==='firebase'?`<p class="help">Firebase(Firestore)에 저장됩니다. 불러온 업무 ${S.tasks.length.toLocaleString()}건 · 특이사항 ${S.memos.length.toLocaleString()}일. 무료 한도: 저장 1GB, 하루 읽기 5만·쓰기 2만 건. 사용량은 Firebase 콘솔 › Firestore › 사용량에서 확인하세요.</p>`:`<p class="help">업무·일지 문서 ${n.toLocaleString()}개 / ${DB_DOC_CAP.toLocaleString()}개 (불러온 연도 기준)</p><div class="meter"><i style="width:${Math.min(100,n/DB_DOC_CAP*100)}%"></i></div><p class="help" id="s-asset-usage"></p>`;
   $('#dlg-settings').showModal();
-  if(S.assets){try{const r=await S.assets.list();const u=r.usage;$('#s-asset-usage').textContent=`사진 ${u.files.toLocaleString()}장 · ${(u.bytes/1048576).toFixed(1)}MB / ${(u.maxBytes/1048576).toFixed(0)}MB`;}catch{}}}
+  if(S.assets&&S.assets.list){try{const r=await S.assets.list();const u=r.usage;$('#s-asset-usage').textContent=`사진 ${u.files.toLocaleString()}장 · ${(u.bytes/1048576).toFixed(1)}MB / ${(u.maxBytes/1048576).toFixed(0)}MB`;}catch{}}}
 async function saveSettings(e){e.preventDefault();const subs={};for(const cat of CATS){const v=$('#s-sub-'+cat.id).value.split(',').map(x=>x.trim()).filter(Boolean).slice(0,30);if(v.length&&v.join(',')!==cat.subs.join(','))subs[cat.id]=v;}
   const cfg={dept:$('#s-dept').value.trim()||'관리부',sites:$('#s-sites').value.split('\n').map(x=>x.trim()).filter(Boolean).slice(0,20),approvals:$('#s-appr').value.split(',').map(x=>x.trim()).filter(Boolean).slice(0,6),subs};
   if(!cfg.sites.length)cfg.sites=DEFAULT_CONFIG.sites.slice();
-  try{await dbSet('app/config',cfg);const n=await saveRoster();$('#dlg-settings').close();toast(n?`설정과 직원 명단(${n}건 변경)을 저장했습니다.`:'설정을 저장했습니다.');}catch{}}
+  let mem=null;if(S.mode==='firebase'&&S.canEdit){mem=parseMembers($('#s-members').value,$('#s-admins').value);if(mem.bad.length){toast(`이메일 형식이 아닌 줄이 있습니다: ${mem.bad.slice(0,3).join(', ')}`,'err');$('#s-members').focus();return;}}
+  try{if(mem)await dbSet('app/members',mem.doc);await dbSet('app/config',cfg);const n=await saveRoster();$('#dlg-settings').close();toast(n?`설정과 직원 명단(${n}건 변경)을 저장했습니다.`:'설정을 저장했습니다.');}catch{}}
 async function clearSamples(){const list=S.tasks.filter(t=>t.sample);if(!list.length){toast('지울 예시 업무가 없습니다.');return;}
   const ok=await confirmDlg('예시 업무 삭제',`[예시] 표시가 있는 업무 ${list.length}건을 삭제합니다. 되돌릴 수 없습니다.`,'삭제');if(!ok)return;
   for(const t of list){try{await dbDelete(t.path);}catch{break;}}toast('예시 업무를 삭제했습니다.');}
@@ -1604,7 +1694,7 @@ function confirmDlg(title,msg,yes='확인',textToCopy){return new Promise(res=>{
   d.showModal();if(textToCopy){tx.focus();tx.select();}});}
 let LB={list:[],i:0};
 function openLightbox(list,i){LB={list,i};showLB();$('#lightbox').hidden=false;$('#lightbox .lb-x').focus();}
-function showLB(){const it=LB.list[LB.i];if(!it)return;$('#lb-img').src=photoSrc(it.id);$('#lb-cap').textContent=`${it.cap||''} ${LB.list.length>1?`(${LB.i+1}/${LB.list.length})`:''}`.trim();}
+function showLB(){const it=LB.list[LB.i];if(!it)return;$('#lb-img').dataset.pid=it.id;$('#lb-img').src=photoSrc(it.id);$('#lb-cap').textContent=`${it.cap||''} ${LB.list.length>1?`(${LB.i+1}/${LB.list.length})`:''}`.trim();}
 function closeLB(){$('#lightbox').hidden=true;}
 
 /* ───────── 담당자 선택 ───────── */
@@ -1637,8 +1727,8 @@ document.addEventListener('click',async e=>{
   if(e.target.closest('[data-close-me]')){$('#dlg-me').close();return;}
   if(e.target.closest('#copy-invite')){const txt=inviteText();try{await navigator.clipboard.writeText(txt);toast('안내 문구를 복사했습니다. 카카오톡이나 메일에 붙여넣으세요.');}catch{confirmDlg('안내 문구 복사','아래 내용을 전체 선택해 복사하세요.','닫기',txt);}return;}
   if(e.target.closest('[data-open-settings]')){openSettings();return;}
-  const mp=e.target.closest('[data-me-pick]');if(mp){const id=mp.dataset.mePick;lsSet('wl.me',id);S.myStaff=id;$('#dlg-me').close();const st0=S.staff[id];if(st0&&S.canWrite&&(!st0.joinedAt||(S.me.id&&st0.uid!==S.me.id))){const up={joinedAt:st0.joinedAt||nowISO(),updatedAt:nowISO()};if(S.me.id)up.uid=S.me.id;runWrite(`staff/${id}`,()=>S.db.doc(`staff/${id}`).update(clean(up))).catch(()=>{});}updateMeChip();if(!S.qa.siteTouched)S.qa.site='';scheduleRender();if(st0&&!realSite(st0.site)){setTimeout(openMe,250);}else toast(`${nameOf(id)}님, 환영합니다.`);return;}
-  if(e.target.closest('#me-switch')){lsSet('wl.me',null);S.myStaff=S.me.id&&S.staff[S.me.id]?S.me.id:null;if(S.myStaff===null){openMe();}updateMeChip();scheduleRender();return;}
+  const mp=e.target.closest('[data-me-pick]');if(mp){const id=mp.dataset.mePick;lsSet(meKey(),id);S.myStaff=id;$('#dlg-me').close();const st0=S.staff[id];if(st0&&S.canWrite&&(!st0.joinedAt||(S.me.id&&st0.uid!==S.me.id))){const up={joinedAt:st0.joinedAt||nowISO(),updatedAt:nowISO()};if(S.me.id)up.uid=S.me.id;runWrite(`staff/${id}`,()=>S.db.doc(`staff/${id}`).update(clean(up))).catch(()=>{});}updateMeChip();if(!S.qa.siteTouched)S.qa.site='';scheduleRender();if(st0&&!realSite(st0.site)){setTimeout(openMe,250);}else toast(`${nameOf(id)}님, 환영합니다.`);return;}
+  if(e.target.closest('#me-switch')){lsSet(meKey(),null);S.myStaff=S.me.id&&S.staff[S.me.id]?S.me.id:null;if(S.myStaff===null){openMe();}updateMeChip();scheduleRender();return;}
   if(e.target.closest('#p-board')){const id=S.personId;$('#dlg-person').close();Object.assign(S.filters,{period:'all',cat:'',site:'',who:id,scope:'',q:''});$('#f-q').value='';fillFilterSelects();go('#board');return;}
   if(e.target.closest('#p-report')){const id=S.personId;$('#dlg-person').close();Object.assign(S.rep,{kind:'day',date:today(),who:id,cat:'',site:''});go('#report');return;}
   if(e.target.closest('#s-roster-add')){$('#s-roster').insertAdjacentHTML('beforeend',rosterRow({}));const r=$$('#s-roster .rr').pop();$('.r-name',r).focus();return;}
@@ -1689,6 +1779,9 @@ $('#imp-ph-who').addEventListener('change',e=>{if(S.imp)S.imp.photoWho=e.target.
 $('#dlg-import').addEventListener('close',()=>{if($('#dlg-import').open)return;if(S.imp&&!S.imp.busy){S.imp.photos.forEach(p=>URL.revokeObjectURL(p.url));S.imp=null;$('#imp-ph-title').value='';}});
 $('#dlg-person').addEventListener('close',()=>{S.personId=null;});
 $('#s-clear-sample').addEventListener('click',clearSamples);
+$('#s-backup').addEventListener('click',backupData);
+$('#s-restore').addEventListener('change',e=>{const f=e.target.files&&e.target.files[0];e.target.value='';if(f)restoreData(f);});
+$('#me-logout').addEventListener('click',async()=>{const ok=await confirmDlg('로그아웃','이 기기에서 로그아웃합니다. 다시 열면 로그인 화면이 나옵니다.','로그아웃');if(ok)fbLogout();});
 $('#task-form').addEventListener('submit',submitTask);
 $('#dlg-task').addEventListener('cancel',e=>{e.preventDefault();closeTask(false);});
 $('#t-cat').addEventListener('change',e=>fillSubs(e.target.value));
@@ -1699,7 +1792,7 @@ $('#t-assignee-q').addEventListener('focus',()=>searchPeople(''));
 $('#t-assignee-q').addEventListener('input',e=>searchPeople(e.target.value.trim()));
 $('#t-delete').addEventListener('click',async()=>{const t=findTask(S.dlg&&S.dlg.path);if(!t)return;const ok=await confirmDlg('업무 삭제',`「${t.title}」을(를) 삭제합니다. 진행 기록과 사진도 함께 지워지며 되돌릴 수 없습니다.`,'삭제');if(!ok)return;
   try{await dbDelete(t.path);deleteAssets(t.photos.map(p=>p.id));toast('업무를 삭제했습니다.');closeTask(true);}catch{}});
-$('#t-photo-input').addEventListener('change',async e=>{const files=e.target.files;e.target.value='';const lbl=$('#t-photo-btn');lbl.classList.add('busy');lbl.firstChild.textContent='올리는 중…';
+$('#t-photo-input').addEventListener('change',async e=>{const files=Array.from(e.target.files||[]);e.target.value='';const lbl=$('#t-photo-btn');lbl.classList.add('busy');lbl.firstChild.textContent='올리는 중…';
   const ups=await uploadImages(files);lbl.firstChild.textContent='사진 첨부';if(!ups.length||!S.dlg)return;
   if(!S.dlg.path){S.dlg.pending.push(...ups);S.dlg.uploaded.push(...ups.map(u=>u.id));refreshDialog();}
   else{const t=findTask(S.dlg.path);if(t){try{await appendLog(t,{at:nowISO(),by:myId(),kind:'photo',text:'',photos:ups.map(u=>u.id)},{photos:ups});toast(`사진 ${ups.length}장을 첨부했습니다.`);}catch{deleteAssets(ups.map(u=>u.id));}}}});
@@ -1734,13 +1827,252 @@ document.addEventListener('change',e=>{const id=e.target.id;
   if(id==='r-who'){S.rep.who=e.target.value;renderPaper();}
   if(id==='r-photos'){S.rep.photos=e.target.checked;renderPaper();}});
 
+/* ───────── 백업·옮기기 ───────── */
+function readCollOnce(path){if(S.mode==='firebase')return S.fs.collection(path).get().then(q=>q.docs.map(d=>({id:d.id,data:d.data()})));
+  return new Promise((res,rej)=>{let un=null,done=false;un=S.db.collection(path).onSnapshot(s=>{if(done)return;done=true;res(s.docs.filter(d=>d.exists).map(d=>({id:d.id,data:d.data()})));setTimeout(()=>un&&un(),0);},rej);});}
+async function backupData(){if(!S.downloads)return;const withPh=$('#s-backup-photos').checked;const st=$('#s-backup-st');const btn=$('#s-backup');btn.disabled=true;
+  try{st.textContent='백업 파일을 만드는 중…';const py=String(+today().slice(0,4)-1);ensureYear(py);
+    for(let i=0;i<50&&!S.loaded.has(py);i++)await new Promise(r=>setTimeout(r,100));
+    const tasks=S.tasks.map(t=>({path:t.path,data:stripMeta(t)}));
+    const memos=[];for(const [y,list] of Object.entries(S.memosByYear))for(const m of list)memos.push({path:`wl/${y}/memos/${m.id}`,data:{date:m.date,entries:m.entries}});
+    const staff=Object.values(S.staff).map(x=>{const o={...x};delete o.id;return {id:x.id,data:o};});
+    const reports=[];for(const y of S.years){try{for(const d of await readCollOnce(`wl/${y}/reports`))reports.push({path:`wl/${y}/reports/${d.id}`,data:d.data});}catch{}}
+    const photos={};if(withPh){const ids=[...new Set(S.tasks.flatMap(t=>[...t.photos.map(p=>p.id),...t.logs.flatMap(l=>l.photos)]))];let i=0;
+      for(const id of ids){i++;if(i%4===0)st.textContent=`사진 담는 중… ${i}/${ids.length}`;const d=await photoDataURL(id);if(d&&d.startsWith('data:image/'))photos[id]=d;}}
+    const out={app:'wl-worklog',version:1,source:S.mode||'preview',exportedAt:nowISO(),dept:S.config.dept,config:S.config,staff,tasks,memos,reports,photos};
+    await S.downloads.save({filename:`${S.config.dept}_업무일지_백업_${today()}.json`,data:JSON.stringify(out)});
+    st.textContent=`백업 완료: 업무 ${tasks.length}건 · 특이사항 ${memos.length}일 · 직원 ${staff.length}명${withPh?` · 사진 ${Object.keys(photos).length}장`:''}`;}
+  catch(e){if(!(e&&e.code==='declined')){st.textContent='백업 파일을 만들지 못했습니다.';toast('백업 파일을 만들지 못했습니다.','err');}else st.textContent='';}
+  finally{btn.disabled=false;}}
+async function restoreData(file){if(!(S.canEdit||S.preview)||!S.canWrite)return;const st=$('#s-backup-st');let B;
+  try{B=JSON.parse(await file.text());}catch{toast('백업 파일을 읽지 못했습니다. 업무일지에서 내려받은 .json 파일인지 확인하세요.','err');return;}
+  if(!B||B.app!=='wl-worklog'||!Array.isArray(B.tasks)){toast('업무일지 백업 파일이 아닙니다.','err');return;}
+  const P=B.photos&&typeof B.photos==='object'?B.photos:{};const nP=Object.keys(P).length;
+  const ok=await confirmDlg('백업 파일 불러오기',`${B.dept||''} 백업 (${String(B.exportedAt||'').slice(0,10)})\n\n· 직원 ${(B.staff||[]).length}명\n· 업무 ${B.tasks.length}건\n· 특이사항 ${(B.memos||[]).length}일\n· 사진 ${nP}장\n\n같은 업무·직원은 백업 내용으로 덮어씁니다. 지금 있는 다른 업무는 그대로 남습니다.`,'불러오기');if(!ok)return;
+  const btn=$('#s-restore-btn');btn.classList.add('busy');setSync('saving');
+  try{const map={};let i=0;
+    for(const [id,d] of Object.entries(P)){i++;st.textContent=`사진 올리는 중… ${i}/${nP}`;if(typeof d!=='string'||!d.startsWith('data:image/'))continue;
+      try{const blob=await (await fetch(d)).blob();
+        if(S.mode==='firebase'){if(!isAssetId(id))continue;const ex=await S.fs.doc('photos/'+id).get().catch(()=>null);if(!(ex&&ex.exists))await fbPutPhoto(id,blob);map[id]=id;}
+        else if(S.preview){const nid='local'+rid();S.localBlobs[nid]=URL.createObjectURL(blob);map[id]=nid;}
+        else if(S.assets){const r=await S.assets.upload(blob,{type:['image/jpeg','image/png','image/webp','image/gif'].includes(blob.type)?blob.type:'image/jpeg'});map[id]=r.id;}}catch{}}
+    const cross=(B.source||'preview')!==(S.mode||'preview')||S.preview;
+    const fixPh=list=>(Array.isArray(list)?list:[]).filter(p=>p&&(map[p.id]||!cross)).map(p=>map[p.id]?{...p,id:map[p.id]}:p);
+    const fixIds=ids=>(Array.isArray(ids)?ids:[]).filter(x=>map[x]||!cross).map(x=>map[x]||x);
+    const entries=[];
+    if(B.config&&typeof B.config==='object'&&(S.canEdit||S.preview))entries.push(['app/config',normConfig(B.config)]);
+    for(const s0 of B.staff||[]){if(!s0||typeof s0.id!=='string'||!/^[A-Za-z0-9_-]{1,80}$/.test(s0.id)||!s0.data)continue;const d={...s0.data};if(cross){delete d.uid;delete d.joinedAt;}entries.push([`staff/${s0.id}`,d]);}
+    for(const t of B.tasks){if(!t||!/^wl\/\d{4}\/tasks\/[A-Za-z0-9_-]+$/.test(t.path||'')||!t.data)continue;const d={...t.data};d.photos=fixPh(d.photos);d.logs=(Array.isArray(d.logs)?d.logs:[]).map(l=>({...l,photos:fixIds(l.photos)}));entries.push([t.path,d]);}
+    for(const m of B.memos||[])if(m&&/^wl\/\d{4}\/memos\/\d{4}-\d{2}-\d{2}$/.test(m.path||'')&&m.data)entries.push([m.path,m.data]);
+    for(const r of B.reports||[])if(r&&/^wl\/\d{4}\/reports\/[A-Za-z0-9_-]+$/.test(r.path||'')&&r.data)entries.push([r.path,r.data]);
+    for(const [p] of entries){const m=p.match(/^wl\/(\d{4})\//);if(m)ensureYear(m[1]);}
+    if(S.db.bulkSet){await S.db.bulkSet(entries.map(([p,d])=>[p,clean(d)]),(a,b)=>{st.textContent=`저장 중… ${a}/${b}`;});}
+    else{let k=0;for(const [p,d] of entries){await S.db.doc(p).set(clean(d));k++;if(k%10===0||k===entries.length)st.textContent=`저장 중… ${k}/${entries.length}`;}}
+    setSync('ok');st.textContent=`불러오기 완료: 업무 ${B.tasks.length}건 · 직원 ${(B.staff||[]).length}명 · 사진 ${Object.keys(map).length}장`;toast('백업 파일을 불러왔습니다.');}
+  catch(e){writeError(e);st.textContent='불러오는 중 문제가 생겼습니다. 다시 불러오면 이어서 저장됩니다.';}
+  finally{btn.classList.remove('busy');}}
+
+/* ───────── Firebase 연결 (GitHub Pages 등 claude.ai 밖에서 열 때) ─────────
+   firebase-config.js 에 Firebase 웹 앱 설정을 넣으면 이 모드로 열립니다.
+   업무·특이사항은 묶음 문서(wl/{연도}/tbox, mbox)에 나눠 저장해 무료 한도(하루 읽기 5만 건) 안에서 쓰도록 했습니다. */
+const FB_VER='12.19.0';
+const FB_CDN=[`https://www.gstatic.com/firebasejs/${FB_VER}/`,`https://cdn.jsdelivr.net/npm/firebase@${FB_VER}/`];
+const FB_SHARDS=32;
+const FB_VIRTUAL=[
+  {re:/^wl\/(\d{4})\/tasks$/,phys:m=>`wl/${m[1]}/tbox`,key:id=>{let h=2166136261;for(const c of id){h^=c.charCodeAt(0);h=Math.imul(h,16777619);}return String((h>>>0)%FB_SHARDS).padStart(2,'0');},merge:false},
+  {re:/^wl\/(\d{4})\/memos$/,phys:m=>`wl/${m[1]}/mbox`,key:id=>/^\d{4}-\d{2}-\d{2}$/.test(id)?id.slice(5,7):'00',merge:true}];
+function fbVirtual(cp){for(const v of FB_VIRTUAL){const m=cp.match(v.re);if(m)return {...v,phys:v.phys(m)};}return null;}
+function fbErr(e){if(!e||typeof e!=='object')return e;const c=e.code||'';const msg=String(e.message||'');
+  if(c==='permission-denied')return {code:'fb_denied',message:msg};
+  if(c==='resource-exhausted')return {code:'fb_quota',message:msg};
+  if(c==='not-found')return {code:'invalid_argument',message:msg};
+  if(c==='invalid-argument'&&/size|bytes|large/i.test(msg))return {code:'fb_size',message:msg};
+  if(c==='unavailable'||c==='deadline-exceeded')return {code:'unavailable',message:msg};
+  if(c==='unauthenticated')return {code:'revoked',message:msg};
+  return e;}
+function fbWrite(p){if(navigator.onLine===false){p.catch(e=>writeError(fbErr(e)));return Promise.resolve();}return p.catch(e=>{throw fbErr(e);});}
+const fbSnap=(id,d,meta)=>({id,exists:d!==undefined&&d!==null,data:()=>d,metadata:meta||{fromCache:false,hasPendingWrites:false}});
+function fbFlat(obj,prefix,out=[]){for(const k of Object.keys(obj)){const v=obj[k];const p=[...prefix,k];if(v&&typeof v==='object'&&!Array.isArray(v)&&Object.keys(v).length)fbFlat(v,p,out);else out.push([p,v]);}return out;}
+class FirebaseDB{
+  constructor(fs){this.fs=fs;this.vc=new Map();this.live=new Set();}
+  _upd(ref,pairs){const FP=firebase.firestore.FieldPath;const args=[];for(const [p,v] of pairs)args.push(new FP(...p),v);return ref.update(...args);}
+  doc(path){const self=this;const parts=path.split('/');const id=parts.pop();const v=fbVirtual(parts.join('/'));
+    if(!v){const ref=self.fs.doc(path);return{path,id,
+      async get(){try{const s=await ref.get();return fbSnap(s.id,s.exists?s.data():undefined);}catch(e){throw fbErr(e);}},
+      set(data){return fbWrite(ref.set(data));},
+      update(data){const pairs=fbFlat(data,[]);if(!pairs.length)return Promise.resolve();return fbWrite(self._upd(ref,pairs));},
+      delete(){return fbWrite(ref.delete());},
+      onSnapshot(next,err){return ref.onSnapshot(s=>next(fbSnap(s.id,s.exists?s.data():undefined,s.metadata)),e=>err&&err(fbErr(e)));}};}
+    const sh=v.key(id);const ref=self.fs.doc(`${v.phys}/${sh}`);const FP=firebase.firestore.FieldPath;
+    const cached=()=>{if(!self.live.has(v.phys))return undefined;const box=(self.vc.get(v.phys)||new Map()).get(sh);return box&&box[id]&&typeof box[id]==='object'?box[id]:null;};
+    return{path,id,
+      async get(){const c=cached();if(c!==undefined)return fbSnap(id,c||undefined);try{const s=await ref.get();const t=s.exists?s.data().t:null;return fbSnap(id,t&&t[id]&&typeof t[id]==='object'?t[id]:undefined);}catch(e){throw fbErr(e);}},
+      set(data){return fbWrite(v.merge?ref.set({t:{[id]:data}},{merge:true}):ref.set({t:{[id]:data}},{mergeFields:[new FP('t',id)]}));},
+      async update(data){let c=cached();if(c===undefined){const s=await this.get();c=s.exists?s.data():null;}if(!c)throw {code:'invalid_argument',message:'missing'};
+        const pairs=fbFlat(data,['t',id]);if(!pairs.length)return;return fbWrite(self._upd(ref,pairs));},
+      delete(){return fbWrite(ref.update(new FP('t',id),firebase.firestore.FieldValue.delete()).catch(e=>{if(e&&e.code==='not-found')return;throw e;}));},
+      onSnapshot(next,err){return ref.onSnapshot(s=>{const t=s.exists?s.data().t:null;next(fbSnap(id,t&&t[id]&&typeof t[id]==='object'?t[id]:undefined,s.metadata));},e=>err&&err(fbErr(e)));}};}
+  collection(cp){const self=this;const v=fbVirtual(cp);
+    if(!v)return{path:cp,doc(id){return self.doc(cp+'/'+(id||rid()));},
+      onSnapshot(next,err){return self.fs.collection(cp).onSnapshot(q=>{const docs=q.docs.map(d=>fbSnap(d.id,d.data()));next({docs,size:docs.length,empty:!docs.length,metadata:q.metadata});},e=>err&&err(fbErr(e)));}};
+    return{path:cp,doc(id){return self.doc(cp+'/'+(id||rid()));},
+      onSnapshot(next,err){let m=self.vc.get(v.phys);if(!m){m=new Map();self.vc.set(v.phys,m);}let lastCache=null;
+        const un=self.fs.collection(v.phys).onSnapshot({includeMetadataChanges:true},q=>{const ch=q.docChanges();const fc=!!q.metadata.fromCache;
+          if(!ch.length&&fc===lastCache)return;lastCache=fc;self.live.add(v.phys);
+          for(const c of ch){if(c.type==='removed')m.delete(c.doc.id);else{const d=c.doc.data();m.set(c.doc.id,d&&d.t&&typeof d.t==='object'?d.t:{});}}
+          const docs=[];for(const box of m.values())for(const [id,d] of Object.entries(box))if(d&&typeof d==='object')docs.push(fbSnap(id,d));
+          next({docs,size:docs.length,empty:!docs.length,metadata:{fromCache:fc,hasPendingWrites:!!q.metadata.hasPendingWrites}});},
+          e=>{self.live.delete(v.phys);err&&err(fbErr(e));});
+        return()=>{self.live.delete(v.phys);un();};}};}
+  async bulkSet(entries,onProgress){const groups=new Map();const FP=firebase.firestore.FieldPath;
+    for(const [path,data] of entries){const parts=path.split('/');const id=parts.pop();const v=fbVirtual(parts.join('/'));
+      if(!v){groups.set(path,{ref:this.fs.doc(path),direct:data});continue;}
+      const pp=`${v.phys}/${v.key(id)}`;let g=groups.get(pp);if(!g){g={ref:this.fs.doc(pp),t:{},merge:v.merge};groups.set(pp,g);}g.t[id]=data;}
+    const list=[...groups.values()];let done=0;
+    for(let i=0;i<list.length;i+=8){const b=this.fs.batch();const part=list.slice(i,i+8);
+      for(const g of part){if(g.direct)b.set(g.ref,g.direct);else if(g.merge)b.set(g.ref,{t:g.t},{merge:true});else b.set(g.ref,{t:g.t},{mergeFields:Object.keys(g.t).map(id=>new FP('t',id))});}
+      try{await b.commit();}catch(e){throw fbErr(e);}done+=part.length;onProgress&&onProgress(done,list.length);}
+    return list.length;}
+}
+async function fbPutPhoto(id,blob){let b=blob;let d=await blobToDataURL(b);
+  if(d.length>900000&&window.imageCompression&&b.type!=='image/gif'){try{b=await imageCompression(b,{maxSizeMB:0.25,maxWidthOrHeight:1280,useWebWorker:false,fileType:'image/jpeg'});d=await blobToDataURL(b);}catch{}}
+  if(d.length>990000)throw {code:'too_large'};
+  await fbWrite(S.fs.doc('photos/'+id).set({d,type:b.type||'image/jpeg',at:nowISO(),by:myId()||''}));S.photoUrls[id]=d;return id;}
+const fbAssets={async upload(blob){const id='p'+rid();await fbPutPhoto(id,blob);return {id};},
+  async delete(id){if(!S.fs)return;try{await S.fs.doc('photos/'+id).delete();}catch{}delete S.photoUrls[id];}};
+const _phP={};
+function fbLoadPhoto(id){if(S.photoUrls[id]||!S.fs||!isAssetId(id))return Promise.resolve();if(_phP[id])return _phP[id];const ref=S.fs.doc('photos/'+id);
+  _phP[id]=ref.get({source:'cache'}).catch(()=>null).then(s=>s&&s.exists?s:ref.get()).then(s=>{const d=s&&s.exists?s.data().d:'';
+    S.photoUrls[id]=typeof d==='string'&&d.startsWith('data:image/')?d:PH_BLANK;for(const img of document.querySelectorAll(`img[data-pid="${CSS.escape(id)}"]`))img.src=S.photoUrls[id];})
+    .catch(()=>{setTimeout(()=>{delete _phP[id];},30000);});
+  return _phP[id];}
+const localDownloads={async save({filename,data}){const blob=data instanceof Blob?data:new Blob([data],{type:/\.html?$/i.test(filename)?'text/html;charset=utf-8':/\.json$/i.test(filename)?'application/json':'application/octet-stream'});
+  const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=filename;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),5000);}};
+const EMAIL_RE=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+function normMembers(d){d=d||{};const L=a=>Array.isArray(a)?[...new Set(a.filter(x=>typeof x==='string').map(x=>x.trim().toLowerCase()).filter(Boolean))]:[];return {admins:L(d.admins),emails:L(d.emails),names:d.names&&typeof d.names==='object'?d.names:{}};}
+function parseMembers(txt,adm){const emails=[],names={},bad=[],admins=[];const grab=l=>{const m=l.match(/[^\s,;<>()]+@[^\s,;<>()]+/);return m&&EMAIL_RE.test(m[0])?m[0]:null;};
+  for(const line of txt.split('\n')){const l=line.trim();if(!l)continue;const e0=grab(l);if(!e0){bad.push(l.slice(0,30));continue;}const e=e0.toLowerCase();if(!emails.includes(e))emails.push(e);const nm=l.replace(e0,'').replace(/[<>(),;]/g,' ').replace(/\s+/g,' ').trim();if(nm)names[e]=nm.slice(0,30);}
+  for(const line of adm.split(/[\n,;]/)){const l=line.trim();if(!l)continue;const e0=grab(l);if(!e0){bad.push(l.slice(0,30));continue;}const e=e0.toLowerCase();if(!admins.includes(e))admins.push(e);}
+  if(S.email&&!admins.includes(S.email))admins.unshift(S.email);
+  return {bad,doc:{admins,emails,names,updatedAt:nowISO(),updatedBy:S.email||''}};}
+
+/* 로그인 화면 */
+const G_LOGO='<svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.6 13.2l7.9 6.2C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.4 5.8c4.3-4 6.9-9.9 6.9-17.2z"/><path fill="#FBBC05" d="M10.5 28.6c-.5-1.4-.8-3-.8-4.6s.3-3.2.8-4.6l-7.9-6.2C1 16.5 0 20.1 0 24s1 7.5 2.6 10.8l7.9-6.2z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.4-5.8c-2.1 1.4-4.8 2.3-8.5 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.2C6.6 42.6 14.6 48 24 48z"/></svg>';
+function inAppBrowser(){const ua=navigator.userAgent||'';if(/KAKAOTALK/i.test(ua))return 'kakao';if(/NAVER\(inapp|FBAN|FBAV|Instagram|\bLine\/|DaumApps|everytimeApp|; wv\)/i.test(ua))return 'other';return '';}
+function authMsg(e){const c=e&&e.code||'';const h=location.hostname;return ({
+  'auth/invalid-email':'이메일 형식이 올바르지 않습니다.','auth/missing-email':'이메일을 입력하세요.','auth/missing-password':'비밀번호를 입력하세요.',
+  'auth/invalid-credential':'이메일 또는 비밀번호가 맞지 않습니다. 처음이면 \'이메일로 가입\'을 누르세요.','auth/wrong-password':'이메일 또는 비밀번호가 맞지 않습니다.','auth/invalid-login-credentials':'이메일 또는 비밀번호가 맞지 않습니다.',
+  'auth/user-not-found':'가입되지 않은 이메일입니다. 처음이면 \'이메일로 가입\'을 누르세요.','auth/email-already-in-use':'이미 가입된 이메일입니다. 로그인하거나 \'비밀번호 재설정\'을 누르세요.',
+  'auth/weak-password':'비밀번호는 6자 이상으로 정하세요.','auth/too-many-requests':'시도가 너무 많습니다. 잠시 후 다시 시도하세요.','auth/network-request-failed':'인터넷 연결을 확인하세요.',
+  'auth/popup-closed-by-user':'로그인 창이 닫혔습니다. 다시 눌러 주세요.','auth/cancelled-popup-request':'로그인 창이 닫혔습니다. 다시 눌러 주세요.',
+  'auth/popup-blocked':'브라우저가 로그인 창(팝업)을 막았습니다. 주소창의 팝업 차단 표시를 눌러 허용한 뒤 다시 누르세요.',
+  'auth/unauthorized-domain':`이 주소(${h})가 Firebase에 등록되지 않았습니다. 관리자: Firebase 콘솔 › Authentication › 설정 › 승인된 도메인에 ${h} 를 추가하세요.`,
+  'auth/operation-not-allowed':'이 로그인 방법이 꺼져 있습니다. 관리자: Firebase 콘솔 › Authentication › 로그인 방법에서 Google과 이메일/비밀번호를 사용 설정하세요.',
+  'auth/configuration-not-found':'Firebase Authentication이 아직 시작되지 않았습니다. 관리자: Firebase 콘솔 › Authentication › 시작하기를 누르세요.',
+  'auth/web-storage-unsupported':'이 브라우저 설정(시크릿 모드 등)에서는 로그인을 유지할 수 없습니다. 일반 창에서 열어 주세요.',
+  'auth/user-disabled':'사용이 중지된 계정입니다. 관리자에게 문의하세요.','auth/internal-error':'로그인 중 문제가 생겼습니다. 잠시 후 다시 시도하세요.',
+  'auth/invalid-api-key':'firebase-config.js의 apiKey가 올바르지 않습니다. Firebase 콘솔에서 다시 복사해 붙여 넣으세요.',
+  'auth/api-key-not-valid.-please-pass-a-valid-api-key.':'firebase-config.js의 apiKey가 올바르지 않습니다. Firebase 콘솔에서 다시 복사해 붙여 넣으세요.'
+})[c]||`로그인하지 못했습니다. (${c||'알 수 없는 오류'})`;}
+function gate(state,o={}){const g=$('#gate'),card=$('#gate-card');g.hidden=false;S.gate={state,...o};const dept=esc(S.config.dept);const em=esc(o.email||'');
+  const head=`<div class="brand"><span class="brand-mark" aria-hidden="true">관</span><div><h1 id="gate-h">${dept} 통합 업무일지</h1></div></div>`;
+  const msg=o.msg?`<div class="msg ${o.kind||''}" role="status">${esc(o.msg)}</div>`:'<div class="msg" role="status" id="g-msg" hidden></div>';
+  let body='';
+  if(state==='loading')body=`<p>${esc(o.msg||'연결 중…')}</p>`;
+  else if(state==='login'){const ia=inAppBrowser();
+    body=`${ia?`<div class="msg warn">${ia==='kakao'?'카카오톡 안에서는 구글 로그인이 막혀 있습니다.':'앱 안의 브라우저에서는 구글 로그인이 막힐 수 있습니다.'} 크롬·사파리 같은 브라우저로 열어 주세요.${ia==='kakao'?`<br><a class="btn sm" style="margin-top:8px;width:auto" href="kakaotalk://web/openExternal?url=${encodeURIComponent(location.href)}">다른 브라우저로 열기</a>`:''}</div>`:''}
+      <p>관리자가 허용한 이메일로 로그인하세요.</p>
+      <button type="button" class="btn gbtn" data-g="google">${G_LOGO}Google 계정으로 로그인</button>
+      <div class="or">또는 이메일</div>
+      <form id="g-form" novalidate style="display:grid;gap:10px">
+        <div class="f"><label for="g-email">이메일</label><input type="email" id="g-email" autocomplete="username" inputmode="email" value="${em}"></div>
+        <div class="f"><label for="g-pw">비밀번호 (6자 이상)</label><input type="password" id="g-pw" autocomplete="current-password"></div>
+        <div class="row2"><button type="submit" class="btn primary">로그인</button><button type="button" class="btn" data-g="signup">이메일로 가입</button></div>
+      </form>
+      <div class="links"><button type="button" data-g="reset">비밀번호 재설정</button><button type="button" data-g="help">처음이신가요?</button></div>
+      <p id="g-help" hidden style="font-size:12.5px">구글 계정(Gmail)이 있으면 위 버튼으로 바로 로그인됩니다. 회사 메일 등은 이메일과 새 비밀번호를 적고 '이메일로 가입'을 누른 뒤, 메일함에 온 인증 링크를 누르세요. 그 이메일이 관리자에게 등록되어 있어야 업무일지가 열립니다.</p>`;}
+  else if(state==='verify')body=`<p><span class="who">${em}</span>(으)로 인증 메일을 보냈습니다. 메일함(스팸함 포함)에서 링크를 누른 뒤 아래 버튼을 누르세요.</p>
+      <button type="button" class="btn primary" data-g="verified">인증 완료했어요</button>
+      <div class="row2"><button type="button" class="btn" data-g="resend">인증 메일 다시 보내기</button><button type="button" class="btn" data-g="out">다른 계정으로</button></div>`;
+  else if(state==='claim')body=`<p>처음 설정입니다. 지금 로그인한 <span class="who">${em}</span> 계정을 <b>관리자</b>로 지정합니다. 관리자는 설정에서 직원 이메일을 접속 허용하고 부서 설정을 바꿀 수 있습니다.</p>
+      <button type="button" class="btn primary" data-g="claim">이 계정을 관리자로 지정하고 시작</button>
+      <button type="button" class="btn" data-g="out">다른 계정으로 로그인</button>`;
+  else if(state==='denied')body=`<p><span class="who">${em}</span>은(는) 아직 접속이 허용되지 않았습니다. 관리자에게 이 이메일을 '접속 허용 이메일'에 등록해 달라고 요청한 뒤 다시 확인을 누르세요.</p>
+      <button type="button" class="btn primary" data-g="retry">다시 확인</button>
+      <button type="button" class="btn" data-g="out">다른 계정으로 로그인</button>
+      <small class="code">관리자인데 이 화면이 보이면: Firebase 콘솔 › Firestore Database › 규칙에 firestore.rules 내용을 붙여 넣고 '게시'했는지 확인하세요.</small>`;
+  else if(state==='error')body=`<button type="button" class="btn primary" data-g="retry">다시 시도</button>${S.auth&&S.auth.currentUser?'<button type="button" class="btn" data-g="out">로그아웃</button>':''}${o.code?`<small class="code">${esc(o.code)}</small>`:''}`;
+  card.innerHTML=head+(state==='error'?`<div class="msg err" role="alert">${esc(o.msg||'문제가 생겼습니다.')}</div>`:msg)+body;
+  const f=$('#g-form',card);if(f)f.addEventListener('submit',e=>{e.preventDefault();gAct('login');});
+  const first=$('[data-g="google"],[data-g="verified"],[data-g="claim"],[data-g="retry"]',card);if(first&&state!=='login')first.focus();}
+function gMsg(t,kind){const m=$('#g-msg');if(!m)return;m.textContent=t;m.className='msg '+(kind||'');m.hidden=!t;}
+async function gAct(a,btn){const auth=S.auth;const em=()=>(($('#g-email')||{}).value||'').trim();const pw=()=>($('#g-pw')||{}).value||'';
+  const busy=v=>{$$('#gate-card button').forEach(b=>b.disabled=v);};
+  try{busy(true);
+    if(a==='google'){const pr=new firebase.auth.GoogleAuthProvider();pr.setCustomParameters({prompt:'select_account'});await auth.signInWithPopup(pr);}
+    else if(a==='login'){if(!em()||!pw()){gMsg('이메일과 비밀번호를 입력하세요.','err');return;}await auth.signInWithEmailAndPassword(em(),pw());}
+    else if(a==='signup'){if(!em()||!pw()){gMsg('가입할 이메일과 새 비밀번호(6자 이상)를 입력하세요.','err');return;}const c=await auth.createUserWithEmailAndPassword(em(),pw());try{await c.user.sendEmailVerification();}catch{}}
+    else if(a==='reset'){if(!em()){gMsg('위 칸에 이메일을 먼저 적고 다시 누르세요.','err');$('#g-email').focus();return;}await auth.sendPasswordResetEmail(em());gMsg(`${em()}로 비밀번호 재설정 메일을 보냈습니다. 메일함(스팸함 포함)을 확인하세요.`);}
+    else if(a==='help'){const h=$('#g-help');if(h)h.hidden=!h.hidden;}
+    else if(a==='verified'){const u=auth.currentUser;if(!u){gate('login');return;}await u.reload();if(!u.emailVerified){gate('verify',{email:u.email,msg:'아직 인증되지 않았습니다. 메일의 링크를 누른 뒤 다시 눌러 주세요.',kind:'warn'});return;}await u.getIdToken(true);fbCheckUser(u);}
+    else if(a==='resend'){const u=auth.currentUser;if(u){await u.sendEmailVerification();gate('verify',{email:u.email,msg:'인증 메일을 다시 보냈습니다.'});}}
+    else if(a==='out'){await auth.signOut();}
+    else if(a==='claim'){await fbClaim();}
+    else if(a==='retry'){const u=auth&&auth.currentUser;if(!S.auth){location.reload();return;}if(u){await u.getIdToken(true).catch(()=>{});}fbCheckUser(u);}
+  }catch(e){if(S.gate&&S.gate.state==='login')gMsg(authMsg(e),'err');else gate(S.gate?S.gate.state:'login',{...(S.gate||{}),msg:e&&e.code&&e.code.startsWith('auth/')?authMsg(e):'문제가 생겼습니다. 다시 시도하세요.',kind:'err'});}
+  finally{busy(false);}}
+document.addEventListener('click',e=>{const b=e.target.closest('#gate-card [data-g]');if(b){e.preventDefault();gAct(b.dataset.g,b);}});
+async function fbLoadSDK(){if(window.firebase&&firebase.firestore&&firebase.auth)return;let last;
+  for(const base of FB_CDN){try{if(!(window.firebase&&firebase.initializeApp))await loadScript(base+'firebase-app-compat.js');if(!firebase.auth)await loadScript(base+'firebase-auth-compat.js');if(!firebase.firestore)await loadScript(base+'firebase-firestore-compat.js');return;}catch(e){last=e;}}
+  throw last;}
+function fbCfg(){const c=[window.WL_FIREBASE_CONFIG];try{if(typeof firebaseConfig!=='undefined')c.push(firebaseConfig);}catch{}return c.find(x=>x&&typeof x==='object'&&x.apiKey&&x.projectId)||null;}
+async function startFirebase(cfg){S.mode='firebase';S.preview=false;setSync('wait');gate('loading');
+  try{await fbLoadSDK();}catch{gate('error',{msg:'Firebase 도구를 불러오지 못했습니다. 인터넷 연결을 확인한 뒤 새로고침하세요.'});return;}
+  try{if(!firebase.apps.length)firebase.initializeApp(cfg);}catch(e){gate('error',{msg:'firebase-config.js 설정값이 올바르지 않습니다. Firebase 콘솔에서 다시 복사해 붙여 넣으세요.',code:e&&e.message});return;}
+  S.auth=firebase.auth();try{S.auth.languageCode='ko';}catch{}
+  S.fs=firebase.firestore();try{await S.fs.enablePersistence({synchronizeTabs:true});}catch{}
+  S.auth.onAuthStateChanged(u=>{if(S.loggingOut)return;if(S.fbEntered){if(!u||u.uid!==S.me.id)location.reload();return;}fbCheckUser(u);});}
+async function fbCheckUser(u){if(!u){gate('login');return;}
+  const email=(u.email||'').toLowerCase();const pwUser=(u.providerData||[]).some(p=>p&&p.providerId==='password');
+  if(!email){gate('error',{msg:'이메일 정보가 없는 계정입니다. 구글 계정이나 이메일로 로그인하세요.'});return;}
+  if(!u.emailVerified){if(pwUser){gate('verify',{email});return;}gate('error',{msg:'이메일 인증이 되지 않은 계정입니다.'});return;}
+  gate('loading',{msg:'접속 권한을 확인하는 중…'});
+  try{const s=await S.fs.doc('app/members').get();
+    if(!s.exists){gate('claim',{email});return;}
+    const m=normMembers(s.data());if(!m.admins.includes(email)&&!m.emails.includes(email)){gate('denied',{email});return;}
+    fbEnter(u,email,m);}
+  catch(e){const c=e&&e.code||'';if(c==='permission-denied'){gate('denied',{email});return;}
+    gate('error',{msg:/does not exist|not-found|NOT_FOUND/i.test((e&&e.message||'')+c)?'Firestore 데이터베이스가 아직 만들어지지 않았습니다. 관리자: Firebase 콘솔 › Firestore Database › 데이터베이스 만들기를 진행하세요.':c==='unavailable'?'서버에 연결하지 못했습니다. 인터넷 연결을 확인하세요.':'데이터베이스에 연결하지 못했습니다.',code:`${c} ${e&&e.message||''}`.trim()});}}
+async function fbClaim(){const u=S.auth.currentUser;if(!u)return;const email=(u.email||'').toLowerCase();
+  try{await S.fs.doc('app/members').set({admins:[email],emails:[email],names:{},updatedAt:nowISO(),updatedBy:email});}
+  catch(e){gate('claim',{email,msg:e&&e.code==='permission-denied'?'관리자로 지정하지 못했습니다. 이미 다른 사람이 관리자로 지정했거나 Firestore 규칙이 게시되지 않았습니다.':'관리자로 지정하지 못했습니다. 다시 시도하세요.',kind:'err'});return;}
+  S.afterClaim=true;await fbCheckUser(u);}
+function onConfig(s){S.config=normConfig(s.exists?s.data():null);$('#app-title').textContent=`${S.config.dept} 통합 업무일지`;$('#today-label').textContent=`${S.config.dept} · ${fmtLong(today())}`;fillFilterSelects();if(S.view==='report')renderReport($('#view'));else scheduleRender();}
+function fbEnter(u,email,m){S.fbEntered=true;$('#gate').hidden=true;S.gate=null;
+  S.email=email;S.members=m;S.me={id:u.uid,name:u.displayName||email.split('@')[0]};S.canEdit=m.admins.includes(email);S.canWrite=true;
+  S.db=new FirebaseDB(S.fs);S.assets=fbAssets;S.downloads=localDownloads;S.user=null;S.sample=null;showBanner('');
+  S.unsubs.push(S.db.doc('app/members').onSnapshot(s=>{const mm=normMembers(s.exists?s.data():null);S.members=mm;const adm=mm.admins.includes(S.email);if(adm!==S.canEdit){S.canEdit=adm;scheduleRender();}},e=>{if(e&&e.code==='fb_denied'){setSync('err');showBanner('접속 허용 목록에서 빠져 더 이상 저장·조회할 수 없습니다. 관리자에게 문의하세요.');}}));
+  S.unsubs.push(S.db.collection('staff').onSnapshot(onStaff,subErr));
+  S.unsubs.push(S.db.doc('app/config').onSnapshot(onConfig,subErr));
+  const now=new Date();const y=now.getFullYear();[y,y+1].forEach(ensureYear);if(now.getMonth()<3)ensureYear(y-1);
+  setTimeout(()=>{if(!S.ready){S.ready=true;setSync('ok');scheduleRender();}},8000);
+  window.addEventListener('online',()=>setSync('ok'));window.addEventListener('offline',()=>setSync('offline'));
+  updateMeChip();
+  if(S.afterClaim){S.afterClaim=false;S.askedMe=true;go('#help');setTimeout(()=>toast('관리자로 지정했습니다. 설정에서 직원 명단과 접속 허용 이메일을 등록하세요.'),300);}else route();}
+async function fbLogout(){S.loggingOut=true;try{await S.auth.signOut();}catch{}try{await S.fs.terminate();await S.fs.clearPersistence();}catch{}location.reload();}
+
 /* ───────── 시작 ───────── */
 function boot(){
   updateMeChip();
   $('#today-label').textContent=`${S.config.dept} · ${fmtLong(today())}`;
   fillFilterSelects();route();
   const c=window.claude;
-  if(!c||typeof c.use!=='function'){startPreview();return;}
+  if(!c||typeof c.use!=='function'){
+    const go2=()=>{const cfg=fbCfg();if(cfg)startFirebase(cfg);
+      else startPreview(location.protocol==='file:'?'미리보기 모드입니다. 입력한 내용은 저장되지 않습니다. 팀이 함께 쓰려면 claude.ai에서 열거나, Firebase 설정(firebase-config.js)을 넣은 뒤 웹 주소로 여세요.':'Firebase 연결 설정(firebase-config.js)이 비어 있어 미리보기로 열었습니다. 입력한 내용은 저장되지 않습니다. README의 Firebase 연결 방법을 따라 설정값을 넣어 주세요.');};
+    if(fbCfg())go2();else loadScript('firebase-config.js').catch(()=>{}).then(go2);
+    return;}
+  S.mode='claude';
   Promise.all(['db','user','assets','downloads','sample'].map(n=>c.use(n).catch(()=>null))).then(async([db,user,assets,downloads,sample])=>{
     S.user=user;S.assets=assets;S.downloads=downloads;S.sample=sample;
     if(!db){startPreview('공유 저장소에 연결할 수 없어 미리보기로 열었습니다. claude.ai에 로그인한 상태로 열면 팀원과 실시간으로 공유됩니다. 지금 입력한 내용은 저장되지 않습니다.');return;}
@@ -1748,16 +2080,16 @@ function boot(){
     if(user){try{const me=await user.me();S.me={id:me.id,name:me.name||''};S.canEdit=!!me.canEdit;if(me.id)S.profiles[me.id]={...S.profiles[me.id],id:me.id,name:me.name,avatarUrl:me.avatarUrl};}catch{}
       try{const w=await user.can('data.write');if(w===false){S.canWrite=false;showBanner('보기 전용 권한입니다. 업무를 등록·수정하려면 공유 설정에서 참여 이상 권한을 받으세요.');}}catch{}}
     S.unsubs.push(db.collection('staff').onSnapshot(onStaff,subErr));
-    S.unsubs.push(db.doc('app/config').onSnapshot(s=>{S.config=normConfig(s.exists?s.data():null);$('#app-title').textContent=`${S.config.dept} 통합 업무일지`;$('#today-label').textContent=`${S.config.dept} · ${fmtLong(today())}`;fillFilterSelects();if(S.view==='report')renderReport($('#view'));else scheduleRender();},subErr));
+    S.unsubs.push(db.doc('app/config').onSnapshot(onConfig,subErr));
     const y=+today().slice(0,4);[y-1,y,y+1].forEach(ensureYear);
     setTimeout(()=>{if(!S.ready){S.ready=true;setSync('ok');scheduleRender();}},8000);
   });
 }
-function startPreview(msg){S.preview=true;S.db=new MemoryDB();S.canEdit=true;S.me={id:'preview-me',name:'나'};
+function startPreview(msg){S.preview=true;S.mode='';S.db=new MemoryDB();S.canEdit=true;S.me={id:'preview-me',name:'나'};if(!S.downloads)S.downloads=localDownloads;
   if(Array.isArray(window.__WL_SEED))for(const s of window.__WL_SEED)S.db.docs.set(s.path,clean(s.data));
   showBanner(msg||'미리보기 모드입니다. claude.ai에 로그인한 상태로 열면 팀원과 실시간으로 공유되며, 지금 입력한 내용은 저장되지 않습니다.');
   S.db.collection('staff').onSnapshot(onStaff);
-  S.db.doc('app/config').onSnapshot(s=>{S.config=normConfig(s.exists?s.data():null);fillFilterSelects();scheduleRender();});
+  S.db.doc('app/config').onSnapshot(onConfig);
   const y=+today().slice(0,4);[y-1,y,y+1].forEach(ensureYear);setSync('preview');}
 boot();
 </script>
