@@ -99,8 +99,7 @@ service cloud.firestore {
     // 회사 서류함 — 목록은 구성원 모두, 삭제·열람 제한 변경은 관리자만
     match /files/{fileId} {
       allow read: if isMember();
-      allow create: if isMember()
-        && (request.resource.data.get('restricted', false) != true || isAdmin());
+      allow create: if isMember();
       allow update: if isMember()
         && (request.resource.data.get('restricted', false) == resource.data.get('restricted', false) || isAdmin());
       allow delete: if isAdmin();

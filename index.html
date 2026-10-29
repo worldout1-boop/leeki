@@ -731,6 +731,54 @@ img[data-vw-zoom].big{position:relative;z-index:2;width:100%;max-width:100%;grid
 .imp-files .iv{margin-left:8px}
 @media (max-width:760px){dialog.viewer{width:100vw;height:100dvh;max-height:100dvh;max-width:100vw;border-radius:0}.vw-t{max-width:calc(100% - 60px);flex:1}.vw-tools{order:5;width:100%}.vw-h .sp{display:none}.vw-paper{padding:20px 18px}.vw-pdf{padding:8px 6px 30px}}
 .imp-files li{align-items:center}.imp-files li .fn{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* 각종서류 올리기 */
+.tabs a.tab-up{gap:5px}
+.tabs a.tab-up svg{width:15px;height:15px;flex:none}
+.up-h1{display:flex;align-items:center;gap:8px}
+.up-h1 svg{width:22px;height:22px;color:var(--accent)}
+.up-drop{border:2px dashed var(--line);border-radius:12px;background:var(--surface);padding:26px 18px;text-align:center;display:grid;justify-items:center;gap:6px;transition:border-color .15s,background .15s}
+.up-drop.over{border-color:var(--accent);background:var(--accent-soft)}
+.up-drop .ic{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent)}
+.up-drop .ic svg{width:24px;height:24px}
+.up-drop p{margin:0}
+.up-drop .btns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:6px}
+.up-drop small{color:var(--ink-3);font-size:12px}
+.up-opt{display:flex;gap:6px 14px;align-items:baseline;flex-wrap:wrap;margin:10px 2px 12px}
+.up-opt .hint{font-size:12px;color:var(--ink-3);flex:1;min-width:260px}
+.up-sum{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 12px;margin-bottom:8px;border:1px solid var(--line);border-radius:8px;background:var(--surface);font-size:13px;color:var(--ink-2)}
+.up-sum .sp{flex:1}
+.up-list{display:grid;gap:8px}
+.up-card{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:start;padding:11px 14px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.up-card.st-saved{border-left:3px solid var(--done)}
+.up-card.st-ready{border-left:3px solid var(--doing)}
+.up-card.st-dup,.up-card.st-error{border-left:3px solid var(--late)}
+.up-card .fi.th{width:42px;height:54px}
+.uc-main{min-width:0;display:grid;gap:4px}
+.uc-n{display:flex;gap:8px;align-items:baseline;min-width:0}
+.uc-n b{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.uc-n small{color:var(--ink-3);font-size:12px;white-space:nowrap}
+.lnk{border:0;background:none;padding:0;color:var(--accent);font-size:12px;cursor:pointer;text-decoration:underline;white-space:nowrap}
+.uc-st{font-size:13px;color:var(--ink-2);display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.uc-st small{color:var(--ink-3)}
+.uc-st.err{color:var(--late)}
+.spin{width:14px;height:14px;border-radius:50%;border:2px solid var(--line);border-top-color:var(--accent);animation:vwspin .8s linear infinite;display:inline-block;flex:none}
+.uc-guess{display:flex;gap:6px 10px;align-items:center;flex-wrap:wrap;font-size:13px}
+.uc-path{font-weight:600;color:var(--ink)}
+.uc-ok{color:var(--done);font-weight:700}
+.uc-d{color:var(--ink-2);font-size:12.5px}
+.conf{font-size:11px;font-weight:700;border-radius:9px;padding:0 7px;line-height:18px}
+.conf.c-high{background:color-mix(in srgb,var(--done) 15%,transparent);color:var(--done)}
+.conf.c-mid{background:color-mix(in srgb,var(--doing) 15%,transparent);color:var(--doing)}
+.conf.c-low{background:color-mix(in srgb,var(--late) 13%,transparent);color:var(--late)}
+.uc-why{font-size:12px;color:var(--ink-3);overflow:hidden;text-overflow:ellipsis}
+.uc-why.warn{color:var(--late)}
+.uc-edit{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-end;margin-top:4px}
+.uc-edit label{display:grid;gap:3px;font-size:11.5px;color:var(--ink-3)}
+.uc-edit label.w{flex:1;min-width:180px}
+.uc-edit select,.uc-edit input{height:30px;font-size:12.5px}
+.uc-edit label.chk{display:inline-flex;align-items:center;font-size:13px;color:var(--ink-2);height:30px}
+.uc-act{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;align-items:center}
+@media (max-width:760px){.up-card{grid-template-columns:42px minmax(0,1fr)}.uc-act{grid-column:1/-1;justify-content:flex-start}}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -797,7 +845,7 @@ img[data-vw-zoom].big{position:relative;z-index:2;width:100%;max-width:100%;grid
     <a href="#calendar" data-view="calendar">달력</a>
     <a href="#list" data-view="list">목록</a>
     <a href="#report" data-view="report">보고서</a>
-    <a href="#photos" data-view="photos">사진첩</a>
+    <a href="#upload" data-view="upload" class="tab-up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 16V4m0 0l-4.5 4.5M12 4l4.5 4.5"/><path d="M4 15v3.5A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5V15"/></svg>각종서류 올리기</a>
     <a href="#docs" data-view="docs">서류함</a>
     <a href="#legal" data-view="legal">법정 업무</a>
   </nav>
@@ -989,6 +1037,7 @@ img[data-vw-zoom].big{position:relative;z-index:2;width:100%;max-width:100%;grid
     <header class="modal-h"><div><h2 id="doc-h">서류 정보</h2><small id="doc-where" style="color:var(--ink-3);font-size:12px"></small></div><button type="button" class="icon-btn" data-close aria-label="닫기">✕</button></header>
     <div class="modal-b one"><div class="set-grid">
       <div class="f"><label for="doc-title">서류명</label><input type="text" id="doc-title" maxlength="80"></div>
+      <div class="set-two"><div class="f"><label for="doc-slot">서류함 분류</label><select id="doc-slot"></select></div><div class="f" id="doc-site-f"><label for="doc-site">사업장</label><select id="doc-site"></select></div></div>
       <div class="set-two"><div class="f"><label for="doc-issued">발급일·개정일</label><input type="date" id="doc-issued"></div><div class="f"><label for="doc-expiry">유효기간 (만료일)</label><input type="date" id="doc-expiry"></div></div>
       <div class="f"><label for="doc-note">메모</label><textarea id="doc-note" rows="2" maxlength="500" placeholder="예: 2026.3 개정, 노동청 신고 완료 / 인증기관 ○○"></textarea></div>
       <div class="f"><label class="chk"><input type="checkbox" id="doc-restricted"> 🔒 열람 제한</label><p class="help" id="doc-r-help" style="font-size:12px;color:var(--ink-3);margin:2px 0 0"></p></div>
@@ -1114,7 +1163,7 @@ const S={
   profiles:{},localBlobs:{},opinions:{},opDraft:{},
   dlg:null,cal:null,charts:[],dragging:false,pendingRender:false,sortables:[],
   thumbUrls:{},files:{},localFiles:{},docDlg:null,legalCfg:null,legalLog:null,
-  ph:{range:'30',site:'',cat:'',tag:'',q:'',limit:120},ov:{mode:'day',date:''},wk:{ws:'',who:''},docs:{g:'',q:'',exp:false},lg:{year:0,g:'',onOnly:true,past:false,edit:null,open:null}
+  ph:{range:'30',site:'',cat:'',tag:'',q:'',limit:120},ov:{mode:'day',date:''},wk:{ws:'',who:''},docs:{g:'',q:'',exp:false},up:{items:[],auto:true,busy:false},lg:{year:0,g:'',onOnly:true,past:false,edit:null,open:null}
 };
 
 /* ───────── 미리보기용 메모리 저장소 (공유 저장소에 연결되지 않았을 때) ───────── */
@@ -1270,7 +1319,7 @@ function render(){
   if(S.view!=='report'){S.charts.forEach(c=>c.destroy());S.charts=[];}
   $('#tab-overview').hidden=!(S.canEdit||S.preview);
   if(S.view==='legal'){const ae=document.activeElement;if(ae&&ae.closest&&ae.closest('.lg-set')&&/^(INPUT|SELECT)$/.test(ae.tagName)&&ae.type!=='checkbox'){S.pendingLegal=true;fillWhoOptions();updateMeChip();return;}}
-  if(S.view==='my')renderMy(v);else if(S.view==='team')renderTeam(v);else if(S.view==='board')renderBoard(v);else if(S.view==='calendar')renderCalendar(v);else if(S.view==='list')renderList(v);else if(S.view==='report')renderReport(v);else if(S.view==='help')renderHelp(v);else if(S.view==='overview')renderOverview(v);else if(S.view==='photos')renderPhotos(v);else if(S.view==='docs')renderDocs(v);else if(S.view==='legal')renderLegal(v);
+  if(S.view==='my')renderMy(v);else if(S.view==='team')renderTeam(v);else if(S.view==='board')renderBoard(v);else if(S.view==='calendar')renderCalendar(v);else if(S.view==='list')renderList(v);else if(S.view==='report')renderReport(v);else if(S.view==='help')renderHelp(v);else if(S.view==='overview')renderOverview(v);else if(S.view==='photos')renderPhotos(v);else if(S.view==='upload')renderUpload(v);else if(S.view==='docs')renderDocs(v);else if(S.view==='legal')renderLegal(v);
   fillWhoOptions();updateMeChip();patchNames();}
 
 function rowHTML(t){const d=ddayInfo(t);const late=isLate(t);
@@ -1497,7 +1546,8 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
     </ol></section>${admin}
     <section class="panel"><div class="panel-h"><h2>새 기능 안내</h2><span class="sub">2026.10 업데이트</span></div><ol class="steps">
       <li><b>사진 자동 최적화</b><span>휴대폰 원본 사진을 올리면 자동으로 0.2~0.4MB로 줄이고 위치정보는 지웁니다. 업무 상세에서 <em>작업 전·중·후</em>를 고르고, <em>날짜·현장 표시</em>를 켜면 사진 아래에 날짜·건물·업무명이 찍힙니다.</span></li>
-      <li><b>사진첩</b><span><a href="#photos">사진첩</a>에서 모든 현장 사진을 날짜·건물·분야별로 모아 봅니다. 휴대폰에서는 <em>현장 사진 기록</em>으로 사진부터 찍고 내용을 적을 수 있습니다.</span></li>
+      <li><b>각종서류 올리기</b><span><a href="#upload">각종서류 올리기</a>에 PDF·스캔 사진·한글·워드·엑셀 파일을 끌어다 놓으면 내용을 읽어 어떤 서류인지(사업자등록증·공장등록증·인증서 등) 알아내고 사업장·발급일·유효기간을 찾아 서류함에 자동으로 정리합니다. 확실하지 않은 서류는 확인을 받고 저장합니다.</span></li>
+      <li><b>사진첩</b><span>현장 사진은 각종서류 올리기 화면의 <a href="#photos">현장 사진첩</a>에서 날짜·건물·분야별로 모아 봅니다. 휴대폰에서는 <em>현장 사진 기록</em>으로 사진부터 찍고 내용을 적을 수 있습니다.</span></li>
       <li><b>서류함</b><span><a href="#docs">서류함</a>에 조직도·정관·취업규칙·사업자등록증·인증서·공장별 건물 서류를 최신본으로 보관합니다. 다시 올리면 새 버전으로 쌓이고, 🔒 서류는 허용된 사람만 엽니다.</span></li>
       <li><b>법정 업무</b><span><a href="#legal">법정 업무</a>에 세무·4대보험·법정 교육·안전·소방 점검 일정이 정리되어 있습니다. 켜 둔 항목은 마감 전에 담당자 할 일로 자동 등록됩니다.</span></li>
       <li><b>알림</b><span>오른쪽 위 종 모양에서 내 담당 업무의 새 기록·마감·법정 업무를 확인합니다. <em>알림 켜기</em>를 누르면 다른 탭을 보고 있을 때도 알림이 뜹니다.</span></li>
@@ -1995,7 +2045,7 @@ function showBanner(msg){const b=$('#banner');b.textContent=msg;b.hidden=!msg;}
 
 /* ───────── 이벤트 ───────── */
 function go(h){if(location.hash===h)route();else location.hash=h;}
-function route(){let h=(location.hash||'').slice(1);if(h==='home')h='team';S.view=['my','team','overview','board','calendar','list','report','photos','docs','legal','help'].includes(h)?h:'my';const np=$('#ntf-pop');if(np)np.hidden=true;render();}
+function route(){let h=(location.hash||'').slice(1);if(h==='home')h='team';S.view=['my','team','overview','board','calendar','list','report','upload','photos','docs','legal','help'].includes(h)?h:'my';const np=$('#ntf-pop');if(np)np.hidden=true;render();}
 window.addEventListener('hashchange',route);
 document.addEventListener('click',async e=>{
   const o=e.target.closest('[data-open]');if(o&&!e.target.closest('[data-lb]')){const t=findTask(o.dataset.open);if(t)openTask(t);return;}
@@ -2578,12 +2628,12 @@ const SLOT=Object.fromEntries(DOC_SLOTS.map(s=>[s.k,s]));
 const FILE_MAX=20*1048576,FILE_CHUNK=700*1024;
 const siteKey=s=>{let h=2166136261;for(const c of String(s||'')){h^=c.charCodeAt(0);h=Math.imul(h,16777619);}return (h>>>0).toString(36);};
 const canViewRestricted=()=>S.preview||(S.mode==='firebase'?(S.canEdit||!!(S.members&&(S.members.viewers||[]).includes(S.email))):S.canEdit);
-function normFile(id,r){r=r||{};const vs=Array.isArray(r.versions)?r.versions.filter(x=>x&&Number.isFinite(x.v)).map(x=>({v:x.v,name:typeof x.name==='string'?x.name.slice(0,120):'파일',type:typeof x.type==='string'?x.type.slice(0,80):'',size:Number(x.size)||0,store:['fb','asset','local'].includes(x.store)?x.store:'fb',n:Number(x.n)||0,asset:typeof x.asset==='string'?x.asset:'',at:typeof x.at==='string'?x.at:'',by:typeof x.by==='string'?x.by:'',note:typeof x.note==='string'?x.note.slice(0,200):''})):[];
+function normFile(id,r){r=r||{};const vs=Array.isArray(r.versions)?r.versions.filter(x=>x&&Number.isFinite(x.v)).map(x=>({v:x.v,name:typeof x.name==='string'?x.name.slice(0,120):'파일',type:typeof x.type==='string'?x.type.slice(0,80):'',size:Number(x.size)||0,store:['fb','asset','local'].includes(x.store)?x.store:'fb',n:Number(x.n)||0,asset:typeof x.asset==='string'?x.asset:'',at:typeof x.at==='string'?x.at:'',by:typeof x.by==='string'?x.by:'',note:typeof x.note==='string'?x.note.slice(0,200):'',h:typeof x.h==='string'?x.h.slice(0,40):''})):[];
   return {id,slot:SLOT[r.slot]?r.slot:'etc',g:DOC_GROUPS.some(g=>g.id===r.g)?r.g:'etc',site:typeof r.site==='string'?r.site.slice(0,30):'',title:typeof r.title==='string'&&r.title.trim()?r.title.slice(0,80):'서류',
     restricted:r.restricted===true,issued:isDate(r.issued)?r.issued:'',expiry:isDate(r.expiry)?r.expiry:'',note:typeof r.note==='string'?r.note.slice(0,500):'',versions:vs.sort((a,b)=>a.v-b.v),
-    thumb:typeof r.thumb==='string'&&r.thumb.startsWith('data:image/')&&r.thumb.length<90000?r.thumb:'',thumbV:Number.isFinite(r.thumbV)?r.thumbV:0,
+    txt:typeof r.txt==='string'?r.txt.slice(0,2000):'',thumb:typeof r.thumb==='string'&&r.thumb.startsWith('data:image/')&&r.thumb.length<90000?r.thumb:'',thumbV:Number.isFinite(r.thumbV)?r.thumbV:0,
     updatedAt:typeof r.updatedAt==='string'?r.updatedAt:'',updatedBy:typeof r.updatedBy==='string'?r.updatedBy:'',createdAt:typeof r.createdAt==='string'?r.createdAt:''};}
-function onFiles(snap){const m={};for(const d of snap.docs){if(!d.exists)continue;m[d.id]=normFile(d.id,d.data());}S.files=m;S.filesLoaded=true;if(['docs','overview'].includes(S.view))scheduleRender();ntfTick();refreshDocDlg();}
+function onFiles(snap){const m={};for(const d of snap.docs){if(!d.exists)continue;m[d.id]=normFile(d.id,d.data());}S.files=m;S.filesLoaded=true;if(['docs','overview'].includes(S.view))scheduleRender();if(S.view==='upload'){renderUpRecent();for(const it of S.up.items)if(it.status==='saved')renderUpItem(it);}ntfTick();refreshDocDlg();}
 function filesErr(e){S.filesLoaded=true;S.filesDenied=!!(e&&e.code==='fb_denied');if(S.view==='docs')scheduleRender();}
 const curVer=f=>f.versions[f.versions.length-1]||null;
 function expiryTxt(d){if(!d)return '';const n=diffDays(today(),d);return n<0?`만료 ${-n}일 지남`:n===0?'오늘 만료':`D-${n}`;}
@@ -2615,7 +2665,7 @@ function docRowHTML(f,slot){const v=curVer(f);const lock=f.restricted?'<span cla
   return `<div class="doc-row" data-doc="${esc(f.id)}" tabindex="0" title="${v&&can?'눌러서 미리보기':'서류 정보'}">${ic}<div class="dm"><b>${esc(f.title)}${lock}</b><small>${v?`v${v.v} · ${fmtYMD(localDate(v.at))} · ${esc(nameOf(v.by))} · ${fmtMB(v.size)}`:'파일 없음'}${f.issued?` · 발급 ${fmtYMD(f.issued)}`:''}</small></div>${f.expiry?`<span class="exp ${expCls(f.expiry)}">~${fmtYMD(f.expiry)} · ${expiryTxt(f.expiry)}</span>`:'<span></span>'}<span class="da">${v&&can?`<button type="button" class="btn sm" data-doc-view="${esc(f.id)}">미리보기</button><button type="button" class="btn sm" data-doc-dl="${esc(f.id)}" aria-label="내려받기" title="내려받기">${ICON.dl}</button>`:''}${S.canWrite?`<button type="button" class="btn sm ghost" data-doc-up="${esc(f.id)}">새 버전</button>`:''}<button type="button" class="btn sm ghost" data-doc-info="${esc(f.id)}">정보</button></span></div>`;}
 function slotEmptyHTML(slot,site){return `<div class="doc-row empty-slot"><span class="fi none">＋</span><div class="dm"><b>${esc(slot.name)}${slot.restricted?'<span class="lock">🔒</span>':''}</b><small>미등록</small></div><span></span><span class="da">${S.canWrite?`<button type="button" class="btn sm" data-doc-new="${esc(slot.k)}" data-site="${esc(site||'')}">올리기</button>`:''}</span></div>`;}
 function renderDocs(v){const D=S.docs;const q=D.q.trim().toLowerCase();const files=Object.values(S.files);
-  const match=f=>(!q||(f.title+' '+f.note+' '+f.site+' '+((curVer(f)||{}).name||'')).toLowerCase().includes(q))&&(!D.exp||(f.expiry&&diffDays(today(),f.expiry)<=60));
+  const match=f=>(!q||(f.title+' '+f.note+' '+f.site+' '+((curVer(f)||{}).name||'')+' '+f.txt).toLowerCase().includes(q)||f.txt.replace(/\s+/g,'').toLowerCase().includes(q.replace(/\s+/g,'')))&&(!D.exp||(f.expiry&&diffDays(today(),f.expiry)<=60));
   const filtering=!!(q||D.exp);
   const sec=(g,site)=>{const slots=DOC_SLOTS.filter(s=>s.g===g.id);let html='';
     for(const s of slots){const recs=files.filter(f=>f.slot===s.k&&(g.id!=='site'||f.site===site)).sort((a,b)=>a.title.localeCompare(b.title,'ko'));const shown=recs.filter(match);
@@ -2630,7 +2680,7 @@ function renderDocs(v){const D=S.docs;const q=D.q.trim().toLowerCase();const fil
   v.innerHTML=`<div class="home-head"><div><h1>회사 서류함</h1><p>조직도·정관·취업규칙·사업자등록증·인증서·공장별 건물 서류를 최신본으로 보관합니다 · ${files.length}건 · ${fmtMB(total)}${soon?` · <b style="color:var(--doing)">만료 임박 ${soon}건</b>`:''}</p></div></div>
   ${S.filesDenied?`<div class="banner" style="margin:0 0 12px">서류함을 불러올 권한이 없습니다. 관리자는 Firebase 콘솔 › Firestore › 규칙에 새 firestore.rules를 게시하세요.</div>`:''}
   <section class="filters" style="padding:0 0 12px"><div class="seg" role="group" aria-label="분류"><button type="button" data-doc-g="" aria-pressed="${!D.g}">전체</button>${DOC_GROUPS.map(g=>`<button type="button" data-doc-g="${g.id}" aria-pressed="${D.g===g.id}">${esc(g.name.replace(' 서류',''))}</button>`).join('')}</div>
-    <label class="chk"><input type="checkbox" id="doc-exp" ${D.exp?'checked':''}> 만료 60일 이내만</label><input type="search" id="doc-q" placeholder="서류명·메모 검색" value="${esc(D.q)}" aria-label="서류 검색"></section>
+    <label class="chk"><input type="checkbox" id="doc-exp" ${D.exp?'checked':''}> 만료 60일 이내만</label><input type="search" id="doc-q" placeholder="서류명·내용 검색" value="${esc(D.q)}" aria-label="서류 검색"></section>
   <div class="docs">${parts.join('')||'<section class="panel"><div class="empty">조건에 맞는 서류가 없습니다.</div></section>'}</div>${(setTimeout(docThumbBackfill,1200),'')}
   <p class="help" style="margin-top:12px;color:var(--ink-3);font-size:12px">서류를 누르면 PDF·사진·엑셀·워드·한글·파워포인트를 바로 미리봅니다. 파일 하나당 20MB까지 올릴 수 있습니다. 같은 서류를 다시 올리면 '새 버전'으로 쌓이고 이전 버전도 내려받을 수 있습니다. 🔒 표시 서류는 관리자와 설정에서 허용한 사람만 열 수 있습니다.</p>`;}
 
@@ -2638,10 +2688,12 @@ function renderDocs(v){const D=S.docs;const q=D.q.trim().toLowerCase();const fil
 function openDoc(id,o={}){let f=id?S.files[id]:null;
   if(!f){const slot=SLOT[o.slot]||SLOT.etc;const site=slot.g==='site'?(o.site||staffSites()[0]||''):'';
     const fid=slot.multi||slot.k==='etc'?`d-${slot.k}-${rid().slice(0,10)}`:`d-${slot.k}${site?'-'+siteKey(site):''}`;
-    if(S.files[fid]){f=S.files[fid];}else f={...normFile(fid,{slot:slot.k,g:slot.g,site,title:slot.multi?'':slot.name,restricted:!!slot.restricted}),isNew:true};}
+    const ex=!slot.multi&&slot.k!=='etc'?Object.values(S.files).find(x=>x.slot===slot.k&&(slot.g!=='site'||x.site===site)):null;
+    if(ex)f=ex;else if(S.files[fid]){f=S.files[fid];}else f={...normFile(fid,{slot:slot.k,g:slot.g,site,title:slot.multi?'':slot.name,restricted:!!slot.restricted}),isNew:true};}
   S.docDlg={id:f.id,isNew:!!f.isNew,base:f,file:null};const d=$('#dlg-doc');
   $('#doc-h').textContent=f.isNew?'서류 올리기':'서류 정보';$('#doc-title').value=f.isNew&&SLOT[f.slot].multi?'':(f.title||'');$('#doc-title').placeholder=SLOT[f.slot].multi?`예: ${SLOT[f.slot].k==='iso'?'ISO 9001 품질경영시스템':SLOT[f.slot].k==='drawing'?'1층 평면도':'서류명'}`:'';
   $('#doc-where').textContent=`${(DOC_GROUPS.find(g=>g.id===f.g)||{}).name||''}${f.site?' · '+f.site:''} · ${SLOT[f.slot].name}`;
+  $('#doc-slot').innerHTML=slotOptions(f.slot);$('#doc-site').innerHTML=staffSites().map(s=>`<option ${s===f.site?'selected':''}>${esc(s)}</option>`).join('');$('#doc-site-f').hidden=SLOT[f.slot].g!=='site';
   $('#doc-issued').value=f.issued;$('#doc-expiry').value=f.expiry;$('#doc-note').value=f.note;$('#doc-restricted').checked=f.restricted;
   $('#doc-restricted').disabled=!(S.canEdit||S.preview);$('#doc-r-help').textContent=S.canEdit||S.preview?'관리자와 설정 › 접속 허용의 "열람 허용 이메일"에 있는 사람만 파일을 열 수 있습니다.':'열람 제한 설정은 관리자만 바꿀 수 있습니다.';
   $('#doc-file').value='';$('#doc-vnote').value='';$('#doc-file-n').textContent='';$('#doc-prog').hidden=true;
@@ -2654,7 +2706,8 @@ async function saveDoc(e){e.preventDefault();const D=S.docDlg;if(!D||!S.canWrite
   const title=$('#doc-title').value.trim()||(file&&SLOT[f.slot].multi?file.name.replace(/\.[^.]+$/,'').slice(0,80):'')||SLOT[f.slot].name;const issued=$('#doc-issued').value,expiry=$('#doc-expiry').value;
   if(D.isNew&&!S.files[D.id]&&!file){toast('올릴 파일을 선택하세요.','err');$('#doc-file').focus();return;}
   if(issued&&expiry&&expiry<issued){toast('만료일이 발급일보다 빠릅니다.','err');return;}
-  const meta={slot:f.slot,g:f.g,site:f.site,title,issued:isDate(issued)?issued:'',expiry:isDate(expiry)?expiry:'',note:$('#doc-note').value.slice(0,500),updatedAt:nowISO(),updatedBy:myId()||''};
+  const nslot=SLOT[$('#doc-slot').value]?$('#doc-slot').value:f.slot;const nst=SLOT[nslot];const nsite=nst.g==='site'?($('#doc-site').value||f.site||staffSites()[0]||''):'';
+  const meta={slot:nslot,g:nst.g,site:nsite,title,issued:isDate(issued)?issued:'',expiry:isDate(expiry)?expiry:'',note:$('#doc-note').value.slice(0,500),updatedAt:nowISO(),updatedBy:myId()||''};
   if(S.canEdit||S.preview)meta.restricted=$('#doc-restricted').checked;else meta.restricted=f.restricted;
   const btn=$('#doc-save');btn.disabled=true;
   try{let versions=f.versions;
@@ -2918,6 +2971,7 @@ document.addEventListener('change',e=>{const T=e.target;const id=T.id;
   if(id==='ov-date'&&isDate(T.value)){S.ov.date=T.value;render();}
   if(id==='wk-who'){S.wk.who=T.value;refreshWeekly();}
   if(id==='doc-exp'){S.docs.exp=T.checked;render();}
+  if(id==='doc-slot'){const st=SLOT[T.value];$('#doc-site-f').hidden=!st||st.g!=='site';const D=S.docDlg;if(D&&D.isNew&&st&&!st.multi&&st.k!=='etc'&&!$('#doc-title').value.trim())$('#doc-title').value=st.name;}
   if(id==='doc-file'){const f=T.files&&T.files[0];if(S.docDlg)S.docDlg.file=f||null;$('#doc-file-n').textContent=f?`${f.name} · ${fmtMB(f.size)}${f.size>FILE_MAX?' — 20MB를 넘어 올릴 수 없습니다':''}`:'';if(f&&S.docDlg&&!$('#doc-title').value.trim())$('#doc-title').value=f.name.replace(/\.[^.]+$/,'').slice(0,80);}
   if(id==='lg-on'){S.lg.onOnly=!T.checked;render();}
   if(T.dataset&&T.dataset.lgF)legalEditField(T);
@@ -3043,6 +3097,165 @@ async function docThumbBackfill(){if(S.thumbFill||!S.canWrite)return;S.thumbFill
       try{const blob=await fileGet(f,v);await docThumbSave(f,v,blob);}catch{}if(S.view!=='docs')break;}}
   finally{S.thumbFill=false;}}
 $('#dlg-view').addEventListener('close',vwReset);
+/* ───────── 각종서류 올리기 (서류 자동 정리) ─────────
+   올린 파일의 글자를 읽어(스캔·사진은 글자 인식 OCR) 어떤 서류인지 판단하고, 사업장·발급일·유효기간을 찾아 서류함의 알맞은 칸에 저장합니다.
+   판단은 파일 이름 + 본문 낱말 규칙으로 하며(외부 AI 없이 브라우저 안에서 처리), 확실하지 않은 서류는 확인을 받은 뒤 저장합니다. */
+const TESS_V='7.0.0';let _tw=null,OCR_CB=null;
+function ocrWorker(){if(!_tw)_tw=(async()=>{if(!window.Tesseract)await loadScript(`https://cdn.jsdelivr.net/npm/tesseract.js@${TESS_V}/dist/tesseract.min.js`);
+    return await Tesseract.createWorker(['kor','eng'],1,{workerPath:`https://cdn.jsdelivr.net/npm/tesseract.js@${TESS_V}/dist/worker.min.js`,corePath:`https://cdn.jsdelivr.net/npm/tesseract.js-core@${TESS_V}`,logger:m=>{if(OCR_CB&&m&&m.status)OCR_CB(m);}});})().catch(e=>{_tw=null;throw e;});
+  return _tw;}
+async function ocrCanvas(cv,onProg){const w=await ocrWorker();OCR_CB=m=>{if(onProg)onProg(m.status==='recognizing text'?m.progress:0,m.status);};try{const r=await w.recognize(cv);return (r&&r.data&&r.data.text)||'';}finally{OCR_CB=null;}}
+async function pdfCanvas(pdf,n,width){const pg=await pdf.getPage(n);const v0=pg.getViewport({scale:1});const vp=pg.getViewport({scale:Math.min(4,width/v0.width)});const cv=document.createElement('canvas');cv.width=Math.round(vp.width);cv.height=Math.round(vp.height);const cx=cv.getContext('2d');cx.fillStyle='#fff';cx.fillRect(0,0,cv.width,cv.height);await pg.render({canvasContext:cx,viewport:vp}).promise;return cv;}
+/* 파일에서 글자 꺼내기 → {text, how} */
+async function extractDocText(file,onProg){const k=kindOf(file.name,file.type);const cap=t=>String(t||'').slice(0,30000);
+  if(k==='pdf'){await needLib('pdf');const pdf=await pdfjsLib.getDocument({data:new Uint8Array(await file.arrayBuffer()),...PDF_OPT}).promise;
+    try{let t='';for(let i=1;i<=Math.min(pdf.numPages,6);i++){const pg=await pdf.getPage(i);const tc=await pg.getTextContent();t+=tc.items.map(x=>x.str+(x.hasEOL?'\n':' ')).join('')+'\n';}
+      if(t.replace(/\s+/g,'').length>=25)return {text:cap(t),how:'text',pages:pdf.numPages};
+      onProg&&onProg(0,'ocr');let o='';for(let i=1;i<=Math.min(pdf.numPages,2);i++){o+=await ocrCanvas(await pdfCanvas(pdf,i,1700),p=>onProg&&onProg((i-1+p)/Math.min(pdf.numPages,2),'ocr'))+'\n';}
+      return {text:cap(o),how:'ocr',pages:pdf.numPages};}finally{pdf.destroy();}}
+  if(k==='image'){onProg&&onProg(0,'ocr');const dec=await decodeImg(file);let cv;try{cv=fitCanvas(dec.src,2000);}finally{dec.done();}return {text:cap(await ocrCanvas(cv,p=>onProg&&onProg(p,'ocr'))),how:'ocr'};}
+  const buf=await file.arrayBuffer();
+  if(k==='docx'){await needLib('mammoth');return {text:cap((await mammoth.extractRawText({arrayBuffer:buf})).value),how:'text'};}
+  if(k==='hwpx')return {text:cap(await hwpxText(buf)),how:'text'};
+  if(k==='hwp'){let t='';try{t=await hwpText(buf);}catch{}if(!t.trim()){try{const cfb=XLSX.CFB.read(new Uint8Array(buf),{type:'array'});const pt=XLSX.CFB.find(cfb,'/PrvText');if(pt&&pt.content)t=new TextDecoder('utf-16le').decode(new Uint8Array(pt.content));}catch{}}return {text:cap(t),how:t.trim()?'text':'name'};}
+  if(k==='sheet'){const e=extOf(file.name);const wb=e==='csv'||e==='tsv'?XLSX.read(decodeText(buf),{type:'string'}):XLSX.read(new Uint8Array(buf),{type:'array'});let t='';for(const n of wb.SheetNames.slice(0,5)){t+=n+'\n'+XLSX.utils.sheet_to_csv(wb.Sheets[n]).slice(0,8000)+'\n';}return {text:cap(t),how:'text'};}
+  if(k==='pptx'){await needLib('jszip');const z=await JSZip.loadAsync(buf);let t='';for(const n of Object.keys(z.files).filter(n=>/^ppt\/slides\/slide\d+\.xml$/.test(n)).slice(0,30)){const d=new DOMParser().parseFromString(await z.file(n).async('string'),'application/xml');t+=Array.from(d.getElementsByTagNameNS('*','t')).map(x=>x.textContent).join(' ')+'\n';}return {text:cap(t),how:'text'};}
+  if(k==='text')return {text:cap(decodeText(buf)),how:'text'};
+  return {text:'',how:'name'};}
+/* 서류 종류 판단 규칙 — 글자 사이 띄어쓰기를 없앤 본문에 맞춰 봅니다(스캔 글자 인식은 '사 업 자'처럼 띄어 나오기 때문). */
+const DOC_RULES={
+  bizreg:[[/사업자등록증/,5],[/개업연월일/,2],[/세무서장/,1.5],[/법인사업자|개인사업자/,1.5],[/\d{3}-\d{2}-\d{5}/,1]],
+  corpreg:[[/등기사항(전부|일부)?증명서/,5],[/등기부등본|법인등기/,3.5],[/등기번호|등록번호.{0,4}\d{6}-\d{7}/,1.5],[/임원에관한사항/,2],[/등기관/,1]],
+  seal:[[/인감증명/,5],[/법인인감|사용인감/,2.5]],
+  bank:[[/통장사본/,5],[/예금주/,2.5],[/계좌번호/,2],[/입출금|보통예금|기업자유예금|저축예금/,1.5],[/(국민|신한|우리|하나|농협|기업|IBK|KB|NH|SC제일|산업|수협|부산|대구|경남|광주|전북|제주|카카오|토스|케이)은행|새마을금고|신협|우체국/,1],[/통장/,1.5]],
+  org:[[/조직도/,5],[/organizationchart|orgchart/i,3],[/조직(체계|구성|현황)/,2]],
+  aoi:[[/정관/,3.5],[/발행할주식의총수|공고방법|주주총회의소집/,2.5],[/1주의금액/,2],[/제1장총칙/,1]],
+  rules:[[/취업규칙/,5],[/복무규정|인사규정/,1.5],[/근로시간|휴게시간|연차유급휴가|징계/,.7]],
+  iso:[[/ISO(9001|14001|45001|27001|22000|13485|50001)/i,5],[/ISO\d{4,5}/i,3],[/품질경영시스템|환경경영시스템|안전보건경영시스템|qualitymanagementsystem|environmentalmanagementsystem/i,2.5],[/certificate|certification/i,1]],
+  family:[[/가족친화/,5]],
+  goodco:[[/일하기좋은기업|일하기좋은/,5],[/근무환경우수/,2]],
+  sme:[[/중소기업확인서/,5],[/소상공인확인서/,4],[/중소기업현황정보시스템/,2]],
+  certetc:[[/인증서|확인서|지정서|인정서|선정서|수여증|증명서/,1.5],[/벤처기업|이노비즈|메인비즈|기업부설연구소|연구개발전담부서|수출유망|뿌리기업|강소기업|우수기업|녹색기업|직접생산확인|우수조달|성과공유/,2.5]],
+  factory:[[/공장등록/,5],[/산업집적활성화/,2],[/공장관리번호|공장소재지/,2],[/제조시설면적|부대시설면적/,1]],
+  bldg:[[/건축물대장/,5],[/건물등록/,3],[/대지위치|건축면적|연면적|주용도|건폐율|용적률/,.8]],
+  drawing:[[/도면|평면도|배치도|입면도|단면도|계통도|설비도/,4],[/scale|축척|도면번호|dwg\.?no/i,1]]};
+function siteFromText(name,text){const sites=staffSites();const short=s=>s.replace(/(공장|본사|사업장|지점)$/,'');const fn=name.replace(/\s+/g,'');
+  for(const s of sites){if(fn.includes(s.replace(/\s+/g,''))||(short(s).length>=2&&fn.includes(short(s))))return {site:s,from:'파일 이름'};}
+  const flat=text.replace(/\s+/g,'');
+  for(const lb of ['공장소재지','사업장소재지','대지위치','소재지','공장주소','주소']){let i=flat.indexOf(lb);while(i>=0){const seg=flat.slice(i,i+60);for(const s of sites){if(seg.includes(short(s)+'시')||seg.includes(short(s)+'군')||seg.includes(s.replace(/\s+/g,'')))return {site:s,from:lb};}i=flat.indexOf(lb,i+1);}}
+  const cnt=sites.map(s=>[s,(flat.match(new RegExp(s.replace(/\s+/g,'')+'|'+short(s)+'(시|군)','g'))||[]).length]).filter(x=>x[1]).sort((a,b)=>b[1]-a[1]);
+  if(cnt.length&&(cnt.length===1||cnt[0][1]>cnt[1][1]))return {site:cnt[0][0],from:'본문'};return {site:'',from:''};}
+const DATE_RE=/((?:19|20)\d{2})\s*[.\-/년]\s*(\d{1,2})\s*[.\-/월]\s*(\d{1,2})\s*일?/g;
+function docDates(text){const t=String(text);const all=[];for(const m of t.matchAll(DATE_RE)){const d=mkDate(m[1],m[2],m[3]);if(d)all.push({d,i:m.index,end:m.index+m[0].length});}
+  let expiry='',issued='';
+  for(let j=0;j+1<all.length;j++){const mid=t.slice(all[j].end,all[j+1].i);if(/^\s*[~∼～\-–—]{1,2}\s*$/.test(mid)||/^\s*(부터|to)\s*$/i.test(mid)){if(all[j+1].d>expiry)expiry=all[j+1].d;if(!issued)issued=all[j].d;}}
+  if(!expiry)for(const a of all){const pre=t.slice(Math.max(0,a.i-30),a.i);const post=t.slice(a.end,a.end+6);if(/(유효\s*기간|만료|유효\s*일|valid\s*until|expir)/i.test(pre)||/^\s*까지/.test(post)){expiry=a.d;break;}}
+  for(const a of all){const pre=t.slice(Math.max(0,a.i-16),a.i).replace(/\s+/g,'');if(/(발급|발행|교부|확인일|인증일|지정일|등록일자|시행)/.test(pre)){issued=a.d;break;}}
+  if(!issued){const past=all.filter(a=>a.d<=today()&&a.d!==expiry);if(past.length)issued=past[past.length-1].d;}
+  return {issued,expiry};}
+function classifyDoc(name,text){const base=name.replace(/\.[^.]+$/,'');const fn=base.replace(/[\s_\-()[\]]+/g,'');const flat=String(text||'').replace(/\s+/g,'');const head=flat.slice(0,500);const e=extOf(name);
+  const sc=[];for(const [k,rules] of Object.entries(DOC_RULES)){let s=0;const why=[];
+    for(const [re,w] of rules){let m=re.exec(fn);if(m){s+=w*2;why.push(`파일 이름 '${m[0]}'`);continue;}m=re.exec(head);if(m){s+=w*1.5;why.push(`첫머리 '${m[0]}'`);continue;}m=re.exec(flat);if(m){s+=w;why.push(`본문 '${m[0]}'`);}}
+    if(k==='drawing'&&/^(dwg|dxf)$/.test(e)){s+=6;why.unshift('캐드 도면 파일');}sc.push({k,s,why});}
+  sc.sort((a,b)=>b.s-a.s);const b=sc[0],n2=sc[1];let slot=b.s>=2?b.k:'etc';
+  const conf=b.s>=4.5&&b.s-n2.s>=1.5?'high':b.s>=2.5?'mid':'low';
+  const st=SLOT[slot];let site={site:'',from:''};if(st.g==='site'||slot==='etc'||st.g==='cert'){site=siteFromText(name,text);}
+  if(st.g==='site'&&!site.site)site={site:staffSites()[0]||'',from:'(사업장을 찾지 못해 첫 사업장)'};
+  if(slot==='etc'&&site.site&&b.s<2){slot='etc';}
+  const dt=docDates(text);let title=st.name;
+  if(slot==='iso'){const m=/ISO\s*[-:]?\s*(\d{4,5})/i.exec(text)||/ISO(\d{4,5})/i.exec(fn);title=m?`ISO ${m[1]} 인증서`:'ISO 인증서';}
+  else if(st.multi||slot==='etc'){const line=String(text).split('\n').map(l=>l.trim()).find(l=>l.length>=4&&l.length<=30&&/(인증서|확인서|지정서|인정서|선정서|증명서|도면|평면도|배치도|계약서|협약서|보험증권)/.test(l.replace(/\s+/g,'')));title=line?line.replace(/\s{2,}/g,' '):base.slice(0,80);}
+  return {slot,site:st.g==='site'?site.site:'',siteFrom:site.from,title:title.slice(0,80),issued:dt.issued,expiry:/^(iso|family|goodco|sme|certetc)$/.test(slot)||dt.expiry?dt.expiry:'',restricted:!!st.restricted,conf,score:Math.round(b.s*10)/10,why:[...new Set(b.why)].slice(0,3),alt:n2.s>=2?n2.k:''};}
+async function fileHash(file){try{const h=await crypto.subtle.digest('SHA-256',await file.arrayBuffer());return Array.from(new Uint8Array(h).slice(0,12),x=>x.toString(16).padStart(2,'0')).join('');}catch{return '';}}
+function findDup(hash,file){for(const f of Object.values(S.files))for(const v of f.versions){if((hash&&v.h===hash)||(!v.h&&v.name===file.name&&v.size===file.size))return {f,v};}return null;}
+/* 서류함에 저장 (같은 칸에 이미 서류가 있으면 새 버전으로) */
+async function storeDoc(o,onProg){const st=SLOT[o.slot]||SLOT.etc;const site=st.g==='site'?(o.site||staffSites()[0]||''):'';
+  let f=o.fid?S.files[o.fid]:null;if(!f&&!st.multi&&st.k!=='etc')f=Object.values(S.files).find(x=>x.slot===st.k&&(st.g!=='site'||x.site===site))||null;
+  const fid=f?f.id:(st.multi||st.k==='etc'?`d-${st.k}-${rid().slice(0,10)}`:`d-${st.k}${site?'-'+siteKey(site):''}`);
+  const restricted=f?(f.restricted||((S.canEdit||S.preview)&&!!o.restricted)):!!o.restricted;
+  const blob=await optimizeDocImage(o.file);const versions=f?f.versions.slice():[];const v=(versions.length?versions[versions.length-1].v:0)+1;
+  const put=await filePut(fid,v,blob,(i,n)=>onProg&&onProg(i/n));
+  versions.push({v,name:(o.file.name||'파일').slice(0,120),type:blob.type||o.file.type||'',size:blob.size,store:put.store,n:put.n,asset:put.asset||'',at:nowISO(),by:myId()||'',note:(o.vnote||'').slice(0,200),h:o.hash||''});
+  const meta={slot:st.k,g:st.g,site,title:(f&&!o.title?f.title:(o.title||st.name)).slice(0,80),restricted,issued:isDate(o.issued)?o.issued:(f?f.issued:''),expiry:isDate(o.expiry)?o.expiry:(f?f.expiry:''),note:f?f.note:(o.note||''),versions:versions.slice(-30),updatedAt:nowISO(),updatedBy:myId()||''};
+  if(!restricted){meta.txt=String(o.text||'').replace(/\s+/g,' ').trim().slice(0,1500);if(o.thumb){meta.thumb=o.thumb;meta.thumbV=v;}}else{meta.txt='';meta.thumb='';meta.thumbV=0;}
+  if(f)await dbUpdate(`files/${fid}`,meta);else await dbSet(`files/${fid}`,{...meta,createdAt:nowISO(),createdBy:myId()||''});
+  return {fid,v,isNew:!f};}
+
+/* 화면 */
+const UP_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" aria-hidden="true"><path d="M12 16V4m0 0l-4.5 4.5M12 4l4.5 4.5"/><path d="M4 15v3.5A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5V15"/></svg>';
+const slotPath=(slot,site)=>{const st=SLOT[slot]||SLOT.etc;const g=DOC_GROUPS.find(x=>x.id===st.g);return [g&&g.name,st.g==='site'?site:'',st.name].filter(Boolean).join(' › ');};
+const CONF={high:'확실',mid:'대체로 확실',low:'확인 필요'};
+function slotOptions(sel){return DOC_GROUPS.map(g=>`<optgroup label="${esc(g.name)}">${DOC_SLOTS.filter(s=>s.g===g.id).map(s=>`<option value="${s.k}" ${s.k===sel?'selected':''}>${esc(s.name)}</option>`).join('')}</optgroup>`).join('');}
+function upAdd(files){if(!S.canWrite){toast('보기 전용 권한이라 올릴 수 없습니다.','err');return;}let n=0;
+  for(const file of Array.from(files||[])){if(!file||!file.size)continue;if(file.size>FILE_MAX){toast(`${file.name}: 20MB 이하 파일만 올릴 수 있습니다.`,'err');continue;}S.up.items.push({id:rid(),file,name:file.name,size:file.size,status:'wait',prog:0});n++;}
+  if(n){renderUpList();upPump();}}
+async function upPump(){if(S.up.busy)return;S.up.busy=true;
+  try{for(;;){const it=S.up.items.find(x=>x.status==='wait');if(!it)break;await upProcess(it);}}finally{S.up.busy=false;}}
+async function upProcess(it){it.status='read';renderUpItem(it);
+  try{it.hash=await fileHash(it.file);const dup=findDup(it.hash,it.file);
+    makeThumb(it.file,it.name).then(t=>{it.thumb=t;renderUpItem(it);}).catch(()=>{});
+    let ex={text:'',how:'name'};try{ex=await extractDocText(it.file,(p,ph)=>{if(ph==='ocr'){it.status='ocr';it.prog=p;renderUpItem(it);}});}catch(e){ex={text:'',how:'fail'};}
+    it.text=ex.text;it.how=ex.how;it.guess=classifyDoc(it.name,ex.text);
+    if(dup){it.status='dup';it.dup=dup;renderUpItem(it);return;}
+    if(S.up.auto&&it.guess.conf==='high'){await upSave(it);}else{it.status='ready';renderUpItem(it);}}
+  catch(e){it.status='error';it.err=(e&&e.userMsg)||'파일을 읽지 못했습니다.';renderUpItem(it);}}
+async function upSave(it){const g=it.guess;it.status='saving';it.prog=0;renderUpItem(it);
+  try{for(let i=0;i<20&&!it.thumb&&thumbable(it.name,it.file.type);i++)await new Promise(r=>setTimeout(r,150));
+    const r=await storeDoc({slot:g.slot,site:g.site,title:g.title,issued:g.issued,expiry:g.expiry,restricted:g.restricted,file:it.file,hash:it.hash,text:it.text,thumb:it.thumb,vnote:'각종서류 올리기'},p=>{it.prog=p;renderUpItem(it);});
+    it.fid=r.fid;it.ver=r.v;it.isNew=r.isNew;it.status='saved';}
+  catch(e){it.status='ready';toast(fileErrMsg(e),'err');}
+  renderUpItem(it);upSummary();}
+function upItemHTML(it){const g=it.guess;const admin=S.canEdit||S.preview;
+  const head=`<span class="fi th">${it.thumb?`<img src="${esc(it.thumb)}" alt="">`:''}<i>${fileIcon({name:it.name})}</i></span>`;
+  const how=it.how==='ocr'?'글자 인식(OCR)으로 읽음':it.how==='text'?'본문 글자를 읽음':it.how==='fail'?'내용을 읽지 못해 파일 이름으로 판단':it.how==='name'?'파일 이름으로 판단':'';
+  let body='',act='';
+  if(it.status==='wait')body='<span class="uc-st">대기 중</span>';
+  else if(it.status==='read')body='<span class="uc-st"><i class="spin"></i>내용 읽는 중…</span>';
+  else if(it.status==='ocr')body=`<span class="uc-st"><i class="spin"></i>스캔·사진 글자 인식 중… ${Math.round((it.prog||0)*100)}% <small>(처음 한 번은 인식 도구를 받느라 조금 걸립니다)</small></span>`;
+  else if(it.status==='error')body=`<span class="uc-st err">${esc(it.err)}</span>`,act=`<button type="button" class="btn sm ghost" data-up-x="${it.id}">지우기</button>`;
+  else if(g){const guess=`<div class="uc-guess"><span class="uc-path">${esc(slotPath(g.slot,g.site))}</span><span class="conf c-${g.conf}">${CONF[g.conf]}</span>${g.restricted?'<span class="lock">🔒</span>':''}${g.expiry?`<span class="uc-d">유효기간 ~${fmtYMD(g.expiry)}</span>`:''}${g.issued?`<span class="uc-d">발급 ${fmtYMD(g.issued)}</span>`:''}</div><div class="uc-why">${esc(how)}${g.why.length?' · 근거: '+esc(g.why.join(', ')):''}${g.siteFrom&&g.site?` · 사업장: ${esc(g.site)}(${esc(g.siteFrom)})`:''}</div>`;
+    if(it.status==='saved'){const f=S.files[it.fid];body=`<div class="uc-guess"><span class="uc-ok">✓ 서류함에 저장</span><span class="uc-path">${esc(slotPath(f?f.slot:g.slot,f?f.site:g.site))}</span>${f?`<span class="uc-d">「${esc(f.title)}」 ${it.isNew?'새로 등록':`v${it.ver} 새 버전`}</span>`:''}</div><div class="uc-why">${esc(how)}${g.why.length?' · 근거: '+esc(g.why.join(', ')):''}</div>`;
+      act=`<button type="button" class="btn sm" data-up-view="${it.id}">미리보기</button><button type="button" class="btn sm ghost" data-doc-info="${esc(it.fid||'')}">분류·정보 고치기</button>`;}
+    else if(it.status==='saving')body=guess+`<span class="uc-st"><i class="spin"></i>서류함에 저장 중… ${Math.round((it.prog||0)*100)}%</span>`;
+    else if(it.status==='dup'){body=guess+`<div class="uc-why warn">이미 서류함에 같은 파일이 있습니다: 「${esc(it.dup.f.title)}」 v${it.dup.v.v}</div>`;act=`<button type="button" class="btn sm" data-up-force="${it.id}">그래도 저장</button><button type="button" class="btn sm ghost" data-up-x="${it.id}">건너뛰기</button>`;}
+    else{body=guess+`<div class="uc-edit" data-up-edit="${it.id}"><label>분류<select data-uf="slot">${slotOptions(g.slot)}</select></label>${SLOT[g.slot].g==='site'?`<label>사업장<select data-uf="site">${staffSites().map(s=>`<option ${s===g.site?'selected':''}>${esc(s)}</option>`).join('')}</select></label>`:''}<label class="w">서류명<input type="text" data-uf="title" maxlength="80" value="${esc(g.title)}"></label><label>발급일<input type="date" data-uf="issued" value="${esc(g.issued)}"></label><label>유효기간<input type="date" data-uf="expiry" value="${esc(g.expiry)}"></label>${admin?`<label class="chk"><input type="checkbox" data-uf="restricted" ${g.restricted?'checked':''}> 🔒</label>`:''}</div>`;
+      act=`<button type="button" class="btn sm primary" data-up-save="${it.id}">서류함에 저장</button><button type="button" class="btn sm ghost" data-up-x="${it.id}">빼기</button>`;}}
+  return `<div class="up-card st-${it.status}" id="up-${it.id}">${head}<div class="uc-main"><div class="uc-n"><b>${esc(it.name)}</b><small>${fmtMB(it.size)}</small>${it.status!=='saved'&&it.status!=='wait'&&it.status!=='read'?`<button type="button" class="lnk" data-up-pv="${it.id}">원본 보기</button>`:''}</div>${body}</div><div class="uc-act">${act}</div></div>`;}
+function renderUpItem(it){const el=document.getElementById('up-'+it.id);if(!el){if(S.view==='upload')renderUpList();return;}const ae=document.activeElement;if(ae&&el.contains(ae)&&ae.matches('input,select'))return;el.outerHTML=upItemHTML(it);upSummary();}
+function upSummary(){const box=$('#up-sum');if(!box)return;const its=S.up.items;const c=s=>its.filter(x=>x.status===s).length;const ready=c('ready');
+  box.innerHTML=its.length?`<span>${its.length}개 중 저장 ${c('saved')} · 확인 필요 ${ready}${c('dup')?` · 중복 ${c('dup')}`:''}${its.some(x=>['wait','read','ocr','saving'].includes(x.status))?' · 처리 중…':''}</span><span class="sp"></span>${ready?`<button type="button" class="btn sm primary" id="up-all">확인 필요 ${ready}건 모두 저장</button>`:''}${its.some(x=>['saved','error','dup'].includes(x.status))?'<button type="button" class="btn sm ghost" id="up-clear">완료 목록 지우기</button>':''}`:'';box.hidden=!its.length;}
+function renderUpList(){const L=$('#up-list');if(!L)return;L.innerHTML=S.up.items.slice().reverse().map(upItemHTML).join('');upSummary();}
+function upRecentHTML(){const recent=Object.values(S.files).filter(f=>f.versions.length).sort((a,b)=>(curVer(b).at||'').localeCompare(curVer(a).at||'')).slice(0,8);
+  return recent.length?`<section class="panel" style="margin-top:16px"><div class="panel-h"><h2>최근 서류함에 들어간 서류</h2><div class="act"><a class="btn sm ghost" href="#docs">전체 보기</a></div></div>${recent.map(f=>{const x=curVer(f);return `<div class="doc-row" data-doc="${esc(f.id)}" tabindex="0">${f.thumb&&!f.restricted?`<span class="fi th"><img src="${esc(f.thumb)}" alt=""><i>${fileIcon(x)}</i></span>`:`<span class="fi">${f.restricted?'🔒':fileIcon(x)}</span>`}<div class="dm"><b>${esc(f.title)}</b><small>${esc(slotPath(f.slot,f.site))} · v${x.v} · ${hhmm(x.at)} ${esc(nameOf(x.by))}</small></div><span></span><span class="da"><button type="button" class="btn sm ghost" data-doc-info="${esc(f.id)}">정보</button></span></div>`;}).join('')}</section>`:'';}
+function renderUpRecent(){const b=$('#up-recent');if(b)b.innerHTML=upRecentHTML();}
+function renderUpload(v){
+  v.innerHTML=`<div class="home-head"><div><h1 class="up-h1">${UP_ICON}각종서류 올리기</h1><p>파일을 올리면 내용을 읽어 어떤 서류인지 알아내고, 사업장·발급일·유효기간을 찾아 <a href="#docs">서류함</a>에 자동으로 정리합니다</p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href="#docs">서류함 보기</a><a class="btn" href="#photos">${ICON.cam} 현장 사진첩</a></div></div>
+  ${S.canWrite?`<div class="up-drop" id="up-drop"><div class="ic">${UP_ICON}</div><p><b>서류 파일을 여기에 끌어다 놓으세요</b> · 여러 개를 한 번에 올려도 됩니다</p>
+    <p class="btns"><label class="btn primary file-btn">파일 선택<input type="file" id="up-input" multiple></label><label class="btn file-btn cam-only">${ICON.cam} 서류 촬영<input type="file" id="up-cam" accept="image/*" capture="environment"></label></p>
+    <small>PDF · 스캔 사진(JPG·PNG) · 한글(hwp·hwpx) · 워드 · 엑셀 · 파워포인트 · 도면(dwg) — 파일 하나당 20MB까지</small></div>
+  <div class="up-opt"><label class="chk"><input type="checkbox" id="up-auto" ${S.up.auto?'checked':''}> 확실한 서류는 확인 없이 바로 서류함에 저장</label><span class="hint">조직도·정관·취업규칙·사업자등록증·법인 등기·통장 사본(🔒)·인감증명서(🔒)·ISO·가족친화·일하기 좋은 기업·중소기업 확인서·기타 인증서·공장등록증·건축물대장·도면을 알아봅니다. 같은 칸에 이미 서류가 있으면 새 버전으로 쌓입니다.</span></div>`:'<section class="panel"><div class="empty">보기 전용 권한이라 서류를 올릴 수 없습니다.</div></section>'}
+  <div class="up-sum" id="up-sum" hidden></div><div class="up-list" id="up-list"></div>
+  <div id="up-recent">${upRecentHTML()}</div>`;
+  renderUpList();
+  const dz=$('#up-drop');if(dz){dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('over');});dz.addEventListener('dragleave',()=>dz.classList.remove('over'));dz.addEventListener('drop',e=>{e.preventDefault();dz.classList.remove('over');if(e.dataTransfer&&e.dataTransfer.files.length)upAdd(e.dataTransfer.files);});}}
+function upEdit(el){const box=el.closest('[data-up-edit]');if(!box)return;const it=S.up.items.find(x=>x.id===box.dataset.upEdit);if(!it||!it.guess)return;const f=el.dataset.uf;const g=it.guess;
+  if(f==='restricted')g.restricted=el.checked;else g[f]=el.value;
+  if(f==='slot'){const st=SLOT[g.slot];g.restricted=!!st.restricted;if(st.g==='site'&&!g.site){const sf=siteFromText(it.name,it.text||'');g.site=sf.site||staffSites()[0]||'';}if(!st.multi&&st.k!=='etc')g.title=st.name;renderUpItem(it);}}
+document.addEventListener('change',e=>{const T=e.target;
+  if(T.id==='up-input'||T.id==='up-cam'){const f=Array.from(T.files||[]);T.value='';upAdd(f);}
+  if(T.id==='up-auto'){S.up.auto=T.checked;lsSet('wl.upauto',T.checked?'1':'0');}
+  if(T.dataset&&T.dataset.uf)upEdit(T);});
+document.addEventListener('input',e=>{const T=e.target;if(T.dataset&&T.dataset.uf&&T.tagName==='INPUT'&&T.type!=='checkbox')upEdit(T);});
+document.addEventListener('click',e=>{const T=e.target;
+  const sv=T.closest('[data-up-save]');if(sv){const it=S.up.items.find(x=>x.id===sv.dataset.upSave);if(it)upSave(it);return;}
+  const fo=T.closest('[data-up-force]');if(fo){const it=S.up.items.find(x=>x.id===fo.dataset.upForce);if(it){it.status='ready';it.dup=null;renderUpItem(it);}return;}
+  const x=T.closest('[data-up-x]');if(x){S.up.items=S.up.items.filter(i=>i.id!==x.dataset.upX);renderUpList();return;}
+  const pv=T.closest('[data-up-pv]');if(pv){const it=S.up.items.find(i=>i.id===pv.dataset.upPv);if(it)openViewer({name:it.name,type:it.file.type,size:it.size,meta:'올린 파일',blob:it.file});return;}
+  const uv=T.closest('[data-up-view]');if(uv){const it=S.up.items.find(i=>i.id===uv.dataset.upView);const f=it&&S.files[it.fid];if(f)docOpen(f,f.versions.find(v=>v.v===it.ver),'view');return;}
+  if(T.closest('#up-all')){(async()=>{for(const it of S.up.items.filter(i=>i.status==='ready'))await upSave(it);})();return;}
+  if(T.closest('#up-clear')){S.up.items=S.up.items.filter(i=>!['saved','error','dup'].includes(i.status));renderUpList();return;}});
+
+S.up.auto=lsGet('wl.upauto')!=='0';
 
 /* ───────── 시작 ───────── */
 function boot(){
