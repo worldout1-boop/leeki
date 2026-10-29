@@ -161,6 +161,12 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
+    // 정기 일정(월례조회·업무회의) 설정·날짜 변경 — 구성원 모두 읽기, 관리자만 수정
+    match /app/sched {
+      allow read: if isMember();
+      allow write: if isAdmin();
+    }
+
     // 비공개 업무·사진 — 본인만 (관리자 포함 다른 사람은 읽을 수 없음)
     match /priv/{uid}/{document=**} {
       allow read, write: if isMember() && request.auth.uid == uid;

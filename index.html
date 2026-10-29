@@ -906,6 +906,34 @@ button.gs-it:has(.fi){grid-template-columns:36px minmax(0,1fr)}
 .gw-it mark,.gs-it mark{background:#fde68a;color:inherit;border-radius:2px}
 .ntf-pop .ic.t-gw{background:var(--accent)}
 @media (prefers-color-scheme: dark){.gw-it mark{background:#7c5e10}}
+/* ── 정기 일정 (15차) */
+.sch-strip{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:8px 12px;margin:0 0 12px}
+.sch-strip[hidden]{display:none}.sch-strip>b{font-size:13px;color:var(--ink-2)}.sch-strip .sp{flex:1}
+.sch-chip{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);background:var(--surface-2);border-radius:16px;padding:4px 10px;font:inherit;font-size:13px;color:var(--ink);cursor:pointer}
+.sch-chip em{font-style:normal;font-weight:700;color:var(--accent)}.sch-chip small{color:var(--ink-3);font-size:11.5px}
+.sch-chip.soon{border-color:var(--doing);background:color-mix(in srgb,var(--doing) 10%,var(--surface))}.sch-chip.soon em{color:var(--doing)}
+.fc .ev-sch{background:color-mix(in srgb,var(--accent) 14%,var(--surface))!important;border:1px solid var(--accent)!important;color:var(--accent)!important;font-weight:600}
+.fc .ev-sch .fc-event-title,.fc .ev-sch .fc-event-main{color:var(--accent)!important}
+.fc .ev-sch-mr{border-color:#7c3aed!important;background:color-mix(in srgb,#7c3aed 14%,var(--surface))!important}.fc .ev-sch-mr .fc-event-title,.fc .ev-sch-mr .fc-event-main{color:#7c3aed!important}
+.fc .ev-sch-plan{border-style:dashed!important}
+.fc .ev-hol{background:color-mix(in srgb,var(--late) 9%,transparent)!important;opacity:1}.fc .ev-hol .fc-event-title{color:var(--late);font-style:normal;font-size:11px;font-weight:600;margin:2px 4px}
+.ntf-pop .ic.t-sch{background:#7c3aed}
+.sch-dlg{width:min(860px,96vw)}
+.sch-rules{display:flex;flex-direction:column;gap:6px;margin:0 0 12px}
+.sch-rule{display:flex;gap:10px;font-size:13px;line-height:1.55;background:var(--surface-2);border-radius:6px;padding:8px 10px}.sch-rule b{flex:none;width:104px}
+.sch-h3{font-size:14px;margin:6px 0 6px}.sch-h3 small{font-weight:400;color:var(--ink-3);font-size:12px}
+.sch-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line-2)}
+.sch-list li{display:grid;grid-template-columns:92px 54px 1fr auto;gap:8px;align-items:center;padding:7px 4px;border-bottom:1px solid var(--line-2);font-size:13px}
+.sch-list li.past{opacity:.55}.sch-list li.off .w b{text-decoration:line-through;color:var(--ink-3)}.sch-list li.hl{background:color-mix(in srgb,var(--focus) 10%,transparent)}
+.sch-list .d{font-weight:600}.sch-list .d em{font-style:normal;color:var(--doing);font-size:11.5px}.sch-list .t{color:var(--ink-2)}
+.sch-list .w small{display:block;color:var(--ink-3);font-size:12px}.sch-list .w b.k-mr{color:#7c3aed}
+.sch-list .a{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}.sch-list .empty{display:block;color:var(--ink-3);padding:14px}
+.sch-src{display:inline-block;font-size:11px;font-weight:600;border-radius:4px;padding:0 5px;margin-left:6px;background:var(--surface-2);color:var(--ink-3);border:1px dashed var(--line)}
+.sch-src.gw{background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--accent);border-style:solid}.sch-src.ad{background:color-mix(in srgb,var(--done) 12%,transparent);color:var(--done);border-style:solid}.sch-src.off{color:var(--late);border-color:var(--late);border-style:solid}
+.sch-ed{display:flex;gap:4px;align-items:center;margin-top:4px;flex-wrap:wrap}.sch-ed input{height:30px}
+.sch-set{margin-top:14px;border:1px solid var(--line);border-radius:var(--r);padding:8px 12px}.sch-set summary{cursor:pointer;font-weight:600;font-size:13px}
+.sch-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;margin-top:10px}.sch-grid label{display:flex;flex-direction:column;gap:4px;font-size:12.5px;color:var(--ink-2)}.sch-grid .full{grid-column:1/-1}
+@media (max-width:640px){.sch-list li{grid-template-columns:70px 1fr;}.sch-list .t{display:none}.sch-list .a{grid-column:1/-1;justify-content:flex-start}.sch-grid{grid-template-columns:1fr}.sch-rule{flex-direction:column;gap:2px}}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -1237,6 +1265,28 @@ button.gs-it:has(.fi){grid-template-columns:36px minmax(0,1fr)}
       <div class="seg gs-tabs" id="gs-tabs" role="group" aria-label="검색 범위"></div>
       <div id="gs-res" class="gs-res"></div>
     </div></div>
+  </form>
+</dialog>
+<dialog class="modal sch-dlg" id="dlg-sch" aria-labelledby="sch-h">
+  <form method="dialog">
+    <header class="modal-h"><div><h2 id="sch-h">정기 일정 — 월례조회 · 관리부 업무회의</h2><small id="sch-hol" style="color:var(--ink-3);font-size:12px"></small></div><button type="button" class="icon-btn" data-close aria-label="닫기">✕</button></header>
+    <div class="modal-b one"><div>
+      <div class="sch-rules" id="sch-rules"></div>
+      <h3 class="sch-h3">다가오는 일정 <small>(지난 1주 ~ 앞으로 12주, 쉬는 회의도 사유와 함께 표시)</small></h3>
+      <ul class="sch-list" id="sch-list"></ul>
+      <details class="sch-set" id="sch-set" hidden><summary>규칙·장소·회사 휴무일 설정 (관리자)</summary>
+        <div class="sch-grid">
+          <label>월례조회 시각<input type="time" id="sch-mr-time"></label>
+          <label>월례조회 장소<input type="text" id="sch-mr-place" maxlength="40"></label>
+          <label>첫째 월요일이 공휴일이면<select id="sch-mr-shift"><option value="auto">1월은 다음날(화), 그 외는 다음 주 월요일</option><option value="tue">다음날(화요일)</option><option value="mon">다음 주 월요일</option></select></label>
+          <label>업무회의 시각 (목요일)<input type="time" id="sch-mt-time"></label>
+          <label>업무회의 장소<input type="text" id="sch-mt-place" maxlength="40"></label>
+          <label class="full">회사 휴무일 (한 줄에 하나, 예: 2026-12-31 회사 휴무) — 이날 목요일 회의는 쉬고, 첫째 월요일이면 월례조회를 옮깁니다<textarea id="sch-off" rows="3"></textarea></label>
+        </div>
+        <div style="text-align:right;margin-top:8px"><button type="button" class="btn sm primary" id="sch-rule-save">설정 저장</button></div>
+      </details>
+    </div></div>
+    <footer class="modal-f"><span class="help" style="font-size:12px;color:var(--ink-3)">달력·내 업무 화면에 표시되고, 전날·당일 알림(종)에 나옵니다.</span><span class="spacer"></span><button type="button" class="btn" data-close>닫기</button></footer>
   </form>
 </dialog>
 <div id="toasts" aria-live="polite"></div>
@@ -1725,6 +1775,7 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>총괄 현황 (관리자)</b><span><a href="#overview">총괄</a>에서 직원별 기록·지연·이슈를 한눈에 보고, 단톡방 양식 주간업무일지와 일일 현황 텍스트를 바로 복사합니다.</span></li>
       <li><b>업무 분류 · 자동 분류</b><span>업무는 <em>대분류 › 중분류 › 소분류</em>로 나눕니다 — 재무·회계 · 인사·총무 · 시설·공무 · 안전·보건 · 기타(업무분장·국가직무능력표준 참고). 분류를 <em>자동 분류</em> 그대로 두고 등록하면 업무 내용을 읽어 알아서 분류합니다. 칸반·달력·목록 위의 대분류 탭으로 모아 봅니다.</span></li>
       <li><b>전체 검색</b><span>오른쪽 위 돋보기(또는 Ctrl+K)를 누르면 업무·진행 기록·특이사항·서류 내용·법정 업무·그룹웨어 소식을 한 번에 찾습니다. 띄어쓰기는 상관없습니다.</span></li>
+      <li><b>정기 일정</b><span>월례조회(매월 첫째 월요일 08:30 군포공장 5층 식당, 3·6·9·12월 법정 의무교육)와 관리부 업무회의(매주 목요일 16:00 안양본사 6층 대회의실, 공휴일·월례조회 주간과 전 주는 쉬고 조회 후 진행)가 달력과 내 업무 화면에 표시되고 전날·당일 알림이 옵니다. 공휴일이면 날짜가 자동으로 옮겨지고, 그룹웨어 공지가 오면 그 날짜로 확정됩니다. 관리자는 달력의 <em>정기 일정</em>에서 날짜를 바꾸거나 쉼으로 지정할 수 있습니다.</span></li>
       <li><b>그룹웨어 소식</b><span>회사 그룹웨어(업무연락·공지사항·경조사 등) 새 글을 Claude가 평일 08~19시 매시간 확인해 요약합니다. 상단 <a href="#gw">그룹웨어</a>에서 요약·일정·관리부 할 일을 보고, 필요한 글은 <em>업무로 등록</em>을 누르면 내용이 채워진 등록 창이 열립니다. 새 글은 알림(종)에도 표시됩니다.</span></li>
       <li><b>🔒 비공개 업무</b><span>내 업무 입력란의 <em>🔒 나만 보기</em>를 켜고 등록하면 나만 보는 업무가 됩니다. 관리자·다른 직원에게 보이지 않고 팀 현황·총괄·보고서·주간업무일지에도 들어가지 않습니다. 업무 상세에서 <em>팀에 공개하기</em>로 언제든 공개할 수 있습니다.</span></li>
       <li><b>사진·서류 삭제 요청</b><span>사진과 서류는 누구나 올릴 수 있지만 삭제는 관리자만 합니다. 잘못 올렸으면 사진의 ✕ 또는 서류의 <em>삭제 요청</em>을 눌러 이유를 적어 보내세요. 관리자 알림함에 표시되고, 처리 결과가 알림으로 옵니다.</span></li>
@@ -1739,6 +1790,7 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
 function renderMy(v){
   if(!$('#qa',v)){v.innerHTML=`<div class="home-head"><div><h1>내 업무</h1><p id="my-sub"></p></div><div style="display:flex;gap:8px"><a class="btn" href="#team">팀 현황 보기</a><button type="button" class="btn" data-new>상세 등록</button></div></div>
     <div class="brief" id="my-brief" hidden></div>
+    <div class="sch-strip" id="sch-strip" hidden></div>
     ${qaShell()}
     <div class="home"><div class="stack" id="my-left"></div><div class="stack"><section class="panel" id="my-today"></section>
       <section class="panel"><div class="panel-h"><h2>오늘 특이사항·건의</h2><span class="sub">일일 업무일지에 들어갑니다</span></div><div class="memo-box"><label for="memo-text" class="lbl" style="font-size:12px;font-weight:600;color:var(--ink-2)">내 특이사항</label><textarea id="memo-text" rows="3" maxlength="1000" placeholder="예: 화성공장 지게차 정기검사 일정 변경 요청 접수"></textarea><div style="display:flex;justify-content:flex-end"><button type="button" class="btn sm primary" id="memo-save">저장</button></div></div></section></div></div>`;
@@ -1755,7 +1807,7 @@ function renderMy(v){
     <section class="panel"><div class="panel-h"><h2>다가오는 일정</h2><span class="sub">7일 안에 시작</span></div>${upcoming.length?upcoming.map(myRow).join(''):'<div class="empty">7일 안에 시작할 업무가 없습니다.</div>'}</section>`;
   left.insertAdjacentHTML('beforeend',privPanelHTML());
   right.innerHTML=`<div class="panel-h"><h2>오늘 한 일</h2><span class="sub">완료 ${st.doneToday.length}건 · 기록 ${st.logsToday.length}건</span></div>${st.logsToday.length?`<ul class="feed">${st.logsToday.map(({t,l})=>feedItem(t,l,{self:true})).join('')}</ul>`:'<div class="empty">아직 오늘 기록이 없습니다.</div>'}`;
-  ntfBrief();const mt=$('#memo-text');if(mt&&document.activeElement!==mt&&S.memoDraft==null){const md=S.memos.find(m=>m.id===td);const e=md&&md.entries[myId()];mt.value=e&&e.text?e.text:'';}
+  ntfBrief();schStrip();const mt=$('#memo-text');if(mt&&document.activeElement!==mt&&S.memoDraft==null){const md=S.memos.find(m=>m.id===td);const e=md&&md.entries[myId()];mt.value=e&&e.text?e.text:'';}
   syncQA();}
 
 /* ───────── 파일·사진으로 올리기 ───────── */
@@ -1929,18 +1981,19 @@ function renderBoard(v){
       if(t&&to!==from){await changeStatus(t,to);}if(S.pendingRender||to===from){S.pendingRender=false;scheduleRender();}}})));
 }
 
-function calEvents(){const css=getComputedStyle(document.documentElement);const col=c=>css.getPropertyValue('--c-'+c).trim();
+function calEvents(){return [...calTaskEvents(),...schCalEvents()];}
+function calTaskEvents(){const css=getComputedStyle(document.documentElement);const col=c=>css.getPropertyValue('--c-'+c).trim();
   return applyFilters(S.tasks,{ignorePeriod:true}).filter(t=>s0(t)).map(t=>{const s=s0(t),e=e0(t)<s?s:e0(t);const long=diffDays(s,e)>20;
     return {id:t.path,title:(t.status==='done'?'✓ ':'')+(long?'[마감] ':'')+t.title,start:long?e:s,end:addDays(e,1),allDay:true,durationEditable:!long,backgroundColor:col(t.cat),borderColor:col(t.cat),classNames:[t.status==='done'?'ev-done':'',isLate(t)?'ev-late':''].filter(Boolean)};});}
 function renderCalendar(v){
   $('#f-count').textContent='';
   if(!window.FullCalendar){v.innerHTML='<div class="panel empty">달력 구성요소를 불러오지 못했습니다. 네트워크 연결을 확인한 뒤 새로고침하세요.</div>';return;}
   if(S.cal&&$('#cal',v)){S.cal.removeAllEvents();S.cal.addEventSource(calEvents());S.cal.setOption('editable',S.canWrite);return;}
-  v.innerHTML=`<div id="cal"></div><div class="cal-legend">${CATS.map(c=>`<span class="catchip cat-${c.id}">${esc(c.name)}</span>`).join('')}<span>· 날짜를 누르면 그날 업무를 등록하고, 막대를 끌면 일정이 바뀝니다. 3주 넘게 이어지는 업무는 마감일에만 표시됩니다</span></div>`;
+  v.innerHTML=`<div id="cal"></div><div class="cal-legend">${CATS.map(c=>`<span class="catchip cat-${c.id}">${esc(c.name)}</span>`).join('')}<span>· 날짜를 누르면 그날 업무를 등록하고, 막대를 끌면 일정이 바뀝니다. 3주 넘게 이어지는 업무는 마감일에만 표시됩니다</span><button type="button" class="btn sm ghost" data-sch-open="" style="margin-left:auto">📅 정기 일정 (월례조회·업무회의)</button></div>`;
   S.cal=new FullCalendar.Calendar($('#cal',v),{locale:'ko',firstDay:1,height:'auto',initialView:innerWidth<700?'listMonth':'dayGridMonth',
     headerToolbar:{left:'prev,next today',center:'title',right:'dayGridMonth,dayGridWeek,listMonth'},buttonText:{today:'오늘',month:'월',week:'주',list:'목록'},
     dayMaxEvents:4,editable:S.canWrite,events:calEvents(),
-    eventClick:info=>{info.jsEvent.preventDefault();const t=findTask(info.event.id);if(t)openTask(t);},
+    eventClick:info=>{info.jsEvent.preventDefault();const id=info.event.id||'';if(id.startsWith('sch:')){schOpen(id.slice(4));return;}if(id.startsWith('hol:'))return;const t=findTask(id);if(t)openTask(t);},
     dateClick:info=>openTask(null,{start:info.dateStr,due:info.dateStr}),
     eventDrop:async info=>{const t=findTask(info.event.id);if(!t){info.revert();return;}const d=diffDays(toStr(info.oldEvent.start),toStr(info.event.start));
       try{await updateTask(t,{start:t.start?addDays(t.start,d):'',due:t.due?addDays(t.due,d):''});}catch{info.revert();}},
@@ -3061,6 +3114,7 @@ function ntfCompute(){const me=myId();if(!me||!S.ready)return [];const out=[];co
     if(admin&&r.status==='open')out.push({k:`dq|${r.id}`,at:r.at||td,type:'dreq',dq:r.id,title:ttl,text:`${r.name||'구성원'}님이 삭제를 요청했습니다`,sub:r.reason});
     else if(r.uid===S.me.id&&r.status!=='open'&&r.rAt>=since)out.push({k:`dqr|${r.id}|${r.status}`,at:r.rAt,type:'dreq',dq:r.id,title:ttl,text:r.status==='done'?'삭제 요청이 처리되어 삭제되었습니다':'삭제 요청이 반려되었습니다',sub:r.rNote});}
   for(const g of S.gw||[]){if(!g.at||g.at<since)continue;out.push({k:'gw|'+g.id,at:g.at,type:'gw',gw:g.id,title:gwTitle(g.title),text:`그룹웨어 ${gwShort(g.board)} 새 글${g.due?` · 일정 ${fmtMD(g.due)}`:''}`,sub:g.sum});}
+  out.push(...schNtf());
   if(admin){const w=gwWarn();if(w)out.push({k:'gwst|'+w.k,syn:1,at:td+'T00:00:04',type:'gw',gw:'',title:'그룹웨어 자동 확인',text:w.text});}
   if(admin||canViewRestricted())for(const f of Object.values(S.files)){if(!f.expiry)continue;const n=diffDays(td,f.expiry);if(n<=60&&n>=-30)out.push({k:`doc|${f.id}|${f.expiry}|${n<=7?'w':n<=30?'m':'q'}`,syn:1,at:td+'T00:00:03',type:'doc',f,text:`서류 유효기간 ${expiryTxt(f.expiry)} · ${fmtYMD(f.expiry)}`});}
   if(admin&&hr>=17&&dow(td)%6!==0){const idle=staffList().filter(s=>working(s)&&!S.tasks.some(t=>t.logs.some(l=>l.by===s.id&&localDate(l.at)===td)));if(idle.length)out.push({k:`idle|${td}`,syn:1,at:td+'T17:00:00',type:'idle',text:`오늘 기록 없는 근무자 ${idle.length}명`,sub:idle.map(s=>s.name).join(', ')});}
@@ -3078,13 +3132,13 @@ function ntfRun(){adminNameSync();const st=ntfState();NT.items=ntfCompute();cons
   else for(const it of un)NT.shown.add(it.k);
   if(S.view==='my')ntfBrief();}
 function ntfShow(title,body,tag,path){try{const n=new Notification(title,{body,tag,lang:'ko'});n.onclick=()=>{window.focus();if(path){const t=findTask(path);if(t)openTask(t);}n.close();};}catch{}}
-const NT_ICON={assign:'담당',act:'진행',issue:'이슈',due:'마감',late:'지연',legal:'법정',doc:'서류',idle:'기록',dreq:'삭제',gw:'게시'};
+const NT_ICON={assign:'담당',act:'진행',issue:'이슈',due:'마감',late:'지연',legal:'법정',doc:'서류',idle:'기록',dreq:'삭제',gw:'게시',sch:'일정'};
 function ntfRenderPop(){const st=ntfState();const pop=$('#ntf-pop');const its=NT.items;
   const canAsk='Notification' in window&&Notification.permission==='default';const blocked='Notification' in window&&Notification.permission==='denied';
   pop.innerHTML=`<div class="ntf-h"><b>알림</b><span class="sp"></span>${its.some(i=>ntfUnread(i,st))?'<button type="button" class="btn sm ghost" data-ntf-read>모두 읽음</button>':''}</div>
     ${canAsk?`<div class="ntf-ask"><span>이 기기에서도 새 소식 알림을 받을까요? (앱이 열려 있는 동안)</span><button type="button" class="btn sm primary" data-ntf-perm>알림 켜기</button></div>`:blocked?'<div class="ntf-ask"><span>브라우저에서 알림이 차단되어 있습니다. 주소창 왼쪽 자물쇠 › 알림 › 허용으로 바꿀 수 있습니다.</span></div>':''}
     ${its.length?`<ul>${its.map(it=>`<li class="${ntfUnread(it,st)?'un':''}"><button type="button" data-ntf-go="${esc(it.k)}"><span class="ic t-${it.type}">${NT_ICON[it.type]||'알림'}</span><span class="tx">${it.title?`<b>${esc(it.title)}</b>`:it.t?`<b>${esc((it.t.priv?'🔒 ':'')+it.t.title)}</b>`:it.f?`<b>${esc(it.f.title)}</b>`:''}<span>${esc(it.text)}</span>${it.sub?`<small>${esc(String(it.sub).slice(0,120))}</small>`:''}</span><time>${it.syn?'오늘':timeAgo(it.at)}</time></button></li>`).join('')}</ul>`:'<div class="empty">새 알림이 없습니다.</div>'}
-    ${dqFootHTML()}<p class="ntf-f">그룹웨어 새 글, 내 담당 업무의 진행 기록·마감, 법정 업무${S.canEdit?', 이슈·서류 만료·미기록 직원·삭제 요청(관리자)':', 삭제 요청 결과'}을 모아 보여 줍니다.</p>`;}
+    ${dqFootHTML()}<p class="ntf-f">월례조회·업무회의(전날·당일), 그룹웨어 새 글, 내 담당 업무의 진행 기록·마감, 법정 업무${S.canEdit?', 이슈·서류 만료·미기록 직원·삭제 요청(관리자)':', 삭제 요청 결과'}을 모아 보여 줍니다.</p>`;}
 function dqFootHTML(){const L=S.delreqs||[];const open=L.filter(r=>r.status==='open').length;if(!L.length)return '';return `<div class="ntf-dq"><button type="button" class="btn sm" data-dq-open>${S.canEdit?`삭제 요청 관리${open?` (대기 ${open})`:''}`:`내 삭제 요청 ${L.length}건${open?` · 대기 ${open}`:''}`}</button></div>`;}
 function ntfOpen(){const pop=$('#ntf-pop');if(!pop.hidden){pop.hidden=true;return;}ntfRun();ntfRenderPop();pop.hidden=false;}
 function ntfMarkRead(){const st=ntfState();st.seen=nowISO();const keep={};for(const it of NT.items)if(it.syn)keep[it.k]=1;st.syn=keep;ntfSave();ntfRun();}
@@ -3100,7 +3154,7 @@ document.addEventListener('click',async e=>{
   if(T.closest('[data-ntf-read]')){ntfMarkRead();return;}
   if(T.closest('[data-ntf-perm]')){try{const r=await Notification.requestPermission();if(r==='granted'){toast('이 기기에서 알림을 받습니다.');ntfShow(`${S.config.dept} 업무일지`,'알림이 켜졌습니다.','test');}}catch{}ntfRenderPop();return;}
   const ng=T.closest('[data-ntf-go]');if(ng){const it=NT.items.find(i=>i.k===ng.dataset.ntfGo);const st=ntfState();if(it){if(it.syn)st.syn[it.k]=1;ntfSave();$('#ntf-pop').hidden=true;
-    if(it.dq)openDreqs(it.dq);else if(it.type==='gw'){GW.focus=it.gw||'';if(S.view==='gw')renderGw($('#view'));else go('#gw');}else if(it.t){const t=findTask(it.t.path);if(t)openTask(t);}else if(it.f)go('#docs');else if(it.type==='idle')go('#overview');}ntfRun();return;}
+    if(it.dq)openDreqs(it.dq);else if(it.type==='sch'){schOpen(it.sch);}else if(it.type==='gw'){GW.focus=it.gw||'';if(S.view==='gw')renderGw($('#view'));else go('#gw');}else if(it.t){const t=findTask(it.t.path);if(t)openTask(t);}else if(it.f)go('#docs');else if(it.type==='idle')go('#overview');}ntfRun();return;}
   if(!T.closest('#ntf-pop')&&!$('#ntf-pop').hidden)$('#ntf-pop').hidden=true;
   if(T.closest('[data-brief-x]')){const st=ntfState();st.brief=today();ntfSave();$('#my-brief').hidden=true;return;}
   // 사진첩
@@ -3619,7 +3673,7 @@ let ADU=null,ADW=false;
 function adminNameSub(){if(ADU){try{ADU();}catch{}ADU=null;}if(!S.db)return;ADU=S.db.doc('app/admin').onSnapshot(s=>{const d=s.exists?s.data():null;S.adminName=d&&typeof d.name==='string'?d.name.slice(0,20):'';adminNameSync();},()=>{});}
 function adminNameSync(){if(!S.canEdit||ADW||!S.canWrite||!S.db)return;const n=myName();if(!n||!S.myStaff||n===S.adminName)return;ADW=true;S.db.doc('app/admin').set({name:n,at:nowISO()}).catch(()=>{ADW=false;});}
 const adminLabel=()=>S.adminName?`관리자(${S.adminName})`:'관리자';
-function extSubs(){privSub();delreqSub();adminNameSub();gwSub();S.unsubs.push(()=>{for(const u of [PVU,DRU,ADU,GWU,GWSU])try{u&&u();}catch{}PVU=DRU=ADU=GWU=GWSU=null;S.privTasks=[];S.delreqs=[];S.gw=[];S.gwStat=null;});}
+function extSubs(){privSub();delreqSub();adminNameSub();gwSub();schSub();S.unsubs.push(()=>{for(const u of [PVU,DRU,ADU,GWU,GWSU,SCU])try{u&&u();}catch{}PVU=DRU=ADU=GWU=GWSU=SCU=null;S.sched=null;S.privTasks=[];S.delreqs=[];S.gw=[];S.gwStat=null;});}
 /* 대상 찾기 */
 function taskOfPhoto(pid,hint){const h=hint&&hint.path?findTask(hint.path):null;if(h&&h.photos.some(p=>p.id===pid))return h;return S.tasks.find(t=>t.photos.some(p=>p.id===pid))||S.privTasks.find(t=>t.photos.some(p=>p.id===pid))||null;}
 function findTaskById(tid,path){return (path&&findTask(path))||S.tasks.find(t=>t.id===tid)||null;}
@@ -4033,7 +4087,7 @@ function gwSub(){for(const u of [GWU,GWSU])try{u&&u();}catch{}GWU=GWSU=null;S.gw
   if(S.mode==='firebase'&&S.fs)GWU=S.fs.collection('gw').orderBy('date','desc').limit(300).onSnapshot(qs=>on(qs.docs.map(d=>[d.id,d.data()])),err);
   else GWU=S.db.collection('gw').onSnapshot(snap=>on(snap.docs.filter(d=>d.exists).map(d=>[d.id,d.data()])),err);
   GWSU=S.db.doc('app/gw').onSnapshot(s=>{S.gwStat=s.exists?normGwStat(s.data()):null;gwRefresh();},()=>{});}
-function gwRefresh(){gwNav();ntfTick();if(S.view==='gw')scheduleRender();}
+function gwRefresh(){gwNav();ntfTick();if(S.view==='gw'||S.view==='calendar'||(S.view==='my'&&typeof schStrip==='function'))scheduleRender();}
 /* 새 글 표시 (이 기기에만 저장) */
 const gwSeenKey=()=>'wl.gw.seen.'+(S.me&&S.me.id||'p');
 function gwSeen(){return lsGet(gwSeenKey())||new Date(Date.now()-3*864e5).toISOString();}
@@ -4112,6 +4166,124 @@ document.addEventListener('click',e=>{const T=e.target;
   if(T.closest('[data-gw-more]')){GW.lim+=40;renderGw($('#view'));return;}
   const k=T.closest('[data-gw-task]');if(k){gwOpenTask(k.dataset.gwTask);return;}
   const o=T.closest('[data-gw-open]');if(o){const t=findTask(o.dataset.gwOpen);if(t)openTask(t);return;}});
+/* ───────── 정기 일정: 월례조회 · 관리부 업무회의 (15차) ─────────
+   · 월례조회: 매월 첫째 월요일 08:30 군포공장 5층 식당(강당). 월요일이 공휴일이면 1월은 다음날(화), 그 외는 다음 주 월요일
+     (그룹웨어 공지 실제 사례: 2024.1 → 1/2(화), 2025.10 → 10/13, 2026.3 → 3/9, 2026.10 → 10/12). 3·6·9·12월은 법정 의무교육을 함께 진행.
+     그룹웨어 '○월 월례조회 실시 건' 공지가 들어오면 그 날짜로 확정(예: 2026.7 → 7/13), 관리자가 날짜를 바꾸거나 쉴 수도 있음.
+   · 관리부 업무회의: 매주 목요일 16:00 안양본사 6층 대회의실. 목요일이 공휴일이면 그 주는 쉼.
+     월례조회가 있는 주와 바로 전 주는 목요일 회의를 하지 않고, 월례조회가 끝난 뒤 진행.
+   · 설정·날짜 변경은 app/sched (관리자만 수정). 공휴일은 우주항공청 월력요항(한국천문연구원 자료) 기준 2026~2028년을 넣어 두었고, 회사 휴무일은 설정에서 추가. */
+const HOLI={
+  '2026-01-01':'신정','2026-02-16':'설날 연휴','2026-02-17':'설날','2026-02-18':'설날 연휴','2026-03-01':'3·1절','2026-03-02':'대체공휴일(3·1절)','2026-05-01':'노동절','2026-05-05':'어린이날',
+  '2026-05-24':'부처님오신날','2026-05-25':'대체공휴일(부처님오신날)','2026-06-03':'지방선거','2026-06-06':'현충일','2026-07-17':'제헌절','2026-08-15':'광복절','2026-08-17':'대체공휴일(광복절)',
+  '2026-09-24':'추석 연휴','2026-09-25':'추석','2026-09-26':'추석 연휴','2026-10-03':'개천절','2026-10-05':'대체공휴일(개천절)','2026-10-09':'한글날','2026-12-25':'성탄절',
+  '2027-01-01':'신정','2027-02-06':'설날 연휴','2027-02-07':'설날','2027-02-08':'설날 연휴','2027-02-09':'대체공휴일(설날)','2027-03-01':'3·1절','2027-05-01':'노동절','2027-05-03':'대체공휴일(노동절)',
+  '2027-05-05':'어린이날','2027-05-13':'부처님오신날','2027-06-06':'현충일','2027-07-17':'제헌절','2027-07-19':'대체공휴일(제헌절)','2027-08-15':'광복절','2027-08-16':'대체공휴일(광복절)',
+  '2027-09-14':'추석 연휴','2027-09-15':'추석','2027-09-16':'추석 연휴','2027-10-03':'개천절','2027-10-04':'대체공휴일(개천절)','2027-10-09':'한글날','2027-10-11':'대체공휴일(한글날)','2027-12-25':'성탄절','2027-12-27':'대체공휴일(성탄절)',
+  '2028-01-01':'신정','2028-01-26':'설날 연휴','2028-01-27':'설날','2028-01-28':'설날 연휴','2028-03-01':'3·1절','2028-04-12':'국회의원선거','2028-05-01':'노동절','2028-05-02':'부처님오신날','2028-05-05':'어린이날',
+  '2028-06-06':'현충일','2028-07-17':'제헌절','2028-08-15':'광복절','2028-10-02':'추석 연휴','2028-10-03':'추석·개천절','2028-10-04':'추석 연휴','2028-10-05':'대체공휴일(추석)','2028-10-09':'한글날','2028-12-25':'성탄절'};
+const HOLI_TO='2028-12-31';
+const SCH_DEF={since:'2026-10-01',mr:{time:'08:30',place:'군포공장 5층 식당(강당)',shift:'auto'},mt:{time:'16:00',place:'안양본사 6층 대회의실'},off:[],ovr:{}};
+const SCH_SHIFT={auto:'1월은 다음날(화), 그 외는 다음 주 월요일',tue:'다음날(화요일)',mon:'다음 주 월요일'};
+const SCH={open:false,edit:{},t:0};
+let SCU=null;
+const schTime=v=>typeof v==='string'&&/^\d{2}:\d{2}$/.test(v)?v:'';
+function normSched(d){d=d&&typeof d==='object'?d:{};const s=(v,n,def)=>typeof v==='string'&&v.trim()?v.trim().slice(0,n):def;
+  const mr=d.mr||{},mt=d.mt||{};const ovr={};
+  if(d.ovr&&typeof d.ovr==='object')for(const [k,v] of Object.entries(d.ovr)){if(!/^(mr-\d{4}-\d{2}|mta-\d{4}-\d{2}|mt-\d{4}-\d{2}-\d{2})$/.test(k)||!v||typeof v!=='object')continue;
+    const o={};if(isDate(v.date))o.date=v.date;if(schTime(v.time))o.time=v.time;if(v.off===true)o.off=true;if(typeof v.note==='string'&&v.note.trim())o.note=v.note.trim().slice(0,60);if(Object.keys(o).length)ovr[k]=o;}
+  return {since:isDate(d.since)?d.since:SCH_DEF.since,
+    mr:{time:schTime(mr.time)||SCH_DEF.mr.time,place:s(mr.place,40,SCH_DEF.mr.place),shift:SCH_SHIFT[mr.shift]?mr.shift:'auto'},
+    mt:{time:schTime(mt.time)||SCH_DEF.mt.time,place:s(mt.place,40,SCH_DEF.mt.place)},
+    off:Array.isArray(d.off)?d.off.filter(x=>x&&isDate(x.d)).map(x=>({d:x.d,n:typeof x.n==='string'?x.n.slice(0,20):'회사 휴무'})).slice(0,200):[],ovr};}
+const schCfg=()=>S.sched||normSched(null);
+function schSub(){if(SCU){try{SCU();}catch{}SCU=null;}S.sched=null;if(!S.db)return;
+  SCU=S.db.doc('app/sched').onSnapshot(s=>{S.sched=normSched(s.exists?s.data():null);schRefresh();},()=>{S.sched=normSched(null);schRefresh();});}
+function schRefresh(){ntfTick();if(S.view==='calendar'||S.view==='my')scheduleRender();if(SCH.open)schRender();}
+/* 날짜 도우미 */
+const schMon=d=>addDays(d,-((dow(d)+6)%7));
+const schYM=d=>d.slice(0,7);
+const schNextYM=ym=>{let [y,m]=ym.split('-').map(Number);m++;if(m>12){m=1;y++;}return `${y}-${String(m).padStart(2,'0')}`;};
+function schOffName(d){const c=schCfg();const o=c.off.find(x=>x.d===d);return HOLI[d]||(o?o.n:'');}
+function schFirstMon(ym){let d=ym+'-01';while(dow(d)!==1)d=addDays(d,1);return d;}
+/* 그룹웨어 '○월 월례조회 실시 건' 공지 → 실제 날짜 */
+function schGwMr(ym){const [y,m]=ym.split('-').map(Number);
+  for(const g of S.gw||[]){if(!g.due||!/월\s*월?례\s*조회/.test(g.title))continue;const mm=g.title.match(/(?:(\d{4})\s*[년.]\s*)?(\d{1,2})\s*월\s*월?례\s*조회/);if(!mm)continue;
+    const mo=+mm[2];let yy=mm[1]?+mm[1]:+g.date.slice(0,4);if(!mm[1]&&mo<+g.date.slice(5,7)-6)yy++;
+    if(yy===y&&mo===m&&Math.abs(diffDays(ym+'-01',g.due))<=40){const t=(g.when.match(/(\d{1,2}):(\d{2})/)||[]);return {date:g.due,time:t[0]?String(t[1]).padStart(2,'0')+':'+t[2]:'',gw:g.id};}}
+  return null;}
+function schMr(ym){const c=schCfg();const id='mr-'+ym;const ov=c.ovr[id]||{};const m=+ym.slice(5,7);const edu=[3,6,9,12].includes(m);
+  const base={id,kind:'mr',ym,edu,place:c.mr.place,title:edu?'월례조회 · 법정 의무교육':'월례조회'};
+  const first=schFirstMon(ym);
+  if(ov.off)return {...base,date:ov.date||first,off:true,src:'admin',note:ov.note||'관리자가 이번 달 쉼으로 지정'};
+  if(ov.date)return {...base,date:ov.date,time:ov.time||c.mr.time,src:'admin',note:ov.note||'관리자가 날짜 지정'};
+  const g=schGwMr(ym);if(g)return {...base,date:g.date,time:ov.time||g.time||c.mr.time,src:'gw',gw:g.gw,note:g.date!==first?`그룹웨어 공지로 확정 (첫째 월요일 ${fmtMD(first)} 대신)`:'그룹웨어 공지로 확정'};
+  if(!schOffName(first))return {...base,date:first,time:ov.time||c.mr.time,src:'rule'};
+  const sh=c.mr.shift==='auto'?(m===1?'tue':'mon'):c.mr.shift;let d=first;
+  if(sh==='tue'&&!schOffName(addDays(first,1)))d=addDays(first,1);else{d=addDays(first,7);let k=0;while(schOffName(d)&&k++<4)d=addDays(d,7);}
+  return {...base,date:d,time:ov.time||c.mr.time,src:'rule',note:`${fmtMD(first)} ${schOffName(first)}이라 ${sh==='tue'&&d===addDays(first,1)?'다음날':'다음 주 월요일'}로 (예정)`};}
+/* from~to 사이 일정 목록 (all=true면 쉬는 목요일도 사유와 함께) */
+function schList(from,to,all){const c=schCfg();from=from<c.since?c.since:from;if(to<from)return [];const out=[];
+  const mrs={};let ym=schYM(addDays(from,-40));const endYM=schYM(addDays(to,40));while(ym<=endYM){mrs[ym]=schMr(ym);ym=schNextYM(ym);}
+  const quiet=new Map();for(const r of Object.values(mrs)){if(r.off)continue;const w=schMon(r.date);quiet.set(w,r);quiet.set(addDays(w,-7),r);}
+  for(const r of Object.values(mrs)){if(r.date<from||r.date>to)continue;if(!r.off||all)out.push(r);
+    if(r.off)continue;const id='mta-'+r.ym;const ov=c.ovr[id]||{};const mt={id,kind:'mta',ym:r.ym,date:r.date,time:'',after:true,title:'관리부 업무회의',place:'월례조회 끝난 뒤',src:r.src,note:'월례조회 주간이라 목요일 대신 조회 후 진행'};
+    if(ov.off){if(all)out.push({...mt,off:true,src:'admin',note:'관리자가 쉼으로 지정'});}else out.push(ov.date||ov.time?{...mt,date:ov.date||mt.date,time:ov.time||'',src:'admin'}:mt);}
+  let d=from;while(dow(d)!==4)d=addDays(d,1);
+  for(;d<=to;d=addDays(d,7)){const id='mt-'+d;const ov=c.ovr[id]||{};const mt={id,kind:'mt',date:d,time:c.mt.time,title:'관리부 업무회의',place:c.mt.place,src:'rule'};
+    const hol=schOffName(d);const q=quiet.get(schMon(d));
+    if(ov.off){if(all)out.push({...mt,off:true,src:'admin',note:ov.note||'관리자가 이번 주 쉼으로 지정'});continue;}
+    if(ov.date||ov.time){out.push({...mt,date:ov.date||d,time:ov.time||mt.time,src:'admin',note:ov.note||(ov.date&&ov.date!==d?`${fmtMD(d)} 회의를 옮김`:'관리자가 시간 변경')});continue;}
+    if(hol){if(all)out.push({...mt,off:true,note:`${hol} — 이번 주 쉼`});continue;}
+    if(q){if(all)out.push({...mt,off:true,note:`월례조회(${fmtMD(q.date)}) ${schMon(q.date)===schMon(d)?'주간':'전 주'} — 조회 후 진행`});continue;}
+    out.push(mt);}
+  return out.sort((a,b)=>a.date.localeCompare(b.date)||(a.kind==='mta'?1:0)-(b.kind==='mta'?1:0)||String(a.time||'99').localeCompare(String(b.time||'99')));}
+const schWhen=e=>e.after?'조회 후':e.time||'';
+function schLine(e){return `${fmtMD(e.date)} ${schWhen(e)} ${e.title}${e.place&&!e.after?' · '+e.place:''}`.replace(/\s+/g,' ').trim();}
+/* 달력 */
+function schCalEvents(){const c=schCfg();const out=[];const t0=addDays(today(),-400),t1=addDays(today(),400);
+  for(const [d,n] of Object.entries(HOLI))if(d>=t0&&d<=t1)out.push({id:'hol:'+d,title:n,start:d,allDay:true,display:'background',classNames:['ev-hol'],editable:false});
+  for(const o of c.off)out.push({id:'hol:'+o.d,title:o.n,start:o.d,allDay:true,display:'background',classNames:['ev-hol','ev-off'],editable:false});
+  for(const e of schList(c.since,addDays(today(),400),false))out.push({id:'sch:'+e.id,title:`${schWhen(e)?schWhen(e)+' ':''}${e.title}`,start:e.date,allDay:true,editable:false,classNames:['ev-sch','ev-sch-'+e.kind,e.src==='rule'?'ev-sch-plan':'']});
+  return out;}
+/* 내 업무 화면 위 한 줄 */
+function schStrip(){const box=$('#sch-strip');if(!box)return;const td=today();const L=schList(td,addDays(td,21),false).slice(0,3);if(!L.length){box.hidden=true;return;}
+  box.hidden=false;box.innerHTML=`<b>정기 일정</b>${L.map(e=>{const n=diffDays(td,e.date);return `<button type="button" class="sch-chip k-${e.kind}${n<=1?' soon':''}" data-sch-open="${esc(e.id)}"><em>${n===0?'오늘':n===1?'내일':fmtMD(e.date)}</em> ${esc(schWhen(e))} ${esc(e.title)}${e.place&&!e.after?`<small>${esc(e.place)}</small>`:''}</button>`;}).join('')}<span class="sp"></span><button type="button" class="btn sm ghost" data-sch-open="">전체 보기</button>`;}
+/* 알림: 오늘·내일 일정 */
+function schNtf(td){td=td||today();const out=[];if(!S.ready)return out;
+  for(const e of schList(td,addDays(td,1),false)){const n=diffDays(td,e.date);out.push({k:`sch|${e.id}|${td}`,syn:1,at:td+'T00:00:0'+(n?6:5),type:'sch',sch:e.id,title:e.title,text:`${n?'내일':'오늘'} ${schWhen(e)}${e.place&&!e.after?' · '+e.place:''}${e.edu?' · 법정 의무교육 포함':''}`.trim(),sub:e.src==='rule'&&e.kind==='mr'?'그룹웨어 공지 전 예정일입니다':''});}
+  return out;}
+/* 정기 일정 창 */
+function schOpen(id){const d=$('#dlg-sch');SCH.open=true;SCH.edit={};SCH.focus=id||'';schRender();if(!d.open)d.showModal();}
+function schRender(){const c=schCfg();const td=today();const adm=S.canEdit&&S.canWrite;const L=schList(addDays(td,-7),addDays(td,84),true);
+  const src={rule:'<span class="sch-src">규칙상 예정</span>',gw:'<span class="sch-src gw">그룹웨어 공지</span>',admin:'<span class="sch-src ad">관리자 지정</span>'};
+  $('#sch-rules').innerHTML=`<div class="sch-rule"><b>월례조회</b><span>매월 첫째 월요일 ${esc(c.mr.time)} · ${esc(c.mr.place)} · 회장님 훈화 등. 3·6·9·12월은 법정 의무교육 함께. 월요일이 공휴일이면 ${esc(SCH_SHIFT[c.mr.shift])}. 그룹웨어 '월례조회 실시 건' 공지가 오면 그 날짜로 확정</span></div>
+    <div class="sch-rule"><b>관리부 업무회의</b><span>매주 목요일 ${esc(c.mt.time)} · ${esc(c.mt.place)}. 목요일이 공휴일이면 그 주는 쉼. 월례조회가 있는 주와 바로 전 주는 목요일 회의 없이 월례조회 끝난 뒤 진행</span></div>`;
+  $('#sch-list').innerHTML=L.map(e=>{const past=e.date<td;const ed=SCH.edit[e.id];const n=diffDays(td,e.date);
+    return `<li class="${e.off?'off':''}${past?' past':''}${SCH.focus===e.id?' hl':''}" data-id="${esc(e.id)}"><span class="d">${esc(fmtMD(e.date))}${n===0?' <em>오늘</em>':n===1?' <em>내일</em>':''}</span><span class="t">${esc(schWhen(e)||'')}</span>
+      <span class="w"><b class="k-${e.kind}">${esc(e.title)}</b>${e.off?' <span class="sch-src off">쉼</span>':src[e.src]||''}<small>${esc(e.after?'월례조회 끝난 뒤':e.place||'')}${e.note?' · '+esc(e.note):''}</small>
+      ${ed?`<span class="sch-ed"><input type="date" value="${esc(ed.date||e.date)}" data-sch-f="date"> ${e.after?'':`<input type="time" value="${esc(ed.time||e.time||'')}" data-sch-f="time">`} <button type="button" class="btn sm primary" data-sch-save="${esc(e.id)}">저장</button> <button type="button" class="btn sm ghost" data-sch-cancel="${esc(e.id)}">취소</button></span>`:''}</span>
+      ${adm&&!past&&!ed?`<span class="a">${c.ovr[e.id]?`<button type="button" class="btn sm ghost" data-sch-reset="${esc(e.id)}">규칙대로</button>`:''}<button type="button" class="btn sm ghost" data-sch-edit="${esc(e.id)}">${e.off?'진행으로 지정':'날짜·시간 변경'}</button>${e.off?'':`<button type="button" class="btn sm ghost" data-sch-off="${esc(e.id)}">이번만 쉼</button>`}</span>`:'<span class="a"></span>'}</li>`;}).join('')||'<li class="empty">일정이 없습니다.</li>';
+  $('#sch-set').hidden=!adm;
+  if(adm){$('#sch-mr-time').value=c.mr.time;$('#sch-mr-place').value=c.mr.place;$('#sch-mr-shift').value=c.mr.shift;$('#sch-mt-time').value=c.mt.time;$('#sch-mt-place').value=c.mt.place;
+    if(document.activeElement!==$('#sch-off'))$('#sch-off').value=c.off.map(o=>`${o.d} ${o.n}`).join('\n');}
+  $('#sch-hol').textContent=`공휴일: 2026~2028년 관공서 공휴일·대체공휴일·선거일·노동절 반영 (그 이후는 회사 휴무일 칸에 추가)`;
+  if(SCH.focus){const el=$(`#sch-list li[data-id="${CSS.escape(SCH.focus)}"]`);SCH.focus='';if(el)setTimeout(()=>el.scrollIntoView({block:'center'}),30);}}
+async function schSave(patch,msg){if(!S.canEdit||!S.canWrite)return;const c=schCfg();const d={...c,...patch,at:nowISO(),by:myId()||''};
+  try{await S.db.doc('app/sched').set(d);S.sched=normSched(d);schRefresh();if(msg)toast(msg);}catch(e){toast(e&&e.code==='fb_denied'?'권한이 없습니다. 관리자가 새 Firestore 규칙을 게시해야 합니다.':'저장하지 못했습니다.','err');}}
+function schOvr(id,o){const c=schCfg();const ovr={...c.ovr};if(o)ovr[id]=o;else delete ovr[id];return {ovr};}
+document.addEventListener('click',e=>{const T=e.target;
+  const op=T.closest('[data-sch-open]');if(op){schOpen(op.dataset.schOpen);return;}
+  const ed=T.closest('[data-sch-edit]');if(ed){SCH.edit[ed.dataset.schEdit]={};schRender();return;}
+  const cn=T.closest('[data-sch-cancel]');if(cn){delete SCH.edit[cn.dataset.schCancel];schRender();return;}
+  const sv=T.closest('[data-sch-save]');if(sv){const id=sv.dataset.schSave;const li=sv.closest('li');const date=$('[data-sch-f="date"]',li).value;const tm=$('[data-sch-f="time"]',li);
+    if(!isDate(date)){toast('날짜를 고르세요.','err');return;}const o={date};if(tm&&schTime(tm.value))o.time=tm.value;delete SCH.edit[id];schSave(schOvr(id,o),`${fmtMD(date)}로 바꿨습니다.`);return;}
+  const of=T.closest('[data-sch-off]');if(of){const id=of.dataset.schOff;schSave(schOvr(id,{off:true}),'이번 일정은 쉼으로 표시했습니다.');return;}
+  const rs=T.closest('[data-sch-reset]');if(rs){schSave(schOvr(rs.dataset.schReset,null),'규칙대로 되돌렸습니다.');return;}
+  if(T.closest('#sch-rule-save')){const off=[];const bad=[];for(const ln of $('#sch-off').value.split('\n').map(x=>x.trim()).filter(Boolean)){const m=ln.match(/^(\d{4}-\d{2}-\d{2})\s*(.*)$/);if(m&&isDate(m[1]))off.push({d:m[1],n:(m[2]||'회사 휴무').slice(0,20)});else bad.push(ln);}
+    if(bad.length){toast(`날짜 형식이 아닌 줄: ${bad.slice(0,2).join(', ')} (예: 2026-12-31 회사 휴무)`,'err');return;}
+    schSave({mr:{time:schTime($('#sch-mr-time').value)||SCH_DEF.mr.time,place:$('#sch-mr-place').value.trim()||SCH_DEF.mr.place,shift:$('#sch-mr-shift').value},mt:{time:schTime($('#sch-mt-time').value)||SCH_DEF.mt.time,place:$('#sch-mt-place').value.trim()||SCH_DEF.mt.place},off},'정기 일정 설정을 저장했습니다.');return;}});
+document.addEventListener('close',e=>{if(e.target&&e.target.id==='dlg-sch'){SCH.open=false;SCH.edit={};}},true);
 
 /* ───────── 시작 ───────── */
 function boot(){
