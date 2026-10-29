@@ -785,6 +785,54 @@ img[data-vw-zoom].big{position:relative;z-index:2;width:100%;max-width:100%;grid
 .vw-ppt{padding:16px;display:grid;justify-items:center;gap:14px}
 .vw-ppt .pptx-preview-slide-wrapper{box-shadow:0 2px 10px rgba(0,0,0,.35);margin:0 auto 14px!important}
 .tag.pdf{color:#b42318;border-color:color-mix(in srgb,#b42318 35%,var(--line))}
+/* 비공개 업무 */
+.qa-priv{height:34px;font-weight:600}
+.qa-priv[aria-pressed="true"]{background:color-mix(in srgb,#b7791f 18%,var(--surface));color:#975a16;border-color:color-mix(in srgb,#b7791f 45%,var(--line))}
+.qa.is-priv{border-color:color-mix(in srgb,#b7791f 55%,var(--line));box-shadow:0 0 0 3px color-mix(in srgb,#b7791f 14%,transparent)}
+.qa.is-priv #qa-text{background:color-mix(in srgb,#b7791f 5%,var(--surface))}
+.priv-panel{border-color:color-mix(in srgb,#b7791f 35%,var(--line))}
+.priv-panel .panel-h h2{color:#975a16}
+.priv-note{margin:10px 14px 2px;font-size:12px;color:var(--ink-3)}
+.priv-done summary{cursor:pointer;padding:9px 14px;font-size:12.5px;color:var(--ink-2);border-top:1px solid var(--line-2)}
+.lock-i{margin-right:4px;font-size:.9em}
+.priv-row{margin:-2px 0 2px}
+.priv-chk{display:flex;gap:8px;align-items:flex-start;padding:9px 11px;border:1px dashed color-mix(in srgb,#b7791f 50%,var(--line));border-radius:8px;font-size:12.5px;color:var(--ink-2);cursor:pointer;line-height:1.45}
+.priv-chk input{margin-top:2px;accent-color:#b7791f}
+.priv-chk b{color:#975a16}
+.priv-row .priv-lock{display:block;margin-top:4px;font-size:12px;color:var(--ink-3)}
+.priv-on,.priv-off{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:8px 11px;border-radius:8px;font-size:12.5px;color:var(--ink-2)}
+.priv-on{background:color-mix(in srgb,#b7791f 10%,var(--surface));border:1px solid color-mix(in srgb,#b7791f 40%,var(--line))}
+.priv-on b{color:#975a16}
+.priv-off{border:1px dashed var(--line)}
+/* 삭제 요청 */
+.gallery .x.rq{background:rgba(120,80,0,.72)}
+.gallery figure .dq-badge{position:absolute;top:3px;right:3px}
+.dq-badge{display:inline-block;padding:2px 7px;border-radius:999px;background:color-mix(in srgb,var(--doing) 16%,var(--surface));color:var(--doing);font-size:11px;font-weight:600;white-space:nowrap}
+.dq-what{display:flex;gap:12px;align-items:center;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2,var(--surface))}
+.dq-what img,.dq-th img{width:64px;height:64px;object-fit:cover;border-radius:8px;flex:none;background:var(--line-2)}
+.dq-what .fi,.dq-th .fi{width:64px;height:64px;display:grid;place-items:center;font-size:26px;border-radius:8px;background:var(--line-2);flex:none}
+.dq-what div{display:flex;flex-direction:column;gap:2px;min-width:0}
+.dq-what b{font-size:12px;color:var(--ink-3);font-weight:600}
+.dq-what span{font-weight:600;overflow-wrap:anywhere}
+.dq-what small{font-size:12px;color:var(--late)}
+.dq-msg{margin:0;font-size:12.5px;color:var(--ink-2);line-height:1.5}
+.dq-list{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+.dq-list .none{padding:22px;text-align:center;color:var(--ink-3);font-size:13px}
+.dq{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px;border:1px solid var(--line);border-radius:10px}
+.dq.focus{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 16%,transparent)}
+.dq-m{display:flex;flex-direction:column;gap:3px;min-width:0}
+.dq-m b{overflow-wrap:anywhere}
+.dq-m small{font-size:12px;color:var(--ink-3);display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.dq-m p{margin:2px 0 0;font-size:12.5px;color:var(--ink-2);background:var(--line-2);padding:6px 8px;border-radius:6px}
+.dq-m .warn{color:var(--late)}
+.dq-a{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.dq-banner{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:0 0 12px;padding:10px 14px;border-radius:10px;border:1px solid color-mix(in srgb,var(--doing) 40%,var(--line));background:color-mix(in srgb,var(--doing) 9%,var(--surface));font-size:13px}
+.dq-banner b{color:var(--doing)}
+.dq-banner span{color:var(--ink-2);flex:1}
+.ntf-pop .ntf-dq{display:flex;justify-content:flex-end;padding:0 12px 8px}
+#lb-del[disabled]{opacity:.7}
+@media (max-width:640px){.dq{grid-template-columns:52px minmax(0,1fr)}.dq-a{grid-column:1/-1;justify-content:flex-start}.dq-th img,.dq-th .fi{width:52px;height:52px}}
+.ntf-pop .ic.t-dreq{background:#b45309}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -886,6 +934,7 @@ img[data-vw-zoom].big{position:relative;z-index:2;width:100%;max-width:100%;grid
     <div class="modal-b" id="t-body">
       <div class="form">
         <div class="f"><label for="t-title">업무명</label><input type="text" id="t-title" maxlength="120" required placeholder="예: 10월분 원천세 신고·납부"></div>
+        <div class="priv-row" id="t-priv-row" hidden></div>
         <div class="r2">
           <div class="f"><label for="t-cat">분야</label><select id="t-cat"></select></div>
           <div class="f"><label for="t-sub">세부 분류</label><select id="t-sub"></select></div>
@@ -902,7 +951,7 @@ img[data-vw-zoom].big{position:relative;z-index:2;width:100%;max-width:100%;grid
         </div>
         <div class="f"><span class="lbl" id="t-status-lbl">진행 상태</span><div class="seg status-seg" id="t-status" role="group" aria-labelledby="t-status-lbl"></div></div>
         <div class="f"><label for="t-progress">진척률 <output id="t-progress-out" for="t-progress">0%</output></label><input type="range" id="t-progress" min="0" max="100" step="5" value="0"></div>
-        <div class="f picker"><label for="t-assignee-q">담당자</label><div class="picked" id="t-picked"></div><input type="text" id="t-assignee-q" placeholder="이름으로 구성원 검색" autocomplete="off"><div class="pick-menu" id="t-pick-menu" hidden></div></div>
+        <div class="f picker" id="t-who-f"><label for="t-assignee-q">담당자</label><div class="picked" id="t-picked"></div><input type="text" id="t-assignee-q" placeholder="이름으로 구성원 검색" autocomplete="off"><div class="pick-menu" id="t-pick-menu" hidden></div></div>
         <div class="f"><label for="t-assignee-text">담당(직접 입력)</label><input type="text" id="t-assignee-text" maxlength="80" placeholder="계정이 없는 담당자·협력업체 등"></div>
         <div class="f"><label for="t-desc">업무 내용</label><textarea id="t-desc" rows="4" maxlength="4000" placeholder="세부 내용, 관련 법령·근거, 협조 부서 등"></textarea></div>
       </div>
@@ -1037,7 +1086,7 @@ img[data-vw-zoom].big{position:relative;z-index:2;width:100%;max-width:100%;grid
   </form>
 </dialog>
 
-<div class="lightbox" id="lightbox" hidden><img id="lb-img" alt=""><p id="lb-cap"></p><button type="button" class="lb-x" aria-label="닫기">✕</button><button type="button" class="lb-p" aria-label="이전">‹</button><button type="button" class="lb-n" aria-label="다음">›</button><div class="lb-bar"><a class="btn" id="lb-dl" download="사진.jpg">원본 저장</a><button type="button" class="btn" id="lb-open" hidden>업무 열기</button></div></div>
+<div class="lightbox" id="lightbox" hidden><img id="lb-img" alt=""><p id="lb-cap"></p><button type="button" class="lb-x" aria-label="닫기">✕</button><button type="button" class="lb-p" aria-label="이전">‹</button><button type="button" class="lb-n" aria-label="다음">›</button><div class="lb-bar"><a class="btn" id="lb-dl" download="사진.jpg">원본 저장</a><button type="button" class="btn" id="lb-open" hidden>업무 열기</button><button type="button" class="btn" id="lb-del" hidden>삭제 요청</button></div></div>
 <dialog class="modal narrow" id="dlg-doc">
   <form id="doc-form" novalidate>
     <header class="modal-h"><div><h2 id="doc-h">서류 정보</h2><small id="doc-where" style="color:var(--ink-3);font-size:12px"></small></div><button type="button" class="icon-btn" data-close aria-label="닫기">✕</button></header>
@@ -1054,7 +1103,7 @@ img[data-vw-zoom].big{position:relative;z-index:2;width:100%;max-width:100%;grid
         <p class="help" style="font-size:12px;color:var(--ink-3);margin:4px 0 0">PDF·한글·워드·엑셀·도면·사진 파일, 20MB까지. 휴대폰으로 찍은 서류 사진은 글자가 보이게 자동으로 알맞게 줄입니다.</p><span id="doc-prog" hidden></span></div>
       <div class="f"><span class="lbl" style="font-size:12px;font-weight:600;color:var(--ink-2)">버전 기록</span><ol id="doc-vers"></ol></div>
     </div></div>
-    <footer class="modal-f"><button type="button" class="btn danger ghost sm" id="doc-del">서류 삭제</button><span class="spacer"></span><button type="button" class="btn" data-close>닫기</button><button type="submit" class="btn primary" id="doc-save">저장</button></footer>
+    <footer class="modal-f"><button type="button" class="btn danger ghost sm" id="doc-del">서류 삭제</button><button type="button" class="btn ghost sm" id="doc-dreq" hidden title="서류 삭제는 관리자만 할 수 있습니다. 관리자에게 삭제를 요청합니다">삭제 요청</button><span class="spacer"></span><button type="button" class="btn" data-close>닫기</button><button type="submit" class="btn primary" id="doc-save">저장</button></footer>
   </form>
 </dialog>
 
@@ -1077,6 +1126,29 @@ img[data-vw-zoom].big{position:relative;z-index:2;width:100%;max-width:100%;grid
     <button type="button" class="btn sm" id="vw-win" hidden>새 창</button><button type="button" class="btn sm primary" id="vw-dl">내려받기</button><button type="button" class="icon-btn vw-x" data-close aria-label="닫기">✕</button></div>
   <p class="vw-note" id="vw-note" hidden></p>
   <div class="vw-b" id="vw-body"></div>
+</dialog>
+
+<dialog class="modal narrow" id="dlg-dreq">
+  <form method="dialog">
+    <header class="modal-h"><h2 id="dq-h">삭제 요청</h2><button type="button" class="icon-btn" data-close aria-label="닫기">✕</button></header>
+    <div class="modal-b one"><div class="set-grid">
+      <div id="dq-what"></div>
+      <p class="dq-msg" id="dq-msg"></p>
+      <div class="f"><label for="dq-reason" id="dq-reason-l">삭제가 필요한 이유</label><textarea id="dq-reason" rows="3" maxlength="500"></textarea></div>
+    </div></div>
+    <footer class="modal-f"><span class="spacer"></span><button type="button" class="btn" data-close>취소</button><button type="button" class="btn primary" id="dq-go">삭제 요청 보내기</button></footer>
+  </form>
+</dialog>
+
+<dialog class="modal" id="dlg-dreqs">
+  <form method="dialog">
+    <header class="modal-h"><div><h2 id="dqs-h">삭제 요청</h2><small id="dqs-sub" style="color:var(--ink-3);font-size:12px"></small></div><button type="button" class="icon-btn" data-close aria-label="닫기">✕</button></header>
+    <div class="modal-b one"><div>
+      <div class="seg" id="dqs-tabs" role="group" aria-label="요청 상태"></div>
+      <ul class="dq-list" id="dqs-list"></ul>
+    </div></div>
+    <footer class="modal-f"><span class="spacer"></span><button type="button" class="btn" data-close>닫기</button></footer>
+  </form>
 </dialog>
 <div id="toasts" aria-live="polite"></div>
 
@@ -1245,7 +1317,7 @@ const s0=t=>t.start||t.due, e0=t=>t.due||t.start;
 const overlaps=(t,a,b)=>{const s=s0(t),e=e0(t);return !!s&&s<=b&&e>=a;};
 function inPeriod(t,a,b){if(!s0(t))return t.status!=='done';if(t.status==='done')return t.doneAt?(t.doneAt>=a&&t.doneAt<=b):overlaps(t,a,b);return overlaps(t,a,b)||(isLate(t)&&e0(t)<a&&a<=today());}
 const sortTasks=(a,b)=>(isLate(b)-isLate(a))||(PR[a.priority].w-PR[b.priority].w)||((a.due||'9999').localeCompare(b.due||'9999'))||a.title.localeCompare(b.title,'ko');
-const findTask=p=>S.tasks.find(t=>t.path===p);
+const findTask=p=>S.tasks.find(t=>t.path===p)||(S.privTasks||[]).find(t=>t.path===p);
 function rebuild(){S.tasks=Object.values(S.byYear).flat();S.memos=Object.values(S.memosByYear).flat();}
 function whoMatch(t,w){if(!w)return true;if(w==='me')return t.assignees.includes(myId());if(w==='none')return !t.assignees.length&&!t.assigneeText;return t.assignees.includes(w);}
 function applyFilters(list,opt={}){const f=S.filters;let rng=null;if(f.period!=='all'&&!opt.ignorePeriod)rng=periodRange(f.period==='today'?'day':f.period,today());const q=f.q.trim().toLowerCase();
@@ -1292,10 +1364,10 @@ function onMemos(y,snap){S.memosByYear[y]=snap.docs.filter(d=>d.exists).map(d=>{
 
 /* ───────── 쓰기 동작 ───────── */
 const stripMeta=t=>{const o={...t};delete o.id;delete o.year;delete o.path;return o;};
-async function createTask(d){const id=rid();const y=yearOf(d);ensureYear(y);const now=nowISO();
-  const doc={...d,createdAt:now,createdBy:myId(),updatedAt:now,updatedBy:myId(),logs:[{at:now,by:myId(),kind:d.status==='done'?'record':'create',text:''},...(d.logs||[])]};
-  const path=`wl/${y}/tasks/${id}`;await dbSet(path,doc);return path;}
-async function updateTask(t,patch){const meta={updatedAt:nowISO(),updatedBy:myId()};const merged={...stripMeta(t),...patch,...meta};const ny=yearOf(merged);
+async function createTask(d){const id=rid();const priv=!!d.priv&&privOK();d={...d};delete d.priv;const y=yearOf(d);if(!priv)ensureYear(y);const now=nowISO();
+  const doc={...d,...(priv?{priv:true}:{}),createdAt:now,createdBy:myId(),updatedAt:now,updatedBy:myId(),logs:[{at:now,by:myId(),kind:d.status==='done'?'record':'create',text:''},...(d.logs||[])]};
+  const path=priv?`${privBase()}/tasks/${id}`:`wl/${y}/tasks/${id}`;await dbSet(path,doc);return path;}
+async function updateTask(t,patch){const meta={updatedAt:nowISO(),updatedBy:myId()};if(t.priv){await dbUpdate(t.path,{...patch,...meta});return t.path;}const merged={...stripMeta(t),...patch,...meta};const ny=yearOf(merged);
   if(ny!==t.year){ensureYear(ny);const np=`wl/${ny}/tasks/${t.id}`;await dbSet(np,merged);await dbDelete(t.path);return np;}
   await dbUpdate(t.path,{...patch,...meta});return t.path;}
 async function appendLog(t,log,{patch={},photos=[]}={}){
@@ -1438,7 +1510,7 @@ function guessSite(text){const all=[...S.config.sites].sort((a,b)=>b.length-a.le
 function guessCat(text){for(const [c,sub,re] of GUESS)if(re.test(text))return {cat:c,sub:subsOf(c).includes(sub)?sub:subsOf(c)[0]};return null;}
 function qaShell(){return `<section class="qa" id="qa" aria-label="빠른 업무 기록">
   <div class="qa-top"><label class="sr" for="qa-text">업무 내용</label><textarea id="qa-text" rows="2" maxlength="600" placeholder="오늘 한 일이나 할 일을 적고 Enter&#10;예: 군포공장 소화기 42대 압력 점검, 2대 교체 요청"></textarea><button type="button" class="btn primary qa-go" id="qa-go">등록</button></div>
-  <div class="qa-opts"><div class="seg" id="qa-status" role="group" aria-label="진행 상태"><button type="button" class="s-done" data-v="done">완료</button><button type="button" class="s-doing" data-v="doing">진행 중</button><button type="button" class="s-plan" data-v="plan">할 예정</button></div>
+  <div class="qa-opts"><div class="seg" id="qa-status" role="group" aria-label="진행 상태"><button type="button" class="s-done" data-v="done">완료</button><button type="button" class="s-doing" data-v="doing">진행 중</button><button type="button" class="s-plan" data-v="plan">할 예정</button></div><button type="button" class="btn qa-priv" id="qa-priv" aria-pressed="false" hidden title="켜면 나만 보는 비공개 업무로 등록됩니다 (관리자·다른 직원에게 보이지 않음)">🔒 나만 보기</button>
     <input type="date" id="qa-date" aria-label="날짜"><select id="qa-cat" aria-label="분야"></select><select id="qa-sub" aria-label="세부 분류"></select><select id="qa-site" aria-label="사업장"></select>
     <label class="btn file-btn" id="qa-photo-btn">${ICON.cam} 사진<input type="file" id="qa-photo" accept="image/*" multiple></label><span class="qa-files" id="qa-files"></span><label class="btn file-btn cam-only" id="qa-cam-btn">${ICON.cam} 현장 사진 기록<input type="file" id="qa-cam" accept="image/*" capture="environment"></label><button type="button" class="btn" id="qa-import">${ICON.dl} 파일·사진으로 올리기</button></div>
   <div class="qa-more"><p class="qa-hint">Enter를 누르면 바로 등록됩니다 (줄바꿈은 Shift+Enter). 분야는 내용을 보고 자동으로 고르니, 다르면 바꿔 주세요. 종이 업무일지 사진이나 엑셀·한글·워드·PDF 파일은 끌어다 놓아도 됩니다.</p><button type="button" class="qa-multi" id="qa-multi" hidden></button></div></section>`;}
@@ -1448,7 +1520,7 @@ function syncQA(){const q=S.qa;if(!$('#qa'))return;const td=today();if(!q.dateTo
   fillSelect($('#qa-site'),sites.map(s=>[s,s]),q.site);$('#qa-date').value=q.date;$('#qa-cat').value=q.cat;qaSubs();
   $$('#qa-status button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===q.status));
   $('#qa-files').textContent=q.files.length?`사진 ${q.files.length}장`:'';$('#qa-photo-btn').hidden=!(S.assets||S.preview);
-  $$('#qa textarea,#qa input,#qa select,#qa button').forEach(el=>el.disabled=!S.canWrite);qaMultiHint();}
+  $$('#qa textarea,#qa input,#qa select,#qa button').forEach(el=>el.disabled=!S.canWrite);qaPrivSync();qaMultiHint();}
 function qaMultiHint(){const b=$('#qa-multi');if(!b)return;const n=S.qa.text.split('\n').filter(l=>l.trim()).length;b.hidden=n<2;b.textContent=`여러 줄을 각각 업무로 나눠 등록 (${n}줄)`;}
 function initQA(){const q=S.qa;$('#qa-text').value=q.text;
   if(!q.cat){const cnt={};S.tasks.filter(t=>t.assignees.includes(myId())).forEach(t=>{cnt[t.cat]=(cnt[t.cat]||0)+1;});q.cat=Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a])[0]||'etc';}
@@ -1471,13 +1543,13 @@ function initQA(){const q=S.qa;$('#qa-text').value=q.text;
 async function submitQA(){const q=S.qa;const raw=$('#qa-text').value.trim();if(!raw){$('#qa-text').focus();return;}if(!S.canWrite){toast('보기 전용 권한이라 등록할 수 없습니다.','err');return;}
   if(S.qaBusy)return;S.qaBusy=true;const lines=raw.split('\n');const first=lines[0].trim();const title=first.slice(0,120);const desc=first.length>120?raw:lines.slice(1).join('\n').trim();
   const date=q.date||today();const btn=$('#qa-go');btn.disabled=true;btn.textContent='등록 중…';
-  try{const ups=q.files.length?await uploadImages(q.files,{stamp:stampPref()?stampFor(q.site,title):null}):[];
-    await createTask({title,cat:q.cat,sub:q.sub,site:q.site||S.config.sites[0],scope:'day',priority:'normal',repeat:'none',start:date,due:date,status:q.status,progress:q.status==='done'?100:0,doneAt:q.status==='done'?date:'',assignees:S.myStaff?[S.myStaff]:[],assigneeText:'',desc,photos:ups,logs:ups.length?[{at:nowISO(),by:myId(),kind:'photo',text:'',photos:ups.map(u=>u.id)}]:[]});
+  try{const ups=q.files.length?await uploadImages(q.files,{priv:qaPriv(),stamp:stampPref()?stampFor(q.site,title):null}):[];
+    await createTask({priv:qaPriv(),title,cat:q.cat,sub:q.sub,site:q.site||S.config.sites[0],scope:'day',priority:'normal',repeat:'none',start:date,due:date,status:q.status,progress:q.status==='done'?100:0,doneAt:q.status==='done'?date:'',assignees:S.myStaff?[S.myStaff]:[],assigneeText:'',desc,photos:ups,logs:ups.length?[{at:nowISO(),by:myId(),kind:'photo',text:'',photos:ups.map(u=>u.id)}]:[]});
     q.text='';q.files=[];q.catTouched=false;q.dateTouched=false;q.date=today();if(!q.siteTouched)q.site='';syncQA();const ta=$('#qa-text');if(ta){ta.value='';ta.focus();}const pi=$('#qa-photo');if(pi)pi.value='';const qf=$('#qa-files');if(qf)qf.textContent='';
-    toast(q.status==='done'?'한 일을 기록했습니다. 팀 현황에 바로 표시됩니다.':'업무를 등록했습니다.');}
+    toast(qaPriv()?'🔒 비공개 업무로 등록했습니다. 나만 볼 수 있습니다.':q.status==='done'?'한 일을 기록했습니다. 팀 현황에 바로 표시됩니다.':'업무를 등록했습니다.');}
   catch{}finally{S.qaBusy=false;const b=$('#qa-go');if(b){b.disabled=!S.canWrite;b.textContent='등록';}}}
 function myRow(t){const d=ddayInfo(t);const late=isLate(t);const p=esc(t.path);
-  return `<div class="mrow cat-${t.cat}"><span class="stripe"></span><button type="button" class="main" data-open="${p}"><span class="tt">${esc(t.title)}</span><span class="mt"><span class="pill s-${late?'late':t.status}">${late?'지연':ST[t.status].name}</span><span class="catchip">${esc(CAT[t.cat].name)}${t.sub?' · '+esc(t.sub):''}</span><span>${esc(t.site)}</span>${t.due?`<span>${t.start&&t.start!==t.due?fmtMD(t.start)+' ~ ':''}${fmtMD(t.due)}</span>`:''}${d?`<span class="dday ${d.cls}">${d.txt}</span>`:''}${t.progress&&t.status!=='done'?`<span>${t.progress}%</span>`:''}</span></button>${S.canWrite?`<span class="acts">${t.status==='plan'?`<button type="button" class="btn sm" data-act="doing" data-path="${p}">시작</button>`:''}<button type="button" class="btn sm" data-act="log" data-path="${p}">기록</button><button type="button" class="btn sm primary" data-act="done" data-path="${p}">완료</button></span>`:''}</div>`;}
+  return `<div class="mrow cat-${t.cat}"><span class="stripe"></span><button type="button" class="main" data-open="${p}"><span class="tt">${t.priv?'<span class="lock-i" title="비공개 업무 (나만 보기)">🔒</span>':''}${esc(t.title)}</span><span class="mt"><span class="pill s-${late?'late':t.status}">${late?'지연':ST[t.status].name}</span><span class="catchip">${esc(CAT[t.cat].name)}${t.sub?' · '+esc(t.sub):''}</span><span>${esc(t.site)}</span>${t.due?`<span>${t.start&&t.start!==t.due?fmtMD(t.start)+' ~ ':''}${fmtMD(t.due)}</span>`:''}${d?`<span class="dday ${d.cls}">${d.txt}</span>`:''}${t.progress&&t.status!=='done'?`<span>${t.progress}%</span>`:''}</span></button>${S.canWrite?`<span class="acts">${t.status==='plan'?`<button type="button" class="btn sm" data-act="doing" data-path="${p}">시작</button>`:''}<button type="button" class="btn sm" data-act="log" data-path="${p}">기록</button><button type="button" class="btn sm primary" data-act="done" data-path="${p}">완료</button></span>`:''}</div>`;}
 /* ───────── 사용 안내 ───────── */
 const APP_URL_CLAUDE='https://claude.ai/artifact/EtAAUqpwCvTQM862ghJNFm';
 const appUrl=()=>S.mode==='firebase'?(location.origin+location.pathname).replace(/index\.html$/,''):APP_URL_CLAUDE;
@@ -1560,6 +1632,8 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>법정 업무</b><span><a href="#legal">법정 업무</a>에 세무·4대보험·법정 교육·안전·소방 점검 일정이 정리되어 있습니다. 켜 둔 항목은 마감 전에 담당자 할 일로 자동 등록됩니다.</span></li>
       <li><b>알림</b><span>오른쪽 위 종 모양에서 내 담당 업무의 새 기록·마감·법정 업무를 확인합니다. <em>알림 켜기</em>를 누르면 다른 탭을 보고 있을 때도 알림이 뜹니다.</span></li>
       <li><b>총괄 현황 (관리자)</b><span><a href="#overview">총괄</a>에서 직원별 기록·지연·이슈를 한눈에 보고, 단톡방 양식 주간업무일지와 일일 현황 텍스트를 바로 복사합니다.</span></li>
+      <li><b>🔒 비공개 업무</b><span>내 업무 입력란의 <em>🔒 나만 보기</em>를 켜고 등록하면 나만 보는 업무가 됩니다. 관리자·다른 직원에게 보이지 않고 팀 현황·총괄·보고서·주간업무일지에도 들어가지 않습니다. 업무 상세에서 <em>팀에 공개하기</em>로 언제든 공개할 수 있습니다.</span></li>
+      <li><b>사진·서류 삭제 요청</b><span>사진과 서류는 누구나 올릴 수 있지만 삭제는 관리자만 합니다. 잘못 올렸으면 사진의 ✕ 또는 서류의 <em>삭제 요청</em>을 눌러 이유를 적어 보내세요. 관리자 알림함에 표시되고, 처리 결과가 알림으로 옵니다.</span></li>
     </ol></section>
     <section class="panel"><div class="panel-h"><h2>직원에게 보낼 안내 문구</h2><div class="act"><button type="button" class="btn sm primary" id="copy-invite">${ICON.copy}문구 복사</button></div></div><pre class="invite-pre">${esc(inviteText())}</pre></section>
     <section class="panel"><div class="panel-h"><h2>접속 현황</h2><span class="sub">${roster.length?`${joined}/${roster.length}명 접속`:'명단 없음'}</span></div>
@@ -1585,6 +1659,7 @@ function renderMy(v){
   left.innerHTML=`<section class="panel"><div class="panel-h"><h2>진행 중·오늘 할 일</h2><span class="sub">${now.length}건</span></div>${now.length?now.map(myRow).join(''):'<div class="empty">진행 중인 업무가 없습니다. 위 입력란에 오늘 할 일을 적어 보세요.</div>'}</section>
     ${st.late.length?`<section class="panel"><div class="panel-h"><h2 style="color:var(--late)">지연</h2><span class="sub">${st.late.length}건 · 마감일이 지났습니다</span></div>${st.late.map(myRow).join('')}</section>`:''}
     <section class="panel"><div class="panel-h"><h2>다가오는 일정</h2><span class="sub">7일 안에 시작</span></div>${upcoming.length?upcoming.map(myRow).join(''):'<div class="empty">7일 안에 시작할 업무가 없습니다.</div>'}</section>`;
+  left.insertAdjacentHTML('beforeend',privPanelHTML());
   right.innerHTML=`<div class="panel-h"><h2>오늘 한 일</h2><span class="sub">완료 ${st.doneToday.length}건 · 기록 ${st.logsToday.length}건</span></div>${st.logsToday.length?`<ul class="feed">${st.logsToday.map(({t,l})=>feedItem(t,l,{self:true})).join('')}</ul>`:'<div class="empty">아직 오늘 기록이 없습니다.</div>'}`;
   ntfBrief();const mt=$('#memo-text');if(mt&&document.activeElement!==mt&&S.memoDraft==null){const md=S.memos.find(m=>m.id===td);const e=md&&md.entries[myId()];mt.value=e&&e.text?e.text:'';}
   syncQA();}
@@ -1944,7 +2019,7 @@ function fillSelect(sel,items,val){sel.innerHTML=items.map(([v,n])=>`<option val
 function guessScope(s,d){if(!s||!d)return 'day';const n=diffDays(s,d);return n>=60?'year':n>=14?'month':n>=2?'week':'day';}
 function openTask(t,defaults={}){
   const f=$('#task-form');const isNew=!t;const src=t||{};
-  S.dlg={path:t?t.path:null,orig:t?JSON.parse(JSON.stringify(t)):null,pending:[],uploaded:[],assignees:[...(t?t.assignees:(defaults.who?[defaults.who]:(S.myStaff?[S.myStaff]:[])))],status:t?t.status:(defaults.status||'plan'),scopeTouched:!!t,logPhotos:[]};
+  S.dlg={path:t?t.path:null,orig:t?JSON.parse(JSON.stringify(t)):null,pending:[],uploaded:[],assignees:[...(t?t.assignees:(defaults.who?[defaults.who]:(S.myStaff?[S.myStaff]:[])))],status:t?t.status:(defaults.status||'plan'),scopeTouched:!!t,logPhotos:[]};S.dlg.priv=t?!!t.priv:(!!defaults.priv&&privOK());
   $('#t-h').textContent=isNew?'업무 등록':'업무 상세';
   $('#t-title').value=src.title||defaults.title||'';S.dlg.phTag='';$$('#t-ph-tag button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===''));$('#t-ph-stamp').checked=stampPref();
   const cat=src.cat||defaults.cat||'fin';fillSelect($('#t-cat'),CATS.map(c=>[c.id,c.name]),cat);
@@ -1960,6 +2035,7 @@ function openTask(t,defaults={}){
   $('#t-assignee-text').value=src.assigneeText||'';$('#t-desc').value=src.desc||'';$('#t-assignee-q').value='';$('#t-pick-menu').hidden=true;
   renderPicked();
   $('#t-log-sec').hidden=isNew;$('#t-delete').hidden=isNew||!S.canWrite;$('#t-save').hidden=!S.canWrite;
+  privDlgSync(t);
   $('#t-badges').innerHTML=t?`${t.legal?'<span class="tag legal">법정 업무</span> ':''}${isLate(t)?'<span class="pill s-late">지연</span>':''}${t.sample?' <span class="tag sample">예시</span>':''}`:'';
   $('#t-meta').innerHTML=t&&t.createdAt?`등록 <span data-uid="${esc(t.createdBy||'')}">${esc(nameOf(t.createdBy))}</span> · ${hhmm(t.createdAt)}${t.updatedAt?` · 최근 수정 ${hhmm(t.updatedAt)}`:''}`:'';
   const canPhoto=!!S.assets||S.preview;$('#t-photo-btn').hidden=!canPhoto||!S.canWrite;$('#t-cam-btn').hidden=!canPhoto||!S.canWrite;$('#t-ph-tools').hidden=!canPhoto||!S.canWrite;$('#l-photo-btn').hidden=!canPhoto;$('#t-photo-help').hidden=canPhoto;$('#t-photo-help').textContent='사진 첨부는 편집·참여 권한이 있는 구성원만 할 수 있습니다.';
@@ -1976,12 +2052,12 @@ function refreshDialog(force){
   if(!S.dlg||(!force&&!$('#dlg-task').open))return;const t=S.dlg.path?findTask(S.dlg.path):null;
   const photos=[...(t?t.photos:[]),...S.dlg.pending];
   $('#t-photo-n').textContent=photos.length?photos.length+'장':'';
-  $('#t-gallery').innerHTML=photos.length?photos.map(ph=>`<figure>${thumbImg(ph,'data-dlg-photo')}<button type="button" class="ptag ${ph.tag?'t-'+ph.tag:''}" data-ptag="${esc(ph.id)}" ${S.canWrite?'':'disabled'} title="눌러서 작업 전·중·후 바꾸기">${ph.tag?PH_TAGS[ph.tag]:'구분'}</button>${S.canWrite?`<button type="button" class="x" data-rm-photo="${esc(ph.id)}" aria-label="사진 삭제">✕</button>`:''}</figure>`).join(''):'<div class="up">사진 없음</div>';
+  $('#t-gallery').innerHTML=photos.length?photos.map(ph=>`<figure>${thumbImg(ph,'data-dlg-photo')}<button type="button" class="ptag ${ph.tag?'t-'+ph.tag:''}" data-ptag="${esc(ph.id)}" ${S.canWrite?'':'disabled'} title="눌러서 작업 전·중·후 바꾸기">${ph.tag?PH_TAGS[ph.tag]:'구분'}</button>${S.canWrite?rmBtnHTML(ph):''}</figure>`).join(''):'<div class="up">사진 없음</div>';
   if(t){const logs=[...t.logs].reverse();$('#t-log-n').textContent=logs.filter(l=>l.kind==='note').length?logs.filter(l=>l.kind==='note').length+'건':'';
     $('#t-timeline').innerHTML=logs.map((l,ri)=>{const idx=t.logs.length-1-ri;const sc=l.kind==='status'?`s-${l.to}`:l.issue?'s-late':'';
       const what=l.kind==='status'?`상태 변경 <span class="pill s-${l.from}">${ST[l.from]?ST[l.from].name:''}</span> → <span class="pill s-${l.to}">${ST[l.to]?ST[l.to].name:''}</span>`:l.kind==='create'?'업무 등록':l.kind==='record'?'완료 기록':l.kind==='photo'?'사진 첨부':l.kind==='progress'?`진척률 ${l.p0??0}% → ${l.p1??0}%`:'진행 기록';
       return `<li class="${sc}"><div class="h"><b data-uid="${esc(l.by||'')}">${esc(l.by?nameOf(l.by):'구성원')}</b><span>${what}</span><time datetime="${esc(l.at)}">${hhmm(l.at)}</time>${l.kind==='note'&&S.canWrite&&(l.by===myId()||S.canEdit)?`<button type="button" class="del" data-del-log="${idx}">삭제</button>`:''}</div>${l.issue?'<div class="issue">이슈</div>':''}${l.text?`<p>${esc(l.text)}</p>`:''}${l.photos.length?`<div class="thumbs">${l.photos.map(id=>thumbImg(phMeta(t,id),'data-dlg-photo')).join('')}</div>`:''}</li>`;}).join('');}
-  patchNames($('#dlg-task'));
+  privDlgLock();patchNames($('#dlg-task'));
 }
 async function submitTask(e){e.preventDefault();if(!S.canWrite)return;
   const title=$('#t-title').value.trim();if(!title){$('#t-title').focus();toast('업무명을 입력하세요.','err');return;}
@@ -1990,8 +2066,8 @@ async function submitTask(e){e.preventDefault();if(!S.canWrite)return;
   const data={title,cat:$('#t-cat').value,sub:$('#t-sub').value,site:$('#t-site').value,scope:$('#t-scope').value,priority:$('#t-prio').value,repeat:$('#t-repeat').value,start,due,status,progress,assignees:S.dlg.assignees,assigneeText:$('#t-assignee-text').value.trim(),desc:$('#t-desc').value};
   const btn=$('#t-save');btn.disabled=true;
   try{
-    if(!S.dlg.path){data.doneAt=status==='done'?today():'';data.photos=S.dlg.pending;const logs=[];if(S.dlg.pending.length)logs.push({at:nowISO(),by:myId(),kind:'photo',text:'',photos:S.dlg.pending.map(p=>p.id)});data.logs=logs;
-      await createTask(data);S.dlg.pending=[];S.dlg.uploaded=[];toast('업무를 등록했습니다.');closeTask(true);}
+    if(!S.dlg.path){if(S.dlg.priv&&privOK())data.priv=true;data.doneAt=status==='done'?today():'';data.photos=S.dlg.pending;const logs=[];if(S.dlg.pending.length)logs.push({at:nowISO(),by:myId(),kind:'photo',text:'',photos:S.dlg.pending.map(p=>p.id)});data.logs=logs;
+      await createTask(data);S.dlg.pending=[];S.dlg.uploaded=[];toast(data.priv?'🔒 비공개 업무로 등록했습니다. 나만 볼 수 있습니다.':'업무를 등록했습니다.');closeTask(true);}
     else{const t=findTask(S.dlg.path);if(!t){toast('이 업무는 다른 사람이 삭제했습니다.','err');closeTask(true);return;}
       const base=S.dlg.orig||t;const patch={};for(const k of Object.keys(data)){const a=JSON.stringify(data[k]),b=JSON.stringify(base[k]);if(a!==b)patch[k]=data[k];}
       if('status' in patch&&patch.status===t.status)delete patch.status;if('progress' in patch&&patch.progress===t.progress)delete patch.progress;
@@ -2034,7 +2110,7 @@ function confirmDlg(title,msg,yes='확인',textToCopy){return new Promise(res=>{
   d.showModal();if(textToCopy){tx.focus();tx.select();}});}
 let LB={list:[],i:0};
 function openLightbox(list,i){LB={list,i};showLB();$('#lightbox').hidden=false;$('#lightbox .lb-x').focus();}
-function showLB(){const it=LB.list[LB.i];if(!it)return;const im=$('#lb-img');im.dataset.pid=it.id;im.onload=()=>{const a=$('#lb-dl');a.href=im.src;a.download=`사진_${(it.cap||'').replace(/[\\/:*?"<>|·\s]+/g,'_').slice(0,40)||it.id}.${/webp/.test(im.src.slice(0,30))?'webp':'jpg'}`;};im.src=photoSrc(it.id);$('#lb-open').hidden=!it.path||(S.dlg&&S.dlg.path===it.path&&$('#dlg-task').open);$('#lb-cap').textContent=`${it.cap||''} ${LB.list.length>1?`(${LB.i+1}/${LB.list.length})`:''}`.trim();}
+function showLB(){const it=LB.list[LB.i];if(!it)return;const im=$('#lb-img');im.dataset.pid=it.id;im.onload=()=>{const a=$('#lb-dl');a.href=im.src;a.download=`사진_${(it.cap||'').replace(/[\\/:*?"<>|·\s]+/g,'_').slice(0,40)||it.id}.${/webp/.test(im.src.slice(0,30))?'webp':'jpg'}`;};im.src=photoSrc(it.id);$('#lb-open').hidden=!it.path||(S.dlg&&S.dlg.path===it.path&&$('#dlg-task').open);$('#lb-cap').textContent=`${it.cap||''} ${LB.list.length>1?`(${LB.i+1}/${LB.list.length})`:''}`.trim();lbDelSync(it);}
 function closeLB(){$('#lightbox').hidden=true;}
 
 /* ───────── 담당자 선택 ───────── */
@@ -2088,7 +2164,7 @@ document.addEventListener('click',async e=>{
   const up=e.target.closest('[data-unpick]');if(up){S.dlg.assignees=S.dlg.assignees.filter(x=>x!==up.dataset.unpick);renderPicked();return;}
   const rm=e.target.closest('[data-rm-photo]');if(rm){const id=rm.dataset.rmPhoto;const pi=S.dlg.pending.findIndex(p=>p.id===id);
     if(pi>=0){S.dlg.pending.splice(pi,1);deleteAssets([id]);refreshDialog();return;}
-    const t=findTask(S.dlg.path);if(!t)return;const ok=await confirmDlg('사진 삭제','이 사진을 업무와 보고서에서 삭제합니다. 되돌릴 수 없습니다.','삭제');if(!ok)return;
+    const t=findTask(S.dlg.path);if(!t)return;if(!canDelSaved(t)){drAsk({kind:'photo',t,pid:id});return;}const ok=await confirmDlg('사진 삭제','이 사진을 업무와 보고서에서 삭제합니다. 되돌릴 수 없습니다.','삭제');if(!ok)return;
     try{await updateTask(t,{photos:t.photos.filter(p=>p.id!==id),logs:t.logs.map(l=>({...l,photos:l.photos.filter(x=>x!==id)}))});deleteAssets([id]);}catch{}return;}
   const dl=e.target.closest('[data-del-log]');if(dl){const t=findTask(S.dlg.path);if(!t)return;const idx=+dl.dataset.delLog;const ok=await confirmDlg('기록 삭제','이 진행 기록을 삭제할까요?','삭제');if(!ok)return;try{await updateTask(t,{logs:t.logs.filter((_,i)=>i!==idx)});}catch{}return;}
   if(!e.target.closest('.picker'))$('#t-pick-menu').hidden=true;
@@ -2132,13 +2208,13 @@ $('#t-scope').addEventListener('change',()=>{if(S.dlg)S.dlg.scopeTouched=true;})
 $('#t-progress').addEventListener('input',e=>{$('#t-progress-out').textContent=e.target.value+'%';if(S.dlg&&+e.target.value>0&&S.dlg.status==='plan'){S.dlg.status='doing';$$('#t-status button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v==='doing'));}});
 $('#t-assignee-q').addEventListener('focus',()=>searchPeople(''));
 $('#t-assignee-q').addEventListener('input',e=>searchPeople(e.target.value.trim()));
-$('#t-delete').addEventListener('click',async()=>{const t=findTask(S.dlg&&S.dlg.path);if(!t)return;const ok=await confirmDlg('업무 삭제',`「${t.title}」을(를) 삭제합니다. 진행 기록과 사진도 함께 지워지며 되돌릴 수 없습니다.`,'삭제');if(!ok)return;
+$('#t-delete').addEventListener('click',async()=>{const t=findTask(S.dlg&&S.dlg.path);if(!t)return;if(!canDelTask(t)){drAsk({kind:'task',t});return;}const ok=await confirmDlg('업무 삭제',`「${t.title}」을(를) 삭제합니다. 진행 기록과 사진도 함께 지워지며 되돌릴 수 없습니다.`,'삭제');if(!ok)return;
   try{await dbDelete(t.path);deleteAssets(t.photos.map(p=>p.id));toast('업무를 삭제했습니다.');closeTask(true);}catch{}});
 $('#t-photo-input').addEventListener('change',e=>{const files=Array.from(e.target.files||[]);e.target.value='';dlgUpload(files);});
 $('#l-photo-input').addEventListener('change',e=>{S.dlg.logPhotos=Array.from(e.target.files||[]);$('#l-photo-n').innerHTML=S.dlg.logPhotos.length?`${ICON.cam}${S.dlg.logPhotos.length}장 선택`:'';});
 $('#l-add').addEventListener('click',async()=>{const t=findTask(S.dlg&&S.dlg.path);if(!t)return;const text=$('#l-text').value.trim();const files=S.dlg.logPhotos||[];if(!text&&!files.length){$('#l-text').focus();return;}
   const btn=$('#l-add');btn.disabled=true;btn.textContent='저장 중…';
-  try{const ups=files.length?await uploadImages(files,{stamp:stampPref()?stampFor(t.site,t.title):null}):[];const now=nowISO();const auto=t.status==='plan';
+  try{const ups=files.length?await uploadImages(files,{priv:!!t.priv,stamp:stampPref()?stampFor(t.site,t.title):null}):[];const now=nowISO();const auto=t.status==='plan';
     const logs=[{at:now,by:myId(),kind:'note',text,issue:$('#l-issue').checked,photos:ups.map(u=>u.id)}];if(auto)logs.push({at:new Date(Date.parse(now)+1).toISOString(),by:myId(),kind:'status',from:'plan',to:'doing',text:''});
     await appendLog(t,logs,{photos:ups,patch:auto?{status:'doing'}:{}});
     if(auto&&S.dlg&&S.dlg.path===t.path){if(S.dlg.orig)S.dlg.orig.status='doing';if(S.dlg.status==='plan'){S.dlg.status='doing';$$('#t-status button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v==='doing'));}}
@@ -2276,16 +2352,16 @@ class FirebaseDB{
 /* 사진은 base64보다 25% 작은 바이트(Blob) 필드로 저장합니다. 규칙이 아직 옛 버전이면 기존 방식(d 문자열)으로 저장합니다. */
 async function fbPutPhoto(id,blob,thumb){let b=blob;
   if(b.size>980000&&window.imageCompression){try{b=await imageCompression(b,{maxSizeMB:0.25,maxWidthOrHeight:1280,useWebWorker:false,fileType:'image/jpeg'});}catch{}}
-  if(b.size>990000)throw {code:'too_large'};const type=b.type||'image/jpeg';const meta={type,at:nowISO(),by:myId()||''};const B=firebase.firestore.Blob;
-  try{await fbWrite(S.fs.doc('photos/'+id).set({...meta,b:B.fromUint8Array(new Uint8Array(await b.arrayBuffer()))}));}
-  catch(e){if(!(e&&e.code==='fb_denied'))throw e;const d=await blobToDataURL(b);if(d.length>990000)throw {code:'too_large'};await fbWrite(S.fs.doc('photos/'+id).set({...meta,d}));}
+  if(b.size>990000)throw {code:'too_large'};const type=b.type||'image/jpeg';const meta={type,at:nowISO(),by:myId()||'',uid:S.me.id||'',ts:firebase.firestore.FieldValue.serverTimestamp()};const B=firebase.firestore.Blob;
+  try{await fbWrite(S.fs.doc(phDoc(id,'photos')).set({...meta,b:B.fromUint8Array(new Uint8Array(await b.arrayBuffer()))}));}
+  catch(e){if(!(e&&e.code==='fb_denied'))throw e;const d=await blobToDataURL(b);if(d.length>990000)throw {code:'too_large'};await fbWrite(S.fs.doc(phDoc(id,'photos')).set({...meta,d}));}
   S.photoUrls[id]=URL.createObjectURL(b);let th=false;
-  if(thumb&&thumb.size<190000){try{await fbWrite(S.fs.doc('thumbs/'+id).set({type:thumb.type||'image/jpeg',b:B.fromUint8Array(new Uint8Array(await thumb.arrayBuffer()))}));S.thumbUrls[id]=URL.createObjectURL(thumb);th=true;}catch{}}
+  if(thumb&&thumb.size<190000){try{await fbWrite(S.fs.doc(phDoc(id,'thumbs')).set({type:thumb.type||'image/jpeg',b:B.fromUint8Array(new Uint8Array(await thumb.arrayBuffer()))}));S.thumbUrls[id]=URL.createObjectURL(thumb);th=true;}catch{}}
   return th;}
 const fbAssets={async upload(blob){const id='p'+rid();await fbPutPhoto(id,blob);return {id};},
-  async delete(id){if(!S.fs)return;try{await S.fs.doc('photos/'+id).delete();}catch{}try{await S.fs.doc('thumbs/'+id).delete();}catch{}delete S.photoUrls[id];delete S.thumbUrls[id];}};
+  async delete(id){if(!S.fs)return;try{await S.fs.doc(phDoc(id,'photos')).delete();}catch{}try{await S.fs.doc(phDoc(id,'thumbs')).delete();}catch{}delete S.photoUrls[id];delete S.thumbUrls[id];}};
 const _phP={};
-function fbLoadPhoto(id){if(S.photoUrls[id]||!S.fs||!isAssetId(id))return Promise.resolve();if(_phP[id])return _phP[id];const ref=S.fs.doc('photos/'+id);
+function fbLoadPhoto(id){if(S.photoUrls[id]||!S.fs||!isAssetId(id))return Promise.resolve();if(_phP[id])return _phP[id];const ref=S.fs.doc(phDoc(id,'photos'));
   _phP[id]=ref.get({source:'cache'}).catch(()=>null).then(s=>s&&s.exists?s:ref.get()).then(s=>{const u=s&&s.exists?bytesURL(s.data()):'';
     S.photoUrls[id]=u||PH_BLANK;for(const img of document.querySelectorAll(`img[data-pid="${CSS.escape(id)}"]:not([data-th="1"])`))img.src=S.photoUrls[id];})
     .catch(()=>{setTimeout(()=>{delete _phP[id];},30000);});
@@ -2396,10 +2472,11 @@ function onConfig(s){S.config=normConfig(s.exists?s.data():null);$('#app-title')
 function fbEnter(u,email,m){S.fbEntered=true;$('#gate').hidden=true;S.gate=null;
   S.email=email;S.members=m;S.me={id:u.uid,name:u.displayName||email.split('@')[0]};S.canEdit=m.admins.includes(email);S.canWrite=true;
   S.db=new FirebaseDB(S.fs);S.assets=fbAssets;S.downloads=localDownloads;S.user=null;S.sample=null;showBanner('');
-  S.unsubs.push(S.db.doc('app/members').onSnapshot(s=>{const mm=normMembers(s.exists?s.data():null);S.members=mm;const adm=mm.admins.includes(S.email);if(adm!==S.canEdit){S.canEdit=adm;scheduleRender();}},e=>{if(e&&e.code==='fb_denied'){setSync('err');showBanner('접속 허용 목록에서 빠져 더 이상 저장·조회할 수 없습니다. 관리자에게 문의하세요.');}}));
+  S.unsubs.push(S.db.doc('app/members').onSnapshot(s=>{const mm=normMembers(s.exists?s.data():null);S.members=mm;const adm=mm.admins.includes(S.email);if(adm!==S.canEdit){S.canEdit=adm;delreqSub();scheduleRender();}},e=>{if(e&&e.code==='fb_denied'){setSync('err');showBanner('접속 허용 목록에서 빠져 더 이상 저장·조회할 수 없습니다. 관리자에게 문의하세요.');}}));
   S.unsubs.push(S.db.collection('staff').onSnapshot(onStaff,subErr));
   S.unsubs.push(S.db.doc('app/config').onSnapshot(onConfig,subErr));
   S.unsubs.push(S.db.collection('files').onSnapshot(onFiles,filesErr));
+  extSubs();
   S.unsubs.push(S.db.doc('app/legal').onSnapshot(onLegalCfg,legalErr));
   S.unsubs.push(S.db.doc('app/legalLog').onSnapshot(onLegalLog,legalErr));
   const now=new Date();const y=now.getFullYear();[y,y+1].forEach(ensureYear);if(now.getMonth()<3)ensureYear(y-1);
@@ -2476,7 +2553,7 @@ async function uploadImages(files,o={}){
     pr.step(i,'올리는 중');
     const meta={id:'',at:nowISO(),by:myId(),cap:'',tag:PH_TAGS[o.tag]?o.tag:'',shot:r.shot||'',sz:r.blob.size+(r.thumb?r.thumb.size:0),th:false};
     try{if(S.preview){meta.id='local'+rid();S.localBlobs[meta.id]=URL.createObjectURL(r.blob);if(r.thumb){S.thumbUrls[meta.id]=URL.createObjectURL(r.thumb);meta.th=true;}}
-      else if(S.mode==='firebase'){meta.id='p'+rid();meta.th=await fbPutPhoto(meta.id,r.blob,r.thumb);}
+      else if(S.mode==='firebase'){meta.id=(o.priv?PRIV_PH:'p')+rid();meta.th=await fbPutPhoto(meta.id,r.blob,r.thumb);}
       else{const x=await S.assets.upload(r.blob,{type:r.blob.type||'image/jpeg'});meta.id=x.id;}
       sz0+=f.size;sz1+=r.blob.size;out.push(meta);}
     catch(e){fail++;const c=e&&e.code;toast(c==='too_large'?'사진 용량이 너무 큽니다. 더 작은 사진으로 올려 주세요.':c==='fb_quota'?'Firebase 무료 사용량을 넘어 사진을 올리지 못했습니다.':c==='fb_denied'?'사진 저장 권한이 없습니다. 관리자에게 Firestore 규칙 게시를 확인해 달라고 하세요.':c==='unsupported_type'?'지원하지 않는 사진 형식입니다. JPG·PNG로 올려 주세요.':c==='quota_or_state'?'사진 저장 공간이 가득 찼습니다.':c==='rate_limited'?'잠시 후 다시 올려 주세요.':'사진을 올리지 못했습니다.','err');}}
@@ -2490,7 +2567,7 @@ function stampPref(){return lsGet('wl.stamp')!=='0';}
 const _thP={};
 function bytesURL(d){if(!d)return '';if(typeof d.d==='string'&&d.d.startsWith('data:image/'))return d.d;
   if(d.b&&typeof d.b.toUint8Array==='function'){try{return URL.createObjectURL(new Blob([d.b.toUint8Array()],{type:typeof d.type==='string'&&d.type.startsWith('image/')?d.type:'image/jpeg'}));}catch{}}return '';}
-function fbLoadThumb(id){if(S.thumbUrls[id])return Promise.resolve(S.thumbUrls[id]);if(!S.fs||!isAssetId(id))return Promise.resolve('');if(_thP[id])return _thP[id];const ref=S.fs.doc('thumbs/'+id);
+function fbLoadThumb(id){if(S.thumbUrls[id])return Promise.resolve(S.thumbUrls[id]);if(!S.fs||!isAssetId(id))return Promise.resolve('');if(_thP[id])return _thP[id];const ref=S.fs.doc(phDoc(id,'thumbs'));
   _thP[id]=ref.get({source:'cache'}).catch(()=>null).then(s=>s&&s.exists?s:ref.get()).then(s=>{const u=s&&s.exists?bytesURL(s.data()):'';if(u)S.thumbUrls[id]=u;return u;}).catch(()=>{setTimeout(()=>{delete _thP[id];},30000);return '';});
   return _thP[id];}
 async function lzLoad(img){const id=img.dataset.pid;if(!id)return;let u='';
@@ -2534,7 +2611,7 @@ async function quickPhoto(files){files=Array.from(files||[]);if(!files.length)re
   await dlgUpload(files);}
 async function dlgUpload(files){if(!S.dlg)return;const btns=$$('#t-photo-btn,#t-cam-btn');btns.forEach(b=>b.classList.add('busy'));
   const tag=S.dlg.phTag||'';const stamp=$('#t-ph-stamp')&&$('#t-ph-stamp').checked?stampFor($('#t-site').value,$('#t-title').value.trim()):null;
-  let ups=[];try{ups=await uploadImages(files,{tag,stamp});}finally{btns.forEach(b=>b.classList.remove('busy'));}
+  let ups=[];try{ups=await uploadImages(files,{tag,stamp,priv:dlgPriv()});}finally{btns.forEach(b=>b.classList.remove('busy'));}
   if(!ups.length||!S.dlg)return;
   if(!S.dlg.path){S.dlg.pending.push(...ups);S.dlg.uploaded.push(...ups.map(u=>u.id));refreshDialog();}
   else{const t=findTask(S.dlg.path);if(t){try{await appendLog(t,{at:nowISO(),by:myId(),kind:'photo',text:'',photos:ups.map(u=>u.id)},{photos:ups});}catch{deleteAssets(ups.map(u=>u.id));}}}}
@@ -2571,7 +2648,7 @@ function renderOverview(v){const O=S.ov;const td=today();const base=O.date||td;c
   v.innerHTML=`<div class="home-head"><div><h1>총괄 현황</h1><p>${esc(S.config.dept)} 전체 · ${esc(label)}</p></div>
     <div class="ov-ctl"><div class="seg" role="group" aria-label="기간"><button type="button" data-ov-mode="day" aria-pressed="${O.mode==='day'}">일간</button><button type="button" data-ov-mode="week" aria-pressed="${O.mode==='week'}">주간</button></div>
       <div class="datebox"><button type="button" class="icon-btn" data-ov-shift="-1" aria-label="이전">${ICON.left}</button><input type="date" id="ov-date" value="${esc(base)}" aria-label="기준일"><button type="button" class="icon-btn" data-ov-shift="1" aria-label="다음">${ICON.right}</button></div>
-      <button type="button" class="btn" id="ov-daily">${ICON.copy}일일 현황 텍스트</button><button type="button" class="btn primary" id="ov-weekly">${ICON.copy}주간업무일지 (단톡 양식)</button></div></div>
+      <button type="button" class="btn" id="ov-daily">${ICON.copy}일일 현황 텍스트</button><button type="button" class="btn primary" id="ov-weekly">${ICON.copy}주간업무일지 (단톡 양식)</button></div></div>${drBanner()}
   <div class="kpis ov-kpis">${kp.map(([n,b2,c,col])=>`<div class="kpi" style="--kc:${col};cursor:default"><span>${n}</span><b class="num">${b2}</b><small>${esc(c)}</small></div>`).join('')}</div>
   <div class="home">
     <div class="stack">
@@ -2661,7 +2738,7 @@ async function fileGet(f,ver){if(!ver)throw {code:'missing'};if(f.restricted&&!c
   if(ver.store==='local'){const b=S.localFiles[ver.asset];if(!b)throw {code:'missing'};return b;}
   const r=await fetch('/_blob/'+ver.asset);if(!r.ok)throw {code:'missing'};return await r.blob();}
 async function fileDelChunks(f,ver){if(ver.store!=='fb'||!S.fs)return;for(let i=0;i<ver.n;i++){try{await S.fs.doc(`files/${f.id}/chunks/${ver.v}_${i}`).delete();}catch{}}}
-function fileErrMsg(e){const c=e&&e.code;return c==='restricted'?'열람 제한 서류입니다. 관리자에게 열람 허용을 요청하세요.':c==='fb_denied'?'권한이 없습니다. (열람 제한 서류이거나 Firestore 규칙이 아직 게시되지 않았습니다)':c==='missing'?'파일 조각을 찾지 못했습니다. 올리는 중이었다면 잠시 후 다시 시도하세요.':c==='fb_quota'?'Firebase 무료 사용량을 넘었습니다. 내일 다시 시도하세요.':c==='unsupported_type'?'이 파일 형식은 저장할 수 없습니다.':'파일을 처리하지 못했습니다.';}
+function fileErrMsg(e){const c=e&&e.code;if(e&&e.userMsg)return e.userMsg;return c==='restricted'?'열람 제한 서류입니다. 관리자에게 열람 허용을 요청하세요.':c==='fb_denied'?'권한이 없습니다. (열람 제한 서류이거나 Firestore 규칙이 아직 게시되지 않았습니다)':c==='missing'?'파일 조각을 찾지 못했습니다. 올리는 중이었다면 잠시 후 다시 시도하세요.':c==='fb_quota'?'Firebase 무료 사용량을 넘었습니다. 내일 다시 시도하세요.':c==='unsupported_type'?'이 파일 형식은 저장할 수 없습니다.':'파일을 처리하지 못했습니다.';}
 const viewable=v=>!!v;
 const verName=(f,v)=>{const e=extOf(v.name);const base=f.title&&f.title!=='서류'?f.title:v.name.replace(/\.[^.]+$/,'');return `${base}${f.site?'_'+f.site:''}_v${v.v}${e?'.'+e:''}`.replace(/[\\/:*?"<>|]+/g,'_');};
 async function docOpen(f,ver,mode){ver=ver||curVer(f);if(!ver)return;if(f.restricted&&!canViewRestricted()){toast(fileErrMsg({code:'restricted'}),'err');return;}
@@ -2705,11 +2782,14 @@ function openDoc(id,o={}){let f=id?S.files[id]:null;
   $('#doc-issued').value=f.issued;$('#doc-expiry').value=f.expiry;$('#doc-note').value=f.note;$('#doc-restricted').checked=f.restricted;
   $('#doc-restricted').disabled=!(S.canEdit||S.preview);$('#doc-r-help').textContent=S.canEdit||S.preview?'관리자와 설정 › 접속 허용의 "열람 허용 이메일"에 있는 사람만 파일을 열 수 있습니다.':'열람 제한 설정은 관리자만 바꿀 수 있습니다.';
   $('#doc-file').value='';$('#doc-vnote').value='';$('#doc-file-n').textContent='';$('#doc-prog').hidden=true;
-  $('#doc-del').hidden=f.isNew||!(S.canEdit||S.preview);$$('#doc-form input,#doc-form textarea').forEach(el=>{if(el.id!=='doc-restricted')el.disabled=!S.canWrite;});$('#doc-save').hidden=!S.canWrite;
+  $('#doc-del').hidden=f.isNew||!(S.canEdit||S.preview);$('#doc-dreq').hidden=f.isNew||!!(S.canEdit||S.preview)||!S.canWrite;$$('#doc-form input,#doc-form textarea').forEach(el=>{if(el.id!=='doc-restricted')el.disabled=!S.canWrite;});$('#doc-save').hidden=!S.canWrite;
   $('#doc-up-lbl').textContent=f.isNew?'파일 선택':'새 버전 파일 선택';
   refreshDocDlg(true);if(!d.open)d.showModal();if(o.pick)setTimeout(()=>$('#doc-file').click(),60);}
+function verDelBtn(f,x){if(!S.canWrite||f.isNew||!S.files[f.id])return '';if(S.canEdit||S.preview)return `<button type="button" class="btn sm ghost danger" data-dv-del="${x.v}" title="이 버전 삭제">삭제</button>`;
+  return drOpenFor({kind:'ver',fid:f.id,v:x.v})?'<span class="dq-badge">삭제 요청됨</span>':`<button type="button" class="btn sm ghost" data-dv-req="${x.v}" title="잘못 올린 버전이면 관리자에게 삭제를 요청합니다">삭제 요청</button>`;}
 function refreshDocDlg(force){const D=S.docDlg;const dl=$('#dlg-doc');if(!D||(!force&&!dl.open))return;const f=S.files[D.id]||D.base;const can=!f.restricted||canViewRestricted();
-  $('#doc-vers').innerHTML=f.versions.length?[...f.versions].reverse().map(x=>`<li><span class="fi">${fileIcon(x)}</span><div class="dm"><b>v${x.v} · ${esc(x.name)}${x.pdf?' <span class="tag pdf">+PDF</span>':''}</b><small>${hhmm(x.at)} · ${esc(nameOf(x.by))} · ${fmtMB(x.size)}${x.pdf?` · PDF ${fmtMB(x.pdf.size)}${x.pdf.conv?'(자동 변환)':'(붙인 사본)'}`:''}${x.note?' · '+esc(x.note):''}</small></div>${can?`<span class="da"><button type="button" class="btn sm" data-dv-view="${x.v}">미리보기</button><button type="button" class="btn sm" data-dv-dl="${x.v}" aria-label="내려받기">${ICON.dl}</button>${S.canWrite&&!x.pdf?(convertible(x.name,x.type)?`<button type="button" class="btn sm ghost" data-dv-pdf="${x.v}">PDF 만들기</button>`:pdfAttachable(x.name,x.type)?`<button type="button" class="btn sm ghost" data-dv-pdfup="${x.v}">PDF 사본 붙이기</button>`:''):''}${S.canWrite&&x.pdf?`<button type="button" class="btn sm ghost" data-dv-pdfup="${x.v}" title="한글·엑셀 등에서 직접 저장한 PDF로 바꾸기">PDF 바꾸기</button>`:''}</span>`:'<span class="lock">🔒 열람 제한</span>'}</li>`).join(''):'<li class="none">아직 올린 파일이 없습니다.</li>';}
+  const dq=$('#doc-dreq');if(dq&&!dq.hidden){const rq=drOpenFor({kind:'file',fid:f.id});dq.textContent=rq?'삭제 요청됨':'삭제 요청';dq.disabled=!!rq;}
+  $('#doc-vers').innerHTML=f.versions.length?[...f.versions].reverse().map(x=>`<li><span class="fi">${fileIcon(x)}</span><div class="dm"><b>v${x.v} · ${esc(x.name)}${x.pdf?' <span class="tag pdf">+PDF</span>':''}</b><small>${hhmm(x.at)} · ${esc(nameOf(x.by))} · ${fmtMB(x.size)}${x.pdf?` · PDF ${fmtMB(x.pdf.size)}${x.pdf.conv?'(자동 변환)':'(붙인 사본)'}`:''}${x.note?' · '+esc(x.note):''}</small></div>${can?`<span class="da"><button type="button" class="btn sm" data-dv-view="${x.v}">미리보기</button><button type="button" class="btn sm" data-dv-dl="${x.v}" aria-label="내려받기">${ICON.dl}</button>${S.canWrite&&!x.pdf?(convertible(x.name,x.type)?`<button type="button" class="btn sm ghost" data-dv-pdf="${x.v}">PDF 만들기</button>`:pdfAttachable(x.name,x.type)?`<button type="button" class="btn sm ghost" data-dv-pdfup="${x.v}">PDF 사본 붙이기</button>`:''):''}${S.canWrite&&x.pdf&&(S.canEdit||S.preview)?`<button type="button" class="btn sm ghost" data-dv-pdfup="${x.v}" title="한글·엑셀 등에서 직접 저장한 PDF로 바꾸기 (관리자)">PDF 바꾸기</button>`:''}${verDelBtn(f,x)}</span>`:'<span class="lock">🔒 열람 제한</span>'}</li>`).join(''):'<li class="none">아직 올린 파일이 없습니다.</li>';}
 async function saveDoc(e){e.preventDefault();const D=S.docDlg;if(!D||!S.canWrite)return;const f=S.files[D.id]||D.base;const file=D.file;
   const title=$('#doc-title').value.trim()||(file&&SLOT[f.slot].multi?file.name.replace(/\.[^.]+$/,'').slice(0,80):'')||SLOT[f.slot].name;const issued=$('#doc-issued').value,expiry=$('#doc-expiry').value;
   if(D.isNew&&!S.files[D.id]&&!file){toast('올릴 파일을 선택하세요.','err');$('#doc-file').focus();return;}
@@ -2724,15 +2804,15 @@ async function saveDoc(e){e.preventDefault();const D=S.docDlg;if(!D||!S.canWrite
       const st=await filePut(D.id,v,blob,(i,n)=>{pg.textContent=`올리는 중… ${Math.round(i/n*100)}%`;});pg.textContent='저장 중…';
       const restr=meta.restricted;if(!restr&&thumbable(blob.name||file.name,blob.type||file.type)){pg.textContent='미리보기 그림 만드는 중…';const th=await makeThumb(blob,blob.name||file.name);meta.thumb=th||'';meta.thumbV=v;}
       let pdfc=null;const fname=blob.name||file.name;if($('#doc-mkpdf').checked&&convertible(fname,blob.type||file.type)){pg.textContent='PDF 사본 만드는 중…';try{const pb=await toPdf(new File([blob],fname,{type:blob.type||file.type}),p=>{pg.textContent=`PDF 사본 만드는 중… ${Math.round(p*100)}%`;});pdfc=await putPdfCopy(D.id,v,pb,true);if(!meta.thumb&&!restr){const th=await makeThumb(pb,'x.pdf');if(th){meta.thumb=th;meta.thumbV=v;}}}catch(e){toast('PDF 사본은 만들지 못했습니다. 원본만 저장합니다.','err');}}
-      versions=[...versions,{v,pdf:pdfc,name:(blob.name||file.name||'파일').slice(0,120),type:blob.type||file.type||'',size:blob.size,store:st.store,n:st.n,asset:st.asset||'',at:nowISO(),by:myId()||'',note:$('#doc-vnote').value.trim().slice(0,200)}].slice(-30);}
+      versions=[...versions,{v,pdf:pdfc,name:(blob.name||file.name||'파일').slice(0,120),type:blob.type||file.type||'',size:blob.size,store:st.store,n:st.n,asset:st.asset||'',at:nowISO(),by:myId()||'',note:$('#doc-vnote').value.trim().slice(0,200)}].slice(-100);}
     if(meta.restricted){meta.thumb='';meta.thumbV=0;}const doc={...meta,versions};
     if(!S.files[D.id]){doc.createdAt=nowISO();doc.createdBy=myId()||'';await dbSet(`files/${D.id}`,doc);}else await dbUpdate(`files/${D.id}`,doc);
     toast(file?`「${title}」 ${versions[versions.length-1].v>1?'새 버전을':'파일을'} 저장했습니다.`:'서류 정보를 저장했습니다.');$('#dlg-doc').close();}
   catch(e){if(e&&e.code&&!['readonly'].includes(e.code))toast(fileErrMsg(e),'err');}
   finally{btn.disabled=false;$('#doc-prog').hidden=true;}}
-async function deleteDoc(){const D=S.docDlg;const f=D&&S.files[D.id];if(!f)return;
+async function deleteDoc(){const D=S.docDlg;const f=D&&S.files[D.id];if(!f||!(S.canEdit||S.preview))return;
   const ok=await confirmDlg('서류 삭제',`「${f.title}」과(와) 모든 버전(${f.versions.length}개)을 삭제합니다. 되돌릴 수 없습니다.`,'삭제');if(!ok)return;
-  try{for(const v of f.versions)await fileDelChunks(f,v);await dbDelete(`files/${f.id}`);$('#dlg-doc').close();toast('서류를 삭제했습니다.');}catch{}}
+  try{await docDeleteAll(f);$('#dlg-doc').close();toast('서류를 삭제했습니다.');}catch{}}
 /* ───────── 법정 의무 업무 달력 ─────────
    매년·매월 챙겨야 하는 신고·교육·점검을 정리해 두고, 켜 둔 항목은 마감 며칠 전에 '진행 예정' 업무로 자동 등록합니다.
    주기·기한은 2026년 10월 기준 법령·공단 안내로 정리했습니다. 사업장 규모·업종에 따라 대상이 달라지므로 처음 한 번 담당자와 확인하세요.
@@ -2880,12 +2960,16 @@ function ntfCompute(){const me=myId();if(!me||!S.ready)return [];const out=[];co
     if(t.status==='done'||t.status==='hold'||!t.due)continue;const n=diffDays(td,t.due);
     if(mine&&n<=1)out.push({k:`due|${t.path}|${td}`,syn:1,at:td+'T00:00:01',type:n<0?'late':'due',t,text:n<0?`지연 D+${-n} · 마감 ${fmtMD(t.due)}`:n===0?'오늘 마감':'내일 마감'});
     else if(admin&&t.legal&&!t.assignees.length&&n<=7)out.push({k:`lgun|${t.path}|${td}`,syn:1,at:td+'T00:00:02',type:'legal',t,text:`담당자 미지정 법정 업무 · ${n<0?'D+'+(-n):'D-'+n}`});}
+  for(const t of S.privTasks||[]){if(t.status==='done'||t.status==='hold'||!t.due)continue;const n=diffDays(td,t.due);if(n<=1)out.push({k:`due|${t.path}|${td}`,syn:1,at:td+'T00:00:01',type:n<0?'late':'due',t,text:`🔒 비공개 · ${n<0?`지연 D+${-n} · 마감 ${fmtMD(t.due)}`:n===0?'오늘 마감':'내일 마감'}`});}
+  for(const r of S.delreqs||[]){const ttl=`${DR_KIND[r.kind]} · ${r.title}`;
+    if(admin&&r.status==='open')out.push({k:`dq|${r.id}`,at:r.at||td,type:'dreq',dq:r.id,title:ttl,text:`${r.name||'구성원'}님이 삭제를 요청했습니다`,sub:r.reason});
+    else if(r.uid===S.me.id&&r.status!=='open'&&r.rAt>=since)out.push({k:`dqr|${r.id}|${r.status}`,at:r.rAt,type:'dreq',dq:r.id,title:ttl,text:r.status==='done'?'삭제 요청이 처리되어 삭제되었습니다':'삭제 요청이 반려되었습니다',sub:r.rNote});}
   if(admin||canViewRestricted())for(const f of Object.values(S.files)){if(!f.expiry)continue;const n=diffDays(td,f.expiry);if(n<=60&&n>=-30)out.push({k:`doc|${f.id}|${f.expiry}|${n<=7?'w':n<=30?'m':'q'}`,syn:1,at:td+'T00:00:03',type:'doc',f,text:`서류 유효기간 ${expiryTxt(f.expiry)} · ${fmtYMD(f.expiry)}`});}
   if(admin&&hr>=17&&dow(td)%6!==0){const idle=staffList().filter(s=>working(s)&&!S.tasks.some(t=>t.logs.some(l=>l.by===s.id&&localDate(l.at)===td)));if(idle.length)out.push({k:`idle|${td}`,syn:1,at:td+'T17:00:00',type:'idle',text:`오늘 기록 없는 근무자 ${idle.length}명`,sub:idle.map(s=>s.name).join(', ')});}
   out.sort((a,b)=>b.at.localeCompare(a.at));return out.slice(0,80);}
 const ntfUnread=(it,st)=>it.syn?!st.syn[it.k]:it.at>st.seen;
 function ntfTick(){clearTimeout(NT.t);NT.t=setTimeout(ntfRun,400);}
-function ntfRun(){const st=ntfState();NT.items=ntfCompute();const un=NT.items.filter(it=>ntfUnread(it,st));
+function ntfRun(){adminNameSync();const st=ntfState();NT.items=ntfCompute();const un=NT.items.filter(it=>ntfUnread(it,st));
   const b=$('#ntf-n');if(b){b.textContent=un.length>99?'99+':String(un.length);b.hidden=!un.length;}
   const bell=$('#btn-ntf');if(bell)bell.setAttribute('aria-label',`알림 ${un.length}건`);
   if(!$('#ntf-pop').hidden)ntfRenderPop();
@@ -2896,13 +2980,14 @@ function ntfRun(){const st=ntfState();NT.items=ntfCompute();const un=NT.items.fi
   else for(const it of un)NT.shown.add(it.k);
   if(S.view==='my')ntfBrief();}
 function ntfShow(title,body,tag,path){try{const n=new Notification(title,{body,tag,lang:'ko'});n.onclick=()=>{window.focus();if(path){const t=findTask(path);if(t)openTask(t);}n.close();};}catch{}}
-const NT_ICON={assign:'담당',act:'진행',issue:'이슈',due:'마감',late:'지연',legal:'법정',doc:'서류',idle:'기록'};
+const NT_ICON={assign:'담당',act:'진행',issue:'이슈',due:'마감',late:'지연',legal:'법정',doc:'서류',idle:'기록',dreq:'삭제'};
 function ntfRenderPop(){const st=ntfState();const pop=$('#ntf-pop');const its=NT.items;
   const canAsk='Notification' in window&&Notification.permission==='default';const blocked='Notification' in window&&Notification.permission==='denied';
   pop.innerHTML=`<div class="ntf-h"><b>알림</b><span class="sp"></span>${its.some(i=>ntfUnread(i,st))?'<button type="button" class="btn sm ghost" data-ntf-read>모두 읽음</button>':''}</div>
     ${canAsk?`<div class="ntf-ask"><span>이 기기에서도 새 소식 알림을 받을까요? (앱이 열려 있는 동안)</span><button type="button" class="btn sm primary" data-ntf-perm>알림 켜기</button></div>`:blocked?'<div class="ntf-ask"><span>브라우저에서 알림이 차단되어 있습니다. 주소창 왼쪽 자물쇠 › 알림 › 허용으로 바꿀 수 있습니다.</span></div>':''}
-    ${its.length?`<ul>${its.map(it=>`<li class="${ntfUnread(it,st)?'un':''}"><button type="button" data-ntf-go="${esc(it.k)}"><span class="ic t-${it.type}">${NT_ICON[it.type]||'알림'}</span><span class="tx">${it.t?`<b>${esc(it.t.title)}</b>`:it.f?`<b>${esc(it.f.title)}</b>`:''}<span>${esc(it.text)}</span>${it.sub?`<small>${esc(String(it.sub).slice(0,120))}</small>`:''}</span><time>${it.syn?'오늘':timeAgo(it.at)}</time></button></li>`).join('')}</ul>`:'<div class="empty">새 알림이 없습니다.</div>'}
-    <p class="ntf-f">내 담당 업무의 진행 기록·마감, 법정 업무${S.canEdit?', 이슈·서류 만료·미기록 직원(관리자)':''}을 모아 보여 줍니다.</p>`;}
+    ${its.length?`<ul>${its.map(it=>`<li class="${ntfUnread(it,st)?'un':''}"><button type="button" data-ntf-go="${esc(it.k)}"><span class="ic t-${it.type}">${NT_ICON[it.type]||'알림'}</span><span class="tx">${it.title?`<b>${esc(it.title)}</b>`:it.t?`<b>${esc((it.t.priv?'🔒 ':'')+it.t.title)}</b>`:it.f?`<b>${esc(it.f.title)}</b>`:''}<span>${esc(it.text)}</span>${it.sub?`<small>${esc(String(it.sub).slice(0,120))}</small>`:''}</span><time>${it.syn?'오늘':timeAgo(it.at)}</time></button></li>`).join('')}</ul>`:'<div class="empty">새 알림이 없습니다.</div>'}
+    ${dqFootHTML()}<p class="ntf-f">내 담당 업무의 진행 기록·마감, 법정 업무${S.canEdit?', 이슈·서류 만료·미기록 직원·삭제 요청(관리자)':', 삭제 요청 결과'}을 모아 보여 줍니다.</p>`;}
+function dqFootHTML(){const L=S.delreqs||[];const open=L.filter(r=>r.status==='open').length;if(!L.length)return '';return `<div class="ntf-dq"><button type="button" class="btn sm" data-dq-open>${S.canEdit?`삭제 요청 관리${open?` (대기 ${open})`:''}`:`내 삭제 요청 ${L.length}건${open?` · 대기 ${open}`:''}`}</button></div>`;}
 function ntfOpen(){const pop=$('#ntf-pop');if(!pop.hidden){pop.hidden=true;return;}ntfRun();ntfRenderPop();pop.hidden=false;}
 function ntfMarkRead(){const st=ntfState();st.seen=nowISO();const keep={};for(const it of NT.items)if(it.syn)keep[it.k]=1;st.syn=keep;ntfSave();ntfRun();}
 function ntfBrief(){const box=$('#my-brief');if(!box)return;const st=ntfState();const td=today();if(st.brief===td||!S.myStaff){box.hidden=true;return;}
@@ -2917,7 +3002,7 @@ document.addEventListener('click',async e=>{
   if(T.closest('[data-ntf-read]')){ntfMarkRead();return;}
   if(T.closest('[data-ntf-perm]')){try{const r=await Notification.requestPermission();if(r==='granted'){toast('이 기기에서 알림을 받습니다.');ntfShow(`${S.config.dept} 업무일지`,'알림이 켜졌습니다.','test');}}catch{}ntfRenderPop();return;}
   const ng=T.closest('[data-ntf-go]');if(ng){const it=NT.items.find(i=>i.k===ng.dataset.ntfGo);const st=ntfState();if(it){if(it.syn)st.syn[it.k]=1;ntfSave();$('#ntf-pop').hidden=true;
-    if(it.t){const t=findTask(it.t.path);if(t)openTask(t);}else if(it.f)go('#docs');else if(it.type==='idle')go('#overview');}ntfRun();return;}
+    if(it.dq)openDreqs(it.dq);else if(it.t){const t=findTask(it.t.path);if(t)openTask(t);}else if(it.f)go('#docs');else if(it.type==='idle')go('#overview');}ntfRun();return;}
   if(!T.closest('#ntf-pop')&&!$('#ntf-pop').hidden)$('#ntf-pop').hidden=true;
   if(T.closest('[data-brief-x]')){const st=ntfState();st.brief=today();ntfSave();$('#my-brief').hidden=true;return;}
   // 사진첩
@@ -3194,7 +3279,7 @@ async function storeDoc(o,onProg){const st=SLOT[o.slot]||SLOT.etc;const site=st.
   const put=await filePut(fid,v,blob,(i,n)=>onProg&&onProg(i/n*(o.pdfBlob?.7:1)));
   let pdf=null;if(o.pdfBlob){try{pdf=await putPdfCopy(fid,v,o.pdfBlob,!!o.pdfConv,(i,n)=>onProg&&onProg(.7+.3*i/n));}catch{}}
   versions.push({v,pdf,name:(o.file.name||'파일').slice(0,120),type:blob.type||o.file.type||'',size:blob.size,store:put.store,n:put.n,asset:put.asset||'',at:nowISO(),by:myId()||'',note:(o.vnote||'').slice(0,200),h:o.hash||''});
-  const meta={slot:st.k,g:st.g,site,title:(f&&!o.title?f.title:(o.title||st.name)).slice(0,80),restricted,issued:isDate(o.issued)?o.issued:(f?f.issued:''),expiry:isDate(o.expiry)?o.expiry:(f?f.expiry:''),note:f?f.note:(o.note||''),versions:versions.slice(-30),updatedAt:nowISO(),updatedBy:myId()||''};
+  const meta={slot:st.k,g:st.g,site,title:(f&&!o.title?f.title:(o.title||st.name)).slice(0,80),restricted,issued:isDate(o.issued)?o.issued:(f?f.issued:''),expiry:isDate(o.expiry)?o.expiry:(f?f.expiry:''),note:f?f.note:(o.note||''),versions:versions.slice(-100),updatedAt:nowISO(),updatedBy:myId()||''};
   if(!restricted){meta.txt=String(o.text||'').replace(/\s+/g,' ').trim().slice(0,1500);if(o.thumb){meta.thumb=o.thumb;meta.thumbV=v;}}else{meta.txt='';meta.thumb='';meta.thumbV=0;}
   if(f)await dbUpdate(`files/${fid}`,meta);else await dbSet(`files/${fid}`,{...meta,createdAt:nowISO(),createdBy:myId()||''});
   return {fid,v,isNew:!f};}
@@ -3338,10 +3423,10 @@ async function toPdf(file,onProg){const k=kindOf(file.name,file.type);if(k==='do
 /* 저장: 버전에 PDF 사본(pdf 필드)을 붙입니다 — 조각 이름은 '{버전}p_{순번}' */
 async function putPdfCopy(fid,v,pdfBlob,conv,onProg){const key=`${v}p${Date.now().toString(36).slice(-5)}`;const st=await filePut(fid,key,pdfBlob,onProg);return {key,store:st.store,n:st.n,asset:st.asset||'',size:pdfBlob.size,conv:!!conv};}
 const pdfVer=ver=>ver&&ver.pdf?{v:ver.pdf.key||`${ver.v}p`,name:PDF_NAME(ver.name),type:'application/pdf',size:ver.pdf.size,store:ver.pdf.store,n:ver.pdf.n,asset:ver.pdf.asset||'',at:ver.at,by:ver.by}:null;
-async function attachPdf(f,ver,pdfBlob,conv){const cp=await putPdfCopy(f.id,ver.v,pdfBlob,conv);
+async function attachPdf(f,ver,pdfBlob,conv){const old=(S.files[f.id]||f).versions.find(x=>x.v===ver.v);if(old&&old.pdf&&!(S.canEdit||S.preview))throw {userMsg:'PDF 사본 바꾸기는 관리자만 할 수 있습니다.'};const cp=await putPdfCopy(f.id,ver.v,pdfBlob,conv);
   const cur=S.files[f.id]||f;const versions=cur.versions.map(x=>x.v===ver.v?{...x,pdf:cp}:x);const up={versions,updatedAt:nowISO(),updatedBy:myId()||''};
   const last=curVer(cur);if(!cur.restricted&&last&&last.v===ver.v&&(cur.thumbV!==ver.v||!cur.thumb)){const th=await makeThumb(pdfBlob,'x.pdf');if(th){up.thumb=th;up.thumbV=ver.v;}}
-  await dbUpdate(`files/${f.id}`,up);return cp;}
+  await dbUpdate(`files/${f.id}`,up);if(old&&old.pdf&&old.pdf.key!==cp.key)fileDelPdf(f,old);return cp;}
 async function convertAndAttach(f,ver){if(!S.canWrite)return false;setSync('saving');const pr=upProg(1);pr.step(0,'PDF로 바꾸는 중');
   try{const blob=await fileGet(f,ver);const pdf=await toPdf(new File([blob],ver.name,{type:ver.type}));pr.step(0,'PDF 저장 중');await attachPdf(f,ver,pdf,true);pr.done();setSync('ok');toast(`「${f.title}」 PDF 사본을 만들었습니다 (${fmtMB(pdf.size)}).`);return true;}
   catch(e){pr.done();setSync('ok');toast((e&&e.userMsg)||fileErrMsg(e),'err');return false;}}
@@ -3356,6 +3441,185 @@ function docViewOpts(f,ver){const base={meta:`${f.title}${f.site?' · '+f.site:'
   if(S.canWrite&&convertible(ver.name,ver.type))ex.push({label:'PDF로 바꿔 저장',fn:async()=>{if(await convertAndAttach(f,ver)){const nf=S.files[f.id];const nv=nf&&nf.versions.find(x=>x.v===ver.v);if(nv)openViewer(docViewOpts(nf,nv));}}});
   else if(S.canWrite&&pdfAttachable(ver.name,ver.type))ex.push({label:'PDF 사본 붙이기',fn:async()=>{if(await uploadPdfCopy(f,ver)){const nf=S.files[f.id];const nv=nf&&nf.versions.find(x=>x.v===ver.v);if(nv)openViewer(docViewOpts(nf,nv));}}});
   return {...orig,extras:ex};}
+/* ───────── 비공개 업무 (나만 보기) ─────────
+   priv/{로그인 uid}/tasks 에 따로 저장합니다. Firestore 보안 규칙으로 본인만 읽고 쓸 수 있어 관리자를 포함한 다른 사람은 볼 수 없습니다.
+   팀 현황·총괄·칸반·달력·목록·보고서·주간업무일지·사진첩·다른 사람의 알림에는 나오지 않고 '내 업무' 화면에만 보입니다.
+   비공개 업무의 사진도 priv/{uid}/photos 에 따로 저장합니다(사진 id가 'priv-'로 시작). */
+S.privTasks=[];S.delreqs=[];
+const PRIV_PH='priv-';
+const isPrivPh=id=>typeof id==='string'&&id.startsWith(PRIV_PH);
+const privOK=()=>!!(S.preview||(S.mode==='firebase'&&S.me&&S.me.id));
+const privBase=()=>`priv/${S.me.id}`;
+function phDoc(id,kind){return isPrivPh(id)&&S.me.id?`${privBase()}/${kind}/${id}`:`${kind}/${id}`;}
+const qaPriv=()=>!!(S.qa&&S.qa.priv&&privOK());
+const myName=()=>(S.staff[S.myStaff]&&S.staff[S.myStaff].name)||S.me.name||'';
+let PVU=null;
+function privSub(){if(PVU){try{PVU();}catch{}PVU=null;}S.privTasks=[];S.privDenied=false;if(!privOK()||!S.db)return;const cp=`${privBase()}/tasks`;
+  PVU=S.db.collection(cp).onSnapshot(snap=>{S.privTasks=snap.docs.filter(d=>d.exists).map(d=>{const t=normTask({...d.data(),id:d.id,path:`${cp}/${d.id}`});t.year=yearOf(t);t.priv=true;return t;});S.privDenied=false;
+    if(S.view==='my')scheduleRender();refreshDialog();ntfTick();},()=>{S.privDenied=true;if(S.view==='my')scheduleRender();});}
+function privPanelHTML(){if(!privOK())return '';const open=S.privTasks.filter(t=>t.status!=='done').sort(sortTasks);const done=S.privTasks.filter(t=>t.status==='done').sort((a,b)=>(b.doneAt||'').localeCompare(a.doneAt||''));
+  return `<section class="panel priv-panel" id="my-priv"><div class="panel-h"><h2>🔒 비공개 업무</h2><span class="sub">나만 보입니다 · ${open.length}건</span><div class="act">${S.canWrite?'<button type="button" class="btn sm" data-new-priv>+ 비공개 업무</button>':''}</div></div>
+    <p class="priv-note">관리자와 다른 직원에게 보이지 않고, 팀 현황·총괄·보고서·주간업무일지에도 들어가지 않습니다.</p>
+    ${S.privDenied?'<div class="banner" style="margin:0 12px 10px">비공개 업무를 불러올 권한이 없습니다. 관리자에게 새 보안 규칙(firestore.rules) 게시를 요청하세요.</div>':''}
+    ${open.length?open.map(myRow).join(''):`<div class="empty">혼자 챙길 일·개인 메모처럼 공유하지 않을 업무를 적어 두세요.<br>위 입력란의 <b>🔒 나만 보기</b>를 켜고 등록해도 됩니다.</div>`}
+    ${done.length?`<details class="priv-done" ${S.privDoneOpen?'open':''}><summary>완료한 비공개 업무 ${done.length}건</summary>${done.slice(0,60).map(myRow).join('')}</details>`:''}</section>`;}
+function qaPrivSync(){const b=$('#qa-priv');if(!b)return;const ta=$('#qa-text');if(ta&&ta.dataset.ph0==null)ta.dataset.ph0=ta.placeholder;
+  b.hidden=!privOK();const on=qaPriv();b.setAttribute('aria-pressed',String(on));$('#qa').classList.toggle('is-priv',on);
+  if(ta)ta.placeholder=on?'🔒 나만 보는 비공개 업무를 적고 Enter — 관리자·다른 직원에게 보이지 않습니다':ta.dataset.ph0;$('#qa-go').textContent=S.qaBusy?'등록 중…':on?'🔒 등록':'등록';}
+/* 업무 상세 창: 비공개 표시·전환 */
+const canMakePriv=t=>!!(t&&privOK()&&S.canWrite&&!t.priv&&!t.legal&&!t.sample&&t.createdBy===myId()&&t.assignees.every(a=>a===myId())&&!t.photos.length&&t.logs.every(l=>!l.by||l.by===myId()));
+const canDelSaved=t=>!!(t&&(t.priv||S.canEdit));
+const canDelTask=t=>!!(t&&(t.priv||S.canEdit||!t.photos.length));
+function privDlgSync(t){const row=$('#t-priv-row');if(!row||!S.dlg)return;const on=!!S.dlg.priv;const isNew=!t;
+  if(isNew&&privOK()&&S.canWrite){row.hidden=false;row.innerHTML=`<label class="priv-chk"><input type="checkbox" id="t-priv" ${on?'checked':''}><span><b>🔒 비공개 업무</b> — 나만 보기. 관리자·다른 직원에게 보이지 않고 팀 현황·보고서에도 들어가지 않습니다.</span></label><small class="priv-lock" hidden>사진을 올린 뒤에는 바꿀 수 없습니다. 바꾸려면 사진을 먼저 빼 주세요.</small>`;}
+  else if(!isNew&&on){row.hidden=false;row.innerHTML=`<div class="priv-on"><span><b>🔒 비공개 업무</b> — 나만 볼 수 있습니다.</span>${S.canWrite?'<button type="button" class="btn sm ghost" data-priv-pub>팀에 공개하기</button>':''}</div>`;}
+  else if(!isNew&&canMakePriv(t)){row.hidden=false;row.innerHTML=`<div class="priv-off"><span>내가 등록한 개인 업무라면 나만 보이게 바꿀 수 있습니다.</span><button type="button" class="btn sm ghost" data-priv-make>🔒 비공개로 바꾸기</button></div>`;}
+  else{row.hidden=true;row.innerHTML='';}
+  const wf=$('#t-who-f');if(wf)wf.hidden=on;if(on&&S.myStaff&&!(S.dlg.assignees.length===1&&S.dlg.assignees[0]===S.myStaff)){S.dlg.assignees=[S.myStaff];renderPicked();}
+  if(isNew)$('#t-h').textContent=on?'비공개 업무 등록':'업무 등록';else $('#t-h').textContent=on?'비공개 업무':'업무 상세';
+  const del=$('#t-delete');if(del&&t){const rq=!canDelTask(t);del.textContent=rq?'삭제 요청':'삭제';del.title=rq?`사진이 있는 업무는 ${adminLabel()}만 삭제할 수 있습니다. 눌러서 삭제를 요청합니다.`:'';}
+  privDlgLock();}
+function privDlgLock(){const cb=$('#t-priv');if(!cb||!S.dlg)return;const lock=S.dlg.pending.length>0;cb.disabled=lock||!S.canWrite;const h=$('#t-priv-row .priv-lock');if(h)h.hidden=!lock;}
+function dlgPriv(){if(!S.dlg)return false;if(S.dlg.path){const t=findTask(S.dlg.path);return !!(t&&t.priv);}return !!S.dlg.priv;}
+async function makePriv(t){if(!canMakePriv(t))return;const ok=await confirmDlg('비공개로 바꾸기',`「${t.title}」을(를) 나만 보는 비공개 업무로 바꿉니다.\n팀 현황·보고서·다른 직원 화면에서 사라집니다.`,'비공개로 바꾸기');if(!ok)return;
+  const data={...stripMeta(t),priv:true,updatedAt:nowISO(),updatedBy:myId()};
+  try{await dbSet(`${privBase()}/tasks/${t.id}`,data);await dbDelete(t.path);closeTask(true);toast('🔒 비공개 업무로 바꿨습니다. 내 업무 화면에서만 보입니다.');}catch{}}
+async function copyPhPublic(id){if(S.mode!=='firebase'||!S.fs)return {id,th:false};
+  const s=await S.fs.doc(phDoc(id,'photos')).get();if(!s.exists)return null;const d=s.data();const nid='p'+rid();const FV=firebase.firestore.FieldValue;
+  await fbWrite(S.fs.doc('photos/'+nid).set({type:d.type||'image/jpeg',at:nowISO(),by:myId()||'',uid:S.me.id||'',ts:FV.serverTimestamp(),...(d.b?{b:d.b}:{d:d.d})}));
+  let th=false;try{const ts=await S.fs.doc(phDoc(id,'thumbs')).get();if(ts.exists&&ts.data().b){await fbWrite(S.fs.doc('thumbs/'+nid).set({type:ts.data().type||'image/jpeg',b:ts.data().b}));th=true;}}catch{}
+  if(S.photoUrls[id])S.photoUrls[nid]=S.photoUrls[id];if(S.thumbUrls[id])S.thumbUrls[nid]=S.thumbUrls[id];return {id:nid,th};}
+async function makePub(t){if(!t||!t.priv||!S.canWrite)return;const n=t.photos.length;
+  const ok=await confirmDlg('팀에 공개하기',`「${t.title}」을(를) 팀에 공개합니다.\n팀 현황·보고서에 나타나며, 다시 비공개로 돌리거나${n?' 사진을 지우는':''} 일은 관리자만 할 수 있게 됩니다.`,'공개하기');if(!ok)return;
+  setSync('saving');try{const map={};for(const p of t.photos){if(!isPrivPh(p.id))continue;const r=await copyPhPublic(p.id);map[p.id]=r;}
+    const fix=id=>map[id]?map[id].id:id;
+    const data={...stripMeta(t),photos:t.photos.filter(p=>map[p.id]!==null).map(p=>map[p.id]?{...p,id:map[p.id].id,th:map[p.id].th}:p),logs:t.logs.map(l=>({...l,photos:l.photos.filter(x=>map[x]!==null).map(fix)})),updatedAt:nowISO(),updatedBy:myId()};delete data.priv;
+    const y=yearOf(data);ensureYear(y);await dbSet(`wl/${y}/tasks/${t.id}`,data);await dbDelete(t.path);
+    deleteAssets(Object.keys(map));closeTask(true);toast('팀에 공개했습니다. 팀 현황·보고서에 표시됩니다.');}
+  catch(e){writeError(e);}}
+
+/* ───────── 사진·서류 삭제 요청 ─────────
+   사진·서류(올린 파일) 삭제는 관리자만 할 수 있습니다. 다른 구성원은 '삭제 요청'을 보내고, 관리자는 알림함·총괄 화면에서 승인(삭제)하거나 반려합니다.
+   요청은 delreq/{id}에 저장 — 관리자는 모두, 구성원은 자기 요청만 읽을 수 있습니다(보안 규칙). */
+const DR_KIND={photo:'사진',task:'업무',file:'서류',ver:'서류 버전'};
+let DRU=null;
+function normDR(id,d){if(!d||typeof d!=='object'||!DR_KIND[d.kind])return null;const s=v=>typeof v==='string'?v:'';
+  return {id,kind:d.kind,title:s(d.title).slice(0,160),reason:s(d.reason).slice(0,500),uid:s(d.uid),by:s(d.by),name:s(d.name).slice(0,40),at:s(d.at),status:['open','done','rejected'].includes(d.status)?d.status:'open',
+    rAt:s(d.rAt),rBy:s(d.rBy),rName:s(d.rName).slice(0,40),rNote:s(d.rNote).slice(0,300),path:s(d.path),tid:s(d.tid),pid:s(d.pid),fid:s(d.fid),v:Number.isFinite(d.v)?d.v:0,th:d.th===true,n:Number.isFinite(d.n)?d.n:0};}
+function delreqSub(){if(DRU){try{DRU();}catch{}DRU=null;}S.delreqs=[];S.drReady=false;S.drDenied=false;if(!S.db)return;
+  const on=docs=>{const first=!S.drReady;const prev=new Set(S.delreqs.map(r=>r.id+'|'+r.status));
+    S.delreqs=docs.map(([id,d])=>normDR(id,d)).filter(r=>r&&(S.canEdit||r.uid===S.me.id)).sort((a,b)=>b.at.localeCompare(a.at));S.drReady=true;S.drDenied=false;
+    if(!first&&S.canEdit){const nw=S.delreqs.filter(r=>r.status==='open'&&!prev.has(r.id+'|open')&&r.uid!==S.me.id);if(nw.length)toast(nw.length>1?`삭제 요청 ${nw.length}건이 들어왔습니다. 알림(종)에서 확인하세요.`:`${nw[0].name||'구성원'}님이 ${DR_KIND[nw[0].kind]} 삭제를 요청했습니다. 알림(종)에서 확인하세요.`);}
+    if(!first&&!S.canEdit){const fin=S.delreqs.filter(r=>r.status!=='open'&&prev.has(r.id+'|open'));for(const r of fin.slice(0,2))toast(r.status==='done'?`삭제 요청하신 ${DR_KIND[r.kind]}이(가) 삭제되었습니다.`:`삭제 요청이 반려되었습니다${r.rNote?': '+r.rNote.slice(0,60):''}.`);}
+    drRefresh();};
+  const err=()=>{S.drDenied=true;drRefresh();};
+  if(S.mode==='firebase'&&S.fs){const col=S.fs.collection('delreq');const q=S.canEdit?col:col.where('uid','==',S.me.id||'-');DRU=q.onSnapshot(qs=>on(qs.docs.map(d=>[d.id,d.data()])),err);}
+  else DRU=S.db.collection('delreq').onSnapshot(snap=>on(snap.docs.filter(d=>d.exists).map(d=>[d.id,d.data()])),err);}
+function drRefresh(){ntfTick();if(S.view==='overview'||S.view==='docs')scheduleRender();if($('#dlg-dreqs').open)renderDreqs();if(S.dlg&&$('#dlg-task').open)refreshDialog();if(S.docDlg)refreshDocDlg();if(!$('#lightbox').hidden&&typeof LB!=='undefined'&&LB)lbDelSync(LB.list[LB.i]);}
+/* 관리자 이름 (요청 창에 '관리자(이기도)'로 표시) — 관리자가 열 때 app/admin 에 이름을 적어 둡니다. */
+let ADU=null,ADW=false;
+function adminNameSub(){if(ADU){try{ADU();}catch{}ADU=null;}if(!S.db)return;ADU=S.db.doc('app/admin').onSnapshot(s=>{const d=s.exists?s.data():null;S.adminName=d&&typeof d.name==='string'?d.name.slice(0,20):'';adminNameSync();},()=>{});}
+function adminNameSync(){if(!S.canEdit||ADW||!S.canWrite||!S.db)return;const n=myName();if(!n||!S.myStaff||n===S.adminName)return;ADW=true;S.db.doc('app/admin').set({name:n,at:nowISO()}).catch(()=>{ADW=false;});}
+const adminLabel=()=>S.adminName?`관리자(${S.adminName})`:'관리자';
+function extSubs(){privSub();delreqSub();adminNameSub();S.unsubs.push(()=>{for(const u of [PVU,DRU,ADU])try{u&&u();}catch{}PVU=DRU=ADU=null;S.privTasks=[];S.delreqs=[];});}
+/* 대상 찾기 */
+function taskOfPhoto(pid,hint){const h=hint&&hint.path?findTask(hint.path):null;if(h&&h.photos.some(p=>p.id===pid))return h;return S.tasks.find(t=>t.photos.some(p=>p.id===pid))||S.privTasks.find(t=>t.photos.some(p=>p.id===pid))||null;}
+function findTaskById(tid,path){return (path&&findTask(path))||S.tasks.find(t=>t.id===tid)||null;}
+function drExists(r){if(r.kind==='photo')return !!taskOfPhoto(r.pid,r);if(r.kind==='task')return !!findTaskById(r.tid,r.path);const f=S.files[r.fid];if(r.kind==='file')return !!f;return !!(f&&f.versions.some(x=>x.v===r.v));}
+function drTarget(o){if(o.kind==='photo'){const p=o.t.photos.find(x=>x.id===o.pid)||{id:o.pid};return {kind:'photo',title:o.t.title,path:o.t.path,tid:o.t.id,pid:o.pid,th:!!p.th};}
+  if(o.kind==='task'){const p=o.t.photos[0]||{};return {kind:'task',title:o.t.title,path:o.t.path,tid:o.t.id,pid:p.id||'',th:!!p.th,n:o.t.photos.length};}
+  if(o.kind==='file')return {kind:'file',title:o.f.title,fid:o.f.id,n:o.f.versions.length};
+  const ver=o.f.versions.find(x=>x.v===o.v)||{};return {kind:'ver',title:`${o.f.title} · v${o.v}${ver.name?' ('+ver.name+')':''}`.slice(0,160),fid:o.f.id,v:o.v};}
+const drKey=r=>r.kind+'|'+(r.kind==='photo'?r.pid:r.kind==='task'?r.tid:r.kind==='file'?r.fid:r.fid+'#'+r.v);
+const drOpenFor=o=>S.delreqs.find(r=>r.status==='open'&&drKey(r)===drKey(o))||null;
+function drWhatHTML(r){const ic=r.kind==='file'||r.kind==='ver'?'📄':'🗂';
+  return `<div class="dq-what">${r.pid?thumbImg({id:r.pid,th:r.th}):`<span class="fi">${ic}</span>`}<div><b>${esc(DR_KIND[r.kind])}</b><span>${esc(r.title||'(제목 없음)')}</span>${r.kind==='task'?`<small>진행 기록과 사진 ${r.n||0}장이 함께 지워집니다</small>`:r.kind==='file'?`<small>모든 버전(${r.n||1}개)이 함께 지워집니다</small>`:''}</div></div>`;}
+let DQ=null;
+function drAsk(o){if(!S.canWrite)return;const base=drTarget(o);const ex=drOpenFor(base);
+  if(ex){toast(`이미 삭제를 요청했습니다 (${timeAgo(ex.at)}). ${adminLabel()}가 처리하면 알림으로 알려 드립니다.`);return;}
+  DQ={mode:'ask',base};$('#dq-h').textContent='삭제 요청';$('#dq-what').innerHTML=drWhatHTML(base);
+  $('#dq-msg').textContent=`사진·서류 등 올린 파일은 ${adminLabel()}만 삭제할 수 있습니다. 요청을 보내면 관리자 알림함에 표시되고, 처리 결과를 알림으로 알려 드립니다.`;
+  $('#dq-reason-l').textContent='삭제가 필요한 이유';const ta=$('#dq-reason');ta.value='';ta.placeholder='예: 다른 현장 사진을 잘못 올렸습니다 / 개인정보가 찍혀 있습니다';
+  const go=$('#dq-go');go.textContent='삭제 요청 보내기';go.className='btn primary';const d=$('#dlg-dreq');if(!d.open)d.showModal();setTimeout(()=>ta.focus(),40);}
+function drRejectAsk(r){DQ={mode:'reject',req:r};$('#dq-h').textContent='삭제 요청 반려';$('#dq-what').innerHTML=drWhatHTML(r);
+  $('#dq-msg').textContent=`${r.name||'구성원'}님의 요청을 반려합니다. 파일은 그대로 남고, 요청한 사람에게 반려 알림이 갑니다.`;
+  $('#dq-reason-l').textContent='반려 사유 (선택)';const ta=$('#dq-reason');ta.value='';ta.placeholder='예: 보고서에 필요한 사진이라 남겨 둡니다';
+  const go=$('#dq-go');go.textContent='반려하기';go.className='btn';const d=$('#dlg-dreq');if(!d.open)d.showModal();setTimeout(()=>ta.focus(),40);}
+async function drSend(){if(!DQ)return;const txt=$('#dq-reason').value.trim().slice(0,500);const go=$('#dq-go');
+  if(DQ.mode==='ask'){if(txt.length<2){toast('삭제가 필요한 이유를 적어 주세요.','err');$('#dq-reason').focus();return;}
+    const doc={...DQ.base,reason:txt,uid:S.me.id||'',by:myId()||'',name:myName(),at:nowISO(),status:'open'};go.disabled=true;
+    try{await dbSet(`delreq/r${rid()}`,doc);$('#dlg-dreq').close();toast(`${adminLabel()}에게 삭제를 요청했습니다. 처리되면 알림으로 알려 드립니다.`);}catch{}finally{go.disabled=false;}}
+  else if(DQ.mode==='reject'){const r=DQ.req;go.disabled=true;
+    try{await dbUpdate(`delreq/${r.id}`,{status:'rejected',rAt:nowISO(),rBy:myId()||'',rName:myName(),rNote:txt});$('#dlg-dreq').close();toast('반려했습니다. 요청한 사람에게 알림이 갑니다.');}catch{}finally{go.disabled=false;}}}
+/* 관리자: 승인(삭제) */
+async function removePhoto(t,pid,note){const logs=t.logs.map(l=>({...l,photos:l.photos.filter(x=>x!==pid)})).filter(l=>!(l.kind==='photo'&&!l.photos.length));if(note)logs.push(note);
+  await updateTask(t,{photos:t.photos.filter(p=>p.id!==pid),logs});await deleteAssets([pid]);}
+async function fileDelPdf(f,ver){const p=ver&&ver.pdf;if(!p||p.store!=='fb'||!S.fs)return;const key=p.key||`${ver.v}p`;for(let i=0;i<p.n;i++){try{await S.fs.doc(`files/${f.id}/chunks/${key}_${i}`).delete();}catch{}}}
+async function docDeleteAll(f){for(const v of f.versions){await fileDelChunks(f,v);await fileDelPdf(f,v);}await dbDelete(`files/${f.id}`);}
+async function docDeleteVer(f,v){const ver=f.versions.find(x=>x.v===v);if(!ver)return false;if(f.versions.length<=1){await docDeleteAll(f);return true;}
+  await fileDelChunks(f,ver);await fileDelPdf(f,ver);const up={versions:f.versions.filter(x=>x.v!==v),updatedAt:nowISO(),updatedBy:myId()||''};if(f.thumbV===v){up.thumb='';up.thumbV=0;}
+  await dbUpdate(`files/${f.id}`,up);return true;}
+async function drApprove(r){if(!S.canEdit&&!S.preview)return;const what=`${DR_KIND[r.kind]} 「${r.title}」`;
+  const ok=await confirmDlg('삭제 승인',`${r.name||'구성원'}님의 요청으로 ${what}을(를) 삭제합니다.${r.reason?`\n요청 사유: ${r.reason}`:''}\n\n되돌릴 수 없습니다.`,'삭제');if(!ok)return;
+  let note='';setSync('saving');
+  try{if(r.kind==='photo'){const t=taskOfPhoto(r.pid,r);if(t)await removePhoto(t,r.pid,{at:nowISO(),by:myId(),kind:'note',text:`사진 1장을 삭제했습니다 (${r.name||'구성원'}님 요청${r.reason?' · '+r.reason.slice(0,80):''})`,issue:false,photos:[]});else{note='이미 업무에서 빠져 있었습니다';await deleteAssets([r.pid]);}}
+    else if(r.kind==='task'){const t=findTaskById(r.tid,r.path);if(t){await dbDelete(t.path);await deleteAssets(t.photos.map(p=>p.id));}else note='이미 삭제되어 있었습니다';}
+    else if(r.kind==='file'){const f=S.files[r.fid];if(f)await docDeleteAll(f);else note='이미 삭제되어 있었습니다';}
+    else if(r.kind==='ver'){const f=S.files[r.fid];if(!(f&&await docDeleteVer(f,r.v)))note='이미 삭제되어 있었습니다';}
+    await dbUpdate(`delreq/${r.id}`,{status:'done',rAt:nowISO(),rBy:myId()||'',rName:myName(),rNote:note});setSync('ok');toast(note?`요청을 처리했습니다 (${note}).`:'삭제했습니다. 요청한 사람에게 알림이 갑니다.');}
+  catch(e){}}
+/* 삭제 요청 목록 창 */
+function openDreqs(focus){S.dqFocus=focus||'';const r=focus&&S.delreqs.find(x=>x.id===focus);S.dqTab=r&&r.status!=='open'?'done':'open';renderDreqs();const d=$('#dlg-dreqs');if(!d.open)d.showModal();}
+function dqItemHTML(r,admin){const gone=!drExists(r);const st=r.status==='open'?'<span class="pill s-doing">처리 대기</span>':r.status==='done'?'<span class="pill s-done">삭제됨</span>':'<span class="pill s-hold">반려</span>';
+  return `<li class="dq${r.id===S.dqFocus?' focus':''}"><div class="dq-th">${r.pid&&!gone?thumbImg({id:r.pid,th:r.th}):`<span class="fi">${r.kind==='file'||r.kind==='ver'?'📄':'🗂'}</span>`}</div>
+    <div class="dq-m"><b>${esc(DR_KIND[r.kind])} · ${esc(r.title||'(제목 없음)')}</b><small>${st} ${esc(r.name||'구성원')} · ${hhmm(r.at)}${gone&&r.status==='open'?' · <span class="warn">이미 지워짐</span>':''}</small>${r.reason?`<p>${esc(r.reason)}</p>`:''}
+      ${r.status!=='open'?`<small class="dq-r">${r.status==='done'?'삭제':'반려'} · ${esc(r.rName||'관리자')} · ${hhmm(r.rAt)}${r.rNote?' — '+esc(r.rNote):''}</small>`:''}</div>
+    <div class="dq-a">${!gone?`<button type="button" class="btn sm" data-dq-view="${esc(r.id)}">보기</button>`:''}${admin&&r.status==='open'?`<button type="button" class="btn sm danger" data-dq-ok="${esc(r.id)}">삭제</button><button type="button" class="btn sm ghost" data-dq-no="${esc(r.id)}">반려</button>`:''}${!admin&&r.status==='open'&&r.uid===S.me.id?`<button type="button" class="btn sm ghost" data-dq-cancel="${esc(r.id)}">요청 취소</button>`:''}</div></li>`;}
+function renderDreqs(){const admin=!!S.canEdit;const open=S.delreqs.filter(r=>r.status==='open');const done=S.delreqs.filter(r=>r.status!=='open');const tab=S.dqTab==='done'?'done':'open';const list=tab==='open'?open:done.slice(0,60);
+  $('#dqs-h').textContent=admin?'삭제 요청 관리':'내 삭제 요청';
+  $('#dqs-sub').textContent=admin?'직원이 요청한 사진·서류 삭제를 확인하고 처리합니다. 삭제는 되돌릴 수 없습니다.':`사진·서류 삭제는 ${adminLabel()}만 할 수 있습니다. 보낸 요청과 처리 결과입니다.`;
+  $('#dqs-tabs').innerHTML=`<button type="button" data-dq-tab="open" aria-pressed="${tab==='open'}">처리 대기 ${open.length}</button><button type="button" data-dq-tab="done" aria-pressed="${tab==='done'}">처리 완료 ${done.length}</button>`;
+  $('#dqs-list').innerHTML=(S.drDenied?'<li class="none">삭제 요청을 불러올 권한이 없습니다. 관리자에게 새 보안 규칙(firestore.rules) 게시를 요청하세요.</li>':'')+(list.length?list.map(r=>dqItemHTML(r,admin)).join(''):`<li class="none">${tab==='open'?(admin?'처리할 삭제 요청이 없습니다.':'처리를 기다리는 요청이 없습니다.'):'처리된 요청이 없습니다.'}</li>`);}
+function drView(r){if(r.kind==='photo'){const t=taskOfPhoto(r.pid,r);$('#dlg-dreqs').close();openLightbox([{id:r.pid,cap:t?t.title:r.title,path:t?t.path:''}],0);return;}
+  if(r.kind==='task'){const t=findTaskById(r.tid,r.path);if(t){$('#dlg-dreqs').close();openTask(t);}return;}
+  const f=S.files[r.fid];if(!f)return;$('#dlg-dreqs').close();if(r.kind==='ver'){const ver=f.versions.find(x=>x.v===r.v);if(ver&&(!f.restricted||canViewRestricted())){openViewer(docViewOpts(f,ver));return;}}openDoc(f.id);}
+function drBanner(){if(!S.canEdit)return '';const n=S.delreqs.filter(r=>r.status==='open').length;if(!n)return '';
+  return `<div class="dq-banner"><b>삭제 요청 ${n}건</b><span>직원이 사진·서류 삭제를 요청했습니다.</span><button type="button" class="btn sm primary" data-dq-open>확인하기</button></div>`;}
+/* 업무 상세 창 사진 ✕ 버튼 */
+function rmBtnHTML(ph){const t=S.dlg&&S.dlg.path?findTask(S.dlg.path):null;const pend=!!(S.dlg&&S.dlg.pending.some(p=>p.id===ph.id));
+  if(pend||!t||canDelSaved(t))return `<button type="button" class="x" data-rm-photo="${esc(ph.id)}" aria-label="${pend?'사진 빼기':'사진 삭제'}" title="${pend?'사진 빼기':'사진 삭제'}">✕</button>`;
+  const rq=drOpenFor({kind:'photo',pid:ph.id});
+  return rq?`<span class="dq-badge" title="${esc(adminLabel())}에게 삭제를 요청했습니다">삭제 요청됨</span>`:`<button type="button" class="x rq" data-rm-photo="${esc(ph.id)}" aria-label="삭제 요청" title="삭제 요청 — 사진 삭제는 관리자만 할 수 있습니다">✕</button>`;}
+/* 사진 크게 보기: 삭제 / 삭제 요청 */
+function lbDelSync(it){const b=$('#lb-del');if(!b)return;const t=it?taskOfPhoto(it.id,it):null;if(!t||!S.canWrite){b.hidden=true;return;}
+  const can=canDelSaved(t);const rq=!can&&drOpenFor({kind:'photo',pid:it.id});b.hidden=false;b.textContent=can?'사진 삭제':rq?'삭제 요청됨':'삭제 요청';b.disabled=!!rq;b.dataset.pid=it.id;b.dataset.path=t.path;}
+async function lbDel(b){const t=findTask(b.dataset.path)||taskOfPhoto(b.dataset.pid);const pid=b.dataset.pid;if(!t)return;
+  if(!canDelSaved(t)){closeLB();drAsk({kind:'photo',t,pid});return;}
+  const ok=await confirmDlg('사진 삭제','이 사진을 업무와 보고서에서 삭제합니다. 되돌릴 수 없습니다.','삭제');if(!ok)return;
+  try{await removePhoto(t,pid);LB.list=LB.list.filter(x=>x.id!==pid);if(!LB.list.length)closeLB();else{LB.i=Math.min(LB.i,LB.list.length-1);showLB();}toast('사진을 삭제했습니다.');}catch{}}
+
+document.addEventListener('change',e=>{const T=e.target;
+  if(T.id==='t-priv'&&S.dlg&&!S.dlg.path){S.dlg.priv=T.checked&&privOK();privDlgSync(null);}});
+document.addEventListener('toggle',e=>{if(e.target.classList&&e.target.classList.contains('priv-done'))S.privDoneOpen=e.target.open;},true);
+document.addEventListener('click',async e=>{const T=e.target;
+  if(T.closest('#qa-priv')){if(!privOK())return;S.qa.priv=!S.qa.priv;qaPrivSync();const ta=$('#qa-text');if(ta)ta.focus();return;}
+  if(T.closest('[data-new-priv]')){openTask(null,{priv:true});return;}
+  if(T.closest('[data-priv-pub]')){const t=S.dlg&&findTask(S.dlg.path);if(t)makePub(t);return;}
+  if(T.closest('[data-priv-make]')){const t=S.dlg&&findTask(S.dlg.path);if(t)makePriv(t);return;}
+  if(T.closest('[data-dq-open]')){$('#ntf-pop').hidden=true;openDreqs();return;}
+  const tb=T.closest('[data-dq-tab]');if(tb){S.dqTab=tb.dataset.dqTab;renderDreqs();return;}
+  const dv=T.closest('[data-dq-view]');if(dv){const r=S.delreqs.find(x=>x.id===dv.dataset.dqView);if(r)drView(r);return;}
+  const dk=T.closest('[data-dq-ok]');if(dk){const r=S.delreqs.find(x=>x.id===dk.dataset.dqOk);if(r)await drApprove(r);return;}
+  const dn=T.closest('[data-dq-no]');if(dn){const r=S.delreqs.find(x=>x.id===dn.dataset.dqNo);if(r)drRejectAsk(r);return;}
+  const dc=T.closest('[data-dq-cancel]');if(dc){const r=S.delreqs.find(x=>x.id===dc.dataset.dqCancel);if(!r)return;const ok=await confirmDlg('요청 취소','이 삭제 요청을 취소할까요?','요청 취소');if(!ok)return;try{await dbDelete(`delreq/${r.id}`);toast('삭제 요청을 취소했습니다.');}catch{}return;}
+  if(T.closest('#dq-go')){drSend();return;}
+  const lb=T.closest('#lb-del');if(lb){lbDel(lb);return;}
+  if(T.closest('#doc-dreq')){const f=S.docDlg&&S.files[S.docDlg.id];if(f){if(drOpenFor({kind:'file',fid:f.id})){toast('이미 삭제를 요청했습니다.');return;}drAsk({kind:'file',f});}return;}
+  const vr=T.closest('[data-dv-req]');if(vr){const f=S.docDlg&&S.files[S.docDlg.id];if(f)drAsk({kind:'ver',f,v:+vr.dataset.dvReq});return;}
+  const vd=T.closest('[data-dv-del]');if(vd){const f=S.docDlg&&S.files[S.docDlg.id];if(!f||!(S.canEdit||S.preview))return;const v=+vd.dataset.dvDel;const ver=f.versions.find(x=>x.v===v);if(!ver)return;
+    const ok=await confirmDlg('버전 삭제',`「${f.title}」 v${v} (${ver.name})을(를) 삭제합니다.${f.versions.length<=1?'\n마지막 버전이라 서류 전체가 지워집니다.':''}\n되돌릴 수 없습니다.`,'삭제');if(!ok)return;
+    try{const all=f.versions.length<=1;await docDeleteVer(f,v);toast(all?'서류를 삭제했습니다.':`v${v}을(를) 삭제했습니다.`);if(all)$('#dlg-doc').close();}catch{}return;}
+});
 
 /* ───────── 시작 ───────── */
 function boot(){
@@ -3378,6 +3642,7 @@ function boot(){
     S.unsubs.push(db.collection('staff').onSnapshot(onStaff,subErr));
     S.unsubs.push(db.doc('app/config').onSnapshot(onConfig,subErr));
     S.unsubs.push(db.collection('files').onSnapshot(onFiles,filesErr));
+    extSubs();
     S.unsubs.push(db.doc('app/legal').onSnapshot(onLegalCfg,legalErr));
     S.unsubs.push(db.doc('app/legalLog').onSnapshot(onLegalLog,legalErr));
     const y=+today().slice(0,4);[y-1,y,y+1].forEach(ensureYear);
@@ -3389,7 +3654,7 @@ function startPreview(msg){S.preview=true;S.mode='';S.db=new MemoryDB();S.canEdi
   showBanner(msg||'미리보기 모드입니다. claude.ai에 로그인한 상태로 열면 팀원과 실시간으로 공유되며, 지금 입력한 내용은 저장되지 않습니다.');
   S.db.collection('staff').onSnapshot(onStaff);
   S.db.doc('app/config').onSnapshot(onConfig);
-  S.db.collection('files').onSnapshot(onFiles);S.db.doc('app/legal').onSnapshot(onLegalCfg);S.db.doc('app/legalLog').onSnapshot(onLegalLog);
+  S.db.collection('files').onSnapshot(onFiles);S.db.doc('app/legal').onSnapshot(onLegalCfg);S.db.doc('app/legalLog').onSnapshot(onLegalLog);extSubs();
   const y=+today().slice(0,4);[y-1,y,y+1].forEach(ensureYear);setSync('preview');}
 boot();
 </script>
