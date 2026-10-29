@@ -167,6 +167,17 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
+    // 접속 요청 — 아직 허용되지 않은 사람이 본인 이메일로 요청, 관리자만 목록 보기·삭제
+    match /joinreq/{uid} {
+      allow create, update: if signedIn() && request.auth.uid == uid
+        && request.resource.data.email == myEmail()
+        && request.resource.data.keys().hasOnly(['email', 'name', 'at'])
+        && request.resource.data.name is string && request.resource.data.name.size() <= 40
+        && request.resource.data.at is string && request.resource.data.at.size() <= 40;
+      allow get: if signedIn() && (request.auth.uid == uid || isAdmin());
+      allow list, delete: if isAdmin();
+    }
+
     // 비공개 업무·사진 — 본인만 (관리자 포함 다른 사람은 읽을 수 없음)
     match /priv/{uid}/{document=**} {
       allow read, write: if isMember() && request.auth.uid == uid;

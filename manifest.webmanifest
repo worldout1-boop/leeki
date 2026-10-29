@@ -1,0 +1,21 @@
+{
+  "name": "관리부 통합 업무일지",
+  "short_name": "업무일지",
+  "description": "관리부 업무 기록·공유, 그룹웨어 소식, 정기 일정",
+  "lang": "ko",
+  "start_url": "./#my",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f1f4f8",
+  "theme_color": "#1f3a5f",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ],
+  "shortcuts": [
+    {"name": "내 업무", "url": "./#my"},
+    {"name": "그룹웨어 소식", "url": "./#gw"},
+    {"name": "달력", "url": "./#calendar"}
+  ]
+}

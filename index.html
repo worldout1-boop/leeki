@@ -2,7 +2,14 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1f3a5f">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="업무일지">
 <title>관리부 통합 업무일지</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -375,7 +382,7 @@ dialog::backdrop{background:rgba(8,16,28,.5)}
 .chipbtn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 .feed .line small{color:var(--ink-3)}
 .roster{display:grid;gap:6px}
-.roster .rr{display:grid;grid-template-columns:1.1fr 1fr 1fr 86px 74px auto;gap:6px;align-items:center}
+.roster .rr{display:grid;grid-template-columns:1fr .9fr 1fr 86px 1.3fr 66px auto;gap:6px;align-items:center}
 .roster .rr .js{font-size:11.5px;color:var(--ink-3);white-space:nowrap}
 .roster .rr .js.on{color:var(--done);font-weight:600}
 .sc .nj{font-size:11px;color:var(--ink-3);border:1px dashed var(--line);border-radius:9px;padding:0 6px;line-height:17px}
@@ -934,6 +941,56 @@ button.gs-it:has(.fi){grid-template-columns:36px minmax(0,1fr)}
 .sch-set{margin-top:14px;border:1px solid var(--line);border-radius:var(--r);padding:8px 12px}.sch-set summary{cursor:pointer;font-weight:600;font-size:13px}
 .sch-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;margin-top:10px}.sch-grid label{display:flex;flex-direction:column;gap:4px;font-size:12.5px;color:var(--ink-2)}.sch-grid .full{grid-column:1/-1}
 @media (max-width:640px){.sch-list li{grid-template-columns:70px 1fr;}.sch-list .t{display:none}.sch-list .a{grid-column:1/-1;justify-content:flex-start}.sch-grid{grid-template-columns:1fr}.sch-rule{flex-direction:column;gap:2px}}
+/* ── 16차: 사용성 개선 */
+.mnav,.mnav-sheet{display:none}
+@media (max-width:760px){
+  .tabs{display:none}
+  .mnav{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:45;background:var(--surface);border-top:1px solid var(--line);padding:4px 4px calc(4px + env(safe-area-inset-bottom));box-shadow:0 -2px 10px rgba(16,32,56,.06)}
+  .mnav button{position:relative;display:flex;flex-direction:column;align-items:center;gap:2px;border:0;background:none;color:var(--ink-3);font:inherit;font-size:11px;font-weight:600;padding:6px 0 4px;cursor:pointer;border-radius:8px}
+  .mnav button svg{width:23px;height:23px}
+  .mnav button[aria-current="page"]{color:var(--accent)}
+  .mnav button[aria-current="page"] svg{stroke-width:2.3}
+  .mnav .mn-n{position:absolute;top:2px;left:calc(50% + 6px);min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:var(--late);color:#fff;font-size:10px;font-style:normal;line-height:16px;text-align:center}
+  .mnav .mn-n[hidden]{display:none}
+  .mnav-sheet:not([hidden]){display:block;position:fixed;left:8px;right:8px;bottom:calc(68px + env(safe-area-inset-bottom));z-index:46;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:8px}
+  .mnav-sheet .ms-in{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+  .mnav-sheet a,.mnav-sheet button{display:flex;align-items:center;justify-content:center;min-height:46px;border-radius:10px;border:1px solid var(--line-2);background:var(--surface-2);color:var(--ink);text-decoration:none;font:inherit;font-size:14px;font-weight:600;cursor:pointer}
+  .mnav-sheet a.on{border-color:var(--accent);color:var(--accent)}
+  .fab{bottom:calc(72px + env(safe-area-inset-bottom))}
+  main{padding-bottom:150px}
+  .sch-strip{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding:6px 10px;gap:6px}
+  .sch-strip::-webkit-scrollbar{display:none}
+  .sch-strip .sch-chip{flex:none;white-space:nowrap}
+  .sch-strip .sch-chip small{display:none}
+  .sch-strip>b{flex:none}
+  .sch-strip .sp{display:none}
+  .sch-strip .btn{flex:none}
+  .ntf-pop{bottom:auto}
+}
+@media (max-width:640px){
+  .tbl-wrap{overflow:visible;background:none;border:0}
+  table.lst{min-width:0}
+  table.lst thead{display:none}
+  table.lst tbody{display:flex;flex-direction:column;gap:8px}
+  table.lst tr{display:grid;grid-template-columns:auto 1fr auto;grid-template-areas:"s t t" "c w d";gap:6px 8px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:10px 12px}
+  table.lst td{padding:0!important;border:0!important}
+  table.lst td:nth-child(1){grid-area:s}table.lst td:nth-child(3){grid-area:t;font-weight:600;line-height:1.4}table.lst td:nth-child(2){grid-area:c}table.lst td:nth-child(6){grid-area:w;font-size:12.5px;color:var(--ink-2)}table.lst td:nth-child(8){grid-area:d;font-size:12.5px;color:var(--ink-3);text-align:right}
+  table.lst td:nth-child(4),table.lst td:nth-child(5),table.lst td:nth-child(7),table.lst td:nth-child(9),table.lst td:nth-child(10){display:none}
+  table.lst td:nth-child(2) div{display:none}
+}
+html.big{zoom:1.12}
+.cal-opts{display:inline-flex;gap:12px;flex-wrap:wrap;align-items:center;margin-left:8px}
+.cal-opts .chk{font-size:12.5px;color:var(--ink-2)}
+#dlg-task .t-adv{margin-left:auto;margin-right:6px}
+#dlg-task.simple .f:has(#t-scope),#dlg-task.simple .f:has(#t-prio),#dlg-task.simple .f:has(#t-repeat),#dlg-task.simple .f:has(#t-progress),#dlg-task.simple .f:has(#t-assignee-text),#dlg-task.simple #t-ph-tools,#dlg-task.simple #t-photo-opt{display:none}
+.bcol .more{text-align:center;padding:8px}
+.ux-usage{margin-top:10px}.ux-usage .meter{margin:6px 0}
+.jr-box{display:flex;flex-direction:column;gap:6px;margin-top:10px;padding-top:10px;border-top:1px solid var(--line-2)}
+.jr-box label{font-size:12px;font-weight:600;color:var(--ink-2)}
+.jr-box input{height:38px;border:1px solid var(--line);border-radius:8px;padding:0 10px;font:inherit}
+.ntf-pop .ic.t-wk{background:var(--done)}.ntf-pop .ic.t-join{background:#b45309}.ntf-pop .ic.t-bk{background:var(--hold)}
+.g-admin{margin-top:10px;font-size:11.5px;color:var(--ink-3)}.g-admin summary{cursor:pointer}
+.cal-top{display:flex;align-items:center;gap:8px;margin:0 0 8px}.cal-top .cal-opts{margin-left:0}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -1291,12 +1348,20 @@ button.gs-it:has(.fi){grid-template-columns:36px minmax(0,1fr)}
 </dialog>
 <div id="toasts" aria-live="polite"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.15/locales/ko.global.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.2/dist/browser-image-compression.js"></script>
+<script>
+/* 외부 도구는 화면을 막지 않고 뒤에서 불러옵니다(달력·끌어 옮기기는 바로, 엑셀·차트·사진 줄이기는 첫 화면 뒤에). wlLib(이름)으로 기다릴 수 있습니다. */
+(function(){var J='https://cdn.jsdelivr.net/npm/';var L={sortable:[J+'sortablejs@1.15.6/Sortable.min.js'],fc:[J+'fullcalendar@6.1.15/index.global.min.js',J+'@fullcalendar/core@6.1.15/locales/ko.global.min.js'],chart:[J+'chart.js@4.4.7/dist/chart.umd.js'],xlsx:[J+'xlsx@0.18.5/dist/xlsx.full.min.js'],imgc:[J+'browser-image-compression@2.0.2/dist/browser-image-compression.js']};var P={};
+function one(src){return new Promise(function(res,rej){var s=document.createElement('script');s.src=src;s.async=false;s.onload=function(){res();};s.onerror=function(){s.remove();rej(new Error('load '+src));};document.head.appendChild(s);});}
+window.wlLib=function(n){if(!L[n])return Promise.resolve();if(!P[n]){P[n]=L[n].reduce(function(p,src){return p.then(function(){return one(src);});},Promise.resolve()).then(function(){try{document.dispatchEvent(new CustomEvent('wl-lib',{detail:n}));}catch(e){}},function(e){delete P[n];throw e;});}return P[n];};
+['sortable','fc'].forEach(function(n){window.wlLib(n).catch(function(){});});
+var later=function(){['imgc','chart','xlsx'].forEach(function(n){window.wlLib(n).catch(function(){});});};
+if(document.readyState==='complete')setTimeout(later,800);else window.addEventListener('load',function(){setTimeout(later,800);});})();
+</script>
+
+
+
+
+
 <script>
 'use strict';
 /* ───────── 기준 정보 ───────── */
@@ -1559,11 +1624,11 @@ const realSite=x=>!!x&&x!==SITE_TBD&&staffSites().includes(x);
 function staffSites(){const s=S.config.sites.filter(x=>x!=='전사');return s.length?s:S.config.sites.slice();}
 function teamSites(){const base=staffSites();const extra=[...new Set(staffList().map(s=>s.site).filter(s=>s&&!base.includes(s)))].sort((a,b)=>(a===SITE_TBD)-(b===SITE_TBD));return [...base,...extra];}
 function onStaff(snap){const m={};for(const d of snap.docs){if(!d.exists)continue;const v=d.data()||{};if(typeof v.name!=='string'||!v.name.trim())continue;
-    m[d.id]={id:d.id,name:v.name.trim().slice(0,20),site:typeof v.site==='string'?v.site.slice(0,30):'',role:typeof v.role==='string'?v.role.slice(0,30):'',active:v.active!==false,state:['leave','dispatch','none'].includes(v.state)?(v.state==='none'?'':v.state):inferState(v.role),uid:typeof v.uid==='string'?v.uid:'',joinedAt:typeof v.joinedAt==='string'?v.joinedAt:'',order:Number.isFinite(v.order)?v.order:999};}
+    m[d.id]={id:d.id,name:v.name.trim().slice(0,20),site:typeof v.site==='string'?v.site.slice(0,30):'',role:typeof v.role==='string'?v.role.slice(0,30):'',active:v.active!==false,state:['leave','dispatch','none'].includes(v.state)?(v.state==='none'?'':v.state):inferState(v.role),email:typeof v.email==='string'?v.email.trim().toLowerCase().slice(0,80):'',uid:typeof v.uid==='string'?v.uid:'',joinedAt:typeof v.joinedAt==='string'?v.joinedAt:'',order:Number.isFinite(v.order)?v.order:999};}
   S.staff=m;resolveMe();scheduleRender();refreshPerson();
   if(S.myStaff&&!S.askedMe&&S.canWrite&&!realSite((S.staff[S.myStaff]||{}).site)){S.askedMe=true;setTimeout(()=>{if(!document.querySelector('dialog[open]'))openMe();},500);}
   if(!S.myStaff&&!S.askedMe&&S.canWrite){S.askedMe=true;setTimeout(()=>{if(!S.myStaff&&!document.querySelector('dialog[open]'))openMe();},500);}}
-function resolveMe(){const ls=lsGet(meKey());let id=null;const byUid=S.me.id?Object.values(S.staff).find(x=>x.active&&x.uid&&x.uid===S.me.id):null;if(S.me.id&&S.staff[S.me.id]&&S.staff[S.me.id].active)id=S.me.id;else if(byUid)id=byUid.id;else if(ls&&S.staff[ls]&&S.staff[ls].active)id=ls;
+function resolveMe(){const ls=lsGet(meKey());let id=null;const byUid=S.me.id?Object.values(S.staff).find(x=>x.active&&x.uid&&x.uid===S.me.id):null;if(S.me.id&&S.staff[S.me.id]&&S.staff[S.me.id].active)id=S.me.id;else if(byUid)id=byUid.id;else if(ls&&S.staff[ls]&&S.staff[ls].active)id=ls;else{const bm=uxMailStaff();if(bm){id=bm.id;setTimeout(()=>uxLinkMail(bm.id),0);}}
   if(S.myStaff!==id){S.myStaff=id;if(!S.qa.siteTouched)S.qa.site='';}updateMeChip();}
 function updateMeChip(){const b=$('#me-chip');if(!b)return;const s=S.staff[S.myStaff];
   b.innerHTML=s?`${avHTML(s.id)}<span class="nm">${esc(s.name)}</span><small>${esc(s.site)}</small>`:`${avHTML('')}<span class="nm">내 정보 등록</span>`;}
@@ -1571,12 +1636,12 @@ function openMe(){const d=$('#dlg-me');const s=S.staff[S.myStaff];const list=sta
   $('#me-h').textContent=s?'내 정보':'처음 오셨네요 — 본인 등록';
   $('#me-intro').textContent=s?'이름·근무 건물·담당 업무를 바꾸면 팀 현황과 보고서에 바로 반영됩니다.':'업무를 공유하려면 한 번만 등록하면 됩니다. 이름과 근무 건물은 팀 현황과 보고서에 표시됩니다.';
   if(!s&&list.length){const sites=teamSites();pick.hidden=false;
-    pick.innerHTML=`<p class="help" style="margin:0">명단에 내 이름이 있으면 눌러서 선택하세요.</p>`+sites.map(site=>{const ps=list.filter(x=>x.site===site);return ps.length?`<div><h3>${esc(site)}</h3><div class="btns">${ps.map(x=>`<button type="button" data-me-pick="${esc(x.id)}">${avHTML(x.id,'sm')}<span>${esc(x.name)}</span>${x.role?`<small>${esc(x.role)}</small>`:''}</button>`).join('')}</div></div>`:'';}).join('')+`<p class="help" style="margin:0">명단에 없으면 아래에 새로 등록하세요.</p>`;}
+    pick.innerHTML=`<p class="help" style="margin:0"><b>명단에서 내 이름을 눌러 주세요.</b> (새로 적으면 같은 사람이 두 번 등록됩니다)</p>`+sites.map(site=>{const ps=list.filter(x=>x.site===site);return ps.length?`<div><h3>${esc(site)}</h3><div class="btns">${ps.map(x=>`<button type="button" data-me-pick="${esc(x.id)}">${avHTML(x.id,'sm')}<span>${esc(x.name)}</span>${x.role?`<small>${esc(x.role)}</small>`:''}</button>`).join('')}</div></div>`:'';}).join('')+`<p class="help" style="margin:0">명단에 없으면 아래에 새로 등록하세요.</p>`;}
   else pick.hidden=true;
   const sites=staffSites().slice();if(s&&s.site&&s.site!==SITE_TBD&&!sites.includes(s.site))sites.push(s.site);
   fillSelect($('#me-site'),sites.map(x=>[x,x]),s&&sites.includes(s.site)?s.site:sites[0]);
   if(s&&!realSite(s.site))$('#me-intro').textContent=`${s.name}님, 근무 건물을 선택하고 저장해 주세요. 팀 현황에 건물별로 표시됩니다.`;
-  $('#me-name').value=s?s.name:(S.me.name||'');$('#me-role').value=s?s.role:'';
+  $('#me-name').value=s?s.name:(list.length?'':(S.me.name||''));$('#me-role').value=s?s.role:'';
   $('#me-switch').hidden=!(s&&s.id!==S.me.id);
   const fbm=S.mode==='firebase';$('#me-logout').hidden=!fbm;$('#me-account').hidden=!fbm;if(fbm)$('#me-account').textContent=`로그인 계정: ${S.email}${S.canEdit?' (관리자)':''}`;
   $$('#me-form input,#me-form select').forEach(el=>el.disabled=!S.canWrite);
@@ -1775,6 +1840,8 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>총괄 현황 (관리자)</b><span><a href="#overview">총괄</a>에서 직원별 기록·지연·이슈를 한눈에 보고, 단톡방 양식 주간업무일지와 일일 현황 텍스트를 바로 복사합니다.</span></li>
       <li><b>업무 분류 · 자동 분류</b><span>업무는 <em>대분류 › 중분류 › 소분류</em>로 나눕니다 — 재무·회계 · 인사·총무 · 시설·공무 · 안전·보건 · 기타(업무분장·국가직무능력표준 참고). 분류를 <em>자동 분류</em> 그대로 두고 등록하면 업무 내용을 읽어 알아서 분류합니다. 칸반·달력·목록 위의 대분류 탭으로 모아 봅니다.</span></li>
       <li><b>전체 검색</b><span>오른쪽 위 돋보기(또는 Ctrl+K)를 누르면 업무·진행 기록·특이사항·서류 내용·법정 업무·그룹웨어 소식을 한 번에 찾습니다. 띄어쓰기는 상관없습니다.</span></li>
+      <li><b>휴대폰에서</b><span>아래쪽 탭(내 업무·팀 현황·달력·그룹웨어·더보기)으로 이동합니다. 브라우저 메뉴의 <em>홈 화면에 추가</em>(아이폰은 공유 › 홈 화면에 추가)를 누르면 앱처럼 아이콘으로 열립니다. 글자가 작으면 <em>더보기 › 글자 크게</em>.</span></li>
+      <li><b>달력 보기</b><span>달력 아래에서 <em>내 업무만 · 완료 숨김 · 여러 날 업무는 마감일에만</em>을 고를 수 있습니다(이 기기에 기억). 칸반의 완료 칸은 이번 주 완료만 보이고, <em>지난 완료 보기</em>로 더 볼 수 있습니다.</span></li>
       <li><b>정기 일정</b><span>월례조회(매월 첫째 월요일 08:30 군포공장 5층 식당, 3·6·9·12월 법정 의무교육)와 관리부 업무회의(매주 목요일 16:00 안양본사 6층 대회의실, 공휴일·월례조회 주간과 전 주는 쉬고 조회 후 진행)가 달력과 내 업무 화면에 표시되고 전날·당일 알림이 옵니다. 공휴일이면 날짜가 자동으로 옮겨지고, 그룹웨어 공지가 오면 그 날짜로 확정됩니다. 관리자는 달력의 <em>정기 일정</em>에서 날짜를 바꾸거나 쉼으로 지정할 수 있습니다.</span></li>
       <li><b>그룹웨어 소식</b><span>회사 그룹웨어(업무연락·공지사항·경조사 등) 새 글을 Claude가 평일 08~19시 매시간 확인해 요약합니다. 상단 <a href="#gw">그룹웨어</a>에서 요약·일정·관리부 할 일을 보고, 필요한 글은 <em>업무로 등록</em>을 누르면 내용이 채워진 등록 창이 열립니다. 새 글은 알림(종)에도 표시됩니다.</span></li>
       <li><b>🔒 비공개 업무</b><span>내 업무 입력란의 <em>🔒 나만 보기</em>를 켜고 등록하면 나만 보는 업무가 됩니다. 관리자·다른 직원에게 보이지 않고 팀 현황·총괄·보고서·주간업무일지에도 들어가지 않습니다. 업무 상세에서 <em>팀에 공개하기</em>로 언제든 공개할 수 있습니다.</span></li>
@@ -1877,7 +1944,7 @@ async function inflateRaw(u8){try{const f=window.XLSX&&XLSX.CFB&&XLSX.CFB.utils&
   try{for(;;){const {done,value}=await rd.read();if(done)break;parts.push(value);len+=value.length;}}catch(e){if(!len)throw {userMsg:'한글(hwp) 본문을 풀지 못했습니다. PDF로 저장해 올려 주세요.'};}
   const out=new Uint8Array(len);let o=0;for(const p of parts){out.set(p,o);o+=p.length;}return out;}
 function hwpParaText(u8){let s='';const dv=new DataView(u8.buffer,u8.byteOffset,u8.byteLength);for(let i=0;i+1<u8.length;){const c=dv.getUint16(i,true);if(c<32){if(c===10){s+='\n';i+=2;}else if(c===13||c===0){i+=2;}else if(c>=24){s+=' ';i+=2;}else if(c===9){s+=' ';i+=16;}else i+=16;}else{s+=String.fromCharCode(c);i+=2;}}return s;}
-async function hwpText(buf){if(!window.XLSX||!XLSX.CFB)throw {userMsg:'한글 파일 읽기 도구를 불러오지 못했습니다.'};let cfb;try{cfb=XLSX.CFB.read(new Uint8Array(buf),{type:'array'});}catch{throw {userMsg:'한글(hwp) 파일을 열 수 없습니다. 파일이 손상되었거나 HWP 5.0 이전 형식입니다.'};}
+async function hwpText(buf){if(!window.XLSX)await wlLib('xlsx').catch(()=>{});if(!window.XLSX||!XLSX.CFB)throw {userMsg:'한글 파일 읽기 도구를 불러오지 못했습니다.'};let cfb;try{cfb=XLSX.CFB.read(new Uint8Array(buf),{type:'array'});}catch{throw {userMsg:'한글(hwp) 파일을 열 수 없습니다. 파일이 손상되었거나 HWP 5.0 이전 형식입니다.'};}
   const fh=XLSX.CFB.find(cfb,'/FileHeader');if(!fh)throw {userMsg:'한글(hwp) 파일 형식이 아닙니다.'};const h=new Uint8Array(fh.content);const props=new DataView(h.buffer,h.byteOffset,h.byteLength).getUint32(36,true);
   if(props&2)throw {userMsg:'암호가 걸린 한글 문서는 읽을 수 없습니다. 암호를 풀고 다시 올려 주세요.'};if(props&4)throw {userMsg:'배포용 한글 문서는 읽을 수 없습니다. PDF로 저장해 올려 주세요.'};
   const lines=[];for(let n=0;n<50;n++){const e=XLSX.CFB.find(cfb,'/BodyText/Section'+n);if(!e)break;let d=new Uint8Array(e.content);if(props&1)d=await inflateRaw(d);
@@ -1890,7 +1957,7 @@ async function readImportFile(f){const ext=(f.name.split('.').pop()||'').toLower
   if(f.size>30*1048576)throw {userMsg:'30MB를 넘는 파일은 올릴 수 없습니다.'};
   const buf=await f.arrayBuffer();
   if(ext==='pdf'){const r=await pdfExtract(buf);if(r.len>=20){const n=impAddText(r.lines.join('\n'),f.name);return `업무 ${n}건 읽음`;}const imgs=await pdfToImages(r.pdf);imgs.forEach(im=>impAddPhoto(im,f.name));return `글자가 없는 스캔 문서 → 사진 ${imgs.length}장`;}
-  if(['xlsx','xls','xlsm','csv'].includes(ext)){if(!window.XLSX)throw {userMsg:'엑셀 읽기 도구를 불러오지 못했습니다.'};const wb=ext==='csv'?XLSX.read(decodeText(buf),{type:'string',cellDates:true}):XLSX.read(new Uint8Array(buf),{type:'array',cellDates:true});let n=0;
+  if(['xlsx','xls','xlsm','csv'].includes(ext)){if(!window.XLSX)await wlLib('xlsx').catch(()=>{});if(!window.XLSX)throw {userMsg:'엑셀 읽기 도구를 불러오지 못했습니다.'};const wb=ext==='csv'?XLSX.read(decodeText(buf),{type:'string',cellDates:true}):XLSX.read(new Uint8Array(buf),{type:'array',cellDates:true});let n=0;
     for(const name of wb.SheetNames){const rows=parseSheet(wb.Sheets[name],wb.SheetNames.length>1?`${f.name} › ${name}`:f.name);S.imp.rows.push(...rows);n+=rows.length;S.imp.raw+=(S.imp.raw?'\n\n':'')+`[${f.name} › ${name}]\n`+XLSX.utils.sheet_to_csv(wb.Sheets[name]).slice(0,20000);}return `업무 ${n}건 읽음`;}
   if(ext==='docx'){await needLib('mammoth');const r=await mammoth.extractRawText({arrayBuffer:buf});return `업무 ${impAddText(r.value,f.name)}건 읽음`;}
   if(ext==='hwpx'){return `업무 ${impAddText(await hwpxText(buf),f.name)}건 읽음`;}
@@ -1957,12 +2024,12 @@ function refreshPerson(force){const d=$('#dlg-person');if(!S.personId||(!force&&
 
 /* ───────── 설정: 직원 명단 ───────── */
 function rosterRow(s){const sites=teamSites();if(s.site&&!sites.includes(s.site))sites.push(s.site);
-  return `<div class="rr" data-sid="${esc(s.id||'')}"><input type="text" class="r-name" value="${esc(s.name||'')}" placeholder="이름" aria-label="이름" maxlength="20"><select class="r-site" aria-label="근무 건물">${sites.map(x=>`<option ${x===s.site?'selected':''}>${esc(x)}</option>`).join('')}</select><input type="text" class="r-role" value="${esc(s.role||'')}" placeholder="직급·담당" aria-label="직급·담당" maxlength="30"><select class="r-state" aria-label="근무 상태"><option value="">근무</option><option value="leave" ${s.state==='leave'?'selected':''}>휴직·병가</option><option value="dispatch" ${s.state==='dispatch'?'selected':''}>파견</option></select><span class="js ${s.joinedAt?'on':''}">${s.id?(s.joinedAt?'접속 '+fmtMD(localDate(s.joinedAt)):'미접속'):'신규'}</span><button type="button" class="btn sm ghost" data-r-del>제외</button></div>`;}
+  return `<div class="rr" data-sid="${esc(s.id||'')}"><input type="text" class="r-name" value="${esc(s.name||'')}" placeholder="이름" aria-label="이름" maxlength="20"><select class="r-site" aria-label="근무 건물">${sites.map(x=>`<option ${x===s.site?'selected':''}>${esc(x)}</option>`).join('')}</select><input type="text" class="r-role" value="${esc(s.role||'')}" placeholder="직급·담당" aria-label="직급·담당" maxlength="30"><select class="r-state" aria-label="근무 상태"><option value="">근무</option><option value="leave" ${s.state==='leave'?'selected':''}>휴직·병가</option><option value="dispatch" ${s.state==='dispatch'?'selected':''}>파견</option></select><input type="email" class="r-mail" value="${esc(s.email||'')}" placeholder="로그인 이메일 (자동 연결)" aria-label="로그인 이메일" maxlength="80"><span class="js ${s.joinedAt?'on':''}">${s.id?(s.joinedAt?'접속 '+fmtMD(localDate(s.joinedAt)):'미접속'):'신규'}</span><button type="button" class="btn sm ghost" data-r-del>제외</button></div>`;}
 async function saveRoster(){const ops=[];const now=nowISO();
-  for(const r of $$('#s-roster .rr')){const sid=r.dataset.sid;const name=$('.r-name',r).value.trim();const site=$('.r-site',r).value;const role=$('.r-role',r).value.trim();const state=$('.r-state',r).value;
+  for(const r of $$('#s-roster .rr')){const sid=r.dataset.sid;const name=$('.r-name',r).value.trim();const site=$('.r-site',r).value;const role=$('.r-role',r).value.trim();const state=$('.r-state',r).value;const mail=(($('.r-mail',r)||{}).value||'').trim().toLowerCase().slice(0,80);
     if(r.dataset.removed==='1'){if(sid&&S.staff[sid])ops.push([`staff/${sid}`,'u',{active:false,updatedAt:now}]);continue;}
-    if(!name)continue;if(!sid){ops.push([`staff/s-${rid()}`,'s',{name,site,role,state:state||'none',active:true,order:900,createdAt:now,updatedAt:now}]);continue;}
-    const o=S.staff[sid];if(o&&(o.name!==name||o.site!==site||o.role!==role||(o.state||'')!==state))ops.push([`staff/${sid}`,'u',{name,site,role,state:state||'none',updatedAt:now}]);}
+    if(!name)continue;if(!sid){ops.push([`staff/s-${rid()}`,'s',{name,site,role,state:state||'none',email:mail,active:true,order:900,createdAt:now,updatedAt:now}]);continue;}
+    const o=S.staff[sid];if(o&&(o.name!==name||o.site!==site||o.role!==role||(o.state||'')!==state||(o.email||'')!==mail))ops.push([`staff/${sid}`,'u',{name,site,role,state:state||'none',email:mail,updatedAt:now}]);}
   for(const line of $('#s-roster-bulk').value.split('\n')){const [n,si,ro]=line.split(/[,\t]/).map(x=>(x||'').trim());if(!n)continue;ops.push([`staff/s-${rid()}`,'s',{name:n.slice(0,20),site:(si||staffSites()[0]||'').slice(0,30),role:(ro||'').slice(0,30),active:true,createdAt:now,updatedAt:now}]);}
   for(const [p,k,d] of ops){if(k==='s')await dbSet(p,d);else await dbUpdate(p,d);}return ops.length;}
 
@@ -1973,8 +2040,8 @@ function renderBoard(v){
   const list=applyFilters(S.tasks);$('#f-count').textContent=`${list.length}건`;
   S.sortables.forEach(s=>s.destroy());S.sortables=[];
   v.innerHTML=`<div class="board">${STATUSES.map(s=>{let items=list.filter(t=>t.status===s.id);let more=0;
-    if(s.id==='done'){items.sort((a,b)=>(b.doneAt||'').localeCompare(a.doneAt||''));if(items.length>30){more=items.length-30;items=items.slice(0,30);}}else items.sort(sortTasks);
-    return `<section class="bcol s-${s.id}" aria-label="${s.name}"><div class="bcol-h"><span class="pill s-${s.id}">${s.name}</span><span class="n">${list.filter(t=>t.status===s.id).length}</span>${s.id!=='done'?`<button type="button" class="icon-btn" data-new-status="${s.id}" aria-label="${s.name} 업무 등록">${ICON.plus}</button>`:''}</div><div class="bcards" data-status="${s.id}">${items.map(cardHTML).join('')}</div>${more?`<div class="more">이전 완료 ${more}건은 목록 화면에서 볼 수 있습니다</div>`:''}</section>`;}).join('')}</div>`;
+    if(s.id==='done'){items.sort((a,b)=>(b.doneAt||b.due||'').localeCompare(a.doneAt||a.due||''));const ws=addDays(today(),-((dow(today())+6)%7));const show=S.boardOld?items.slice(0,S.boardOld):items.filter(t=>(t.doneAt||t.due||'')>=ws).slice(0,40);more=items.length-show.length;items=show;}else items.sort(sortTasks);
+    return `<section class="bcol s-${s.id}" aria-label="${s.name}"><div class="bcol-h"><span class="pill s-${s.id}">${s.name}</span><span class="n">${list.filter(t=>t.status===s.id).length}</span>${s.id!=='done'?`<button type="button" class="icon-btn" data-new-status="${s.id}" aria-label="${s.name} 업무 등록">${ICON.plus}</button>`:''}</div><div class="bcards" data-status="${s.id}">${items.map(cardHTML).join('')}</div>${more?`<div class="more"><button type="button" class="btn sm ghost" data-board-old>${S.boardOld?`30건 더 보기 (남은 ${more}건)`:`지난 완료 보기 (${more}건)`}</button></div>`:''}</section>`;}).join('')}</div>`;
   if(window.Sortable&&S.canWrite)$$('.bcards',v).forEach(el=>S.sortables.push(Sortable.create(el,{group:'wl-board',animation:150,sort:false,draggable:'.card',delay:120,delayOnTouchOnly:true,
     onStart:()=>{S.dragging=true;},
     onEnd:async ev=>{S.dragging=false;const to=ev.to.dataset.status,from=ev.from.dataset.status;const t=findTask(ev.item.dataset.path);
@@ -1983,13 +2050,13 @@ function renderBoard(v){
 
 function calEvents(){return [...calTaskEvents().map(e=>({...e,prio:0})),...schCalEvents()];}
 function calTaskEvents(){const css=getComputedStyle(document.documentElement);const col=c=>css.getPropertyValue('--c-'+c).trim();
-  return applyFilters(S.tasks,{ignorePeriod:true}).filter(t=>s0(t)).map(t=>{const s=s0(t),e=e0(t)<s?s:e0(t);const long=diffDays(s,e)>20;
+  return applyFilters(S.tasks,{ignorePeriod:true}).filter(t=>s0(t)&&calOk(t)).map(t=>{const s=s0(t),e=e0(t)<s?s:e0(t);const long=diffDays(s,e)>20||(CALO.dueOnly&&diffDays(s,e)>0);
     return {id:t.path,title:(t.status==='done'?'✓ ':'')+(long?'[마감] ':'')+t.title,start:long?e:s,end:addDays(e,1),allDay:true,durationEditable:!long,backgroundColor:col(t.cat),borderColor:col(t.cat),classNames:[t.status==='done'?'ev-done':'',isLate(t)?'ev-late':''].filter(Boolean)};});}
 function renderCalendar(v){
   $('#f-count').textContent='';
-  if(!window.FullCalendar){v.innerHTML='<div class="panel empty">달력 구성요소를 불러오지 못했습니다. 네트워크 연결을 확인한 뒤 새로고침하세요.</div>';return;}
+  if(!window.FullCalendar){v.innerHTML='<div class="panel empty">달력을 불러오는 중…</div>';wlLib('fc').then(()=>{if(S.view==='calendar'&&window.FullCalendar)renderCalendar($('#view'));}).catch(()=>{if(S.view==='calendar')v.innerHTML='<div class="panel empty">달력 구성요소를 불러오지 못했습니다. 네트워크 연결을 확인한 뒤 새로고침하세요.</div>';});return;}
   if(S.cal&&$('#cal',v)){S.cal.removeAllEvents();S.cal.addEventSource(calEvents());S.cal.setOption('editable',S.canWrite);return;}
-  v.innerHTML=`<div id="cal"></div><div class="cal-legend">${CATS.map(c=>`<span class="catchip cat-${c.id}">${esc(c.name)}</span>`).join('')}<span>· 날짜를 누르면 그날 업무를 등록하고, 막대를 끌면 일정이 바뀝니다. 3주 넘게 이어지는 업무는 마감일에만 표시됩니다</span><button type="button" class="btn sm ghost" data-sch-open="" style="margin-left:auto">📅 정기 일정 (월례조회·업무회의)</button></div>`;
+  v.innerHTML=`<div class="cal-top">${calOptsHTML()}</div><div id="cal"></div><div class="cal-legend">${CATS.map(c=>`<span class="catchip cat-${c.id}">${esc(c.name)}</span>`).join('')}<span>· 날짜를 누르면 그날 업무를 등록하고, 막대를 끌면 일정이 바뀝니다. 3주 넘게 이어지는 업무는 마감일에만 표시됩니다</span><button type="button" class="btn sm ghost" data-sch-open="" style="margin-left:auto">📅 정기 일정 (월례조회·업무회의)</button></div>`;
   S.cal=new FullCalendar.Calendar($('#cal',v),{locale:'ko',firstDay:1,height:'auto',initialView:innerWidth<700?'listMonth':'dayGridMonth',
     headerToolbar:{left:'prev,next today',center:'title',right:'dayGridMonth,dayGridWeek,listMonth'},buttonText:{today:'오늘',month:'월',week:'주',list:'목록'},
     dayMaxEvents:4,editable:S.canWrite,events:calEvents(),eventOrder:'-prio,start,-duration,allDay,title',
@@ -2102,7 +2169,7 @@ async function renderPaper(){
   wrap.innerHTML=paperHTML(R);
   drawCharts(R);patchNames(wrap);loadOpinion(R);
 }
-function drawCharts(R){S.charts.forEach(c=>c.destroy());S.charts=[];if(!window.Chart)return;
+function drawCharts(R){S.charts.forEach(c=>c.destroy());S.charts=[];if(!window.Chart){wlLib('chart').then(()=>{if(window.Chart&&(S.view==='report'||S.view==='overview'))scheduleRender();}).catch(()=>{});return;}
   const font={family:'"IBM Plex Sans KR", sans-serif',size:11};const C={done:'#2f855a',doing:'#c98a2a',plan:'#6b7c96',late:'#c0392b'};
   const el=$('#rep-chart');if(el&&R.chart.length){S.charts.push(new Chart(el,{type:'bar',data:{labels:R.chart.map(x=>x.g),datasets:[['done','완료'],['doing','진행 중'],['plan','진행 예정'],['late','지연']].map(([k,n])=>({label:n,data:R.chart.map(x=>x[k]),backgroundColor:C[k],borderWidth:0,barThickness:16}))},
     options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{position:'bottom',labels:{font,boxWidth:10,color:'#4a5260'}},tooltip:{bodyFont:font,titleFont:font}},scales:{x:{stacked:true,ticks:{precision:0,font,color:'#4a5260'},grid:{color:'#eceff3'},title:{display:true,text:'건수',font,color:'#4a5260'}},y:{stacked:true,ticks:{font,color:'#151a21'},grid:{display:false}}}}}));}
@@ -2136,7 +2203,7 @@ async function exportHTML(){const R=S.lastReport;const paper=$('#paper');if(!R||
   const html=`<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(R.title)} ${esc(R.periodText)}</title><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Nanum+Myeongjo:wght@700;800&display=swap" rel="stylesheet"><style>body{margin:0;padding:24px;background:#eef1f5}${$('#report-css').textContent}@page{size:A4;margin:12mm}@media print{body{padding:0;background:#fff}.paper{border:0;box-shadow:none;width:auto;padding:0}.paper section{break-inside:auto}.paper tr{break-inside:avoid}}</style></head><body>${clone.outerHTML}</body></html>`;
   const fn=`${S.config.dept}_${R.title.replace(/\s+/g,'')}_${R.ps}.html`;
   try{await S.downloads.save({filename:fn,data:html});}catch(e){if(e&&e.code!=='declined')toast('파일을 내려받지 못했습니다.','err');}}
-async function exportXLSX(rows,sheetsSpec,filename){if(!window.XLSX||!S.downloads)return;const wb=XLSX.utils.book_new();
+async function exportXLSX(rows,sheetsSpec,filename){if(!window.XLSX)await wlLib('xlsx').catch(()=>{});if(!window.XLSX||!S.downloads)return;const wb=XLSX.utils.book_new();
   for(const [name,data,widths] of sheetsSpec){const ws=Array.isArray(data[0])?XLSX.utils.aoa_to_sheet(data):XLSX.utils.json_to_sheet(data.length?data:[{'내용':'해당 없음'}]);if(widths)ws['!cols']=widths.map(w=>({wch:w}));XLSX.utils.book_append_sheet(wb,ws,name);}
   const buf=XLSX.write(wb,{bookType:'xlsx',type:'array'});
   try{await S.downloads.save({filename,data:new Blob([buf])});}catch(e){if(e&&e.code!=='declined')toast('파일을 내려받지 못했습니다.','err');}}
@@ -2238,7 +2305,7 @@ async function openSettings(){const c=S.config;$('#s-roster').innerHTML=staffLis
   $('#s-backup').hidden=!S.downloads;$('#s-backup-photos').disabled=false;$('#s-backup-photos').closest('label').hidden=!S.downloads;$('#s-restore-btn').hidden=!editable;$('#s-restore').disabled=!editable;$('#s-backup-st').textContent='';
   const n=S.tasks.length+S.memos.length;
   const phN=S.tasks.reduce((a,t)=>a+t.photos.length,0),phB=S.tasks.reduce((a,t)=>a+t.photos.reduce((x,p)=>x+(p.sz||260e3),0),0),flB=Object.values(S.files).reduce((a,f)=>a+f.versions.reduce((x,y)=>x+y.size,0),0);
-  $('#s-usage').innerHTML=S.mode==='firebase'?`<p class="help">Firebase(Firestore)에 저장됩니다. 불러온 업무 ${S.tasks.length.toLocaleString()}건 · 특이사항 ${S.memos.length.toLocaleString()}일 · 사진 ${phN.toLocaleString()}장(약 ${fmtMB(phB)}) · 서류 ${Object.keys(S.files).length}건(${fmtMB(flB)}).</p><div class="meter"><i style="width:${Math.min(100,(phB+flB)/1073741824*100)}%"></i></div><p class="help">사진·서류 합계 약 ${fmtMB(phB+flB)} / 무료 1GB (업무 기록은 아주 작아 거의 차지하지 않습니다). 무료 한도: 저장 1GB, 하루 읽기 5만·쓰기 2만 건. 사용량은 Firebase 콘솔 › Firestore › 사용량에서 확인하세요.</p>`:`<p class="help">업무·일지 문서 ${n.toLocaleString()}개 / ${DB_DOC_CAP.toLocaleString()}개 (불러온 연도 기준)</p><div class="meter"><i style="width:${Math.min(100,n/DB_DOC_CAP*100)}%"></i></div><p class="help" id="s-asset-usage"></p>`;
+  $('#s-usage').innerHTML=S.mode==='firebase'?`<p class="help">Firebase(Firestore)에 저장됩니다. 불러온 업무 ${S.tasks.length.toLocaleString()}건 · 특이사항 ${S.memos.length.toLocaleString()}일 · 사진 ${phN.toLocaleString()}장(약 ${fmtMB(phB)}) · 서류 ${Object.keys(S.files).length}건(${fmtMB(flB)}).</p><div class="meter"><i style="width:${Math.min(100,(phB+flB)/1073741824*100)}%"></i></div><p class="help">사진·서류 합계 약 ${fmtMB(phB+flB)} / 무료 1GB (업무 기록은 아주 작아 거의 차지하지 않습니다). 무료 한도: 저장 1GB, 하루 읽기 5만·쓰기 2만 건. 사용량은 Firebase 콘솔 › Firestore › 사용량에서 확인하세요.</p>${uxUsageHTML()}`:`<p class="help">업무·일지 문서 ${n.toLocaleString()}개 / ${DB_DOC_CAP.toLocaleString()}개 (불러온 연도 기준)</p><div class="meter"><i style="width:${Math.min(100,n/DB_DOC_CAP*100)}%"></i></div><p class="help" id="s-asset-usage"></p>`;
   $('#dlg-settings').showModal();
   if(S.assets&&S.assets.list){try{const r=await S.assets.list();const u=r.usage;$('#s-asset-usage').textContent=`사진 ${u.files.toLocaleString()}장 · ${(u.bytes/1048576).toFixed(1)}MB / ${(u.maxBytes/1048576).toFixed(0)}MB`;}catch{}}}
 async function saveSettings(e){e.preventDefault();const subs={};const tax=readTaxEditor();
@@ -2277,7 +2344,7 @@ function showBanner(msg){const b=$('#banner');b.textContent=msg;b.hidden=!msg;}
 
 /* ───────── 이벤트 ───────── */
 function go(h){if(location.hash===h)route();else location.hash=h;}
-function route(){let h=(location.hash||'').slice(1);if(h==='home')h='team';S.view=['my','team','overview','board','calendar','list','report','upload','photos','docs','legal','gw','help'].includes(h)?h:'my';if(S.view==='gw'&&GW.pv!=='gw')GW.seenNow='';GW.pv=S.view;const np=$('#ntf-pop');if(np)np.hidden=true;render();gwNav();}
+function route(){let h=(location.hash||'').slice(1);if(h==='home')h='team';S.view=['my','team','overview','board','calendar','list','report','upload','photos','docs','legal','gw','help'].includes(h)?h:'my';if(S.view==='gw'&&GW.pv!=='gw')GW.seenNow='';GW.pv=S.view;const np=$('#ntf-pop');if(np)np.hidden=true;render();gwNav();mnavSync();}
 window.addEventListener('hashchange',route);
 document.addEventListener('click',async e=>{
   const o=e.target.closest('[data-open]');if(o&&!e.target.closest('[data-lb]')){const t=findTask(o.dataset.open);if(t)openTask(t);return;}
@@ -2569,7 +2636,8 @@ function gate(state,o={}){const g=$('#gate'),card=$('#gate-card');g.hidden=false
   else if(state==='denied')body=`<p><span class="who">${em}</span>은(는) 아직 접속이 허용되지 않았습니다. 관리자에게 이 이메일을 '접속 허용 이메일'에 등록해 달라고 요청한 뒤 다시 확인을 누르세요.</p>
       <button type="button" class="btn primary" data-g="retry">다시 확인</button>
       <button type="button" class="btn" data-g="out">다른 계정으로 로그인</button>
-      <small class="code">관리자인데 이 화면이 보이면: Firebase 콘솔 › Firestore Database › 규칙에 firestore.rules 내용을 붙여 넣고 '게시'했는지 확인하세요.</small>`;
+      <div class="jr-box"><label for="g-jname">이름</label><input type="text" id="g-jname" maxlength="40" placeholder="예: 홍길동 (관리자가 알아볼 수 있게)"><button type="button" class="btn" data-g="joinreq">관리자에게 접속 요청 보내기</button><p class="msg" id="g-jmsg" hidden></p></div>
+      <details class="code g-admin"><summary>관리자용 안내</summary>처음 설정 중이라면 Firebase 콘솔 › Firestore Database › 규칙에 firestore.rules 내용을 붙여 넣고 '게시'했는지 확인하세요.</details>`;
   else if(state==='error')body=`<button type="button" class="btn primary" data-g="retry">다시 시도</button>${S.auth&&S.auth.currentUser?'<button type="button" class="btn" data-g="out">로그아웃</button>':''}${o.code?`<small class="code">${esc(o.code)}</small>`:''}`;
   card.innerHTML=head+(state==='error'?`<div class="msg err" role="alert">${esc(o.msg||'문제가 생겼습니다.')}</div>`:msg)+body;
   const f=$('#g-form',card);if(f)f.addEventListener('submit',e=>{e.preventDefault();gAct('login');});
@@ -3077,7 +3145,7 @@ function renderLegal(v){const L=S.lg;const td=today();const y=L.year||+td.slice(
   v.innerHTML=`<div class="home-head"><div><h1>법정 의무 업무</h1><p>매년·매월 챙겨야 하는 신고·교육·점검 일정 · 켜 둔 항목은 마감 전에 할 일로 자동 등록되어 담당자 '내 업무'와 알림에 나타납니다</p></div>
     <div class="ov-ctl"><div class="seg" role="group" aria-label="연도">${[+td.slice(0,4),+td.slice(0,4)+1].map(yy=>`<button type="button" data-lg-year="${yy}" aria-pressed="${yy===y}">${yy}년</button>`).join('')}</div><label class="chk"><input type="checkbox" id="lg-on" ${L.onOnly?'':'checked'}> 꺼진 항목도 보기</label></div></div>
   ${S.legalDenied?`<div class="banner" style="margin:0 0 12px">법정 업무 설정을 불러올 권한이 없습니다. 관리자는 Firebase 콘솔 › Firestore › 규칙에 새 firestore.rules를 게시하세요.</div>`:''}
-  ${!cfg.enabled?`<div class="lg-start panel"><div><b>자동 등록이 아직 꺼져 있습니다.</b><p>${admin?'오른쪽 목록에서 우리 회사에 해당하는 항목을 켜고 담당자를 정한 뒤 <em>자동 등록 시작</em>을 누르세요. 켜면 오늘 이후 마감분부터 등록됩니다.':'관리자가 항목과 담당자를 정하고 자동 등록을 시작하면 할 일로 등록됩니다.'}</p></div>${admin?`<button type="button" class="btn primary" id="lg-enable">자동 등록 시작</button>`:''}</div>`:''}
+  ${!cfg.enabled&&admin?`<div class="lg-start panel"><div><b>자동 등록이 아직 꺼져 있습니다.</b><p>${admin?'오른쪽 목록에서 우리 회사에 해당하는 항목을 켜고 담당자를 정한 뒤 <em>자동 등록 시작</em>을 누르세요. 켜면 오늘 이후 마감분부터 등록됩니다.':'관리자가 항목과 담당자를 정하고 자동 등록을 시작하면 할 일로 등록됩니다.'}</p></div>${admin?`<button type="button" class="btn primary" id="lg-enable">자동 등록 시작</button>`:''}</div>`:''}
   <div class="chips" style="margin:0 0 12px"><button type="button" class="chipbtn" data-lg-g="" aria-pressed="${!L.g}">전체</button>${Object.entries(LEGAL_GROUPS).map(([g,n])=>`<button type="button" class="chipbtn" data-lg-g="${g}" aria-pressed="${L.g===g}">${esc(n)}</button>`).join('')}</div>
   <div class="lg-wrap"><div class="lg-cal">${pastN?`<button type="button" class="btn sm ghost" id="lg-past" style="justify-self:start">${L.past?'지난 달 접기':`지난 달 일정 보기 (1~${curM-1}월 ${pastN}건)`}</button>`:''}${months||'<section class="panel"><div class="empty">표시할 일정이 없습니다.</div></section>'}<p class="help lg-note">* 표시는 마감일이 주말이라 다음 월요일로 잡은 일정입니다. 공휴일·대체공휴일은 반영되지 않으니 홈택스·위택스 안내를 함께 확인하세요.</p></div>
     <aside class="panel lg-set"><div class="panel-h"><h2>항목 설정</h2><span class="sub">${items.filter(i=>i.on).length}/${items.length}개 켜짐</span>${admin?`<div class="act"><button type="button" class="btn sm primary" id="lg-save" ${dirty?'':'disabled'}>저장${dirty?` (${dirty})`:''}</button></div>`:''}</div>
@@ -3114,7 +3182,7 @@ function ntfCompute(){const me=myId();if(!me||!S.ready)return [];const out=[];co
     if(admin&&r.status==='open')out.push({k:`dq|${r.id}`,at:r.at||td,type:'dreq',dq:r.id,title:ttl,text:`${r.name||'구성원'}님이 삭제를 요청했습니다`,sub:r.reason});
     else if(r.uid===S.me.id&&r.status!=='open'&&r.rAt>=since)out.push({k:`dqr|${r.id}|${r.status}`,at:r.rAt,type:'dreq',dq:r.id,title:ttl,text:r.status==='done'?'삭제 요청이 처리되어 삭제되었습니다':'삭제 요청이 반려되었습니다',sub:r.rNote});}
   for(const g of S.gw||[]){if(!g.at||g.at<since)continue;out.push({k:'gw|'+g.id,at:g.at,type:'gw',gw:g.id,title:gwTitle(g.title),text:`그룹웨어 ${gwShort(g.board)} 새 글${g.due?` · 일정 ${fmtMD(g.due)}`:''}`,sub:g.sum});}
-  out.push(...schNtf());
+  out.push(...schNtf());out.push(...uxNtf());
   if(admin){const w=gwWarn();if(w)out.push({k:'gwst|'+w.k,syn:1,at:td+'T00:00:04',type:'gw',gw:'',title:'그룹웨어 자동 확인',text:w.text});}
   if(admin||canViewRestricted())for(const f of Object.values(S.files)){if(!f.expiry)continue;const n=diffDays(td,f.expiry);if(n<=60&&n>=-30)out.push({k:`doc|${f.id}|${f.expiry}|${n<=7?'w':n<=30?'m':'q'}`,syn:1,at:td+'T00:00:03',type:'doc',f,text:`서류 유효기간 ${expiryTxt(f.expiry)} · ${fmtYMD(f.expiry)}`});}
   if(admin&&hr>=17&&dow(td)%6!==0){const idle=staffList().filter(s=>working(s)&&!S.tasks.some(t=>t.logs.some(l=>l.by===s.id&&localDate(l.at)===td)));if(idle.length)out.push({k:`idle|${td}`,syn:1,at:td+'T17:00:00',type:'idle',text:`오늘 기록 없는 근무자 ${idle.length}명`,sub:idle.map(s=>s.name).join(', ')});}
@@ -3132,7 +3200,7 @@ function ntfRun(){adminNameSync();const st=ntfState();NT.items=ntfCompute();cons
   else for(const it of un)NT.shown.add(it.k);
   if(S.view==='my')ntfBrief();}
 function ntfShow(title,body,tag,path){try{const n=new Notification(title,{body,tag,lang:'ko'});n.onclick=()=>{window.focus();if(path){const t=findTask(path);if(t)openTask(t);}n.close();};}catch{}}
-const NT_ICON={assign:'담당',act:'진행',issue:'이슈',due:'마감',late:'지연',legal:'법정',doc:'서류',idle:'기록',dreq:'삭제',gw:'게시',sch:'일정'};
+const NT_ICON={assign:'담당',act:'진행',issue:'이슈',due:'마감',late:'지연',legal:'법정',doc:'서류',idle:'기록',dreq:'삭제',gw:'게시',sch:'일정',wk:'보고',join:'접속',bk:'백업'};
 function ntfRenderPop(){const st=ntfState();const pop=$('#ntf-pop');const its=NT.items;
   const canAsk='Notification' in window&&Notification.permission==='default';const blocked='Notification' in window&&Notification.permission==='denied';
   pop.innerHTML=`<div class="ntf-h"><b>알림</b><span class="sp"></span>${its.some(i=>ntfUnread(i,st))?'<button type="button" class="btn sm ghost" data-ntf-read>모두 읽음</button>':''}</div>
@@ -3154,7 +3222,7 @@ document.addEventListener('click',async e=>{
   if(T.closest('[data-ntf-read]')){ntfMarkRead();return;}
   if(T.closest('[data-ntf-perm]')){try{const r=await Notification.requestPermission();if(r==='granted'){toast('이 기기에서 알림을 받습니다.');ntfShow(`${S.config.dept} 업무일지`,'알림이 켜졌습니다.','test');}}catch{}ntfRenderPop();return;}
   const ng=T.closest('[data-ntf-go]');if(ng){const it=NT.items.find(i=>i.k===ng.dataset.ntfGo);const st=ntfState();if(it){if(it.syn)st.syn[it.k]=1;ntfSave();$('#ntf-pop').hidden=true;
-    if(it.dq)openDreqs(it.dq);else if(it.type==='sch'){schOpen(it.sch);}else if(it.type==='gw'){GW.focus=it.gw||'';if(S.view==='gw')renderGw($('#view'));else go('#gw');}else if(it.t){const t=findTask(it.t.path);if(t)openTask(t);}else if(it.f)go('#docs');else if(it.type==='idle')go('#overview');}ntfRun();return;}
+    if(it.dq)openDreqs(it.dq);else if(it.type==='sch'){schOpen(it.sch);}else if(it.type==='wk'){uxWeekReport();}else if(it.type==='join'){jrApprove(it.jr);}else if(it.type==='bk'){openSettings();}else if(it.type==='gw'){GW.focus=it.gw||'';if(S.view==='gw')renderGw($('#view'));else go('#gw');}else if(it.t){const t=findTask(it.t.path);if(t)openTask(t);}else if(it.f)go('#docs');else if(it.type==='idle')go('#overview');}ntfRun();return;}
   if(!T.closest('#ntf-pop')&&!$('#ntf-pop').hidden)$('#ntf-pop').hidden=true;
   if(T.closest('[data-brief-x]')){const st=ntfState();st.brief=today();ntfSave();$('#my-brief').hidden=true;return;}
   // 사진첩
@@ -3668,12 +3736,12 @@ function delreqSub(){if(DRU){try{DRU();}catch{}DRU=null;}S.delreqs=[];S.drReady=
   if(S.mode==='firebase'&&S.fs){const col=S.fs.collection('delreq');const q=S.canEdit?col:col.where('uid','==',S.me.id||'-');DRU=q.onSnapshot(qs=>on(qs.docs.map(d=>[d.id,d.data()])),err);}
   else DRU=S.db.collection('delreq').onSnapshot(snap=>on(snap.docs.filter(d=>d.exists).map(d=>[d.id,d.data()])),err);}
 function drRefresh(){ntfTick();if(S.view==='overview'||S.view==='docs')scheduleRender();if($('#dlg-dreqs').open)renderDreqs();if(S.dlg&&$('#dlg-task').open)refreshDialog();if(S.docDlg)refreshDocDlg();if(!$('#lightbox').hidden&&typeof LB!=='undefined'&&LB)lbDelSync(LB.list[LB.i]);}
-/* 관리자 이름 (요청 창에 '관리자(이기도)'로 표시) — 관리자가 열 때 app/admin 에 이름을 적어 둡니다. */
+/* 관리자 이름 (요청 창에 '관리자(이름)'로 표시) — 관리자가 열 때 app/admin 에 이름을 적어 둡니다. */
 let ADU=null,ADW=false;
 function adminNameSub(){if(ADU){try{ADU();}catch{}ADU=null;}if(!S.db)return;ADU=S.db.doc('app/admin').onSnapshot(s=>{const d=s.exists?s.data():null;S.adminName=d&&typeof d.name==='string'?d.name.slice(0,20):'';adminNameSync();},()=>{});}
 function adminNameSync(){if(!S.canEdit||ADW||!S.canWrite||!S.db)return;const n=myName();if(!n||!S.myStaff||n===S.adminName)return;ADW=true;S.db.doc('app/admin').set({name:n,at:nowISO()}).catch(()=>{ADW=false;});}
 const adminLabel=()=>S.adminName?`관리자(${S.adminName})`:'관리자';
-function extSubs(){privSub();delreqSub();adminNameSub();gwSub();schSub();S.unsubs.push(()=>{for(const u of [PVU,DRU,ADU,GWU,GWSU,SCU])try{u&&u();}catch{}PVU=DRU=ADU=GWU=GWSU=SCU=null;S.sched=null;S.privTasks=[];S.delreqs=[];S.gw=[];S.gwStat=null;});}
+function extSubs(){privSub();delreqSub();adminNameSub();gwSub();schSub();jrSub();S.unsubs.push(()=>{for(const u of [PVU,DRU,ADU,GWU,GWSU,SCU,JRU])try{u&&u();}catch{}PVU=DRU=ADU=GWU=GWSU=SCU=JRU=null;S.joinreqs=[];S.sched=null;S.privTasks=[];S.delreqs=[];S.gw=[];S.gwStat=null;});}
 /* 대상 찾기 */
 function taskOfPhoto(pid,hint){const h=hint&&hint.path?findTask(hint.path):null;if(h&&h.photos.some(p=>p.id===pid))return h;return S.tasks.find(t=>t.photos.some(p=>p.id===pid))||S.privTasks.find(t=>t.photos.some(p=>p.id===pid))||null;}
 function findTaskById(tid,path){return (path&&findTask(path))||S.tasks.find(t=>t.id===tid)||null;}
@@ -3773,7 +3841,7 @@ document.addEventListener('click',async e=>{const T=e.target;
     try{const all=f.versions.length<=1;await docDeleteVer(f,v);toast(all?'서류를 삭제했습니다.':`v${v}을(를) 삭제했습니다.`);if(all)$('#dlg-doc').close();}catch{}return;}
 });
 /* ───────── 업무 분류 (대분류 › 중분류 › 소분류) ─────────
-   2025.02 관리부 업무분장표(박혜진·윤민진·이은주·공창배·산업안전·법정 검사·선임 현황)를 바탕으로 정리했습니다.
+   2025.02 관리부 업무분장표(담당자별 업무·산업안전·법정 검사·선임 현황)를 바탕으로 정리했습니다.
    13차(2026-10-30): 대분류 5개 — 재무·회계 · 인사·총무 · 시설·공무 · 안전·보건 · 기타 (NCS 분류체계·CMMS 작업 분류 참고).
    업무 문서: cat(대분류) · sub(중분류) · leaf(소분류) · tx:3(현재 분류 표시). tx:2는 12차 분류(7개 대분류) — 읽을 때 13차로 옮김.
    tx가 없는 예전 업무는 지우거나 고치지 않고, 화면에 보일 때 업무명을 읽어 새 분류로 배정합니다(못 찾으면 예전 세부 분류로 대응). */
@@ -4018,7 +4086,7 @@ function gsItemHTML(k,x,terms){
 function gsRender(){const q=$('#gs-q').value;const terms=gsTerms(q);const R=gsRun(q);const box=$('#gs-res');
   const n=Object.fromEntries(Object.entries(R).map(([k,v])=>[k,v.length]));const all=Object.values(n).reduce((a,b)=>a+b,0);
   $('#gs-tabs').innerHTML=`<button type="button" data-gs-scope="all" aria-pressed="${GS.scope==='all'}">전체 ${terms.length?all:''}</button>`+Object.entries(GS_TYPES).map(([k,nm])=>`<button type="button" data-gs-scope="${k}" aria-pressed="${GS.scope===k}">${nm} ${terms.length?n[k]:''}</button>`).join('');
-  if(!terms.length){box.innerHTML=`<div class="gs-empty">업무·진행 기록·특이사항·서류(내용 포함)·법정 업무·그룹웨어 소식을 한 번에 찾습니다.<br><small>예: 소화기, 윤민진 연차, 공장등록증, 작업환경측정 · 띄어쓰기는 상관없습니다 · 단축키 Ctrl+K</small></div>`;return;}
+  if(!terms.length){box.innerHTML=`<div class="gs-empty">업무·진행 기록·특이사항·서류(내용 포함)·법정 업무·그룹웨어 소식을 한 번에 찾습니다.<br><small>예: 소화기, 연차, 공장등록증, 작업환경측정 · 띄어쓰기는 상관없습니다 · 단축키 Ctrl+K</small></div>`;return;}
   if(!all){box.innerHTML=`<div class="gs-empty">「${esc(q)}」에 맞는 자료가 없습니다.</div>`;return;}
   const keys=GS.scope==='all'?Object.keys(GS_TYPES):[GS.scope];
   box.innerHTML=keys.filter(k=>R[k].length).map(k=>{const lim=GS.more[k]||(GS.scope==='all'?8:60);const list=R[k].slice(0,lim);
@@ -4045,12 +4113,12 @@ document.addEventListener('click',e=>{const T=e.target;
    원문은 그룹웨어에 그대로 두고 여기에는 요약·일정·첨부 파일명만 저장합니다. 전화번호·계좌번호·주민번호 형태는 저장 전에 지웁니다.
    쓰기(gw/*, app/gw)는 관리자만 — 자동 확인은 관리자 계정으로 로그인된 화면에서 window.gwApi 로 기록합니다. */
 const GW_SINCE='2026-10-01';
-const GW_BOARDS=['업무연락','태성산업 공지사항','경조사 게시판','경영관리규정','개선제안','3정5S','태성산업 소식지'];
-const GW_SHORT={'태성산업 공지사항':'공지사항','경조사 게시판':'경조사','태성산업 소식지':'소식지'};
+const GW_BOARDS=['업무연락','공지사항','경조사','경영관리규정','개선제안','3정5S','소식지'];
+const gwRank=b=>{const i=GW_BOARDS.findIndex(k=>String(b).includes(k));return i<0?99:i;};
 const GW_HOST='https://gwx.ktbizoffice.com';
 const GW={b:'',q:'',due:false,lim:40,focus:'',seenNow:''};
-const gwShort=b=>GW_SHORT[b]||b;
-const gwBk=b=>({'업무연락':'w','태성산업 공지사항':'n','경조사 게시판':'e','경영관리규정':'r'}[b]||'o');
+const gwShort=b=>String(b||'').replace(/^\S+(산업|주식회사|㈜)\s+/,'').replace(/\s*게시판$/,'')||b;
+const gwBk=b=>['w','n','e','r'][gwRank(b)]||'o';
 let GWU=null,GWSU=null;
 /* 개인정보 형태 지우기 — 날짜(2026-11-02)는 그대로 둡니다 */
 function gwClean(s,max){s=String(s==null?'':s).replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g,'');
@@ -4118,10 +4186,10 @@ function gwItemHTML(g,seen,terms){const t=gwTaskOf(g.id);const n=g.due?diffDays(
     <div class="gw-a"><a class="btn sm ghost" href="${esc(gwUrl(g))}" target="_blank" rel="noopener" title="그룹웨어에 로그인되어 있어야 열립니다">그룹웨어 원문 ↗</a>
       ${t?`<button type="button" class="btn sm" data-gw-open="${esc(t.path)}">등록된 업무 보기 · ${esc(ST[t.status]?ST[t.status].name:'')}</button>`:S.canWrite?`<button type="button" class="btn sm primary" data-gw-task="${esc(g.id)}">업무로 등록</button>`:''}</div></article>`;}
 function renderGw(v){const L=S.gw||[];const terms=gsTerms(GW.q);const seen=GW.seenNow||gwSeen();
-  const cnt={};for(const g of L)cnt[g.board]=(cnt[g.board]||0)+1;const boards=[...GW_BOARDS.filter(b=>cnt[b]),...Object.keys(cnt).filter(b=>!GW_BOARDS.includes(b))];
+  const cnt={};for(const g of L)cnt[g.board]=(cnt[g.board]||0)+1;const boards=Object.keys(cnt).sort((a,b)=>gwRank(a)-gwRank(b)||a.localeCompare(b,'ko'));
   const list=L.filter(g=>(!GW.b||g.board===GW.b)&&(!GW.due||g.due||g.act)&&gwMatch(g,terms));const shown=list.slice(0,GW.lim);
   let lastM='';const rows=shown.map(g=>{const m=g.date.slice(0,7);const h=m!==lastM?`<h3 class="gw-mon">${+m.slice(0,4)}년 ${+m.slice(5,7)}월</h3>`:'';lastM=m;return h+gwItemHTML(g,seen,terms);}).join('');
-  v.innerHTML=`<div class="home-head"><div><h1>그룹웨어 소식</h1><p>회사 그룹웨어 게시판(${GW_BOARDS.map(gwShort).join('·')})의 새 글을 요약해 보여 줍니다 · 평일 08~19시 매시간 자동 확인</p></div><div class="gw-sts">${gwStatHTML()}</div></div>
+  v.innerHTML=`<div class="home-head"><div><h1>그룹웨어 소식</h1><p>회사 그룹웨어 게시판(${GW_BOARDS.join('·')})의 새 글을 요약해 보여 줍니다 · 평일 08~19시 매시간 자동 확인</p></div><div class="gw-sts">${gwStatHTML()}</div></div>
   <section class="filters" style="padding:0 0 12px"><div class="seg" role="group" aria-label="게시판"><button type="button" data-gw-b="" aria-pressed="${!GW.b}">전체 ${L.length}</button>${boards.map(b=>`<button type="button" data-gw-b="${esc(b)}" aria-pressed="${GW.b===b}">${esc(gwShort(b))} ${cnt[b]}</button>`).join('')}</div>
     <label class="chk"><input type="checkbox" id="gw-due" ${GW.due?'checked':''}> 일정·할 일 있는 글만</label><input type="search" id="gw-q" placeholder="제목·요약 검색" value="${esc(GW.q)}" aria-label="그룹웨어 소식 검색"></section>
   <div class="gw-list">${rows||`<section class="panel"><div class="empty">${L.length?'조건에 맞는 글이 없습니다.':S.gwReady?'아직 가져온 글이 없습니다. 자동 확인이 돌면 이곳에 쌓입니다.':'불러오는 중…'}</div></section>`}
@@ -4285,6 +4353,105 @@ document.addEventListener('click',e=>{const T=e.target;
     if(bad.length){toast(`날짜 형식이 아닌 줄: ${bad.slice(0,2).join(', ')} (예: 2026-12-31 회사 휴무)`,'err');return;}
     schSave({mr:{time:schTime($('#sch-mr-time').value)||SCH_DEF.mr.time,place:$('#sch-mr-place').value.trim()||SCH_DEF.mr.place,shift:$('#sch-mr-shift').value},mt:{time:schTime($('#sch-mt-time').value)||SCH_DEF.mt.time,place:$('#sch-mt-place').value.trim()||SCH_DEF.mt.place},off},'정기 일정 설정을 저장했습니다.');return;}});
 document.addEventListener('close',e=>{if(e.target&&e.target.id==='dlg-sch'){SCH.open=false;SCH.edit={};}},true);
+/* ───────── 16차: 직원 사용성 개선 ─────────
+   휴대폰 아래 탭바 · 달력 보기 옵션 · 칸반 완료 칸 · 등록 창 '간단히' · 글자 크게 · 주간 보고/백업/접속 요청 알림
+   · 이메일로 직원 자동 연결 · 접속 요청 · 저장 용량 추정 · 라이브러리 나중 불러오기에 맞춘 다시 그리기 · 홈 화면 앱(PWA) */
+
+/* ── 휴대폰 아래 탭바 */
+const MNAV=[['my','내 업무','<path d="M4 6h16M4 12h11M4 18h7"/><path d="M17 16l2 2 3-4"/>'],['team','팀 현황','<circle cx="8.5" cy="8" r="3"/><circle cx="16.5" cy="9" r="2.5"/><path d="M3 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><path d="M14.5 14.3c.6-.2 1.3-.3 2-.3 2.7 0 4.5 1.8 4.5 4.5"/>'],
+  ['calendar','달력','<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/>'],['gw','그룹웨어','<rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="M8.5 8h7M8.5 12h7M8.5 16h4"/>'],['more','더보기','<circle cx="6" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="18" cy="12" r="1.3"/>']];
+function mnavInit(){if($('#mnav'))return;const n=document.createElement('nav');n.id='mnav';n.className='mnav';n.setAttribute('aria-label','주요 화면');
+  n.innerHTML=MNAV.map(([v,l,ic])=>`<button type="button" data-mnav="${v}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ic}</svg><span>${l}</span>${v==='gw'?'<i class="mn-n" id="mnav-gw" hidden></i>':''}</button>`).join('');
+  document.body.appendChild(n);const sh=document.createElement('div');sh.id='mnav-sheet';sh.className='mnav-sheet';sh.hidden=true;document.body.appendChild(sh);}
+function mnavSync(){if(!$('#mnav'))return;const main=['my','team','calendar','gw'].includes(S.view);
+  $$('#mnav [data-mnav]').forEach(b=>{const on=b.dataset.mnav===S.view||(b.dataset.mnav==='more'&&!main);if(on)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
+  const g=$('#gw-n'),mg=$('#mnav-gw');if(g&&mg){mg.hidden=g.hidden&&S.view!=='gw'?true:g.hidden;mg.textContent=g.textContent;}$('#mnav-sheet').hidden=true;}
+function mnavMore(){const sh=$('#mnav-sheet');if(!sh.hidden){sh.hidden=true;return;}
+  const links=$$('.tabs a').filter(a=>!a.hidden&&!['my','team','calendar','gw'].includes(a.dataset.view));
+  sh.innerHTML=`<div class="ms-in">${links.map(a=>`<a href="${esc(a.getAttribute('href'))}" class="${a.dataset.view===S.view?'on':''}">${esc(a.textContent.trim())}</a>`).join('')}<a href="#help" class="${S.view==='help'?'on':''}">사용 안내</a><button type="button" data-big>${uxBig()?'글자 보통으로':'글자 크게'}</button></div>`;sh.hidden=false;}
+
+/* ── 글자 크게 (이 기기에만) */
+const uxBig=()=>lsGet('wl.big')==='1';
+function uxBigApply(){document.documentElement.classList.toggle('big',uxBig());const c=$('#me-big');if(c)c.checked=uxBig();}
+function uxBigSet(on){lsSet('wl.big',on?'1':'0');uxBigApply();toast(on?'글자를 크게 보여 줍니다 (이 기기).':'글자 크기를 보통으로 되돌렸습니다.');}
+function uxMeInit(){const g=$('#me-form .set-grid');if(!g||$('#me-big'))return;g.insertAdjacentHTML('beforeend','<label class="chk" style="margin-top:4px"><input type="checkbox" id="me-big"> 글자 크게 보기 (이 기기에만 적용)</label>');uxBigApply();}
+
+/* ── 달력 보기 옵션 */
+const CALO=(()=>{let o={};try{o=JSON.parse(lsGet('wl.calo')||'{}')||{};}catch{}return {mine:!!o.mine,hideDone:o.hideDone!==false,dueOnly:!!o.dueOnly};})();
+function calOk(t){if(CALO.hideDone&&t.status==='done')return false;if(CALO.mine){const me=S.myStaff;if(!(t.assignees.includes(me)||(!t.assignees.length&&(t.createdBy===me||t.createdBy===S.me.id))))return false;}return true;}
+const calOptsHTML=()=>`<span class="cal-opts"><label class="chk"><input type="checkbox" data-calo="mine" ${CALO.mine?'checked':''}> 내 업무만</label><label class="chk"><input type="checkbox" data-calo="hideDone" ${CALO.hideDone?'checked':''}> 완료 숨김</label><label class="chk"><input type="checkbox" data-calo="dueOnly" ${CALO.dueOnly?'checked':''}> 여러 날 업무는 마감일에만</label></span>`;
+
+/* ── 업무 등록 창: 간단히 / 항목 더 보기 */
+function uxDlgMode(t){const d=$('#dlg-task');if(!d)return;let b=$('#t-adv');
+  if(!b){const h=$('#dlg-task .modal-h');const x=$('[data-close]',h);b=document.createElement('button');b.type='button';b.id='t-adv';b.className='btn sm ghost t-adv';h.insertBefore(b,x);}
+  const simple=!t&&lsGet('wl.dlgAdv')!=='1';d.classList.toggle('simple',simple);b.hidden=!!t;b.textContent=simple?'항목 더 보기 ▾':'간단히 ▴';}
+
+/* ── 알림 추가: 금요일 주간 보고 · 접속 요청 · 백업 */
+function uxNtf(){const out=[];const td=today();const h=new Date().getHours();
+  if(S.myStaff&&dow(td)===5&&h>=13)out.push({k:'wk|'+td,syn:1,at:td+'T13:00:00',type:'wk',title:'이번 주 업무 보고',text:'보고서 › 주간 › 메신저용 텍스트 복사로 단톡방 주간업무일지를 바로 붙여넣을 수 있습니다'});
+  if(S.canEdit){for(const r of S.joinreqs||[])out.push({k:'jr|'+r.id+'|'+r.at,at:r.at||td,type:'join',jr:r.id,title:'접속 요청',text:`${r.name?r.name+' · ':''}${r.email} — 눌러서 허용`});
+    if(S.mode==='firebase'&&S.tasks.length){const last=lsGet('wl.lastBackup');if(!last||diffDays(last.slice(0,10),td)>30)out.push({k:'bk|'+td.slice(0,7),syn:1,at:td+'T00:00:07',type:'bk',title:'데이터 백업',text:`${last?`마지막 백업 ${fmtYMD(last.slice(0,10))} · `:''}한 달에 한 번 설정 › 백업 내려받기를 해 두세요 (무료 요금제는 자동 백업이 없습니다)`});}}
+  return out;}
+function uxWeekReport(){if(S.rep){S.rep.kind='week';S.rep.date=today();if(S.myStaff)S.rep.who=S.myStaff;}go('#report');}
+
+/* ── 접속 요청 (허용 안 된 사람이 보냄 → 관리자 알림에서 허용) */
+let JRU=null;
+function jrSub(){if(JRU){try{JRU();}catch{}JRU=null;}S.joinreqs=[];if(!S.canEdit||S.mode!=='firebase'||!S.fs)return;
+  JRU=S.fs.collection('joinreq').onSnapshot(qs=>{const prev=new Set((S.joinreqs||[]).map(r=>r.id));S.joinreqs=qs.docs.map(d=>{const v=d.data()||{};return {id:d.id,email:typeof v.email==='string'?v.email.slice(0,80):'',name:typeof v.name==='string'?v.name.slice(0,40):'',at:typeof v.at==='string'?v.at:''};}).filter(r=>r.email);
+    const nw=S.joinreqs.filter(r=>!prev.has(r.id));if(prev.size&&nw.length)toast(`${nw[0].name||nw[0].email}님이 접속을 요청했습니다. 알림(종)에서 허용하세요.`);ntfTick();},()=>{S.joinreqs=[];});}
+async function jrApprove(id){const r=(S.joinreqs||[]).find(x=>x.id===id);if(!r||!S.canEdit)return;
+  const ok=await confirmDlg('접속 허용',`${r.name?r.name+' · ':''}${r.email}\n\n이 이메일을 접속 허용 목록에 추가할까요? 추가하면 그 사람 화면에서 바로 업무일지가 열립니다. (모르는 사람이면 취소 후 무시하세요)`,'허용');if(!ok)return;
+  try{const m=S.members||{};const emails=[...new Set([...(m.emails||[]),r.email.toLowerCase()])];const names={...(m.names||{})};if(r.name)names[r.email.toLowerCase()]=r.name;
+    await S.fs.doc('app/members').update({emails,names});
+    const st=r.name?staffList().find(s=>s.name===r.name.trim()&&!s.email&&!s.uid):null;if(st)await S.db.doc(`staff/${st.id}`).update({email:r.email.toLowerCase(),updatedAt:nowISO()}).catch(()=>{});
+    await S.fs.doc('joinreq/'+id).delete().catch(()=>{});toast(`${r.name||r.email}님 접속을 허용했습니다.${st?' 직원 명단의 같은 이름과 연결합니다.':''}`);}
+  catch(e){toast('허용하지 못했습니다. 잠시 뒤 다시 시도하세요.','err');}}
+async function jrSend(){const u=firebase.auth().currentUser;if(!u)return;const nm=(($('#g-jname')||{}).value||'').trim().slice(0,40);const em=(u.email||'').toLowerCase();
+  try{await firebase.firestore().doc('joinreq/'+u.uid).set({email:em,name:nm,at:new Date().toISOString()});const m=$('#g-jmsg');if(m){m.hidden=false;m.textContent='요청을 보냈습니다. 관리자가 허용하면 이 화면에서 "다시 확인"을 누르세요.';}}
+  catch(e){const m=$('#g-jmsg');if(m){m.hidden=false;m.textContent='요청을 보내지 못했습니다. 관리자에게 직접 이메일을 알려 주세요.';}}}
+
+/* ── 이메일로 직원 자동 연결 (관리자가 설정 › 직원 명단에 로그인 이메일을 적어 둔 경우) */
+function uxMailStaff(){const em=(S.email||'').toLowerCase();if(!em)return null;return Object.values(S.staff).find(x=>x.active&&x.email&&x.email===em&&(!x.uid||x.uid===S.me.id))||null;}
+let UXLINK='';
+function uxLinkMail(id){if(UXLINK===id||!S.canWrite)return;const st=S.staff[id];if(!st||(st.uid===S.me.id&&st.joinedAt))return;UXLINK=id;lsSet(meKey(),id);
+  const up={uid:S.me.id,joinedAt:st.joinedAt||nowISO(),updatedAt:nowISO()};runWrite(`staff/${id}`,()=>S.db.doc(`staff/${id}`).update(clean(up))).then(()=>toast(`${st.name}님, 환영합니다. 로그인 이메일로 자동 연결했습니다.`)).catch(()=>{UXLINK='';});}
+
+/* ── 설정: 저장 용량 추정 */
+function uxUsageHTML(){if(S.mode!=='firebase')return '';const enc=new TextEncoder();let tb=0,maxShard=0;const shards={};
+  for(const t of S.tasks){const y=t.year||yearOf(t);let k='';try{const v=fbVirtual(`wl/${y}/tasks`);k=v?y+'/'+v.key(t.id):'';}catch{}const n=enc.encode(JSON.stringify(stripMeta(t))).length+40;tb+=n;if(k){shards[k]=(shards[k]||0)+n;if(shards[k]>maxShard)maxShard=shards[k];}}
+  let ph=0,phB=0;for(const t of [...S.tasks,...(S.privTasks||[])])for(const p of t.photos){ph++;phB+=(p.sz||250000)+(p.th?20000:0);}
+  let fb=0;for(const f of Object.values(S.files||{}))for(const v of f.versions){if(v.store==='fb'||!v.store)fb+=(v.size||0)+((v.pdf&&v.pdf.size)||v.pdfSize||0);}
+  const tot=tb+phB+fb;const G=1073741824;const pct=tot/G*100;const MB=b=>(b/1048576).toFixed(b>=104857600?0:1)+'MB';
+  return `<div class="ux-usage"><b>저장 용량 (추정)</b><div class="meter"><i style="width:${Math.min(100,pct).toFixed(1)}%;${pct>70?'background:var(--late)':''}"></i></div>
+    <p class="help">사진 ${ph.toLocaleString()}장 ${MB(phB)} · 서류 ${MB(fb)} · 업무 ${MB(tb)} = <b>${MB(tot)}</b> / 무료 1GiB (${pct.toFixed(1)}%)${pct>70?' — <b style="color:var(--late)">70%를 넘었습니다. Blaze(종량제) 전환을 검토하세요 (이 규모면 월 수백~수천 원)</b>':''}<br>가장 큰 업무 묶음 문서 ${Math.round(maxShard/1024)}KB / 1024KB${maxShard>700*1024?' — 묶음 수를 늘려야 합니다(개발 필요)':''} · 사진 화질을 '절약'으로 바꾸면 사진 용량이 약 40% 줄어듭니다</p></div>`;}
+
+/* ── 외부 도구가 늦게 도착하면 해당 화면만 다시 그림 */
+document.addEventListener('wl-lib',e=>{const n=e.detail;
+  if(n==='xlsx'&&(S.view==='list'||S.view==='report'))scheduleRender();
+  if(n==='sortable'&&S.view==='board'&&!S.dragging)scheduleRender();
+  if(n==='chart'&&(S.view==='report'||S.view==='overview'||S.view==='team'))scheduleRender();});
+if(typeof window.wlLib!=='function')window.wlLib=()=>Promise.resolve();
+
+/* ── 홈 화면 앱(PWA): GitHub Pages에서만 등록 */
+function uxPwa(){try{if(!('serviceWorker' in navigator))return;const h=location.hostname;if(!(h.endsWith('github.io')||(h==='localhost'&&location.port==='8767')))return;
+  window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{});});}catch{}}
+
+/* ── 이벤트 */
+document.addEventListener('click',e=>{const T=e.target;
+  const mn=T.closest('[data-mnav]');if(mn){const v=mn.dataset.mnav;if(v==='more'){e.stopPropagation();mnavMore();return;}$('#mnav-sheet').hidden=true;go('#'+v);return;}
+  if(T.closest('#mnav-sheet [data-big]')){uxBigSet(!uxBig());$('#mnav-sheet').hidden=true;return;}
+  if(T.closest('#mnav-sheet a')){$('#mnav-sheet').hidden=true;return;}
+  const sh=$('#mnav-sheet');if(sh&&!sh.hidden&&!T.closest('#mnav-sheet'))sh.hidden=true;
+  if(T.closest('#t-adv')){const d=$('#dlg-task');const simple=!d.classList.contains('simple');lsSet('wl.dlgAdv',simple?'0':'1');d.classList.toggle('simple',simple);$('#t-adv').textContent=simple?'항목 더 보기 ▾':'간단히 ▴';return;}
+  if(T.closest('[data-board-old]')){S.boardOld=(S.boardOld||0)+30;renderBoard($('#view'));return;}
+  if(T.closest('[data-g="joinreq"]')){jrSend();return;}
+  if(T.closest('#s-backup'))lsSet('wl.lastBackup',nowISO());});
+document.addEventListener('change',e=>{const T=e.target;
+  if(T.dataset&&T.dataset.calo){CALO[T.dataset.calo]=T.checked;lsSet('wl.calo',JSON.stringify(CALO));if(S.cal){S.cal.removeAllEvents();S.cal.addEventSource(calEvents());}return;}
+  if(T.id==='me-big'){uxBigSet(T.checked);return;}});
+const _uxOpenTask=openTask;openTask=function(t,d){_uxOpenTask(t,d);uxDlgMode(t);};
+const _uxOpenMe=openMe;openMe=function(){_uxOpenMe();uxMeInit();};
+mnavInit();uxBigApply();uxPwa();
 
 /* ───────── 시작 ───────── */
 function boot(){
