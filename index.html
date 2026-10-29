@@ -4251,7 +4251,8 @@ function schStrip(){const box=$('#sch-strip');if(!box)return;const td=today();co
   box.hidden=false;box.innerHTML=`<b>정기 일정</b>${L.map(e=>{const n=diffDays(td,e.date);return `<button type="button" class="sch-chip k-${e.kind}${n<=1?' soon':''}" data-sch-open="${esc(e.id)}"><em>${n===0?'오늘':n===1?'내일':fmtMD(e.date)}</em> ${esc(schWhen(e))} ${esc(e.title)}${e.place&&!e.after?`<small>${esc(e.place)}</small>`:''}</button>`;}).join('')}<span class="sp"></span><button type="button" class="btn sm ghost" data-sch-open="">전체 보기</button>`;}
 /* 알림: 오늘·내일 일정 */
 function schNtf(td){td=td||today();const out=[];if(!S.ready)return out;
-  for(const e of schList(td,addDays(td,1),false)){const n=diffDays(td,e.date);out.push({k:`sch|${e.id}|${td}`,syn:1,at:td+'T00:00:0'+(n?6:5),type:'sch',sch:e.id,title:e.title,text:`${n?'내일':'오늘'} ${schWhen(e)}${e.place&&!e.after?' · '+e.place:''}${e.edu?' · 법정 의무교육 포함':''}`.trim(),sub:e.src==='rule'&&e.kind==='mr'?'그룹웨어 공지 전 예정일입니다':''});}
+  let nx=addDays(td,1);for(let i=0;i<10&&(dow(nx)%6===0||schOffName(nx));i++)nx=addDays(nx,1);
+  for(const e of schList(td,nx,false)){const n=diffDays(td,e.date);out.push({k:`sch|${e.id}|${td}`,syn:1,at:td+'T00:00:0'+(n?6:5),type:'sch',sch:e.id,title:e.title,text:`${n===0?'오늘':n===1?'내일':'다음 근무일 '+fmtMD(e.date)} ${schWhen(e)}${e.place&&!e.after?' · '+e.place:''}${e.edu?' · 법정 의무교육 포함':''}`.trim(),sub:e.src==='rule'&&e.kind==='mr'?'그룹웨어 공지 전 예정일입니다':''});}
   return out;}
 /* 정기 일정 창 */
 function schOpen(id){const d=$('#dlg-sch');SCH.open=true;SCH.edit={};SCH.focus=id||'';schRender();if(!d.open)d.showModal();}
