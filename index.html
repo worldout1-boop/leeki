@@ -1981,7 +1981,7 @@ function renderBoard(v){
       if(t&&to!==from){await changeStatus(t,to);}if(S.pendingRender||to===from){S.pendingRender=false;scheduleRender();}}})));
 }
 
-function calEvents(){return [...calTaskEvents(),...schCalEvents()];}
+function calEvents(){return [...calTaskEvents().map(e=>({...e,prio:0})),...schCalEvents()];}
 function calTaskEvents(){const css=getComputedStyle(document.documentElement);const col=c=>css.getPropertyValue('--c-'+c).trim();
   return applyFilters(S.tasks,{ignorePeriod:true}).filter(t=>s0(t)).map(t=>{const s=s0(t),e=e0(t)<s?s:e0(t);const long=diffDays(s,e)>20;
     return {id:t.path,title:(t.status==='done'?'✓ ':'')+(long?'[마감] ':'')+t.title,start:long?e:s,end:addDays(e,1),allDay:true,durationEditable:!long,backgroundColor:col(t.cat),borderColor:col(t.cat),classNames:[t.status==='done'?'ev-done':'',isLate(t)?'ev-late':''].filter(Boolean)};});}
@@ -1992,7 +1992,7 @@ function renderCalendar(v){
   v.innerHTML=`<div id="cal"></div><div class="cal-legend">${CATS.map(c=>`<span class="catchip cat-${c.id}">${esc(c.name)}</span>`).join('')}<span>· 날짜를 누르면 그날 업무를 등록하고, 막대를 끌면 일정이 바뀝니다. 3주 넘게 이어지는 업무는 마감일에만 표시됩니다</span><button type="button" class="btn sm ghost" data-sch-open="" style="margin-left:auto">📅 정기 일정 (월례조회·업무회의)</button></div>`;
   S.cal=new FullCalendar.Calendar($('#cal',v),{locale:'ko',firstDay:1,height:'auto',initialView:innerWidth<700?'listMonth':'dayGridMonth',
     headerToolbar:{left:'prev,next today',center:'title',right:'dayGridMonth,dayGridWeek,listMonth'},buttonText:{today:'오늘',month:'월',week:'주',list:'목록'},
-    dayMaxEvents:4,editable:S.canWrite,events:calEvents(),
+    dayMaxEvents:4,editable:S.canWrite,events:calEvents(),eventOrder:'-prio,start,-duration,allDay,title',
     eventClick:info=>{info.jsEvent.preventDefault();const id=info.event.id||'';if(id.startsWith('sch:')){schOpen(id.slice(4));return;}if(id.startsWith('hol:'))return;const t=findTask(id);if(t)openTask(t);},
     dateClick:info=>openTask(null,{start:info.dateStr,due:info.dateStr}),
     eventDrop:async info=>{const t=findTask(info.event.id);if(!t){info.revert();return;}const d=diffDays(toStr(info.oldEvent.start),toStr(info.event.start));
@@ -4242,9 +4242,9 @@ const schWhen=e=>e.after?'조회 후':e.time||'';
 function schLine(e){return `${fmtMD(e.date)} ${schWhen(e)} ${e.title}${e.place&&!e.after?' · '+e.place:''}`.replace(/\s+/g,' ').trim();}
 /* 달력 */
 function schCalEvents(){const c=schCfg();const out=[];const t0=addDays(today(),-400),t1=addDays(today(),400);
-  for(const [d,n] of Object.entries(HOLI))if(d>=t0&&d<=t1)out.push({id:'hol:'+d,title:n,start:d,allDay:true,display:'background',classNames:['ev-hol'],editable:false});
+  for(const [d,n] of Object.entries(HOLI))if(d>=t0&&d<=t1)out.push({id:'hol:'+d,title:n,start:d,allDay:true,display:'background',classNames:['ev-hol'],editable:false,prio:9});
   for(const o of c.off)out.push({id:'hol:'+o.d,title:o.n,start:o.d,allDay:true,display:'background',classNames:['ev-hol','ev-off'],editable:false});
-  for(const e of schList(c.since,addDays(today(),400),false))out.push({id:'sch:'+e.id,title:`${schWhen(e)?schWhen(e)+' ':''}${e.title}`,start:e.date,allDay:true,editable:false,classNames:['ev-sch','ev-sch-'+e.kind,e.src==='rule'?'ev-sch-plan':'']});
+  for(const e of schList(c.since,addDays(today(),400),false))out.push({id:'sch:'+e.id,title:`${schWhen(e)?schWhen(e)+' ':''}${e.title}`,start:e.date,allDay:true,editable:false,classNames:['ev-sch','ev-sch-'+e.kind,e.src==='rule'?'ev-sch-plan':''],prio:e.kind==='mr'?3:2});
   return out;}
 /* 내 업무 화면 위 한 줄 */
 function schStrip(){const box=$('#sch-strip');if(!box)return;const td=today();const L=schList(td,addDays(td,21),false).slice(0,3);if(!L.length){box.hidden=true;return;}
