@@ -3111,7 +3111,7 @@ async function extractDocText(file,onProg){const k=kindOf(file.name,file.type);c
   if(k==='pdf'){await needLib('pdf');const pdf=await pdfjsLib.getDocument({data:new Uint8Array(await file.arrayBuffer()),...PDF_OPT}).promise;
     try{let t='';for(let i=1;i<=Math.min(pdf.numPages,6);i++){const pg=await pdf.getPage(i);const tc=await pg.getTextContent();t+=tc.items.map(x=>x.str+(x.hasEOL?'\n':' ')).join('')+'\n';}
       if(t.replace(/\s+/g,'').length>=25)return {text:cap(t),how:'text',pages:pdf.numPages};
-      onProg&&onProg(0,'ocr');let o='';for(let i=1;i<=Math.min(pdf.numPages,2);i++){o+=await ocrCanvas(await pdfCanvas(pdf,i,1700),p=>onProg&&onProg((i-1+p)/Math.min(pdf.numPages,2),'ocr'))+'\n';}
+      onProg&&onProg(0,'ocr');let o='';for(let i=1;i<=Math.min(pdf.numPages,2);i++){o+=await ocrCanvas(await pdfCanvas(pdf,i,2000),p=>onProg&&onProg((i-1+p)/Math.min(pdf.numPages,2),'ocr'))+'\n';}
       return {text:cap(o),how:'ocr',pages:pdf.numPages};}finally{pdf.destroy();}}
   if(k==='image'){onProg&&onProg(0,'ocr');const dec=await decodeImg(file);let cv;try{cv=fitCanvas(dec.src,2000);}finally{dec.done();}return {text:cap(await ocrCanvas(cv,p=>onProg&&onProg(p,'ocr'))),how:'ocr'};}
   const buf=await file.arrayBuffer();
@@ -3151,7 +3151,7 @@ function docDates(text){const t=String(text);const all=[];for(const m of t.match
   for(let j=0;j+1<all.length;j++){const mid=t.slice(all[j].end,all[j+1].i);if(/^\s*[~∼～\-–—]{1,2}\s*$/.test(mid)||/^\s*(부터|to)\s*$/i.test(mid)){if(all[j+1].d>expiry)expiry=all[j+1].d;if(!issued)issued=all[j].d;}}
   if(!expiry)for(const a of all){const pre=t.slice(Math.max(0,a.i-30),a.i);const post=t.slice(a.end,a.end+6);if(/(유효\s*기간|만료|유효\s*일|valid\s*until|expir)/i.test(pre)||/^\s*까지/.test(post)){expiry=a.d;break;}}
   for(const a of all){const pre=t.slice(Math.max(0,a.i-16),a.i).replace(/\s+/g,'');if(/(발급|발행|교부|확인일|인증일|지정일|등록일자|시행)/.test(pre)){issued=a.d;break;}}
-  if(!issued){const past=all.filter(a=>a.d<=today()&&a.d!==expiry);if(past.length)issued=past[past.length-1].d;}
+  if(!issued){const past=all.filter(a=>a.d<=today()&&a.d!==expiry).map(a=>a.d).sort();if(past.length)issued=past[past.length-1];}
   return {issued,expiry};}
 function classifyDoc(name,text){const base=name.replace(/\.[^.]+$/,'');const fn=base.replace(/[\s_\-()[\]]+/g,'');const flat=String(text||'').replace(/\s+/g,'');const head=flat.slice(0,500);const e=extOf(name);
   const sc=[];for(const [k,rules] of Object.entries(DOC_RULES)){let s=0;const why=[];
