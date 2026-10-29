@@ -1,21 +1,8 @@
-/* ═══════════════════════════════════════════════════════════════════
-   관리부 통합 업무일지 — Firebase 연결 설정
-   ───────────────────────────────────────────────────────────────────
-   Firebase 콘솔 › 프로젝트 설정(톱니바퀴) › 일반 › 내 앱 › 웹 앱의
-   'SDK 설정 및 구성'에서 [구성(Config)]을 고르면 나오는
-       apiKey: "....",  authDomain: "....",  ...
-   여섯 줄의 값을 아래 "" 안에 그대로 붙여 넣고 저장(Commit)하세요.
-
-   ※ 이 값들은 비밀번호가 아니라 '연결 주소'입니다. 공개 저장소에 올라가도
-     괜찮습니다. 데이터 보호는 Firestore 보안 규칙(firestore.rules)과
-     업무일지 설정의 '접속 허용 이메일'이 담당합니다.
-   ※ import 로 시작하는 줄은 붙여 넣지 마세요. { } 안의 값만 필요합니다.
-   ═══════════════════════════════════════════════════════════════════ */
 window.WL_FIREBASE_CONFIG = {
-  apiKey: "",
-  authDomain: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: ""
+  apiKey: "AIzaSyD-QEg58UVijl1ZZaEs5yh7k2eUg05R0t8",
+  authDomain: "office01-e52f4.firebaseapp.com",
+  projectId: "office01-e52f4",
+  storageBucket: "office01-e52f4.firebasestorage.app",
+  messagingSenderId: "1013621017321",
+  appId: "1:1013621017321:web:de811b02970db85dcc3e78"
 };
