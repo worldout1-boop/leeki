@@ -779,6 +779,12 @@ img[data-vw-zoom].big{position:relative;z-index:2;width:100%;max-width:100%;grid
 .uc-edit label.chk{display:inline-flex;align-items:center;font-size:13px;color:var(--ink-2);height:30px}
 .uc-act{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;align-items:center}
 @media (max-width:760px){.up-card{grid-template-columns:42px minmax(0,1fr)}.uc-act{grid-column:1/-1;justify-content:flex-start}}
+/* PDF 사본 */
+.vw-note{margin:0;padding:6px 14px;font-size:12.5px;color:var(--ink-2);background:color-mix(in srgb,var(--accent) 8%,var(--surface));border-bottom:1px solid var(--line-2)}
+.vw-extra{display:flex;gap:6px;flex-wrap:wrap}
+.vw-ppt{padding:16px;display:grid;justify-items:center;gap:14px}
+.vw-ppt .pptx-preview-slide-wrapper{box-shadow:0 2px 10px rgba(0,0,0,.35);margin:0 auto 14px!important}
+.tag.pdf{color:#b42318;border-color:color-mix(in srgb,#b42318 35%,var(--line))}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -1044,6 +1050,7 @@ img[data-vw-zoom].big{position:relative;z-index:2;width:100%;max-width:100%;grid
       <div class="f"><span class="lbl" style="font-size:12px;font-weight:600;color:var(--ink-2)">파일 올리기</span>
         <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><label class="btn sm file-btn"><span id="doc-up-lbl">파일 선택</span><input type="file" id="doc-file" accept=".pdf,.png,.jpg,.jpeg,.webp,.heic,.hwp,.hwpx,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.dwg,.dxf,.zip,.txt"></label><span id="doc-file-n" style="font-size:12.5px;color:var(--ink-2)"></span></div>
         <input type="text" id="doc-vnote" maxlength="200" placeholder="이번 버전 메모 (선택) 예: 2026년 갱신본" style="margin-top:6px">
+        <label class="chk" style="margin-top:6px"><input type="checkbox" id="doc-mkpdf" checked> 엑셀·워드·파워포인트는 미리보기용 PDF도 만들어 함께 저장</label>
         <p class="help" style="font-size:12px;color:var(--ink-3);margin:4px 0 0">PDF·한글·워드·엑셀·도면·사진 파일, 20MB까지. 휴대폰으로 찍은 서류 사진은 글자가 보이게 자동으로 알맞게 줄입니다.</p><span id="doc-prog" hidden></span></div>
       <div class="f"><span class="lbl" style="font-size:12px;font-weight:600;color:var(--ink-2)">버전 기록</span><ol id="doc-vers"></ol></div>
     </div></div>
@@ -1066,8 +1073,9 @@ img[data-vw-zoom].big{position:relative;z-index:2;width:100%;max-width:100%;grid
 <div class="ntf-pop" id="ntf-pop" hidden role="dialog" aria-label="알림"></div>
 <dialog class="viewer" id="dlg-view" aria-labelledby="vw-name">
   <div class="vw-h"><span class="fi" id="vw-ic">FILE</span><div class="vw-t"><b id="vw-name"></b><small id="vw-meta"></small></div>
-    <div class="vw-tools" id="vw-tools"></div><span class="sp"></span>
+    <div class="vw-tools" id="vw-tools"></div><span class="sp"></span><span class="vw-extra" id="vw-extra"></span>
     <button type="button" class="btn sm" id="vw-win" hidden>새 창</button><button type="button" class="btn sm primary" id="vw-dl">내려받기</button><button type="button" class="icon-btn vw-x" data-close aria-label="닫기">✕</button></div>
+  <p class="vw-note" id="vw-note" hidden></p>
   <div class="vw-b" id="vw-body"></div>
 </dialog>
 <div id="toasts" aria-live="polite"></div>
@@ -1163,7 +1171,7 @@ const S={
   profiles:{},localBlobs:{},opinions:{},opDraft:{},
   dlg:null,cal:null,charts:[],dragging:false,pendingRender:false,sortables:[],
   thumbUrls:{},files:{},localFiles:{},docDlg:null,legalCfg:null,legalLog:null,
-  ph:{range:'30',site:'',cat:'',tag:'',q:'',limit:120},ov:{mode:'day',date:''},wk:{ws:'',who:''},docs:{g:'',q:'',exp:false},up:{items:[],auto:true,busy:false},lg:{year:0,g:'',onOnly:true,past:false,edit:null,open:null}
+  ph:{range:'30',site:'',cat:'',tag:'',q:'',limit:120},ov:{mode:'day',date:''},wk:{ws:'',who:''},docs:{g:'',q:'',exp:false},up:{items:[],auto:true,pdf:true,busy:false},lg:{year:0,g:'',onOnly:true,past:false,edit:null,open:null}
 };
 
 /* ───────── 미리보기용 메모리 저장소 (공유 저장소에 연결되지 않았을 때) ───────── */
@@ -2628,7 +2636,7 @@ const SLOT=Object.fromEntries(DOC_SLOTS.map(s=>[s.k,s]));
 const FILE_MAX=20*1048576,FILE_CHUNK=700*1024;
 const siteKey=s=>{let h=2166136261;for(const c of String(s||'')){h^=c.charCodeAt(0);h=Math.imul(h,16777619);}return (h>>>0).toString(36);};
 const canViewRestricted=()=>S.preview||(S.mode==='firebase'?(S.canEdit||!!(S.members&&(S.members.viewers||[]).includes(S.email))):S.canEdit);
-function normFile(id,r){r=r||{};const vs=Array.isArray(r.versions)?r.versions.filter(x=>x&&Number.isFinite(x.v)).map(x=>({v:x.v,name:typeof x.name==='string'?x.name.slice(0,120):'파일',type:typeof x.type==='string'?x.type.slice(0,80):'',size:Number(x.size)||0,store:['fb','asset','local'].includes(x.store)?x.store:'fb',n:Number(x.n)||0,asset:typeof x.asset==='string'?x.asset:'',at:typeof x.at==='string'?x.at:'',by:typeof x.by==='string'?x.by:'',note:typeof x.note==='string'?x.note.slice(0,200):'',h:typeof x.h==='string'?x.h.slice(0,40):''})):[];
+function normFile(id,r){r=r||{};const vs=Array.isArray(r.versions)?r.versions.filter(x=>x&&Number.isFinite(x.v)).map(x=>({v:x.v,name:typeof x.name==='string'?x.name.slice(0,120):'파일',type:typeof x.type==='string'?x.type.slice(0,80):'',size:Number(x.size)||0,store:['fb','asset','local'].includes(x.store)?x.store:'fb',n:Number(x.n)||0,asset:typeof x.asset==='string'?x.asset:'',at:typeof x.at==='string'?x.at:'',by:typeof x.by==='string'?x.by:'',note:typeof x.note==='string'?x.note.slice(0,200):'',h:typeof x.h==='string'?x.h.slice(0,40):'',pdf:x.pdf&&typeof x.pdf==='object'&&Number(x.pdf.n)>0||x.pdf&&x.pdf.asset?{store:['fb','asset','local'].includes(x.pdf.store)?x.pdf.store:'fb',n:Number(x.pdf.n)||0,asset:typeof x.pdf.asset==='string'?x.pdf.asset:'',size:Number(x.pdf.size)||0,conv:!!x.pdf.conv,key:typeof x.pdf.key==='string'&&/^[\w-]{1,24}$/.test(x.pdf.key)?x.pdf.key:''}:null})):[];
   return {id,slot:SLOT[r.slot]?r.slot:'etc',g:DOC_GROUPS.some(g=>g.id===r.g)?r.g:'etc',site:typeof r.site==='string'?r.site.slice(0,30):'',title:typeof r.title==='string'&&r.title.trim()?r.title.slice(0,80):'서류',
     restricted:r.restricted===true,issued:isDate(r.issued)?r.issued:'',expiry:isDate(r.expiry)?r.expiry:'',note:typeof r.note==='string'?r.note.slice(0,500):'',versions:vs.sort((a,b)=>a.v-b.v),
     txt:typeof r.txt==='string'?r.txt.slice(0,2000):'',thumb:typeof r.thumb==='string'&&r.thumb.startsWith('data:image/')&&r.thumb.length<90000?r.thumb:'',thumbV:Number.isFinite(r.thumbV)?r.thumbV:0,
@@ -2658,7 +2666,7 @@ const viewable=v=>!!v;
 const verName=(f,v)=>{const e=extOf(v.name);const base=f.title&&f.title!=='서류'?f.title:v.name.replace(/\.[^.]+$/,'');return `${base}${f.site?'_'+f.site:''}_v${v.v}${e?'.'+e:''}`.replace(/[\\/:*?"<>|]+/g,'_');};
 async function docOpen(f,ver,mode){ver=ver||curVer(f);if(!ver)return;if(f.restricted&&!canViewRestricted()){toast(fileErrMsg({code:'restricted'}),'err');return;}
   if(mode==='dl'){setSync('saving');try{const b=await fileGet(f,ver);setSync('ok');saveBlob(b,verName(f,ver));}catch(e){setSync('ok');toast(fileErrMsg(e),'err');}return;}
-  openViewer({name:ver.name,type:ver.type,size:ver.size,meta:`${f.title}${f.site?' · '+f.site:''} · v${ver.v} · ${fmtYMD(localDate(ver.at))} ${nameOf(ver.by)}`,get:()=>fileGet(f,ver),dlName:verName(f,ver),onBlob:b=>{docThumbSave(f,ver,b);}});}
+  openViewer(docViewOpts(f,ver));}
 
 function docRowHTML(f,slot){const v=curVer(f);const lock=f.restricted?'<span class="lock" title="열람 제한">🔒</span>':'';const can=!f.restricted||canViewRestricted();
   const ic=v&&f.thumb&&!f.restricted?`<span class="fi th"><img src="${esc(f.thumb)}" alt="" loading="lazy"><i>${fileIcon(v)}</i></span>`:`<span class="fi ${v?'':'none'}">${v?(f.restricted?'🔒':fileIcon(v)):'—'}</span>`;
@@ -2701,7 +2709,7 @@ function openDoc(id,o={}){let f=id?S.files[id]:null;
   $('#doc-up-lbl').textContent=f.isNew?'파일 선택':'새 버전 파일 선택';
   refreshDocDlg(true);if(!d.open)d.showModal();if(o.pick)setTimeout(()=>$('#doc-file').click(),60);}
 function refreshDocDlg(force){const D=S.docDlg;const dl=$('#dlg-doc');if(!D||(!force&&!dl.open))return;const f=S.files[D.id]||D.base;const can=!f.restricted||canViewRestricted();
-  $('#doc-vers').innerHTML=f.versions.length?[...f.versions].reverse().map(x=>`<li><span class="fi">${fileIcon(x)}</span><div class="dm"><b>v${x.v} · ${esc(x.name)}</b><small>${hhmm(x.at)} · ${esc(nameOf(x.by))} · ${fmtMB(x.size)}${x.note?' · '+esc(x.note):''}</small></div>${can?`<span class="da"><button type="button" class="btn sm" data-dv-view="${x.v}">미리보기</button><button type="button" class="btn sm" data-dv-dl="${x.v}" aria-label="내려받기">${ICON.dl}</button></span>`:'<span class="lock">🔒 열람 제한</span>'}</li>`).join(''):'<li class="none">아직 올린 파일이 없습니다.</li>';}
+  $('#doc-vers').innerHTML=f.versions.length?[...f.versions].reverse().map(x=>`<li><span class="fi">${fileIcon(x)}</span><div class="dm"><b>v${x.v} · ${esc(x.name)}${x.pdf?' <span class="tag pdf">+PDF</span>':''}</b><small>${hhmm(x.at)} · ${esc(nameOf(x.by))} · ${fmtMB(x.size)}${x.pdf?` · PDF ${fmtMB(x.pdf.size)}${x.pdf.conv?'(자동 변환)':'(붙인 사본)'}`:''}${x.note?' · '+esc(x.note):''}</small></div>${can?`<span class="da"><button type="button" class="btn sm" data-dv-view="${x.v}">미리보기</button><button type="button" class="btn sm" data-dv-dl="${x.v}" aria-label="내려받기">${ICON.dl}</button>${S.canWrite&&!x.pdf?(convertible(x.name,x.type)?`<button type="button" class="btn sm ghost" data-dv-pdf="${x.v}">PDF 만들기</button>`:pdfAttachable(x.name,x.type)?`<button type="button" class="btn sm ghost" data-dv-pdfup="${x.v}">PDF 사본 붙이기</button>`:''):''}${S.canWrite&&x.pdf?`<button type="button" class="btn sm ghost" data-dv-pdfup="${x.v}" title="한글·엑셀 등에서 직접 저장한 PDF로 바꾸기">PDF 바꾸기</button>`:''}</span>`:'<span class="lock">🔒 열람 제한</span>'}</li>`).join(''):'<li class="none">아직 올린 파일이 없습니다.</li>';}
 async function saveDoc(e){e.preventDefault();const D=S.docDlg;if(!D||!S.canWrite)return;const f=S.files[D.id]||D.base;const file=D.file;
   const title=$('#doc-title').value.trim()||(file&&SLOT[f.slot].multi?file.name.replace(/\.[^.]+$/,'').slice(0,80):'')||SLOT[f.slot].name;const issued=$('#doc-issued').value,expiry=$('#doc-expiry').value;
   if(D.isNew&&!S.files[D.id]&&!file){toast('올릴 파일을 선택하세요.','err');$('#doc-file').focus();return;}
@@ -2715,7 +2723,8 @@ async function saveDoc(e){e.preventDefault();const D=S.docDlg;if(!D||!S.canWrite
       const blob=await optimizeDocImage(file);const v=(versions.length?versions[versions.length-1].v:0)+1;const pg=$('#doc-prog');pg.hidden=false;
       const st=await filePut(D.id,v,blob,(i,n)=>{pg.textContent=`올리는 중… ${Math.round(i/n*100)}%`;});pg.textContent='저장 중…';
       const restr=meta.restricted;if(!restr&&thumbable(blob.name||file.name,blob.type||file.type)){pg.textContent='미리보기 그림 만드는 중…';const th=await makeThumb(blob,blob.name||file.name);meta.thumb=th||'';meta.thumbV=v;}
-      versions=[...versions,{v,name:(blob.name||file.name||'파일').slice(0,120),type:blob.type||file.type||'',size:blob.size,store:st.store,n:st.n,asset:st.asset||'',at:nowISO(),by:myId()||'',note:$('#doc-vnote').value.trim().slice(0,200)}].slice(-30);}
+      let pdfc=null;const fname=blob.name||file.name;if($('#doc-mkpdf').checked&&convertible(fname,blob.type||file.type)){pg.textContent='PDF 사본 만드는 중…';try{const pb=await toPdf(new File([blob],fname,{type:blob.type||file.type}),p=>{pg.textContent=`PDF 사본 만드는 중… ${Math.round(p*100)}%`;});pdfc=await putPdfCopy(D.id,v,pb,true);if(!meta.thumb&&!restr){const th=await makeThumb(pb,'x.pdf');if(th){meta.thumb=th;meta.thumbV=v;}}}catch(e){toast('PDF 사본은 만들지 못했습니다. 원본만 저장합니다.','err');}}
+      versions=[...versions,{v,pdf:pdfc,name:(blob.name||file.name||'파일').slice(0,120),type:blob.type||file.type||'',size:blob.size,store:st.store,n:st.n,asset:st.asset||'',at:nowISO(),by:myId()||'',note:$('#doc-vnote').value.trim().slice(0,200)}].slice(-30);}
     if(meta.restricted){meta.thumb='';meta.thumbV=0;}const doc={...meta,versions};
     if(!S.files[D.id]){doc.createdAt=nowISO();doc.createdBy=myId()||'';await dbSet(`files/${D.id}`,doc);}else await dbUpdate(`files/${D.id}`,doc);
     toast(file?`「${title}」 ${versions[versions.length-1].v>1?'새 버전을':'파일을'} 저장했습니다.`:'서류 정보를 저장했습니다.');$('#dlg-doc').close();}
@@ -2942,6 +2951,8 @@ document.addEventListener('click',async e=>{
   if(T.closest('[data-vw-fit]')){const box=$('.vw-img');if(box){box.classList.toggle('fit');T.closest('[data-vw-fit]').textContent=box.classList.contains('fit')?'원래 크기':'화면 맞춤';}return;}
   if(T.closest('.vw-img img')){const box=$('.vw-img');box.classList.toggle('fit');const bt=$('[data-vw-fit]');if(bt)bt.textContent=box.classList.contains('fit')?'원래 크기':'화면 맞춤';return;}
   const vzi=T.closest('[data-vw-zoom]');if(vzi){vzi.classList.toggle('big');return;}
+  const vx=T.closest('[data-vw-x]');if(vx){const x=VW.o&&VW.o.extras&&VW.o.extras[+vx.dataset.vwX];if(x){vx.disabled=true;try{await x.fn();}finally{vx.disabled=false;}}return;}
+  const dvp=T.closest('[data-dv-pdf],[data-dv-pdfup]');if(dvp&&S.docDlg){const f=S.files[S.docDlg.id];if(!f)return;const v=f.versions.find(x=>x.v===+(dvp.dataset.dvPdf||dvp.dataset.dvPdfup));if(!v)return;dvp.disabled=true;try{if(dvp.dataset.dvPdf)await convertAndAttach(f,v);else await uploadPdfCopy(f,v);}finally{dvp.disabled=false;}return;}
   if(T.closest('#vw-dl,[data-vw-dl]')){if(VW.blob&&VW.o&&VW.o.dlName)saveBlob(VW.blob,VW.o.dlName);return;}
   if(T.closest('#vw-win')){if(VW.blob){const u=URL.createObjectURL(VW.blob);const w=window.open(u,'_blank');if(!w)toast('새 창을 열 수 없는 환경입니다. 이 창에서 보거나 내려받으세요.');setTimeout(()=>URL.revokeObjectURL(u),300000);}return;}
   const iv=T.closest('[data-imp-view]');if(iv&&S.imp){const ent=S.imp.files[+iv.dataset.impView];if(ent&&ent.file)openViewer({name:ent.file.name,type:ent.file.type,size:ent.file.size,meta:'올리기 전 확인',blob:ent.file});return;}
@@ -3006,6 +3017,7 @@ async function openViewer(o){vwReset();const tok=VW.tok;Object.assign(VW,{o,zoom
   const k0=kindOf(o.name,o.type);$('#vw-ic').textContent=fileIcon({name:o.name});$('#vw-name').textContent=o.name;
   $('#vw-meta').textContent=[o.meta,KIND_NAME[k0],o.size?fmtMB(o.size):''].filter(Boolean).join(' · ');
   $('#vw-tools').innerHTML='';$('#vw-win').hidden=true;$('#vw-dl').hidden=!o.dlName;
+  $('#vw-extra').innerHTML=(o.extras||[]).map((x,i)=>`<button type="button" class="btn sm" data-vw-x="${i}">${esc(x.label)}</button>`).join('');$('#vw-note').hidden=!o.note;$('#vw-note').textContent=o.note||'';
   $('#vw-body').className='vw-b';$('#vw-body').innerHTML='<div class="vw-load"><i></i>불러오는 중…</div>';if(!d.open)d.showModal();
   let blob;try{blob=o.blob||await o.get();}catch(e){if(tok===VW.tok)vwMsg(fileErrMsg(e),true);return;}
   if(tok!==VW.tok)return;VW.blob=blob;const k=kindOf(o.name,blob.type||o.type);VW.kind=k;
@@ -3031,7 +3043,10 @@ const VW_RENDER={
     const wb=e==='csv'||e==='tsv'?XLSX.read(decodeText(buf),{type:'string',raw:true}):XLSX.read(new Uint8Array(buf),{type:'array',cellDates:true});VW.wb=wb;
     $('#vw-tools').innerHTML=wb.SheetNames.length>1?`<div class="seg sm vw-tabs">${wb.SheetNames.slice(0,30).map((s,i)=>`<button type="button" data-vs="${i}" aria-pressed="${i===0}">${esc(s)}</button>`).join('')}</div>`:'';
     vwSheet(0);},
-  async docx(blob){await needLib('mammoth');const r=await mammoth.convertToHtml({arrayBuffer:await blob.arrayBuffer()});
+  async docx(blob,tok){try{await needLib('jszip');await needLib('docxp');const b=$('#vw-body');b.className='vw-b';b.innerHTML='';const f=document.createElement('iframe');f.className='vw-frame';f.setAttribute('sandbox','allow-same-origin');f.title='워드 문서 미리보기';
+      await new Promise(r=>{f.onload=r;f.srcdoc='<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0;background:#dfe3e8}.docx-wrapper{background:#dfe3e8!important;padding:16px!important}</style></head><body></body></html>';b.append(f);});
+      if(tok!==VW.tok)return;await docx.renderAsync(blob,f.contentDocument.body,f.contentDocument.head,{inWrapper:true,breakPages:true,renderHeaders:true,renderFooters:true,experimental:true,useBase64URL:true});return;}catch(e){}
+    await needLib('mammoth');const r=await mammoth.convertToHtml({arrayBuffer:await blob.arrayBuffer()});
     vwFrame(`<!doctype html><meta charset="utf-8"><style>${VW_DOC_CSS}main{max-width:820px;margin:0 auto;padding:28px 28px 60px}img{max-width:100%;height:auto}table{border-collapse:collapse;margin:8px 0}td,th{border:1px solid #b9c1cc;padding:4px 8px;vertical-align:top}h1,h2,h3{line-height:1.35}</style><main>${r.value||'<p>(내용 없음)</p>'}</main>`);},
   async hwpx(blob){await needLib('jszip');const buf=await blob.arrayBuffer();const z=await JSZip.loadAsync(buf);
     const prvF=Object.keys(z.files).find(n=>/^Preview\/PrvImage\.(png|jpe?g|gif|bmp)$/i.test(n));const prv=prvF?vwUrl(new Blob([await z.file(prvF).async('uint8array')],{type:'image/png'})):'';
@@ -3045,7 +3060,9 @@ const VW_RENDER={
         if(!imgMagic(u8)){try{const x=await inflateRaw(u8);if(imgMagic(x))u8=x;}catch{}}const t=imgMagic(u8);if(t)imgs.push(vwUrl(new Blob([u8],{type:t})));}}catch{}
     if(!text&&!prv&&!imgs.length)throw {userMsg:err||'한글 문서를 읽지 못했습니다.'};
     vwDocText(text,prv,imgs,'한글 문서',err);},
-  async pptx(blob){await needLib('jszip');const z=await JSZip.loadAsync(await blob.arrayBuffer());const num=n=>+(n.match(/(\d+)\.xml$/)||[0,0])[1];
+  async pptx(blob,tok){try{await needLib('pptxp');const b=$('#vw-body');b.className='vw-b dark';b.innerHTML='<div class="vw-ppt"></div>';const host=$('.vw-ppt',b);const w=Math.min(960,b.clientWidth-32);
+      const pv=pptxPreview.init(host,{width:w,height:Math.round(w*9/16),mode:'list'});await pv.preview(await blob.arrayBuffer());if(host.querySelector('.pptx-preview-slide-wrapper'))return;}catch(e){}
+    await needLib('jszip');const z=await JSZip.loadAsync(await blob.arrayBuffer());const num=n=>+(n.match(/(\d+)\.xml$/)||[0,0])[1];
     const slides=Object.keys(z.files).filter(n=>/^ppt\/slides\/slide\d+\.xml$/.test(n)).sort((a,b)=>num(a)-num(b));const out=[];
     for(const n of slides.slice(0,80)){const doc=new DOMParser().parseFromString(await z.file(n).async('string'),'application/xml');
       const paras=Array.from(doc.getElementsByTagNameNS('*','p')).map(p=>Array.from(p.getElementsByTagNameNS('*','t')).map(t=>t.textContent).join('')).filter(s=>s.trim());
@@ -3096,7 +3113,7 @@ async function docThumbBackfill(){if(S.thumbFill||!S.canWrite)return;S.thumbFill
   try{for(const f of Object.values(S.files)){const v=curVer(f);if(!v||f.restricted||f.thumbV===v.v||S.thumbTried.has(f.id+'@'+v.v)||!thumbable(v.name,v.type))continue;S.thumbTried.add(f.id+'@'+v.v);
       try{const blob=await fileGet(f,v);await docThumbSave(f,v,blob);}catch{}if(S.view!=='docs')break;}}
   finally{S.thumbFill=false;}}
-$('#dlg-view').addEventListener('close',vwReset);
+$('#dlg-view').addEventListener('close',()=>{vwReset();$('#vw-body').innerHTML='';});
 /* ───────── 각종서류 올리기 (서류 자동 정리) ─────────
    올린 파일의 글자를 읽어(스캔·사진은 글자 인식 OCR) 어떤 서류인지 판단하고, 사업장·발급일·유효기간을 찾아 서류함의 알맞은 칸에 저장합니다.
    판단은 파일 이름 + 본문 낱말 규칙으로 하며(외부 AI 없이 브라우저 안에서 처리), 확실하지 않은 서류는 확인을 받은 뒤 저장합니다. */
@@ -3174,8 +3191,9 @@ async function storeDoc(o,onProg){const st=SLOT[o.slot]||SLOT.etc;const site=st.
   const fid=f?f.id:(st.multi||st.k==='etc'?`d-${st.k}-${rid().slice(0,10)}`:`d-${st.k}${site?'-'+siteKey(site):''}`);
   const restricted=f?(f.restricted||((S.canEdit||S.preview)&&!!o.restricted)):!!o.restricted;
   const blob=await optimizeDocImage(o.file);const versions=f?f.versions.slice():[];const v=(versions.length?versions[versions.length-1].v:0)+1;
-  const put=await filePut(fid,v,blob,(i,n)=>onProg&&onProg(i/n));
-  versions.push({v,name:(o.file.name||'파일').slice(0,120),type:blob.type||o.file.type||'',size:blob.size,store:put.store,n:put.n,asset:put.asset||'',at:nowISO(),by:myId()||'',note:(o.vnote||'').slice(0,200),h:o.hash||''});
+  const put=await filePut(fid,v,blob,(i,n)=>onProg&&onProg(i/n*(o.pdfBlob?.7:1)));
+  let pdf=null;if(o.pdfBlob){try{pdf=await putPdfCopy(fid,v,o.pdfBlob,!!o.pdfConv,(i,n)=>onProg&&onProg(.7+.3*i/n));}catch{}}
+  versions.push({v,pdf,name:(o.file.name||'파일').slice(0,120),type:blob.type||o.file.type||'',size:blob.size,store:put.store,n:put.n,asset:put.asset||'',at:nowISO(),by:myId()||'',note:(o.vnote||'').slice(0,200),h:o.hash||''});
   const meta={slot:st.k,g:st.g,site,title:(f&&!o.title?f.title:(o.title||st.name)).slice(0,80),restricted,issued:isDate(o.issued)?o.issued:(f?f.issued:''),expiry:isDate(o.expiry)?o.expiry:(f?f.expiry:''),note:f?f.note:(o.note||''),versions:versions.slice(-30),updatedAt:nowISO(),updatedBy:myId()||''};
   if(!restricted){meta.txt=String(o.text||'').replace(/\s+/g,' ').trim().slice(0,1500);if(o.thumb){meta.thumb=o.thumb;meta.thumbV=v;}}else{meta.txt='';meta.thumb='';meta.thumbV=0;}
   if(f)await dbUpdate(`files/${fid}`,meta);else await dbSet(`files/${fid}`,{...meta,createdAt:nowISO(),createdBy:myId()||''});
@@ -3187,7 +3205,10 @@ const slotPath=(slot,site)=>{const st=SLOT[slot]||SLOT.etc;const g=DOC_GROUPS.fi
 const CONF={high:'확실',mid:'대체로 확실',low:'확인 필요'};
 function slotOptions(sel){return DOC_GROUPS.map(g=>`<optgroup label="${esc(g.name)}">${DOC_SLOTS.filter(s=>s.g===g.id).map(s=>`<option value="${s.k}" ${s.k===sel?'selected':''}>${esc(s.name)}</option>`).join('')}</optgroup>`).join('');}
 function upAdd(files){if(!S.canWrite){toast('보기 전용 권한이라 올릴 수 없습니다.','err');return;}let n=0;
-  for(const file of Array.from(files||[])){if(!file||!file.size)continue;if(file.size>FILE_MAX){toast(`${file.name}: 20MB 이하 파일만 올릴 수 있습니다.`,'err');continue;}S.up.items.push({id:rid(),file,name:file.name,size:file.size,status:'wait',prog:0});n++;}
+  const list=Array.from(files||[]).filter(f=>{if(!f||!f.size)return false;if(f.size>FILE_MAX){toast(`${f.name}: 20MB 이하 파일만 올릴 수 있습니다.`,'err');return false;}return true;});
+  const base=n=>n.replace(/\.[^.]+$/,'').trim().toLowerCase();const pdfs=new Map();for(const f of list)if(kindOf(f.name,f.type)==='pdf')pdfs.set(base(f.name),f);const paired=new Set();
+  for(const file of list){if(kindOf(file.name,file.type)==='pdf')continue;const pf=pdfs.get(base(file.name));const it={id:rid(),file,name:file.name,size:file.size,status:'wait',prog:0};if(pf&&pdfAttachable(file.name,file.type)){it.pairPdf=pf;paired.add(pf);}S.up.items.push(it);n++;}
+  for(const file of list){if(kindOf(file.name,file.type)!=='pdf'||paired.has(file))continue;S.up.items.push({id:rid(),file,name:file.name,size:file.size,status:'wait',prog:0});n++;}
   if(n){renderUpList();upPump();}}
 async function upPump(){if(S.up.busy)return;S.up.busy=true;
   try{for(;;){const it=S.up.items.find(x=>x.status==='wait');if(!it)break;await upProcess(it);}}finally{S.up.busy=false;}}
@@ -3201,7 +3222,10 @@ async function upProcess(it){it.status='read';renderUpItem(it);
   catch(e){it.status='error';it.err=(e&&e.userMsg)||'파일을 읽지 못했습니다.';renderUpItem(it);}}
 async function upSave(it){const g=it.guess;it.status='saving';it.prog=0;renderUpItem(it);
   try{for(let i=0;i<20&&!it.thumb&&thumbable(it.name,it.file.type);i++)await new Promise(r=>setTimeout(r,150));
-    const r=await storeDoc({slot:g.slot,site:g.site,title:g.title,issued:g.issued,expiry:g.expiry,restricted:g.restricted,file:it.file,hash:it.hash,text:it.text,thumb:it.thumb,vnote:'각종서류 올리기'},p=>{it.prog=p;renderUpItem(it);});
+    let pdfBlob=it.pairPdf||null,pdfConv=false;
+    if(!pdfBlob&&S.up.pdf&&convertible(it.name,it.file.type)){it.status='conv';it.prog=0;renderUpItem(it);try{pdfBlob=await toPdf(it.file,p=>{it.prog=p;renderUpItem(it);});pdfConv=true;}catch(e){it.convErr=(e&&e.userMsg)||'PDF로 바꾸지 못했습니다';}it.status='saving';it.prog=0;renderUpItem(it);}
+    if(pdfBlob&&!it.thumb&&!g.restricted){try{it.thumb=await makeThumb(pdfBlob,'x.pdf');}catch{}}it.hasPdf=!!pdfBlob;it.pdfConv=pdfConv;
+    const r=await storeDoc({slot:g.slot,site:g.site,title:g.title,issued:g.issued,expiry:g.expiry,restricted:g.restricted,file:it.file,hash:it.hash,text:it.text,thumb:it.thumb,vnote:'각종서류 올리기',pdfBlob,pdfConv},p=>{it.prog=p;renderUpItem(it);});
     it.fid=r.fid;it.ver=r.v;it.isNew=r.isNew;it.status='saved';}
   catch(e){it.status='ready';toast(fileErrMsg(e),'err');}
   renderUpItem(it);upSummary();}
@@ -3214,16 +3238,17 @@ function upItemHTML(it){const g=it.guess;const admin=S.canEdit||S.preview;
   else if(it.status==='ocr')body=`<span class="uc-st"><i class="spin"></i>스캔·사진 글자 인식 중… ${Math.round((it.prog||0)*100)}% <small>(처음 한 번은 인식 도구를 받느라 조금 걸립니다)</small></span>`;
   else if(it.status==='error')body=`<span class="uc-st err">${esc(it.err)}</span>`,act=`<button type="button" class="btn sm ghost" data-up-x="${it.id}">지우기</button>`;
   else if(g){const guess=`<div class="uc-guess"><span class="uc-path">${esc(slotPath(g.slot,g.site))}</span><span class="conf c-${g.conf}">${CONF[g.conf]}</span>${g.restricted?'<span class="lock">🔒</span>':''}${g.expiry?`<span class="uc-d">유효기간 ~${fmtYMD(g.expiry)}</span>`:''}${g.issued?`<span class="uc-d">발급 ${fmtYMD(g.issued)}</span>`:''}</div><div class="uc-why">${esc(how)}${g.why.length?' · 근거: '+esc(g.why.join(', ')):''}${g.siteFrom&&g.site?` · 사업장: ${esc(g.site)}(${esc(g.siteFrom)})`:''}</div>`;
-    if(it.status==='saved'){const f=S.files[it.fid];body=`<div class="uc-guess"><span class="uc-ok">✓ 서류함에 저장</span><span class="uc-path">${esc(slotPath(f?f.slot:g.slot,f?f.site:g.site))}</span>${f?`<span class="uc-d">「${esc(f.title)}」 ${it.isNew?'새로 등록':`v${it.ver} 새 버전`}</span>`:''}</div><div class="uc-why">${esc(how)}${g.why.length?' · 근거: '+esc(g.why.join(', ')):''}</div>`;
+    if(it.status==='saved'){const f=S.files[it.fid];body=`<div class="uc-guess"><span class="uc-ok">✓ 서류함에 저장</span><span class="uc-path">${esc(slotPath(f?f.slot:g.slot,f?f.site:g.site))}</span>${f?`<span class="uc-d">「${esc(f.title)}」 ${it.isNew?'새로 등록':`v${it.ver} 새 버전`}</span>`:''}${it.hasPdf?`<span class="tag pdf">${it.pdfConv?'PDF로 변환해 함께 저장':'같은 이름 PDF를 사본으로 저장'}</span>`:''}${it.convErr?`<span class="uc-d" style="color:var(--late)">PDF 변환 실패: 원본만 저장</span>`:''}</div><div class="uc-why">${esc(how)}${g.why.length?' · 근거: '+esc(g.why.join(', ')):''}</div>`;
       act=`<button type="button" class="btn sm" data-up-view="${it.id}">미리보기</button><button type="button" class="btn sm ghost" data-doc-info="${esc(it.fid||'')}">분류·정보 고치기</button>`;}
     else if(it.status==='saving')body=guess+`<span class="uc-st"><i class="spin"></i>서류함에 저장 중… ${Math.round((it.prog||0)*100)}%</span>`;
+    else if(it.status==='conv')body=guess+`<span class="uc-st"><i class="spin"></i>미리보기용 PDF로 바꾸는 중… ${Math.round((it.prog||0)*100)}%</span>`;
     else if(it.status==='dup'){body=guess+`<div class="uc-why warn">이미 서류함에 같은 파일이 있습니다: 「${esc(it.dup.f.title)}」 v${it.dup.v.v}</div>`;act=`<button type="button" class="btn sm" data-up-force="${it.id}">그래도 저장</button><button type="button" class="btn sm ghost" data-up-x="${it.id}">건너뛰기</button>`;}
     else{body=guess+`<div class="uc-edit" data-up-edit="${it.id}"><label>분류<select data-uf="slot">${slotOptions(g.slot)}</select></label>${SLOT[g.slot].g==='site'?`<label>사업장<select data-uf="site">${staffSites().map(s=>`<option ${s===g.site?'selected':''}>${esc(s)}</option>`).join('')}</select></label>`:''}<label class="w">서류명<input type="text" data-uf="title" maxlength="80" value="${esc(g.title)}"></label><label>발급일<input type="date" data-uf="issued" value="${esc(g.issued)}"></label><label>유효기간<input type="date" data-uf="expiry" value="${esc(g.expiry)}"></label>${admin?`<label class="chk"><input type="checkbox" data-uf="restricted" ${g.restricted?'checked':''}> 🔒</label>`:''}</div>`;
       act=`<button type="button" class="btn sm primary" data-up-save="${it.id}">서류함에 저장</button><button type="button" class="btn sm ghost" data-up-x="${it.id}">빼기</button>`;}}
-  return `<div class="up-card st-${it.status}" id="up-${it.id}">${head}<div class="uc-main"><div class="uc-n"><b>${esc(it.name)}</b><small>${fmtMB(it.size)}</small>${it.status!=='saved'&&it.status!=='wait'&&it.status!=='read'?`<button type="button" class="lnk" data-up-pv="${it.id}">원본 보기</button>`:''}</div>${body}</div><div class="uc-act">${act}</div></div>`;}
+  return `<div class="up-card st-${it.status}" id="up-${it.id}">${head}<div class="uc-main"><div class="uc-n"><b>${esc(it.name)}</b><small>${fmtMB(it.size)}</small>${it.pairPdf?`<span class="tag pdf">+ ${esc(it.pairPdf.name)}</span>`:''}${it.status!=='saved'&&it.status!=='wait'&&it.status!=='read'?`<button type="button" class="lnk" data-up-pv="${it.id}">원본 보기</button>`:''}</div>${body}</div><div class="uc-act">${act}</div></div>`;}
 function renderUpItem(it){const el=document.getElementById('up-'+it.id);if(!el){if(S.view==='upload')renderUpList();return;}const ae=document.activeElement;if(ae&&el.contains(ae)&&ae.matches('input,select'))return;el.outerHTML=upItemHTML(it);upSummary();}
 function upSummary(){const box=$('#up-sum');if(!box)return;const its=S.up.items;const c=s=>its.filter(x=>x.status===s).length;const ready=c('ready');
-  box.innerHTML=its.length?`<span>${its.length}개 중 저장 ${c('saved')} · 확인 필요 ${ready}${c('dup')?` · 중복 ${c('dup')}`:''}${its.some(x=>['wait','read','ocr','saving'].includes(x.status))?' · 처리 중…':''}</span><span class="sp"></span>${ready?`<button type="button" class="btn sm primary" id="up-all">확인 필요 ${ready}건 모두 저장</button>`:''}${its.some(x=>['saved','error','dup'].includes(x.status))?'<button type="button" class="btn sm ghost" id="up-clear">완료 목록 지우기</button>':''}`:'';box.hidden=!its.length;}
+  box.innerHTML=its.length?`<span>${its.length}개 중 저장 ${c('saved')} · 확인 필요 ${ready}${c('dup')?` · 중복 ${c('dup')}`:''}${its.some(x=>['wait','read','ocr','conv','saving'].includes(x.status))?' · 처리 중…':''}</span><span class="sp"></span>${ready?`<button type="button" class="btn sm primary" id="up-all">확인 필요 ${ready}건 모두 저장</button>`:''}${its.some(x=>['saved','error','dup'].includes(x.status))?'<button type="button" class="btn sm ghost" id="up-clear">완료 목록 지우기</button>':''}`:'';box.hidden=!its.length;}
 function renderUpList(){const L=$('#up-list');if(!L)return;L.innerHTML=S.up.items.slice().reverse().map(upItemHTML).join('');upSummary();}
 function upRecentHTML(){const recent=Object.values(S.files).filter(f=>f.versions.length).sort((a,b)=>(curVer(b).at||'').localeCompare(curVer(a).at||'')).slice(0,8);
   return recent.length?`<section class="panel" style="margin-top:16px"><div class="panel-h"><h2>최근 서류함에 들어간 서류</h2><div class="act"><a class="btn sm ghost" href="#docs">전체 보기</a></div></div>${recent.map(f=>{const x=curVer(f);return `<div class="doc-row" data-doc="${esc(f.id)}" tabindex="0">${f.thumb&&!f.restricted?`<span class="fi th"><img src="${esc(f.thumb)}" alt=""><i>${fileIcon(x)}</i></span>`:`<span class="fi">${f.restricted?'🔒':fileIcon(x)}</span>`}<div class="dm"><b>${esc(f.title)}</b><small>${esc(slotPath(f.slot,f.site))} · v${x.v} · ${hhmm(x.at)} ${esc(nameOf(x.by))}</small></div><span></span><span class="da"><button type="button" class="btn sm ghost" data-doc-info="${esc(f.id)}">정보</button></span></div>`;}).join('')}</section>`:'';}
@@ -3233,7 +3258,7 @@ function renderUpload(v){
   ${S.canWrite?`<div class="up-drop" id="up-drop"><div class="ic">${UP_ICON}</div><p><b>서류 파일을 여기에 끌어다 놓으세요</b> · 여러 개를 한 번에 올려도 됩니다</p>
     <p class="btns"><label class="btn primary file-btn">파일 선택<input type="file" id="up-input" multiple></label><label class="btn file-btn cam-only">${ICON.cam} 서류 촬영<input type="file" id="up-cam" accept="image/*" capture="environment"></label></p>
     <small>PDF · 스캔 사진(JPG·PNG) · 한글(hwp·hwpx) · 워드 · 엑셀 · 파워포인트 · 도면(dwg) — 파일 하나당 20MB까지</small></div>
-  <div class="up-opt"><label class="chk"><input type="checkbox" id="up-auto" ${S.up.auto?'checked':''}> 확실한 서류는 확인 없이 바로 서류함에 저장</label><span class="hint">조직도·정관·취업규칙·사업자등록증·법인 등기·통장 사본(🔒)·인감증명서(🔒)·ISO·가족친화·일하기 좋은 기업·중소기업 확인서·기타 인증서·공장등록증·건축물대장·도면을 알아봅니다. 같은 칸에 이미 서류가 있으면 새 버전으로 쌓입니다.</span></div>`:'<section class="panel"><div class="empty">보기 전용 권한이라 서류를 올릴 수 없습니다.</div></section>'}
+  <div class="up-opt"><label class="chk"><input type="checkbox" id="up-auto" ${S.up.auto?'checked':''}> 확실한 서류는 확인 없이 바로 서류함에 저장</label><label class="chk"><input type="checkbox" id="up-pdf" ${S.up.pdf?'checked':''}> 엑셀·워드·파워포인트는 미리보기용 PDF로 바꿔 함께 저장</label><span class="hint">조직도·정관·취업규칙·사업자등록증·법인 등기·통장 사본(🔒)·인감증명서(🔒)·ISO·가족친화·일하기 좋은 기업·중소기업 확인서·기타 인증서·공장등록증·건축물대장·도면을 알아봅니다. 같은 칸에 이미 서류가 있으면 새 버전으로 쌓입니다. 한글·도면 파일은 같은 이름의 PDF를 함께 올리면 그 PDF로 미리봅니다(예: 소방계획서.hwp + 소방계획서.pdf).</span></div>`:'<section class="panel"><div class="empty">보기 전용 권한이라 서류를 올릴 수 없습니다.</div></section>'}
   <div class="up-sum" id="up-sum" hidden></div><div class="up-list" id="up-list"></div>
   <div id="up-recent">${upRecentHTML()}</div>`;
   renderUpList();
@@ -3244,6 +3269,7 @@ function upEdit(el){const box=el.closest('[data-up-edit]');if(!box)return;const 
 document.addEventListener('change',e=>{const T=e.target;
   if(T.id==='up-input'||T.id==='up-cam'){const f=Array.from(T.files||[]);T.value='';upAdd(f);}
   if(T.id==='up-auto'){S.up.auto=T.checked;lsSet('wl.upauto',T.checked?'1':'0');}
+  if(T.id==='up-pdf'){S.up.pdf=T.checked;lsSet('wl.uppdf',T.checked?'1':'0');}
   if(T.dataset&&T.dataset.uf)upEdit(T);});
 document.addEventListener('input',e=>{const T=e.target;if(T.dataset&&T.dataset.uf&&T.tagName==='INPUT'&&T.type!=='checkbox')upEdit(T);});
 document.addEventListener('click',e=>{const T=e.target;
@@ -3255,7 +3281,81 @@ document.addEventListener('click',e=>{const T=e.target;
   if(T.closest('#up-all')){(async()=>{for(const it of S.up.items.filter(i=>i.status==='ready'))await upSave(it);})();return;}
   if(T.closest('#up-clear')){S.up.items=S.up.items.filter(i=>!['saved','error','dup'].includes(i.status));renderUpList();return;}});
 
-S.up.auto=lsGet('wl.upauto')!=='0';
+S.up.auto=lsGet('wl.upauto')!=='0';S.up.pdf=lsGet('wl.uppdf')!=='0';
+/* ───────── PDF로 바꿔 함께 저장 ─────────
+   엑셀·워드·파워포인트 파일은 올릴 때 브라우저 안에서 PDF 사본을 만들어 원본과 함께 저장하고, 미리보기는 PDF로 보여 줍니다.
+   (서버로 보내지 않음 · 화면에 그린 모양을 쪽 그림으로 담는 방식이라 원본과 글꼴·줄바꿈이 조금 다를 수 있음, 원본 파일은 그대로 보관)
+   한글(hwp·hwpx)·캐드·옛 오피스 파일은 브라우저에서 원래 모양으로 바꿀 수 없어, 한글·캐드에서 만든 PDF를 'PDF 사본'으로 붙일 수 있게 합니다. */
+Object.assign(IMP_LIBS,{docxp:['https://cdn.jsdelivr.net/npm/docx-preview@0.4.1/dist/docx-preview.min.js'],pptxp:['https://cdn.jsdelivr.net/npm/pptx-preview@1.0.7/dist/pptx-preview.umd.js'],
+  h2c:['https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js'],jspdf:['https://cdn.jsdelivr.net/npm/jspdf@4.2.1/dist/jspdf.umd.min.js']});
+const convertible=(name,type)=>['docx','sheet','pptx'].includes(kindOf(name,type))&&!/\.(ods|xlsb)$/i.test(name);
+const pdfAttachable=(name,type)=>!['pdf','image'].includes(kindOf(name,type));
+const PDF_NAME=n=>String(n||'파일').replace(/\.[^.]+$/,'')+'.pdf';
+const A4={w:595.28,h:841.89};const PDF_RES=1.7;
+/* 화면 밖(보이지 않는 층)에 문서를 그린 뒤 쪽 단위로 찍습니다. */
+function convWrap(){let w=document.getElementById('conv-wrap');if(!w){w=document.createElement('div');w.id='conv-wrap';w.setAttribute('aria-hidden','true');w.style.cssText='position:fixed;left:0;top:0;opacity:0;pointer-events:none;z-index:-5';document.body.append(w);}return w;}
+function convHost(w){const h=document.createElement('div');h.style.cssText=`width:${w}px;background:#fff;color:#000`;convWrap().append(h);return h;}
+async function snapRegion(el,offY,h,scale){await needLib('h2c');const r=el.getBoundingClientRect();
+  return await html2canvas(el,{scale,backgroundColor:'#ffffff',logging:false,useCORS:true,ignoreElements:n=>n.tagName==='IFRAME'||n.tagName==='DIALOG'||n.id==='view'||n.id==='gate'||n.id==='lightbox',x:r.left+window.scrollX,y:r.top+window.scrollY+offY,width:Math.ceil(el.offsetWidth),height:Math.max(1,Math.ceil(h))});}
+function breakPoints(el,sel){const t=el.getBoundingClientRect().top;const s=new Set();for(const n of el.querySelectorAll(sel)){const r=n.getBoundingClientRect();if(r.height>0)s.add(Math.round(r.bottom-t));}return [...s].sort((a,b)=>a-b);}
+/* o: pageW·pageH(px), fit(내용 축소 비율), padX, padTop, padBot, firstTop(첫 쪽 위 여백), sel(끊어도 되는 줄 끝), max */
+async function paginate(el,o,onProg){const H=el.offsetHeight;const bp=breakPoints(el,o.sel);const pages=[];let y=0;
+  while(y<H-2&&pages.length<(o.max||120)){const top=pages.length?o.padTop:(o.firstTop??o.padTop);const avail=(o.pageH-top-o.padBot)/o.fit;let end=Math.min(H,y+avail);
+    if(end<H){const c=bp.filter(b=>b>y+24&&b<=end);if(c.length)end=c[c.length-1];}
+    onProg&&onProg(Math.min(.95,y/H));const cv=await snapRegion(el,y,end-y,PDF_RES*o.fit);
+    const pc=document.createElement('canvas');pc.width=Math.round(o.pageW*PDF_RES);pc.height=Math.round(o.pageH*PDF_RES);const x=pc.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,pc.width,pc.height);
+    x.drawImage(cv,Math.round(o.padX*PDF_RES),Math.round(top*PDF_RES));pages.push({canvas:pc,wPt:o.pageW*.75,hPt:o.pageH*.75});y=end;}
+  return pages;}
+async function pagesToPdf(pages){await needLib('jspdf');const J=window.jspdf.jsPDF;let pdf=null;
+  for(const p of pages){const o=p.wPt>p.hPt?'l':'p';if(!pdf)pdf=new J({unit:'pt',format:[p.wPt,p.hPt],orientation:o,compress:true});else pdf.addPage([p.wPt,p.hPt],o);
+    pdf.addImage(p.canvas.toDataURL('image/jpeg',.8),'JPEG',0,0,p.wPt,p.hPt,undefined,'FAST');}
+  if(!pdf)throw {userMsg:'변환할 내용이 없습니다.'};return new Blob([pdf.output('arraybuffer')],{type:'application/pdf'});}
+async function docxToPdf(file,onProg){await needLib('jszip');await needLib('docxp');const host=convHost(1100);
+  try{await docx.renderAsync(file,host,null,{inWrapper:false,ignoreWidth:false,ignoreHeight:false,breakPages:true,renderHeaders:true,renderFooters:true,renderFootnotes:true,experimental:true,useBase64URL:true});
+    try{await document.fonts.ready;}catch{}await new Promise(r=>setTimeout(r,80));
+    const secs=Array.from(host.querySelectorAll('section.docx')).slice(0,80);if(!secs.length)throw {userMsg:'문서를 그리지 못했습니다.'};let pages=[];
+    for(const s of secs){const cs=getComputedStyle(s);const w=s.offsetWidth||794;const mh=parseFloat(cs.minHeight)||w*A4.h/A4.w;const pt=parseFloat(cs.paddingTop)||72,pb=parseFloat(cs.paddingBottom)||72;
+      pages=pages.concat(await paginate(s,{pageW:w,pageH:mh,fit:1,padX:0,padTop:pt,padBot:pb,firstTop:0,sel:'p,tr,li,h1,h2,h3,h4,h5,h6,img,table',max:150-pages.length},onProg));}
+    return await pagesToPdf(pages);}finally{host.remove();}}
+async function sheetToPdf(file,onProg){if(!window.XLSX)throw {userMsg:'엑셀 읽기 도구가 없습니다.'};const e=extOf(file.name);const buf=await file.arrayBuffer();
+  const wb=e==='csv'||e==='tsv'?XLSX.read(decodeText(buf),{type:'string',raw:true}):XLSX.read(new Uint8Array(buf),{type:'array',cellDates:true});let pages=[];
+  for(let si=0;si<Math.min(wb.SheetNames.length,20)&&pages.length<150;si++){const name=wb.SheetNames[si];const ws=wb.Sheets[name];if(!ws||!ws['!ref'])continue;
+    const r=XLSX.utils.decode_range(ws['!ref']);const w0={...ws,'!ref':XLSX.utils.encode_range({s:r.s,e:{r:Math.min(r.e.r,r.s.r+2999),c:Math.min(r.e.c,r.s.c+59)}})};
+    const host=convHost(6000);
+    try{host.style.width='max-content';host.innerHTML=`<style>.xs{display:inline-block;padding:4px;font:12px/1.4 "Malgun Gothic","Apple SD Gothic Neo","Noto Sans KR",sans-serif;color:#000;background:#fff}.xs h1{font-size:14px;margin:0 0 8px}.xs table{border-collapse:collapse}.xs td{border:1px solid #9aa4b0;padding:3px 6px;white-space:nowrap;max-width:360px;overflow:hidden;text-overflow:ellipsis;vertical-align:top}</style><div class="xs"><h1>${esc(file.name)} — ${esc(name)}</h1>${XLSX.utils.sheet_to_html(w0,{header:'',footer:''})}</div>`;
+      try{await document.fonts.ready;}catch{}const box=host.querySelector('.xs');const W=box.offsetWidth,H=box.offsetHeight;const land=W>760;const pg=land?{w:A4.h/.75,h:A4.w/.75}:{w:A4.w/.75,h:A4.h/.75};const pad=28;
+      const fit=Math.max(.3,Math.min(1,(pg.w-pad*2)/W));
+      pages=pages.concat(await paginate(box,{pageW:pg.w,pageH:pg.h,fit,padX:pad,padTop:pad,padBot:pad,sel:'tr',max:150-pages.length},p=>onProg&&onProg((si+p)/wb.SheetNames.length)));}
+    finally{host.remove();}}
+  return await pagesToPdf(pages);}
+async function pptxToPdf(file,onProg){await needLib('pptxp');const host=convHost(960);
+  try{const pv=pptxPreview.init(host,{width:960,height:540,mode:'list'});await pv.preview(await file.arrayBuffer());await new Promise(r=>setTimeout(r,300));try{await document.fonts.ready;}catch{}
+    const slides=Array.from(host.querySelectorAll('.pptx-preview-slide-wrapper')).slice(0,100);if(!slides.length)throw {userMsg:'슬라이드를 그리지 못했습니다.'};const pages=[];
+    for(let i=0;i<slides.length;i++){onProg&&onProg(i/slides.length);const s=slides[i];const cv=await snapRegion(s,0,s.offsetHeight,PDF_RES);pages.push({canvas:cv,wPt:s.offsetWidth*.75,hPt:s.offsetHeight*.75});}
+    return await pagesToPdf(pages);}finally{host.remove();}}
+async function toPdf(file,onProg){const k=kindOf(file.name,file.type);if(k==='docx')return docxToPdf(file,onProg);if(k==='sheet')return sheetToPdf(file,onProg);if(k==='pptx')return pptxToPdf(file,onProg);throw {userMsg:'PDF로 바꿀 수 없는 형식입니다.'};}
+
+/* 저장: 버전에 PDF 사본(pdf 필드)을 붙입니다 — 조각 이름은 '{버전}p_{순번}' */
+async function putPdfCopy(fid,v,pdfBlob,conv,onProg){const key=`${v}p${Date.now().toString(36).slice(-5)}`;const st=await filePut(fid,key,pdfBlob,onProg);return {key,store:st.store,n:st.n,asset:st.asset||'',size:pdfBlob.size,conv:!!conv};}
+const pdfVer=ver=>ver&&ver.pdf?{v:ver.pdf.key||`${ver.v}p`,name:PDF_NAME(ver.name),type:'application/pdf',size:ver.pdf.size,store:ver.pdf.store,n:ver.pdf.n,asset:ver.pdf.asset||'',at:ver.at,by:ver.by}:null;
+async function attachPdf(f,ver,pdfBlob,conv){const cp=await putPdfCopy(f.id,ver.v,pdfBlob,conv);
+  const cur=S.files[f.id]||f;const versions=cur.versions.map(x=>x.v===ver.v?{...x,pdf:cp}:x);const up={versions,updatedAt:nowISO(),updatedBy:myId()||''};
+  const last=curVer(cur);if(!cur.restricted&&last&&last.v===ver.v&&(cur.thumbV!==ver.v||!cur.thumb)){const th=await makeThumb(pdfBlob,'x.pdf');if(th){up.thumb=th;up.thumbV=ver.v;}}
+  await dbUpdate(`files/${f.id}`,up);return cp;}
+async function convertAndAttach(f,ver){if(!S.canWrite)return false;setSync('saving');const pr=upProg(1);pr.step(0,'PDF로 바꾸는 중');
+  try{const blob=await fileGet(f,ver);const pdf=await toPdf(new File([blob],ver.name,{type:ver.type}));pr.step(0,'PDF 저장 중');await attachPdf(f,ver,pdf,true);pr.done();setSync('ok');toast(`「${f.title}」 PDF 사본을 만들었습니다 (${fmtMB(pdf.size)}).`);return true;}
+  catch(e){pr.done();setSync('ok');toast((e&&e.userMsg)||fileErrMsg(e),'err');return false;}}
+function pickFile(accept){return new Promise(res=>{const i=document.createElement('input');i.type='file';i.accept=accept;i.style.display='none';i.onchange=()=>{res(i.files&&i.files[0]||null);i.remove();};document.body.append(i);i.click();});}
+async function uploadPdfCopy(f,ver){const file=await pickFile('.pdf,application/pdf');if(!file)return false;if(!/pdf$/i.test(file.type)&&!/\.pdf$/i.test(file.name)){toast('PDF 파일을 골라 주세요.','err');return false;}if(file.size>FILE_MAX){toast('20MB 이하 PDF만 붙일 수 있습니다.','err');return false;}
+  setSync('saving');try{await attachPdf(f,ver,file,false);setSync('ok');toast('PDF 사본을 붙였습니다. 이제 미리보기가 PDF로 열립니다.');return true;}catch(e){setSync('ok');toast(fileErrMsg(e),'err');return false;}}
+/* 미리보기 창 연결 */
+function docViewOpts(f,ver){const base={meta:`${f.title}${f.site?' · '+f.site:''} · v${ver.v} · ${fmtYMD(localDate(ver.at))} ${nameOf(ver.by)}`,dlName:verName(f,ver)};const ex=[];const orig={...base,name:ver.name,type:ver.type,size:ver.size,get:()=>fileGet(f,ver),onBlob:b=>{docThumbSave(f,ver,b);}};
+  if(ver.pdf){const pv=pdfVer(ver);const kn=KIND_NAME[kindOf(ver.name,ver.type)]||'원본';
+    return {...base,name:pv.name,type:'application/pdf',size:pv.size,get:()=>fileGet(f,pv),note:`${ver.pdf.conv?`${kn} 파일을 PDF로 바꾼 미리보기입니다 (모양이 원본과 조금 다를 수 있음)`:'함께 붙인 PDF 사본으로 보여 줍니다'} · 내려받기는 원본 ${extOf(ver.name).toUpperCase()} 파일`,
+      extras:[{label:`원본(${kn}) 보기`,fn:()=>openViewer({...orig,extras:[{label:'PDF로 보기',fn:()=>openViewer(docViewOpts(f,ver))}]})},{label:'PDF 내려받기',fn:async()=>{try{saveBlob(await fileGet(f,pv),verName(f,ver).replace(/\.[^.]+$/,'')+'.pdf');}catch(e){toast(fileErrMsg(e),'err');}}}]};}
+  if(S.canWrite&&convertible(ver.name,ver.type))ex.push({label:'PDF로 바꿔 저장',fn:async()=>{if(await convertAndAttach(f,ver)){const nf=S.files[f.id];const nv=nf&&nf.versions.find(x=>x.v===ver.v);if(nv)openViewer(docViewOpts(nf,nv));}}});
+  else if(S.canWrite&&pdfAttachable(ver.name,ver.type))ex.push({label:'PDF 사본 붙이기',fn:async()=>{if(await uploadPdfCopy(f,ver)){const nf=S.files[f.id];const nv=nf&&nf.versions.find(x=>x.v===ver.v);if(nv)openViewer(docViewOpts(nf,nv));}}});
+  return {...orig,extras:ex};}
 
 /* ───────── 시작 ───────── */
 function boot(){
