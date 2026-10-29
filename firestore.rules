@@ -8,6 +8,7 @@ rules_version = '2';
 // · 이메일 주소는 이 파일이 아니라 데이터베이스(app/members 문서)에 저장되므로 공개 저장소에 올려도 됩니다.
 // · 사진·서류(올린 파일) 삭제는 관리자만 할 수 있습니다. 다른 구성원은 '삭제 요청'(delreq)을 보냅니다.
 // · 비공개 업무(priv/{uid})는 본인만 읽고 쓸 수 있습니다. 관리자도 볼 수 없습니다.
+// · 그룹웨어 소식(gw)은 구성원 모두 읽고, 기록은 관리자만 합니다.
 
 service cloud.firestore {
   match /databases/{database}/documents {
@@ -146,6 +147,16 @@ service cloud.firestore {
 
     // 관리자 표시 이름 (삭제 요청 창에 '관리자(이름)'으로 표시)
     match /app/admin {
+      allow read: if isMember();
+      allow write: if isAdmin();
+    }
+
+    // 그룹웨어 소식 — 구성원 모두 읽기, 관리자만 기록 (매시간 자동 확인이 관리자 계정 화면에서 요약을 적음)
+    match /gw/{postId} {
+      allow read: if isMember();
+      allow write: if isAdmin();
+    }
+    match /app/gw {
       allow read: if isMember();
       allow write: if isAdmin();
     }

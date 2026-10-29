@@ -874,6 +874,38 @@ button.gs-it:has(.fi){grid-template-columns:36px minmax(0,1fr)}
 .gs-b mark{background:color-mix(in srgb,#facc15 55%,transparent);color:inherit;border-radius:2px;padding:0 1px}
 .gs-more{margin-top:6px}
 @media (max-width:1440px){.tabs a{padding:0 7px}.top{gap:8px}.tabs{margin-left:4px}}
+/* ── 그룹웨어 소식 (14차) */
+.tabs a.tab-gw{gap:4px;position:relative}
+.tabs a .nav-n{display:inline-grid;place-items:center;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:var(--late);color:#fff;font-size:10.5px;font-weight:700;line-height:1}
+.tabs a .nav-n[hidden]{display:none}
+.tabs a.gw-bad::after{content:"";position:absolute;top:9px;right:3px;width:7px;height:7px;border-radius:50%;background:var(--late)}
+@media (max-width:1560px) and (min-width:761px){.tabs a{padding:0 9px}}
+@media (max-width:1440px) and (min-width:761px){.tabs a{padding:0 6px}}
+@media (max-width:1400px) and (min-width:761px){.tabs a{padding:0 5px;font-size:13.5px}.tabs a.tab-up svg{display:none}.tabs{margin-left:2px}}
+.gw-sts{display:flex;flex-direction:column;align-items:flex-end;gap:6px;max-width:560px}
+.gw-st{font-size:12.5px;color:var(--ink-3)}.gw-st.ok::before{content:"●";color:var(--done);margin-right:5px;font-size:10px}.gw-st.bad::before{content:"●";color:var(--late);margin-right:5px;font-size:10px}
+.gw-warn{background:color-mix(in srgb,var(--late) 10%,var(--surface));border:1px solid color-mix(in srgb,var(--late) 35%,transparent);color:var(--late);border-radius:var(--r);padding:8px 12px;font-size:13px;font-weight:500}
+.gw-list{display:flex;flex-direction:column;gap:10px;max-width:980px}
+.gw-mon{font-size:13px;font-weight:700;color:var(--ink-3);margin:8px 2px 0}
+.gw-it{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--line);border-radius:var(--r);padding:12px 14px;scroll-margin:80px;transition:box-shadow .3s}
+.gw-it.imp-2{border-left-color:var(--doing)}.gw-it.imp-0{border-left-color:var(--line-2)}
+.gw-it.new{background:color-mix(in srgb,var(--accent-soft) 45%,var(--surface))}
+.gw-it.hl{box-shadow:0 0 0 3px color-mix(in srgb,var(--focus) 45%,transparent)}
+.gw-h{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.gw-h b{font-size:15px;line-height:1.35}
+.gw-b{display:inline-flex;align-items:center;height:21px;padding:0 8px;border-radius:5px;font-size:11.5px;font-weight:700;color:#fff;background:var(--c-etc);flex:none}
+.gw-b.b-w{background:var(--accent)}.gw-b.b-n{background:var(--c-hr)}.gw-b.b-e{background:var(--c-gov)}.gw-b.b-r{background:var(--c-fin)}
+.gw-new{font-size:10.5px;font-weight:800;color:var(--late);letter-spacing:.04em}
+.gw-m{font-size:12.5px;color:var(--ink-3);margin:4px 0 0}.gw-cat{color:var(--ink-2)}
+.gw-s{margin:8px 0 0;line-height:1.6;white-space:pre-line}.gw-s.muted{color:var(--ink-3)}
+.gw-p{margin:6px 0 0;padding-left:18px;line-height:1.6;color:var(--ink-2)}
+.gw-x{display:flex;flex-wrap:wrap;gap:6px 14px;margin:8px 0 0;font-size:13px}
+.gw-due{font-weight:600;color:var(--ink-2)}.gw-due.soon{color:var(--doing)}.gw-due.past{color:var(--ink-3);font-weight:500}
+.gw-act b{display:inline-block;font-size:11.5px;color:#fff;background:var(--done);border-radius:4px;padding:0 6px;margin-right:4px}
+.gw-f{margin:8px 0 0;font-size:12.5px;color:var(--ink-3);word-break:break-all}
+.gw-a{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 0}
+.gw-it mark,.gs-it mark{background:#fde68a;color:inherit;border-radius:2px}
+.ntf-pop .ic.t-gw{background:var(--accent)}
+@media (prefers-color-scheme: dark){.gw-it mark{background:#7c5e10}}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -943,6 +975,7 @@ button.gs-it:has(.fi){grid-template-columns:36px minmax(0,1fr)}
     <a href="#upload" data-view="upload" class="tab-up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 16V4m0 0l-4.5 4.5M12 4l4.5 4.5"/><path d="M4 15v3.5A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5V15"/></svg>각종서류 올리기</a>
     <a href="#docs" data-view="docs">서류함</a>
     <a href="#legal" data-view="legal">법정 업무</a>
+    <a href="#gw" data-view="gw" class="tab-gw">그룹웨어<span class="nav-n" id="gw-n" hidden>0</span></a>
   </nav>
   <div class="top-right">
     <span class="sync" id="sync" data-s="wait"><i></i><span>연결 중</span></span>
@@ -1366,6 +1399,7 @@ function normTask(r){const t={...r};
   t.photos=Array.isArray(r.photos)?r.photos.filter(p=>p&&isAssetId(p.id)).map(p=>({id:p.id,at:typeof p.at==='string'?p.at:'',by:typeof p.by==='string'?p.by:null,cap:typeof p.cap==='string'?p.cap.slice(0,100):'',tag:['before','during','after'].includes(p.tag)?p.tag:'',shot:typeof p.shot==='string'?p.shot.slice(0,25):'',sz:Number.isFinite(p.sz)?p.sz:0,th:p.th===true})):[];
   t.logs=Array.isArray(r.logs)?r.logs.filter(l=>l&&typeof l.at==='string').map(l=>({at:l.at,by:typeof l.by==='string'?l.by:null,kind:typeof l.kind==='string'?l.kind:'note',text:typeof l.text==='string'?l.text.slice(0,2000):'',issue:!!l.issue,from:ST[l.from]?l.from:'',to:ST[l.to]?l.to:'',p0:Number.isFinite(l.p0)?l.p0:null,p1:Number.isFinite(l.p1)?l.p1:null,photos:Array.isArray(l.photos)?l.photos.filter(isAssetId):[]})):[];
   t.createdBy=typeof r.createdBy==='string'?r.createdBy:null;t.createdAt=typeof r.createdAt==='string'?r.createdAt:'';t.updatedAt=typeof r.updatedAt==='string'?r.updatedAt:'';
+  t.gw=typeof r.gw==='string'?r.gw.slice(0,60):'';
   t.legal=r.legal&&typeof r.legal==='object'&&typeof r.legal.id==='string'?{id:r.legal.id.slice(0,40),key:typeof r.legal.key==='string'?r.legal.key.slice(0,60):'',due:isDate(r.legal.due)?r.legal.due:''}:null;
   t.sample=!!r.sample;return t;}
 const yearOf=t=>(t.start||t.due||(t.createdAt?localDate(t.createdAt):'')||today()).slice(0,4);
@@ -1456,7 +1490,7 @@ function render(){
   if(S.view!=='report'){S.charts.forEach(c=>c.destroy());S.charts=[];}
   $('#tab-overview').hidden=!(S.canEdit||S.preview);
   if(S.view==='legal'){const ae=document.activeElement;if(ae&&ae.closest&&ae.closest('.lg-set')&&/^(INPUT|SELECT)$/.test(ae.tagName)&&ae.type!=='checkbox'){S.pendingLegal=true;fillWhoOptions();updateMeChip();return;}}
-  if(S.view==='my')renderMy(v);else if(S.view==='team')renderTeam(v);else if(S.view==='board')renderBoard(v);else if(S.view==='calendar')renderCalendar(v);else if(S.view==='list')renderList(v);else if(S.view==='report')renderReport(v);else if(S.view==='help')renderHelp(v);else if(S.view==='overview')renderOverview(v);else if(S.view==='photos')renderPhotos(v);else if(S.view==='upload')renderUpload(v);else if(S.view==='docs')renderDocs(v);else if(S.view==='legal')renderLegal(v);
+  if(S.view==='my')renderMy(v);else if(S.view==='team')renderTeam(v);else if(S.view==='board')renderBoard(v);else if(S.view==='calendar')renderCalendar(v);else if(S.view==='list')renderList(v);else if(S.view==='report')renderReport(v);else if(S.view==='help')renderHelp(v);else if(S.view==='overview')renderOverview(v);else if(S.view==='photos')renderPhotos(v);else if(S.view==='upload')renderUpload(v);else if(S.view==='docs')renderDocs(v);else if(S.view==='legal')renderLegal(v);else if(S.view==='gw')renderGw(v);
   fillWhoOptions();updateMeChip();patchNames();}
 
 function rowHTML(t){const d=ddayInfo(t);const late=isLate(t);
@@ -1690,7 +1724,8 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>알림</b><span>오른쪽 위 종 모양에서 내 담당 업무의 새 기록·마감·법정 업무를 확인합니다. <em>알림 켜기</em>를 누르면 다른 탭을 보고 있을 때도 알림이 뜹니다.</span></li>
       <li><b>총괄 현황 (관리자)</b><span><a href="#overview">총괄</a>에서 직원별 기록·지연·이슈를 한눈에 보고, 단톡방 양식 주간업무일지와 일일 현황 텍스트를 바로 복사합니다.</span></li>
       <li><b>업무 분류 · 자동 분류</b><span>업무는 <em>대분류 › 중분류 › 소분류</em>로 나눕니다 — 재무·회계 · 인사·총무 · 시설·공무 · 안전·보건 · 기타(업무분장·국가직무능력표준 참고). 분류를 <em>자동 분류</em> 그대로 두고 등록하면 업무 내용을 읽어 알아서 분류합니다. 칸반·달력·목록 위의 대분류 탭으로 모아 봅니다.</span></li>
-      <li><b>전체 검색</b><span>오른쪽 위 돋보기(또는 Ctrl+K)를 누르면 업무·진행 기록·특이사항·서류 내용·법정 업무를 한 번에 찾습니다. 띄어쓰기는 상관없습니다.</span></li>
+      <li><b>전체 검색</b><span>오른쪽 위 돋보기(또는 Ctrl+K)를 누르면 업무·진행 기록·특이사항·서류 내용·법정 업무·그룹웨어 소식을 한 번에 찾습니다. 띄어쓰기는 상관없습니다.</span></li>
+      <li><b>그룹웨어 소식</b><span>회사 그룹웨어(업무연락·공지사항·경조사 등) 새 글을 Claude가 평일 08~19시 매시간 확인해 요약합니다. 상단 <a href="#gw">그룹웨어</a>에서 요약·일정·관리부 할 일을 보고, 필요한 글은 <em>업무로 등록</em>을 누르면 내용이 채워진 등록 창이 열립니다. 새 글은 알림(종)에도 표시됩니다.</span></li>
       <li><b>🔒 비공개 업무</b><span>내 업무 입력란의 <em>🔒 나만 보기</em>를 켜고 등록하면 나만 보는 업무가 됩니다. 관리자·다른 직원에게 보이지 않고 팀 현황·총괄·보고서·주간업무일지에도 들어가지 않습니다. 업무 상세에서 <em>팀에 공개하기</em>로 언제든 공개할 수 있습니다.</span></li>
       <li><b>사진·서류 삭제 요청</b><span>사진과 서류는 누구나 올릴 수 있지만 삭제는 관리자만 합니다. 잘못 올렸으면 사진의 ✕ 또는 서류의 <em>삭제 요청</em>을 눌러 이유를 적어 보내세요. 관리자 알림함에 표시되고, 처리 결과가 알림으로 옵니다.</span></li>
     </ol></section>
@@ -2126,7 +2161,7 @@ async function submitTask(e){e.preventDefault();if(!S.canWrite)return;
   const btn=$('#t-save');btn.disabled=true;
   try{
     if(!S.dlg.path){if(S.dlg.priv&&privOK())data.priv=true;data.doneAt=status==='done'?today():'';data.photos=S.dlg.pending;const logs=[];if(S.dlg.pending.length)logs.push({at:nowISO(),by:myId(),kind:'photo',text:'',photos:S.dlg.pending.map(p=>p.id)});data.logs=logs;
-      await createTask(data);S.dlg.pending=[];S.dlg.uploaded=[];toast((data.priv?'🔒 비공개 업무로 등록했습니다':'업무를 등록했습니다')+(S.lastAuto?` · 자동 분류: ${catText(S.lastAuto)}`:'')+'.');closeTask(true);}
+      await createTask(S.dlg.gw?{...data,gw:S.dlg.gw}:data);S.dlg.pending=[];S.dlg.uploaded=[];toast((data.priv?'🔒 비공개 업무로 등록했습니다':'업무를 등록했습니다')+(S.lastAuto?` · 자동 분류: ${catText(S.lastAuto)}`:'')+'.');closeTask(true);}
     else{const t=findTask(S.dlg.path);if(!t){toast('이 업무는 다른 사람이 삭제했습니다.','err');closeTask(true);return;}
       const base=S.dlg.orig||t;const patch={};for(const k of Object.keys(data)){const a=JSON.stringify(data[k]),b=JSON.stringify(base[k]);if(a!==b)patch[k]=data[k];}
       if('cat' in patch||'sub' in patch||'leaf' in patch){patch.cat=data.cat;patch.sub=data.sub;patch.leaf=data.leaf;patch.tx=TXV;}
@@ -2189,7 +2224,7 @@ function showBanner(msg){const b=$('#banner');b.textContent=msg;b.hidden=!msg;}
 
 /* ───────── 이벤트 ───────── */
 function go(h){if(location.hash===h)route();else location.hash=h;}
-function route(){let h=(location.hash||'').slice(1);if(h==='home')h='team';S.view=['my','team','overview','board','calendar','list','report','upload','photos','docs','legal','help'].includes(h)?h:'my';const np=$('#ntf-pop');if(np)np.hidden=true;render();}
+function route(){let h=(location.hash||'').slice(1);if(h==='home')h='team';S.view=['my','team','overview','board','calendar','list','report','upload','photos','docs','legal','gw','help'].includes(h)?h:'my';if(S.view==='gw'&&GW.pv!=='gw')GW.seenNow='';GW.pv=S.view;const np=$('#ntf-pop');if(np)np.hidden=true;render();gwNav();}
 window.addEventListener('hashchange',route);
 document.addEventListener('click',async e=>{
   const o=e.target.closest('[data-open]');if(o&&!e.target.closest('[data-lb]')){const t=findTask(o.dataset.open);if(t)openTask(t);return;}
@@ -3025,6 +3060,8 @@ function ntfCompute(){const me=myId();if(!me||!S.ready)return [];const out=[];co
   for(const r of S.delreqs||[]){const ttl=`${DR_KIND[r.kind]} · ${r.title}`;
     if(admin&&r.status==='open')out.push({k:`dq|${r.id}`,at:r.at||td,type:'dreq',dq:r.id,title:ttl,text:`${r.name||'구성원'}님이 삭제를 요청했습니다`,sub:r.reason});
     else if(r.uid===S.me.id&&r.status!=='open'&&r.rAt>=since)out.push({k:`dqr|${r.id}|${r.status}`,at:r.rAt,type:'dreq',dq:r.id,title:ttl,text:r.status==='done'?'삭제 요청이 처리되어 삭제되었습니다':'삭제 요청이 반려되었습니다',sub:r.rNote});}
+  for(const g of S.gw||[]){if(!g.at||g.at<since)continue;out.push({k:'gw|'+g.id,at:g.at,type:'gw',gw:g.id,title:gwTitle(g.title),text:`그룹웨어 ${gwShort(g.board)} 새 글${g.due?` · 일정 ${fmtMD(g.due)}`:''}`,sub:g.sum});}
+  if(admin){const w=gwWarn();if(w)out.push({k:'gwst|'+w.k,syn:1,at:td+'T00:00:04',type:'gw',gw:'',title:'그룹웨어 자동 확인',text:w.text});}
   if(admin||canViewRestricted())for(const f of Object.values(S.files)){if(!f.expiry)continue;const n=diffDays(td,f.expiry);if(n<=60&&n>=-30)out.push({k:`doc|${f.id}|${f.expiry}|${n<=7?'w':n<=30?'m':'q'}`,syn:1,at:td+'T00:00:03',type:'doc',f,text:`서류 유효기간 ${expiryTxt(f.expiry)} · ${fmtYMD(f.expiry)}`});}
   if(admin&&hr>=17&&dow(td)%6!==0){const idle=staffList().filter(s=>working(s)&&!S.tasks.some(t=>t.logs.some(l=>l.by===s.id&&localDate(l.at)===td)));if(idle.length)out.push({k:`idle|${td}`,syn:1,at:td+'T17:00:00',type:'idle',text:`오늘 기록 없는 근무자 ${idle.length}명`,sub:idle.map(s=>s.name).join(', ')});}
   out.sort((a,b)=>b.at.localeCompare(a.at));return out.slice(0,80);}
@@ -3037,17 +3074,17 @@ function ntfRun(){adminNameSync();const st=ntfState();NT.items=ntfCompute();cons
   const canN='Notification' in window&&Notification.permission==='granted';const td=today();
   if(S.ready&&canN&&st.day!==td){const due=un.filter(i=>i.type==='due'||i.type==='late').length,news=un.filter(i=>!i.syn).length,lg=NT.items.filter(i=>i.type==='legal'&&ntfUnread(i,st)).length;
     if(due||news||lg){st.day=td;ntfSave();ntfShow(`${S.config.dept} 업무일지 · 오늘`,[due?`마감·지연 ${due}건`:'',news?`새 소식 ${news}건`:'',lg?`법정 업무 ${lg}건`:''].filter(Boolean).join(' · '),'brief-'+td);}}
-  if(canN)for(const it of un){if(it.syn||NT.shown.has(it.k))continue;NT.shown.add(it.k);if(Date.now()-Date.parse(it.at)<10*60e3&&document.hidden)ntfShow(it.t?it.t.title:'업무일지',`${it.text}${it.sub?' — '+it.sub.slice(0,80):''}`,it.k,it.t&&it.t.path);}
+  if(canN)for(const it of un){if(it.syn||NT.shown.has(it.k))continue;NT.shown.add(it.k);if(Date.now()-Date.parse(it.at)<10*60e3&&document.hidden)ntfShow(it.t?it.t.title:it.title||'업무일지',`${it.text}${it.sub?' — '+it.sub.slice(0,80):''}`,it.k,it.t&&it.t.path);}
   else for(const it of un)NT.shown.add(it.k);
   if(S.view==='my')ntfBrief();}
 function ntfShow(title,body,tag,path){try{const n=new Notification(title,{body,tag,lang:'ko'});n.onclick=()=>{window.focus();if(path){const t=findTask(path);if(t)openTask(t);}n.close();};}catch{}}
-const NT_ICON={assign:'담당',act:'진행',issue:'이슈',due:'마감',late:'지연',legal:'법정',doc:'서류',idle:'기록',dreq:'삭제'};
+const NT_ICON={assign:'담당',act:'진행',issue:'이슈',due:'마감',late:'지연',legal:'법정',doc:'서류',idle:'기록',dreq:'삭제',gw:'게시'};
 function ntfRenderPop(){const st=ntfState();const pop=$('#ntf-pop');const its=NT.items;
   const canAsk='Notification' in window&&Notification.permission==='default';const blocked='Notification' in window&&Notification.permission==='denied';
   pop.innerHTML=`<div class="ntf-h"><b>알림</b><span class="sp"></span>${its.some(i=>ntfUnread(i,st))?'<button type="button" class="btn sm ghost" data-ntf-read>모두 읽음</button>':''}</div>
     ${canAsk?`<div class="ntf-ask"><span>이 기기에서도 새 소식 알림을 받을까요? (앱이 열려 있는 동안)</span><button type="button" class="btn sm primary" data-ntf-perm>알림 켜기</button></div>`:blocked?'<div class="ntf-ask"><span>브라우저에서 알림이 차단되어 있습니다. 주소창 왼쪽 자물쇠 › 알림 › 허용으로 바꿀 수 있습니다.</span></div>':''}
     ${its.length?`<ul>${its.map(it=>`<li class="${ntfUnread(it,st)?'un':''}"><button type="button" data-ntf-go="${esc(it.k)}"><span class="ic t-${it.type}">${NT_ICON[it.type]||'알림'}</span><span class="tx">${it.title?`<b>${esc(it.title)}</b>`:it.t?`<b>${esc((it.t.priv?'🔒 ':'')+it.t.title)}</b>`:it.f?`<b>${esc(it.f.title)}</b>`:''}<span>${esc(it.text)}</span>${it.sub?`<small>${esc(String(it.sub).slice(0,120))}</small>`:''}</span><time>${it.syn?'오늘':timeAgo(it.at)}</time></button></li>`).join('')}</ul>`:'<div class="empty">새 알림이 없습니다.</div>'}
-    ${dqFootHTML()}<p class="ntf-f">내 담당 업무의 진행 기록·마감, 법정 업무${S.canEdit?', 이슈·서류 만료·미기록 직원·삭제 요청(관리자)':', 삭제 요청 결과'}을 모아 보여 줍니다.</p>`;}
+    ${dqFootHTML()}<p class="ntf-f">그룹웨어 새 글, 내 담당 업무의 진행 기록·마감, 법정 업무${S.canEdit?', 이슈·서류 만료·미기록 직원·삭제 요청(관리자)':', 삭제 요청 결과'}을 모아 보여 줍니다.</p>`;}
 function dqFootHTML(){const L=S.delreqs||[];const open=L.filter(r=>r.status==='open').length;if(!L.length)return '';return `<div class="ntf-dq"><button type="button" class="btn sm" data-dq-open>${S.canEdit?`삭제 요청 관리${open?` (대기 ${open})`:''}`:`내 삭제 요청 ${L.length}건${open?` · 대기 ${open}`:''}`}</button></div>`;}
 function ntfOpen(){const pop=$('#ntf-pop');if(!pop.hidden){pop.hidden=true;return;}ntfRun();ntfRenderPop();pop.hidden=false;}
 function ntfMarkRead(){const st=ntfState();st.seen=nowISO();const keep={};for(const it of NT.items)if(it.syn)keep[it.k]=1;st.syn=keep;ntfSave();ntfRun();}
@@ -3063,7 +3100,7 @@ document.addEventListener('click',async e=>{
   if(T.closest('[data-ntf-read]')){ntfMarkRead();return;}
   if(T.closest('[data-ntf-perm]')){try{const r=await Notification.requestPermission();if(r==='granted'){toast('이 기기에서 알림을 받습니다.');ntfShow(`${S.config.dept} 업무일지`,'알림이 켜졌습니다.','test');}}catch{}ntfRenderPop();return;}
   const ng=T.closest('[data-ntf-go]');if(ng){const it=NT.items.find(i=>i.k===ng.dataset.ntfGo);const st=ntfState();if(it){if(it.syn)st.syn[it.k]=1;ntfSave();$('#ntf-pop').hidden=true;
-    if(it.dq)openDreqs(it.dq);else if(it.t){const t=findTask(it.t.path);if(t)openTask(t);}else if(it.f)go('#docs');else if(it.type==='idle')go('#overview');}ntfRun();return;}
+    if(it.dq)openDreqs(it.dq);else if(it.type==='gw'){GW.focus=it.gw||'';if(S.view==='gw')renderGw($('#view'));else go('#gw');}else if(it.t){const t=findTask(it.t.path);if(t)openTask(t);}else if(it.f)go('#docs');else if(it.type==='idle')go('#overview');}ntfRun();return;}
   if(!T.closest('#ntf-pop')&&!$('#ntf-pop').hidden)$('#ntf-pop').hidden=true;
   if(T.closest('[data-brief-x]')){const st=ntfState();st.brief=today();ntfSave();$('#my-brief').hidden=true;return;}
   // 사진첩
@@ -3582,7 +3619,7 @@ let ADU=null,ADW=false;
 function adminNameSub(){if(ADU){try{ADU();}catch{}ADU=null;}if(!S.db)return;ADU=S.db.doc('app/admin').onSnapshot(s=>{const d=s.exists?s.data():null;S.adminName=d&&typeof d.name==='string'?d.name.slice(0,20):'';adminNameSync();},()=>{});}
 function adminNameSync(){if(!S.canEdit||ADW||!S.canWrite||!S.db)return;const n=myName();if(!n||!S.myStaff||n===S.adminName)return;ADW=true;S.db.doc('app/admin').set({name:n,at:nowISO()}).catch(()=>{ADW=false;});}
 const adminLabel=()=>S.adminName?`관리자(${S.adminName})`:'관리자';
-function extSubs(){privSub();delreqSub();adminNameSub();S.unsubs.push(()=>{for(const u of [PVU,DRU,ADU])try{u&&u();}catch{}PVU=DRU=ADU=null;S.privTasks=[];S.delreqs=[];});}
+function extSubs(){privSub();delreqSub();adminNameSub();gwSub();S.unsubs.push(()=>{for(const u of [PVU,DRU,ADU,GWU,GWSU])try{u&&u();}catch{}PVU=DRU=ADU=GWU=GWSU=null;S.privTasks=[];S.delreqs=[];S.gw=[];S.gwStat=null;});}
 /* 대상 찾기 */
 function taskOfPhoto(pid,hint){const h=hint&&hint.path?findTask(hint.path):null;if(h&&h.photos.some(p=>p.id===pid))return h;return S.tasks.find(t=>t.photos.some(p=>p.id===pid))||S.privTasks.find(t=>t.photos.some(p=>p.id===pid))||null;}
 function findTaskById(tid,path){return (path&&findTask(path))||S.tasks.find(t=>t.id===tid)||null;}
@@ -3896,14 +3933,14 @@ function legalTx(p){const v=LEGAL_TX[p.id];if(!v){const m=normCat({cat:p.cat,sub
    네 글자 이상은 띄어쓰기를 무시하고 찾으며(예: '소화기점검' = '소화기 점검' — 짧은 낱말은 붙은 글자끼리 잘못 맞는 것을 막으려고 그대로 찾음), 여러 낱말은 모두 들어 있는 것만 보여 줍니다.
    이 기기에 이미 받아 둔 자료 안에서 찾으므로 Firebase 읽기 사용량이 늘지 않습니다. */
 const GS={scope:'all',more:{},t:0};
-const GS_TYPES={task:'업무',log:'진행 기록',memo:'특이사항',file:'서류',legal:'법정 업무'};
+const GS_TYPES={task:'업무',log:'진행 기록',memo:'특이사항',file:'서류',legal:'법정 업무',gw:'그룹웨어'};
 const gsTerms=q=>String(q||'').toLowerCase().split(/\s+/).map(x=>x.trim()).filter(Boolean).slice(0,8);
 function gsHit(hay,terms){const h=String(hay||'').toLowerCase();if(!h)return false;const hn=h.replace(/\s+/g,'');return terms.every(t=>h.includes(t)||(t.length>=4&&hn.includes(t)));}
 const gsRe=terms=>new RegExp(terms.map(t=>t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|'),'gi');
 function gsMark(text,terms){const s=String(text||'');if(!terms.length)return esc(s);const re=gsRe(terms);let out='',i=0,m;while((m=re.exec(s))){out+=esc(s.slice(i,m.index))+`<mark>${esc(m[0])}</mark>`;i=m.index+m[0].length;if(!m[0].length)re.lastIndex++;}return out+esc(s.slice(i));}
 function gsSnip(text,terms,len=110){const s=String(text||'').replace(/\s+/g,' ').trim();if(!s)return '';const low=s.toLowerCase();let at=-1;for(const t of terms){const i=low.indexOf(t);if(i>=0&&(at<0||i<at))at=i;}
   if(at<0)return gsMark(s.slice(0,len)+(s.length>len?'…':''),terms);const a=Math.max(0,at-40);const b=Math.min(s.length,a+len);return (a?'…':'')+gsMark(s.slice(a,b),terms)+(b<s.length?'…':'');}
-function gsRun(q){const terms=gsTerms(q);const R={task:[],log:[],memo:[],file:[],legal:[]};if(!terms.length)return R;
+function gsRun(q){const terms=gsTerms(q);const R={task:[],log:[],memo:[],file:[],legal:[],gw:[]};if(!terms.length)return R;
   const tasks=[...S.tasks,...(S.privTasks||[])];
   for(const t of tasks){const who=[...t.assignees.map(nameOf),t.assigneeText].filter(Boolean).join(' ');
     const hay=[t.title,t.desc,catText(t),t.site,who,ST[t.status]?ST[t.status].name:'',t.legal?'법정 업무':''].join(' ');
@@ -3912,6 +3949,7 @@ function gsRun(q){const terms=gsTerms(q);const R={task:[],log:[],memo:[],file:[]
   for(const m of S.memos||[])for(const [uid,e] of Object.entries(m.entries||{})){if(!e||!e.text)continue;if(gsHit(e.text+' '+nameOf(uid),terms))R.memo.push({date:m.date,uid,text:e.text,score:1,at:e.at||m.date});}
   for(const f of Object.values(S.files||{})){const vs=f.versions.map(v=>`${v.name} ${v.note||''}`).join(' ');const slot=SLOT[f.slot]?SLOT[f.slot].name:'';
     const hay=[f.title,f.note,f.site,slot,vs,f.txt].join(' ');if(gsHit(hay,terms))R.file.push({f,score:gsHit(f.title,terms)?2:0,at:f.updatedAt||''});}
+  for(const g of S.gw||[]){if(gwMatch(g,terms))R.gw.push({g,score:gsHit(g.title,terms)?2:0,at:g.date+'T'+(g.time||'00:00')});}
   try{for(const it of legalItems()){const hay=[it.name,it.desc,it.law,it.cond,it.memo,catText(it)].join(' ');if(gsHit(hay,terms))R.legal.push({it,score:gsHit(it.name,terms)?2:0,at:''});}}catch{}
   for(const k of Object.keys(R))R[k].sort((a,b)=>(b.score-a.score)||String(b.at).localeCompare(String(a.at)));return R;}
 function gsItemHTML(k,x,terms){
@@ -3921,11 +3959,12 @@ function gsItemHTML(k,x,terms){
   if(k==='memo')return `<li><div class="gs-it gs-memo"><span class="stripe"></span><span class="gs-b"><b>${esc(fmtLong(x.date))} 특이사항</b><small>${esc(nameOf(x.uid))}</small><p>${gsSnip(x.text,terms,400)}</p></span></div></li>`;
   if(k==='file'){const f=x.f;const v=curVer(f);const lock=f.restricted&&!canViewRestricted();
     return `<li><button type="button" class="gs-it" data-gs-file="${esc(f.id)}"><span class="fi">${v?fileIcon(v):'📄'}</span><span class="gs-b"><b>${f.restricted?'🔒 ':''}${gsMark(f.title,terms)}</b><small>${esc((SLOT[f.slot]||{}).name||'')}${f.site?' · '+esc(f.site):''}${v?` · v${v.v} ${esc(v.name)}`:''}${f.expiry?' · 만료 '+esc(fmtYMD(f.expiry)):''}</small>${!lock&&f.txt&&gsHit(f.txt,terms)?`<p>${gsSnip(f.txt,terms)}</p>`:f.note&&gsHit(f.note,terms)?`<p>${gsSnip(f.note,terms)}</p>`:''}</span></button></li>`;}
+  if(k==='gw'){const g=x.g;const body=[g.sum,g.pts.join(' '),g.act].join(' ');return `<li><button type="button" class="gs-it" data-gs-gw="${esc(g.id)}"><span class="fi">📋</span><span class="gs-b"><b>${gsMark(g.title,terms)}</b><small>그룹웨어 ${esc(gwShort(g.board))} · ${esc(fmtYMD(g.date))} · ${esc([g.dept,g.author].filter(Boolean).join(' '))}</small>${gsHit(body,terms)?`<p>${gsSnip(body,terms)}</p>`:''}</span></button></li>`;}
   const it=x.it;return `<li><button type="button" class="gs-it cat-${it.cat}" data-gs-legal="${esc(it.id)}"><span class="stripe"></span><span class="gs-b"><b>${gsMark(it.name,terms)}</b><small>법정 업무 · ${esc(catText(it))}${it.on?'':' · 꺼짐'}</small>${it.desc&&gsHit(it.desc,terms)?`<p>${gsSnip(it.desc,terms)}</p>`:''}</span></button></li>`;}
 function gsRender(){const q=$('#gs-q').value;const terms=gsTerms(q);const R=gsRun(q);const box=$('#gs-res');
   const n=Object.fromEntries(Object.entries(R).map(([k,v])=>[k,v.length]));const all=Object.values(n).reduce((a,b)=>a+b,0);
   $('#gs-tabs').innerHTML=`<button type="button" data-gs-scope="all" aria-pressed="${GS.scope==='all'}">전체 ${terms.length?all:''}</button>`+Object.entries(GS_TYPES).map(([k,nm])=>`<button type="button" data-gs-scope="${k}" aria-pressed="${GS.scope===k}">${nm} ${terms.length?n[k]:''}</button>`).join('');
-  if(!terms.length){box.innerHTML=`<div class="gs-empty">업무·진행 기록·특이사항·서류(내용 포함)·법정 업무를 한 번에 찾습니다.<br><small>예: 소화기, 윤민진 연차, 공장등록증, 작업환경측정 · 띄어쓰기는 상관없습니다 · 단축키 Ctrl+K</small></div>`;return;}
+  if(!terms.length){box.innerHTML=`<div class="gs-empty">업무·진행 기록·특이사항·서류(내용 포함)·법정 업무·그룹웨어 소식을 한 번에 찾습니다.<br><small>예: 소화기, 윤민진 연차, 공장등록증, 작업환경측정 · 띄어쓰기는 상관없습니다 · 단축키 Ctrl+K</small></div>`;return;}
   if(!all){box.innerHTML=`<div class="gs-empty">「${esc(q)}」에 맞는 자료가 없습니다.</div>`;return;}
   const keys=GS.scope==='all'?Object.keys(GS_TYPES):[GS.scope];
   box.innerHTML=keys.filter(k=>R[k].length).map(k=>{const lim=GS.more[k]||(GS.scope==='all'?8:60);const list=R[k].slice(0,lim);
@@ -3934,17 +3973,145 @@ function gsOpen(q){const d=$('#dlg-search');GS.more={};if(typeof q==='string')$(
 function gsGo(el){const d=$('#dlg-search');
   if(el.dataset.gsTask){const t=findTask(el.dataset.gsTask);if(!t)return;d.close();openTask(t);return;}
   if(el.dataset.gsFile){const f=S.files[el.dataset.gsFile];if(!f)return;d.close();const v=curVer(f);if(v&&(!f.restricted||canViewRestricted()))openViewer(docViewOpts(f,v));else openDoc(f.id);return;}
+  if(el.dataset.gsGw){d.close();GW.focus=el.dataset.gsGw;if(S.view==='gw')renderGw($('#view'));else go('#gw');return;}
   if(el.dataset.gsLegal){d.close();go('#legal');}}
 document.addEventListener('input',e=>{if(e.target.id==='gs-q'){clearTimeout(GS.t);GS.t=setTimeout(()=>{GS.more={};gsRender();},120);}});
 document.addEventListener('keydown',e=>{
   if((e.ctrlKey||e.metaKey)&&!e.altKey&&(e.key==='k'||e.key==='K')){if(!S.ready&&!S.preview)return;e.preventDefault();gsOpen();return;}
   if(e.key==='/'&&!e.ctrlKey&&!e.metaKey&&!document.querySelector('dialog[open]')&&!/^(INPUT|TEXTAREA|SELECT)$/.test((document.activeElement||{}).tagName||'')&&!(document.activeElement&&document.activeElement.isContentEditable)&&$('#gate').hidden){e.preventDefault();gsOpen();return;}
-  if(e.target.id==='gs-q'&&e.key==='Enter'){e.preventDefault();const first=$('#gs-res [data-gs-task],#gs-res [data-gs-file],#gs-res [data-gs-legal]');if(first)gsGo(first);}});
+  if(e.target.id==='gs-q'&&e.key==='Enter'){e.preventDefault();const first=$('#gs-res [data-gs-task],#gs-res [data-gs-file],#gs-res [data-gs-legal],#gs-res [data-gs-gw]');if(first)gsGo(first);}});
 document.addEventListener('click',e=>{const T=e.target;
   if(T.closest('#btn-search')){gsOpen();return;}
   const sc=T.closest('[data-gs-scope]');if(sc){GS.scope=sc.dataset.gsScope;GS.more={};gsRender();$('#gs-q').focus();return;}
   const mo=T.closest('[data-gs-more]');if(mo){const k=mo.dataset.gsMore;if(GS.scope==='all'){GS.scope=k;GS.more={};}else GS.more[k]=(GS.more[k]||60)+60;gsRender();return;}
-  const it=T.closest('#gs-res [data-gs-task],#gs-res [data-gs-file],#gs-res [data-gs-legal]');if(it){gsGo(it);return;}});
+  const it=T.closest('#gs-res [data-gs-task],#gs-res [data-gs-file],#gs-res [data-gs-legal],#gs-res [data-gs-gw]');if(it){gsGo(it);return;}});
+/* ───────── 그룹웨어 소식 (14차) ─────────
+   회사 그룹웨어(KT 비즈오피스) 게시판의 새 글을, 관리자 컴퓨터의 Claude가 평일 08~19시 매시간 확인해 요약을 gw 컬렉션에 적습니다.
+   이 화면은 그 요약을 보여 주고(목록·알림·검색), 필요한 글은 '업무로 등록'으로 할 일을 만듭니다.
+   원문은 그룹웨어에 그대로 두고 여기에는 요약·일정·첨부 파일명만 저장합니다. 전화번호·계좌번호·주민번호 형태는 저장 전에 지웁니다.
+   쓰기(gw/*, app/gw)는 관리자만 — 자동 확인은 관리자 계정으로 로그인된 화면에서 window.gwApi 로 기록합니다. */
+const GW_SINCE='2026-10-01';
+const GW_BOARDS=['업무연락','태성산업 공지사항','경조사 게시판','경영관리규정','개선제안','3정5S','태성산업 소식지'];
+const GW_SHORT={'태성산업 공지사항':'공지사항','경조사 게시판':'경조사','태성산업 소식지':'소식지'};
+const GW_HOST='https://gwx.ktbizoffice.com';
+const GW={b:'',q:'',due:false,lim:40,focus:'',seenNow:''};
+const gwShort=b=>GW_SHORT[b]||b;
+const gwBk=b=>({'업무연락':'w','태성산업 공지사항':'n','경조사 게시판':'e','경영관리규정':'r'}[b]||'o');
+let GWU=null,GWSU=null;
+/* 개인정보 형태 지우기 — 날짜(2026-11-02)는 그대로 둡니다 */
+function gwClean(s,max){s=String(s==null?'':s).replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g,'');
+  s=s.replace(/\b\d{6}\s?-\s?[1-4]\d{6}\b/g,'(주민번호 생략)')
+     .replace(/(?<!\d)(?:\+82[-\s]?)?(?:01[016789]|02|0[3-6][1-5]|070|080|050\d)[-.)\s]\s?\d{3,4}[-.\s]\d{4}(?!\d)/g,'(전화번호 생략)')
+     .replace(/\d[\d-]{8,}\d/g,m=>/^\d{4}-\d{2}-\d{2}$/.test(m)||m.replace(/\D/g,'').length<10?m:'(번호 생략)');
+  return max?s.slice(0,max):s;}
+const gwStr=(v,n)=>typeof v==='string'?gwClean(v,n).trim():'';
+const gwGuid=v=>typeof v==='string'&&/^\{?[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\}?$/.test(v.trim())?'{'+v.trim().replace(/[{}]/g,'').toLowerCase()+'}':'';
+const gwIdOf=item=>gwGuid(item).slice(1,-1);
+function normGw(id,d){if(!d||typeof d!=='object')return null;const date=isDate(d.date)?d.date:'';const title=typeof d.title==='string'?d.title.slice(0,200):'';if(!date||!title)return null;
+  const tx=d.cat?txFit(d.cat,d.sub,d.leaf):null;
+  return {id,board:typeof d.board==='string'?d.board.slice(0,30):'기타',bid:gwGuid(d.bid),item:gwGuid(d.item)||('{'+id+'}'),no:Number.isFinite(d.no)?d.no:0,title,
+    dept:typeof d.dept==='string'?d.dept.slice(0,30):'',author:typeof d.author==='string'?d.author.slice(0,20):'',date,time:typeof d.time==='string'&&/^\d{2}:\d{2}$/.test(d.time)?d.time:'',
+    sum:typeof d.sum==='string'?d.sum.slice(0,1200):'',pts:Array.isArray(d.pts)?d.pts.filter(x=>typeof x==='string'&&x.trim()).map(x=>x.slice(0,200)).slice(0,8):[],
+    due:isDate(d.due)?d.due:'',when:typeof d.when==='string'?d.when.slice(0,60):'',act:typeof d.act==='string'?d.act.slice(0,300):'',
+    files:Array.isArray(d.files)?d.files.filter(x=>typeof x==='string').map(x=>x.slice(0,120)).slice(0,10):[],
+    cat:tx?tx.cat:'',sub:tx?tx.sub:'',leaf:tx?tx.leaf:'',imp:[0,1,2].includes(d.imp)?d.imp:1,at:typeof d.at==='string'?d.at:''};}
+function normGwStat(d){if(!d||typeof d!=='object')return null;const s=x=>typeof x==='string'?x:'';
+  return {lastRun:s(d.lastRun),okAt:s(d.okAt),status:['ok','login','error'].includes(d.status)?d.status:'ok',msg:s(d.msg).slice(0,200),n:Number.isFinite(d.n)?d.n:0,since:isDate(d.since)?d.since:GW_SINCE,badAt:s(d.badAt)};}
+const gwSince=()=>(S.gwStat&&S.gwStat.since)||GW_SINCE;
+const gwSort=(a,b)=>b.date.localeCompare(a.date)||b.time.localeCompare(a.time)||(b.no-a.no);
+const gwUrl=g=>`${GW_HOST}/myoffice/ezBoardSTD/BoardItemView_Cross.aspx?ShowAdjacent=&ItemID=${encodeURIComponent(g.item)}&BoardID=${encodeURIComponent(g.bid)}&pUserID=`;
+const gwTaskOf=id=>id?(S.tasks.find(t=>t.gw===id)||(S.privTasks||[]).find(t=>t.gw===id)||null):null;
+/* 문서번호를 뺀 짧은 제목: 'TS(관)-군포업무-26-09-042 (2026년 11월 월례조회 실시 건)' → '2026년 11월 월례조회 실시 건' */
+function gwTitle(t){t=String(t||'').trim();const m=t.match(/^[A-Z]{2,4}\s*[(（][^)）]*[)）][^()（）]*?-\d+\s*[(（](.+)[)）]\s*$/);if(m)return m[1].trim();return t.replace(/^\[(공지|안내)\]\s*/,'');}
+
+function gwSub(){for(const u of [GWU,GWSU])try{u&&u();}catch{}GWU=GWSU=null;S.gw=[];S.gwReady=false;S.gwDenied=false;S.gwStat=null;if(!S.db)return;
+  const on=docs=>{const first=!S.gwReady;const prev=new Set(S.gw.map(g=>g.id));
+    S.gw=docs.map(([id,d])=>normGw(id,d)).filter(Boolean).sort(gwSort);S.gwReady=true;S.gwDenied=false;
+    if(!first){const nw=S.gw.filter(g=>!prev.has(g.id));if(nw.length)toast(nw.length>1?`그룹웨어 새 글 ${nw.length}건을 정리했습니다. 상단 '그룹웨어'에서 확인하세요.`:`그룹웨어 ${gwShort(nw[0].board)} 새 글: 「${gwTitle(nw[0].title).slice(0,40)}」`);}
+    gwRefresh();};
+  const err=()=>{S.gwDenied=true;S.gwReady=true;gwRefresh();};
+  if(S.mode==='firebase'&&S.fs)GWU=S.fs.collection('gw').orderBy('date','desc').limit(300).onSnapshot(qs=>on(qs.docs.map(d=>[d.id,d.data()])),err);
+  else GWU=S.db.collection('gw').onSnapshot(snap=>on(snap.docs.filter(d=>d.exists).map(d=>[d.id,d.data()])),err);
+  GWSU=S.db.doc('app/gw').onSnapshot(s=>{S.gwStat=s.exists?normGwStat(s.data()):null;gwRefresh();},()=>{});}
+function gwRefresh(){gwNav();ntfTick();if(S.view==='gw')scheduleRender();}
+/* 새 글 표시 (이 기기에만 저장) */
+const gwSeenKey=()=>'wl.gw.seen.'+(S.me&&S.me.id||'p');
+function gwSeen(){return lsGet(gwSeenKey())||new Date(Date.now()-3*864e5).toISOString();}
+function gwNew(g,seen){return !!g.at&&g.at>(seen||gwSeen())&&Date.now()-Date.parse(g.at)<30*864e5;}
+function gwNav(){const b=$('#gw-n');if(!b)return;const seen=gwSeen();const n=(S.gw||[]).filter(g=>gwNew(g,seen)).length;b.textContent=n>99?'99+':String(n);b.hidden=!n||S.view==='gw';
+  const w=S.canEdit?gwWarn():null;const a=b.closest('a');if(a)a.classList.toggle('gw-bad',!!(w&&w.bad));}
+/* 자동 확인 상태: 로그인 풀림 / 오래 멈춤 */
+function gwWarn(){const st=S.gwStat;if(!st||!st.lastRun)return null;const now=new Date();
+  if(st.status==='login')return {k:'login|'+(st.badAt||st.lastRun).slice(0,13),bad:true,text:`그룹웨어 로그인이 풀려 ${hhmm(st.badAt||st.lastRun)}부터 새 글을 가져오지 못했습니다. 관리자 컴퓨터의 Claude 앱 브라우저에서 그룹웨어에 다시 로그인해 주세요.`};
+  if(st.status==='error')return {k:'err|'+st.lastRun.slice(0,13),bad:true,text:`그룹웨어 확인 중 문제가 있었습니다 (${hhmm(st.lastRun)})${st.msg?': '+st.msg:''}`};
+  const h=now.getHours(),wd=now.getDay();const gap=(Date.now()-Date.parse(st.lastRun))/36e5;
+  if(wd>=1&&wd<=5&&h>=10&&h<=19&&gap>2.5)return {k:'stale|'+today(),bad:true,text:`그룹웨어 자동 확인이 ${hhmm(st.lastRun)} 이후 멈춰 있습니다. 관리자 컴퓨터가 켜져 있고 Claude 앱이 열려 있는지 확인해 주세요.`};
+  return null;}
+function gwStatHTML(){const st=S.gwStat;if(S.gwDenied)return `<div class="banner" style="margin:0 0 12px">그룹웨어 소식을 불러올 권한이 없습니다. 관리자는 Firebase 콘솔 › Firestore › 규칙에 새 firestore.rules를 게시하세요.</div>`;
+  const w=gwWarn();const last=st&&st.lastRun?`마지막 확인 ${hhmm(st.lastRun)} (${timeAgo(st.lastRun)})`:'아직 자동 확인 기록이 없습니다';
+  return `${w?`<div class="gw-warn">${esc(S.canEdit?w.text:'그룹웨어 자동 확인이 잠시 멈춰 있습니다. 관리자에게 알려 주세요.')}</div>`:''}<span class="gw-st ${w?'bad':'ok'}">${esc(last)}${!w&&st?' · 정상':''}</span>`;}
+
+function gwMatch(g,terms){if(!terms.length)return true;return gsHit([g.board,g.title,g.dept,g.author,g.sum,g.pts.join(' '),g.act,g.when,g.files.join(' ')].join(' '),terms);}
+function gwItemHTML(g,seen,terms){const t=gwTaskOf(g.id);const n=g.due?diffDays(today(),g.due):null;
+  const dd=g.due?`<span class="gw-due ${n<0?'past':n<=3?'soon':''}">📅 ${esc(g.when||fmtMD(g.due))}${n===null?'':n<0?' · 지남':n===0?' · 오늘':` · D-${n}`}</span>`:g.when?`<span class="gw-due">📅 ${esc(g.when)}</span>`:'';
+  return `<article class="gw-it imp-${g.imp}${gwNew(g,seen)?' new':''}" id="gw-${esc(g.id)}">
+    <div class="gw-h"><span class="gw-b b-${gwBk(g.board)}">${esc(gwShort(g.board))}</span><b>${gsMark(g.title,terms)}</b>${gwNew(g,seen)?'<span class="gw-new">NEW</span>':''}</div>
+    <div class="gw-m">${esc(fmtMD(g.date))}${g.time?' '+esc(g.time):''} · ${esc([g.dept,g.author].filter(Boolean).join(' '))}${g.no?` · No.${g.no}`:''}${g.cat?` · <span class="gw-cat">${esc(catText(g))}</span>`:''}</div>
+    ${g.sum?`<p class="gw-s">${gsMark(g.sum,terms)}</p>`:'<p class="gw-s muted">요약이 없습니다. 원문을 확인하세요.</p>'}
+    ${g.pts.length?`<ul class="gw-p">${g.pts.map(x=>`<li>${gsMark(x,terms)}</li>`).join('')}</ul>`:''}
+    ${dd||g.act?`<div class="gw-x">${dd}${g.act?`<span class="gw-act"><b>관리부 할 일</b> ${gsMark(g.act,terms)}</span>`:''}</div>`:''}
+    ${g.files.length?`<div class="gw-f">📎 ${g.files.map(f=>esc(f)).join(' · ')}</div>`:''}
+    <div class="gw-a"><a class="btn sm ghost" href="${esc(gwUrl(g))}" target="_blank" rel="noopener" title="그룹웨어에 로그인되어 있어야 열립니다">그룹웨어 원문 ↗</a>
+      ${t?`<button type="button" class="btn sm" data-gw-open="${esc(t.path)}">등록된 업무 보기 · ${esc(ST[t.status]?ST[t.status].name:'')}</button>`:S.canWrite?`<button type="button" class="btn sm primary" data-gw-task="${esc(g.id)}">업무로 등록</button>`:''}</div></article>`;}
+function renderGw(v){const L=S.gw||[];const terms=gsTerms(GW.q);const seen=GW.seenNow||gwSeen();
+  const cnt={};for(const g of L)cnt[g.board]=(cnt[g.board]||0)+1;const boards=[...GW_BOARDS.filter(b=>cnt[b]),...Object.keys(cnt).filter(b=>!GW_BOARDS.includes(b))];
+  const list=L.filter(g=>(!GW.b||g.board===GW.b)&&(!GW.due||g.due||g.act)&&gwMatch(g,terms));const shown=list.slice(0,GW.lim);
+  let lastM='';const rows=shown.map(g=>{const m=g.date.slice(0,7);const h=m!==lastM?`<h3 class="gw-mon">${+m.slice(0,4)}년 ${+m.slice(5,7)}월</h3>`:'';lastM=m;return h+gwItemHTML(g,seen,terms);}).join('');
+  v.innerHTML=`<div class="home-head"><div><h1>그룹웨어 소식</h1><p>회사 그룹웨어 게시판(${GW_BOARDS.map(gwShort).join('·')})의 새 글을 요약해 보여 줍니다 · 평일 08~19시 매시간 자동 확인</p></div><div class="gw-sts">${gwStatHTML()}</div></div>
+  <section class="filters" style="padding:0 0 12px"><div class="seg" role="group" aria-label="게시판"><button type="button" data-gw-b="" aria-pressed="${!GW.b}">전체 ${L.length}</button>${boards.map(b=>`<button type="button" data-gw-b="${esc(b)}" aria-pressed="${GW.b===b}">${esc(gwShort(b))} ${cnt[b]}</button>`).join('')}</div>
+    <label class="chk"><input type="checkbox" id="gw-due" ${GW.due?'checked':''}> 일정·할 일 있는 글만</label><input type="search" id="gw-q" placeholder="제목·요약 검색" value="${esc(GW.q)}" aria-label="그룹웨어 소식 검색"></section>
+  <div class="gw-list">${rows||`<section class="panel"><div class="empty">${L.length?'조건에 맞는 글이 없습니다.':S.gwReady?'아직 가져온 글이 없습니다. 자동 확인이 돌면 이곳에 쌓입니다.':'불러오는 중…'}</div></section>`}
+  ${list.length>shown.length?`<div style="text-align:center;margin:10px 0"><button type="button" class="btn sm" data-gw-more>더 보기 (${list.length-shown.length}건)</button></div>`:''}</div>
+  <p class="help" style="margin-top:12px;color:var(--ink-3);font-size:12px">요약은 Claude가 원문(스캔 문서 포함)을 읽고 정리한 것이라 틀릴 수 있습니다. 중요한 내용은 '그룹웨어 원문'으로 확인하세요(그룹웨어에 로그인되어 있어야 열립니다). '업무로 등록'을 누르면 제목·요약·일정이 채워진 업무 등록 창이 열립니다. 전화번호·계좌번호 등은 저장하지 않습니다.</p>`;
+  if(!GW.seenNow){GW.seenNow=seen;setTimeout(()=>{if(S.view!=='gw')return;lsSet(gwSeenKey(),nowISO());gwNav();},1500);}
+  if(GW.focus){const id=GW.focus;GW.focus='';setTimeout(()=>{const el=document.getElementById('gw-'+id);if(el){el.scrollIntoView({block:'center'});el.classList.add('hl');setTimeout(()=>el.classList.remove('hl'),2400);}},60);}}
+function gwOpenTask(id){const g=(S.gw||[]).find(x=>x.id===id);if(!g)return;const ex=gwTaskOf(id);if(ex){openTask(ex);return;}if(!S.canWrite)return;
+  const td=today();const due=g.due&&g.due>=td?g.due:'';
+  openTask(null,{start:td,due});
+  $('#t-title').value=gwTitle(g.title).slice(0,120);
+  $('#t-desc').value=[`[그룹웨어 ${gwShort(g.board)}] ${g.title}`,`게시 ${fmtYMD(g.date)}${g.time?' '+g.time:''} · ${[g.dept,g.author].filter(Boolean).join(' ')}`,'',g.sum,...g.pts.map(x=>'· '+x),g.when?`일정: ${g.when}`:'',g.act?`관리부 할 일: ${g.act}`:'',g.files.length?`첨부: ${g.files.join(', ')}`:''].filter((x,i)=>x||i===2).join('\n').slice(0,3000);
+  if(g.cat){$('#t-cat').value=g.cat;fillSubs(g.cat,g.sub,g.leaf);}else dlgGuess();
+  if(S.dlg)S.dlg.gw=g.id;}
+
+/* 자동 확인이 쓰는 기록 도구 — 관리자 계정으로 로그인한 이 앱 화면에서 Claude가 호출합니다 */
+function gwDoc(p){if(!p||typeof p!=='object')throw new Error('형식 오류');const item=gwGuid(p.item);if(!item)throw new Error('item(글 ID) 없음');const id=gwIdOf(item);
+  const date=isDate(p.date)?p.date:'';if(!date)throw new Error('date(게시일) 없음');const title=gwStr(p.title,200);if(!title)throw new Error('title 없음');
+  const sum=gwStr(p.sum,1200),pts=(Array.isArray(p.pts)?p.pts:[]).map(x=>gwStr(x,200)).filter(Boolean).slice(0,8),act=gwStr(p.act,300);
+  let c=p.cat?txFit(p.cat,p.sub,p.leaf):null;if(!c||!CATS.some(x=>x.id===c.cat)){const t0=(/경조/.test(p.board||'')?'경조사 ':'')+gwTitle(title);c=classify(t0)||classify(`${t0} ${act}`)||histCat(t0)||autoCat(`${t0} ${act} ${sum}`.slice(0,500));}
+  const ex=(S.gw||[]).find(g=>g.id===id);const at=ex&&ex.at?ex.at:(typeof p.at==='string'&&!isNaN(Date.parse(p.at))?new Date(p.at).toISOString():nowISO());
+  const d={board:gwStr(p.board,30)||'기타',bid:gwGuid(p.bid),item,no:Number.isFinite(+p.no)?+p.no:0,title,dept:gwStr(p.dept,30),author:gwStr(p.author,20),date,time:typeof p.time==='string'&&/^\d{2}:\d{2}$/.test(p.time)?p.time:'',
+    sum,pts,due:isDate(p.due)?p.due:'',when:gwStr(p.when,60),act,files:(Array.isArray(p.files)?p.files:[]).map(x=>gwStr(x,120)).filter(Boolean).slice(0,10),
+    cat:c.cat,sub:c.sub,leaf:c.leaf||'',tx:TXV,imp:[0,1,2].includes(+p.imp)?+p.imp:1,at,by:myId()||'',v:1};
+  return {id,d};}
+async function gwSetStat(patch){const cur=S.gwStat||{};const now=nowISO();const d={since:cur.since||GW_SINCE,okAt:cur.okAt||'',status:'ok',msg:'',n:0,badAt:'',...cur,...patch,lastRun:now};
+  d.badAt=d.status==='ok'?'':(cur.status===d.status&&cur.badAt?cur.badAt:now);await S.db.doc('app/gw').set(d);S.gwStat=normGwStat(d);gwRefresh();return S.gwStat;}
+window.gwApi={
+  async ready(ms=20000){const t0=Date.now();while(Date.now()-t0<ms&&!(S.ready&&S.gwReady))await new Promise(r=>setTimeout(r,300));
+    return {ready:!!(S.ready&&S.gwReady),admin:!!S.canEdit,user:(S.me&&S.me.name)||'',denied:!!S.gwDenied,known:(S.gw||[]).length,since:gwSince(),stat:S.gwStat};},
+  known(){return {since:gwSince(),ids:(S.gw||[]).map(g=>g.id)};},
+  async put(posts,o={}){if(!S.canEdit)throw new Error('관리자 계정으로 로그인한 화면에서만 기록할 수 있습니다');const res={written:[],errors:[]};
+    for(const p of (Array.isArray(posts)?posts:[posts])){try{const {id,d}=gwDoc(p);await S.db.doc('gw/'+id).set(d);res.written.push(id);}catch(e){res.errors.push(`${String(p&&p.title||'').slice(0,40)}: ${e&&e.message||e}`);}}
+    await gwSetStat({status:'ok',msg:String(o.msg||'').slice(0,200),n:res.written.length,okAt:nowISO()});return res;},
+  async status(status,msg){if(!S.canEdit)throw new Error('관리자만 기록할 수 있습니다');status=['ok','login','error'].includes(status)?status:'error';
+    return gwSetStat({status,msg:String(msg||'').slice(0,200),...(status==='ok'?{okAt:nowISO(),n:0}:{})});}};
+
+document.addEventListener('input',e=>{if(e.target.id==='gw-q'){clearTimeout(GW.t);GW.t=setTimeout(()=>{GW.q=e.target.value;GW.lim=40;const pos=e.target.selectionStart;renderGw($('#view'));const i=$('#gw-q');if(i){i.focus();try{i.setSelectionRange(pos,pos);}catch{}}},150);}});
+document.addEventListener('change',e=>{if(e.target.id==='gw-due'){GW.due=e.target.checked;GW.lim=40;renderGw($('#view'));}});
+document.addEventListener('click',e=>{const T=e.target;
+  const b=T.closest('[data-gw-b]');if(b){GW.b=b.dataset.gwB;GW.lim=40;renderGw($('#view'));return;}
+  if(T.closest('[data-gw-more]')){GW.lim+=40;renderGw($('#view'));return;}
+  const k=T.closest('[data-gw-task]');if(k){gwOpenTask(k.dataset.gwTask);return;}
+  const o=T.closest('[data-gw-open]');if(o){const t=findTask(o.dataset.gwOpen);if(t)openTask(t);return;}});
 
 /* ───────── 시작 ───────── */
 function boot(){
