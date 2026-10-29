@@ -63,13 +63,60 @@ service cloud.firestore {
       allow read, write: if isMember();
     }
 
-    // 현장 사진 (압축한 사진을 문서에 저장 — 무료 요금제용)
+    // 열람 제한 서류를 볼 수 있는 사람: 관리자 + 설정의 '열람 허용 이메일'
+    function canViewRestricted() {
+      return isAdmin()
+        || (isMember() && myEmail() in members().get('viewers', []));
+    }
+
+    // 법정 업무 설정 — 모두 읽기, 관리자만 수정
+    match /app/legal {
+      allow read: if isMember();
+      allow write: if isAdmin();
+    }
+    // 법정 업무 자동 등록 기록 — 구성원 누구나 (중복 등록 방지용)
+    match /app/legalLog {
+      allow read, write: if isMember();
+    }
+
+    // 현장 사진 (자동으로 줄인 사진을 문서에 저장 — 무료 요금제용)
     match /photos/{photoId} {
       allow read, delete: if isMember();
       allow create: if isMember()
-        && request.resource.data.d is string
-        && request.resource.data.d.size() < 1000000;
+        && ((request.resource.data.d is string && request.resource.data.d.size() < 1000000)
+          || (request.resource.data.b is bytes && request.resource.data.b.size() < 1000000));
       allow update: if false;
+    }
+    // 사진 미리보기 (작은 썸네일)
+    match /thumbs/{photoId} {
+      allow read, delete: if isMember();
+      allow create: if isMember()
+        && request.resource.data.b is bytes
+        && request.resource.data.b.size() < 200000;
+      allow update: if false;
+    }
+
+    // 회사 서류함 — 목록은 구성원 모두, 삭제·열람 제한 변경은 관리자만
+    match /files/{fileId} {
+      allow read: if isMember();
+      allow create: if isMember()
+        && (request.resource.data.get('restricted', false) != true || isAdmin());
+      allow update: if isMember()
+        && (request.resource.data.get('restricted', false) == resource.data.get('restricted', false) || isAdmin());
+      allow delete: if isAdmin();
+
+      // 파일 내용 (700KB 조각) — 열람 제한 서류는 허용된 사람만 읽기
+      match /chunks/{chunkId} {
+        allow get: if isMember()
+          && (get(/databases/$(database)/documents/files/$(fileId)).data.get('restricted', false) != true
+            || canViewRestricted());
+        allow list: if false;
+        allow create: if isMember()
+          && request.resource.data.b is bytes
+          && request.resource.data.b.size() <= 1000000;
+        allow update: if false;
+        allow delete: if isAdmin();
+      }
     }
   }
 }
