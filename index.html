@@ -1480,6 +1480,108 @@ input.ir{font:inherit;font-size:14.5px;font-weight:600;padding:4px 8px;border:2p
 .fmx .fm-hd-r{flex:none;white-space:nowrap;font-size:9pt;font-weight:700;color:#1f3a5f;line-height:1.2;padding-bottom:.3mm}
 .fmx .fm-hd-brand{font:700 10pt "Malgun Gothic","Apple SD Gothic Neo",sans-serif;color:#1f3a5f;letter-spacing:.08em;padding-left:8mm;line-height:6mm;background:linear-gradient(#c8102e,#c8102e) left center/6mm 6mm no-repeat}
 @media print{#print-sheet .fmx .fm-hd{display:flex}}
+/* ───────── 37차: 시설 일보 자동 완성 ───────── */
+.qa-ilbo{font-weight:600}
+#dlg-ilbo{width:min(1000px,98vw)}
+#dlg-ilbo .modal-h h2 small{font-weight:400;font-size:13px;color:var(--ink-3);margin-left:6px}
+.il-steps{display:flex;gap:4px;margin:0 0 0 auto;padding:0;list-style:none}
+.il-steps li{font-size:12.5px;padding:4px 10px;border-radius:999px;background:var(--surface-2);color:var(--ink-3)}
+.il-steps li.on{background:var(--accent);color:#fff;font-weight:600}
+#dlg-ilbo .modal-h .icon-btn{margin-left:8px}
+.il-b{gap:14px;align-content:start}
+.il-row{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:flex-end}
+.il-row>label{display:flex;flex-direction:column;gap:3px;font-size:12.5px;color:var(--ink-2);font-weight:600}
+.il-row input,.il-row select{height:36px;font-size:14px}
+.il-kind{display:flex;flex-direction:column;gap:3px;font-size:12.5px;color:var(--ink-2);font-weight:600}
+.il-kind .seg{width:auto}.il-kind .seg button{flex:none;height:36px}
+.il-sec h3{font-size:15px;margin:0 0 8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.il-sec h3 small{font-weight:400;color:var(--ink-3);font-size:12.5px}
+.il-sec h3 .btn{margin-left:auto}
+.il-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+.il-th{position:relative;margin:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface-2);display:flex;flex-direction:column}
+.il-th img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:#dfe5ec}
+.il-tag{position:absolute;left:6px;top:6px;border:0;border-radius:999px;padding:4px 10px;font:600 12px var(--font);color:#fff;background:rgba(20,32,48,.68);cursor:pointer}
+.il-tag.t-before{background:#5d6f89}.il-tag.t-during{background:#b7791f}.il-tag.t-after{background:#2f855a}
+.il-del{position:absolute;right:6px;top:6px;width:28px;height:28px;border-radius:50%;border:0;background:rgba(0,0,0,.55);color:#fff;font-size:13px;cursor:pointer}
+.il-no{display:none}
+.il-cap{border:0;border-top:1px solid var(--line);padding:7px 8px;font:13px var(--font);background:var(--surface);width:100%;box-sizing:border-box;min-width:0}
+.il-add{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:118px;border:2px dashed var(--line);border-radius:10px;cursor:pointer;color:var(--ink-2);font-weight:600;font-size:13.5px;background:var(--surface)}
+.il-add span{font-size:26px;line-height:1.1}.il-add:hover{border-color:var(--accent);color:var(--accent)}
+.il-add input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.il-add.cam-only{display:none}@media (max-width:760px){.il-add.cam-only{display:flex}}
+.il-stamp{display:inline-flex;gap:6px;align-items:center;margin-top:8px;font-size:13px;color:var(--ink-2)}
+#il-memo{width:100%;box-sizing:border-box;font:15px/1.6 var(--font);padding:10px 12px;border:1px solid var(--line);border-radius:8px;resize:vertical;min-height:150px}
+.il-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.il-chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font:13px var(--font);color:var(--ink-2);cursor:pointer}
+.il-chip:hover{border-color:var(--accent);color:var(--accent)}.il-chip.ghost{border-style:dashed}
+.il-tip{font-size:13px;color:var(--ink-2);background:var(--surface-2);border-radius:8px;padding:8px 12px}
+.il-tip summary{cursor:pointer;font-weight:600}.il-tip ul{margin:6px 0 2px;padding-left:18px;line-height:1.6}
+.il-recent ul{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.il-recent li button{width:100%;text-align:left;border:1px solid var(--line-2);background:var(--surface);border-radius:8px;padding:7px 10px;font:13.5px var(--font);cursor:pointer;display:flex;gap:6px;align-items:baseline;flex-wrap:wrap}
+.il-recent li button:hover{border-color:var(--accent)}.il-recent li small{color:var(--ink-3);margin-left:auto}
+.il-note{margin:0;padding:8px 12px;background:var(--accent-soft);border-radius:8px;font-size:13.5px}
+.il-busy{font-size:13px;color:var(--doing)}
+.il-go{font-size:15px;padding:0 20px;height:40px}
+.il-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.il-bar .seg{width:auto}.il-bar .seg button{flex:none}
+.il-tt{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-2);flex:1;min-width:240px}.il-tt input{flex:1;height:34px;font-size:14px}
+.il-help{margin:0;font-size:12.5px}.il-zbtn{margin-left:4px;height:26px;padding:0 8px;font-size:12px}
+.il-wrap{background:#e3e8ee;border-radius:10px;padding:10px;overflow:auto;max-height:68vh}
+.il-paper{width:186mm;margin:0 auto;background:#fff;box-shadow:0 2px 12px rgba(10,20,40,.18);padding:12mm;box-sizing:content-box}
+.il-paper [contenteditable=true]{outline:none}.il-paper [contenteditable=true]:focus{box-shadow:0 0 0 2px #9cc0f5}
+.il-paper .ap-il-body td:focus,.il-paper .ap-il-body li:focus{background:#f3f8ff}
+.il-paper td.ap-il-res,.il-paper [data-il-tg]{cursor:pointer;user-select:none}.il-paper td.ap-il-res:hover{background:#eef4ff}
+.il-paper .ap-il-capt[contenteditable=true]:empty::before{content:'설명 넣기';color:#9aa5b4}
+.il-fol{display:flex;gap:6px;align-items:baseline;flex-wrap:wrap;font-size:13.5px;padding:8px 12px;border:1px solid #f0c48a;background:#fff8ec;border-radius:8px}.il-fol small{color:var(--ink-3)}
+.il-saved{margin:0;font-size:13px;color:var(--done)}
+@media (max-width:640px){#dlg-ilbo{width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;border-radius:0}
+  #dlg-ilbo .il{display:flex;flex-direction:column;height:100%}#dlg-ilbo .il-b{flex:1;padding:12px}
+  #dlg-ilbo .modal-h{padding:10px 12px;flex-wrap:wrap}#dlg-ilbo .modal-h .icon-btn{margin-left:auto}#dlg-ilbo .modal-h h2 small{display:none}.il-steps{order:3;width:100%;margin:0}
+  .il-grid{grid-template-columns:repeat(2,1fr)}.il-kind .seg{flex-wrap:wrap}.il-kind .seg button{padding:0 9px}
+  .il-wrap{max-height:none;padding:6px}#dlg-ilbo .modal-f{padding:10px 12px;gap:6px}#dlg-ilbo .modal-f .btn{flex:1 1 auto}#dlg-ilbo .modal-f .spacer{display:none}}
+/* 일보 서류 (화면·인쇄·전자결재 본문 공통 — :is(#print-sheet,body) 로 다른 표 규칙보다 앞서게) */
+:is(#print-sheet,body) .ap-il{font:10pt/1.5 "Malgun Gothic","Apple SD Gothic Neo","Noto Sans KR",sans-serif;color:#141b26;background:#fff;text-align:left}
+:is(#print-sheet,body) .ap-il .ap-il-top{display:flex;justify-content:space-between;align-items:flex-start;gap:6mm;margin:0 0 3mm}
+:is(#print-sheet,body) .ap-il .ap-il-logo img{height:8.5mm;width:auto;max-width:none;display:block}
+:is(#print-sheet,body) .ap-il table{width:100%;border-collapse:collapse;margin:0;table-layout:auto}
+:is(#print-sheet,body) .ap-il th,:is(#print-sheet,body) .ap-il td{border:1px solid #5b6675;padding:1.3mm 2mm;font-size:9.5pt;line-height:1.45;vertical-align:middle;text-align:left;min-width:0;height:auto;background:none;color:inherit}
+:is(#print-sheet,body) .ap-il th{background:#eef2f7;font-weight:700;text-align:center;white-space:nowrap;color:#1f3a5f}
+:is(#print-sheet,body) .ap-il table.ap-il-sign{width:auto}
+:is(#print-sheet,body) .ap-il .ap-il-sign th{font-size:8pt;font-weight:600;padding:.7mm 1.2mm;min-width:13mm}
+:is(#print-sheet,body) .ap-il .ap-il-sign td{height:12mm}
+:is(#print-sheet,body) .ap-il .ap-il-sign th.ap-il-v{min-width:0;width:5mm;padding:0 .8mm;line-height:1.35}
+:is(#print-sheet,body) .ap-il .ap-il-title{font-size:19pt;font-weight:800;text-align:center;letter-spacing:.32em;margin:1mm 0 4mm;padding:0 0 2mm;border:0;border-bottom:3px double #1f3a5f;color:#10223d;line-height:1.3}
+:is(#print-sheet,body) .ap-il .ap-il-h{font-size:11pt;font-weight:700;color:#1f3a5f;margin:4.5mm 0 1.8mm;padding:0 0 0 2.2mm;border:0;border-left:1.2mm solid #c8102e;line-height:1.3;break-after:avoid}
+:is(#print-sheet,body) .ap-il .ap-il-n{font-weight:400;font-size:9pt;color:#5b6675;margin-left:1.5mm}
+:is(#print-sheet,body) .ap-il .ap-il-info th{width:15%}:is(#print-sheet,body) .ap-il .ap-il-info td{width:35%}
+:is(#print-sheet,body) .ap-il p.ap-il-sum{margin:0;padding:2mm 3mm;border:1px solid #c5ccd6;background:#f8fafc;white-space:pre-wrap}
+:is(#print-sheet,body) .ap-il td.ap-il-no{text-align:center}
+:is(#print-sheet,body) .ap-il td.ap-il-res{text-align:center;font-weight:700;white-space:nowrap}
+:is(#print-sheet,body) .ap-il .ap-il-ok{color:#1d7a46}:is(#print-sheet,body) .ap-il .ap-il-warn{color:#b26a00}:is(#print-sheet,body) .ap-il .ap-il-bad{color:#c0261d}
+:is(#print-sheet,body) .ap-il thead th{background:#dfe7f1}
+:is(#print-sheet,body) .ap-il tr{break-inside:avoid}
+:is(#print-sheet,body) .ap-il ul.ap-il-notes{margin:0;padding:1.8mm 3mm 1.8mm 7mm;border:1px solid #c5ccd6;list-style:disc}
+:is(#print-sheet,body) .ap-il ul.ap-il-notes li{margin:.4mm 0;padding:0}
+:is(#print-sheet,body) .ap-il li.ap-il-fol{color:#9a3412;font-weight:600}
+:is(#print-sheet,body) .ap-il p.ap-il-none{margin:0;padding:1.8mm 3mm;border:1px solid #c5ccd6;color:#5b6675}
+:is(#print-sheet,body) .ap-il .ap-il-photos{display:grid;grid-template-columns:1fr 1fr;gap:3mm}
+:is(#print-sheet,body) .ap-il .ap-il-ph{border:1px solid #8b96a5;break-inside:avoid;page-break-inside:avoid;background:#fff;min-width:0}
+:is(#print-sheet,body) .ap-il .ap-il-im{height:62mm;background:#f1f3f6;display:flex;align-items:center;justify-content:center;overflow:hidden}
+:is(#print-sheet,body) .ap-il .ap-il-im img{max-width:100%;max-height:100%;width:auto;height:auto;display:block;object-fit:contain;margin:0;border:0}
+:is(#print-sheet,body) .ap-il .ap-il-cap{font-size:8.8pt;padding:1.2mm 2mm;border-top:1px solid #8b96a5;line-height:1.4;min-height:5mm}
+:is(#print-sheet,body) .ap-il .ap-il-tg{font-weight:700;margin-right:1mm;color:#1f3a5f}
+:is(#print-sheet,body) .ap-il .ap-il-t-before{color:#46597a}:is(#print-sheet,body) .ap-il .ap-il-t-during{color:#a0610e}:is(#print-sheet,body) .ap-il .ap-il-t-after{color:#1d7a46}
+:is(#print-sheet,body) .ap-il .ap-il-sh{color:#5b6675;margin-right:1mm;font-size:8.3pt}
+:is(#print-sheet,body) .ap-il .ap-il-sheet .ap-il-im{height:70mm}
+:is(#print-sheet,body) .ap-il .ap-il-ct{border:0}
+:is(#print-sheet,body) .ap-il .ap-il-ct th,:is(#print-sheet,body) .ap-il .ap-il-ct td{font-size:8.6pt;padding:.9mm 1.6mm;border-left:0;border-right:0;border-bottom:0}
+:is(#print-sheet,body) .ap-il .ap-il-ct th{width:12%;border-right:1px solid #c5ccd6}:is(#print-sheet,body) .ap-il .ap-il-ct td{border-right:1px solid #c5ccd6}:is(#print-sheet,body) .ap-il .ap-il-ct tr>*:last-child{border-right:0}
+:is(#print-sheet,body) .ap-il .ap-il-foot{margin-top:5mm;padding-top:1.5mm;border-top:1px solid #c5ccd6;font-size:8pt;color:#6b7686;text-align:right}
+#print-sheet .ilx{width:100%}
+@media (max-width:560px){.ap-body .ap-il .ap-il-photos{grid-template-columns:1fr}}
+/* 37차: 최근 화면 오류(관리자) */
+.set-err{margin-top:14px;padding-top:12px;border-top:1px solid var(--line-2)}
+.set-err h3{font-size:14px;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.set-err h3 small{font-weight:400;color:var(--ink-3);font-size:12px}
+.err-list{list-style:none;margin:0;padding:0;display:grid;gap:5px;max-height:240px;overflow:auto}
+.err-list li{border:1px solid var(--line-2);border-radius:6px;padding:6px 9px;font-size:12.5px}.err-list li b{display:block;font-weight:600;word-break:break-all}.err-list li small{color:var(--ink-3)}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -2374,6 +2476,7 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>자료실</b><span>위쪽 <em>각종서류 올리기</em> 화면 맨 위의 <em>🗂 자료실</em>을 누르면 정리된 회사 서류(사업장별·종류별, 유효기간)를 봅니다. 자료실에서 다시 <em>📤 각종서류 올리기</em>로 돌아갈 수 있습니다.</span></li>
       <li><b>업무 수정 권한</b><span>업무(일정)의 업무명·일정·담당·내용 수정과 삭제는 <em>등록한 사람</em>과 관리자만 할 수 있습니다. 담당자는 진행 상태·진척률·진행 기록·사진만 남기고, 그 밖의 직원은 보기만 합니다.</span></li>
       <li><b>연차·휴일근무 달력</b><span>전자결재 기안 오른쪽 <em>📅 달력 표기</em>에서 연차·반차·휴일근무·연차 사용 계획을 고르고 날짜를 적으면, 최종 승인된 뒤 달력에 <b>굵은 글자</b>(🌴 연차, 🛠 휴일근무)로 표시됩니다. 연차 사용 촉진에 따라 정한 예정일은 달력 위 <em>🗓 연차 사용 계획(촉진)</em>에서 적으면 <i>연차(예정)</i>으로 보입니다. 사유는 달력에 나오지 않습니다.</span></li>
+      <li><b>시설 일보 (자동 완성)</b><span>홈의 <em>📋 시설 일보</em>(또는 사진첩, 시설·공무 업무 상세의 📋 단추)에서 현장 사진을 찍어 올리고 메모를 한 줄에 한 가지씩 적은 뒤 <em>✨ 자동 완성</em>을 누르면, 회사 로고·결재란이 있는 <em>작업 일보 · 점검 일지 · 사진 대지</em>가 만들어집니다. 메모의 '위치 — 내용', 09:00~11:30, 자재:, 작업자:, ※ 특이사항, 다음: 후속 조치, 이상 없음·주의·불량을 알아서 칸에 나눠 넣습니다. 서류의 글자는 눌러서 바로 고치고, <em>💾 업무일지에 저장</em>(완료 업무 + 사진), <em>🖨 인쇄·PDF</em>, <em>📝 전자결재로 올리기</em>를 고릅니다. 후속 조치는 '할 예정' 업무로 같이 등록할 수 있고, 작성 중인 일보는 이 기기에 임시 저장됩니다. 휴대폰 홈 화면에는 주소 끝에 <em>#ilbo</em>를 붙인 바로가기를 두면 바로 열립니다.</span></li>
       <li><b>자료실 분류·폴더</b><span>자료실은 <em>분류</em>(회사 기본·인증서·확인서·사업장별·기타) 아래에 서류와 <em>폴더</em>가 있습니다. 자료 관리자는 분류 이름 옆 ✏️로 이름을 바꾸고, 🗑로 지우고(안의 서류·폴더는 고른 분류로 옮김), 위쪽 <em>🗂＋ 분류</em>로 새 분류를 만듭니다. 폴더는 분류의 <em>📁＋ 폴더</em>로 그 분류 아래에 만들고, 폴더 ✏️로 이름을 바꾸거나 <em>옮기기</em>로 다른 분류로 보냅니다.</span></li>
       <li><b>그룹웨어 근태계</b><span>평일 매시간 그룹웨어 게시판을 확인할 때 <em>결재문서함</em>의 근태계도 함께 읽어, 관리부 직원의 연차·반차·휴가·휴일근무·출장·외출을 달력에 표시합니다. 최종 결재된 것은 <b>굵게</b>, 결재 중인 것은 흐리게 '(결재 중)'으로 보이고, 반려·회수되면 빠집니다. 이름·종류·기간만 보이고 사유는 저장하지 않습니다.</span></li>
       <li><b>자금 결제</b><span>💰 자금 결제 문서가 최종 승인되면 자금 담당(기본 박혜진)에게 <em>결제 예정일 입력</em> 요청이 갑니다(알림·내 업무·결재함 '💰 자금 결제' 탭). 문서의 <em>💰 자금 결제</em> 칸에 예정일·메모를 저장하면 결재선(담당·결재자)과 관리자에게 알림이 가고 달력에 '💰 결제 예정'으로 보입니다. 지급이 끝나면 <em>✅ 지급 완료</em>를 누릅니다.</span></li>
@@ -3313,7 +3416,7 @@ async function uploadImages(files,o={}){
   if(!S.assets&&!S.preview){toast('사진 첨부 권한이 없습니다. 공유 설정에서 참여 권한 이상이 필요합니다.','err');return [];}
   const out=[];let sz0=0,sz1=0,fail=0,piiN=0;const piiWhy=[];const ctx=piiCtx();setSync('saving');const pr=upProg(list.length);
   for(let i=0;i<list.length;i++){const f=list[i];pr.step(i,'사진 줄이는 중');let r=null;
-    try{r=await optimizePhoto(f,{stamp:o.stamp});}catch{
+    try{r=await optimizePhoto(f,{stamp:o.stamp,q:o.q});}catch{
       try{if(window.imageCompression){const b=await imageCompression(f,{maxSizeMB:.3,maxWidthOrHeight:1600,useWebWorker:false,initialQuality:.8,fileType:'image/jpeg'});r={blob:b,thumb:null,shot:''};}}catch{}}
     if(!r||!r.blob){fail++;toast(`${f.name||'사진'}: 이 사진 형식은 열 수 없습니다. 휴대폰 카메라 설정을 '호환성 우선(JPG)'으로 바꾸거나 JPG·PNG로 올려 주세요.`,'err');continue;}
     pr.step(i,'개인정보 확인 중');let pc={hit:false};try{pc=await piiScanPhoto(f,r,{pii:o.pii,onProg:(p,st)=>{if(st==='recognizing text')pr.step(i,`개인정보 확인 중(글자 인식 ${Math.round(p*100)}%)`);}});}catch{}
@@ -7433,6 +7536,417 @@ Object.assign(window.gwApi,{
         if(d.skip)res.skipped.push(`${d.no||id}: ${d.why}`);else res.shown.push(`${d.names.join('·')} ${LV_K[d.kind]} ${d.from===d.to?d.from:d.from+'~'+d.to}${d.st==='run'?' (결재 중)':''}`);}
       catch(e){res.errors.push(`${String(p&&(p.no||p.gwId)||'').slice(0,40)}: ${e&&e.message||e}`);}}
     return res;}});
+
+/* ───────── 37차: 시설·공무 일보 '자동 완성' ─────────
+   사진 몇 장 + 간단한 메모 → ✨ 자동 완성 → 회사 일지 모양(로고·결재란·표·사진)의 서류 한 장.
+   · 서류 종류: 🛠 작업 일보 / 🔍 점검 일지 / 🖼 사진 대지 — 메모 낱말로 고르고(자동), 직접 바꿀 수도 있음.
+   · 메모 읽는 법: 한 줄에 한 가지. '위치 — 내용', 09:00~11:30(시간), 자재: …, 작업자: …, ※ 특이사항, 다음: 후속 조치,
+     이상 없음·양호 / 주의·노후 / 불량·누수·고장 → 결과 칸. 순회·정기 점검이면 분야별 기본 점검 항목을 채움.
+   · 사진은 업무 사진과 같은 길(줄이기·개인정보 확인·날짜 새기기)로 바로 올라가고, 작성 중인 일보는 이 기기에 임시 저장.
+   · 완성된 서류는 글자를 바로 고치고 → 💾 업무일지에 저장(완료 업무 + 사진 + 일보) · 🖨 인쇄·PDF · 📝 전자결재로 올리기.
+   · 후속 조치는 '할 예정' 업무로 같이 등록(선택). 업무 상세 창의 📋 단추로 다시 열어 보고 고침. 이번 달 일보 모아 인쇄. */
+const IL_LOGO='data:image/png;base64,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';
+const IL_MAXPH=12;
+const IL_K={work:{t:'시설 작업 일보',s:'작업 일보',ico:'🛠',v:'작업'},chk:{t:'시설 점검 일지',s:'점검 일지',ico:'🔍',v:'점검'},photo:{t:'작업 사진 대지',s:'사진 대지',ico:'🖼',v:'작업'}};
+const IL_RES={chk:['양호','주의','불량',''],work:['완료','진행 중','후속 필요','']};
+const ilResC=r=>({'양호':'ap-il-ok','완료':'ap-il-ok','주의':'ap-il-warn','진행 중':'ap-il-warn','불량':'ap-il-bad','후속 필요':'ap-il-bad'})[r]||'';
+const IL={d:null,step:'in',busy:false,dirty:false,src:{}};
+const ilKey=()=>'wl.ilbo.'+((S.me&&S.me.id)||'x');
+
+/* ── 분야(중분류) 낱말 */
+const IL_FLD=[
+  ['소방설비',/소화기|소화전|스프링클러|감지기|수신기|유도등|비상\s*조명|방화문|방화\s*셔터|소방|피난|화재/g],
+  ['전기설비',/전기|분전반|배전반|수배전|차단기|누전|조명|전등|LED|형광등|콘센트|배선|발전기|수변전|변압기|계량기|검침|충전기|전선/g],
+  ['기계설비·공조',/에어컨|냉난방|냉방|난방|냉동기|냉각탑|콤프레샤|컴프레서|컴프레샤|공압|드라이어|펌프|덕트|환풍|송풍|급배기|보일러|온수|가스/g],
+  ['승강기',/승강기|엘리베이터|리프트|E\/V/g],
+  ['생산설비 지원',/사출기|로봇|호이스트|크레인|금형|자동화|제어반|컨베이어|설비\s*전원/g],
+  ['급수·위생·미화',/저수조|물탱크|급수|수도|수질|화장실|세면대|변기|소변기|방역|소독|청소|미화|정수기/g],
+  ['건축·영선',/방수|누수|도장|도색|페인트|출입문|도어|창호|창문|유리|바닥|천장|천정|벽체|타일|주차장|조경|외곽|담장|펜스|지붕|옥상|배수로|우수관/g],
+  ['환경',/폐기물|폐수|대기|배출|분리\s*수거|폐유/g],
+  ['보안·통신',/CCTV|cctv|출입\s*통제|카드키|전화|인터넷|네트워크|공유기|방송|스피커/g]];
+/* ── 순회·정기 점검일 때 채우는 분야별 기본 점검 항목 [항목, 점검 내용, 메모에서 찾을 낱말] */
+const IL_CL={
+  '소방설비':[['소화기','외관·압력 게이지',/소화기/],['감지기·수신기','수신기 이상 신호·감지기 외관',/감지기|수신기/],['유도등·비상조명','점등 상태',/유도등|비상\s*조명/],['소화전·스프링클러','밸브·압력·주변 적치물',/소화전|스프링클러|헤드/],['피난통로·방화문','통로 적치물·방화문 닫힘',/피난|방화문|통로|비상구/]],
+  '전기설비':[['수변전·배전반','이상음·발열·표시등',/수변전|배전반|변압기|전기실/],['분전반·누전차단기','차단기 상태·누전 시험',/분전반|차단기|누전/],['조명','점등·파손',/조명|전등|LED|형광등/],['콘센트·배선','손상·과열·문어발',/콘센트|배선|전선|멀티탭/],['비상발전기','연료·배터리·시운전',/발전기/]],
+  '기계설비·공조':[['콤프레샤','압력·오일·드레인',/콤프레샤|컴프레서|컴프레샤|공압/],['냉난방기','작동·필터 오염',/에어컨|냉난방|냉방|난방|필터/],['펌프·배수','작동·누수·이상음',/펌프|배수/],['급배기 팬·덕트','작동·소음',/환풍|송풍|급배기|덕트|팬/],['보일러·가스','압력·온도·가스 누설',/보일러|온수|가스/]],
+  '승강기':[['운행 상태','층 정지·소음·진동',/운행|소음|진동/],['도어','개폐·끼임 방지',/도어|문/],['비상통화장치','통화 시험',/비상\s*통화|인터폰/],['카·승강장','조명·청결',/조명|청결|청소/]],
+  '건축·영선':[['지붕·옥상','누수·배수구 막힘',/지붕|옥상|누수|배수구/],['출입문·창호','개폐·잠금',/출입문|도어|창호|창문|셔터/],['바닥·벽·천장','파손·균열·들뜸',/바닥|벽|천장|천정|타일|균열/],['외곽·주차장','배수로·조명·포장',/외곽|주차장|배수로|담장|펜스/]],
+  '급수·위생·미화':[['저수조·물탱크','수위·잠금·청결',/저수조|물탱크/],['급수 배관','누수',/급수|배관|수도|누수/],['화장실','위생·비품·배수',/화장실|세면대|변기|소변기/],['방역·미화','청소 상태',/방역|소독|청소|미화/]],
+  '보안·통신':[['CCTV','화면·녹화 상태',/CCTV|녹화/i],['출입통제','출입문·카드키 작동',/출입|카드키/],['전화·인터넷','통화·접속',/전화|인터넷|네트워크|공유기/],['방송·스피커','송출 상태',/방송|스피커/]],
+  '생산설비 지원':[['사출기·로봇','안전장치·비상정지',/사출기|로봇|비상\s*정지/],['호이스트·크레인','와이어·훅·리밋',/호이스트|크레인|와이어|훅/],['제어반·설비 전원','표시등·발열',/제어반|전원|판넬|패널/]],
+  '환경':[['폐기물 보관장','분리·표지·덮개',/폐기물|보관장|분리/],['배출시설','가동·방지시설 상태',/배출|방지시설|대기/],['폐수','유출 여부',/폐수|유출/]]};
+
+/* ── 메모 읽기 */
+const IL_BUL=/^\s*(?:[-*•·▶►▷○●□■◇◆✔✓☑]|\(?\d{1,2}[.)]|[①-⑳])\s*/;
+const IL_TIME=/(?:(?:작업|점검)\s*)?(?:시간\s*[:：]?\s*)?([01]?\d|2[0-3])\s*[:시]\s*([0-5]\d)?\s*분?\s*[~\-–〜]\s*([01]?\d|2[0-3])\s*(?:[:시]\s*([0-5]\d)?)?\s*분?/;
+const IL_MAT=/^(?:사용\s*)?(?:자재|부품|소모품|재료)\s*(?:[:：]\s*|\s+)(.+)$/;
+const IL_WHO=/^(?:작업자|작업\s*인원|점검자|참여자?|인원|동행)\s*(?:[:：]\s*|\s+)(.+)$/;
+const IL_NOTE=/^(?:※|＊|\*|!|특이\s*사항|특이점|참고|비고)\s*[:：]?\s*/;
+const IL_FOLP=/^(?:다음|후속(?:\s*조치)?|추후|조치\s*예정|요청\s*사항|할\s*일)\s*[:：]\s*/;
+const IL_FOLW=/필요|요청|예정|발주|주문|견적|재점검|추후|다음\s*주|내일|업체\s*(?:수리|방문|연락|호출)/;
+const IL_ACTW=/교체|수리|요청|필요|조치|주문|예정|보수|연락|발주|정리|청소|재점검|견적|보충|충전|조정|급유|주유|교환/;
+const IL_BAD=/불량|고장|파손|누수|누전|누설|이상\s*발견|작동\s*(?:안\s*함|불가|안\s*됨)|미작동|안\s*켜|균열|부식|소손|과열|경보|막힘|끊김|탈락|방전|미달|초과/;
+const IL_WARN=/주의|미흡|보완|노후|마모|오염|변색|교체\s*시기|약간|부족|저하/;
+const IL_OK=/이상\s*없|이상없|이상\s*무(?![가-힣])|양호|정상|문제\s*없/;
+const IL_DOING=/진행\s*중|계속\s*(?:작업|진행)|미완|마무리\s*예정/;
+const IL_CHKW=/점검|순회|순찰|확인|측정|검침|테스트|시험|이상\s*(?:유무|없|무)|양호|정상/g;
+const IL_WORKW=/교체|수리|보수|설치|철거|청소|도색|도장|용접|배관|정비|제거|시공|공사|보강|부착|이설|연결|분해|조립|교환|작업|조치|복구/g;
+const IL_OKTAIL=/\s*[-—–,(]?\s*(?:이상\s*없음|이상없음|이상\s*무|양호|정상(?:\s*작동)?|문제\s*없음)\s*\)?\s*[.。]?\s*$/;
+const IL_GOK=/(?:전체|모두|전반(?:적으로)?|그\s*외|기타|나머지)\s*(?:이상\s*없|이상없|양호|정상)|^\s*(?:이상\s*없음|이상없음|특이\s*사항\s*없음)\s*[.。]?\s*$/m;
+const IL_ROUND=/순회|순찰|정기|일일|일상|자체\s*점검|전반|전체|시설\s*점검|설비\s*점검/;
+const IL_LOC=/^(?:(?:\S*(?:공장|본사|사옥|라인|창고|옥상|주차장|사무실|화장실|기계실|전기실|식당|휴게실|현관|로비|계단|복도|탈의실|경비실|정문|후문|외곽|구역)|[가-힣]{1,6}실|\S*\d+(?:층|동|호|라인|번)|지하\S*|옥탑\S*|[A-Z]동)\s+)+/;
+const ilEscRe=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+function ilSites(){return (S.config.sites||[]).filter(s=>s&&s!=='전사');}
+function ilSiteOf(text){for(const s of ilSites()){const sh=s.replace(/(본사|공장|사옥|사업장)$/,'');if(text.includes(s)||(sh.length>=2&&new RegExp(ilEscRe(sh)+'(?:공장|본사|사옥)?(?![가-힣])').test(text)))return s;}return '';}
+function ilStripSite(loc,site){if(!loc||!site)return loc;const sh=site.replace(/(본사|공장|사옥|사업장)$/,'');let r=loc.replace(new RegExp('^\\s*(?:'+ilEscRe(site)+(sh.length>=2?'|'+ilEscRe(sh)+'(?:공장|본사|사옥)?':'')+')\\s*'),'').trim();return r;}
+function ilField(text,kind){let c=null;try{c=classify(text);}catch{}
+  if(c&&c.cat==='fac'&&c.sub)return {sub:c.sub,leaf:c.leaf||''};
+  let best='',bn=0;for(const [sub,re] of IL_FLD){const n=(String(text).match(re)||[]).length;if(n>bn){bn=n;best=sub;}}
+  if(best)return {sub:best,leaf:''};
+  return kind==='chk'?{sub:'시설 행정',leaf:'시설점검일지'}:{sub:'시설 행정',leaf:'작업의뢰'};}
+function ilMats(s){return String(s).split(/[,，、]|\s+및\s+|\s*\/\s*/).map(x=>x.trim()).filter(Boolean).slice(0,20).map(x=>{
+  const m=x.match(/^(.*?)\s*(\d+(?:\.\d+)?)\s*(개|EA|ea|대|m|M|미터|L|ℓ|리터|롤|박스|box|통|본|세트|set|식|kg|매|장|캔|봉|포|조|짝)?\s*$/);
+  return m&&m[1].trim()?{name:m[1].trim().slice(0,60),qty:(m[2]+(m[3]||'')).slice(0,20)}:{name:x.slice(0,60),qty:''};});}
+function ilItem(p,G){const it={loc:'',text:p,res:'',act:''};
+  const sp=p.match(/\s+[—–-]{1,2}\s+|\s*→\s*|\s*=>\s*|\s*[:：]\s+/);let left='',right='';
+  if(sp){left=p.slice(0,sp.index).trim();right=p.slice(sp.index+sp[0].length).trim();}
+  const lm=!sp&&p.match(IL_LOC);
+  if(G.kind==='chk'){const bad=IL_BAD.test(p),warn=IL_WARN.test(p),ok=IL_OK.test(p);
+    it.res=bad?'불량':warn?'주의':ok?'양호':(G.gok?'양호':'');
+    if(sp){it.loc=left;it.text=right;}
+    else if(lm){it.loc=lm[0].trim();it.text=p.slice(lm[0].length).trim();}
+    else{const w=p.split(/\s+/);if(w.length>=3){it.loc=w[0];it.text=w.slice(1).join(' ');}}
+    {const cs=it.text.split(/\s*[,，]\s*/);if(cs.length>1&&IL_ACTW.test(cs[cs.length-1])){it.act=cs.pop();it.text=cs.join(', ');}
+      else if(cs.length===1&&sp&&IL_ACTW.test(right)&&(bad||warn||IL_FOLW.test(right))&&!IL_BAD.test(right)&&!IL_WARN.test(right)){it.act=right;it.text='';}}
+    it.text=it.text.replace(IL_OKTAIL,'').trim();
+    if(IL_FOLW.test(p))G.follow.push([it.loc,it.act||it.text].filter(Boolean).join(' '));}
+  else{it.res=IL_DOING.test(p)?'진행 중':IL_FOLW.test(p)?'후속 필요':'완료';
+    if(sp){it.loc=left;it.text=right;}else if(lm){it.loc=lm[0].trim();it.text=p.slice(lm[0].length).trim();}
+    it.text=it.text.replace(/\s*[-—(]?\s*(?:작업\s*)?완료\s*\)?\s*[.。]?$/,'').trim()||it.text;
+    if(IL_FOLW.test(p))G.follow.push(p);}
+  it.loc=ilStripSite(it.loc,G.site);if(!it.text&&!it.act&&it.loc){it.text=it.loc;it.loc='';}
+  return it;}
+function ilParse(d){const memo=String(d.memo||'');
+  const lines=memo.split(/\r?\n/).map(x=>x.replace(IL_BUL,'').trim()).filter(Boolean);
+  const G={time:'',workers:[],mats:[],notes:[],follow:[],pieces:[],site:'',gok:IL_GOK.test(memo)};
+  for(let ln of lines){
+    const tm=ln.match(IL_TIME);
+    if(tm){if(!G.time)G.time=`${pad(+tm[1])}:${tm[2]||'00'} ~ ${pad(+tm[3])}:${tm[4]||'00'}`;ln=ln.replace(tm[0],' ').replace(/\s{2,}/g,' ').replace(/^[\s,·:\-–—]+|[\s,·:\-–—]+$/g,'').trim();if(!ln)continue;}
+    let m;
+    if((m=ln.match(IL_MAT))){G.mats.push(...ilMats(m[1]));continue;}
+    if((m=ln.match(IL_WHO))){G.workers.push(...m[1].split(/[,，、·\/]|\s+및\s+|\s+/).map(x=>x.trim()).filter(x=>x&&x.length<=12));continue;}
+    if(IL_FOLP.test(ln)){const t=ln.replace(IL_FOLP,'').trim();if(t)G.follow.push(t);continue;}
+    if(IL_NOTE.test(ln)){const t=ln.replace(IL_NOTE,'').trim();if(!t||/^(?:없음|이상\s*없음|특이\s*사항\s*없음)\.?$/.test(t))continue;G.notes.push(t);if(IL_FOLW.test(t))G.follow.push(t);continue;}
+    if(/^(?:전체|모두|그\s*외|기타|나머지)?\s*(?:이상\s*없음|이상없음|특이\s*사항\s*없음|양호|정상)\s*[.。]?$/.test(ln))continue;
+    const hasSep=/\s+[—–-]{1,2}\s+|→|=>|[:：]\s/.test(ln);
+    const parts=hasSep?[ln]:ln.split(/\s*[,，;]\s*/).map(x=>x.trim()).filter(Boolean);
+    G.pieces.push(...(parts.length>1&&parts.every(x=>x.length>=7)?parts:[ln]));}
+  const nc=(memo.match(IL_CHKW)||[]).length,nw=(memo.match(IL_WORKW)||[]).length;
+  G.kind=['work','chk','photo'].includes(d.kind)?d.kind:(!G.pieces.length&&ilPhs(d).length?'photo':nc>nw?'chk':'work');
+  G.site=ilSiteOf(memo)||d.site||'';
+  G.fld=ilField(G.kind==='work'&&G.pieces.length?G.pieces[0]:memo,G.kind);
+  G.items=G.pieces.slice(0,30).map(p=>ilItem(p,G));
+  if(G.kind==='chk'&&IL_CL[G.fld.sub]&&(IL_ROUND.test(memo)||!G.items.length)){
+    const rows=IL_CL[G.fld.sub].map(([loc,text,re])=>({loc,text,res:G.gok?'양호':'',act:'',re}));const rest=[];
+    for(const it of G.items){const full=`${it.loc} ${it.text} ${it.act}`;const r=rows.find(r=>!r.used&&r.re.test(full));
+      if(!r){if(IL_ROUND.test(full)&&it.res!=='불량'&&it.res!=='주의'&&!it.act){if(!G.head)G.head=full.trim().replace(IL_OKTAIL,'');continue;}rest.push(it);continue;}r.used=1;if(it.res)r.res=it.res;if(it.act)r.act=it.act;
+      if(it.res==='불량'||it.res==='주의')r.text=`${r.text} — ${[it.loc,it.text].filter(Boolean).join(' ')}`;}
+    G.items=[...rows.map(({re,used,...x})=>x),...rest];let lf='';try{lf=leavesOf('fac',G.fld.sub).find(l=>/점검/.test(l))||'';}catch{}G.fld={sub:G.fld.sub,leaf:lf};}
+  G.follow=[...new Set(G.follow.map(x=>x.trim()).filter(Boolean))].slice(0,8);
+  G.name=G.items.length?[G.items[0].loc,ilClause(G.items[0].text)].filter(Boolean).join(' ').slice(0,50):`${G.fld.sub==='시설 행정'?'':(G.fld.leaf||G.fld.sub)+' '}현장 사진`;
+  return G;}
+function ilSummary(G,n){const f=G.fld.leaf?`${G.fld.sub}(${G.fld.leaf})`:G.fld.sub;const site=G.site&&G.site!=='전사'?G.site+' ':'';
+  if(G.kind==='chk'){const bad=G.items.filter(i=>i.res==='불량'||i.res==='주의').length;const blank=G.items.filter(i=>!i.res).length;
+    return `${site}${f} ${G.items.length}개 항목을 점검했습니다.${bad?` 불량·주의 ${bad}건은 조치가 필요합니다.`:G.items.length&&!blank?' 모두 양호합니다.':''}${n?` 현장 사진 ${n}장을 붙입니다.`:''}`;}
+  const done=G.items.length&&G.items.every(i=>i.res==='완료');
+  return `${site}${f} 작업 ${G.items.length}건을 ${done?'완료했습니다':'진행했습니다'}.${G.follow.length?` 후속 조치 ${G.follow.length}건이 남았습니다.`:''}${n?` 작업 사진 ${n}장을 붙입니다.`:''}`;}
+function ilWriter(){const me=S.staff[S.myStaff]||{};const role=String(me.role||'').split(/\s*[-–·(]\s*/)[0].trim().slice(0,10);return [S.config.dept||'관리부',me.name||myName(),role].filter(Boolean).join(' ');}
+const ilDate=s=>isDate(s)?`${s.slice(0,4)}. ${+s.slice(5,7)}. ${+s.slice(8,10)}.(${WD[dow(s)]})`:'';
+function ilBodyHTML(G,d){const K=IL_K[G.kind];const td=(x,c)=>`<td${c?` class="${c}"`:''}>${esc(x||'')}</td>`;
+  const fld=[G.fld.sub,G.fld.leaf].filter(Boolean).join(' › ');const wk=(G.workers.length?[...new Set(G.workers)]:[myName()]).join(', ');
+  const rows=G.kind==='photo'?[['작업명',G.name],['사업장',G.site],['일자',ilDate(d.date)],['작성자',ilWriter()]]
+    :[[K.v+' 일자',ilDate(d.date)],['사업장',G.site],['분야',fld],[K.v+' 시간',G.time],['작성자',ilWriter()],[G.kind==='chk'?'점검자':'작업자',wk]];
+  let h=`<table class="ap-il-info"><tbody>${rows.reduce((a,r,i)=>a+(i%2?'':'<tr>')+`<th>${esc(r[0])}</th>${td(r[1])}`+(i%2?'</tr>':''),'')}</tbody></table>`;
+  let n=0;const sec=t=>`<h2 class="ap-il-h">${++n}. ${esc(t)}</h2>`;
+  const notes=[...G.notes.filter(x=>!G.follow.includes(x)).map(x=>`<li>${esc(x)}</li>`),...G.follow.map(x=>`<li class="ap-il-fol">후속 조치: ${esc(x)}</li>`)];
+  if(G.kind==='photo'){if(G.items.length>1||G.notes.length)h+=sec('작업 내용')+`<ul class="ap-il-notes">${G.items.map(i=>`<li>${esc([i.loc,i.text].filter(Boolean).join(' '))}</li>`).join('')}${notes.join('')}</ul>`;return h;}
+  h+=sec(K.v+' 개요')+`<p class="ap-il-sum">${esc(ilSummary(G,ilPhs(d).length))}</p>`;
+  const none=c=>`<tr><td class="ap-il-no">1</td>${'<td></td>'.repeat(c)}</tr>`;
+  if(G.kind==='chk')h+=sec('점검 결과')+`<table class="ap-il-items"><thead><tr><th style="width:7%">No</th><th style="width:21%">점검 항목</th><th>점검 내용</th><th style="width:11%">결과</th><th style="width:25%">조치 사항</th></tr></thead><tbody>${G.items.map((it,i)=>`<tr><td class="ap-il-no">${i+1}</td>${td(it.loc)}${td(it.text)}<td class="ap-il-res ${ilResC(it.res)}">${esc(it.res)}</td>${td(it.act)}</tr>`).join('')||none(4)}</tbody></table>`;
+  else h+=sec('작업 내용')+`<table class="ap-il-items"><thead><tr><th style="width:7%">No</th><th style="width:25%">위치·대상</th><th>작업 내용</th><th style="width:13%">결과</th></tr></thead><tbody>${G.items.map((it,i)=>`<tr><td class="ap-il-no">${i+1}</td>${td(it.loc)}${td(it.text)}<td class="ap-il-res ${ilResC(it.res)}">${esc(it.res)}</td></tr>`).join('')||none(3)}</tbody></table>`;
+  if(G.mats.length)h+=sec('사용 자재')+`<table class="ap-il-mats"><thead><tr><th style="width:7%">No</th><th>품명·규격</th><th style="width:16%">수량</th><th style="width:30%">비고</th></tr></thead><tbody>${G.mats.map((m,i)=>`<tr><td class="ap-il-no">${i+1}</td>${td(m.name)}<td class="ap-il-no">${esc(m.qty)}</td><td></td></tr>`).join('')}</tbody></table>`;
+  h+=sec(G.kind==='chk'?'조치 · 특이사항':'특이사항 · 후속 조치')+(notes.length?`<ul class="ap-il-notes">${notes.join('')}</ul>`:'<p class="ap-il-none">특이사항 없음</p>');
+  return h;}
+const ilClause=s=>String(s||'').split(/\s*[,，;]\s*|\s+후\s+/)[0].replace(IL_OKTAIL,'').trim();
+function ilTaskTitle(G){const site=G.site&&G.site!=='전사'?G.site+' ':'';const cut=(x,n)=>x.length>n?x.slice(0,n-1)+'…':x;
+  if(G.kind==='chk'){const bad=G.items.filter(i=>i.res==='불량'||i.res==='주의').length;const hd=G.head?ilStripSite(G.head,G.site):'';
+    const one=G.items.length===1?[G.items[0].loc,ilClause(G.items[0].text)].filter(Boolean).join(' '):'';
+    return `점검 일지: ${site}${cut(hd||(one&&!/점검/.test(one)?one+' 점검':one)||`${G.fld.leaf||G.fld.sub} 점검`,36)}${bad?` — 불량·주의 ${bad}건`:''}`.slice(0,100);}
+  if(G.kind==='photo')return `사진 대지: ${site}${cut(G.name,40)}`.slice(0,100);
+  const f=G.items[0];const head=f?[f.loc,ilClause(f.text)].filter(Boolean).join(' '):'시설 작업';
+  return `작업 일보: ${site}${cut(head,34)}${G.items.length>1?` 외 ${G.items.length-1}건`:''}`.slice(0,100);}
+
+/* ── 사진 */
+const ilPhs=d=>(d.ph||[]).map(id=>d.photos.find(p=>p.id===id)).filter(Boolean);
+const ilShot=p=>{const s=p.shot&&isDate(p.shot.slice(0,10))?p.shot:(p.at?localDate(p.at)+'T'+hhmm(p.at).slice(-5):'');return s&&s.length>=16?`${+s.slice(5,7)}.${+s.slice(8,10)} ${s.slice(11,16)}`:'';};
+function ilOrder(d,kind){const L=ilPhs(d);if(L.length<2)return;const t=p=>p.shot||p.at||'';
+  d.autoTag=false;
+  if(kind==='work'&&L.length<=6&&L.every(p=>!p.tag)&&L.every(p=>p.shot&&p.shot.length>=16)){const s=L.slice().sort((a,b)=>t(a).localeCompare(t(b)));
+    const span=(new Date(s[s.length-1].shot)-new Date(s[0].shot))/60000;
+    if(span>=10){s[0].tag='before';s[s.length-1].tag='after';for(const p of s.slice(1,-1))p.tag='during';d.autoTag=true;}}
+  const ord={before:0,during:1,after:2,'':3};let s=L.slice().sort((a,b)=>(ord[a.tag||'']-ord[b.tag||''])||t(a).localeCompare(t(b)));
+  const B=s.filter(p=>p.tag==='before'),A=s.filter(p=>p.tag==='after'),M=s.filter(p=>p.tag==='during'),U=s.filter(p=>!p.tag);
+  if(B.length&&B.length===A.length&&!M.length){s=[];B.forEach((b,i)=>s.push(b,A[i]));s.push(...U);}
+  d.ph=s.map(p=>p.id);}
+function ilPhotosHTML(d,mode,M){const L=ilPhs(d);if(!L.length)return '';const n=((d.body||'').match(/<h2/g)||[]).length+1;const kind=d.gk||'work';
+  const src=p=>mode==='view'?`src="${esc(IL.src[p.id]||PH_BLANK)}" data-ilp="${esc(p.id)}"`:`src="${esc((M&&M[p.id])||PH_BLANK)}"`;
+  const tg=(p,i)=>`<b class="ap-il-tg ap-il-t-${p.tag||'no'}"${mode==='view'?` data-il-tg="${esc(p.id)}" title="눌러서 작업 전·중·후 바꾸기"`:''}>${esc(PH_TAGS[p.tag]||'사진 '+(i+1))}</b>`;
+  const cap=p=>`<span class="ap-il-capt"${mode==='view'?` data-il-cap="${esc(p.id)}"`:''}>${esc(p.cap||'')}</span>`;
+  if(kind==='photo')return `<h2 class="ap-il-h">${n}. 사진 대지 <span class="ap-il-n">${L.length}장</span></h2><div class="ap-il-photos ap-il-sheet">${L.map((p,i)=>`<div class="ap-il-ph"><div class="ap-il-im"><img ${src(p)} alt=""></div><table class="ap-il-ct"><tbody><tr><th>구분</th><td>${tg(p,i)}</td><th>일시</th><td>${esc(ilShot(p))}</td></tr><tr><th>내용</th><td colspan="3">${cap(p)}</td></tr></tbody></table></div>`).join('')}</div>`;
+  return `<h2 class="ap-il-h">${n}. ${kind==='chk'?'점검':'작업'} 사진 <span class="ap-il-n">${L.length}장</span></h2><div class="ap-il-photos">${L.map((p,i)=>`<div class="ap-il-ph"><div class="ap-il-im"><img ${src(p)} alt=""></div><div class="ap-il-cap">${tg(p,i)} <span class="ap-il-sh">${esc(ilShot(p))}</span> ${cap(p)}</div></div>`).join('')}</div>`;}
+function ilDocHTML(d,mode,M){const K=IL_K[d.gk]||IL_K.work;const ap=(S.config.approvals||[]).slice(0,6);
+  const sign=mode==='appr'||!ap.length?'':`<table class="ap-il-sign"><tbody><tr><th rowspan="2" class="ap-il-v">결<br>재</th>${ap.map(a=>`<th>${esc(a)}</th>`).join('')}</tr><tr>${ap.map(()=>'<td></td>').join('')}</tr></tbody></table>`;
+  return `<div class="ap-il ap-il-k-${d.gk||'work'}"><div class="ap-il-top"><div class="ap-il-logo"><img src="${IL_LOGO}" alt="TAESUNG"></div>${sign}</div><h1 class="ap-il-title">${esc(d.docTitle||K.t)}</h1><div class="ap-il-body">${d.body||''}</div>${ilPhotosHTML(d,mode,M)}<div class="ap-il-foot">㈜태성산업 ${esc(S.config.dept||'관리부')} · 시설·공무 · ${esc(fmtYMD(d.date))}${d.site?' · '+esc(d.site):''}</div></div>`;}
+async function ilFull(id){if(IL.src[id]&&IL.src[id]!==PH_BLANK&&IL.src[id].startsWith('data:'))return IL.src[id];let u='';try{u=await photoDataURL(id);}catch{}if(u)IL.src[id]=u;return u;}
+function ilHydrate(root){for(const img of $$('img[data-ilp]',root)){const id=img.dataset.ilp;if(IL.src[id]){img.src=IL.src[id];continue;}
+    try{fbLoadThumb(id).then(u=>{if(u&&!IL.src[id]&&img.isConnected)img.src=u;}).catch(()=>{});}catch{}
+    ilFull(id).then(u=>{if(u&&img.isConnected)img.src=u;});}}
+async function ilSmall(id,budget){const u=await ilFull(id);if(!u)return '';const img=new Image();img.src=u;try{await img.decode();}catch{return '';}
+  const W0=img.naturalWidth,H0=img.naturalHeight;if(!W0||!H0)return '';
+  for(const [W,q] of [[1000,.72],[860,.66],[720,.6],[600,.55],[480,.5],[380,.45]]){const s=Math.min(1,W/Math.max(W0,H0));const cv=document.createElement('canvas');cv.width=Math.max(1,Math.round(W0*s));cv.height=Math.max(1,Math.round(H0*s));
+    const cx=cv.getContext('2d');cx.fillStyle='#fff';cx.fillRect(0,0,cv.width,cv.height);cx.drawImage(img,0,0,cv.width,cv.height);const r=cv.toDataURL('image/jpeg',q);
+    if(r.length<=budget||W===380)return r.length<399000?r:'';}
+  return '';}
+
+/* ── 초안 */
+function ilBlank(){const me=S.staff[S.myStaff];return {v:1,date:today(),site:me&&realSite(me.site)?me.site:(ilSites()[0]||S.config.sites[0]||''),kind:'auto',memo:'',photos:[],ph:[],fresh:[],stamp:stampPref(),path:'',title:'',docTitle:'',body:'',gk:'',fol:[],folOn:true,fld:null,autoTag:false,edited:false};}
+function ilLoad(){try{const j=JSON.parse(lsGet(ilKey())||'null');if(!j||j.v!==1)return null;const b=ilBlank();
+    const photos=(Array.isArray(j.photos)?j.photos:[]).filter(p=>p&&isAssetId(p.id)).slice(0,IL_MAXPH);
+    return {...b,...j,photos,ph:(Array.isArray(j.ph)?j.ph:[]).filter(id=>photos.some(p=>p.id===id)),fresh:(Array.isArray(j.fresh)?j.fresh:[]).filter(isAssetId),path:'',fol:Array.isArray(j.fol)?j.fol.filter(x=>typeof x==='string'):[],body:typeof j.body==='string'?apClean(j.body):''};}catch{return null;}}
+function ilSave(){const d=IL.d;if(!d||d.path)return;try{if(!d.memo.trim()&&!d.ph.length&&!d.body)localStorage.removeItem(ilKey());else lsSet(ilKey(),JSON.stringify(d));}catch{}}
+const ilHas=d=>!!d&&(!!d.memo.trim()||d.ph.length>0||!!d.body);
+function ilFromTask(t){const il=t.ilbo&&typeof t.ilbo==='object'?t.ilbo:null;const kind=il&&IL_K[il.kind]?il.kind:'';
+  const ph=il&&Array.isArray(il.ph)?il.ph.filter(id=>t.photos.some(p=>p.id===id)):t.photos.map(p=>p.id);
+  return {...ilBlank(),date:t.doneAt||t.start||t.due||today(),site:t.site,kind:kind||'auto',memo:il?String(il.memo||''):[t.title,t.desc].filter(Boolean).join('\n'),
+    photos:t.photos.map(p=>({...p})),ph:ph.slice(0,IL_MAXPH),path:t.path,title:t.title,docTitle:il?String(il.docTitle||''):'',body:il?apClean(String(il.body||'')):'',gk:kind,folOn:false,fld:{sub:t.sub,leaf:t.leaf},edited:!!(il&&il.edited)};}
+
+/* ── 창 */
+function ilDlg(){let dl=$('#dlg-ilbo');if(!dl){dl=document.createElement('dialog');dl.className='modal il-dlg';dl.id='dlg-ilbo';dl.setAttribute('aria-label','시설 일보');document.body.appendChild(dl);
+    dl.addEventListener('cancel',e=>{e.preventDefault();ilClose();});}return dl;}
+function ilOpen(o={}){if(!S.me||!S.me.id){toast('로그인한 뒤 쓸 수 있습니다.','err');return;}
+  IL.src={};IL.dirty=false;
+  if(o.task){IL.d=ilFromTask(o.task);IL.step=IL.d.body?'doc':'in';}
+  else{if(!S.canWrite||!S.myStaff){toast('내 정보에서 이름을 먼저 고르세요. (보기 전용 권한이면 일보를 쓸 수 없습니다)','err');return;}
+    IL.d=ilLoad()||ilBlank();IL.step=IL.d.body&&IL.d.gk?'doc':'in';if(ilHas(IL.d))toast('작성하던 일보를 이어서 엽니다.');}
+  const dl=ilDlg();ilRender();if(!dl.open)dl.showModal();}
+async function ilClose(){const d=IL.d;const dl=ilDlg();if(IL.busy){toast('사진을 올리는 중입니다. 잠시 뒤에 닫아 주세요.');return;}
+  if(d){ilCollect();
+    if(d.path&&(IL.dirty||d.fresh.length)){if(!await confirmDlg('일보 닫기','고친 내용을 저장하지 않고 닫을까요?','닫기'))return;if(d.fresh.length)deleteAssets(d.fresh);}
+    else if(!d.path&&ilHas(d)){ilSave();toast('작성 중인 일보는 이 기기에 남겨 두었습니다 — 📋 시설 일보를 다시 누르면 이어서 씁니다.');}}
+  dl.close();IL.d=null;}
+async function ilDiscard(){const d=IL.d;if(!d)return;
+  if(ilHas(d)&&!await confirmDlg('일보 버리기',`작성 중인 일보를 버릴까요?${d.fresh.length?`\n올린 사진 ${d.fresh.length}장도 지웁니다.`:''}`,'버리기'))return;
+  if(d.fresh.length)deleteAssets(d.fresh);try{localStorage.removeItem(ilKey());}catch{}IL.d=ilBlank();IL.step='in';IL.src={};IL.dirty=false;ilRender();}
+function ilCanEdit(){return S.canWrite&&!!S.myStaff;}
+function ilRender(){const dl=ilDlg();const d=IL.d;if(!d)return;const doc=IL.step==='doc';const ro=!ilCanEdit();
+  dl.innerHTML=`<form method="dialog" class="il" onsubmit="return false"><header class="modal-h"><h2>📋 시설 일보 <small>사진 + 간단한 메모 → 자동 완성</small></h2>
+    <ol class="il-steps"><li class="${doc?'':'on'}">① 사진·메모</li><li class="${doc?'on':''}">② 서류 확인</li></ol>
+    <button type="button" class="icon-btn" data-il-x aria-label="닫기">✕</button></header>
+  <div class="modal-b one il-b">${doc?ilDocStep(ro):ilInStep()}</div>
+  <footer class="modal-f">${doc?`${ro?'':'<button type="button" class="btn" data-il-back>← 사진·메모 고치기</button><button type="button" class="btn ghost" data-il-redo title="메모로 서류를 다시 만듭니다">↻ 다시 자동 완성</button>'}<span class="spacer"></span>
+      <button type="button" class="btn" data-il-print>🖨 인쇄·PDF</button>${ro?'':`<button type="button" class="btn" data-il-appr>📝 전자결재로 올리기</button><button type="button" class="btn primary" data-il-save>💾 ${d.path?'업무일지에 고쳐 저장':'업무일지에 저장'}</button>`}`
+    :`${d.path?'':'<button type="button" class="btn ghost" data-il-discard>🗑 버리기</button>'}<span class="spacer"></span><span class="il-busy" id="il-busy" hidden>사진 올리는 중…</span><button type="button" class="btn primary il-go" data-il-auto>✨ 자동 완성</button>`}</footer></form>`;
+  if(doc)ilPrep();else{try{lzScan(dl);}catch{}const m=$('#il-memo');if(m&&!d.memo&&!d.ph.length)setTimeout(()=>{try{m.focus();}catch{}},60);}}
+function ilInStep(){const d=IL.d;const L=ilPhs(d);const kinds=[['auto','✨ 자동'],['work',IL_K.work.ico+' 작업 일보'],['chk',IL_K.chk.ico+' 점검 일지'],['photo',IL_K.photo.ico+' 사진 대지']];
+  const sites=[...new Set([...(S.config.sites||[]),d.site].filter(Boolean))];
+  return `${d.path?`<p class="il-note">「${esc(d.title)}」 업무로 일보를 ${d.body?'고칩니다':'만듭니다'}.</p>`:''}
+  <div class="il-row"><label>날짜 <input type="date" id="il-date" value="${esc(d.date)}"></label><label>사업장 <select id="il-site">${sites.map(s=>`<option ${s===d.site?'selected':''}>${esc(s)}</option>`).join('')}</select></label>
+    <div class="il-kind"><span>서류</span><div class="seg sm" role="group" aria-label="서류 종류">${kinds.map(([k,l])=>`<button type="button" data-il-k="${k}" aria-pressed="${(d.kind||'auto')===k}">${l}</button>`).join('')}</div></div></div>
+  <section class="il-sec"><h3>사진 <small>${L.length}/${IL_MAXPH}장 · 구분(작업 전·중·후)은 눌러서 바꿉니다</small></h3>
+    <div class="il-grid">${L.map((p,i)=>`<figure class="il-th" data-il-ph="${esc(p.id)}">${thumbImg(p)}<button type="button" class="il-tag t-${p.tag||'no'}" data-il-tag="${esc(p.id)}">${esc(PH_TAGS[p.tag]||'구분 없음')}</button><button type="button" class="il-del" data-il-del="${esc(p.id)}" aria-label="사진 빼기">✕</button><input class="il-cap" data-il-cap="${esc(p.id)}" maxlength="60" placeholder="사진 설명 (선택)" value="${esc(p.cap||'')}"><span class="il-no">${i+1}</span></figure>`).join('')}
+      ${L.length<IL_MAXPH?`<label class="il-add cam-only"><span>📷</span>촬영<input type="file" id="il-cam" accept="image/*" capture="environment"></label><label class="il-add"><span>🖼</span>사진 고르기<input type="file" id="il-pick" accept="image/*" multiple></label>`:''}</div>
+    <label class="il-stamp"><input type="checkbox" id="il-stamp" ${d.stamp?'checked':''}> 새로 올리는 사진에 날짜·사업장 새기기 <small>(사업장을 먼저 고르세요)</small></label></section>
+  <section class="il-sec"><h3>메모 <small>한 줄에 한 가지씩, 꾸미지 않아도 됩니다</small></h3>
+    <textarea id="il-memo" rows="7" maxlength="2000" placeholder="예)&#10;2층 화장실 세면대 — 배수 막힘, 트랩 분해 청소 후 배수 이상 없음&#10;1층 복도 LED 등 3개 교체&#10;09:10~11:40&#10;자재: LED 등 3개, 세면대 트랩 1개&#10;※ 소변기 센서 불량 — 부품 주문 필요">${esc(d.memo)}</textarea>
+    <div class="il-chips" role="group" aria-label="자주 쓰는 말 넣기">${[['⏱ 시간','09:00~12:00'],['🧰 자재','자재: '],['👷 작업자','작업자: '],['✓ 이상 없음','이상 없음'],['※ 특이사항','※ '],['▶ 후속 조치','다음: ']].map(([l,v])=>`<button type="button" class="il-chip" data-il-chip="${esc(v)}">${l}</button>`).join('')}<button type="button" class="il-chip ghost" data-il-sample>예시 넣어 보기</button></div></section>
+  <details class="il-tip"><summary>메모를 이렇게 읽습니다</summary><ul>
+    <li><b>위치 — 내용</b>: 줄표(—, -) 앞은 위치·대상, 뒤는 작업 내용으로 나눕니다. 쉼표로 여러 건을 한 줄에 적어도 됩니다.</li>
+    <li><b>시간</b> 09:10~11:40 · <b>자재:</b> 품명 수량 · <b>작업자:</b> 이름 · <b>※</b> 특이사항 · <b>다음:</b> 후속 조치</li>
+    <li><b>점검</b>·확인·순회가 많으면 점검 일지, <b>교체</b>·수리·청소가 많으면 작업 일보, 메모 없이 사진만 있으면 사진 대지가 됩니다.</li>
+    <li>이상 없음·양호 → <i>양호</i>, 노후·마모 → <i>주의</i>, 불량·고장·누수 → <i>불량</i>. '순회 점검'이면 분야별 기본 점검 항목을 채웁니다.</li>
+    <li>필요·요청·주문·예정이 들어간 줄은 <b>후속 조치</b>로 모아, 저장할 때 '할 예정' 업무로 같이 등록할 수 있습니다.</li></ul></details>
+  ${ilRecentHTML()}`;}
+function ilRecentHTML(){const L=ilRecent();if(!L.length)return '';const ym=today().slice(0,7);const mon=L.filter(t=>(t.doneAt||t.start||'').startsWith(ym));
+  return `<section class="il-sec il-recent"><h3>최근 일보 <small>${L.length}건</small>${mon.length?`<button type="button" class="btn sm ghost" data-il-month>🖨 이번 달 일보 모아 인쇄 (${mon.length}건)</button>`:''}</h3>
+    <ul>${L.slice(0,6).map(t=>`<li><button type="button" data-il-open="${esc(t.path)}"><span class="il-rk">${IL_K[t.ilbo.kind]?IL_K[t.ilbo.kind].ico:'📋'}</span><b>${esc(fmtMD(t.doneAt||t.start))}</b> ${esc(t.title)}<small>${esc(t.site||'')} · ${esc(whoText(t)||'')}${t.photos.length?` · 📷 ${t.photos.length}`:''}</small></button></li>`).join('')}</ul></section>`;}
+const ilRecent=()=>S.tasks.filter(t=>t.ilbo&&typeof t.ilbo==='object'&&!t.priv&&t.path).sort((a,b)=>(b.doneAt||b.start||'').localeCompare(a.doneAt||a.start||'')||(b.updatedAt||'').localeCompare(a.updatedAt||''));
+function ilDocStep(ro){const d=IL.d;const k=d.gk||'work';
+  return `${ro?'<p class="il-note">보기 전용입니다 — 인쇄·PDF만 할 수 있습니다.</p>':`<div class="il-bar"><div class="seg sm" role="group" aria-label="서류 종류">${['work','chk','photo'].map(x=>`<button type="button" data-il-k2="${x}" aria-pressed="${x===k}">${IL_K[x].ico} ${IL_K[x].s}</button>`).join('')}</div>
+    <label class="il-tt">업무일지 제목 <input id="il-title" maxlength="100" value="${esc(d.title)}"></label></div>
+  <p class="help il-help">✏️ 서류의 글자를 눌러 바로 고칩니다 · ${k==='photo'?'':`결과 칸(${k==='chk'?'양호→주의→불량':'완료→진행 중→후속 필요'})과 `}사진 구분은 누를 때마다 바뀝니다.${d.autoTag?' · 사진 구분(작업 전·중·후)은 찍은 시간 순서로 정했습니다.':''} <button type="button" class="btn sm ghost il-zbtn" data-il-zoom>${IL.big?'↙ 한 장에 맞춰 보기':'🔍 크게 보기'}</button></p>`}
+  <div class="il-wrap" id="il-wrap"><div class="il-paper" id="il-paper">${ilDocHTML(d,'view')}</div></div>
+  ${!ro&&d.fol.length&&!d.path?`<label class="il-fol"><input type="checkbox" id="il-fol" ${d.folOn!==false?'checked':''}> 후속 조치 ${d.fol.length}건을 '할 예정' 업무로 같이 등록 <small>${esc(d.fol.slice(0,2).join(' / '))}${d.fol.length>2?' …':''}</small></label>`:''}
+  ${d.path&&!IL.dirty?`<p class="il-saved">✅ 업무일지에 저장된 일보입니다 · ${esc(d.title)}</p>`:''}`;}
+function ilZoom(){const w=$('#il-wrap'),p=$('#il-paper');if(!w||!p)return;const px=210*96/25.4;const z=IL.big?1:Math.min(1,Math.max(.3,(w.clientWidth-20)/px));p.style.zoom=z<.995?z.toFixed(3):'';const b=$('[data-il-zoom]');if(b)b.hidden=!IL.big&&z>=.995;}
+function ilPrep(){const p=$('#il-paper');if(!p)return;ilZoom();
+  if(ilCanEdit()){const t=$('.ap-il-title',p),b=$('.ap-il-body',p);for(const el of [t,b])if(el)el.contentEditable='true';
+    for(const th of $$('th',b))th.contentEditable='false';for(const c of $$('[data-il-cap]',p))c.contentEditable='true';}
+  ilHydrate(p);}
+window.addEventListener('resize',()=>{if(IL.d&&IL.step==='doc')ilZoom();});
+function ilReadIn(){const d=IL.d;if(!d||IL.step!=='in')return;const g=id=>$(id);
+  if(g('#il-date')&&isDate(g('#il-date').value))d.date=g('#il-date').value;if(g('#il-site'))d.site=g('#il-site').value;if(g('#il-memo'))d.memo=g('#il-memo').value.slice(0,2000);
+  if(g('#il-stamp'))d.stamp=g('#il-stamp').checked;
+  for(const c of $$('#dlg-ilbo input[data-il-cap]')){const p=d.photos.find(x=>x.id===c.dataset.ilCap);if(p)p.cap=c.value.trim().slice(0,100);}}
+function ilCollect(){const d=IL.d;if(!d)return;if(IL.step==='in'){ilReadIn();return;}const p=$('#il-paper');if(!p)return;
+  const t=$('.ap-il-title',p),b=$('.ap-il-body',p);if(t)d.docTitle=t.textContent.replace(/\s+/g,' ').trim().slice(0,60);if(b)d.body=apClean(b.innerHTML);
+  for(const c of $$('[data-il-cap]',p)){const ph=d.photos.find(x=>x.id===c.dataset.ilCap);if(ph)ph.cap=c.textContent.replace(/\s+/g,' ').trim().slice(0,100);}
+  const ti=$('#il-title');if(ti)d.title=ti.value.trim().slice(0,100);const f=$('#il-fol');if(f)d.folOn=f.checked;}
+
+/* ── 자동 완성 */
+async function ilAuto(force){const d=IL.d;if(!d)return;ilCollect();
+  if(!d.memo.trim()&&!d.ph.length){toast('사진을 올리거나 메모를 적어 주세요.','err');const m=$('#il-memo');if(m)m.focus();return;}
+  if(d.edited&&!force&&!await confirmDlg('다시 자동 완성','서류에서 고친 글자는 사라지고 메모로 다시 만듭니다. 계속할까요?','다시 만들기'))return;
+  const G=ilParse(d);ilOrder(d,G.kind);
+  d.gk=G.kind;if(G.site)d.site=G.site;d.fld=G.fld;d.fol=G.follow;d.docTitle=IL_K[G.kind].t;d.body=ilBodyHTML(G,d);if(!d.path||!d.title)d.title=ilTaskTitle(G);
+  if(G.kind!=='photo'&&G.items.length===1){const one=[G.items[0].loc,G.items[0].text].filter(Boolean).join(' ').slice(0,60);for(const p of ilPhs(d))if(!p.cap)p.cap=one;}
+  IL.step='doc';d.edited=false;IL.dirty=true;ilSave();ilRender();}
+function ilDescText(d){const box=document.createElement('div');box.innerHTML=d.body||'';const K=IL_K[d.gk]||IL_K.work;const out=[`[${K.s}] ${fmtYMD(d.date)} ${d.site||''}`.trim()];
+  const info=$('.ap-il-info',box);if(info){const tm=[...info.querySelectorAll('th')].find(th=>/시간/.test(th.textContent));const v=tm&&tm.nextElementSibling&&tm.nextElementSibling.textContent.trim();if(v)out[0]+=' · '+v;}
+  for(const p of $$('p.ap-il-sum',box))out.push(p.textContent.trim());
+  for(const tr of $$('table.ap-il-items tbody tr',box)){const c=[...tr.cells].map(x=>x.textContent.replace(/\s+/g,' ').trim());const no=c.shift();const res=d.gk==='chk'?c.splice(2,1)[0]:c.pop();const txt=c.filter(Boolean).join(' · ');if(txt||res)out.push(`${no}. ${txt}${res?` (${res})`:''}`);}
+  const mats=$$('table.ap-il-mats tbody tr',box).map(tr=>[...tr.cells].slice(1,3).map(x=>x.textContent.trim()).filter(Boolean).join(' ')).filter(Boolean);if(mats.length)out.push('자재: '+mats.join(', '));
+  for(const li of $$('ul.ap-il-notes li',box))out.push((li.classList.contains('ap-il-fol')?'▶ ':'※ ')+li.textContent.replace(/\s+/g,' ').trim());
+  const ph=ilPhs(d);if(ph.length)out.push(`사진 ${ph.length}장`);
+  return out.join('\n');}
+const ilMeta=p=>({id:p.id,at:p.at||nowISO(),by:p.by||myId(),cap:String(p.cap||'').slice(0,100),tag:['before','during','after'].includes(p.tag)?p.tag:'',shot:String(p.shot||'').slice(0,25),sz:Number(p.sz)||0,th:p.th===true});
+function ilNextWd(s){let x=addDays(s,1);while([0,6].includes(dow(x)))x=addDays(x,1);return x;}
+async function ilSaveTask(quiet){const d=IL.d;if(!d||IL.busy)return null;ilCollect();
+  if(!ilCanEdit()){toast('업무일지에 적을 권한이 없습니다.','err');return null;}
+  if(!d.body){toast('먼저 ✨ 자동 완성을 눌러 주세요.','err');return null;}
+  const K=IL_K[d.gk]||IL_K.work;const title=(d.title||'').trim()||`${K.s}: ${d.site}`;const desc=ilDescText(d).slice(0,4000);
+  const fld=txFit('fac',(d.fld&&d.fld.sub)||'시설 행정',(d.fld&&d.fld.leaf)||'');
+  const ilbo={v:1,kind:d.gk||'work',docTitle:(d.docTitle||K.t).slice(0,60),body:String(d.body).slice(0,30000),memo:d.memo.slice(0,2000),ph:d.ph.slice(0,IL_MAXPH),edited:!!d.edited,at:nowISO(),by:myId()};
+  IL.busy=true;setSync('saving');let fol=0;
+  try{if(d.path){const t=findTask(d.path);if(!t){toast('원래 업무를 찾지 못했습니다. 지워졌는지 확인해 주세요.','err');return null;}
+      const keep=t.photos.map(p=>{const m=d.photos.find(x=>x.id===p.id);return m?{...p,cap:String(m.cap||'').slice(0,100),tag:['before','during','after'].includes(m.tag)?m.tag:''}:p;});
+      const add=d.photos.filter(p=>d.fresh.includes(p.id)&&d.ph.includes(p.id)&&!t.photos.some(x=>x.id===p.id)).map(ilMeta);
+      const gone=d.fresh.filter(id=>!d.ph.includes(id));if(gone.length)deleteAssets(gone);
+      const np=await updateTask(t,{title,desc:t.desc&&!t.ilbo?t.desc:desc,site:d.site||t.site,photos:[...keep,...add],ilbo,logs:[...t.logs,{at:nowISO(),by:myId(),kind:'note',text:t.ilbo?'📋 시설 일보를 고쳤습니다':'📋 시설 일보를 만들었습니다',issue:false}]});
+      if(np)d.path=np;}
+    else{const gone=d.fresh.filter(id=>!d.ph.includes(id));if(gone.length)deleteAssets(gone);
+      const path=await createTask({title,cat:'fac',sub:fld.sub,leaf:fld.leaf,tx:TXV,site:d.site||'전사',scope:'day',status:'done',priority:'normal',repeat:'none',start:d.date,due:d.date,doneAt:d.date,progress:100,desc,assignees:[myId()],assigneeText:'',photos:ilPhs(d).map(ilMeta),ilbo});
+      d.path=path;try{localStorage.removeItem(ilKey());}catch{}
+      if(d.fol.length&&d.folOn!==false)for(const f of d.fol){try{await createTask({title:f.slice(0,100),cat:'fac',sub:fld.sub,leaf:fld.leaf,tx:TXV,site:d.site||'전사',scope:'day',status:'plan',priority:'normal',repeat:'none',start:ilNextWd(d.date),due:'',doneAt:'',progress:0,desc:`${fmtYMD(d.date)} 시설 일보 「${title}」에서 이어진 후속 조치`,assignees:[myId()],assigneeText:'',photos:[]});fol++;}catch{}}}
+    d.fresh=[];d.title=title;IL.dirty=false;
+    if(!quiet)toast(`업무일지에 저장했습니다${fol?` · 후속 조치 ${fol}건을 '할 예정'으로 등록`:''}. 업무 상세의 📋 단추로 다시 열 수 있습니다.`);
+    return d.path;}
+  catch(e){writeError(e);return null;}
+  finally{IL.busy=false;setSync('ok');if(IL.d===d&&$('#dlg-ilbo')&&$('#dlg-ilbo').open)ilRender();}}
+async function ilSrcMap(d){const M={};for(const p of ilPhs(d))M[p.id]=await ilFull(p.id)||'';return M;}
+const IL_PAGE={w:210,h:297,ml:12,mr:12,mt:12,mb:12,land:false};
+async function ilPrint(){const d=IL.d;if(!d)return;ilCollect();if(!d.body){toast('먼저 ✨ 자동 완성을 눌러 주세요.','err');return;}
+  if(ilPhs(d).length)toast('사진을 불러와 인쇄합니다… (PDF는 인쇄 창에서 \'PDF로 저장\')');
+  const M=await ilSrcMap(d);await fmDoPrint(`<div class="ilx">${ilDocHTML(d,'print',M)}</div>`,IL_PAGE);}
+async function ilPrintMany(){const ym=today().slice(0,7);const L=ilRecent().filter(t=>(t.doneAt||t.start||'').startsWith(ym)).reverse().slice(0,40);if(!L.length)return;
+  if(!await confirmDlg('일보 모아 인쇄',`이번 달(${+ym.slice(5)}월) 시설 일보 ${L.length}건을 날짜순으로 한 번에 인쇄합니다. 사진이 많으면 준비에 시간이 걸립니다.`,'인쇄'))return;
+  const parts=[];for(let i=0;i<L.length;i++){toast(`일보 준비 중… ${i+1}/${L.length}`);const dd=ilFromTask(L[i]);parts.push(`<div class="ilx">${ilDocHTML(dd,'print',await ilSrcMap(dd))}</div>`);}
+  await fmDoPrint(parts.map((h,i)=>i?`<div class="fm-pgbrk"></div>${h}`:h).join(''),IL_PAGE);}
+async function ilToAppr(){const d=IL.d;if(!d)return;ilCollect();
+  if(typeof apOK!=='function'||!apOK()){toast('전자결재는 로그인한 뒤 쓸 수 있습니다.','err');return;}
+  if(!d.body){toast('먼저 ✨ 자동 완성을 눌러 주세요.','err');return;}
+  if(!d.path||IL.dirty){const p=await ilSaveTask(true);if(!p)return;}
+  const L=ilPhs(d);if(L.length)toast('사진을 결재 문서 크기로 줄이는 중…');
+  const base=ilDocHTML(d,'appr',{}).length;const per=L.length?Math.max(30000,Math.min(170000,Math.floor((AP_MAX_HTML-base-40000)/L.length))):0;
+  const M={};for(const p of L)M[p.id]=await ilSmall(p.id,per);
+  const body=apClean(ilDocHTML(d,'appr',M),{edit:true});if(body.length>AP_MAX_HTML){toast('사진이 많아 결재 본문이 너무 큽니다. 사진을 줄여 다시 해 주세요.','err');return;}
+  const K=IL_K[d.gk]||IL_K.work;const w=apNewW();Object.assign(w,{step:'edit',mode:'form',tplId:'ilbo',tplName:K.t,title:`${K.t} (${fmtMD(d.date)}${d.site?' '+d.site:''})`.slice(0,200),body,fund:false});
+  w.part=apDefPart(apMe(),'');w.line=apDefLine(apMe(),w.part);w.cc=apAutoCc(w);w.k=rid();AP.w=w;AP.edit='new';AP.open=null;AP.panel='';
+  ilDlg().close();IL.d=null;go('#appr');toast('업무일지에 저장하고 전자결재 새 기안으로 옮겼습니다. 결재선을 확인하고 올리세요.');}
+async function ilAddPhotos(files){const d=IL.d;files=Array.from(files||[]).filter(f=>f&&((f.type||'').startsWith('image/')||/\.(heic|heif|jpe?g|png|webp)$/i.test(f.name||'')));if(!d||!files.length)return;
+  if(!ilCanEdit()){toast('내 정보에서 이름을 먼저 고르세요.','err');return;}
+  const room=IL_MAXPH-d.ph.length;if(room<=0){toast(`사진은 일보 하나에 ${IL_MAXPH}장까지 붙입니다.`,'err');return;}
+  if(files.length>room){toast(`${IL_MAXPH}장까지만 붙입니다 — ${files.length-room}장은 빠졌습니다.`,'err');files=files.slice(0,room);}
+  ilCollect();IL.busy=true;const b=$('#il-busy');if(b)b.hidden=false;let ups=[];
+  try{ups=await uploadImages(files,{tag:'',stamp:d.stamp?stampFor(d.site,''):null,priv:false,pii:false,q:S.config.photo==='high'?'high':'save'});}finally{IL.busy=false;const b2=$('#il-busy');if(b2)b2.hidden=true;}
+  if(!ups.length||IL.d!==d)return;d.photos.push(...ups);d.ph.push(...ups.map(u=>u.id));d.fresh.push(...ups.map(u=>u.id));IL.dirty=true;ilSave();if(IL.step==='in')ilRender();}
+const IL_SAMPLE='군포공장 2층 화장실 세면대 — 배수 막힘, 트랩 분해 청소 후 배수 이상 없음\n1층 복도 LED 등 3개 교체\n09:10~11:40\n자재: LED 등 3개, 세면대 트랩 1개\n※ 남자 화장실 소변기 센서 불량 — 부품 주문 필요';
+
+/* ── 이벤트 */
+document.addEventListener('click',async e=>{const T=e.target;if(!T||!T.closest||!T.closest('#dlg-ilbo, #t-ilbo, [data-il-open-new]'))return;
+  if(T.closest('[data-il-open-new]')){e.preventDefault();ilOpen();return;}
+  if(T.closest('#t-ilbo')){const t=S.dlg&&S.dlg.path?findTask(S.dlg.path):null;if(!t)return;const dt=$('#dlg-task');const x=dt&&$('[data-close]',dt);if(x)x.click();await new Promise(r=>setTimeout(r,60));if(dt&&dt.open)return;ilOpen({task:t});return;}
+  const d=IL.d;if(!d)return;
+  if(T.closest('[data-il-x]')){ilClose();return;}
+  if(T.closest('[data-il-auto]')){if(IL.busy){toast('사진을 다 올린 뒤 눌러 주세요.');return;}ilAuto(false);return;}
+  if(T.closest('[data-il-redo]')){ilAuto(false);return;}
+  if(T.closest('[data-il-back]')){ilCollect();IL.step='in';ilRender();return;}
+  if(T.closest('[data-il-save]')){ilSaveTask();return;}
+  if(T.closest('[data-il-print]')){ilPrint();return;}
+  if(T.closest('[data-il-appr]')){ilToAppr();return;}
+  if(T.closest('[data-il-discard]')){ilDiscard();return;}
+  if(T.closest('[data-il-month]')){ilPrintMany();return;}
+  if(T.closest('[data-il-zoom]')){IL.big=!IL.big;const b=T.closest('[data-il-zoom]');b.textContent=IL.big?'↙ 한 장에 맞춰 보기':'🔍 크게 보기';ilZoom();return;}
+  if(T.closest('[data-il-sample]')){const m=$('#il-memo');if(m){if(m.value.trim()&&!await confirmDlg('예시 넣기','지금 메모를 예시로 바꿀까요?','바꾸기'))return;m.value=IL_SAMPLE;d.memo=IL_SAMPLE;ilSave();m.focus();}return;}
+  const ch=T.closest('[data-il-chip]');if(ch){const m=$('#il-memo');if(!m)return;const v=ch.dataset.ilChip;const pre=m.value&&!m.value.endsWith('\n')?'\n':'';m.value+=pre+v;d.memo=m.value;ilSave();m.focus();m.setSelectionRange(m.value.length,m.value.length);return;}
+  const k=T.closest('[data-il-k]');if(k){ilReadIn();d.kind=k.dataset.ilK;for(const b of $$('#dlg-ilbo [data-il-k]'))b.setAttribute('aria-pressed',String(b===k));ilSave();return;}
+  const k2=T.closest('[data-il-k2]');if(k2){if(k2.dataset.ilK2===d.gk)return;ilCollect();const old=d.kind;d.kind=k2.dataset.ilK2;const pv=d.edited;await ilAuto(false);if(d.edited&&pv)d.kind=old;return;}
+  const tg=T.closest('[data-il-tag]');if(tg){ilReadIn();const p=d.photos.find(x=>x.id===tg.dataset.ilTag);if(!p)return;p.tag=PH_TAG_ORDER[(PH_TAG_ORDER.indexOf(p.tag||'')+1)%PH_TAG_ORDER.length];IL.dirty=true;ilSave();ilRender();return;}
+  const dl=T.closest('[data-il-del]');if(dl){ilReadIn();const id=dl.dataset.ilDel;d.ph=d.ph.filter(x=>x!==id);if(d.fresh.includes(id)){d.fresh=d.fresh.filter(x=>x!==id);d.photos=d.photos.filter(x=>x.id!==id);deleteAssets([id]);}IL.dirty=true;ilSave();ilRender();return;}
+  const ro=T.closest('[data-il-open]');if(ro){const t=findTask(ro.dataset.ilOpen);if(!t)return;ilCollect();if(!d.path&&ilHas(d))ilSave();ilOpen({task:t});return;}
+  if(!ilCanEdit()||IL.step!=='doc')return;
+  const g=T.closest('[data-il-tg]');if(g){ilCollect();const p=d.photos.find(x=>x.id===g.dataset.ilTg);if(!p)return;p.tag=PH_TAG_ORDER[(PH_TAG_ORDER.indexOf(p.tag||'')+1)%PH_TAG_ORDER.length];IL.dirty=true;ilSave();ilRender();return;}
+  const rc=T.closest('#il-paper td.ap-il-res');if(rc){const cyc=IL_RES[d.gk==='chk'?'chk':'work'];const cur=rc.textContent.trim();const nx=cyc[(cyc.indexOf(cur)+1)%cyc.length];rc.textContent=nx;rc.className='ap-il-res '+ilResC(nx);d.edited=IL.dirty=true;ilCollect();ilSave();return;}});
+document.addEventListener('input',e=>{const T=e.target;if(!T||!T.closest||!T.closest('#dlg-ilbo')||!IL.d)return;
+  if(T.closest('#il-paper')){IL.d.edited=IL.dirty=true;clearTimeout(IL._t);IL._t=setTimeout(()=>{if(IL.d&&IL.step==='doc'){ilCollect();ilSave();}},600);return;}
+  IL.dirty=true;clearTimeout(IL._t);IL._t=setTimeout(()=>{if(IL.d){ilCollect();ilSave();}},400);});
+document.addEventListener('change',e=>{const T=e.target;if(!T||!T.id||!T.closest||!T.closest('#dlg-ilbo'))return;
+  if(T.id==='il-cam'||T.id==='il-pick'){const f=Array.from(T.files||[]);T.value='';ilAddPhotos(f);return;}
+  if(IL.d){IL.dirty=true;ilCollect();ilSave();}});
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target&&e.target.closest&&e.target.closest('#dlg-ilbo .ap-il-capt, #dlg-ilbo .ap-il-title')){e.preventDefault();e.target.blur();}});
+
+/* ── 들어가는 곳: 홈 빠른 기록 줄 · 사진첩 · 업무 상세(시설·공무) · #ilbo 주소 */
+{const _q=qaShell;qaShell=function(){const h=_q.apply(this,arguments);return h.replace('<button type="button" class="btn" id="qa-import">','<button type="button" class="btn qa-ilbo" data-il-open-new title="사진 몇 장 + 간단한 메모로 작업 일보·점검 일지를 자동으로 만듭니다">📋 시설 일보</button><button type="button" class="btn" id="qa-import">');};}
+{const _r=renderPhotos;renderPhotos=function(v){const r=_r.apply(this,arguments);try{const h=v&&v.querySelector('.home-head > div:last-child');if(h&&!h.querySelector('[data-il-open-new]')&&S.canWrite)h.insertAdjacentHTML('afterbegin','<button type="button" class="btn" data-il-open-new>📋 시설 일보</button>');}catch{}return r;};}
+function ilTaskBtn(){const h=$('#dlg-task .modal-h');if(!h)return;let b=$('#t-ilbo');
+  if(!b){b=document.createElement('button');b.type='button';b.id='t-ilbo';b.className='btn sm t-ilbo';h.insertBefore(b,$('#t-print',h)||$('[data-close]',h));}
+  const t=S.dlg&&S.dlg.path?findTask(S.dlg.path):null;const show=!!t&&t.cat==='fac'&&!t.priv&&(!!t.ilbo||ilCanEdit());b.hidden=!show;
+  if(show){b.textContent=t.ilbo?'📋 일보':'📋 일보 만들기';b.title=t.ilbo?'이 업무의 시설 일보를 보고 인쇄하거나 고칩니다':'이 업무의 사진·내용으로 시설 일보를 만듭니다';}}
+{const _ot=openTask;openTask=function(...a){const r=_ot.apply(this,a);try{ilTaskBtn();}catch{}return r;};}
+function ilHash(){if(location.hash!=='#ilbo')return;let n=0;const tm=setInterval(()=>{n++;if(S.me&&S.me.id&&S.myStaff&&S.loaded!==false&&document.readyState==='complete'){clearInterval(tm);history.replaceState(null,'','#my');try{route();}catch{}ilOpen();}else if(n>40)clearInterval(tm);},250);}
+window.addEventListener('hashchange',ilHash);setTimeout(ilHash,800);
+window.ilApi={parse:m=>{const d={...ilBlank(),memo:m};const G=ilParse(d);return {kind:G.kind,site:G.site,fld:G.fld,time:G.time,workers:G.workers,mats:G.mats,notes:G.notes,follow:G.follow,items:G.items,title:ilTaskTitle(G)};},open:ilOpen,state:()=>IL};
+
+/* ───────── 37차: 화면 오류 기록 (월요일 전 직원 사용 시작 — 첫 주 점검용) ─────────
+   직원 기기에서 난 화면 오류(스크립트 오류·처리되지 않은 비동기 오류)를 wl/_sys/err 에 짧게 남김.
+   · 같은 오류는 기기마다 한 번, 하루 최대 20건. 네트워크 끊김 같은 흔한 오류는 남기지 않음.
+   · 남기는 것: 시각·오류 문장(200자, 주민번호 꼴 가림)·위치(파일:줄)·화면 이름·기기 종류(예: Android·삼성)·직원 ID. 입력 내용·이름·이메일은 남기지 않음.
+   · 관리자: 설정 › 맨 아래 '최근 화면 오류', 또는 콘솔 errApi.list(). 30일 지난 기록은 관리자가 열 때 지움. */
+const ERRL={seen:new Set(),list:null};
+function errUa(){const u=navigator.userAgent||'';const os=/iPhone|iPad/.test(u)?'iOS':/Android/.test(u)?'Android':/Windows/.test(u)?'Windows':/Mac/.test(u)?'Mac':'기타';
+  const br=/KAKAOTALK/i.test(u)?'카톡':/SamsungBrowser/.test(u)?'삼성':/NAVER/.test(u)?'네이버':/Edg\//.test(u)?'Edge':/CriOS|Chrome/.test(u)?'Chrome':/Safari/.test(u)?'Safari':/Firefox/.test(u)?'Firefox':'기타';return os+'·'+br;}
+const ERR_SKIP=/ResizeObserver loop|^Script error\.?$|NetworkError|Failed to fetch|Load failed|network-request-failed|unavailable|ChunkLoadError|AbortError|The user aborted|cancelled|Could not reach Cloud Firestore/i;
+function errLog(msg,src){try{msg=String(msg||'').replace(/\s+/g,' ').trim().slice(0,200);if(!msg||ERR_SKIP.test(msg))return;try{msg=maskRRN(msg);}catch{}
+    const k=msg.replace(/^Uncaught\s+/,'');if(ERRL.seen.has(k))return;ERRL.seen.add(k);
+    let c={};try{c=JSON.parse(lsGet('wl.errn')||'{}')||{};}catch{}const day=today();if(c.d!==day)c={d:day,n:0};if(c.n>=20)return;c.n++;lsSet('wl.errn',JSON.stringify(c));
+    if(S.mode!=='firebase'||!S.fs||!S.me||!S.me.id)return;
+    const id=Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+    S.fs.collection('wl/_sys/err').doc(id).set({at:nowISO(),msg,src:String(src||'').slice(0,120),view:String(S.view||'').slice(0,20),ua:errUa(),sid:String(S.myStaff||'').slice(0,40)}).catch(()=>{});}catch{}}
+window.addEventListener('error',e=>{if(!e||!e.message)return;errLog(e.message,`${String(e.filename||'').split('/').pop()||'?'}:${e.lineno||0}:${e.colno||0}`);});
+window.addEventListener('unhandledrejection',e=>{const r=e&&e.reason;if(!r||r.userMsg||r.code==='permission-denied'||r.code==='fb_denied')return;
+  const m=r.message||r.code||(typeof r==='string'?r:'');if(!m)return;const at=String(r.stack||'').split('\n').find(l=>/index\.html|\.js:/.test(l))||'';errLog('비동기: '+m,at.trim().replace(/^at\s+/,'').slice(-120));});
+async function errList(days=30){if(S.mode!=='firebase'||!S.canEdit)return [];const since=new Date(Date.now()-days*864e5).toISOString();
+  const qs=await S.fs.collection('wl/_sys/err').get();const all=qs.docs.map(d=>({id:d.id,...d.data()}));
+  const old=all.filter(x=>String(x.at||'')<since);for(const x of old.slice(0,50)){try{await S.fs.doc('wl/_sys/err/'+x.id).delete();}catch{}}
+  return all.filter(x=>String(x.at||'')>=since).sort((a,b)=>String(b.at).localeCompare(String(a.at)));}
+function errHTML(L){if(!L)return '<p class="help">불러오는 중…</p>';if(!L.length)return '<p class="help">최근 30일 동안 기록된 화면 오류가 없습니다.</p>';
+  const by={};for(const x of L){const k=x.msg;(by[k]=by[k]||[]).push(x);}
+  return `<ul class="err-list">${Object.entries(by).slice(0,30).map(([m,a])=>`<li><b>${esc(m)}</b><small>${a.length}회 · 마지막 ${esc(fmtMD(localDate(a[0].at)))} ${esc(hhmm(a[0].at).slice(-5))} · ${esc([...new Set(a.map(x=>x.sid?nameOf(x.sid):'?'))].slice(0,4).join(', '))} · ${esc([...new Set(a.map(x=>x.ua))].slice(0,3).join(', '))} · ${esc(a[0].view||'')} · ${esc(a[0].src||'')}</small></li>`).join('')}</ul>`;}
+async function errPanel(){const box=$('#set-err');if(!box)return;box.innerHTML=errHTML(null);try{ERRL.list=await errList();}catch{ERRL.list=[];}box.innerHTML=errHTML(ERRL.list);}
+{const _o=openSettings;openSettings=async function(){const r=await _o.apply(this,arguments);try{if(S.canEdit&&S.mode==='firebase'){const host=$('#dlg-settings .modal-b')||$('#dlg-settings form')||$('#dlg-settings');
+      if(host&&!$('#set-err-sec')){host.insertAdjacentHTML('beforeend','<section id="set-err-sec" class="set-err"><h3>최근 화면 오류 <small>직원 기기에서 난 오류 · 30일 (관리자만)</small> <button type="button" class="btn sm ghost" data-err-reload>다시 보기</button></h3><div id="set-err"></div></section>');}
+      errPanel();}}catch{}return r;};}
+document.addEventListener('click',e=>{if(e.target&&e.target.closest&&e.target.closest('[data-err-reload]'))errPanel();});
+window.errApi={log:errLog,list:errList};
 
 /* ───────── 시작 ───────── */
 function boot(){
