@@ -241,18 +241,24 @@ service cloud.firestore {
         && request.resource.data.by == request.auth.uid
         && request.auth.uid in request.resource.data.uids
         && (request.resource.data.status in ['draft', 'run']
-          || (request.resource.data.status == 'done' && request.resource.data.line.size() == 1));
+          || (request.resource.data.status == 'done' && request.resource.data.line.size() == 1))
+        && request.resource.data.get('pay', null) == null;
       allow update: if isMember()
         && request.resource.data.by == resource.data.by
         && ((resource.data.by == request.auth.uid && resource.data.status in ['draft', 'back', 'no']
             && (request.resource.data.status in ['draft', 'run', 'back', 'no']
-              || (request.resource.data.status == 'done' && request.resource.data.line.size() == 1)))
+              || (request.resource.data.status == 'done' && request.resource.data.line.size() == 1))
+            && request.resource.data.get('pay', null) == resource.data.get('pay', null))
           || ((isAdmin() || request.auth.uid in resource.data.uids)
             && request.resource.data.uids.hasAll(resource.data.uids)
             && request.resource.data.title == resource.data.title
             && request.resource.data.body == resource.data.body
             && request.resource.data.files == resource.data.files
-            && request.resource.data.get('leave', null) == resource.data.get('leave', null)));
+            && request.resource.data.get('leave', null) == resource.data.get('leave', null)
+            // 자금 결제 예정일(pay)은 최종 승인된 자금 결제 문서에서 자금 담당(app/appr.fundU)·관리자만
+            && (request.resource.data.get('pay', null) == resource.data.get('pay', null)
+              || (resource.data.status == 'done' && resource.data.get('fund', false) == true
+                && (isAdmin() || request.auth.uid in get(/databases/$(database)/documents/app/appr).data.get('fundU', []))))));
       allow delete: if isAdmin()
         || (isMember() && resource.data.by == request.auth.uid && resource.data.status in ['draft', 'back']);
 

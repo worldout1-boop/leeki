@@ -1445,6 +1445,15 @@ input.ir{font:inherit;font-size:14.5px;font-weight:600;padding:4px 8px;border:2p
 .notyf__toast.wl-nb .notyf__dismiss-btn{opacity:.75}.notyf__toast.wl-nb .notyf__dismiss-btn:hover{opacity:1}
 @media (max-width:760px){.notyf{padding-bottom:calc(74px + env(safe-area-inset-bottom))}.notyf__toast.wl-nb{max-width:none}}
 @media print{.notyf{display:none!important}}
+/* 31차: 자금 결제 */
+.ap-pay{margin:10px 0;padding:10px 14px;border-radius:10px;border:1px solid #f1d9a6;background:#fffaf0}.ap-pay h3{margin:0 0 6px;font-size:14px}
+.ap-pay.set{border-color:#b7d4f5;background:#f3f8ff}.ap-pay.paid{border-color:#b7e4c7;background:#f1fbf4}.ap-pay.wait{border-style:dashed;background:#fcfcfd}
+.ap-pay-i{font-size:13.5px;line-height:1.6}.ap-pay-i small{color:var(--ink-3);margin-left:4px}.ap-pay-i.warn{color:#9a5b00}.ap-pay-d{font-size:15px}
+.ap-pay-f{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px}.ap-pay-f label{display:inline-flex;gap:6px;align-items:center;font-size:13px;font-weight:600}.ap-pay-f #pay-note{flex:1 1 220px;min-width:0}
+.ap-paytag{font-size:11.5px;padding:1px 7px;border-radius:999px;white-space:nowrap}.ap-paytag.need{background:#fff1d6;color:#9a5b00}.ap-paytag.set{background:#e3efff;color:#1d4ed8}.ap-paytag.paid{background:#dcf5e5;color:#15803d}
+.pay-strip{border-color:#f1d9a6!important;background:#fffaf0!important}
+.fc .ev-pay{background:#fff7e0!important;border:1.5px solid #d97706!important;color:#92400e!important}.fc .ev-pay .fc-event-title,.fc .ev-pay .fc-event-main{color:#92400e;font-weight:700}
+.fc .ev-pay-done{background:#ecfdf3!important;border-color:#15803d!important}.fc .ev-pay-done .fc-event-title,.fc .ev-pay-done .fc-event-main{color:#15803d;font-weight:600}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -2339,6 +2348,7 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>자료실</b><span>위쪽 <em>각종서류 올리기</em> 화면 맨 위의 <em>🗂 자료실</em>을 누르면 정리된 회사 서류(사업장별·종류별, 유효기간)를 봅니다. 자료실에서 다시 <em>📤 각종서류 올리기</em>로 돌아갈 수 있습니다.</span></li>
       <li><b>업무 수정 권한</b><span>업무(일정)의 업무명·일정·담당·내용 수정과 삭제는 <em>등록한 사람</em>과 관리자만 할 수 있습니다. 담당자는 진행 상태·진척률·진행 기록·사진만 남기고, 그 밖의 직원은 보기만 합니다.</span></li>
       <li><b>연차·휴일근무 달력</b><span>전자결재 기안 오른쪽 <em>📅 달력 표기</em>에서 연차·반차·휴일근무·연차 사용 계획을 고르고 날짜를 적으면, 최종 승인된 뒤 달력에 <b>굵은 글자</b>(🌴 연차, 🛠 휴일근무)로 표시됩니다. 연차 사용 촉진에 따라 정한 예정일은 달력 위 <em>🗓 연차 사용 계획(촉진)</em>에서 적으면 <i>연차(예정)</i>으로 보입니다. 사유는 달력에 나오지 않습니다.</span></li>
+      <li><b>자금 결제</b><span>💰 자금 결제 문서가 최종 승인되면 자금 담당(기본 박혜진)에게 <em>결제 예정일 입력</em> 요청이 갑니다(알림·내 업무·결재함 '💰 자금 결제' 탭). 문서의 <em>💰 자금 결제</em> 칸에 예정일·메모를 저장하면 결재선(담당·결재자)과 관리자에게 알림이 가고 달력에 '💰 결제 예정'으로 보입니다. 지급이 끝나면 <em>✅ 지급 완료</em>를 누릅니다.</span></li>
       <li><b>화면 아래 알림</b><span>새 알림은 화면 오른쪽 아래에 카드로 떠서 <em>✕(확인)</em>을 누르거나 카드를 눌러 열 때까지 사라지지 않습니다. 확인하지 않으면 다시 열어도 또 보입니다. 3건이 넘으면 '알림 n건 더'로 묶입니다.</span></li>
       <li><b>자료 관리 권한</b><span>각종서류 올리기(자료실·회사서식)에 서류를 올리고, 지우고, 이름·폴더를 바꾸는 일은 <em>자료 관리자</em>(기본: 이기도·박혜진·윤종국·윤민진·이은주)만 합니다. 다른 직원은 보기·내려받기·인쇄만 합니다. 올리기·삭제 기록은 관리부 모두에게 알림(🔔)으로 가고, 각종서류 올리기 화면 아래 <em>📜 올리기·삭제 기록</em>에서도 볼 수 있습니다. 관리자는 <em>설정 › 자료 관리 권한</em>에서 바꿉니다.</span></li>
       <li><b>회사서식</b><span>위쪽 <em>각종서류 올리기</em> 화면 맨 위의 <em>🖨 회사서식(출력 작성)</em>은 인쇄해서 손으로 적는 서식(미리보기·인쇄·원본 내려받기), <em>✏️ 회사서식(직접 작성)</em>은 화면에서 바로 적는 서식입니다. 서식을 열어 파란 칸을 눌러 적고(PDF·스캔 서식은 적을 곳을 눌러 글상자), <em>인쇄</em>하거나 <em>전자결재로 올리기</em>를 누릅니다. 적던 내용은 이 기기에 자동 보관됩니다. 관리자는 서식 파일·폴더·압축(zip)을 통째로 올린 뒤 <em>하나씩 보며 분류하기</em>에서 숫자키 1(출력 작성)·2(직접 작성)로 빠르게 고릅니다. 폴더 이름은 서식 분류가 됩니다.</span></li>
@@ -5774,7 +5784,7 @@ function apDocRender(v,d){const me=apMe();const cur=apCur(d);const myTurn=!!(cur
     ${apDocInfo(d)}
     ${d.mode==='form'&&d.body?`<div class="ap-body ro">${apClean(d.body)}</div>`:''}${d.summary?`<div class="ap-sum"><b>${d.mode==='file'?'기안 요지':'덧붙임'}</b><p>${esc(d.summary)}</p></div>`:''}
     ${apFilesHTML(d,false)}
-    <div class="ap-log"><b>결재 기록</b><ul>${d.log.slice().reverse().map(l=>`<li><time>${esc(hhmm(l.at))}</time> <b>${esc(l.name)}</b> ${esc({submit:'결재 올림',ok:'승인',no:'반려',back:'회수',done:'결재 완료(전결)',read:'참조 확인',save:'임시저장'}[l.act]||l.act)}${l.cmt?` — <span>${esc(l.cmt)}</span>`:''}</li>`).join('')||'<li class="none">기록 없음</li>'}</ul></div>
+    <div class="ap-log"><b>결재 기록</b><ul>${d.log.slice().reverse().map(l=>`<li><time>${esc(hhmm(l.at))}</time> <b>${esc(l.name)}</b> ${esc({submit:'결재 올림',ok:'승인',no:'반려',back:'회수',done:'결재 완료(전결)',read:'참조 확인',save:'임시저장',pay:'💰 자금 결제 예정일',paid:'💰 자금 결제 완료'}[l.act]||l.act)}${l.cmt?` — <span>${esc(l.cmt)}</span>`:''}</li>`).join('')||'<li class="none">기록 없음</li>'}</ul></div>
   </article>`;}
 async function apMarkRead(d){const me=apMe();if(AP.fixed.has('r'+d.id))return;AP.fixed.add('r'+d.id);try{const cc=d.cc.map(x=>x.sid===me&&!x.readAt?{...x,readAt:nowISO()}:x);await S.fs.doc('appr/'+d.id).update({cc,log:[...d.log,{at:nowISO(),sid:me,name:myName(),act:'read',cmt:''}].slice(-200)});}catch{}}
 
@@ -7052,14 +7062,14 @@ function lvCalEvents(){if(!CALV.on)return [];const out=[];
   return out;}
 {const _ce=calEvents;calEvents=function(){return [..._ce.apply(this,arguments),...lvCalEvents()];};}
 const lvWd=d=>'일월화수목금토'[new Date(d+'T00:00:00').getDay()];
-const lvRange=x=>x.from===x.to?`${fmtMD(x.from)}(${lvWd(x.from)})`:`${fmtMD(x.from)}(${lvWd(x.from)}) ~ ${fmtMD(x.to)}(${lvWd(x.to)})`;
+const lvRange=x=>x.from===x.to?fmtMD(x.from):`${fmtMD(x.from)} ~ ${fmtMD(x.to)}`;
 function lvOpen(id){const x=LV.list.find(e=>e.id===id);if(!x)return;
   if(x.src==='plan'){lvPlanOpen(x.sids[0]);return;}
   const d=typeof AP!=='undefined'&&AP.docs.find(a=>a.id===x.apId);if(d){apGo(d.id);return;}
   toast(`${LV_IC[x.kind]} ${lvNames(x)} ${LV_K[x.kind]} · ${lvRange(x)} — 전자결재 최종 승인${x.no?` (${x.no})`:''}`);}
 {const _rc=renderCalendar;renderCalendar=function(v){const r=_rc.apply(this,arguments);try{
   if(S.cal&&!S.cal.__lv){S.cal.__lv=true;let orig=null;try{orig=S.cal.getOption('eventClick');}catch{}
-    S.cal.setOption('eventClick',info=>{const id=info.event.id||'';if(id.startsWith('lv:')){info.jsEvent.preventDefault();lvOpen(id.slice(3));return;}if(orig)orig(info);});}
+    S.cal.setOption('eventClick',info=>{const id=info.event.id||'';if(id.startsWith('lv:')){info.jsEvent.preventDefault();lvOpen(id.slice(3));return;}if(id.startsWith('pay:')){info.jsEvent.preventDefault();apGo(id.slice(4));return;}if(orig)orig(info);});}
   const top=v.querySelector('.cal-top');if(top&&!top.querySelector('.cal-lv')){top.insertAdjacentHTML('beforeend',`<span class="cal-lv"><label class="chk"><input type="checkbox" data-calv ${CALV.on?'checked':''}> 🌴 연차·휴일근무</label><button type="button" class="btn sm" data-lv-plan>🗓 연차 사용 계획(촉진)</button></span>`);}
   const lg=v.querySelector('.cal-legend');if(lg&&!lg.querySelector('.lv-leg'))lg.insertAdjacentHTML('afterbegin','<span class="lv-leg"><b class="lv-c a">🌴 연차·반차</b><b class="lv-c h">🛠 휴일근무</b><i class="lv-c p">🗓 연차(예정)</i> — 전자결재 최종 승인분은 굵게 ·</span>');}catch(e){console.warn(e);}return r;};}
 document.addEventListener('change',e=>{const c=e.target&&e.target.closest&&e.target.closest('[data-calv]');if(!c)return;CALV.on=c.checked;lsSet('wl.calv',JSON.stringify({on:CALV.on}));lvRefreshCal();});
@@ -7138,6 +7148,79 @@ function nbSync(){if(!nbOn()){if(NB.ny){NB.ny.dismissAll();NB.shown.clear();NB.m
     m.on('click',({event})=>{if(event&&event.target&&event.target.closest&&event.target.closest('.notyf__dismiss'))return;const p=$('#ntf-pop');if(p&&p.hidden)ntfOpen();});
     m.on('dismiss',()=>{if(NB.more===m){NB.more=null;ntfMarkRead();}});}}
 {const _r=ntfRun;ntfRun=function(){const r=_r.apply(this,arguments);try{nbSync();}catch(e){console.warn(e);}return r;};}
+
+/* ───────── 31차: 자금 결제 — 최종 승인 뒤 자금 담당(박혜진)이 결제 예정일 입력 → 결재선·관리자에게 알림 ─────────
+   · 💰 자금 결제 문서(fund)가 최종 승인(done)되면 자금 담당(결재선 설정 › 자금 결제 참조자, 기본 박혜진)에게
+     '결제 예정일 입력' 요청(알림·내 업무 줄·결재함 '💰 자금 결제' 탭·배지).
+   · 자금 담당이 문서에서 결제 예정일·메모를 저장(appr.pay) → 결재선(담당·결재자)과 관리자에게 알림, 볼 수 있는 사람의 달력에 '💰 결제 예정'.
+     '✅ 지급 완료'도 표시·알림.
+   · 보안 규칙: pay 는 최종 승인된 자금 결제 문서에서만, 자금 담당(app/appr.fundU — 관리자 화면이 맞춰 둠)과 관리자만 바꿈. */
+function payMgrs(){try{return (apCfg().fund||[]).filter(Boolean);}catch{return [];}}
+function isPayMgr(){const me=apMe();return !!me&&payMgrs().includes(me);}
+const payCan=()=>isPayMgr()||S.canEdit;
+function payNorm(p){if(!p||typeof p!=='object')return null;const s=(x,n)=>typeof x==='string'?x.slice(0,n):'';
+  return {st:p.st==='paid'?'paid':'set',date:isDate(p.date)?p.date:'',note:s(p.note,200),by:s(p.by,80),byName:s(p.byName,30),at:s(p.at,40),paidAt:s(p.paidAt,40)};}
+{const _n=apNormDoc;apNormDoc=function(id,v){const d=_n.apply(this,arguments);if(d)d.pay=payNorm(v&&v.pay);return d;};}
+{const _c=apNormCfg;apNormCfg=function(d){AP.fundU=Array.isArray(d&&d.fundU)?d.fundU.filter(x=>typeof x==='string'):[];return _c.apply(this,arguments);};}
+const payWd=d=>'일월화수목금토'[new Date(d+'T00:00:00').getDay()];
+const payDay=d=>d?fmtMD(d):'';  /* fmtMD 가 요일까지 붙임 */
+function payTodo(){if(typeof AP==='undefined'||!AP.loaded||!isPayMgr())return [];const since=addDays(today(),-45);
+  return AP.docs.filter(d=>d.fund&&d.status==='done'&&!(d.pay&&d.pay.date)&&localDate(d.doneAt||d.updatedAt||nowISO())>=since);}
+
+/* 관리자 화면: 자금 담당의 로그인 uid 목록을 app/appr.fundU 에 맞춰 둠 (규칙이 봄) */
+const PAYU={busy:false};
+async function paySyncU(){if(!S.canEdit||!apOK()||!AP.cfgLoaded||PAYU.busy)return;const want=[...new Set(payMgrs().map(apUid).filter(Boolean))].sort();const cur=[...(AP.fundU||[])].sort();
+  if(JSON.stringify(want)===JSON.stringify(cur))return;PAYU.busy=true;try{await S.fs.doc('app/appr').set({fundU:want},{merge:true});AP.fundU=want;}catch(e){}finally{PAYU.busy=false;}}
+setInterval(()=>{paySyncU();},12000);
+
+/* 저장 */
+async function paySave(id,o){if(!payCan()){toast('자금 결제 예정일은 자금 담당과 관리자만 입력합니다.','err');return false;}
+  if(!isDate(o.date)){toast('결제 예정일을 골라 주세요.','err');const el=$('#pay-date');if(el)el.focus();return false;}
+  setSync('saving');try{const s=await S.fs.doc('appr/'+id).get();const f=s.exists?apNormDoc(id,s.data()):null;
+    if(!f||f.status!=='done'||!f.fund){toast('최종 승인된 자금 결제 문서만 입력할 수 있습니다.','err');return false;}
+    const now=nowISO();const note=String(o.note||'').trim().slice(0,200);
+    const pay={st:o.paid?'paid':'set',date:o.date,note,by:apMe()||'',byName:String(myName()||'').slice(0,30),at:now,...(o.paid?{paidAt:now}:{})};
+    await S.fs.doc('appr/'+id).update({pay,updatedAt:now,log:[...f.log,{at:now,sid:apMe()||'',name:myName(),act:o.paid?'paid':'pay',cmt:`${payDay(o.date)}${note?' · '+note:''}`}].slice(-200)});
+    toast(o.paid?'지급 완료로 표시했습니다. 결재선·관리자에게 알림이 갑니다.':`자금 결제 예정일 ${payDay(o.date)}을(를) 저장했습니다. 결재선(담당·결재자)과 관리자에게 알림이 갑니다.`);return true;}
+  catch(e){writeError(e&&e.userMsg?e:fbErr(e));return false;}finally{setSync('ok');}}
+document.addEventListener('click',async e=>{const T=e.target;if(!T||!T.closest)return;
+  const sv=T.closest('[data-pay-save]');if(sv){sv.disabled=true;await paySave(sv.dataset.paySave,{date:($('#pay-date')||{}).value,note:($('#pay-note')||{}).value});sv.disabled=false;return;}
+  const pd=T.closest('[data-pay-paid]');if(pd){const d=AP.docs.find(x=>x.id===pd.dataset.payPaid);if(!d||!d.pay)return;
+    if(!await confirmDlg('지급 완료',`「${d.title}」 자금 결제(${payDay(d.pay.date)})를 지급 완료로 표시합니다. 결재선·관리자에게 알림이 갑니다.`,'지급 완료'))return;
+    await paySave(d.id,{date:d.pay.date,note:($('#pay-note')||{}).value||d.pay.note,paid:true});return;}});
+
+/* 문서 보기: 자금 결제 칸 */
+function payPanelHTML(d){if(!d.fund)return '';const who=esc(payMgrs().map(apName).join('·')||'자금 담당');
+  if(d.status!=='done')return d.status==='draft'||d.status==='no'||d.status==='back'?'':`<section class="ap-pay wait"><h3>💰 자금 결제</h3><div class="ap-pay-i">최종 승인되면 <b>${who}</b>님이 결제 예정일을 입력하고, 결재선·관리자에게 알림이 갑니다.</div></section>`;
+  const p=d.pay&&d.pay.date?d.pay:null;const can=payCan();
+  const info=p?`<div class="ap-pay-i">${p.st==='paid'?'✅ <b>지급 완료</b>':'📅 <b>결제 예정</b>'} <b class="ap-pay-d">${esc(payDay(p.date))}</b>${d.amount?` · ${esc(d.amount)}`:''}${p.note?` · ${esc(p.note)}`:''} <small>${esc(p.byName)} · ${esc(hhmm(p.at))} 입력${p.paidAt?` · ${esc(hhmm(p.paidAt))} 완료`:''}</small></div>`
+    :`<div class="ap-pay-i warn">⏳ 결제 예정일 입력 대기 — <b>${who}</b></div>`;
+  const form=can&&(!p||p.st!=='paid')?`<div class="ap-pay-f"><label>결제 예정일 <input type="date" id="pay-date" value="${esc(p?p.date:'')}"></label><input id="pay-note" maxlength="200" placeholder="메모 (예: 계좌이체·법인카드, 거래처)" value="${esc(p?p.note:'')}"><button type="button" class="btn primary sm" data-pay-save="${esc(d.id)}">${p?'예정일 바꾸기':'예정일 저장'} · 알림 보내기</button>${p?`<button type="button" class="btn sm" data-pay-paid="${esc(d.id)}">✅ 지급 완료</button>`:''}</div><p class="help">저장하면 결재선(담당·결재자)과 관리자에게 알림이 가고, 볼 수 있는 사람의 달력에 '💰 결제 예정'으로 표시됩니다.</p>`:'';
+  return `<section class="ap-pay ${p?(p.st==='paid'?'paid':'set'):'need'}"><h3>💰 자금 결제</h3>${info}${form}</section>`;}
+{const _dr=apDocRender;apDocRender=function(v,d){const r=_dr.apply(this,arguments);try{if(d.fund&&!v.querySelector('.ap-pay')){const h=payPanelHTML(d);const at=v.querySelector('.ap-lvinfo')||v.querySelector('.ap-info');if(h&&at)at.insertAdjacentHTML('afterend',h);}}catch(e){console.warn(e);}return r;};}
+
+/* 알림: 자금 담당에게 입력 요청, 결재선·관리자에게 예정일·완료 */
+{const _n=apprNtf;apprNtf=function(){const out=_n.apply(this,arguments);try{if(!AP.loaded)return out;const me=apMe();const since=new Date(Date.now()-14*864e5).toISOString();
+  for(const d of payTodo())out.push({k:'payq|'+d.id,at:d.doneAt||d.updatedAt,type:'appr',ap:d.id,title:d.title,text:`💰 최종 승인된 자금 결제 문서입니다 — 결제 예정일을 입력해 주세요${d.amount?' ('+d.amount+')':''}`});
+  for(const d of AP.docs){const p=d.pay;if(!d.fund||!p||!p.date||!p.at||(p.paidAt||p.at)<since||p.by===me)continue;if(!(d.line.some(x=>x.sid===me)||S.canEdit))continue;
+    out.push({k:`pay|${d.id}|${p.st}|${p.date}`,at:p.paidAt||p.at,type:'appr',ap:d.id,title:d.title,text:p.st==='paid'?`💰 자금 결제 완료 (${payDay(p.date)}) — ${p.byName}`:`💰 자금 결제 예정일 ${payDay(p.date)} — ${p.byName}님이 입력했습니다${d.amount?' · '+d.amount:''}`});}}catch(e){console.warn(e);}
+  return out;};}
+/* 결재 배지·내 업무 줄 */
+{const _r=apRefresh;apRefresh=function(){const r=_r.apply(this,arguments);try{const n=apTodo().length+payTodo().length;const b=$('#ap-n');if(b){b.hidden=!n;b.textContent=n;}if(S.view==='calendar'&&typeof lvRefreshCal==='function')lvRefreshCal();paySyncU();}catch(e){}return r;};}
+{const _s=apStrip;apStrip=function(){_s.apply(this,arguments);try{const box=$('#my-brief');if(!box)return;let c=$('#pay-strip');const L=apOK()?payTodo():[];if(!L.length){if(c)c.remove();return;}
+  if(!c){c=document.createElement('div');c.id='pay-strip';c.className='ap-strip pay-strip';box.parentNode.insertBefore(c,box);}
+  c.innerHTML=`<b>💰 자금 결제 예정일 입력 ${L.length}건</b>${L.slice(0,3).map(d=>`<button type="button" data-ap-open="${esc(d.id)}">${esc(d.title)} <small>${esc(d.byName)}${d.amount?' · '+esc(d.amount):''}</small></button>`).join('')}<a class="btn sm primary" href="#appr" data-pay-tab>결재함</a>`;}catch(e){console.warn(e);}};}
+document.addEventListener('click',e=>{if(e.target&&e.target.closest&&e.target.closest('[data-pay-tab]'))AP.tab='pay';});
+/* 결재함 '💰 자금 결제' 탭 (자금 담당·관리자) */
+if(!AP_TABS.some(([k])=>k==='pay'))AP_TABS.splice(Math.max(0,AP_TABS.findIndex(([k])=>k==='no')),0,['pay','💰 자금 결제']);
+{const _b=apBuckets;apBuckets=function(){const B=_b.apply(this,arguments);try{B.pay=payCan()?AP.docs.filter(d=>d.fund&&d.status==='done').sort((a,b)=>(!!(a.pay&&a.pay.date)-!!(b.pay&&b.pay.date))):[];}catch(e){B.pay=[];}return B;};}
+{const _ra=renderAppr;renderAppr=function(v){if(AP.tab==='pay'&&!payCan())AP.tab='todo';const r=_ra.apply(this,arguments);try{
+  const tb=v.querySelector('[data-ap-tab="pay"]');if(tb){if(!payCan())tb.remove();else{const em=tb.querySelector('em');const n=payTodo().length;if(em&&n){em.classList.add('on');em.title=`예정일 입력 대기 ${n}건 (전체 ${em.textContent}건)`;em.textContent=String(n);}}}
+  for(const tr of v.querySelectorAll('tr[data-ap-open]')){const d=AP.docs.find(x=>x.id===tr.dataset.apOpen);if(!d||!d.fund||d.status!=='done')continue;const tt=tr.querySelector('.tt');if(!tt||tt.querySelector('.ap-paytag'))continue;
+    const p=d.pay&&d.pay.date?d.pay:null;tt.insertAdjacentHTML('beforeend',p?(p.st==='paid'?` <span class="ap-paytag paid">✅ 지급 완료</span>`:` <span class="ap-paytag set">💰 ${esc(payDay(p.date))} 결제 예정</span>`):` <span class="ap-paytag need">⏳ 결제 예정일 입력 대기</span>`);}}catch(e){console.warn(e);}return r;};}
+/* 달력: 결제 예정 (문서를 볼 수 있는 사람만) */
+{const _ce=calEvents;calEvents=function(){const out=_ce.apply(this,arguments);try{if(typeof AP!=='undefined'&&AP.loaded)for(const d of AP.docs){const p=d.pay;if(!d.fund||d.status!=='done'||!p||!p.date)continue;
+  out.push({id:'pay:'+d.id,title:`${p.st==='paid'?'✅':'💰'} ${d.title}${d.amount?' · '+d.amount:''}${p.st==='paid'?' (지급 완료)':' 결제 예정'}`,start:p.date,allDay:true,editable:false,classNames:['ev-pay',p.st==='paid'?'ev-pay-done':''].filter(Boolean),prio:5});}}catch(e){}return out;};}
 
 /* ───────── 시작 ───────── */
 function boot(){
