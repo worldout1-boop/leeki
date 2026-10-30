@@ -1021,16 +1021,16 @@ img[data-pii]{outline:2px dashed #b85a6e;outline-offset:-2px}
 #r-priv-l small{color:var(--ink-3)}
 
 /* 19차: 인쇄 */
-.print-btn{width:auto!important;height:36px;padding:0 12px 0 10px!important;gap:6px;display:inline-flex;align-items:center;border:2px solid var(--accent)!important;border-radius:9px!important;color:var(--accent)!important;background:#fff!important;font-weight:700}
-.print-btn svg{width:21px!important;height:21px!important;stroke-width:2.1}
-.print-btn span{font-size:14px;font-weight:700;letter-spacing:.02em;white-space:nowrap}
-.print-btn,#btn-new{flex:none;white-space:nowrap}
-.print-btn:hover,.print-btn:focus-visible{background:var(--accent)!important;color:#fff!important}
-@media (max-width:760px){.print-btn{width:38px!important;padding:0!important;justify-content:center}.print-btn span{display:none}}
+#btn-new{flex:none;white-space:nowrap}
+/* 22차: 인쇄·검색·알림 — 글자 없이 기호만 크게, 파란 테두리 */
+#btn-ntf,#btn-print,#btn-search{display:inline-grid;place-items:center;flex:none;width:38px!important;height:36px!important;padding:0!important;border:2px solid var(--accent)!important;border-radius:9px!important;color:var(--accent)!important;background:#fff!important}
+#btn-ntf svg,#btn-print svg,#btn-search svg{width:21px!important;height:21px!important;stroke-width:2.2}
+#btn-ntf:hover,#btn-print:hover,#btn-search:hover,#btn-ntf:focus-visible,#btn-print:focus-visible,#btn-search:focus-visible{background:var(--accent)!important;color:#fff!important}
+#btn-ntf{position:relative}#btn-ntf .badge{top:-7px!important;right:-8px!important}
 @media (max-width:1480px){.me-chip small{display:none}}
 @media (max-width:1780px) and (min-width:761px){.me-chip small{display:none}.top .sync span{display:none}}
 @media (max-width:1680px) and (min-width:1561px){.tabs a{padding:0 10px}}
-@media (max-width:1560px) and (min-width:761px){.brand strong{font-size:14px}.brand small{font-size:11px}.brand{gap:8px}#btn-new{padding-left:10px!important;padding-right:10px!important}.top-right{gap:5px}.print-btn{padding:0 9px 0 7px!important;gap:4px}}
+@media (max-width:1560px) and (min-width:761px){.brand strong{font-size:14px}.brand small{font-size:11px}.brand{gap:8px}#btn-new{padding-left:10px!important;padding-right:10px!important}.top-right{gap:5px}}
 @media (max-width:1320px) and (min-width:761px){.brand small{display:none}.top-right{gap:4px}}
 .prt-btn{border:2px solid var(--accent)!important;color:var(--accent)!important;font-weight:700!important;background:#fff}
 .prt-btn:hover{background:var(--accent)!important;color:#fff!important}
@@ -1229,7 +1229,7 @@ table.org-duty .idle-t{font-size:11px;color:#94a3b8}table.org-duty td.n{font-siz
     <button class="btn primary" id="btn-new" type="button">+ 업무 등록</button>
     <a class="icon-btn" href="#help" aria-label="사용 안내" title="사용 안내"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.3a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2.2-2.4 3.6"/><circle cx="12" cy="17" r=".6" fill="currentColor"/></svg></a>
     <button class="icon-btn" id="btn-settings" type="button" aria-label="설정"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.03 1.56V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.11-1.56 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.56-1.03H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.6 8.9a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34H9a1.7 1.7 0 0 0 1.03-1.56V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87V9c.26.6.85 1 1.51 1.03H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.51 1Z"/></svg></button>
-    <button type="button" class="icon-btn print-btn" id="btn-print" aria-label="이 화면 인쇄" title="이 화면 인쇄 — 업무 상세 창이 열려 있으면 그 업무, 보고서 화면이면 보고서 용지만 인쇄 (PDF 저장 가능)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M7 9V3.5h10V9"/><rect x="3.5" y="9" width="17" height="8" rx="2"/><path d="M7 14h10v6.5H7z"/><circle cx="17" cy="12" r=".9" fill="currentColor"/></svg><span>인쇄</span></button>
+    <button type="button" class="icon-btn print-btn" id="btn-print" aria-label="이 화면 인쇄" title="이 화면 인쇄 — 업무 상세 창이 열려 있으면 그 업무, 보고서 화면이면 보고서 용지만 인쇄 (PDF 저장 가능)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M7 9V3.5h10V9"/><rect x="3.5" y="9" width="17" height="8" rx="2"/><path d="M7 14h10v6.5H7z"/><circle cx="17" cy="12" r=".9" fill="currentColor"/></svg></button>
     <button type="button" class="icon-btn" id="btn-search" aria-label="전체 검색" title="전체 검색 (Ctrl+K)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></button>
     <button type="button" class="icon-btn ntf-btn" id="btn-ntf" aria-label="알림" title="알림"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M6 16V11a6 6 0 1 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span class="badge" id="ntf-n" hidden>0</span></button>
     <button type="button" class="me-chip" id="me-chip" aria-label="내 정보"></button>
@@ -2027,7 +2027,7 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>휴대폰에서</b><span>아래쪽 탭(내 업무·팀 현황·달력·그룹웨어·더보기)으로 이동합니다. 브라우저 메뉴의 <em>홈 화면에 추가</em>(아이폰은 공유 › 홈 화면에 추가)를 누르면 앱처럼 아이콘으로 열립니다. 글자가 작으면 <em>더보기 › 글자 크게</em>.</span></li>
       <li><b>달력 보기</b><span>달력 아래에서 <em>내 업무만 · 완료 숨김 · 여러 날 업무는 마감일에만</em>을 고를 수 있습니다(이 기기에 기억). 칸반의 완료 칸은 이번 주 완료만 보이고, <em>지난 완료 보기</em>로 더 볼 수 있습니다.</span></li>
       <li><b>조직도·업무분장</b><span><em>팀 현황</em> 화면 맨 위의 <em>조직도·업무분장</em>을 누르면 관리부 전체 조직도, 안양본사·군포공장·화성공장 관리부 조직도(법정 선임 현황 포함), 업무분장표(정·부·대행 담당, 최근 12주 실적)를 봅니다. 이름표의 짧은 글은 주요 업무 약식이고, 이름을 누르면 그 사람의 업무분장이 나옵니다. 매주 1회 업무일지 기록과 직원 명단을 비교해 담당·대행·부담당·새 업무와 직원 변동을 자동 반영하고, 바뀐 내용은 <em>변경 이력</em>과 알림으로 알려 드립니다. 관리자는 업무를 누르면 담당을 직접 고칠 수 있습니다.</span></li>
-      <li><b>인쇄</b><span>모든 화면 위쪽의 파란 테두리 <em>🖨 인쇄</em> 단추(휴대폰은 위쪽 🖨 아이콘 또는 더보기 › 이 화면 인쇄)를 누르면 지금 화면을 A4로 인쇄합니다. 업무가 나오는 화면(내 업무·팀 현황·총괄·칸반·달력·목록·보고서·조직도)에서는 인쇄 방식을 고르는 창이 먼저 뜹니다. 기본은 <em>현재 양식 그대로(구분하여 표기)</em>이고, <em>업무 목록만(구분 없이)</em>을 고르면 칸·절·대분류 구분 없이 지금 화면의 업무 전체를 날짜순 한 표(업무명·분류·사업장·담당·상태·일정·진척, 조직도는 업무·세부 내용·주기·정·대행·부)로 인쇄합니다. 인쇄 창에서 'PDF로 저장'을 고르면 파일로도 남길 수 있습니다. 업무 상세 창의 <em>🖨 인쇄</em>는 그 업무 한 장(정보·내용·진행 기록·사진), 보고서 화면은 보고서 용지만 인쇄합니다. <em>📄 내 업무 보고서</em>(내 업무 화면·보고서의 개인별 보고서)는 내가 담당했거나 진행 기록을 남긴 업무와 일자별 진행 기록으로 개인 보고서를 만들고, 보고서의 <em>업무 범위 › 🔒 내 비공개 업무만</em>으로 비공개 업무만 출력할 수 있습니다.</span></li>
+      <li><b>인쇄</b><span>모든 화면 위쪽의 파란 테두리 <em>🖨</em>(인쇄) 아이콘(휴대폰은 더보기 › 이 화면 인쇄도 가능)를 누르면 지금 화면을 A4로 인쇄합니다. 업무가 나오는 화면(내 업무·팀 현황·총괄·칸반·달력·목록·보고서·조직도)에서는 인쇄 방식을 고르는 창이 먼저 뜹니다. 기본은 <em>현재 양식 그대로(구분하여 표기)</em>이고, <em>업무 목록만(구분 없이)</em>을 고르면 칸·절·대분류 구분 없이 지금 화면의 업무 전체를 날짜순 한 표(업무명·분류·사업장·담당·상태·일정·진척, 조직도는 업무·세부 내용·주기·정·대행·부)로 인쇄합니다. 인쇄 창에서 'PDF로 저장'을 고르면 파일로도 남길 수 있습니다. 업무 상세 창의 <em>🖨 인쇄</em>는 그 업무 한 장(정보·내용·진행 기록·사진), 보고서 화면은 보고서 용지만 인쇄합니다. <em>📄 내 업무 보고서</em>(내 업무 화면·보고서의 개인별 보고서)는 내가 담당했거나 진행 기록을 남긴 업무와 일자별 진행 기록으로 개인 보고서를 만들고, 보고서의 <em>업무 범위 › 🔒 내 비공개 업무만</em>으로 비공개 업무만 출력할 수 있습니다.</span></li>
       <li><b>개인정보 자료</b><span>이력서·급여·주민등록번호 13자리·신분증·진단서 같은 개인정보가 든 사진·파일은 올리는 순간 자동으로 검사해 <em>총괄 관리자에게만</em> 전달됩니다. 다른 직원과 올린 분에게는 '관리자 전용' 그림만 보이고, 보고서·사진첩에도 나오지 않습니다. 생년월일만 있는 자료는 그대로 올라갑니다. 업무 창에서 <em>🔐 개인정보 사진</em>을 켜고 올리면 검사 없이 바로 전달됩니다. 업무 내용에 주민등록번호 13자리를 적으면 저장할 때 뒷자리가 가려집니다.</span></li>
       <li><b>정기 일정</b><span>월례조회(매월 첫째 월요일 08:30 군포공장 5층 식당, 3·6·9·12월 법정 의무교육)와 관리부 업무회의(매주 목요일 16:00 안양본사 6층 대회의실, 공휴일·월례조회 주간과 전 주는 쉬고 조회 후 진행)가 달력과 내 업무 화면에 표시되고 전날·당일 알림이 옵니다. 공휴일이면 날짜가 자동으로 옮겨지고, 그룹웨어 공지가 오면 그 날짜로 확정됩니다. 관리자는 달력의 <em>정기 일정</em>에서 날짜를 바꾸거나 쉼으로 지정할 수 있습니다.</span></li>
       <li><b>그룹웨어 소식</b><span>회사 그룹웨어(업무연락·공지사항·경조사 등) 새 글을 Claude가 평일 08~19시 매시간 확인해 요약합니다. 상단 <a href="#gw">그룹웨어</a>에서 요약·일정·관리부 할 일을 보고, 필요한 글은 <em>업무로 등록</em>을 누르면 내용이 채워진 등록 창이 열립니다. 새 글은 알림(종)에도 표시됩니다.</span></li>
