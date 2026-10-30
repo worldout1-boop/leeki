@@ -7048,7 +7048,7 @@ function apLeaveParse(d){if(!d||d.mode!=='form')return null;if(!/휴가|근태|�
   if(/촉진|사용\s*계획/.test(d.title+d.tplName))kind='plan';else if(kw.length===1||(kw.length===2&&has('휴일')&&has('특근'))){kind=has('휴일')||has('특근')?'hw':has('반차')?(has('오후')?'pm':'am'):has('연차')?'annual':has('외출')?'':'etc';}
   if(!kind)return null;return {kind,from:ds[0],to:ds[ds.length>1?1:0]<ds[0]?ds[0]:ds[ds.length>1?1:0],sids:[d.bySid].filter(Boolean)};}
 function lvSub(){if(S.mode!=='firebase'||!S.fs||LV.u)return;
-  LV.u=S.fs.collection('leave').onSnapshot(s=>{LV.raw=s.docs.map(d=>({id:d.id,...d.data()}));LV.list=s.docs.map(d=>lvNorm(d.id,d.data())).filter(Boolean);LV.loaded=true;lvRefreshCal();lvSchedule();if($('#dlg-lvplan')&&$('#dlg-lvplan').open)lvPlanRender();},()=>{LV.loaded=true;});}
+  LV.u=S.fs.collection('leave').onSnapshot(s=>{LV.denied=false;LV.raw=s.docs.map(d=>({id:d.id,...d.data()}));LV.list=s.docs.map(d=>lvNorm(d.id,d.data())).filter(Boolean);LV.loaded=true;lvRefreshCal();lvSchedule();if($('#dlg-lvplan')&&$('#dlg-lvplan').open)lvPlanRender();},()=>{LV.loaded=true;LV.denied=true;});}
 {const _es=extSubs;extSubs=function(){_es.apply(this,arguments);try{try{LV.u&&LV.u();}catch{}LV.u=null;LV.list=[];LV.loaded=false;LV.tried=new Set();lvSub();S.unsubs.push(()=>{try{LV.u&&LV.u();}catch{}LV.u=null;LV.list=[];LV.loaded=false;});}catch(e){console.warn(e);}};}
 function lvRefreshCal(){if(S.view==='calendar'&&S.cal){try{S.cal.removeAllEvents();S.cal.addEventSource(calEvents());}catch{}}}
 function lvSchedule(){clearTimeout(LV.t);LV.t=setTimeout(()=>lvSync().catch(()=>{}),1200);}
@@ -7237,7 +7237,7 @@ Object.assign(LV_K,{trip:'출장',out:'외출·조퇴'});Object.assign(LV_IC,{tr
 const GWA_SINCE='2026-10-01';
 /* 근태 구분 글자 → 달력 종류 */
 function gwaKind(t){const s=String(t||'').replace(/\s+/g,'');if(!s)return '';
-  if(/휴일|특근|주말근무|휴무일근무/.test(s))return 'hw';
+  if(/휴일|특근|토요근무|일요근무|주말근무|휴무일근무|당직/.test(s))return 'hw';
   if(/반차|반일/.test(s))return /오후/.test(s)?'pm':'am';
   if(/출장|외근|파견근무/.test(s))return 'trip';
   if(/외출|조퇴|지각/.test(s))return 'out';
@@ -7274,7 +7274,7 @@ function gwaDoc(p){if(!p||typeof p!=='object')throw new Error('형식 오류');c
 Object.assign(window.gwApi,{
   /* 이미 기록한 근태계: {since, docs:{문서ID: 'done'|'run'|'skip'}} — 'done'·'skip'은 다시 읽지 않아도 됨, 'run'은 결재 상태가 바뀌었는지만 확인 */
   async attKnown(ms=8000){const t0=Date.now();while(Date.now()-t0<ms&&!LV.loaded)await new Promise(r=>setTimeout(r,250));
-    if(!LV.loaded)throw new Error('달력 표기(leave)를 읽을 수 없습니다 — Firebase 규칙 게시가 필요합니다');
+    if(!LV.loaded||LV.denied)throw new Error('달력 표기(leave)를 읽을 수 없습니다 — Firebase 규칙 게시가 필요합니다');
     const docs={};for(const d of (LV.raw||[]))if(d.src==='gw'&&d.gwId)docs[d.gwId]=d.skip?'skip':(d.st==='run'?'run':'done');
     const s=addDays(today(),-45);return {since:s>GWA_SINCE?s:GWA_SINCE,docs};},
   /* 근태계 기록: [{gwId, no, form, st:'done'|'run'|'no', kindText 또는 kind, from, to, names:[이름]}] — 사유·본문은 넣지 않음 */
