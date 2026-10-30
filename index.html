@@ -1460,6 +1460,8 @@ input.ir{font:inherit;font-size:14.5px;font-weight:600;padding:4px 8px;border:2p
 .fc .ev-lv-run{opacity:.62;background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.18) 0 6px,transparent 6px 12px)!important}
 .fc .ev-lv-run .fc-event-title{font-weight:600}
 .lv-c.t{background:#1d4ed8;color:#fff}.lv-c.o{background:#6d28d9;color:#fff}
+/* 34차: 기록 목록의 완료일 */
+.feed time.fd-done{color:var(--done,#15803d);font-weight:700}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -5636,6 +5638,10 @@ document.addEventListener('change',e=>{if(e.target&&(e.target.id==='t-start'||e.
 {const _cr=computeReport;computeReport=function(p){const R=_cr.apply(this,arguments);try{if(R&&R.pe>=today()){const have=new Set(R.next.map(t=>t.path));
   const add=repTasks(p).filter(t=>t.status==='plan'&&!wdRange(t)&&!have.has(t.path)&&(!p.cat||t.cat===p.cat)&&(!p.site||t.site===p.site)&&(!p.who||t.assignees.includes(p.who)));
   if(add.length)R.next=R.next.concat(add);}}catch(e){console.warn(e);}return R;};}
+/* 34차: 기록 목록(오늘 한 일·최근 기록·팀 현황 기록)의 시각 자리 — 완료된 업무는 기록한 때 대신 완료일(보고서 '완료일'과 같은 기준). 기록 시각은 마우스를 올리면 보임 */
+const fdDone=t=>t&&t.status==='done'?(t.doneAt||t.due||t.start||''):'';
+{const _f=feedItem;feedItem=function(t,l,o){const h=_f.apply(this,arguments);const d=fdDone(t);if(!d||!isDate(d)||!l||!l.at)return h;
+  return h.replace(/<time datetime="[^"]*">[\s\S]*?<\/time>/,`<time class="fd-done" datetime="${esc(d)}" title="기록 ${esc(hhmm(l.at))}">완료 ${esc(fmtMD(d))}</time>`);};}
 
 /* ───────── 24차: 전자결재 ─────────
    · 문서: 서식(기본 서식 + 관리자가 올린 워드·엑셀 서식)에 직접 작성, 또는 스캔·파일을 올려 결재
