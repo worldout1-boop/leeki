@@ -10,6 +10,7 @@ rules_version = '2';
 // · 비공개 업무(priv/{uid})는 본인만 읽고 쓸 수 있습니다. 관리자도 볼 수 없습니다.
 // · 그룹웨어 소식(gw)은 구성원 모두 읽고, 기록은 관리자만 합니다.
 // · 전자결재(appr)는 결재선·참조에 든 사람과 관리자만 볼 수 있습니다. 결재 서식·결재선 설정은 관리자만 고칩니다.
+// · 회사서식(forms)은 구성원 모두 보고 인쇄·작성하며, 올리기·분류·삭제는 관리자만 합니다.
 // · 개인정보 자료(pii — 이력서·급여·주민등록번호 13자리 등이 든 사진·파일)는 구성원 누구나 올릴 수 있지만,
 //   읽기·삭제는 app/members.pii 에 지정된 총괄 관리자만 할 수 있습니다. 올린 사람도 다시 볼 수 없습니다.
 
@@ -261,6 +262,19 @@ service cloud.firestore {
       allow read: if isMember();
       allow write: if isAdmin();
       match /f/{cid} {
+        allow read: if isMember();
+        allow write: if isAdmin();
+      }
+    }
+    // 회사서식 — 구성원 모두 읽기(미리보기·인쇄·내려받기·작성), 올리기·분류·고치기·삭제는 관리자만
+    match /forms/{id} {
+      allow read: if isMember();
+      allow write: if isAdmin();
+      match /f/{cid} {
+        allow read: if isMember();
+        allow write: if isAdmin();
+      }
+      match /h/{cid} {
         allow read: if isMember();
         allow write: if isAdmin();
       }
