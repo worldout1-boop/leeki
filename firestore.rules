@@ -236,18 +236,23 @@ service cloud.firestore {
     // 내용(제목·본문·첨부)은 기안자만, 그것도 임시저장·회수·반려 상태일 때만 고칠 수 있음. 결재자·참조자는 결재·확인 기록만.
     match /appr/{id} {
       allow read: if isMember() && (isAdmin() || request.auth.uid in resource.data.uids);
+      // 기안자가 스스로 '완료'로 만들 수 있는 것은 결재선이 본인 한 명(전결)일 때뿐
       allow create: if isMember()
         && request.resource.data.by == request.auth.uid
         && request.auth.uid in request.resource.data.uids
-        && request.resource.data.status in ['draft', 'run', 'done'];
+        && (request.resource.data.status in ['draft', 'run']
+          || (request.resource.data.status == 'done' && request.resource.data.line.size() == 1));
       allow update: if isMember()
         && request.resource.data.by == resource.data.by
-        && ((resource.data.by == request.auth.uid && resource.data.status in ['draft', 'back', 'no'])
+        && ((resource.data.by == request.auth.uid && resource.data.status in ['draft', 'back', 'no']
+            && (request.resource.data.status in ['draft', 'run', 'back', 'no']
+              || (request.resource.data.status == 'done' && request.resource.data.line.size() == 1)))
           || ((isAdmin() || request.auth.uid in resource.data.uids)
             && request.resource.data.uids.hasAll(resource.data.uids)
             && request.resource.data.title == resource.data.title
             && request.resource.data.body == resource.data.body
-            && request.resource.data.files == resource.data.files));
+            && request.resource.data.files == resource.data.files
+            && request.resource.data.get('leave', null) == resource.data.get('leave', null)));
       allow delete: if isAdmin()
         || (isMember() && resource.data.by == request.auth.uid && resource.data.status in ['draft', 'back']);
 
@@ -300,6 +305,24 @@ service cloud.firestore {
         allow read: if isMember();
         allow write: if isDocMgr();
       }
+    }
+    // 연차·휴일근무 달력 표기 — 구성원 모두 읽기
+    //   src 'appr': 최종 승인(done)된 결재 문서의 달력 표기(leave)와 같은 값만 (결재선 2명 이상), 문서 id 는 ap_{결재 id}
+    //   src 'plan': 연차 사용 계획(촉진) 예정일 — 적은 사람 본인만 고치고 지움. 관리자는 모두
+    match /leave/{id} {
+      allow read: if isMember();
+      allow create, update: if isMember() && (isAdmin()
+        || (request.resource.data.src == 'plan' && request.resource.data.kind == 'plan'
+          && request.resource.data.uid == request.auth.uid
+          && (resource == null || resource.data.uid == request.auth.uid))
+        || (request.resource.data.src == 'appr' && id == 'ap_' + request.resource.data.apId
+          && get(/databases/$(database)/documents/appr/$(request.resource.data.apId)).data.status == 'done'
+          && get(/databases/$(database)/documents/appr/$(request.resource.data.apId)).data.line.size() > 1
+          && get(/databases/$(database)/documents/appr/$(request.resource.data.apId)).data.leave.kind == request.resource.data.kind
+          && get(/databases/$(database)/documents/appr/$(request.resource.data.apId)).data.leave.from == request.resource.data.from
+          && get(/databases/$(database)/documents/appr/$(request.resource.data.apId)).data.leave.to == request.resource.data.to
+          && get(/databases/$(database)/documents/appr/$(request.resource.data.apId)).data.leave.sids == request.resource.data.sids));
+      allow delete: if isAdmin() || (isMember() && resource.data.src == 'plan' && resource.data.uid == request.auth.uid);
     }
     // 올리기·삭제 기록 — 구성원 모두 읽기(알림), 자료 관리자가 본인 이름으로 남기기만, 고치기 불가
     match /doclog/{id} {

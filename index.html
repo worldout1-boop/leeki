@@ -508,6 +508,8 @@ dialog::backdrop{background:rgba(8,16,28,.5)}
 .set-two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media (max-width:640px){.set-two{grid-template-columns:1fr}}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+/* Notyf 3.10.0 — https://github.com/caroso1222/notyf · MIT License · Copyright (c) 2016-2020 Carlos Roso */
+@-webkit-keyframes notyf-fadeinup{0%{opacity:0;transform:translateY(25%)}to{opacity:1;transform:translateY(0)}}@keyframes notyf-fadeinup{0%{opacity:0;transform:translateY(25%)}to{opacity:1;transform:translateY(0)}}@-webkit-keyframes notyf-fadeinleft{0%{opacity:0;transform:translateX(25%)}to{opacity:1;transform:translateX(0)}}@keyframes notyf-fadeinleft{0%{opacity:0;transform:translateX(25%)}to{opacity:1;transform:translateX(0)}}@-webkit-keyframes notyf-fadeoutright{0%{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(25%)}}@keyframes notyf-fadeoutright{0%{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(25%)}}@-webkit-keyframes notyf-fadeoutdown{0%{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(25%)}}@keyframes notyf-fadeoutdown{0%{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(25%)}}@-webkit-keyframes ripple{0%{transform:scale(0) translateY(-45%) translateX(13%)}to{transform:scale(1) translateY(-45%) translateX(13%)}}@keyframes ripple{0%{transform:scale(0) translateY(-45%) translateX(13%)}to{transform:scale(1) translateY(-45%) translateX(13%)}}.notyf{position:fixed;top:0;left:0;height:100%;width:100%;color:#fff;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;justify-content:flex-end;pointer-events:none;box-sizing:border-box;padding:20px}.notyf__icon--error,.notyf__icon--success{height:21px;width:21px;background:#fff;border-radius:50%;display:block;margin:0 auto;position:relative}.notyf__icon--error:after,.notyf__icon--error:before{content:"";background:currentColor;display:block;position:absolute;width:3px;border-radius:3px;left:9px;height:12px;top:5px}.notyf__icon--error:after{transform:rotate(-45deg)}.notyf__icon--error:before{transform:rotate(45deg)}.notyf__icon--success:after,.notyf__icon--success:before{content:"";background:currentColor;display:block;position:absolute;width:3px;border-radius:3px}.notyf__icon--success:after{height:6px;transform:rotate(-45deg);top:9px;left:6px}.notyf__icon--success:before{height:11px;transform:rotate(45deg);top:5px;left:10px}.notyf__toast{display:block;overflow:hidden;pointer-events:auto;-webkit-animation:notyf-fadeinup .3s ease-in forwards;animation:notyf-fadeinup .3s ease-in forwards;box-shadow:0 3px 7px 0 rgba(0,0,0,.25);position:relative;padding:0 15px;border-radius:2px;max-width:300px;transform:translateY(25%);box-sizing:border-box;flex-shrink:0}.notyf__toast--disappear{transform:translateY(0);-webkit-animation:notyf-fadeoutdown .3s forwards;animation:notyf-fadeoutdown .3s forwards;-webkit-animation-delay:.25s;animation-delay:.25s}.notyf__toast--disappear .notyf__icon,.notyf__toast--disappear .notyf__message{-webkit-animation:notyf-fadeoutdown .3s forwards;animation:notyf-fadeoutdown .3s forwards;opacity:1;transform:translateY(0)}.notyf__toast--disappear .notyf__dismiss{-webkit-animation:notyf-fadeoutright .3s forwards;animation:notyf-fadeoutright .3s forwards;opacity:1;transform:translateX(0)}.notyf__toast--disappear .notyf__message{-webkit-animation-delay:.05s;animation-delay:.05s}.notyf__toast--upper{margin-bottom:20px}.notyf__toast--lower{margin-top:20px}.notyf__toast--dismissible .notyf__wrapper{padding-right:30px}.notyf__ripple{height:400px;width:400px;position:absolute;transform-origin:bottom right;right:0;top:0;border-radius:50%;transform:scale(0) translateY(-51%) translateX(13%);z-index:5;-webkit-animation:ripple .4s ease-out forwards;animation:ripple .4s ease-out forwards}.notyf__wrapper{display:flex;align-items:center;padding-top:17px;padding-bottom:17px;padding-right:15px;border-radius:3px;position:relative;z-index:10}.notyf__icon{width:22px;text-align:center;font-size:1.3em;opacity:0;-webkit-animation:notyf-fadeinup .3s forwards;animation:notyf-fadeinup .3s forwards;-webkit-animation-delay:.3s;animation-delay:.3s;margin-right:13px}.notyf__dismiss{position:absolute;top:0;right:0;height:100%;width:26px;margin-right:-15px;-webkit-animation:notyf-fadeinleft .3s forwards;animation:notyf-fadeinleft .3s forwards;-webkit-animation-delay:.35s;animation-delay:.35s;opacity:0}.notyf__dismiss-btn{background-color:rgba(0,0,0,.25);border:none;cursor:pointer;transition:opacity .2s ease,background-color .2s ease;outline:none;opacity:.35;height:100%;width:100%}.notyf__dismiss-btn:after,.notyf__dismiss-btn:before{content:"";background:#fff;height:12px;width:2px;border-radius:3px;position:absolute;left:calc(50% - 1px);top:calc(50% - 5px)}.notyf__dismiss-btn:after{transform:rotate(-45deg)}.notyf__dismiss-btn:before{transform:rotate(45deg)}.notyf__dismiss-btn:hover{opacity:.7;background-color:rgba(0,0,0,.15)}.notyf__dismiss-btn:active{opacity:.8}.notyf__message{vertical-align:middle;position:relative;opacity:0;-webkit-animation:notyf-fadeinup .3s forwards;animation:notyf-fadeinup .3s forwards;-webkit-animation-delay:.25s;animation-delay:.25s;line-height:1.5em}@media only screen and (max-width:480px){.notyf{padding:0}.notyf__ripple{height:600px;width:600px;-webkit-animation-duration:.5s;animation-duration:.5s}.notyf__toast{max-width:none;border-radius:0;box-shadow:0 -2px 7px 0 rgba(0,0,0,.13);width:100%}.notyf__dismiss{width:56px}}
 /* ── 확장: 사진·총괄·자료실·법정 업무·알림 ── */
 .cam-only{display:none}
 @media (max-width:760px){.cam-only{display:inline-flex}}
@@ -1417,6 +1419,32 @@ input.ir{font:inherit;font-size:14.5px;font-weight:600;padding:4px 8px;border:2p
 .doc-row.dl-flash{animation:dlFlash 2.2s ease}@keyframes dlFlash{0%,40%{background:#fff5c2}100%{background:transparent}}
 .dm-list{display:flex;flex-direction:column;gap:4px;margin-top:4px}.dm-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:13px}
 .dm-row small{color:var(--ink-3)}.dm-ok{font-size:11.5px;color:#15803d;font-weight:600}.dm-wait{font-size:11.5px;color:#b45309}
+/* 30차: 등록한 사람만 수정 · 연차 달력 · 화면 아래 알림 */
+.t-own-note{margin:0 0 10px;padding:9px 12px;border-radius:9px;background:#fff7e6;border:1px solid #f5d9a8;color:#7a4a00;font-size:12.8px;line-height:1.55}
+.fc .ev-lock{cursor:pointer}
+.fc .ev-lv .fc-event-title,.fc .ev-lv .fc-list-event-title{font-weight:800}
+.fc .ev-lv-annual,.fc .ev-lv-am,.fc .ev-lv-pm{background:#0f766e!important;border-color:#0f766e!important;color:#fff}
+.fc .ev-lv-etc{background:#4d7c0f!important;border-color:#4d7c0f!important;color:#fff}
+.fc .ev-lv-hw{background:#c2410c!important;border-color:#c2410c!important;color:#fff}
+.fc .ev-lv-plan{background:#ecfdf5!important;border:1.5px dashed #0f766e!important;color:#0f766e!important}
+.fc .ev-lv-plan .fc-event-title,.fc .ev-lv-plan .fc-list-event-title{font-weight:500;font-style:italic}
+.fc .ev-lv .fc-event-main,.fc .ev-lv .fc-event-title{color:inherit}
+.cal-lv{display:inline-flex;gap:8px;align-items:center;margin-left:10px;flex-wrap:wrap}
+.lv-leg{display:inline-flex;gap:6px;align-items:center;flex-wrap:wrap;margin-right:6px}.lv-c{font-size:11.5px;padding:1px 7px;border-radius:999px}
+.lv-c.a{background:#0f766e;color:#fff}.lv-c.h{background:#c2410c;color:#fff}.lv-c.p{border:1.5px dashed #0f766e;color:#0f766e}
+.ap-lv{border:1px solid var(--line);border-radius:10px;padding:10px;margin-bottom:12px;background:#f6fbfa}.ap-lv h3{margin-top:0}.ap-lv select{width:100%}
+.ap-lv-d{display:flex;gap:6px;align-items:center;margin-top:6px}.ap-lv-d input{flex:1;min-width:0}.ap-lv-who{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;align-items:center}
+.ap-lvinfo{margin:8px 0;padding:8px 12px;border-radius:8px;background:#f0fdf9;border:1px solid #b7e4d8;font-size:13px}.ap-lvinfo .ok{color:#0f766e;font-weight:700}
+.lvp label{display:flex;gap:8px;align-items:center}.lvp-add{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:10px 0}.lvp-add input[type=date]{flex:1 1 130px}.lvp-add #lvp-note{flex:2 1 160px}
+.lvp-list{list-style:none;margin:0;padding:0}.lvp-list li{display:flex;gap:8px;align-items:center;padding:7px 2px;border-top:1px solid var(--line);font-size:13px}.lvp-list .sp{flex:1}.lvp-list .none{color:var(--ink-3)}
+.notyf{z-index:1500}.notyf__toast.wl-nb{width:360px;max-width:calc(100vw - 32px);padding:0 14px;border-radius:12px;box-shadow:0 10px 30px rgba(15,23,42,.28);cursor:pointer}.notyf__toast.wl-nb .notyf__wrapper{padding-right:30px}.notyf__toast.wl-nb .notyf__message{min-width:0}
+.notyf__toast.wl-nb .notyf__wrapper{padding:12px 0}.notyf__toast.wl-nb .notyf__message{font-size:13px;line-height:1.45}
+.wl-nb .nb-h{display:flex;gap:7px;align-items:center}.wl-nb .nb-h b{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:260px}
+.wl-nb .nb-ic{flex:none;font-size:11px;font-weight:700;padding:1px 6px;border-radius:5px;background:rgba(255,255,255,.18)}
+.wl-nb .nb-x{margin-top:3px;opacity:.95}.wl-nb .nb-f{margin-top:5px;font-size:11px;opacity:.7}
+.notyf__toast.wl-nb .notyf__dismiss-btn{opacity:.75}.notyf__toast.wl-nb .notyf__dismiss-btn:hover{opacity:1}
+@media (max-width:760px){.notyf{padding-bottom:calc(74px + env(safe-area-inset-bottom))}.notyf__toast.wl-nb{max-width:none}}
+@media print{.notyf{display:none!important}}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -2309,6 +2337,9 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>달력 보기</b><span>달력 아래에서 <em>내 업무만 · 완료 숨김 · 여러 날 업무는 마감일에만</em>을 고를 수 있습니다(이 기기에 기억). 칸반의 완료 칸은 이번 주 완료만 보이고, <em>지난 완료 보기</em>로 더 볼 수 있습니다.</span></li>
       <li><b>조직도·업무분장</b><span><em>팀 현황</em> 화면 맨 위의 <em>조직도·업무분장</em>을 누르면 관리부 전체 조직도, 안양본사·군포공장·화성공장 관리부 조직도(법정 선임 현황 포함), 업무분장표(정·부·대행 담당, 최근 12주 실적)를 봅니다. 이름표의 짧은 글은 주요 업무 약식이고, 이름을 누르면 그 사람의 업무분장이 나옵니다. 매주 1회 업무일지 기록과 직원 명단을 비교해 담당·대행·부담당·새 업무와 직원 변동을 자동 반영하고, 바뀐 내용은 <em>변경 이력</em>과 알림으로 알려 드립니다. 관리자는 업무를 누르면 담당을 직접 고칠 수 있습니다.</span></li>
       <li><b>자료실</b><span>위쪽 <em>각종서류 올리기</em> 화면 맨 위의 <em>🗂 자료실</em>을 누르면 정리된 회사 서류(사업장별·종류별, 유효기간)를 봅니다. 자료실에서 다시 <em>📤 각종서류 올리기</em>로 돌아갈 수 있습니다.</span></li>
+      <li><b>업무 수정 권한</b><span>업무(일정)의 업무명·일정·담당·내용 수정과 삭제는 <em>등록한 사람</em>과 관리자만 할 수 있습니다. 담당자는 진행 상태·진척률·진행 기록·사진만 남기고, 그 밖의 직원은 보기만 합니다.</span></li>
+      <li><b>연차·휴일근무 달력</b><span>전자결재 기안 오른쪽 <em>📅 달력 표기</em>에서 연차·반차·휴일근무·연차 사용 계획을 고르고 날짜를 적으면, 최종 승인된 뒤 달력에 <b>굵은 글자</b>(🌴 연차, 🛠 휴일근무)로 표시됩니다. 연차 사용 촉진에 따라 정한 예정일은 달력 위 <em>🗓 연차 사용 계획(촉진)</em>에서 적으면 <i>연차(예정)</i>으로 보입니다. 사유는 달력에 나오지 않습니다.</span></li>
+      <li><b>화면 아래 알림</b><span>새 알림은 화면 오른쪽 아래에 카드로 떠서 <em>✕(확인)</em>을 누르거나 카드를 눌러 열 때까지 사라지지 않습니다. 확인하지 않으면 다시 열어도 또 보입니다. 3건이 넘으면 '알림 n건 더'로 묶입니다.</span></li>
       <li><b>자료 관리 권한</b><span>각종서류 올리기(자료실·회사서식)에 서류를 올리고, 지우고, 이름·폴더를 바꾸는 일은 <em>자료 관리자</em>(기본: 이기도·박혜진·윤종국·윤민진·이은주)만 합니다. 다른 직원은 보기·내려받기·인쇄만 합니다. 올리기·삭제 기록은 관리부 모두에게 알림(🔔)으로 가고, 각종서류 올리기 화면 아래 <em>📜 올리기·삭제 기록</em>에서도 볼 수 있습니다. 관리자는 <em>설정 › 자료 관리 권한</em>에서 바꿉니다.</span></li>
       <li><b>회사서식</b><span>위쪽 <em>각종서류 올리기</em> 화면 맨 위의 <em>🖨 회사서식(출력 작성)</em>은 인쇄해서 손으로 적는 서식(미리보기·인쇄·원본 내려받기), <em>✏️ 회사서식(직접 작성)</em>은 화면에서 바로 적는 서식입니다. 서식을 열어 파란 칸을 눌러 적고(PDF·스캔 서식은 적을 곳을 눌러 글상자), <em>인쇄</em>하거나 <em>전자결재로 올리기</em>를 누릅니다. 적던 내용은 이 기기에 자동 보관됩니다. 관리자는 서식 파일·폴더·압축(zip)을 통째로 올린 뒤 <em>하나씩 보며 분류하기</em>에서 숫자키 1(출력 작성)·2(직접 작성)로 빠르게 고릅니다. 폴더 이름은 서식 분류가 됩니다.</span></li>
       <li><b>전자결재</b><span>위쪽 <em>전자결재</em>에서 <em>＋ 새 기안</em>을 누르고 <em>서식에 직접 작성</em>(기안서·품의서·지출결의서·구매요청서·휴가 신청서·업무 보고서·시설 수리 요청서, 관리자가 올린 워드·엑셀 서식) 또는 <em>스캔·파일 올려 결재</em>를 고릅니다. 결재선은 자동으로 <b>직무별 팀원 → 직무별 총괄(재무·회계 박혜진, 인사·총무 윤민진, 시설·공무 윤종국) → 전체 총괄(이기도)</b>로 정해지고, 두 직무를 겸하는 직원은 결재할 직무를 고릅니다. 필요할 때만 <em>결재선 변경</em>으로 결재자를 더하거나 빼고 순서를 바꿉니다. <em>자금 결제 필요</em>에 체크하면 박혜진 부장이 자동으로 참조(회람)됩니다. 결재할 차례가 되면 알림(종)과 내 업무 화면에 표시되고, 문서에서 <em>승인</em>·<em>반려</em>(사유 필수)를 누릅니다. 올린 사람은 아무도 결재하기 전이면 <em>회수</em>, 반려되면 고쳐서 다시 올릴 수 있습니다. 문서는 결재선·참조에 든 사람과 관리자만 볼 수 있고, 개인정보가 든 첨부는 총괄 관리자만 열 수 있습니다.</span></li>
@@ -3180,6 +3211,9 @@ function fbEnter(u,email,m){S.fbEntered=true;$('#gate').hidden=true;S.gate=null;
   if(S.afterClaim){S.afterClaim=false;S.askedMe=true;go('#help');setTimeout(()=>toast('관리자로 지정했습니다. 설정에서 직원 명단과 접속 허용 이메일을 등록하세요.'),300);}else route();}
 async function fbLogout(){S.loggingOut=true;try{await S.auth.signOut();}catch{}try{await S.fs.terminate();await S.fs.clearPersistence();}catch{}location.reload();}
 
+/* Notyf 3.10.0 — https://github.com/caroso1222/notyf · MIT License · Copyright (c) 2016-2020 Carlos Roso (30차: 화면 아래 알림) */
+var Notyf=function(){"use strict";var e,o=function(){return(o=Object.assign||function(t){for(var i,e=1,n=arguments.length;e<n;e++)for(var o in i=arguments[e])Object.prototype.hasOwnProperty.call(i,o)&&(t[o]=i[o]);return t}).apply(this,arguments)},n=(t.prototype.on=function(t,i){var e=this.listeners[t]||[];this.listeners[t]=e.concat([i])},t.prototype.triggerEvent=function(t,i){var e=this;(this.listeners[t]||[]).forEach(function(t){return t({target:e,event:i})})},t);function t(t){this.options=t,this.listeners={}}(i=e=e||{})[i.Add=0]="Add",i[i.Remove=1]="Remove";var f,i,s=(a.prototype.push=function(t){this.notifications.push(t),this.updateFn(t,e.Add,this.notifications)},a.prototype.splice=function(t,i){i=this.notifications.splice(t,i)[0];return this.updateFn(i,e.Remove,this.notifications),i},a.prototype.indexOf=function(t){return this.notifications.indexOf(t)},a.prototype.onUpdate=function(t){this.updateFn=t},a);function a(){this.notifications=[]}(i=f=f||{}).Dismiss="dismiss";var r={types:[{type:"success",className:"notyf__toast--success",backgroundColor:"#3dc763",icon:{className:"notyf__icon--success",tagName:"i"}},{type:"error",className:"notyf__toast--error",backgroundColor:"#ed3d3d",icon:{className:"notyf__icon--error",tagName:"i"}}],duration:2e3,ripple:!0,position:{x:"right",y:"bottom"},dismissible:!(i.Click="click")},c=(p.prototype.on=function(t,i){var e;this.events=o(o({},this.events),((e={})[t]=i,e))},p.prototype.update=function(t,i){i===e.Add?this.addNotification(t):i===e.Remove&&this.removeNotification(t)},p.prototype.removeNotification=function(t){var i,e,n=this,t=this._popRenderedNotification(t);t&&((e=t.node).classList.add("notyf__toast--disappear"),e.addEventListener(this.animationEndEventName,i=function(t){t.target===e&&(e.removeEventListener(n.animationEndEventName,i),n.container.removeChild(e))}))},p.prototype.addNotification=function(t){var i=this._renderNotification(t);this.notifications.push({notification:t,node:i}),this._announce(t.options.message||"Notification")},p.prototype._renderNotification=function(t){var i=this._buildNotificationCard(t),e=t.options.className;return e&&(t=i.classList).add.apply(t,e.split(" ")),this.container.appendChild(i),i},p.prototype._popRenderedNotification=function(t){for(var i=-1,e=0;e<this.notifications.length&&i<0;e++)this.notifications[e].notification===t&&(i=e);if(-1!==i)return this.notifications.splice(i,1)[0]},p.prototype.getXPosition=function(t){return(null===(t=null==t?void 0:t.position)||void 0===t?void 0:t.x)||"right"},p.prototype.getYPosition=function(t){return(null===(t=null==t?void 0:t.position)||void 0===t?void 0:t.y)||"bottom"},p.prototype.adjustContainerAlignment=function(t){var i=this.X_POSITION_FLEX_MAP[this.getXPosition(t)],e=this.Y_POSITION_FLEX_MAP[this.getYPosition(t)],t=this.container.style;t.setProperty("justify-content",e),t.setProperty("align-items",i)},p.prototype._buildNotificationCard=function(n){var o=this,t=n.options,i=t.icon;this.adjustContainerAlignment(t);var e=this._createHTMLElement({tagName:"div",className:"notyf__toast"}),s=this._createHTMLElement({tagName:"div",className:"notyf__ripple"}),a=this._createHTMLElement({tagName:"div",className:"notyf__wrapper"}),r=this._createHTMLElement({tagName:"div",className:"notyf__message"});r.innerHTML=t.message||"";var c,p,d,l,u=t.background||t.backgroundColor;i&&(c=this._createHTMLElement({tagName:"div",className:"notyf__icon"}),("string"==typeof i||i instanceof String)&&(c.innerHTML=new String(i).valueOf()),"object"==typeof i&&(p=i.tagName,d=i.className,l=i.text,i=void 0===(i=i.color)?u:i,l=this._createHTMLElement({tagName:void 0===p?"i":p,className:d,text:l}),i&&(l.style.color=i),c.appendChild(l)),a.appendChild(c)),a.appendChild(r),e.appendChild(a),u&&(t.ripple?(s.style.background=u,e.appendChild(s)):e.style.background=u),t.dismissible&&(s=this._createHTMLElement({tagName:"div",className:"notyf__dismiss"}),u=this._createHTMLElement({tagName:"button",className:"notyf__dismiss-btn"}),s.appendChild(u),a.appendChild(s),e.classList.add("notyf__toast--dismissible"),u.addEventListener("click",function(t){var i,e;null!==(e=(i=o.events)[f.Dismiss])&&void 0!==e&&e.call(i,{target:n,event:t}),t.stopPropagation()})),e.addEventListener("click",function(t){var i,e;return null===(e=(i=o.events)[f.Click])||void 0===e?void 0:e.call(i,{target:n,event:t})});t="top"===this.getYPosition(t)?"upper":"lower";return e.classList.add("notyf__toast--"+t),e},p.prototype._createHTMLElement=function(t){var i=t.tagName,e=t.className,t=t.text,i=document.createElement(i);return e&&(i.className=e),i.textContent=t||null,i},p.prototype._createA11yContainer=function(){var t=this._createHTMLElement({tagName:"div",className:"notyf-announcer"});t.setAttribute("aria-atomic","true"),t.setAttribute("aria-live","polite"),t.style.border="0",t.style.clip="rect(0 0 0 0)",t.style.height="1px",t.style.margin="-1px",t.style.overflow="hidden",t.style.padding="0",t.style.position="absolute",t.style.width="1px",t.style.outline="0",document.body.appendChild(t),this.a11yContainer=t},p.prototype._announce=function(t){var i=this;this.a11yContainer.textContent="",setTimeout(function(){i.a11yContainer.textContent=t},100)},p.prototype._getAnimationEndEventName=function(){var t,i=document.createElement("_fake"),e={MozTransition:"animationend",OTransition:"oAnimationEnd",WebkitTransition:"webkitAnimationEnd",transition:"animationend"};for(t in e)if(void 0!==i.style[t])return e[t];return"animationend"},p);function p(){this.notifications=[],this.events={},this.X_POSITION_FLEX_MAP={left:"flex-start",center:"center",right:"flex-end"},this.Y_POSITION_FLEX_MAP={top:"flex-start",center:"center",bottom:"flex-end"};var t=document.createDocumentFragment(),i=this._createHTMLElement({tagName:"div",className:"notyf"});t.appendChild(i),document.body.appendChild(t),this.container=i,this.animationEndEventName=this._getAnimationEndEventName(),this._createA11yContainer()}function d(t){var e=this;this.dismiss=this._removeNotification,this.notifications=new s,this.view=new c;var i=this.registerTypes(t);this.options=o(o({},r),t),this.options.types=i,this.notifications.onUpdate(function(t,i){return e.view.update(t,i)}),this.view.on(f.Dismiss,function(t){var i=t.target,t=t.event;e._removeNotification(i),i.triggerEvent(f.Dismiss,t)}),this.view.on(f.Click,function(t){var i=t.target,t=t.event;return i.triggerEvent(f.Click,t)})}return d.prototype.error=function(t){t=this.normalizeOptions("error",t);return this.open(t)},d.prototype.success=function(t){t=this.normalizeOptions("success",t);return this.open(t)},d.prototype.open=function(i){var t=this.options.types.find(function(t){return t.type===i.type})||{},t=o(o({},t),i);this.assignProps(["ripple","position","dismissible"],t);t=new n(t);return this._pushNotification(t),t},d.prototype.dismissAll=function(){for(;this.notifications.splice(0,1););},d.prototype.assignProps=function(t,i){var e=this;t.forEach(function(t){i[t]=(null==i[t]?e.options:i)[t]})},d.prototype._pushNotification=function(t){var i=this;this.notifications.push(t);var e=(void 0!==t.options.duration?t:this).options.duration;e&&setTimeout(function(){return i._removeNotification(t)},e)},d.prototype._removeNotification=function(t){t=this.notifications.indexOf(t);-1!==t&&this.notifications.splice(t,1)},d.prototype.normalizeOptions=function(t,i){t={type:t};return"string"==typeof i?t.message=i:"object"==typeof i&&(t=o(o({},t),i)),t},d.prototype.registerTypes=function(t){var i=(t&&t.types||[]).slice();return r.types.map(function(e){var n=-1;i.forEach(function(t,i){t.type===e.type&&(n=i)});var t=-1!==n?i.splice(n,1)[0]:{};return o(o({},e),t)}).concat(i)},d}();
+
 /* ───────── 사진 자동 최적화 ─────────
    휴대폰 원본(3~10MB)을 브라우저에서 바로 줄여 올립니다.
    · 긴 변 1280/1600/2048px로 축소, WebP(지원 안 되면 JPEG)로 다시 저장 → 보통 0.15~0.4MB
@@ -3675,7 +3709,7 @@ function ntfCompute(){const me=myId();if(!me||!S.ready)return [];const out=[];co
   if(admin||canViewRestricted())for(const f of Object.values(S.files)){if(!f.expiry)continue;const n=diffDays(td,f.expiry);if(n<=60&&n>=-30)out.push({k:`doc|${f.id}|${f.expiry}|${n<=7?'w':n<=30?'m':'q'}`,syn:1,at:td+'T00:00:03',type:'doc',f,text:`서류 유효기간 ${expiryTxt(f.expiry)} · ${fmtYMD(f.expiry)}`});}
   if(admin&&hr>=17&&dow(td)%6!==0){const idle=staffList().filter(s=>working(s)&&!S.tasks.some(t=>t.logs.some(l=>l.by===s.id&&localDate(l.at)===td)));if(idle.length)out.push({k:`idle|${td}`,syn:1,at:td+'T17:00:00',type:'idle',text:`오늘 기록 없는 근무자 ${idle.length}명`,sub:idle.map(s=>s.name).join(', ')});}
   out.sort((a,b)=>b.at.localeCompare(a.at));return out.slice(0,80);}
-const ntfUnread=(it,st)=>it.syn?!st.syn[it.k]:it.at>st.seen;
+const ntfUnread=(it,st)=>it.syn?!st.syn[it.k]:(it.at>st.seen&&!(st.rd&&st.rd[it.k]));
 function ntfTick(){clearTimeout(NT.t);NT.t=setTimeout(ntfRun,400);}
 function ntfRun(){adminNameSync();const st=ntfState();NT.items=ntfCompute();const un=NT.items.filter(it=>ntfUnread(it,st));
   const b=$('#ntf-n');if(b){b.textContent=un.length>99?'99+':String(un.length);b.hidden=!un.length;}
@@ -3697,7 +3731,7 @@ function ntfRenderPop(){const st=ntfState();const pop=$('#ntf-pop');const its=NT
     ${dqFootHTML()}<p class="ntf-f">월례조회·업무회의(전날·당일), 그룹웨어 새 글, 내 담당 업무의 진행 기록·마감, 법정 업무, 자료실·회사서식 올리기·삭제${S.canEdit?', 이슈·서류 만료·미기록 직원·삭제 요청(관리자)':', 삭제 요청 결과'}을 모아 보여 줍니다.</p>`;}
 function dqFootHTML(){const L=S.delreqs||[];const open=L.filter(r=>r.status==='open').length;if(!L.length)return '';return `<div class="ntf-dq"><button type="button" class="btn sm" data-dq-open>${S.canEdit?`삭제 요청 관리${open?` (대기 ${open})`:''}`:`내 삭제 요청 ${L.length}건${open?` · 대기 ${open}`:''}`}</button></div>`;}
 function ntfOpen(){const pop=$('#ntf-pop');if(!pop.hidden){pop.hidden=true;return;}ntfRun();ntfRenderPop();pop.hidden=false;}
-function ntfMarkRead(){const st=ntfState();st.seen=nowISO();const keep={};for(const it of NT.items)if(it.syn)keep[it.k]=1;st.syn=keep;ntfSave();ntfRun();}
+function ntfMarkRead(){const st=ntfState();st.seen=nowISO();st.rd={};const keep={};for(const it of NT.items)if(it.syn)keep[it.k]=1;st.syn=keep;ntfSave();ntfRun();}
 function ntfBrief(){const box=$('#my-brief');if(!box)return;const st=ntfState();const td=today();if(st.brief===td||!S.myStaff){box.hidden=true;return;}
   const un=NT.items.filter(i=>ntfUnread(i,st));const due=NT.items.filter(i=>i.type==='due').length,late=NT.items.filter(i=>i.type==='late').length,news=un.filter(i=>!i.syn).length,lg=NT.items.filter(i=>i.type==='legal').length;
   if(!due&&!late&&!news&&!lg){box.hidden=true;return;}
@@ -3709,7 +3743,7 @@ document.addEventListener('click',async e=>{
   if(T.closest('#btn-ntf')||T.closest('[data-ntf-open]')){e.stopPropagation();ntfOpen();return;}
   if(T.closest('[data-ntf-read]')){ntfMarkRead();return;}
   if(T.closest('[data-ntf-perm]')){try{const r=await Notification.requestPermission();if(r==='granted'){toast('이 기기에서 알림을 받습니다.');ntfShow(`${S.config.dept} 업무일지`,'알림이 켜졌습니다.','test');}}catch{}ntfRenderPop();return;}
-  const ng=T.closest('[data-ntf-go]');if(ng){const it=NT.items.find(i=>i.k===ng.dataset.ntfGo);const st=ntfState();if(it){if(it.syn)st.syn[it.k]=1;ntfSave();$('#ntf-pop').hidden=true;
+  const ng=T.closest('[data-ntf-go]');if(ng){const it=NT.items.find(i=>i.k===ng.dataset.ntfGo);const st=ntfState();if(it){if(it.syn)st.syn[it.k]=1;else{st.rd=st.rd||{};st.rd[it.k]=1;}ntfSave();$('#ntf-pop').hidden=true;
     if(it.dq)openDreqs(it.dq);else if(it.type==='sch'){schOpen(it.sch);}else if(it.type==='wk'){uxWeekReport();}else if(it.type==='join'){jrApprove(it.jr);}else if(it.type==='bk'){openSettings();}else if(it.type==='pii'){piiOpen();}else if(it.type==='appr'){apGo(it.ap);}else if(it.type==='dlog'){dlGo(it.dl);}else if(it.type==='org'){S.orgv.tab='log';const o=S.org;if(o&&o.log[0])lsSet('wl.orgSeen',o.log[0].at);go('#org');}else if(it.type==='gw'){GW.focus=it.gw||'';if(S.view==='gw')renderGw($('#view'));else go('#gw');}else if(it.t){const t=findTask(it.t.path);if(t)openTask(t);}else if(it.f)go('#docs');else if(it.type==='idle')go('#overview');}ntfRun();return;}
   if(!T.closest('#ntf-pop')&&!$('#ntf-pop').hidden)$('#ntf-pop').hidden=true;
   if(T.closest('[data-brief-x]')){const st=ntfState();st.brief=today();ntfSave();$('#my-brief').hidden=true;return;}
@@ -4195,7 +4229,7 @@ function qaPrivSync(){const b=$('#qa-priv');if(!b)return;const ta=$('#qa-text');
 /* 업무 상세 창: 비공개 표시·전환 */
 const canMakePriv=t=>!!(t&&privOK()&&S.canWrite&&!t.priv&&!t.legal&&!t.sample&&t.createdBy===myId()&&t.assignees.every(a=>a===myId())&&!t.photos.length&&t.logs.every(l=>!l.by||l.by===myId()));
 const canDelSaved=t=>!!(t&&(t.priv||S.canEdit));
-const canDelTask=t=>!!(t&&(t.priv||S.canEdit||!t.photos.length));
+const canDelTask=t=>!!(t&&(t.priv||S.canEdit||(taskLevel(t)==='own'&&!t.photos.length)));
 function privDlgSync(t){const row=$('#t-priv-row');if(!row||!S.dlg)return;const on=!!S.dlg.priv;const isNew=!t;
   if(isNew&&privOK()&&S.canWrite){row.hidden=false;row.innerHTML=`<label class="priv-chk"><input type="checkbox" id="t-priv" ${on?'checked':''}><span><b>🔒 비공개 업무</b> — 나만 보기. 관리자·다른 직원에게 보이지 않습니다. 칸반·달력·목록·보고서에는 나에게만 🔒 표시로 나옵니다.</span></label><small class="priv-lock" hidden>사진을 올린 뒤에는 바꿀 수 없습니다. 바꾸려면 사진을 먼저 빼 주세요.</small>`;}
   else if(!isNew&&on){row.hidden=false;row.innerHTML=`<div class="priv-on"><span><b>🔒 비공개 업무</b> — 나만 볼 수 있습니다.</span>${S.canWrite?'<button type="button" class="btn sm ghost" data-priv-pub>팀에 공개하기</button>':''}</div>`;}
@@ -6934,6 +6968,176 @@ document.addEventListener('click',e=>{const b=e.target&&e.target.closest&&e.targ
 /* 올리기(각종서류 올리기 카드 저장) 기록 */
 {const _sd=storeDoc;storeDoc=async function(o){const r=await _sd.apply(this,arguments);try{const st=SLOT[o.slot]||SLOT.etc;const f=S.files[r.fid];
   dlAdd({act:r.isNew?'up':'ver',kind:'file',id:r.fid,title:o.title||(f&&f.title)||st.name,v:r.v});}catch{}return r;};}
+
+/* ───────── 30차: ① 본인이 등록한 업무·일정은 본인(과 관리자)만 수정  ② 연차·휴일근무 달력 표기  ③ 새 알림을 화면 아래에 확인할 때까지 고정 ─────────
+   ① 업무(일정)의 업무명·분류·사업장·일정·담당·내용·삭제는 등록한 사람과 관리자만. 담당자는 진행 상태·진척률·진행 기록·사진만,
+      그 밖의 직원은 보기만. (화면 + 저장 함수에서 막음 — updateTask / appendLog)
+   ② 전자결재 기안에 '달력 표기(연차·반차·휴일근무·연차 사용 계획)'를 적으면, 최종 승인된 뒤 leave/ap_{결재 id} 로 공개 → 달력에
+      굵은 글자로 표시. 연차 사용 촉진(근로기준법 제61조)에 따라 정한 사용 예정일은 leave/{id}(src plan)로 '연차(예정)' 표시.
+      사유·제목은 공개하지 않음(종류·날짜·이름만). 달력은 FullCalendar(MIT, github.com/fullcalendar/fullcalendar).
+   ③ 화면 아래 알림: Notyf(MIT, github.com/caroso1222/notyf) — 확인(✕)하거나 눌러서 열 때까지 사라지지 않음, 다시 열어도 확인 전이면 다시 표시. */
+
+/* ── ① 등록한 사람만 수정 ── */
+const TASK_OWN_KEYS=['title','cat','sub','leaf','tx','site','scope','priority','repeat','start','due','assignees','assigneeText','desc','priv','gw','legal'];
+function taskOwnerSid(t){return t&&t.createdBy&&t.createdBy!=='legal'?t.createdBy:'';}
+function taskLevel(t){if(!t||t.priv||S.preview||S.canEdit)return 'own';if(!S.canWrite)return 'view';const me=myId();const o=taskOwnerSid(t);
+  if(o&&(o===me||(S.me&&o===S.me.id)))return 'own';if(!o&&!t.legal&&me&&t.assignees.includes(me))return 'own';
+  if(me&&t.assignees.includes(me))return 'work';return 'view';}
+function taskOwnerName(t){const o=taskOwnerSid(t);return o?nameOf(o):(t&&t.legal?'관리자(법정 업무)':'등록한 사람');}
+let TDN=0;function taskDenied(t,part){if(Date.now()-TDN<1500)return;TDN=Date.now();toast(part?`업무명·일정·담당·내용은 ${taskOwnerName(t)}님(등록한 사람)과 관리자만 바꿀 수 있습니다.`:`${taskOwnerName(t)}님이 등록한 업무라 고칠 수 없습니다. 등록한 사람과 관리자만 수정할 수 있습니다.`,'err');}
+{const _u=updateTask;updateTask=async function(t,patch){const lv=taskLevel(t);
+  if(lv==='view'){taskDenied(t);throw {code:'not-owner'};}
+  if(lv==='work'){const p={};for(const k of Object.keys(patch||{})){if(TASK_OWN_KEYS.includes(k)&&JSON.stringify(patch[k])!==JSON.stringify(t[k]))continue;p[k]=patch[k];}
+    if(Object.keys(p).length<Object.keys(patch||{}).length){taskDenied(t,true);if(!Object.keys(p).length)throw {code:'not-owner'};}patch=p;}
+  return _u.call(this,t,patch);};}
+{const _a=appendLog;appendLog=async function(t,log,o){o=o||{};const lv=taskLevel(t);
+  if(lv==='view'){taskDenied(t);throw {code:'not-owner'};}
+  if(lv==='work'&&o.patch){const p={};for(const k of Object.keys(o.patch)){if(TASK_OWN_KEYS.includes(k)&&!(k==='start'&&!t.start))continue;p[k]=o.patch[k];}o={...o,patch:p};}
+  return _a.call(this,t,log,o);};}
+function taskLockApply(){const d=$('#dlg-task');if(!d||!S.dlg)return;const t=S.dlg.path?findTask(S.dlg.path):null;const lv=t?taskLevel(t):'own';d.dataset.lv=lv;
+  let note=$('#t-own-note');if(!note){const b=$('#t-body');if(!b)return;note=document.createElement('div');note.id='t-own-note';note.className='t-own-note';b.prepend(note);}
+  if(lv==='own'){note.hidden=true;d.classList.remove('t-locked','t-view');return;}
+  note.hidden=false;const on=esc(taskOwnerName(t));
+  note.innerHTML=lv==='work'?`🔒 <b>${on}</b>님이 등록한 업무입니다. 업무명·일정·담당·내용은 등록한 사람과 관리자만 고칠 수 있고, 담당자는 <b>진행 상태·진척률·진행 기록·사진</b>만 남길 수 있습니다.`
+    :`🔒 <b>${on}</b>님이 등록한 업무입니다. 보기만 할 수 있습니다 (수정은 등록한 사람과 관리자만).`;
+  d.classList.add('t-locked');d.classList.toggle('t-view',lv==='view');
+  for(const id of ['t-title','t-cat','t-sub','t-leaf','t-site','t-scope','t-prio','t-repeat','t-start','t-due','t-assignee-q','t-assignee-text','t-desc','t-auto']){const el=$('#'+id);if(el)el.disabled=true;}
+  $$('#t-picked [data-unpick]').forEach(b=>b.remove());const del=$('#t-delete');if(del)del.hidden=true;const pr=$('#t-priv-row');if(pr)pr.hidden=true;
+  if(lv==='view'){$$('#t-status button').forEach(b=>b.disabled=true);const pg=$('#t-progress');if(pg)pg.disabled=true;const sv=$('#t-save');if(sv)sv.hidden=true;
+    const c=$('#dlg-task .compose');if(c)c.hidden=true;for(const id of ['t-photo-btn','t-cam-btn','t-ph-tools','t-pii-row','t-photo-opt']){const e=$('#'+id);if(e)e.hidden=true;}
+    $$('#t-gallery [data-ptag]').forEach(b=>b.disabled=true);$$('#t-gallery .rm,#t-gallery [data-rm-photo]').forEach(b=>b.remove());}}
+{const _o=openTask;openTask=function(){const r=_o.apply(this,arguments);try{taskLockApply();}catch(e){console.warn(e);}return r;};}
+{const _r=refreshDialog;refreshDialog=function(){const r=_r.apply(this,arguments);try{taskLockApply();}catch(e){}return r;};}
+{const _c=calTaskEvents;calTaskEvents=function(){return _c.apply(this,arguments).map(e=>{const t=findTask(e.id);return !t||taskLevel(t)==='own'?e:{...e,editable:false,startEditable:false,durationEditable:false,classNames:[...(e.classNames||[]),'ev-lock']};});};}
+
+/* ── ② 연차·휴일근무 ── */
+const LV_K={annual:'연차',am:'오전 반차',pm:'오후 반차',hw:'휴일근무',etc:'휴가',plan:'연차 사용 계획(예정)'};
+const LV_IC={annual:'🌴',am:'🌴',pm:'🌴',hw:'🛠',etc:'🌿',plan:'🗓'};
+const LV={list:[],u:null,loaded:false,tried:new Set(),t:0};
+const CALV=(()=>{let o={};try{o=JSON.parse(lsGet('wl.calv')||'{}')||{};}catch{}return {on:o.on!==false};})();
+function lvClean(L){if(!L||!LV_K[L.kind])return null;/* auto 표시는 저장 안 함 */const from=isDate(L.from)?L.from:'',to=isDate(L.to)?L.to:from;if(!from)return null;
+  const sids=[...new Set((Array.isArray(L.sids)?L.sids:[]).filter(x=>typeof x==='string'&&x))].slice(0,30);if(!sids.length)return null;return {kind:L.kind,from,to:to<from?from:to,sids};}
+function lvNorm(id,d){if(!d||!LV_K[d.kind]||!isDate(d.from))return null;const str=(x,n)=>typeof x==='string'?x.slice(0,n):'';
+  return {id,src:d.src==='plan'?'plan':'appr',apId:str(d.apId,60),no:str(d.no,40),kind:d.kind,from:d.from,to:isDate(d.to)&&d.to>=d.from?d.to:d.from,sids:Array.isArray(d.sids)?d.sids.filter(x=>typeof x==='string').slice(0,30):[],
+    names:Array.isArray(d.names)?d.names.map(x=>String(x).slice(0,20)).slice(0,30):[],note:str(d.note,100),uid:str(d.uid,80),by:str(d.by,80),byName:str(d.byName,30),at:str(d.at,40)};}
+function lvGuess(name){const s=String(name||'');return /촉진|사용\s*계획/.test(s)?'plan':/휴일|특근/.test(s)?'hw':/반차/.test(s)?'am':/휴가|연차|근태/.test(s)?'annual':'';}
+function lvParseDates(txt){const out=[];const re=/(\d{4})\s*(?:년|[.\-/])\s*(\d{1,2})\s*(?:월|[.\-/])\s*(\d{1,2})\s*일?/g;let m;while((m=re.exec(txt))){const d=`${m[1]}-${String(m[2]).padStart(2,'0')}-${String(m[3]).padStart(2,'0')}`;if(isDate(d))out.push(d);}return out;}
+function lvBodyDates(html){const div=document.createElement('div');div.innerHTML=html||'';const cell=lbl=>{const th=[...div.querySelectorAll('th,td')].find(x=>x.textContent.replace(/\s/g,'')===lbl);return th&&th.nextElementSibling?th.nextElementSibling.textContent.replace(/\s+/g,' ').trim():'';};
+  let ds=lvParseDates(cell('기간')||cell('일시')||cell('근무일')||cell('휴가기간')||cell('근무일시')||'');if(!ds.length)ds=lvParseDates(div.textContent||'');if(!ds.length)return null;const f=ds[0],t=ds.length>1&&ds[1]>=f?ds[1]:f;return {from:f,to:t};}
+function apLeaveParse(d){if(!d||d.mode!=='form')return null;if(!/휴가|근태|연차|반차|휴일|특근|촉진/.test(d.tplName+' '+d.title))return null;
+  const div=document.createElement('div');div.innerHTML=d.body||'';const cell=lbl=>{const th=[...div.querySelectorAll('th,td')].find(x=>x.textContent.replace(/\s/g,'')===lbl);return th&&th.nextElementSibling?th.nextElementSibling.textContent.replace(/\s+/g,' ').trim():'';};
+  const g=cell('구분')||'';const p=cell('기간')||cell('일시')||cell('근무일')||'';const ds=lvParseDates(p);if(!ds.length)return null;
+  const has=k=>g.includes(k);const kw=['연차','반차','병가','경조','외출','휴일','특근','공가'].filter(has);let kind='';
+  if(/촉진|사용\s*계획/.test(d.title+d.tplName))kind='plan';else if(kw.length===1||(kw.length===2&&has('휴일')&&has('특근'))){kind=has('휴일')||has('특근')?'hw':has('반차')?(has('오후')?'pm':'am'):has('연차')?'annual':has('외출')?'':'etc';}
+  if(!kind)return null;return {kind,from:ds[0],to:ds[ds.length>1?1:0]<ds[0]?ds[0]:ds[ds.length>1?1:0],sids:[d.bySid].filter(Boolean)};}
+function lvSub(){if(S.mode!=='firebase'||!S.fs||LV.u)return;
+  LV.u=S.fs.collection('leave').onSnapshot(s=>{LV.list=s.docs.map(d=>lvNorm(d.id,d.data())).filter(Boolean);LV.loaded=true;lvRefreshCal();lvSchedule();if($('#dlg-lvplan')&&$('#dlg-lvplan').open)lvPlanRender();},()=>{LV.loaded=true;});}
+{const _es=extSubs;extSubs=function(){_es.apply(this,arguments);try{try{LV.u&&LV.u();}catch{}LV.u=null;LV.list=[];LV.loaded=false;LV.tried=new Set();lvSub();S.unsubs.push(()=>{try{LV.u&&LV.u();}catch{}LV.u=null;LV.list=[];LV.loaded=false;});}catch(e){console.warn(e);}};}
+function lvRefreshCal(){if(S.view==='calendar'&&S.cal){try{S.cal.removeAllEvents();S.cal.addEventSource(calEvents());}catch{}}}
+function lvSchedule(){clearTimeout(LV.t);LV.t=setTimeout(()=>lvSync().catch(()=>{}),1200);}
+{const _ar=apRefresh;apRefresh=function(){const r=_ar.apply(this,arguments);lvSchedule();return r;};}
+/* 최종 승인된 결재의 달력 표기를 공개 (결재 문서를 볼 수 있는 사람의 화면이 맡음, 관리자는 예전 문서도 읽어서 채움) */
+async function lvSync(){if(S.mode!=='firebase'||!S.fs||!LV.loaded||typeof AP==='undefined'||!AP.loaded)return;
+  for(const d of AP.docs){if(d.status!=='done')continue;const id='ap_'+d.id;const L=lvClean(d.leave)||(S.canEdit&&!d.leave?lvClean(apLeaveParse(d)):null);if(!L)continue;
+    if(!(d.line.length>1||(S.canEdit&&d.by===S.me.id)))continue;
+    const ex=LV.list.find(x=>x.id===id);if(ex&&ex.kind===L.kind&&ex.from===L.from&&ex.to===L.to&&JSON.stringify(ex.sids)===JSON.stringify(L.sids))continue;if(LV.tried.has(id))continue;LV.tried.add(id);
+    try{await S.fs.doc('leave/'+id).set({src:'appr',apId:d.id,no:d.no||'',kind:L.kind,from:L.from,to:L.to,sids:L.sids,names:L.sids.map(x=>apName(x)||nameOf(x)),uid:S.me.id||'',at:d.doneAt||nowISO()});}catch(e){}}
+  if(S.canEdit&&!AP.denied)for(const x of LV.list){if(x.src!=='appr'||LV.tried.has('del'+x.id))continue;if(!AP.docs.some(d=>d.id===x.apId&&d.status==='done')){LV.tried.add('del'+x.id);S.fs.doc('leave/'+x.id).delete().catch(()=>{});}}}
+const lvNames=x=>(x.sids.length?x.sids.map(s=>(S.staff[s]&&S.staff[s].name)||''):[]).map((n,i)=>n||x.names[i]||'').filter(Boolean).join('·')||x.names.join('·');
+function lvCovered(sid,from,to){return LV.list.some(x=>x.src==='appr'&&x.kind!=='hw'&&x.kind!=='plan'&&x.sids.includes(sid)&&x.from<=from&&x.to>=to);}
+function lvCalEvents(){if(!CALV.on)return [];const out=[];
+  for(const x of LV.list){if(x.src==='plan'||x.kind==='plan'){const sids=x.sids.filter(s=>!lvCovered(s,x.from,x.to));if(!sids.length)continue;
+      out.push({id:'lv:'+x.id,title:`${LV_IC.plan} ${sids.map(s=>(S.staff[s]&&S.staff[s].name)||'').filter(Boolean).join('·')||x.names.join('·')} 연차(예정)`,start:x.from,end:addDays(x.to,1),allDay:true,editable:false,classNames:['ev-lv','ev-lv-plan'],prio:4});continue;}
+    out.push({id:'lv:'+x.id,title:`${LV_IC[x.kind]} ${lvNames(x)} ${LV_K[x.kind]}`,start:x.from,end:addDays(x.to,1),allDay:true,editable:false,classNames:['ev-lv','ev-lv-'+x.kind],prio:6});}
+  return out;}
+{const _ce=calEvents;calEvents=function(){return [..._ce.apply(this,arguments),...lvCalEvents()];};}
+const lvWd=d=>'일월화수목금토'[new Date(d+'T00:00:00').getDay()];
+const lvRange=x=>x.from===x.to?`${fmtMD(x.from)}(${lvWd(x.from)})`:`${fmtMD(x.from)}(${lvWd(x.from)}) ~ ${fmtMD(x.to)}(${lvWd(x.to)})`;
+function lvOpen(id){const x=LV.list.find(e=>e.id===id);if(!x)return;
+  if(x.src==='plan'){lvPlanOpen(x.sids[0]);return;}
+  const d=typeof AP!=='undefined'&&AP.docs.find(a=>a.id===x.apId);if(d){apGo(d.id);return;}
+  toast(`${LV_IC[x.kind]} ${lvNames(x)} ${LV_K[x.kind]} · ${lvRange(x)} — 전자결재 최종 승인${x.no?` (${x.no})`:''}`);}
+{const _rc=renderCalendar;renderCalendar=function(v){const r=_rc.apply(this,arguments);try{
+  if(S.cal&&!S.cal.__lv){S.cal.__lv=true;let orig=null;try{orig=S.cal.getOption('eventClick');}catch{}
+    S.cal.setOption('eventClick',info=>{const id=info.event.id||'';if(id.startsWith('lv:')){info.jsEvent.preventDefault();lvOpen(id.slice(3));return;}if(orig)orig(info);});}
+  const top=v.querySelector('.cal-top');if(top&&!top.querySelector('.cal-lv')){top.insertAdjacentHTML('beforeend',`<span class="cal-lv"><label class="chk"><input type="checkbox" data-calv ${CALV.on?'checked':''}> 🌴 연차·휴일근무</label><button type="button" class="btn sm" data-lv-plan>🗓 연차 사용 계획(촉진)</button></span>`);}
+  const lg=v.querySelector('.cal-legend');if(lg&&!lg.querySelector('.lv-leg'))lg.insertAdjacentHTML('afterbegin','<span class="lv-leg"><b class="lv-c a">🌴 연차·반차</b><b class="lv-c h">🛠 휴일근무</b><i class="lv-c p">🗓 연차(예정)</i> — 전자결재 최종 승인분은 굵게 ·</span>');}catch(e){console.warn(e);}return r;};}
+document.addEventListener('change',e=>{const c=e.target&&e.target.closest&&e.target.closest('[data-calv]');if(!c)return;CALV.on=c.checked;lsSet('wl.calv',JSON.stringify({on:CALV.on}));lvRefreshCal();});
+
+/* 연차 사용 계획(촉진) — 본인 계획은 본인이, 관리자는 누구 것이든 적고 지움 (적은 사람만 고침) */
+function lvPlanOpen(sid){let d=$('#dlg-lvplan');if(!d){d=document.createElement('dialog');d.className='modal narrow';d.id='dlg-lvplan';document.body.appendChild(d);
+    d.addEventListener('click',e=>{if(e.target===d)d.close();});}
+  LV.ps=sid&&S.staff[sid]?sid:(S.myStaff||'');lvPlanRender();if(!d.open)d.showModal();}
+function lvPlanRender(){const d=$('#dlg-lvplan');if(!d)return;const sid=LV.ps;const can=S.canWrite&&!!S.myStaff;
+  const L=LV.list.filter(x=>(x.src==='plan')&&x.sids.includes(sid)).sort((a,b)=>a.from.localeCompare(b.from));
+  const ok=x=>S.canEdit||x.uid===(S.me&&S.me.id);
+  d.innerHTML=`<form method="dialog" class="lvp"><header class="modal-h"><h2>🗓 연차 사용 계획 (촉진)</h2><button type="button" class="icon-btn" data-lvp-x aria-label="닫기">✕</button></header>
+  <div class="modal-b one"><p class="help">연차 사용 촉진(근로기준법 제61조)에 따라 정한 <b>사용 예정일</b>을 적으면 달력에 <i>🗓 연차(예정)</i>으로 보입니다. 전자결재로 연차가 최종 승인되면 그날은 굵은 <b>🌴 연차</b>로 바뀝니다. 적은 사람과 관리자만 고치거나 지울 수 있습니다.</p>
+  <label>직원 <select id="lvp-sid">${staffList().map(s=>`<option value="${esc(s.id)}" ${s.id===sid?'selected':''}>${esc(s.name)}${s.role?' · '+esc(s.role):''}</option>`).join('')}</select></label>
+  ${can?`<div class="lvp-add"><input type="date" id="lvp-from" aria-label="시작일"> ~ <input type="date" id="lvp-to" aria-label="끝나는 날(하루면 비워 두기)"><input id="lvp-note" maxlength="60" placeholder="메모 (선택)"><button type="button" class="btn primary sm" data-lvp-add>추가</button></div>`:''}
+  <ul class="lvp-list">${L.length?L.map(x=>`<li><b>${esc(lvRange(x))}</b>${x.note?` <small>${esc(x.note)}</small>`:''}<span class="sp"></span><small>${esc(x.byName||'')}</small>${ok(x)?`<button type="button" class="btn sm ghost" data-lvp-del="${esc(x.id)}">지우기</button>`:''}</li>`).join(''):'<li class="none">적어 둔 예정일이 없습니다.</li>'}</ul></div>
+  <footer class="modal-f"><span class="spacer"></span><button type="button" class="btn" data-lvp-x>닫기</button></footer></form>`;}
+async function lvPlanAdd(){const sid=LV.ps;const f=$('#lvp-from').value,t=$('#lvp-to').value||f;if(!sid||!isDate(f)){toast('예정일을 골라 주세요.','err');return;}if(t<f){toast('끝나는 날이 시작일보다 빠릅니다.','err');return;}
+  const doc={src:'plan',kind:'plan',from:f,to:t,sids:[sid],names:[nameOf(sid)],note:($('#lvp-note').value||'').trim().slice(0,60),uid:(S.me&&S.me.id)||'',by:myId()||'',byName:String(myName()||'').slice(0,30),at:nowISO()};
+  const id='p'+Date.now().toString(36)+rid().slice(0,5);
+  try{if(S.mode==='firebase'&&S.fs)await fbWrite(S.fs.doc('leave/'+id).set(doc));else{LV.list.push(lvNorm(id,doc));lvRefreshCal();lvPlanRender();}toast(`${nameOf(sid)} 연차 예정일을 적었습니다 (달력에 '예정'으로 표시).`);}catch(e){writeError(e&&e.userMsg?e:fbErr(e));}}
+async function lvPlanDel(id){const x=LV.list.find(e=>e.id===id);if(!x)return;if(!await confirmDlg('예정일 지우기',`${lvNames(x)} ${lvRange(x)} 연차 예정을 지웁니다.`,'지우기'))return;
+  try{if(S.mode==='firebase'&&S.fs)await fbWrite(S.fs.doc('leave/'+id).delete());else{LV.list=LV.list.filter(e=>e.id!==id);lvRefreshCal();lvPlanRender();}}catch(e){writeError(e&&e.userMsg?e:fbErr(e));}}
+document.addEventListener('click',e=>{const T=e.target;if(!T||!T.closest)return;
+  if(T.closest('[data-lv-plan]')){lvPlanOpen(S.myStaff);return;}
+  if(T.closest('[data-lvp-x]')){const d=$('#dlg-lvplan');if(d)d.close();return;}
+  if(T.closest('[data-lvp-add]')){lvPlanAdd();return;}
+  const dl=T.closest('[data-lvp-del]');if(dl){lvPlanDel(dl.dataset.lvpDel);return;}});
+document.addEventListener('change',e=>{if(e.target&&e.target.id==='lvp-sid'){LV.ps=e.target.value;lvPlanRender();}});
+
+/* 전자결재 기안: 달력 표기 칸 */
+{const _n=apNormDoc;apNormDoc=function(id,v){const d=_n.apply(this,arguments);if(d)d.leave=lvClean(v&&v.leave);return d;};}
+{const _b=apDocBase;apDocBase=function(w){const r=_b.apply(this,arguments);r.leave=lvClean(w.leave)||null;return r;};}
+{const _e=apEditDoc;apEditDoc=function(d){const r=_e.apply(this,arguments);if(AP.w)AP.w.leave=d.leave?{...d.leave,sids:[...d.leave.sids]}:{kind:'',from:'',to:'',sids:[apMe()]};return r;};}
+function apLvW(){const w=AP.w;if(!w)return null;if(!w.leave){const k=lvGuess(w.tplName+' '+(w.title||''));w.leave={kind:k,from:'',to:'',sids:[apMe()],auto:!!k};}return w.leave;}
+{const _s=apSyncW;apSyncW=function(){_s.apply(this,arguments);const w=AP.w;if(!w||w.step!=='edit')return;const L=apLvW();const k=$('#apw-lv-kind');if(k)L.kind=k.value;const f=$('#apw-lv-from');if(f)L.from=f.value;const t=$('#apw-lv-to');if(t)L.to=t.value;};}
+{const _sv=apSave;apSave=async function(kind){try{apSyncW();const w=AP.w;if(w&&w.step==='edit'){const L=apLvW();
+    if(L.kind&&!L.from){const p=lvBodyDates(w.body);if(p){L.from=p.from;L.to=p.to;const fi=$('#apw-lv-from'),ti=$('#apw-lv-to');if(fi)fi.value=p.from;if(ti)ti.value=p.to;}}
+    if(kind==='submit'&&L.kind&&!isDate(L.from)){if(L.auto){L.kind='';toast('기간(날짜)이 없어 달력 표기 없이 올립니다. 달력에 표시하려면 오른쪽 📅 달력 표기에서 날짜를 고르세요.');}else{toast('달력에 표기할 날짜를 골라 주세요. (표기하지 않으려면 \'표기 안 함\')','err');const el=$('#apw-lv-from');if(el)el.focus();return;}}
+    if(L.kind&&!isDate(L.to))L.to=L.from;if(L.kind&&L.to<L.from)L.to=L.from;{const ti=$('#apw-lv-to');if(ti)ti.value=L.to||'';}if(!L.sids.length)L.sids=[apMe()];}}catch(e){console.warn(e);}
+  return _sv.apply(this,arguments);};}
+function apLvHTML(){const w=AP.w;const L=apLvW();const multi=L.kind==='hw'||L.kind==='plan';
+  const others=staffList().filter(s=>!L.sids.includes(s.id)).map(s=>`<option value="${esc(s.id)}">${esc(s.name)}</option>`).join('');
+  return `<div class="ap-lv"><h3>📅 달력 표기 <small>최종 승인되면</small></h3>
+  <select id="apw-lv-kind" aria-label="달력 표기 종류"><option value="">표기 안 함</option>${Object.entries(LV_K).map(([k,n])=>`<option value="${k}" ${L.kind===k?'selected':''}>${LV_IC[k]} ${n}</option>`).join('')}</select>
+  ${L.kind?`<div class="ap-lv-d"><input type="date" id="apw-lv-from" value="${esc(L.from)}" aria-label="시작일"> ~ <input type="date" id="apw-lv-to" value="${esc(L.to)}" aria-label="끝나는 날"></div>
+  <div class="ap-lv-who">${L.sids.map(s=>`<span class="ap-chip">${esc(apName(s))}${L.sids.length>1?`<button type="button" data-aplv-rm="${esc(s)}" aria-label="빼기">✕</button>`:''}</span>`).join('')}${multi?`<select id="apw-lv-add"><option value="">대상 직원 추가…</option>${others}</select>`:''}</div>`:''}
+  <p class="help">${L.kind?(L.kind==='plan'?'승인되면 달력에 <i>🗓 연차(예정)</i>으로 표시됩니다.':'승인되면 달력에 <b>굵은 글자</b>로 표시됩니다.')+' 사유·제목은 달력에 나오지 않습니다.':'연차·반차·휴일근무·연차 사용 계획이면 골라 주세요. 최종 승인되면 달력에 표시됩니다.'}</p></div>`;}
+{const _er=apEditRender;apEditRender=function(v){const r=_er.apply(this,arguments);try{const w=AP.w;if(w&&w.step==='edit'){const side=v.querySelector('.ap-side');if(side&&!side.querySelector('.ap-lv'))side.insertAdjacentHTML('afterbegin',apLvHTML());}}catch(e){console.warn(e);}return r;};}
+document.addEventListener('change',e=>{const T=e.target;if(!T||!AP.w)return;
+  if(T.id==='apw-lv-kind'){apSyncW();const L=apLvW();L.kind=T.value;L.auto=false;if(L.kind!=='hw'&&L.kind!=='plan')L.sids=[apMe()];if(L.kind&&!L.from){const w=AP.w;const p=lvBodyDates(($('#apw-body')||{}).innerHTML||w.body||'');if(p){L.from=p.from;L.to=p.to;}}apReW();}
+  else if(T.id==='apw-lv-add'&&T.value){apSyncW();const L=apLvW();if(!L.sids.includes(T.value))L.sids.push(T.value);apReW();}
+  else if(T.id==='apw-lv-from'){const t=$('#apw-lv-to');if(t&&(!t.value||t.value<T.value))t.value=T.value;}});
+document.addEventListener('click',e=>{const b=e.target&&e.target.closest&&e.target.closest('[data-aplv-rm]');if(!b||!AP.w)return;apSyncW();const L=apLvW();L.sids=L.sids.filter(x=>x!==b.dataset.aplvRm);if(!L.sids.length)L.sids=[apMe()];apReW();});
+{const _dr=apDocRender;apDocRender=function(v,d){const r=_dr.apply(this,arguments);try{const L=d.leave||(d.status==='done'?lvClean(apLeaveParse(d)):null);const info=v.querySelector('.ap-info');
+  if(L&&info&&!v.querySelector('.ap-lvinfo')){const x={...L,names:[]};info.insertAdjacentHTML('afterend',`<p class="ap-lvinfo">📅 달력 표기: <b>${LV_IC[L.kind]} ${esc(L.sids.map(s=>apName(s)).join('·'))} ${LV_K[L.kind]}</b> · ${esc(lvRange(x))} ${d.status==='done'?'<span class="ok">✓ 달력에 표시</span>':'<small>(최종 승인되면 표시)</small>'}</p>`);}}catch(e){}return r;};}
+
+/* ── ③ 화면 아래 알림 (Notyf) ── */
+const NB={ny:null,shown:new Map(),more:null,moreN:0};
+function nbOn(){return !!(S.ready&&typeof Notyf!=='undefined'&&lsGet('wl.nb.off')!=='1'&&(!navigator.webdriver||lsGet('wl.nb.on')==='1'));}  /* 자동 점검(브라우저 자동화) 중에는 끔 */
+function nbInit(){if(NB.ny)return NB.ny;NB.ny=new Notyf({duration:0,dismissible:true,ripple:false,position:{x:'right',y:'bottom'},types:[{type:'wl',background:'#1f3a5f',icon:false,className:'wl-nb'},{type:'wlmore',background:'#334155',icon:false,className:'wl-nb wl-nb-more'}]});return NB.ny;}
+function ntfReadOne(k){const st=ntfState();const it=NT.items.find(i=>i.k===k);if(it&&it.syn)st.syn[k]=1;else{st.rd=st.rd||{};st.rd[k]=1;}
+  const live=new Set(NT.items.map(i=>i.k));for(const x of Object.keys(st.rd||{}))if(!live.has(x))delete st.rd[x];ntfSave();ntfRun();}
+function nbMsg(it){const ttl=it.title||(it.t?(it.t.priv?'🔒 ':'')+it.t.title:it.f?it.f.title:'');
+  return `<div class="nb-h"><span class="nb-ic t-${esc(it.type)}">${esc(NT_ICON[it.type]||'알림')}</span><b>${esc(ttl||'알림')}</b></div><div class="nb-x">${esc(it.text||'')}${it.sub?` — ${esc(String(it.sub).slice(0,70))}`:''}</div><div class="nb-f">눌러서 열기 · ✕ 확인</div>`;}
+function nbGo(k){const b=document.createElement('button');b.type='button';b.dataset.ntfGo=k;b.hidden=true;document.body.appendChild(b);b.click();b.remove();}
+function nbSync(){if(!nbOn()){if(NB.ny){NB.ny.dismissAll();NB.shown.clear();NB.more=null;}return;}const ny=nbInit();const st=ntfState();const un=NT.items.filter(it=>ntfUnread(it,st));
+  const show=un.slice(0,3);const keep=new Set(show.map(i=>i.k));
+  for(const [k,n] of [...NB.shown]){if(!keep.has(k)){NB.shown.delete(k);try{ny.dismiss(n);}catch{}}}
+  for(const it of [...show].reverse()){if(NB.shown.has(it.k))continue;const n=ny.open({type:'wl',message:nbMsg(it)});NB.shown.set(it.k,n);
+    n.on('click',({event})=>{if(event&&event.target&&event.target.closest&&event.target.closest('.notyf__dismiss'))return;NB.shown.delete(it.k);try{ny.dismiss(n);}catch{}nbGo(it.k);});
+    n.on('dismiss',()=>{if(NB.shown.get(it.k)===n){NB.shown.delete(it.k);ntfReadOne(it.k);}});}
+  const rest=un.length-show.length;
+  if(NB.more&&NB.moreN!==rest){const m=NB.more;NB.more=null;try{ny.dismiss(m);}catch{}}
+  if(rest>0&&!NB.more){const m=ny.open({type:'wlmore',message:`<div class="nb-h"><b>알림 ${rest}건 더</b></div><div class="nb-f">눌러서 🔔 알림함 보기 · ✕ 모두 확인</div>`});NB.more=m;NB.moreN=rest;
+    m.on('click',({event})=>{if(event&&event.target&&event.target.closest&&event.target.closest('.notyf__dismiss'))return;const p=$('#ntf-pop');if(p&&p.hidden)ntfOpen();});
+    m.on('dismiss',()=>{if(NB.more===m){NB.more=null;ntfMarkRead();}});}}
+{const _r=ntfRun;ntfRun=function(){const r=_r.apply(this,arguments);try{nbSync();}catch(e){console.warn(e);}return r;};}
 
 /* ───────── 시작 ───────── */
 function boot(){
