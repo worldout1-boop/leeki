@@ -1474,6 +1474,12 @@ input.ir{font:inherit;font-size:14.5px;font-weight:600;padding:4px 8px;border:2p
 .dd-dir .dd-h input.ir,.doc-sec.dcat>.panel-h input.ir{font:inherit;padding:2px 6px;border:1.5px solid var(--accent);border-radius:6px;min-width:12em}
 .btn.danger,.btn.ghost.danger{color:var(--late,#c53030)}
 @media (max-width:700px){.doc-sec.dcat>.panel-h{flex-wrap:wrap}.doc-sec.dcat>.panel-h .act{width:100%;justify-content:flex-end}}
+/* 36차: 회사서식 머리 — 로고 왼쪽 · 개정 일자 오른쪽 */
+.fmx .fm-hd{display:flex;align-items:flex-end;justify-content:space-between;gap:6mm;margin:0 0 2.5mm;min-height:5mm;width:100%;box-sizing:border-box}
+.fmx .fm-hd-l{display:flex;align-items:flex-end;min-width:0}.fmx .fm-hd-l img{display:block;max-width:100%}
+.fmx .fm-hd-r{flex:none;white-space:nowrap;font-size:9pt;font-weight:700;color:#1f3a5f;line-height:1.2;padding-bottom:.3mm}
+.fmx .fm-hd-brand{font:700 10pt "Malgun Gothic","Apple SD Gothic Neo",sans-serif;color:#1f3a5f;letter-spacing:.08em;padding-left:8mm;line-height:6mm;background:linear-gradient(#c8102e,#c8102e) left center/6mm 6mm no-repeat}
+@media print{#print-sheet .fmx .fm-hd{display:flex}}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -6543,7 +6549,7 @@ async function fmRevShow(){const R=FM.rev;const d=$('#dlg-fmrev');if(!R||!d.open
 /* 서식 미리보기: 바꾼 종이(축소) · PDF 첫 쪽들 · 사진 · 그 밖은 안내 */
 async function fmPreview(f,host,alive){if(f.cv==='html'||(f.cv===''&&fmKind(f.file.name,f.file.type)==='html')){
     let r=null,err=null;try{r=await fmGetConv(f);}catch(e){err=e;}if(!alive())return;
-    if(r){const pol=f.mode==='direct'&&!fmpOrig();host.innerHTML=`<div class="fmr-paper-wrap"><div class="fm-paper fmx${r.serif&&!pol?' serif':''}${pol?' fm-pol':''}${pol&&!fmpHasLogo(r.html)?' fm-brand':''}" style="${fmPaperStyle(r.page)};--mr:${r.page.mr}mm">${pol?fmPolish(r.html):r.html}</div></div><p class="fmr-note">화면용으로 바꾼 모양입니다. 원본과 조금 다를 수 있습니다.</p>`;fmFitPaper(host);return;}
+    if(r){const pol=f.mode==='direct'&&!fmpOrig();const pg=pol?fmpPage(r.page):r.page;host.innerHTML=`<div class="fmr-paper-wrap"><div class="fm-paper fmx${r.serif&&!pol?' serif':''}${pol?' fm-pol':''}${pol&&!fmpHasLogo(r.html)?' fm-brand':''}" style="${fmPaperStyle(pg)};--mr:${pg.mr}mm">${pol?fmPolish(r.html,pg):r.html}</div></div><p class="fmr-note">화면용으로 바꾼 모양입니다. 원본과 조금 다를 수 있습니다.</p>`;fmFitPaper(host);return;}
     if(err&&!fmIsPdfImg(f)){const u=await fmPrvImage(f).catch(()=>'');if(!alive())return;if(!u)throw err;
       host.innerHTML=`<div class="fmr-imgs"><img src="${u}" alt="첫 쪽 미리보기"></div><p class="fmr-note">⚠️ ${esc(fileErrMsg(err))} (한글 파일에 든 첫 쪽 미리보기 그림입니다)</p>`;return;}}
   const blob=await fmBlob(f);if(!alive())return;const k=kindOf(f.file.name,blob.type||f.file.type);
@@ -6590,9 +6596,9 @@ function fmFillRender(v){const f=fmGet(FM.open);if(!f){if(FM.loaded){FM.open=nul
 async function fmFillLoad(f,k){const desk=$('#fm-desk');const note=$('#fm-note');const alive=()=>FM.k===k&&$('#fmw')&&$('#fmw').dataset.k===k;
   try{if(f.cv==='ov'){await fmOvLoad(f,k);return;}
     const r=await fmGetConv(f);if(!alive())return;const d=FM.base?null:fmDraftGet(f.id);let html=d&&typeof d.html==='string'&&d.html?fmClean(d.html):r.html;
-    const pol=!FM.base&&f.mode==='direct'&&!fmpOrig();if(pol)html=fmPolish(html);const brand=pol&&!fmpHasLogo(r.html);
-    FM.cur={id:f.id,kind:'html',page:r.page,serif:r.serif,pol,brand};
-    desk.innerHTML=`<div class="fm-paper fmx${r.serif&&!pol?' serif':''}${FM.base?' base':''}${pol?' fm-pol':''}${brand?' fm-brand':''}" id="fm-paper" contenteditable="true" spellcheck="false" style="${fmPaperStyle(r.page)};--mr:${r.page.mr}mm">${html}</div>`;fmpBind($('#fm-paper'));
+    const pol=!FM.base&&f.mode==='direct'&&!fmpOrig();const pg=pol?fmpPage(r.page):r.page;if(pol)html=fmPolish(html,pg);const brand=pol&&!fmpHasLogo(r.html);
+    FM.cur={id:f.id,kind:'html',page:pg,serif:r.serif,pol,brand};
+    desk.innerHTML=`<div class="fm-paper fmx${r.serif&&!pol?' serif':''}${FM.base?' base':''}${pol?' fm-pol':''}${brand?' fm-brand':''}" id="fm-paper" contenteditable="true" spellcheck="false" style="${fmPaperStyle(pg)};--mr:${pg.mr}mm">${html}</div>`;fmpBind($('#fm-paper'));
     note.innerHTML=FM.base?'<div class="fm-n warn">✎ <b>서식 원본을 고치는 중입니다.</b> 칸 이름·안내 글을 바로잡고 <b>서식 원본 저장</b>을 누르면 모든 직원에게 고친 서식이 보입니다. (적는 칸은 비워 두세요)</div>'
       :d&&d.html?`<div class="fm-n${(d.hv|0)!==(f.hv|0)?' warn':''}">📝 ${esc(fmWhen(d.at))}에 이 기기에서 적던 내용을 불러왔습니다.${(d.hv|0)!==(f.hv|0)?' ⚠️ 그 뒤 관리자가 서식 원본을 고쳤습니다.':''} 새로 쓰려면 <button type="button" class="linkish" data-fm-reset>처음 서식으로</button>.</div>`
       :`<div class="fm-n">파란 칸을 눌러 바로 적습니다.${pol?' □ 칸은 눌러서 ☑, 밑줄 친 날짜는 눌러서 오늘 날짜가 들어갑니다.':''} 적은 내용은 이 기기에 자동 보관됩니다.${r.base?'':' 화면용으로 바꾼 서식이라 원본과 조금 다를 수 있습니다.'}</div>`;
@@ -6648,7 +6654,7 @@ async function fmPrintForms(ids){const L=ids.map(fmGet).filter(Boolean);if(!L.le
   for(const f of L){try{const blob=await fmBlob(f);const k=kindOf(f.file.name,blob.type||f.file.type);
       if(k==='pdf'){const P=await fmPdfPages(blob,30,1600);for(const p of P){const land=p.w>p.h*1.05;parts.push(`<div class="fm-pimg"><img src="${p.url}" alt="" style="${land?'width:285mm;max-height:198mm':'width:198mm;max-height:285mm'}"></div>`);}full=true;continue;}
       if(k==='image'){parts.push(`<div class="fm-pimg"><img src="${URL.createObjectURL(blob)}" alt="" style="max-width:198mm;max-height:285mm"></div>`);full=true;continue;}
-      if(f.cv==='html'||fmKind(f.file.name,f.file.type)==='html'){const r=await fmGetConv(f);if(!page)page=r.page;const pol=f.mode==='direct'&&!fmpOrig();parts.push(`<div class="fmx fm-print${r.serif&&!pol?' serif':''}${pol?' fm-pol':''}${pol&&!fmpHasLogo(r.html)?' fm-brand-p':''}" style="width:${Math.max(60,r.page.w-r.page.ml-r.page.mr)}mm">${(pol?fmPolish(r.html):r.html).replace(/ class="fm-in"/g,'').replace(/ fm-in\b/g,'')}</div>`);continue;}
+      if(f.cv==='html'||fmKind(f.file.name,f.file.type)==='html'){const r=await fmGetConv(f);const pol=f.mode==='direct'&&!fmpOrig();const pg=pol?fmpPage(r.page):r.page;if(!page)page=pg;parts.push(`<div class="fmx fm-print${r.serif&&!pol?' serif':''}${pol?' fm-pol':''}${pol&&!fmpHasLogo(r.html)?' fm-brand-p':''}" style="width:${Math.max(60,pg.w-pg.ml-pg.mr)}mm">${(pol?fmPolish(r.html,pg):r.html).replace(/ class="fm-in"/g,'').replace(/ fm-in\b/g,'')}</div>`);continue;}
       skip.push(f.name);}catch(e){skip.push(f.name);}}
   if(skip.length)toast(`인쇄할 수 없는 서식 ${skip.length}개는 빠졌습니다 — 내려받아 인쇄하세요: ${skip.slice(0,3).join(', ')}${skip.length>3?' 등':''}`,'err');
   if(!parts.length)return;await fmDoPrint(parts.map((h,i)=>i?`<div class="fm-pgbrk"></div>${h}`:h).join(''),full||!page?{w:210,h:297,ml:10,mr:10,mt:10,mb:10,land:false}:page,full);}
@@ -6945,7 +6951,9 @@ const fmpGrayish=(c,minL=0,maxL=255)=>{const r=fmpHex(c);if(!r)return false;cons
 const FMP_ROLE=/담당|대리|과장|차장|팀장|실장|부서장|본부장|부장|이사|상무|전무|부사장|사장|부회장|회장|대표|결재|승인|검토|확인|주임|조장|반장|센터장|공장장/g;
 const fmpTxt=el=>el.textContent.replace(/[\s 　]+/g,' ').trim();
 const fmpPt=el=>{let mx=0;for(const s of [el,...el.querySelectorAll('[style*="font-size"]')]){const m=(s.getAttribute&&s.getAttribute('style')||'').match(/font-size:\s*([\d.]+)pt/);if(m&&fmpTxt(s))mx=Math.max(mx,+m[1]);}return mx;};
-function fmPolish(html){const d=document.createElement('div');d.innerHTML=html||'';
+function fmPolish(html,page){const d=document.createElement('div');d.innerHTML=html||'';
+  /* 0. 36차: 머리(로고 왼쪽 · 개정 일자 오른쪽) · 표 너비를 본문 폭에 맞춤(좌우 여백 균일) */
+  try{fmpHead(d);if(page)fmpFit(d,page);}catch(e){console.warn(e);}
   /* 1. 글꼴 하나로(맑은 고딕 계열), 지나친 자간 정리 */
   d.querySelectorAll('.fm-serif,.fm-sans').forEach(e=>{e.classList.remove('fm-serif','fm-sans');if(!e.className)e.removeAttribute('class');});
   for(const el of d.querySelectorAll('[style*="letter-spacing"]')){const st=el.getAttribute('style');el.setAttribute('style',st.replace(/letter-spacing:\s*(-?[\d.]+)em/,(m,v)=>`letter-spacing:${Math.max(-0.08,Math.min(0.4,+v))}em`));}
@@ -6985,7 +6993,51 @@ function fmPolish(html){const d=document.createElement('div');d.innerHTML=html||
       if(m[1]){sp.className='fm-date';sp.textContent=m[1];}else{sp.className=m[2]==='☑'?'fm-ck fm-on':'fm-ck';sp.textContent=m[2]==='☑'?'☑':'□';}frag.append(sp);i=m.index+m[0].length;}
     if(i<s.length)frag.append(s.slice(i));n.replaceWith(frag);}
   return d.innerHTML;}
-const fmpHasLogo=html=>/<img/i.test(String(html||'').slice(0,4000))||/태성|TAESUNG/i.test(String(html||'').replace(/<[^>]+>/g,'').slice(0,600));
+/* 36차: 로고가 없으면 머리 왼쪽에 ㈜태성산업 글자를 넣으므로(fmpHead) 예전 오른쪽 위 표시는 쓰지 않음 */
+const fmpHasLogo=()=>true;
+/* ── 36차: 회사 로고는 왼쪽, 개정서식 일자는 오른쪽, 좌우 여백 균일 ──
+   · 쪽(쪽 나눔 fm-pb 로 나뉜 구간)마다 앞쪽 3덩어리 안의 로고 그림(가로가 세로의 2.5배 이상·폭 25mm 이상)과
+     '[2023.08.24. - 개정서식]'·'[2026-04-13-개정]' 같은 개정 일자를 꺼내 맨 위 한 줄(fm-hd)에 왼쪽·오른쪽으로 둠
+   · 로고가 없는 서식은 첫 쪽 머리 왼쪽에 ㈜태성산업
+   · 종이 좌우 여백은 같게(fmpPage), 본문 폭의 85% 이상인 표와 본문보다 넓은 표는 본문 폭에 딱 맞게 칸 너비까지 같은 비율로 늘이거나 줄임(fmpFit)
+   · 여러 번 적용해도 같은 결과(작성 중 보관본에 다시 적용) */
+const FMP_REV=/\[\s*\d{4}\s*[.\-\/]\s*\d{1,2}\s*[.\-\/]\s*\d{1,2}\s*\.?\s*[-–~]?\s*(?:개정|제정)(?:\s*서식)?\s*\]/;
+const fmpPage=p=>{if(!p)return p;const m=Math.round(((+p.ml||0)+(+p.mr||0))/2*100)/100;return {...p,ml:m,mr:m};};
+const fmpMM=(st,k)=>+(String(st||'').match(new RegExp('(?:^|;)\\s*'+k+':\\s*([\\d.]+)mm'))||[])[1]||0;
+function fmpIsLogo(im){const st=im.getAttribute('style')||'';const w=fmpMM(st,'width'),h=fmpMM(st,'height');return w>=25&&h>0&&w/h>=2.5;}
+function fmpTakeRev(el){/* el 안의 개정 일자 글자를 떼어 내고 그 글자를 돌려줌 */
+  const tw=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);const ns=[];let all='';while(tw.nextNode()){ns.push([tw.currentNode,all.length]);all+=tw.currentNode.nodeValue;}
+  const m=all.match(FMP_REV);if(!m)return '';const a=m.index,b=a+m[0].length;
+  for(const [n,o] of ns){const e=o+n.nodeValue.length;if(e<=a||o>=b)continue;const v=n.nodeValue;n.nodeValue=v.slice(0,Math.max(0,a-o))+v.slice(Math.min(v.length,b-o));}
+  return m[0].replace(/\s+/g,' ').replace(/\[\s+/,'[').replace(/\s+\]/,']');}
+const fmpEmpty=el=>!el.textContent.replace(/[\s\u00a0\u3000]/g,'')&&!el.querySelector('img,table,.fm-ck,.fm-date,br+br');
+function fmpHead(d){if(d.querySelector(':scope > .fm-hd'))return;
+  const kids=[...d.children];const starts=[0];kids.forEach((c,i)=>{if(c.classList.contains('fm-pb'))starts.push(i+1);});
+  let first=true;
+  for(const s0 of starts){const seg=[];for(let i=s0;i<kids.length&&seg.length<3;i++){if(kids[i].classList.contains('fm-pb'))break;seg.push(kids[i]);}
+    if(!seg.length)continue;let logo=null,rev='';
+    for(const el of seg){if(!logo)for(const im of el.querySelectorAll('img'))if(fmpIsLogo(im)){logo=im;break;}
+      if(!rev){const host=[...el.querySelectorAll('p,td,th,span')].reverse().find(x=>FMP_REV.test(x.textContent)&&!x.querySelector('table'))||(FMP_REV.test(el.textContent)&&!el.querySelector('table')?el:null);
+        if(host){const owner=host.closest('p,td,th')||host;rev=fmpTakeRev(host);if(rev&&owner.tagName==='P'&&fmpEmpty(owner)&&!owner.closest('table'))owner.remove();}}}
+    const brand=first&&!logo&&!/태성|TAESUNG/i.test(d.textContent.slice(0,600));
+    if(!logo&&!rev&&!brand){first=false;continue;}
+    const hd=document.createElement('div');hd.className='fm-hd';hd.setAttribute('contenteditable','false');
+    const L=document.createElement('span');L.className='fm-hd-l';const Rr=document.createElement('span');Rr.className='fm-hd-r';
+    if(logo){const holder=logo.closest('p');logo.remove();if(holder&&!holder.closest('table')&&fmpEmpty(holder))holder.remove();L.append(logo);}
+    else if(brand){const b=document.createElement('span');b.className='fm-hd-brand';b.textContent='㈜태성산업';L.append(b);}
+    if(rev)Rr.textContent=rev;hd.append(L,Rr);
+    const nx=kids.slice(s0).find(x=>x.parentNode===d);if(nx)nx.before(hd);else d.append(hd);
+    first=false;}}
+function fmpFit(d,page){const W=Math.round(((+page.w||210)-(+page.ml||0)-(+page.mr||0))*100)/100;if(!(W>40))return;
+  const r2=x=>Math.round(x*100)/100;
+  const setW=(el,k)=>{const st=el.getAttribute('style')||'';const w=fmpMM(st,'width');if(w)el.setAttribute('style',st.replace(/((?:^|;)\s*width:\s*)([\d.]+)mm/,(m,a)=>a+r2(w*k)+'mm'));};
+  for(const tb of d.querySelectorAll('table')){if(tb.parentElement&&tb.parentElement.closest('table'))continue;
+    const tw=fmpMM(tb.getAttribute('style'),'width');if(!tw)continue;let k=1;
+    const T=r2(W-0.3);/* 바깥 선 굵기만큼 덜어 양쪽 끝을 본문 가장자리에 딱 맞춤 */
+    if(tw>T+0.05)k=T/tw;else if(tw>=W*0.85&&tw<T-0.05)k=T/tw;if(k===1)continue;
+    setW(tb,k);for(const el of tb.querySelectorAll('col,td,th,table'))setW(el,k);
+    tb.classList.remove('hw-mr');tb.classList.add('hw-mc');}
+  for(const el of d.querySelectorAll(':scope > div[style*="width"], :scope > p[style*="width"]')){const w=fmpMM(el.getAttribute('style'),'width');if(w>W+0.3)setW(el,W/w);}}
 function fmpDate(){const t=today();return `${t.slice(0,4)}년 ${+t.slice(5,7)}월 ${+t.slice(8,10)}일`;}
 /* 작성 화면에서 체크·날짜 누르기 */
 function fmpBind(paper){if(!paper)return;for(const el of paper.querySelectorAll('.fm-ck,.fm-date:not(.fm-on)'))el.setAttribute('contenteditable','false');}
