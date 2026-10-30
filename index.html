@@ -1067,6 +1067,72 @@ img[data-pii]{outline:2px dashed #b85a6e;outline-offset:-2px}
 #print-sheet .ps-desc{white-space:pre-wrap;border:1px solid #c9ced6;padding:8px 10px;min-height:40px}
 #print-sheet .ps-photos{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}#print-sheet figure{margin:0;break-inside:avoid}#print-sheet figure img{width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid #ccc}#print-sheet figcaption{font-size:8.5pt;color:#555}
 #print-sheet .none{color:#888}
+
+/* 20차: 조직도·업무분장 (dabeng/OrgChart 식 트리 + 세로 배치) */
+@media (max-width:1400px) and (min-width:761px){.tabs a.tab-up .t-long{display:none}.brand strong{font-size:15px}}
+.org-tabs{margin:0 0 14px;flex-wrap:wrap}
+.org-chart-wrap{overflow-x:auto;padding:6px 0 14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);margin-bottom:10px}
+.oc{min-width:max-content;padding:10px 14px}
+.oc ul{display:flex;justify-content:center;padding-top:20px;position:relative;margin:0;padding-left:0}
+.oc li{list-style:none;position:relative;padding:20px 8px 0;display:flex;flex-direction:column;align-items:center}
+.oc>ul{padding-top:0}.oc>ul>li{padding-top:0}
+.oc li::before,.oc li::after{content:'';position:absolute;top:0;right:50%;width:50%;height:20px;border-top:2px solid #b7c0cc}
+.oc li::after{right:auto;left:50%;border-left:2px solid #b7c0cc}
+.oc li:only-child::before,.oc li:only-child::after{display:none}.oc li:only-child{padding-top:0}
+.oc li:first-child::before,.oc li:last-child::after{border:0}
+.oc li:last-child::before{border-right:2px solid #b7c0cc;border-radius:0 6px 0 0}.oc li:first-child::after{border-radius:6px 0 0 0}
+.oc ul ul::before{content:'';position:absolute;top:0;left:50%;height:20px;border-left:2px solid #b7c0cc}
+.oc-root,.oc-part{display:flex;flex-direction:column;align-items:center;gap:6px}
+.oc-root{background:#eef2f7;border:1px solid #cfd7e2;border-radius:12px;padding:8px 10px}
+.oc-part{border-top:4px solid var(--uc);background:var(--surface-2);border-radius:10px;padding:8px;min-width:250px}
+.oc-ptitle{font-size:12.5px;font-weight:700;color:var(--uc,#1f3a5f);letter-spacing:.02em}
+.oc-root .oc-ptitle{font-size:14px;color:#1f3a5f}
+.oc-nohead{font-size:12px;color:var(--ink-3)}
+.oc-node{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;gap:3px;width:240px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--uc);border-radius:8px;padding:7px 9px;text-align:left;box-shadow:0 1px 2px rgba(15,23,42,.05)}
+.oc-node:hover,.oc-node:focus-visible{border-color:var(--uc);box-shadow:0 0 0 3px rgba(31,58,95,.12)}
+.oc-node.head{border-left-width:6px;background:#fbfcfe}.oc-node.absent{background:#fbf7ef;border-style:dashed;border-left-style:solid}
+.oc-unit{font-size:11px;font-weight:700;color:var(--uc)}
+.oc-nm{font-size:13px;color:var(--ink-2)}.oc-nm b{font-size:14.5px;color:var(--ink)}
+.oc-st{font-style:normal;font-size:11px;font-weight:700;color:#9a5b00;background:#fdf0d5;border-radius:4px;padding:0 5px;margin-left:3px}
+.oc-site{font-size:11px;color:var(--ink-3)}
+.oc-chips{display:flex;flex-wrap:wrap;gap:3px}.oc-chips i{font-style:normal;font-size:11px;line-height:1.5;padding:0 6px;border-radius:999px;background:#eef1f6;color:#334155;white-space:nowrap}
+.oc-chips i.seon{background:#fff4e5;color:#8a4b00}.oc-chips i.act{background:#e9f6ef;color:#1d6b46}.oc-chips i.more{background:transparent;color:var(--ink-3)}
+.oc-vert{flex-direction:column!important;align-items:stretch!important;padding-top:10px!important;gap:6px;position:relative}
+.oc-vert::before{display:none}.oc-vert>li{padding:0 0 0 14px!important;align-items:stretch!important}
+.oc-vert>li::after{display:none!important}
+.oc-vert>li::before{display:block!important;content:''!important;position:absolute;left:0;top:-6px!important;bottom:50%;width:12px!important;height:auto!important;border:0!important;border-left:2px solid #b7c0cc!important;border-bottom:2px solid #b7c0cc!important;border-radius:0 0 0 6px!important;right:auto!important}
+.org-help{font-size:12px;color:var(--ink-3);margin:4px 0 12px}
+.org-seon table td,.org-seon table th{font-size:13px}.org-seon tr.warn td{background:#fffaf0}
+.org-people{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}.org-people button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 11px;font:inherit;font-size:13px;cursor:pointer}
+.org-people button[aria-pressed="true"]{background:#1f3a5f;color:#fff;border-color:#1f3a5f}.org-people em{font-style:normal;font-size:10.5px;margin-left:3px;color:#9a5b00}
+.org-people button[aria-pressed="true"] em{color:#ffd28a}
+table.org-duty td{vertical-align:top;font-size:13px}table.org-duty .dd{font-size:12px;color:var(--ink-3);margin-top:2px;line-height:1.45}
+table.org-duty tr[data-org-duty]{cursor:pointer}table.org-duty tr[data-org-duty]:hover td{background:#f6f8fb}
+table.org-duty tr.hl td{background:#f1f6ff}table.org-duty tr.idle td{color:var(--ink-3)}
+table.org-duty tr.grp td{background:var(--surface-2);font-weight:600}
+table.org-duty .vac{color:#b45309;font-size:12px}table.org-duty small.auto{font-size:10.5px;color:#1d6b46;background:#e9f6ef;border-radius:4px;padding:0 4px}
+table.org-duty .idle-t{font-size:11px;color:#94a3b8}table.org-duty td.n{font-size:12px}
+.org-pp .org-pp-b{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;padding:4px 14px 14px}
+.org-pp h4{margin:6px 0;font-size:13px}.org-pp ul{margin:0;padding-left:16px}.org-pp li{font-size:13px;margin-bottom:5px}.org-pp li div{font-size:12px;color:var(--ink-3)}
+.org-log{list-style:none;margin:0;padding:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.org-log li{display:grid;grid-template-columns:96px 120px 1fr;gap:10px;padding:8px 12px;border-top:1px solid var(--line);font-size:13px}.org-log li:first-child{border-top:0}
+.org-log time{color:var(--ink-3)}.org-log .by{color:var(--ink-2)}.org-log li.k-new span:last-child{color:#1d6b46;font-weight:600}.org-log li.k-staff span:last-child{color:#1f3a5f}
+.org-dlg{width:min(720px,96vw)}.org-form{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px}.org-form h3{grid-column:1/-1;margin:0}
+.org-form label{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:600}.org-form label.chk{flex-direction:row;align-items:center;font-weight:500}
+.org-form .w{grid-column:1/-1}.org-form fieldset{border:1px solid var(--line);border-radius:8px;display:flex;flex-wrap:wrap;gap:4px 14px}
+.org-form input,.org-form select,.org-form textarea{font:inherit;padding:6px 8px;border:1px solid var(--line);border-radius:6px}
+.org-form-a{display:flex;gap:8px;align-items:center}
+.org-h2{font-size:16px;margin:4px 0 10px;border-left:4px solid #1f3a5f;padding-left:8px}
+@media (max-width:640px){.oc-node{width:200px}.oc-part{min-width:210px}.org-log li{grid-template-columns:1fr}.org-form{grid-template-columns:1fr}}
+@page orgland{size:A4 landscape;margin:8mm}
+@media print{
+  body.pr-view[data-prv="org"]{page:orgland}
+  #view .org-chart-wrap{overflow:visible!important;border:0;padding:0;margin:0}#view .oc{min-width:0;zoom:.7;padding:0}#view .org-help{display:none}
+  #view .org-sec{break-inside:auto}#view .org-seon{break-inside:avoid}
+  #view .org-tabs,#view .org-people{display:none!important}
+  #view .oc-node{box-shadow:none;break-inside:avoid}#view .org-sec.print-break+.org-sec{break-before:page}
+  #view table.org-duty td{font-size:9pt}#view table.org-duty .dd{font-size:8pt}
+}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -1128,12 +1194,13 @@ img[data-pii]{outline:2px dashed #b85a6e;outline-offset:-2px}
   <nav class="tabs" aria-label="화면">
     <a href="#my" data-view="my">내 업무</a>
     <a href="#team" data-view="team">팀 현황</a>
+    <a href="#org" data-view="org" title="관리부 조직도·공장별 조직도·업무분장">조직도</a>
     <a href="#overview" data-view="overview" id="tab-overview" hidden>총괄</a>
     <a href="#board" data-view="board">칸반</a>
     <a href="#calendar" data-view="calendar">달력</a>
     <a href="#list" data-view="list">목록</a>
     <a href="#report" data-view="report">보고서</a>
-    <a href="#upload" data-view="upload" class="tab-up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 16V4m0 0l-4.5 4.5M12 4l4.5 4.5"/><path d="M4 15v3.5A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5V15"/></svg>각종서류 올리기</a>
+    <a href="#upload" data-view="upload" class="tab-up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 16V4m0 0l-4.5 4.5M12 4l4.5 4.5"/><path d="M4 15v3.5A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5V15"/></svg><span class="t-long">각종</span>서류 올리기</a>
     <a href="#docs" data-view="docs">서류함</a>
     <a href="#legal" data-view="legal">법정 업무</a>
     <a href="#gw" data-view="gw" class="tab-gw">그룹웨어<span class="nav-n" id="gw-n" hidden>0</span></a>
@@ -1432,6 +1499,10 @@ img[data-pii]{outline:2px dashed #b85a6e;outline-offset:-2px}
     <div class="modal-b one"><div id="pii-body"></div></div>
   </form>
 </dialog>
+<dialog class="modal org-dlg" id="dlg-org" aria-label="조직도·업무분장 편집">
+  <form method="dialog"><header class="modal-h"><h2>조직도 · 업무분장</h2><button type="button" class="icon-btn" data-close aria-label="닫기">✕</button></header></form>
+  <div class="modal-b one" id="org-dlg-b"></div>
+</dialog>
 <div id="toasts" aria-live="polite"></div>
 
 <script>
@@ -1691,7 +1762,7 @@ function render(){
   if(S.view!=='report'){S.charts.forEach(c=>c.destroy());S.charts=[];}
   $('#tab-overview').hidden=!(S.canEdit||S.preview);
   if(S.view==='legal'){const ae=document.activeElement;if(ae&&ae.closest&&ae.closest('.lg-set')&&/^(INPUT|SELECT)$/.test(ae.tagName)&&ae.type!=='checkbox'){S.pendingLegal=true;fillWhoOptions();updateMeChip();return;}}
-  if(S.view==='my')renderMy(v);else if(S.view==='team')renderTeam(v);else if(S.view==='board')renderBoard(v);else if(S.view==='calendar')renderCalendar(v);else if(S.view==='list')renderList(v);else if(S.view==='report')renderReport(v);else if(S.view==='help')renderHelp(v);else if(S.view==='overview')renderOverview(v);else if(S.view==='photos')renderPhotos(v);else if(S.view==='upload')renderUpload(v);else if(S.view==='docs')renderDocs(v);else if(S.view==='legal')renderLegal(v);else if(S.view==='gw')renderGw(v);
+  if(S.view==='my')renderMy(v);else if(S.view==='team')renderTeam(v);else if(S.view==='board')renderBoard(v);else if(S.view==='calendar')renderCalendar(v);else if(S.view==='list')renderList(v);else if(S.view==='report')renderReport(v);else if(S.view==='help')renderHelp(v);else if(S.view==='overview')renderOverview(v);else if(S.view==='photos')renderPhotos(v);else if(S.view==='upload')renderUpload(v);else if(S.view==='docs')renderDocs(v);else if(S.view==='legal')renderLegal(v);else if(S.view==='gw')renderGw(v);else if(S.view==='org')renderOrg(v);
   fillWhoOptions();updateMeChip();patchNames();}
 
 function rowHTML(t){const d=ddayInfo(t);const late=isLate(t);
@@ -1928,6 +1999,7 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>전체 검색</b><span>오른쪽 위 돋보기(또는 Ctrl+K)를 누르면 업무·진행 기록·특이사항·서류 내용·법정 업무·그룹웨어 소식을 한 번에 찾습니다. 띄어쓰기는 상관없습니다.</span></li>
       <li><b>휴대폰에서</b><span>아래쪽 탭(내 업무·팀 현황·달력·그룹웨어·더보기)으로 이동합니다. 브라우저 메뉴의 <em>홈 화면에 추가</em>(아이폰은 공유 › 홈 화면에 추가)를 누르면 앱처럼 아이콘으로 열립니다. 글자가 작으면 <em>더보기 › 글자 크게</em>.</span></li>
       <li><b>달력 보기</b><span>달력 아래에서 <em>내 업무만 · 완료 숨김 · 여러 날 업무는 마감일에만</em>을 고를 수 있습니다(이 기기에 기억). 칸반의 완료 칸은 이번 주 완료만 보이고, <em>지난 완료 보기</em>로 더 볼 수 있습니다.</span></li>
+      <li><b>조직도·업무분장</b><span>위쪽 <em>조직도</em> 탭에서 관리부 전체 조직도, 안양본사·군포공장·화성공장 관리부 조직도(법정 선임 현황 포함), 업무분장표(정·부·대행 담당, 최근 12주 실적)를 봅니다. 이름표의 짧은 글은 주요 업무 약식이고, 이름을 누르면 그 사람의 업무분장이 나옵니다. 매주 1회 업무일지 기록과 직원 명단을 비교해 담당·대행·부담당·새 업무와 직원 변동을 자동 반영하고, 바뀐 내용은 <em>변경 이력</em>과 알림으로 알려 드립니다. 관리자는 업무를 누르면 담당을 직접 고칠 수 있습니다.</span></li>
       <li><b>인쇄</b><span>모든 화면 위쪽의 <em>🖨 인쇄</em>(휴대폰은 더보기 › 이 화면 인쇄)를 누르면 지금 화면을 A4로 인쇄합니다. 인쇄 창에서 'PDF로 저장'을 고르면 파일로도 남길 수 있습니다. 업무 상세 창의 <em>🖨 인쇄</em>는 그 업무 한 장(정보·내용·진행 기록·사진), 보고서 화면은 보고서 용지만 인쇄합니다. <em>📄 내 업무 보고서</em>(내 업무 화면·보고서의 개인별 보고서)는 내가 담당했거나 진행 기록을 남긴 업무와 일자별 진행 기록으로 개인 보고서를 만들고, 보고서의 <em>업무 범위 › 🔒 내 비공개 업무만</em>으로 비공개 업무만 출력할 수 있습니다.</span></li>
       <li><b>개인정보 자료</b><span>이력서·급여·주민등록번호 13자리·신분증·진단서 같은 개인정보가 든 사진·파일은 올리는 순간 자동으로 검사해 <em>총괄 관리자에게만</em> 전달됩니다. 다른 직원과 올린 분에게는 '관리자 전용' 그림만 보이고, 보고서·사진첩에도 나오지 않습니다. 생년월일만 있는 자료는 그대로 올라갑니다. 업무 창에서 <em>🔐 개인정보 사진</em>을 켜고 올리면 검사 없이 바로 전달됩니다. 업무 내용에 주민등록번호 13자리를 적으면 저장할 때 뒷자리가 가려집니다.</span></li>
       <li><b>정기 일정</b><span>월례조회(매월 첫째 월요일 08:30 군포공장 5층 식당, 3·6·9·12월 법정 의무교육)와 관리부 업무회의(매주 목요일 16:00 안양본사 6층 대회의실, 공휴일·월례조회 주간과 전 주는 쉬고 조회 후 진행)가 달력과 내 업무 화면에 표시되고 전날·당일 알림이 옵니다. 공휴일이면 날짜가 자동으로 옮겨지고, 그룹웨어 공지가 오면 그 날짜로 확정됩니다. 관리자는 달력의 <em>정기 일정</em>에서 날짜를 바꾸거나 쉼으로 지정할 수 있습니다.</span></li>
@@ -2436,7 +2508,7 @@ function showBanner(msg){const b=$('#banner');b.textContent=msg;b.hidden=!msg;}
 
 /* ───────── 이벤트 ───────── */
 function go(h){if(location.hash===h)route();else location.hash=h;}
-function route(){let h=(location.hash||'').slice(1);if(h==='home')h='team';S.view=['my','team','overview','board','calendar','list','report','upload','photos','docs','legal','gw','help'].includes(h)?h:'my';if(S.view==='gw'&&GW.pv!=='gw')GW.seenNow='';GW.pv=S.view;const np=$('#ntf-pop');if(np)np.hidden=true;render();gwNav();mnavSync();}
+function route(){let h=(location.hash||'').slice(1);if(h==='home')h='team';S.view=['my','team','org','overview','board','calendar','list','report','upload','photos','docs','legal','gw','help'].includes(h)?h:'my';if(S.view==='gw'&&GW.pv!=='gw')GW.seenNow='';GW.pv=S.view;const np=$('#ntf-pop');if(np)np.hidden=true;render();gwNav();mnavSync();}
 window.addEventListener('hashchange',route);
 document.addEventListener('click',async e=>{
   const o=e.target.closest('[data-open]');if(o&&!e.target.closest('[data-lb]')){const t=findTask(o.dataset.open);if(t)openTask(t);return;}
@@ -3283,7 +3355,7 @@ function ntfCompute(){const me=myId();if(!me||!S.ready)return [];const out=[];co
     if(admin&&r.status==='open')out.push({k:`dq|${r.id}`,at:r.at||td,type:'dreq',dq:r.id,title:ttl,text:`${r.name||'구성원'}님이 삭제를 요청했습니다`,sub:r.reason});
     else if(r.uid===S.me.id&&r.status!=='open'&&r.rAt>=since)out.push({k:`dqr|${r.id}|${r.status}`,at:r.rAt,type:'dreq',dq:r.id,title:ttl,text:r.status==='done'?'삭제 요청이 처리되어 삭제되었습니다':'삭제 요청이 반려되었습니다',sub:r.rNote});}
   for(const g of S.gw||[]){if(!g.at||g.at<since)continue;out.push({k:'gw|'+g.id,at:g.at,type:'gw',gw:g.id,title:gwTitle(g.title),text:`그룹웨어 ${gwShort(g.board)} 새 글${g.due?` · 일정 ${fmtMD(g.due)}`:''}`,sub:g.sum});}
-  out.push(...schNtf());out.push(...uxNtf());out.push(...piiNtf());
+  out.push(...schNtf());out.push(...uxNtf());out.push(...piiNtf());out.push(...orgNtf());
   if(admin){const w=gwWarn();if(w)out.push({k:'gwst|'+w.k,syn:1,at:td+'T00:00:04',type:'gw',gw:'',title:'그룹웨어 자동 확인',text:w.text});}
   if(admin||canViewRestricted())for(const f of Object.values(S.files)){if(!f.expiry)continue;const n=diffDays(td,f.expiry);if(n<=60&&n>=-30)out.push({k:`doc|${f.id}|${f.expiry}|${n<=7?'w':n<=30?'m':'q'}`,syn:1,at:td+'T00:00:03',type:'doc',f,text:`서류 유효기간 ${expiryTxt(f.expiry)} · ${fmtYMD(f.expiry)}`});}
   if(admin&&hr>=17&&dow(td)%6!==0){const idle=staffList().filter(s=>working(s)&&!S.tasks.some(t=>t.logs.some(l=>l.by===s.id&&localDate(l.at)===td)));if(idle.length)out.push({k:`idle|${td}`,syn:1,at:td+'T17:00:00',type:'idle',text:`오늘 기록 없는 근무자 ${idle.length}명`,sub:idle.map(s=>s.name).join(', ')});}
@@ -3301,7 +3373,7 @@ function ntfRun(){adminNameSync();const st=ntfState();NT.items=ntfCompute();cons
   else for(const it of un)NT.shown.add(it.k);
   if(S.view==='my')ntfBrief();}
 function ntfShow(title,body,tag,path){try{const n=new Notification(title,{body,tag,lang:'ko'});n.onclick=()=>{window.focus();if(path){const t=findTask(path);if(t)openTask(t);}n.close();};}catch{}}
-const NT_ICON={assign:'담당',act:'진행',issue:'이슈',due:'마감',late:'지연',legal:'법정',doc:'서류',idle:'기록',dreq:'삭제',gw:'게시',sch:'일정',wk:'보고',join:'접속',bk:'백업',pii:'개인'};
+const NT_ICON={assign:'담당',act:'진행',issue:'이슈',due:'마감',late:'지연',legal:'법정',doc:'서류',idle:'기록',dreq:'삭제',gw:'게시',sch:'일정',wk:'보고',join:'접속',bk:'백업',pii:'개인',org:'조직'};
 function ntfRenderPop(){const st=ntfState();const pop=$('#ntf-pop');const its=NT.items;
   const canAsk='Notification' in window&&Notification.permission==='default';const blocked='Notification' in window&&Notification.permission==='denied';
   pop.innerHTML=`<div class="ntf-h"><b>알림</b><span class="sp"></span>${its.some(i=>ntfUnread(i,st))?'<button type="button" class="btn sm ghost" data-ntf-read>모두 읽음</button>':''}</div>
@@ -3323,7 +3395,7 @@ document.addEventListener('click',async e=>{
   if(T.closest('[data-ntf-read]')){ntfMarkRead();return;}
   if(T.closest('[data-ntf-perm]')){try{const r=await Notification.requestPermission();if(r==='granted'){toast('이 기기에서 알림을 받습니다.');ntfShow(`${S.config.dept} 업무일지`,'알림이 켜졌습니다.','test');}}catch{}ntfRenderPop();return;}
   const ng=T.closest('[data-ntf-go]');if(ng){const it=NT.items.find(i=>i.k===ng.dataset.ntfGo);const st=ntfState();if(it){if(it.syn)st.syn[it.k]=1;ntfSave();$('#ntf-pop').hidden=true;
-    if(it.dq)openDreqs(it.dq);else if(it.type==='sch'){schOpen(it.sch);}else if(it.type==='wk'){uxWeekReport();}else if(it.type==='join'){jrApprove(it.jr);}else if(it.type==='bk'){openSettings();}else if(it.type==='pii'){piiOpen();}else if(it.type==='gw'){GW.focus=it.gw||'';if(S.view==='gw')renderGw($('#view'));else go('#gw');}else if(it.t){const t=findTask(it.t.path);if(t)openTask(t);}else if(it.f)go('#docs');else if(it.type==='idle')go('#overview');}ntfRun();return;}
+    if(it.dq)openDreqs(it.dq);else if(it.type==='sch'){schOpen(it.sch);}else if(it.type==='wk'){uxWeekReport();}else if(it.type==='join'){jrApprove(it.jr);}else if(it.type==='bk'){openSettings();}else if(it.type==='pii'){piiOpen();}else if(it.type==='org'){S.orgv.tab='log';const o=S.org;if(o&&o.log[0])lsSet('wl.orgSeen',o.log[0].at);go('#org');}else if(it.type==='gw'){GW.focus=it.gw||'';if(S.view==='gw')renderGw($('#view'));else go('#gw');}else if(it.t){const t=findTask(it.t.path);if(t)openTask(t);}else if(it.f)go('#docs');else if(it.type==='idle')go('#overview');}ntfRun();return;}
   if(!T.closest('#ntf-pop')&&!$('#ntf-pop').hidden)$('#ntf-pop').hidden=true;
   if(T.closest('[data-brief-x]')){const st=ntfState();st.brief=today();ntfSave();$('#my-brief').hidden=true;return;}
   // 사진첩
@@ -3860,7 +3932,7 @@ let ADU=null,ADW=false;
 function adminNameSub(){if(ADU){try{ADU();}catch{}ADU=null;}if(!S.db)return;ADU=S.db.doc('app/admin').onSnapshot(s=>{const d=s.exists?s.data():null;S.adminName=d&&typeof d.name==='string'?d.name.slice(0,20):'';adminNameSync();},()=>{});}
 function adminNameSync(){if(!S.canEdit||ADW||!S.canWrite||!S.db)return;const n=myName();if(!n||!S.myStaff||n===S.adminName)return;ADW=true;S.db.doc('app/admin').set({name:n,at:nowISO()}).catch(()=>{ADW=false;});}
 const adminLabel=()=>S.adminName?`관리자(${S.adminName})`:'관리자';
-function extSubs(){privSub();delreqSub();adminNameSub();gwSub();schSub();jrSub();piiSub();S.unsubs.push(()=>{for(const u of [PVU,DRU,ADU,GWU,GWSU,SCU,JRU,PIIU])try{u&&u();}catch{}PVU=DRU=ADU=GWU=GWSU=SCU=JRU=PIIU=null;S.joinreqs=[];S.pii=[];S.piiLoaded=false;S.sched=null;S.privTasks=[];S.delreqs=[];S.gw=[];S.gwStat=null;});}
+function extSubs(){privSub();delreqSub();adminNameSub();gwSub();schSub();jrSub();piiSub();orgSub();S.unsubs.push(()=>{for(const u of [PVU,DRU,ADU,GWU,GWSU,SCU,JRU,PIIU,ORGU])try{u&&u();}catch{}PVU=DRU=ADU=GWU=GWSU=SCU=JRU=PIIU=ORGU=null;S.org=null;S.orgLoaded=false;S.joinreqs=[];S.pii=[];S.piiLoaded=false;S.sched=null;S.privTasks=[];S.delreqs=[];S.gw=[];S.gwStat=null;});}
 /* 대상 찾기 */
 function taskOfPhoto(pid,hint){const h=hint&&hint.path?findTask(hint.path):null;if(h&&h.photos.some(p=>p.id===pid))return h;return S.tasks.find(t=>t.photos.some(p=>p.id===pid))||S.privTasks.find(t=>t.photos.some(p=>p.id===pid))||null;}
 function findTaskById(tid,path){return (path&&findTask(path))||S.tasks.find(t=>t.id===tid)||null;}
@@ -4768,7 +4840,7 @@ function piiSetHTML(){if(S.mode!=='firebase'||!S.canEdit)return '';const own=pii
    · 보고서 화면은 보고서 용지만, 업무 상세 창이 열려 있으면 그 업무 한 장(정보·내용·진행 기록·사진)을 인쇄합니다.
    · 보고서: '개인별 보고서'로 직원을 고르면 그 사람이 담당했거나 진행 기록을 남긴 업무 + 일자별 진행 기록,
      '업무 범위'에서 공개+내 비공개 / 공개만 / 🔒 내 비공개만 을 고릅니다. */
-const PR_VIEW={my:'내 업무',team:'팀 현황',overview:'총괄',board:'칸반',calendar:'달력',list:'업무 목록',report:'보고서',upload:'각종서류 올리기',docs:'회사 서류함',legal:'법정 업무',gw:'그룹웨어 소식',photos:'사진첩',help:'사용 안내'};
+const PR_VIEW={my:'내 업무',team:'팀 현황',org:'조직도·업무분장',overview:'총괄',board:'칸반',calendar:'달력',list:'업무 목록',report:'보고서',upload:'각종서류 올리기',docs:'회사 서류함',legal:'법정 업무',gw:'그룹웨어 소식',photos:'사진첩',help:'사용 안내'};
 function logText(l){const st=k=>ST[k]?ST[k].name:'';
   const k=l.kind==='status'?`상태 ${st(l.from)} → ${st(l.to)}`:l.kind==='progress'?`진척률 ${l.p0??0}% → ${l.p1??0}%`:l.kind==='create'?'업무 등록':l.kind==='photo'?`사진 ${(l.photos||[]).length}장 첨부`:l.kind==='record'?'완료 기록':'';
   return [k,l.text||''].filter(Boolean).join(' — ')+(l.issue?' [이슈]':'');}
@@ -4844,6 +4916,252 @@ document.addEventListener('click',e=>{const T=e.target;
   if(T.closest('#r-mine')){if(!S.myStaff){toast('내 정보에서 이름을 먼저 고르세요.','err');return;}repSetWho(S.myStaff);renderPaper();return;}
   if(T.closest('[data-my-report]')){if(!S.myStaff){toast('내 정보에서 이름을 먼저 고르세요.','err');return;}repSetWho(S.myStaff);go('#report');return;}
   if(T.closest('[data-priv-report]')){if(!S.rep)return;S.rep.pmode='priv';if(S.myStaff)S.rep.who=S.myStaff;if(S.rep.kind==='day'||S.rep.kind==='week'){S.rep.kind='month';}S.rep.date=today();go('#report');return;}});
+/* ───────── 조직도 · 업무분장 (20차) ─────────
+   · 기준: 2025.02 관리부 업무분장 엑셀(박혜진·윤민진·이은주·공창배·산업안전·안전관리업무현황 시트) + 업무일지 실제 기록
+   · 응용한 오픈소스: dabeng/OrgChart(MIT, 중첩 트리·파트별 색·깊은 단계 세로 배치 hybrid layout),
+     bumbeishvili/d3-org-chart(id·parentId 평면 자료 → 트리), RACI 책임 배정표(joelparkerhenderson/responsibility_assignment_matrix,
+     EqualifyEverything/raci 의 '사람별 보기') → 정(주담당)·부(부담당)·대행 업무분장표
+   · 매주 1회(월요일 기준 주) 자동 점검: 직원 명단 변경(신규·퇴사·직급·근무지·병가·파견) 반영, 담당 없는 업무는 최근 12주 실적이 많은 사람으로 지정,
+     부재(병가·파견) 담당 업무는 대행자 표시, 12주 3건 이상 하는 사람은 부담당(실적) 추가, 업무분장에 없는 일이 12주 4건 이상이면 새 업무로 추가 → 변경 이력·알림
+   · 저장: app/org (구성원 읽기, 관리자만 쓰기). 점검은 관리자 화면에서 실행(앱을 열면 그 주 1회) + 예약 작업(월요일)이 orgApi.weekly() 호출 */
+const ORG_SRC='2025.02 관리부 업무분장';
+const ORG_UNITS=[{id:'top',name:'관리부',head:'이기도',parent:''},{id:'fin',name:'재무회계',head:'박혜진',parent:'top'},{id:'fac',name:'시설공무',head:'윤종국',parent:'top'},{id:'hr',name:'인사총무',head:'윤민진',parent:'top'}];
+const ORG_PEOPLE={'이기도':{unit:'top',home:'안양본사',extra:['관리부 총괄']},'박혜진':{unit:'fin',home:'안양본사'},'유소현':{unit:'fin',home:'안양본사'},'문수빈':{unit:'fin',home:'안양본사'},
+  '윤종국':{unit:'fac',home:'안양본사'},'전호열':{unit:'fac',home:'군포공장'},'박호준':{unit:'fac',home:'군포공장'},'윤범섭':{unit:'fac',home:'화성공장'},'최호정':{unit:'fac',home:'화성공장'},
+  '윤민진':{unit:'hr',home:'군포공장'},'이은주':{unit:'hr',home:'군포공장'},'공창배':{unit:'hr',home:''}};
+/* [id, 업무명, 약식, 분류 연결(대분류|중분류|소분류 ;로 여럿, 중분류 * 는 전체), 주기, 정 담당, 부 담당(,), 세부 내용, 근무지 한정, 2025.02 담당(지금 명단에 없을 때)] */
+const ORG_DUTIES=[
+ ['f-acc','회계·결산','회계·결산','fin|회계·결산','매월','박혜진','','전표·장부 정리, 월 마감·결산, 회계감사 대응'],
+ ['f-tax','세무 신고','세무','fin|세무','매월·분기','박혜진','','부가가치세·원천세·법인세·지방세 신고, 세금계산서'],
+ ['f-fund','자금·예산','자금','fin|자금|자금 운용;fin|자금|입금 확인;fin|채권·채무;fin|예산','수시','박혜진','','자금 운용·입금 확인, 채권·채무, 예산 편성·집행'],
+ ['f-exp','지출·경비(군포)','지출·경비','fin|지출·비용 정산|지출결의·증빙;fin|지출·비용 정산|경비현황;fin|자금|시재·소액전도금','월 2회','윤민진','','소액전도금 관리, 경비현황 결재(월 2회), 지출결의서·증빙 관리'],
+ ['f-cost','월 비용 마감(주유·물류·교통비)','비용 마감','fin|지출·비용 정산|유류비;fin|지출·비용 정산|물류 운반비;hr|급여·4대보험|교통비','매월','이은주','','군포 주유비 영수증 확인·마감, 물류 운반비(군포·화성) 마감, 교통비 지급대상자 서명 취합'],
+ ['f-ins','보험 갱신','보험','hr|자산·보험|건물 화재보험;hr|자산·보험|단체보험','연간','박혜진','','건물 화재보험 등 만료 시 연장 갱신'],
+ ['h-staff','인원관리·채용','채용·인원','hr|채용·입퇴사','수시','윤민진','이은주','군포 출퇴근 현황 보고(매일), 도급 TO·면접, 태성 구인·입사서류·근로/연봉계약, 입퇴사 결재, 제증명 발급'],
+ ['h-att','근태·휴가','근태','hr|근태·휴가','매일·매월','윤민진','','연차·결근·휴직·공상·산재 휴무 인원 관리, 휴일근무 인원·식당 공지'],
+ ['h-rec','인사기록·조직도','인사기록','hr|인사관리|인사기록·조직도;hr|인사관리|정규직·소속 전환;hr|문서·사무행정|명함·출입카드','매월','윤민진','이은주','입퇴사·사원명부(더존), 사원카드·명패, 조직도 업데이트(안양·군포·화성, 매월)'],
+ ['h-notice','공지·업무연락','공지','hr|문서·사무행정|업무연락·공지','수시','윤민진','','월례조회·휴일 업무연락 작성·결재·공지'],
+ ['h-pay','급여 마감','급여','hr|급여·4대보험|급여 마감;hr|급여·4대보험|공제·식수 정산;hr|급여·4대보험|퇴직금·퇴직연금','매월','윤민진','','급여 인원 확인, 식수·간식·공제 현황, 급여 마감 기안·월별 비교표'],
+ ['h-ins','4대보험','4대보험','hr|급여·4대보험|4대보험 신고;hr|급여·4대보험|피부양자·납부유예','매월','윤민진','','입퇴사 4대보험 신고, 부양가족 등록, 휴직 유예·개시, 육아휴직 신고'],
+ ['h-yearend','연말정산','연말정산','hr|급여·4대보험|연말정산','연간(1~2월)','윤민진','이은주','업무연락·서류 취합·더존 반영·신고, 원천징수영수증 배부 (군포·화성 서류 지원)'],
+ ['h-eval','인사평가·연봉계약','인사평가','hr|인사관리|인사평가;hr|인사관리|연봉계약·조정;hr|인사관리|포상·장기근속','연간','윤민진','','인사평가 취합·결재, 연봉계약서 배부, 장기근속·우수사원 시상'],
+ ['h-mil','병역특례','병역특례','hr|인사관리|병역특례','매월','윤민진','','복무표 작성, 교육 참가, 인원 관리'],
+ ['h-labor','노사협의회·사규','노사협의회','hr|노무관리|노사협의회;hr|노무관리|취업규칙·사규;hr|노무관리|장애인 고용','분기','윤민진','','노사협의회 분기 진행, 취업규칙·사규'],
+ ['h-gov','정부지원·인증','지원금·인증','hr|노무관리|고용지원금·장려금;etc|인증·지원사업','수시','윤민진','','일자리도약·국민취업·육아휴직·정년 장려금, 가족친화 인증 등'],
+ ['h-it','전산','전산','hr|전산','수시','윤민진','','PC·소모품 구매, 장애 대응, 전산실 재고, 계정 관리, 프로그램 갱신'],
+ ['h-sub','도급직 관리','도급직','hr|도급·용역 관리','매월','이은주','윤민진','도급직 채용 확인, 근태 마감(업체별), 급여·도급비 정산 검토, 이슈 대응'],
+ ['h-supply','비품·물품 발주(군포)','비품·발주','hr|비품·구매|사무용품;hr|비품·구매|소모품;hr|비품·구매|원두·생수;hr|비품·구매|미화용품;hr|비품·구매|구매·발주 결재','매월','이은주','','사무용품·비품 재고, 원두·생수·종이컵·미화용품 월 발주 결재','군포공장'],
+ ['h-supply-a','비품·소모품 구매(안양)','비품(안양)','hr|비품·구매|사무용품;hr|비품·구매|소모품;hr|비품·구매|원두·생수;hr|비품·구매|미화용품','수시','','','사무용품 재고·구매, 업무용 소모품·탕비실 용품 구매','안양본사','박소연'],
+ ['h-rental','렌탈 A/S(정수기·비데·커피머신)','렌탈 A/S','hr|자산·보험|정수기·비데;hr|자산·보험|커피머신·자판기','수시','이은주','','고장 확인·A/S 접수 (안양: 2025.02 박소연)'],
+ ['h-uniform','피복·안전화','피복','hr|비품·구매|피복 신청·발주;hr|비품·구매|피복 배부·재고;hr|비품·구매|안전화 지급','연 3회','이은주','','피복 신청 확인·지급·수량 관리, 연 3회 피복 구매(2025.02 공창배)'],
+ ['h-event','사내행사·월례조회 준비','행사·월례조회','hr|행사·복리후생|월례조회;hr|행사·복리후생|사내행사;hr|행사·복리후생|시상·의전;hr|행사·복리후생|명절·선물세트','매월','이은주','윤민진','월례조회 촬영·물품·생일자 준비, 종무식·창립기념일 등 행사 진행'],
+ ['h-welfare','사내복지(경조·식당·간식)','복지','hr|행사·복리후생|결혼기념일 선물;hr|행사·복리후생|경조사;hr|행사·복리후생|간식·식대;hr|행사·복리후생|휴일 식당 운영;hr|행사·복리후생|사우회','수시','이은주','윤민진','결혼기념일 선물비 신청, 경조사, 간식·휴일 식당 운영'],
+ ['h-cos','화장품 구매·배부','화장품','hr|행사·복리후생|화장품 지급','수시','박혜진','이은주','구매·배부·파렛트 입출고, 15일·말일 재고 파악 (군포·화성 배분)'],
+ ['h-edu','법정의무교육·외부교육','의무교육','hr|교육훈련','연간','공창배','이은주','산업안전·성희롱·장애인·개인정보·퇴직연금 교육 관리, 대상자 명부·서명, 강사 섭외, 외부교육'],
+ ['h-car','차량 관리','차량','hr|차량관리','수시','공창배','','차량 발주·매각, 주유·하이패스 카드, 정비·정기검사, 보험, 운행일지·GPS, 사고 처리'],
+ ['h-carin','차량 출입 등록(안양)','차량 출입','hr|차량관리|주차·출입차량 등록','수시','','','신규·해지·변경 차량 출입 등록','안양본사','박소연'],
+ ['h-furn','가구·음향·휘트니스','가구·집기','hr|비품·구매|가구·집기;hr|자산·보험|음향·휘트니스','수시','공창배','','전 공장 가구, 음향 시스템, 휘트니스 기구 관리'],
+ ['h-docs','문서·게시판·회의 준비','문서·회의','hr|문서·사무행정|게시판 관리;hr|문서·사무행정|회의 준비;hr|문서·사무행정|문서 관리;hr|문서·사무행정|인장·직인;hr|문서·사무행정|공문·협약서','수시','','','공고문 게시판 관리, 회의 준비, 문서·직인 관리','','박소연'],
+ ['h-hs','화성공장 관리 지원','화성 지원','hr|문서·사무행정|우편·발송;hr|*','수시','이은주','','서류·물품 발송(화물 일 2회)·회신 확인, 현장 상황 체크, 도급 채용 확인','화성공장'],
+ ['c-anyang','안양본사 시설 관리','안양 시설','fac|*','수시','윤종국','윤범섭','전기·승강기·건축물·기계설비 유지관리, 보수·공사, 업체 관리','안양본사'],
+ ['c-gunpo','군포공장 시설 관리','군포 시설','fac|*','수시','전호열','박호준','냉난방·냉각탑·콤프레샤, 전기·조명·수변전, 건축 보수','군포공장'],
+ ['c-hwaseong','화성공장 시설 관리','화성 시설','fac|*','수시','최호정','윤범섭','전기·소방·승강기·위험물 관리, 설비 보수','화성공장'],
+ ['c-legal','법정 검사·점검 일정','법정 검사','fac|시설 행정|법정 검사 대응;fac|승강기|정기검사;fac|전기설비|전기 정기검사;fac|급수·위생·미화|저수조·수질;fac|급수·위생·미화|방역·소독;fac|소방설비|소방시설 점검','연간','윤종국','전호열','전기 3년, 소방 작동·종합정밀, 승강기, 저수조 청소(4·10월)·수질, 실내소독(3·5·7·9·12월), 가스'],
+ ['c-fire-g','군포 소방안전관리','소방(군포)','fac|소방설비','월 점검','박호준','전호열','소방안전관리자(1급) 박호준, 보조자 전호열, 자체점검 위탁','군포공장'],
+ ['c-env','환경(폐기물·대기측정)','환경·폐기물','fac|환경','연간·수시','윤민진','윤종국','폐기물 올바로시스템·연간 신고, 대기 자가측정 연 2회·보고(7/31·1/31)'],
+ ['s-agency','산업안전·보건 대행 대응','안전보건 대행','safe|사업장 안전점검|대행기관 점검 대응;safe|안전관리 계획·조직|책임자·관리감독자 선임;safe|안전관리 계획·조직|안전보건관리규정;safe|안전관리 계획·조직|방침·법령 게시','월 2회','공창배','박호준','월 2회 대행 방문 대응, 관리책임자·관리감독자 선임, 안전보건관리규정'],
+ ['s-risk','위험성평가·작업환경측정','위험성평가·측정','safe|위험성평가;safe|작업환경·화학물질|작업환경측정;safe|산업보건관리|근골격계 조사','연 1회·반기','공창배','이은주','연 1회 위험성평가, 3년 주기 근골격계 조사, 반기 작업환경측정'],
+ ['s-edu','안전보건교육','안전교육','safe|안전보건교육','반기·입사 시','이은주','박호준','정기 안전보건교육 명부·서명, 신규채용자 교육(박호준), 관리감독자·관리책임자 교육'],
+ ['s-msds','MSDS·화학물질','MSDS','safe|작업환경·화학물질|MSDS 관리;safe|작업환경·화학물질|유해화학물질','연 1회','이은주','박호준','MSDS 파일철·교육일지, 군포 MSDS 행정'],
+ ['s-check','안전보건 현장점검(군포)','현장점검','safe|사업장 안전점검|안전순찰·현장점검;safe|사업장 안전점검|시정조치','2개월','이은주','','군포 현장점검 대응(2개월), 지도사항 개선','군포공장'],
+ ['s-inspect','유해위험기계 안전검사','안전검사','safe|사업장 안전점검|안전검사;fac|생산설비 지원|호이스트·크레인','2년','전호열','','프레스·크레인(2톤 이상)·리프트·압력용기 안전검사'],
+ ['s-ppe','보호구·안전표지','보호구','safe|보호구·안전시설','수시','공창배','','보호구·안전화 지급, 안전표지·수칙 부착'],
+ ['s-accident','산업재해 관리','산재','safe|산업재해 대응','발생 시','공창배','','산업재해조사표 노동부 제출(30일 내), 근로자 사후관리'],
+ ['s-committee','산업안전보건위원회','산안위','safe|안전관리 계획·조직|산업안전보건위원회','분기','윤민진','이은주','분기 1회 이상 정기회의·회의록'],
+ ['s-health','건강검진','건강검진','safe|산업보건관리|일반 건강진단;safe|산업보건관리|특수·배치전 건강진단;fin|지출·비용 정산|검진비','연 1회','박혜진','윤민진,이은주','정기 건강검진 관리, 인원 확인·요청서류, 화성 현장 안내·특수검진'],
+ ['s-nurse','보건관리(간호사 방문)','보건관리','safe|산업보건관리|간호사 방문 상담;safe|산업보건관리|직무스트레스;safe|산업보건관리|청력보존','매월','윤민진','','간호사 방문 대응·결재(군포), 안양 상담 연결(2025.02 박소연), 청력보존 프로그램'],
+ ['e-gov','대관·관공서 협의','대관','etc|대관·인허가;etc|관공서 협의','수시','윤종국','윤민진','인허가·신고, 시·구청·노동관서·환경청·소방서 협의'],
+ ['e-report','경영 보고·공유','보고','etc|경영지원','수시','윤민진','','경영 보고·공유, 이사회 자료 등'],
+ ['e-ext','대외협력·계약','대외·계약','etc|대외협력·홍보;etc|법무·계약','수시','박혜진','','상공회의소·협회, 설문·통계, 계약서 검토']];
+/* 공장별 법정 선임 현황 (2025.02.13 안전관리업무현황 시트) [역할, 담당, 비고] — 관리부 직원 이름은 자동으로 연결 */
+const ORG_SEON={
+ '안양본사':[['안전보건관리책임자','김재식 부사장',''],['산업안전관리자','위탁 · 한국산업안전컨설팅',''],['보건관리자','위탁 · G샘병원',''],['관리감독자','김명우 부장',''],['전기안전관리자','윤종국',''],['소방안전관리자(1급)','이기도',''],['소방안전관리보조자','윤종국',''],['승강기안전관리자','윤종국',''],['건축물관리자','윤종국',''],['기계설비유지관리자','윤종국',''],['환경기술인(대기)','오용주',''],['폐기물관리자','윤민진','태성 선임표: 윤종국'],['MSDS 행정','공창배','']],
+ '군포공장':[['안전보건관리책임자','배재은 본부장',''],['산업안전관리자','위탁 · 한국산업안전컨설팅',''],['보건관리자','위탁 · G샘병원',''],['관리감독자','오대근·배재열·전철영·하덕용·이근창',''],['전기안전관리자','전호열',''],['소방안전관리자(1급)','박호준',''],['소방안전관리보조자','전호열',''],['승강기안전관리자','전호열',''],['건축물관리자','전호열',''],['유해화학물질 소량 자체관리','전호열',''],['환경기술인(대기)','임경화',''],['폐기물관리자','윤민진',''],['보건·MSDS 행정','박호준','']],
+ '화성공장':[['안전보건관리책임자','김영권 상무',''],['산업안전관리자','위탁 · 한국산업안전컨설팅',''],['보건관리자','위탁 · G샘병원',''],['관리감독자','이현석',''],['전기안전관리자','최호정',''],['소방안전관리자(2급)','최호정',''],['승강기안전관리자','최호정',''],['위험물안전관리자','최호정','저장소 대행 위탁'],['유해화학물질 관리책임자','이현석','점검원 최호정'],['환경기술인(대기·수질)','이현석',''],['폐기물관리자','이현석',''],['MSDS 행정','공창배','']]};
+const ORG_SITES=['안양본사','군포공장','화성공장'];
+const ORG_UCOL={top:'#1f3a5f',fin:'var(--c-fin,#2f7d5b)',fac:'var(--c-fac,#b4541a)',hr:'var(--c-hr,#4b4fb8)'};
+S.org=null;S.orgLoaded=false;S.orgv={tab:'all',person:''};
+const ORG_T0=Date.now();
+/* ── 자료 */
+const staffByName=n=>staffList().find(s=>s.name===n);
+const sidOf=n=>{const s=staffByName(n);return s?s.id:'';};
+const rank=role=>String(role||'').split(/\s*[-·(]\s*/)[0].trim();
+const absentOf=s=>!!s&&['leave','dispatch'].includes(s.state);
+const stLabel=s=>!s?'':s.state==='leave'?'병가':s.state==='dispatch'?'파견':'';
+function orgDefault(){const people={};for(const [n,p] of Object.entries(ORG_PEOPLE)){const id=sidOf(n);if(id)people[id]={unit:p.unit,home:p.home,extra:p.extra||[]};}
+  const units=ORG_UNITS.map(u=>({id:u.id,name:u.name,parent:u.parent,head:sidOf(u.head)}));
+  const duties=ORG_DUTIES.map(([id,name,short,match,cycle,main,subs,detail,site,prev])=>{const mid=sidOf(main);return {id,name,short,match,cycle,main:mid,subs:(subs?subs.split(','):[]).map(sidOf).filter(Boolean),detail,site:site||'',prev:prev||(main&&!mid?main:''),act:'',auto:[],src:'base',mainAuto:false};});
+  const seon={};for(const [site,rows] of Object.entries(ORG_SEON))seon[site]=rows.map(r=>({role:r[0],who:r[1],note:r[2]}));
+  return {v:1,src:ORG_SRC,units,people,duties,seon,log:[],snap:orgSnap(),week:'',checkedAt:'',checkedBy:'',at:nowISO()};}
+function orgSnap(){const m={};for(const s of staffList())m[s.id]={name:s.name,role:s.role||'',site:s.site||'',state:s.state||''};return m;}
+function normOrg(d){if(!d||typeof d!=='object'||!Array.isArray(d.duties))return null;const str=(x,n=200)=>typeof x==='string'?x.slice(0,n):'';const ids=a=>Array.isArray(a)?a.filter(x=>typeof x==='string').slice(0,12):[];
+  return {v:1,src:str(d.src,60),units:(Array.isArray(d.units)?d.units:[]).map(u=>({id:str(u.id,20),name:str(u.name,30),parent:str(u.parent,20),head:str(u.head,60)})).filter(u=>u.id),
+    people:d.people&&typeof d.people==='object'?Object.fromEntries(Object.entries(d.people).map(([k,p])=>[k,{unit:str(p&&p.unit,20)||'top',home:str(p&&p.home,20),extra:ids(p&&p.extra).map(x=>x.slice(0,30)),short:ids(p&&p.short).map(x=>x.slice(0,30))}])):{},
+    duties:d.duties.map(x=>({id:str(x.id,40),name:str(x.name,60),short:str(x.short,20),match:str(x.match,600),cycle:str(x.cycle,20),main:str(x.main,60),subs:ids(x.subs),detail:str(x.detail,300),site:str(x.site,20),prev:str(x.prev,20),act:str(x.act,60),auto:ids(x.auto),src:['base','auto','admin'].includes(x.src)?x.src:'base',mainAuto:!!x.mainAuto,idle:!!x.idle})).filter(x=>x.id),
+    seon:d.seon&&typeof d.seon==='object'?Object.fromEntries(ORG_SITES.map(s=>[s,(Array.isArray(d.seon[s])?d.seon[s]:[]).map(r=>({role:str(r.role,40),who:str(r.who,60),note:str(r.note,60)}))])):{},
+    log:(Array.isArray(d.log)?d.log:[]).slice(0,200).map(l=>({at:str(l.at,30),by:str(l.by,40),kind:str(l.kind,12),week:str(l.week,12),text:str(l.text,200)})),
+    snap:d.snap&&typeof d.snap==='object'?d.snap:{},week:str(d.week,12),checkedAt:str(d.checkedAt,30),checkedBy:str(d.checkedBy,40),at:str(d.at,30)};}
+const orgCur=()=>S.org||orgDefault();
+let ORGU=null;
+function orgSub(){if(ORGU){try{ORGU();}catch{}ORGU=null;}S.orgLoaded=false;if(S.preview){S.orgLoaded=true;return;}if(S.mode!=='firebase'||!S.fs)return;
+  ORGU=S.fs.doc('app/org').onSnapshot(s=>{S.org=s.exists?normOrg(s.data()):null;S.orgLoaded=true;if(S.view==='org')scheduleRender();ntfTick();},()=>{S.orgLoaded=true;});}
+async function orgSave(o){o.at=nowISO();if(S.preview){S.org=normOrg(JSON.parse(JSON.stringify(o)));if(S.view==='org')scheduleRender();ntfTick();return;}
+  await fbWrite(S.fs.doc('app/org').set(JSON.parse(JSON.stringify(o))));}
+/* ── 업무 ↔ 업무분장 연결 */
+function dutySpecs(d){return String(d.match||'').split(';').map(x=>x.trim()).filter(Boolean).map(x=>x.split('|'));}
+function dutyHit(d,t){if(d.site&&t.site!==d.site)return false;return dutySpecs(d).some(([c,s,l])=>t.cat===c&&(s==='*'||t.sub===s)&&(!l||t.leaf===l));}
+const taskDate=t=>t.doneAt||t.due||t.start||localDate(t.createdAt)||'';
+function taskPeople(t,from){const ps=new Set(t.assignees);for(const l of t.logs)if(l.by&&localDate(l.at)>=from)ps.add(l.by);return ps;}
+/* 기간 안 업무별·사람별 건수 */
+function dutyStats(o,days){const from=addDays(today(),-days);const st={};for(const d of o.duties)st[d.id]={};const cover=new Map();
+  for(const t of S.tasks){if(t.sample)continue;const dt=taskDate(t);const lg=t.logs.some(l=>localDate(l.at)>=from);if(!(dt>=from||lg))continue;const ps=taskPeople(t,from);let hit=false;
+    for(const d of o.duties){if(!dutyHit(d,t))continue;hit=true;for(const p of ps)st[d.id][p]=(st[d.id][p]||0)+1;}
+    if(!hit&&t.cat&&t.sub){const k=t.cat+'|'+t.sub;const c=cover.get(k)||{n:0,p:{}};c.n++;for(const p of ps)c.p[p]=(c.p[p]||0)+1;cover.set(k,c);}}
+  return {st,cover};}
+const topOf=(m,ex=[])=>Object.entries(m||{}).filter(([p])=>!ex.includes(p)&&S.staff[p]&&!absentOf(S.staff[p])).sort((a,b)=>b[1]-a[1])[0]||null;
+const weekKey=()=>{const td=today();return addDays(td,-((dow(td)+6)%7));};
+/* ── 매주 점검 */
+function orgCheck(o,by){const out=[];const now=nowISO();const wk=weekKey();const L=(kind,text)=>out.push({at:now,by,kind,week:wk,text});
+  const roster=staffList();const ids=new Set(roster.map(s=>s.id));const snap=o.snap||{};
+  // 1) 직원 명단 변경
+  for(const s of roster){const p=snap[s.id];
+    if(!p){if(!o.people[s.id]){const r=s.role||'';o.people[s.id]={unit:/재무|회계|자금/.test(r)?'fin':/시설|공무|전기|설비/.test(r)?'fac':/인사|총무|안전|보건/.test(r)?'hr':'top',home:ORG_SITES.includes(s.site)?s.site:'',extra:[],short:[]};}
+      if(Object.keys(snap).length)L('staff',`신규 직원 ${s.name}(${rank(s.role)||'직급 미입력'}·${s.site||'근무지 미입력'}) — 조직도 ${unitName(o,o.people[s.id].unit)}에 추가`);continue;}
+    if(p.role!==(s.role||''))L('staff',`${s.name} 직급·담당 변경: ${p.role||'-'} → ${s.role||'-'}`);
+    if(p.site!==(s.site||'')){L('staff',`${s.name} 근무지 변경: ${p.site||'-'} → ${s.site||'-'}`);if(ORG_SITES.includes(s.site)&&o.people[s.id])o.people[s.id].home=s.site;}
+    if((p.state||'')!==(s.state||'')){const a=stLabel({state:p.state}),b=stLabel(s);L('staff',b?`${s.name} ${b} — 담당 업무는 실적 기준 대행자 표시`:`${s.name} ${a||'부재'}에서 복귀`);}}
+  for(const [id,p] of Object.entries(snap))if(!ids.has(id)){L('staff',`${p.name} 직원 명단에서 빠짐 — 담당 업무를 '담당 확인 필요'로 바꿈`);delete o.people[id];
+    for(const d of o.duties){if(d.main===id){d.main='';d.prev=p.name;d.mainAuto=false;}d.subs=d.subs.filter(x=>x!==id);d.auto=d.auto.filter(x=>x!==id);if(d.act===id)d.act='';}
+    for(const u of o.units)if(u.head===id)u.head='';}
+  // 2) 실적 기준 담당·대행·부담당
+  const S12=dutyStats(o,84),S26=dutyStats(o,182);
+  for(const d of o.duties){const m=S12.st[d.id]||{};const m26=S26.st[d.id]||{};const nm=nameOf;
+    if(!d.main){const t=topOf(m);if(t&&t[1]>=2){d.main=t[0];d.mainAuto=true;d.auto=d.auto.filter(x=>x!==t[0]);d.subs=d.subs.filter(x=>x!==t[0]);L('duty',`'${d.name}' 담당 지정: ${nm(t[0])} (최근 12주 ${t[1]}건${d.prev?`, 2025.02 ${d.prev}`:''})`);}}
+    const ms=S.staff[d.main];
+    if(d.main&&absentOf(ms)){const t=topOf(m,[d.main]);const na=t&&t[1]>=2?t[0]:'';if(na!==d.act){L('duty',na?`'${d.name}' 대행: ${nm(na)} (${nm(d.main)} ${stLabel(ms)} 중, 최근 12주 ${t[1]}건)`:`'${d.name}' 대행자 없음 — ${nm(d.main)} ${stLabel(ms)} 중, 최근 12주 기록 없음`);d.act=na;}}
+    else if(d.act){L('duty',`'${d.name}' 대행 해제 (${nm(d.main)} 복귀)`);d.act='';}
+    for(const [p,n] of Object.entries(m)){if(n<3||p===d.main||p===d.act||d.subs.includes(p)||d.auto.includes(p)||!S.staff[p])continue;d.auto.push(p);L('duty',`'${d.name}' 부담당(실적) 추가: ${nm(p)} (최근 12주 ${n}건)`);}
+    for(const p of [...d.auto])if(!m26[p]){d.auto=d.auto.filter(x=>x!==p);L('duty',`'${d.name}' 부담당(실적) 해제: ${nm(p)} (6개월 기록 없음)`);}
+    d.idle=!Object.keys(m26).length;}
+  // 3) 업무분장에 없는 일
+  for(const [k,c] of S12.cover){if(c.n<4)continue;const [cat,sub]=k.split('|');if(!CAT[cat])continue;const t=topOf(c.p);const id='a-'+cat+'-'+sub.replace(/[^\w가-힣]/g,'');if(o.duties.some(d=>d.id===id))continue;
+    o.duties.push({id,name:sub,short:sub.split('·')[0].slice(0,8),match:k,cycle:'수시',main:t?t[0]:'',subs:[],detail:`업무일지 실적으로 추가(최근 12주 ${c.n}건)`,site:'',prev:'',act:'',auto:[],src:'auto',mainAuto:!!t,idle:false});
+    L('new',`새 업무 추가: ${CAT[cat].name} › ${sub} — ${t?nameOf(t[0]):'담당 미지정'} (최근 12주 ${c.n}건)`);}
+  o.snap=orgSnap();o.week=wk;o.checkedAt=now;o.checkedBy=by;o.log=[...out,...(o.log||[])].slice(0,200);
+  if(!out.length)o.log=[{at:now,by,kind:'ok',week:wk,text:'주간 점검 — 변경 사항 없음'},...o.log].slice(0,200);
+  return out;}
+const unitName=(o,id)=>((o.units||[]).find(u=>u.id===id)||{}).name||'관리부';
+let _orgBusy=false;
+async function orgWeekly(opt={}){if(_orgBusy)return {ok:false,msg:'점검 중'};if(!(S.canEdit||S.preview))return {ok:false,msg:'관리자만 점검·저장할 수 있습니다'};
+  if(!S.preview&&(S.mode!=='firebase'||!S.orgLoaded))return {ok:false,msg:'조직도 자료를 아직 불러오지 못했습니다'};if(!S.tasks.length||!staffList().length)return {ok:false,msg:'업무·직원 자료를 아직 불러오지 못했습니다'};
+  const wk=weekKey();if(!opt.force&&S.org&&S.org.week===wk)return {ok:true,skipped:true,week:wk};
+  _orgBusy=true;try{const fresh=!S.org;const o=S.org?normOrg(JSON.parse(JSON.stringify(S.org))):orgDefault();
+    if(fresh)o.log=[{at:nowISO(),by:opt.by||'자동',kind:'init',week:wk,text:`조직도·업무분장 처음 만듦 (${ORG_SRC} 엑셀 기준, 업무 ${o.duties.length}개)`}];
+    const ch=orgCheck(o,opt.by||'자동(주간 점검)');await orgSave(o);return {ok:true,week:wk,changes:ch.map(c=>c.text),n:ch.length};}
+  catch(e){return {ok:false,msg:(e&&(e.code||e.message))||'저장 실패'};}finally{_orgBusy=false;}}
+setInterval(()=>{if(Date.now()-ORG_T0<20000)return;if(!(S.canEdit&&(S.mode==='firebase'||S.preview)))return;if(S.org&&S.org.week===weekKey())return;orgWeekly().then(r=>{if(r&&r.ok&&!r.skipped&&r.n)toast(`조직도·업무분장 주간 점검: 변경 ${r.n}건 반영`);});},30000);
+window.orgApi={ready:()=>({admin:!!S.canEdit,loaded:!!S.orgLoaded,exists:!!S.org,week:S.org?S.org.week:'',thisWeek:weekKey(),tasks:S.tasks.length,staff:staffList().length}),weekly:o=>orgWeekly({force:true,...(o||{})}),log:(n=20)=>(orgCur().log||[]).slice(0,n)};
+function orgNtf(){const o=S.org;if(!o||!o.log.length)return [];const seen=lsGet('wl.orgSeen')||'';const nw=o.log.filter(l=>l.at>seen&&['staff','duty','new','init','admin'].includes(l.kind));
+  return nw.length?[{k:'org|'+nw[0].at,at:nw[0].at,type:'org',title:`조직도·업무분장 변경 ${nw.length}건`,text:nw.slice(0,2).map(l=>l.text).join(' / ')+(nw.length>2?' …':'')}]:[];}
+/* ── 사람별 약식 */
+function personDuties(o,id){return o.duties.filter(d=>d.main===id||d.act===id||d.subs.includes(id)||d.auto.includes(id)).map(d=>({d,role:d.main===id?(absentOf(S.staff[id])&&d.act?'정(부재)':'정'):d.act===id?'대행':d.subs.includes(id)?'부':'부(실적)'}));}
+function personSeon(o,id,site){const s=S.staff[id];if(!s)return [];const out=[];for(const [st,rows] of Object.entries(o.seon||{})){if(site&&st!==site)continue;for(const r of rows)if(r.who.split(/[·,\s]+/).includes(s.name))out.push(r.role.replace(/\(.+\)/,'')+(site?'':`(${st.replace(/(본사|공장)$/,'')})`));}return [...new Set(out)];}
+function shortChips(o,id,site){const p=o.people[id]||{};if(p.short&&p.short.length)return p.short;const st=S12cache();
+  const ds=personDuties(o,id).filter(x=>x.role==='정'||x.role==='대행'||x.role==='정(부재)').filter(x=>!site||!x.d.site||x.d.site===site).sort((a,b)=>((st[b.d.id]||{})[id]||0)-((st[a.d.id]||{})[id]||0)).map(x=>x.d.short+(x.role==='대행'?'(대행)':''));
+  const sub=ds.length<3?personDuties(o,id).filter(x=>x.role==='부'||x.role==='부(실적)').filter(x=>!site||!x.d.site||x.d.site===site).map(x=>x.d.short+'(부)'):[];
+  return [...(p.extra||[]),...ds,...sub,...personSeon(o,id,site).map(r=>'⚑'+r)];}
+let _s12=null,_s12t=0;function S12cache(){if(!_s12||Date.now()-_s12t>15000){_s12=dutyStats(orgCur(),84).st;_s12t=Date.now();}return _s12;}
+/* ── 그리기 (dabeng/OrgChart 식 중첩 트리 + 깊은 단계는 세로 배치) */
+function ocNode(o,id,opt={}){const s=S.staff[id];if(!s)return '';const chips=shortChips(o,id,opt.site);const lim=opt.lim||6;const st=stLabel(s);const home=(o.people[id]||{}).home||s.site;
+  return `<button type="button" class="oc-node ${opt.head?'head':''} ${st?'absent':''}" data-org-person="${esc(id)}" style="--uc:${ORG_UCOL[(o.people[id]||{}).unit]||ORG_UCOL.top}">${opt.unitName?`<span class="oc-unit">${esc(opt.unitName)}</span>`:''}<span class="oc-nm"><b>${esc(s.name)}</b> ${esc(rank(s.role))}${st?` <em class="oc-st">${st}</em>`:''}</span>${!opt.site&&home?`<span class="oc-site">${esc(home)}</span>`:''}<span class="oc-chips">${chips.slice(0,lim).map(c=>`<i class="${c.startsWith('⚑')?'seon':''}${/\(대행\)/.test(c)?' act':''}">${esc(c.replace('⚑',''))}</i>`).join('')}${chips.length>lim?`<i class="more">+${chips.length-lim}</i>`:''}</span></button>`;}
+function ocTree(o,site){const units=o.units;const members=uid=>staffList().filter(s=>{const p=o.people[s.id];if(!p||p.unit!==uid)return false;if(units.some(u=>u.head===s.id))return false;return !site||(p.home||s.site)===site;});
+  const top=units.find(u=>u.id==='top')||{id:'top',name:'관리부',head:''};const parts=units.filter(u=>u.parent==='top');
+  const partHTML=u=>{const ms=members(u.id);const headIn=u.head&&(!site||((o.people[u.head]||{}).home||(S.staff[u.head]||{}).site)===site);if(site&&!headIn&&!ms.length)return '';
+    return `<li><div class="oc-part" style="--uc:${ORG_UCOL[u.id]||ORG_UCOL.top}"><span class="oc-ptitle">${esc(u.name)} 파트</span>${headIn?ocNode(o,u.head,{head:1,site}):`<span class="oc-nohead">파트장 ${u.head&&S.staff[u.head]?esc(S.staff[u.head].name)+'(타 사업장)':'미지정'}</span>`}${ms.length?`<ul class="oc-vert">${ms.map(s=>`<li>${ocNode(o,s.id,{site})}</li>`).join('')}</ul>`:''}</div></li>`;};
+  const ps=parts.map(partHTML).filter(Boolean);const tops=staffList().filter(s=>(o.people[s.id]||{}).unit==='top'&&s.id!==top.head&&(!site||((o.people[s.id]||{}).home||s.site)===site));
+  const headIn=top.head&&(!site||((o.people[top.head]||{}).home||(S.staff[top.head]||{}).site)===site);
+  return `<div class="oc"><ul><li><div class="oc-root"><span class="oc-ptitle">${esc(site?site+' 관리부':S.config.dept||'관리부')}</span>${headIn?ocNode(o,top.head,{head:1,site,lim:4}):''}${tops.map(s=>ocNode(o,s.id,{site})).join('')}</div>${ps.length?`<ul>${ps.join('')}</ul>`:''}</li></ul></div>`;}
+function seonHTML(o,site){const rows=(o.seon||{})[site]||[];if(!rows.length)return '';
+  return `<section class="panel org-seon"><div class="panel-h"><h2>법정 선임 현황 · ${esc(site)}</h2><span class="sub">2025.02.13 안전관리업무현황 기준 · 병가·파견 중인 선임자는 변경 선임 확인 필요</span></div><table class="lst"><thead><tr><th>구분</th><th>담당</th><th>비고</th></tr></thead><tbody>${rows.map(r=>{const p=r.who.split(/[·,\s]+/).map(staffByName).filter(Boolean);const ab=p.filter(absentOf);return `<tr class="${ab.length?'warn':''}"><td>${esc(r.role)}</td><td>${esc(r.who)}${ab.length?` <em class="oc-st">${ab.map(s=>s.name+' '+stLabel(s)).join(', ')}</em>`:''}</td><td>${esc(r.note)}${ab.length?(r.note?' · ':'')+'변경 선임·대행 확인':''}</td></tr>`;}).join('')}</tbody></table></section>`;}
+function dutyRowHTML(o,d,st){const m=st[d.id]||{};const nm=id=>id&&S.staff[id]?S.staff[id].name:'';const P=S.orgv.person;
+  const top3=Object.entries(m).filter(([p])=>S.staff[p]).sort((a,b)=>b[1]-a[1]).slice(0,3).map(([p,n])=>`${nm(p)} ${n}`).join(', ');const ms=S.staff[d.main];
+  const main=d.main?`${esc(nm(d.main))}${absentOf(ms)?` <em class="oc-st">${stLabel(ms)}</em>`:''}${d.mainAuto?' <small class="auto">실적</small>':''}`:`<span class="vac">담당 확인 필요${d.prev?` (2025.02 ${esc(d.prev)})`:''}</span>`;
+  const sub=[...d.subs.map(x=>esc(nm(x))),...d.auto.map(x=>`${esc(nm(x))} <small class="auto">실적</small>`)].filter(Boolean).join(', ');
+  const hl=P&&(d.main===P||d.act===P||d.subs.includes(P)||d.auto.includes(P));
+  return `<tr class="${hl?'hl':''} ${d.idle?'idle':''}" data-org-duty="${esc(d.id)}"><td><b>${esc(d.name)}</b>${d.src==='auto'?' <small class="auto">새 업무</small>':''}${d.site?` <span class="tag">${esc(d.site.replace(/(본사|공장)$/,''))}</span>`:''}<div class="dd">${esc(d.detail)}</div></td><td class="c">${esc(d.cycle)}</td><td>${main}</td><td>${d.act?`${esc(nm(d.act))} <small class="auto">실적</small>`:''}</td><td>${sub||'-'}</td><td class="n">${top3||'<span class="vac">기록 없음</span>'}${d.idle?'<div class="idle-t">6개월 기록 없음</div>':''}</td></tr>`;}
+function dutyTableHTML(o){const st=S12cache();const P=S.orgv.person;const groups=CATS.map(c=>({c,ds:o.duties.filter(d=>(dutySpecs(d)[0]||[])[0]===c.id)})).filter(g=>g.ds.length);
+  const pick=staffList().filter(s=>personDuties(o,s.id).length);
+  return `<div class="org-people" role="group" aria-label="사람별 보기"><button type="button" data-org-p="" aria-pressed="${!P}">전체</button>${pick.map(s=>`<button type="button" data-org-p="${esc(s.id)}" aria-pressed="${P===s.id}">${esc(s.name)}${stLabel(s)?`<em>${stLabel(s)}</em>`:''}</button>`).join('')}</div>
+  ${P?personPanelHTML(o,P):''}
+  <div class="tbl-wrap"><table class="lst org-duty"><thead><tr><th>업무 · 세부 내용</th><th style="width:76px">주기</th><th style="width:118px">정(주담당)</th><th style="width:84px">대행</th><th style="width:150px">부(부담당)</th><th style="width:150px">최근 12주 실적</th></tr></thead><tbody>
+  ${groups.map(g=>`<tr class="grp"><td colspan="6"><span class="catchip cat-${g.c.id}">${esc(g.c.name)}</span> <small>${g.ds.length}개 업무</small></td></tr>`+g.ds.filter(d=>!P||d.main===P||d.act===P||d.subs.includes(P)||d.auto.includes(P)).map(d=>dutyRowHTML(o,d,st)).join('')).join('')}</tbody></table></div>
+  <p class="help org-help">정 = 주담당(책임), 부 = 함께 하는 사람, 대행 = 주담당이 병가·파견 중일 때 실제로 처리하는 사람. '실적' 표시는 업무일지 기록(최근 12주)으로 매주 자동 반영된 것입니다. 행을 누르면 ${S.canEdit?'담당을 고칠 수 있습니다':'자세히 볼 수 있습니다'}.</p>`;}
+function personPanelHTML(o,id){const s=S.staff[id];if(!s)return '';const st=S12cache();const ds=personDuties(o,id);const seon=personSeon(o,id);
+  return `<section class="panel org-pp"><div class="panel-h"><h2>${esc(s.name)} ${esc(rank(s.role))} 업무분장</h2><span class="sub">${esc(unitName(o,(o.people[id]||{}).unit))} · ${esc((o.people[id]||{}).home||s.site||'')}${stLabel(s)?' · '+stLabel(s):''} · 맡은 업무 ${ds.length}개</span>${S.canEdit?`<div class="act"><button type="button" class="btn sm ghost" data-org-pedit="${esc(id)}">소속·약식 고치기</button></div>`:''}</div>
+    <div class="org-pp-b">${['정','정(부재)','대행','부','부(실적)'].map(r=>{const xs=ds.filter(x=>x.role===r);return xs.length?`<div><h4>${r==='정'?'주담당':r==='정(부재)'?'주담당 (부재 중 — 대행자 있음)':r==='대행'?'대행':r==='부'?'부담당':'부담당(실적)'} <small>${xs.length}</small></h4><ul>${xs.map(x=>`<li><b>${esc(x.d.name)}</b> <small>${esc(x.d.cycle)} · 12주 ${(st[x.d.id]||{})[id]||0}건</small><div>${esc(x.d.detail)}</div></li>`).join('')}</ul></div>`:'';}).join('')}
+    ${seon.length?`<div><h4>법정 선임</h4><ul>${seon.map(r=>`<li>${esc(r)}</li>`).join('')}</ul></div>`:''}</div></section>`;}
+function orgLogHTML(o){const L=o.log||[];return L.length?`<ul class="org-log">${L.map(l=>`<li class="k-${esc(l.kind)}"><time>${esc(hhmm(l.at))}</time><span class="by">${esc(l.by)}</span><span>${esc(l.text)}</span></li>`).join('')}</ul>`:'<div class="empty">아직 변경 이력이 없습니다.</div>';}
+function renderOrg(v){const o=orgCur();const T=S.orgv.tab;const tabs=[['all','전체 조직도'],...ORG_SITES.map(s=>[s,s]),['duty','업무분장표'],['log','변경 이력']];
+  const sub=`${esc(o.src||ORG_SRC)} + 업무일지 실적 · ${o.checkedAt?`최근 점검 ${esc(hhmm(o.checkedAt))} (${esc(o.checkedBy||'')})`:'아직 점검 전'} · 매주 1회 자동 점검`;
+  const body=S.orgv.all?[['all','전체 조직도'],...ORG_SITES.map(s=>[s,s+' 관리부 조직도']),['duty','업무분장표']].map(([k,n])=>`<section class="org-sec print-break"><h2 class="org-h2">${esc(n)}</h2>${orgBody(o,k)}</section>`).join(''):orgBody(o,T);
+  v.innerHTML=`<div class="home-head"><div><h1>조직도 · 업무분장</h1><p>${sub}</p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="btn" data-org-printall title="전체 조직도·공장별 조직도·업무분장표를 한 번에 인쇄">🖨 모두 인쇄</button>${S.canEdit?'<button type="button" class="btn" data-org-check>지금 점검</button><button type="button" class="btn" data-org-add>+ 업무 추가</button>':''}</div></div>
+  ${!S.org&&S.mode==='firebase'?`<div class="banner" style="margin:0 0 12px">${S.canEdit?'처음 여는 조직도입니다. 잠시 후 2025.02 업무분장과 업무일지 실적으로 자동 저장됩니다.':'관리자가 아직 조직도를 저장하지 않아 2025.02 업무분장 기준 초안을 보여 드립니다.'}</div>`:''}
+  <div class="seg org-tabs" role="tablist">${tabs.map(([k,n])=>`<button type="button" data-org-tab="${esc(k)}" aria-pressed="${T===k}">${esc(n)}</button>`).join('')}</div>
+  <div class="org-body">${body}</div>`;}
+function orgBody(o,T){if(T==='duty')return dutyTableHTML(o);if(T==='log')return orgLogHTML(o);
+  const site=ORG_SITES.includes(T)?T:'';const P=S.orgv.person;
+  return `<div class="org-chart-wrap">${ocTree(o,site)}</div><p class="help org-help">이름표의 짧은 글은 주요 업무 약식(정·대행 업무, ⚑ 는 법정 선임)입니다. 이름을 누르면 그 사람의 업무분장을 봅니다.${site?' 파트장이 다른 사업장에 있으면 이름만 표시합니다.':''}</p>${P&&!S.orgv.all?personPanelHTML(o,P):''}${site?seonHTML(o,site):''}`;}
+/* ── 관리자 편집 */
+function orgDlg(html){const d=$('#dlg-org');$('#org-dlg-b').innerHTML=html;if(!d.open)d.showModal();}
+function staffOpts(sel,blank='미지정'){return `<option value="">${blank}</option>`+staffList().map(s=>`<option value="${esc(s.id)}" ${s.id===sel?'selected':''}>${esc(s.name)} ${esc(rank(s.role))}${stLabel(s)?' ('+stLabel(s)+')':''}</option>`).join('');}
+function orgDutyEdit(id){const o=orgCur();const d=id?o.duties.find(x=>x.id===id):{id:'',name:'',short:'',match:'',cycle:'수시',main:'',subs:[],detail:'',site:'',auto:[]};if(!d)return;const st=S12cache()[d.id]||{};
+  if(!S.canEdit){orgDlg(`<h3>${esc(d.name)}</h3><p>${esc(d.detail)}</p><p class="help">주기 ${esc(d.cycle)} · 분류 연결 ${esc(d.match)}</p>`);return;}
+  const [c0,s0]=(dutySpecs(d)[0]||['etc','기타']);
+  orgDlg(`<form id="org-df" data-id="${esc(d.id)}" class="org-form"><h3>${id?'업무 고치기':'업무 추가'}</h3>
+    <label>업무명<input name="name" maxlength="60" required value="${esc(d.name)}"></label><label>약식(조직도 표기)<input name="short" maxlength="20" value="${esc(d.short)}"></label>
+    <label class="w">세부 내용<textarea name="detail" rows="2" maxlength="300">${esc(d.detail)}</textarea></label>
+    <label>주기<input name="cycle" maxlength="20" value="${esc(d.cycle)}"></label><label>근무지 한정<select name="site"><option value="">전체</option>${ORG_SITES.map(s=>`<option ${s===d.site?'selected':''}>${s}</option>`).join('')}</select></label>
+    <label>정(주담당)<select name="main">${staffOpts(d.main)}</select></label><label>대행<select name="act">${staffOpts(d.act,'없음')}</select></label>
+    <fieldset class="w"><legend>부(부담당)</legend>${staffList().map(s=>`<label class="chk"><input type="checkbox" name="subs" value="${esc(s.id)}" ${d.subs.includes(s.id)||d.auto.includes(s.id)?'checked':''}> ${esc(s.name)}${st[s.id]?` <small>12주 ${st[s.id]}</small>`:''}</label>`).join('')}</fieldset>
+    ${id?`<p class="help w">업무일지 분류 연결: ${esc(d.match)} — 이 분류로 기록된 업무로 매주 실적을 셉니다.</p>`:`<label>대분류<select name="cat">${CATS.map(c=>`<option value="${c.id}" ${c.id===c0?'selected':''}>${esc(c.name)}</option>`).join('')}</select></label><label>중분류<select name="sub">${subsOf(c0).map(x=>`<option ${x===s0?'selected':''}>${esc(x)}</option>`).join('')}</select></label>`}
+    <div class="w org-form-a">${id?'<button type="button" class="btn ghost danger" data-org-ddel>업무 삭제</button>':''}<span style="flex:1"></span><button type="button" class="btn" data-close>취소</button><button class="btn primary">저장</button></div></form>`);}
+function orgPersonEdit(id){const o=orgCur();const s=S.staff[id];if(!s||!S.canEdit)return;const p=o.people[id]||{unit:'top',home:'',extra:[],short:[]};
+  orgDlg(`<form id="org-pf" data-id="${esc(id)}" class="org-form"><h3>${esc(s.name)} — 조직도 표시</h3>
+    <label>소속 파트<select name="unit">${o.units.map(u=>`<option value="${u.id}" ${u.id===p.unit?'selected':''}>${esc(u.name)}</option>`).join('')}</select></label>
+    <label>근무 공장(조직도)<select name="home"><option value="">없음(파견 등)</option>${ORG_SITES.map(x=>`<option ${x===p.home?'selected':''}>${x}</option>`).join('')}</select></label>
+    <label class="chk w"><input type="checkbox" name="head" ${o.units.some(u=>u.head===id)?'checked':''}> 이 파트의 파트장(맨 위)</label>
+    <label class="w">약식 표기 직접 지정 (쉼표로, 비우면 업무분장에서 자동)<input name="short" maxlength="120" value="${esc((p.short||[]).join(', '))}"></label>
+    <label class="w">추가 표기 (예: 관리부 총괄)<input name="extra" maxlength="80" value="${esc((p.extra||[]).join(', '))}"></label>
+    <div class="w org-form-a"><span style="flex:1"></span><button type="button" class="btn" data-close>취소</button><button class="btn primary">저장</button></div></form>`);}
+async function orgEditSave(fn,text){const o=normOrg(JSON.parse(JSON.stringify(orgCur())));fn(o);o.log=[{at:nowISO(),by:nameOf(myId())||'관리자',kind:'admin',week:weekKey(),text},...(o.log||[])].slice(0,200);
+  try{await orgSave(o);toast('저장했습니다.');$('#dlg-org').close();}catch(e){writeError(e);}}
+document.addEventListener('submit',e=>{const f=e.target;if(f.id==='org-df'){e.preventDefault();const F=new FormData(f);const id=f.dataset.id;const subs=F.getAll('subs');
+    orgEditSave(o=>{let d=o.duties.find(x=>x.id===id);if(!d){const cat=F.get('cat'),sub=F.get('sub');d={id:'m-'+rid().slice(0,8),match:`${cat}|${sub}`,src:'admin',auto:[],prev:'',mainAuto:false,idle:false};o.duties.push(d);}
+      Object.assign(d,{name:String(F.get('name')).trim(),short:String(F.get('short')).trim()||String(F.get('name')).slice(0,8),detail:String(F.get('detail')),cycle:String(F.get('cycle')),site:String(F.get('site')),main:String(F.get('main')),act:String(F.get('act')),mainAuto:false});
+      d.subs=subs.filter(x=>x!==d.main&&!(d.auto||[]).includes(x));d.auto=(d.auto||[]).filter(x=>subs.includes(x));},`${id?'업무 수정':'업무 추가'}: ${F.get('name')} (정 ${nameOf(F.get('main'))||'미지정'})`);}
+  if(f.id==='org-pf'){e.preventDefault();const F=new FormData(f);const id=f.dataset.id;const L=x=>String(x||'').split(/\s*,\s*/).map(y=>y.trim()).filter(Boolean).slice(0,8);
+    orgEditSave(o=>{const unit=String(F.get('unit'));o.people[id]={unit,home:String(F.get('home')),short:L(F.get('short')),extra:L(F.get('extra'))};if(F.get('head')){for(const u of o.units)if(u.head===id&&u.id!==unit)u.head='';const u=o.units.find(x=>x.id===unit);if(u)u.head=id;}else for(const u of o.units)if(u.head===id)u.head='';},`${nameOf(id)} 조직도 표시 수정 (${unitName(orgCur(),String(F.get('unit')))})`);}});
+document.addEventListener('change',e=>{if(e.target.name==='cat'&&e.target.closest('#org-df')){const s=e.target.closest('form').querySelector('[name=sub]');s.innerHTML=subsOf(e.target.value).map(x=>`<option>${esc(x)}</option>`).join('');}});
+document.addEventListener('click',async e=>{const T=e.target;let b;
+  if((b=T.closest('[data-org-tab]'))){S.orgv.tab=b.dataset.orgTab;render();if(S.orgv.tab==='log'){const o=S.org;if(o&&o.log[0])lsSet('wl.orgSeen',o.log[0].at);ntfTick();}return;}
+  if((b=T.closest('[data-org-p]'))){S.orgv.person=b.dataset.orgP;render();return;}
+  if((b=T.closest('[data-org-person]'))){S.orgv.person=S.orgv.person===b.dataset.orgPerson?'':b.dataset.orgPerson;render();setTimeout(()=>{const p=$('.org-pp');if(p&&S.orgv.person)p.scrollIntoView({behavior:'smooth',block:'nearest'});},50);return;}
+  if((b=T.closest('[data-org-duty]'))){orgDutyEdit(b.dataset.orgDuty);return;}
+  if(T.closest('[data-org-add]')){orgDutyEdit('');return;}
+  if((b=T.closest('[data-org-pedit]'))){orgPersonEdit(b.dataset.orgPedit);return;}
+  if(T.closest('[data-org-ddel]')){const id=T.closest('form').dataset.id;const d=orgCur().duties.find(x=>x.id===id);if(d&&await confirmDlg('업무 삭제',`'${d.name}'을(를) 업무분장에서 뺍니다.`,'삭제'))orgEditSave(o=>{o.duties=o.duties.filter(x=>x.id!==id);},`업무 삭제: ${d.name}`);return;}
+  if(T.closest('[data-org-check]')){T.closest('[data-org-check]').disabled=true;const r=await orgWeekly({force:true,by:nameOf(myId())||'관리자'});toast(r.ok?(r.n?`점검 완료: 변경 ${r.n}건 반영`:'점검 완료: 변경 사항 없음'):r.msg,r.ok?'':'err');if(r.ok){S.orgv.tab='log';render();}return;}
+  if(T.closest('[data-org-printall]')){S.orgv.all=true;render();await new Promise(r=>setTimeout(r,60));try{await printView();}finally{setTimeout(()=>{S.orgv.all=false;if(S.view==='org')render();},1500);}return;}});
 
 /* ───────── 시작 ───────── */
 function boot(){
