@@ -508,7 +508,7 @@ dialog::backdrop{background:rgba(8,16,28,.5)}
 .set-two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media (max-width:640px){.set-two{grid-template-columns:1fr}}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
-/* ── 확장: 사진·총괄·기본서류·법정 업무·알림 ── */
+/* ── 확장: 사진·총괄·자료실·법정 업무·알림 ── */
 .cam-only{display:none}
 @media (max-width:760px){.cam-only{display:inline-flex}}
 .ph-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:8px}
@@ -574,7 +574,7 @@ dialog::backdrop{background:rgba(8,16,28,.5)}
 #wk-text{width:100%;min-height:52vh;font-family:ui-monospace,"D2Coding","Consolas",monospace;font-size:12.5px;line-height:1.55}
 .wk-ctl{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
 .wk-ctl #wk-label{font-weight:600}
-/* 기본서류 */
+/* 자료실 */
 .docs{display:grid;gap:14px}
 .doc-row{display:grid;grid-template-columns:42px minmax(0,1fr) auto auto;gap:12px;align-items:center;padding:9px 14px;border-bottom:1px solid var(--line-2);cursor:pointer}
 .doc-row:hover{background:var(--surface-2)}
@@ -1223,7 +1223,7 @@ table.lst td.wd-td{white-space:nowrap}
 @media (max-width:1760px) and (min-width:1561px){.tabs a{padding:0 9px}}
 @media (max-width:1300px) and (min-width:761px){.tabs a{padding:0 4px}}
 
-/* 25차: 각종서류 올리기 | 기본서류 전환 */
+/* 25차: 각종서류 올리기 | 자료실 전환 */
 .up-sw a em{font-style:normal;font-size:12px;color:var(--ink-3);margin-left:3px;font-weight:500}
 @media (max-width:640px){#view .seg{max-width:100%;overflow-x:auto;scrollbar-width:none}#view .seg>*{flex:none}}
 .mnav-sheet .ms-n{font-style:normal;display:inline-grid;place-items:center;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--late);color:#fff;font-size:11px;font-weight:700;margin-left:4px}
@@ -1361,7 +1361,7 @@ dialog.fm-rev{width:min(1280px,97vw)}
 .fm-dmpop button{all:unset;cursor:pointer;padding:8px 10px;border-radius:7px;font-size:13.5px;color:var(--ink)}.fm-dmpop button:hover,.fm-dmpop button:focus-visible{background:var(--line-2)}.fm-dmpop .danger{color:var(--late)}
 .fm-crumb{font-size:13px;color:var(--ink-2)}.fm-crumb .linkish{all:unset;cursor:pointer;color:var(--accent);font-weight:600}.fm-crumb .linkish:hover{text-decoration:underline}
 .fm-nmw{flex:1 1 auto;min-width:0;display:flex;align-items:center;gap:4px}.fm-nmw .fm-nm{flex:0 1 auto}
-.fm-ren,.dd-ren{all:unset;cursor:pointer;flex:none;font-size:13px;padding:2px 4px;border-radius:5px;opacity:.35}.fm-row:hover .fm-ren,.doc-row:hover .dd-ren,.fm-ren:focus-visible,.dd-ren:focus-visible{opacity:1}.fm-ren:hover,.dd-ren:hover{background:var(--line-2)}
+.fm-ren,.dd-ren{all:unset;cursor:pointer;flex:none;font-size:13px;padding:2px 5px;border-radius:5px;opacity:.6;margin-left:2px}.fm-row:hover .fm-ren,.doc-row:hover .dd-ren,.fm-ren:focus-visible,.dd-ren:focus-visible{opacity:1}.fm-ren:hover,.dd-ren:hover{background:var(--line-2)}
 input.ir{font:inherit;font-size:14.5px;font-weight:600;padding:4px 8px;border:2px solid var(--accent);border-radius:7px;background:var(--surface);color:var(--ink);min-width:0;width:min(100%,420px)}
 .fm-row[draggable="true"],.doc-row[draggable="true"]{cursor:grab}.fm-row.dragging,.doc-row.dragging{opacity:.45}
 .dd-dir .panel-h h2{display:flex;align-items:center;gap:6px}.dd-empty{padding:14px 12px;color:var(--ink-3);font-size:13px;border:1.5px dashed var(--line);border-radius:9px;margin:4px 0}
@@ -1399,6 +1399,11 @@ input.ir{font:inherit;font-size:14.5px;font-weight:600;padding:4px 8px;border:2p
   #print-sheet .fmx.fm-pol td.fm-lbl,#print-sheet .fmx.fm-pol td.fm-role{background-color:#e8eef6!important}
   #print-sheet .fmx.fm-pol td.fm-sech{background-color:#dbe4f0!important}
 }
+
+/* 28차: 이름 바꾸기 ✏️ 잘 보이게 */
+@media (hover:none){.fm-ren,.dd-ren{opacity:1}}
+.up-card .uc-n .dd-ren{font-size:13px}.up-card .uc-d .dd-ren{font-size:12px;vertical-align:1px}
+.up-nm .ir,.dd-nm .ir{min-width:180px}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -1667,7 +1672,7 @@ input.ir{font:inherit;font-size:14.5px;font-weight:600;padding:4px 8px;border:2p
     <header class="modal-h"><div><h2 id="doc-h">서류 정보</h2><small id="doc-where" style="color:var(--ink-3);font-size:12px"></small></div><button type="button" class="icon-btn" data-close aria-label="닫기">✕</button></header>
     <div class="modal-b one"><div class="set-grid">
       <div class="f"><label for="doc-title">서류명</label><input type="text" id="doc-title" maxlength="80"></div>
-      <div class="set-two"><div class="f"><label for="doc-slot">기본서류 분류</label><select id="doc-slot"></select></div><div class="f" id="doc-site-f"><label for="doc-site">사업장</label><select id="doc-site"></select></div></div>
+      <div class="set-two"><div class="f"><label for="doc-slot">자료실 분류</label><select id="doc-slot"></select></div><div class="f" id="doc-site-f"><label for="doc-site">사업장</label><select id="doc-site"></select></div></div>
       <div class="set-two"><div class="f"><label for="doc-issued">발급일·개정일</label><input type="date" id="doc-issued"></div><div class="f"><label for="doc-expiry">유효기간 (만료일)</label><input type="date" id="doc-expiry"></div></div>
       <div class="f"><label for="doc-note">메모</label><textarea id="doc-note" rows="2" maxlength="500" placeholder="예: 2026.3 개정, 노동청 신고 완료 / 인증기관 ○○"></textarea></div>
       <div class="f"><label class="chk"><input type="checkbox" id="doc-restricted"> 🔒 열람 제한</label><p class="help" id="doc-r-help" style="font-size:12px;color:var(--ink-3);margin:2px 0 0"></p></div>
@@ -2279,9 +2284,9 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
     </ol></section>${admin}
     <section class="panel"><div class="panel-h"><h2>새 기능 안내</h2><span class="sub">2026.10 업데이트</span></div><ol class="steps">
       <li><b>사진 자동 최적화</b><span>휴대폰 원본 사진을 올리면 자동으로 0.2~0.4MB로 줄이고 위치정보는 지웁니다. 업무 상세에서 <em>작업 전·중·후</em>를 고르고, <em>날짜·현장 표시</em>를 켜면 사진 아래에 날짜·건물·업무명이 찍힙니다.</span></li>
-      <li><b>각종서류 올리기</b><span><a href="#upload">각종서류 올리기</a>에 PDF·스캔 사진·한글·워드·엑셀 파일을 끌어다 놓으면 내용을 읽어 어떤 서류인지(사업자등록증·공장등록증·인증서 등) 알아내고 사업장·발급일·유효기간을 찾아 기본서류에 자동으로 정리합니다. 확실하지 않은 서류는 확인을 받고 저장합니다.</span></li>
+      <li><b>각종서류 올리기</b><span><a href="#upload">각종서류 올리기</a>에 PDF·스캔 사진·한글·워드·엑셀 파일을 끌어다 놓으면 내용을 읽어 어떤 서류인지(사업자등록증·공장등록증·인증서 등) 알아내고 사업장·발급일·유효기간을 찾아 자료실에 자동으로 정리합니다. 확실하지 않은 서류는 확인을 받고 저장합니다.</span></li>
       <li><b>사진첩</b><span>현장 사진은 각종서류 올리기 화면의 <a href="#photos">현장 사진첩</a>에서 날짜·건물·분야별로 모아 봅니다. 휴대폰에서는 <em>현장 사진 기록</em>으로 사진부터 찍고 내용을 적을 수 있습니다.</span></li>
-      <li><b>기본서류</b><span><a href="#docs">기본서류</a>에 조직도·정관·취업규칙·사업자등록증·인증서·공장별 건물 서류를 최신본으로 보관합니다. 다시 올리면 새 버전으로 쌓이고, 🔒 서류는 허용된 사람만 엽니다.</span></li>
+      <li><b>자료실</b><span><a href="#docs">자료실</a>에 조직도·정관·취업규칙·사업자등록증·인증서·공장별 건물 서류를 최신본으로 보관합니다. 다시 올리면 새 버전으로 쌓이고, 🔒 서류는 허용된 사람만 엽니다.</span></li>
       <li><b>법정 업무</b><span><a href="#legal">법정 업무</a>에 세무·4대보험·법정 교육·안전·소방 점검 일정이 정리되어 있습니다. 켜 둔 항목은 마감 전에 담당자 할 일로 자동 등록됩니다.</span></li>
       <li><b>알림</b><span>오른쪽 위 종 모양에서 내 담당 업무의 새 기록·마감·법정 업무를 확인합니다. <em>알림 켜기</em>를 누르면 다른 탭을 보고 있을 때도 알림이 뜹니다.</span></li>
       <li><b>총괄 현황 (관리자)</b><span><a href="#overview">총괄</a>에서 직원별 기록·지연·이슈를 한눈에 보고, 단톡방 양식 주간업무일지와 일일 현황 텍스트를 바로 복사합니다.</span></li>
@@ -2290,7 +2295,7 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>휴대폰에서</b><span>아래쪽 탭(내 업무·팀 현황·달력·그룹웨어·더보기)으로 이동합니다. 브라우저 메뉴의 <em>홈 화면에 추가</em>(아이폰은 공유 › 홈 화면에 추가)를 누르면 앱처럼 아이콘으로 열립니다. 글자가 작으면 <em>더보기 › 글자 크게</em>.</span></li>
       <li><b>달력 보기</b><span>달력 아래에서 <em>내 업무만 · 완료 숨김 · 여러 날 업무는 마감일에만</em>을 고를 수 있습니다(이 기기에 기억). 칸반의 완료 칸은 이번 주 완료만 보이고, <em>지난 완료 보기</em>로 더 볼 수 있습니다.</span></li>
       <li><b>조직도·업무분장</b><span><em>팀 현황</em> 화면 맨 위의 <em>조직도·업무분장</em>을 누르면 관리부 전체 조직도, 안양본사·군포공장·화성공장 관리부 조직도(법정 선임 현황 포함), 업무분장표(정·부·대행 담당, 최근 12주 실적)를 봅니다. 이름표의 짧은 글은 주요 업무 약식이고, 이름을 누르면 그 사람의 업무분장이 나옵니다. 매주 1회 업무일지 기록과 직원 명단을 비교해 담당·대행·부담당·새 업무와 직원 변동을 자동 반영하고, 바뀐 내용은 <em>변경 이력</em>과 알림으로 알려 드립니다. 관리자는 업무를 누르면 담당을 직접 고칠 수 있습니다.</span></li>
-      <li><b>기본서류</b><span>위쪽 <em>각종서류 올리기</em> 화면 맨 위의 <em>🗂 기본서류</em>을 누르면 정리된 회사 서류(사업장별·종류별, 유효기간)를 봅니다. 기본서류에서 다시 <em>📤 각종서류 올리기</em>로 돌아갈 수 있습니다.</span></li>
+      <li><b>자료실</b><span>위쪽 <em>각종서류 올리기</em> 화면 맨 위의 <em>🗂 자료실</em>을 누르면 정리된 회사 서류(사업장별·종류별, 유효기간)를 봅니다. 자료실에서 다시 <em>📤 각종서류 올리기</em>로 돌아갈 수 있습니다.</span></li>
       <li><b>회사서식</b><span>위쪽 <em>각종서류 올리기</em> 화면 맨 위의 <em>🖨 회사서식(출력 작성)</em>은 인쇄해서 손으로 적는 서식(미리보기·인쇄·원본 내려받기), <em>✏️ 회사서식(직접 작성)</em>은 화면에서 바로 적는 서식입니다. 서식을 열어 파란 칸을 눌러 적고(PDF·스캔 서식은 적을 곳을 눌러 글상자), <em>인쇄</em>하거나 <em>전자결재로 올리기</em>를 누릅니다. 적던 내용은 이 기기에 자동 보관됩니다. 관리자는 서식 파일·폴더·압축(zip)을 통째로 올린 뒤 <em>하나씩 보며 분류하기</em>에서 숫자키 1(출력 작성)·2(직접 작성)로 빠르게 고릅니다. 폴더 이름은 서식 분류가 됩니다.</span></li>
       <li><b>전자결재</b><span>위쪽 <em>전자결재</em>에서 <em>＋ 새 기안</em>을 누르고 <em>서식에 직접 작성</em>(기안서·품의서·지출결의서·구매요청서·휴가 신청서·업무 보고서·시설 수리 요청서, 관리자가 올린 워드·엑셀 서식) 또는 <em>스캔·파일 올려 결재</em>를 고릅니다. 결재선은 자동으로 <b>직무별 팀원 → 직무별 총괄(재무·회계 박혜진, 인사·총무 윤민진, 시설·공무 윤종국) → 전체 총괄(이기도)</b>로 정해지고, 두 직무를 겸하는 직원은 결재할 직무를 고릅니다. 필요할 때만 <em>결재선 변경</em>으로 결재자를 더하거나 빼고 순서를 바꿉니다. <em>자금 결제 필요</em>에 체크하면 박혜진 부장이 자동으로 참조(회람)됩니다. 결재할 차례가 되면 알림(종)과 내 업무 화면에 표시되고, 문서에서 <em>승인</em>·<em>반려</em>(사유 필수)를 누릅니다. 올린 사람은 아무도 결재하기 전이면 <em>회수</em>, 반려되면 고쳐서 다시 올릴 수 있습니다. 문서는 결재선·참조에 든 사람과 관리자만 볼 수 있고, 개인정보가 든 첨부는 총괄 관리자만 열 수 있습니다.</span></li>
       <li><b>날짜 표기</b><span>모든 화면의 업무 날짜는 <em>진행 날짜</em>(시작일~마감일, 한쪽만 있으면 그 날)를 기준으로 보여 줍니다. 진행 날짜를 정하지 않은 업무는 <em>[미정]</em>으로 표시되고, 진행 날짜와 다른 날 등록한 업무(지난 일을 나중에 기록하는 경우 등)는 '등록 10.30'처럼 등록한 날을 함께 보여 줍니다. 빠른 기록에서 '할 예정'을 고르고 날짜를 비워 두면 [미정]으로, '진행 중'은 고른 날이 시작일·마감일은 [미정]으로 등록됩니다. 목록 화면에는 진행 날짜·등록일 칸이 따로 있습니다.</span></li>
@@ -3339,7 +3344,7 @@ function renderOverview(v){const O=S.ov;const td=today();const base=O.date||td;c
       <section class="panel"><div class="panel-h"><h2>이슈</h2><span class="sub">${issues.length}건</span></div>${sideList(issues.slice(0,15),({t,l})=>`<li><button type="button" data-open="${esc(t.path)}"><b class="lt">이슈</b> ${esc(t.title)}</button><small>${esc(nameOf(l.by))} · ${hhmm(l.at)}</small>${l.text?`<p>${esc(l.text.slice(0,140))}</p>`:''}</li>`,'기간 내 이슈 기록이 없습니다.')}</section>
       <section class="panel"><div class="panel-h"><h2 style="color:var(--late)">지연 업무</h2><span class="sub">${late.length}건</span></div>${sideList(late.slice(0,15),t=>`<li><button type="button" data-open="${esc(t.path)}">${esc(t.title)}</button><small>${esc(t.site)} · ${esc(whoText(t)||'담당 미지정')} · <b class="lt">${ddayInfo(t).txt}</b></small></li>`,'지연 업무가 없습니다.')}</section>
       <section class="panel"><div class="panel-h"><h2>7일 안 마감</h2><span class="sub">${dueSoon.length}건</span></div>${sideList(dueSoon.slice(0,15),t=>`<li><button type="button" data-open="${esc(t.path)}">${t.legal?'<span class="tag legal">법정</span> ':''}${esc(t.title)}</button><small>${fmtMD(t.due)} · ${esc(whoText(t)||'담당 미지정')} · ${ddayInfo(t).txt}</small></li>`,'7일 안에 마감되는 업무가 없습니다.')}</section>
-      <section class="panel"><div class="panel-h"><h2>법정 업무 · 서류 만료</h2><div class="act"><a class="btn sm ghost" href="#legal">법정 업무</a><a class="btn sm ghost" href="#docs">기본서류</a></div></div>
+      <section class="panel"><div class="panel-h"><h2>법정 업무 · 서류 만료</h2><div class="act"><a class="btn sm ghost" href="#legal">법정 업무</a><a class="btn sm ghost" href="#docs">자료실</a></div></div>
         ${sideList([...legalSoon.slice(0,8).map(t=>({t})),...docsSoon.slice(0,6).map(f=>({f}))],x=>x.t?`<li><button type="button" data-open="${esc(x.t.path)}"><span class="tag legal">법정</span> ${esc(x.t.title)}</button><small>${fmtMD(x.t.due)} · ${esc(whoText(x.t)||'담당 미지정')} · ${ddayInfo(x.t).txt}</small></li>`:`<li><button type="button" data-doc="${esc(x.f.id)}"><span class="tag">서류</span> ${esc(x.f.title)}</button><small>유효기간 ${fmtYMD(x.f.expiry)} · ${expiryTxt(x.f.expiry)}</small></li>`,'30일 안 법정 업무·60일 안 만료 서류가 없습니다.')}</section>
     </div>
   </div>`;}
@@ -3379,7 +3384,7 @@ function refreshWeekly(){const W=S.wk;$('#wk-label').textContent=`${weekLabel(W.
   const ids=W.who?[W.who]:staffList().filter(working).map(s=>s.id);
   const txt=ids.map(id=>weeklyText(id,W.ws)).filter(Boolean).join('\n\n────────\n\n');$('#wk-text').value=txt||'직원 명단이 없습니다.';$('#wk-n').textContent=`${ids.length}명 · ${txt.length.toLocaleString()}자`;}
 async function copyText(txt,msg){try{await navigator.clipboard.writeText(txt);toast(msg||'복사했습니다.');}catch{confirmDlg('텍스트 복사','아래 내용을 전체 선택해 복사하세요.','닫기',txt);}}
-/* ───────── 기본서류 ─────────
+/* ───────── 자료실 ─────────
    Firebase 무료 요금제(Storage 없음)에서도 쓰도록 파일을 700KB 조각으로 나눠 Firestore 문서(files/{id}/chunks)에 저장합니다.
    열람 제한 서류(법인 통장 사본·인감증명서 등)는 보안 규칙에서 관리자·열람 허용자만 내용을 읽을 수 있습니다. */
 const DOC_GROUPS=[{id:'base',name:'회사 기본 서류'},{id:'cert',name:'인증서·확인서'},{id:'site',name:'사업장별 서류'},{id:'etc',name:'기타 서류'}];
@@ -3427,7 +3432,7 @@ async function docOpen(f,ver,mode){ver=ver||curVer(f);if(!ver)return;if(f.restri
 
 function docRowHTML(f,slot){const v=curVer(f);const lock=f.restricted?'<span class="lock" title="열람 제한">🔒</span>':'';const can=!f.restricted||canViewRestricted();
   const ic=v&&f.thumb&&!f.restricted?`<span class="fi th"><img src="${esc(f.thumb)}" alt="" loading="lazy"><i>${fileIcon(v)}</i></span>`:`<span class="fi ${v?'':'none'}">${v?(f.restricted?'🔒':fileIcon(v)):'—'}</span>`;
-  return `<div class="doc-row" data-doc="${esc(f.id)}"${slot?` data-dslot="${esc(slot.k)}" data-site="${esc(f.site||'')}"`:''} tabindex="0" title="${v&&can?'눌러서 미리보기':'서류 정보'}"${S.canWrite?' draggable="true"':''}>${ic}<div class="dm"><b><span class="dd-nm">${esc(f.title)}</span>${lock}${S.canWrite?`<button type="button" class="dd-ren" data-dd-ren="${esc(f.id)}" aria-label="이름 바꾸기" title="이름 바꾸기">✏️</button>`:''}</b><small>${v?`v${v.v} · ${fmtYMD(localDate(v.at))} · ${esc(nameOf(v.by))} · ${fmtMB(v.size)}`:'파일 없음'}${f.issued?` · 발급 ${fmtYMD(f.issued)}`:''}</small></div>${f.expiry?`<span class="exp ${expCls(f.expiry)}">~${fmtYMD(f.expiry)} · ${expiryTxt(f.expiry)}</span>`:'<span></span>'}<span class="da">${v&&can?`<button type="button" class="btn sm" data-doc-view="${esc(f.id)}">미리보기</button><button type="button" class="btn sm" data-doc-dl="${esc(f.id)}" aria-label="내려받기" title="내려받기">${ICON.dl}</button>`:''}${S.canWrite?`<button type="button" class="btn sm ghost" data-doc-up="${esc(f.id)}">새 버전</button><button type="button" class="btn sm ghost" data-dd-mv="${esc(f.id)}" title="다른 폴더·칸으로 옮기기">📁 옮기기</button>`:''}<button type="button" class="btn sm ghost" data-doc-info="${esc(f.id)}">정보</button></span></div>`;}
+  return `<div class="doc-row" data-doc="${esc(f.id)}"${slot?` data-dslot="${esc(slot.k)}" data-site="${esc(f.site||'')}"`:''} tabindex="0" title="${v&&can?'눌러서 미리보기':'서류 정보'}"${S.canWrite?' draggable="true"':''}>${ic}<div class="dm"><b><span class="dd-nm">${esc(f.title)}</span>${lock}${S.canWrite?`${rnBtn('data-dd-ren',f.id)}`:''}</b><small>${v?`v${v.v} · ${fmtYMD(localDate(v.at))} · ${esc(nameOf(v.by))} · ${fmtMB(v.size)}`:'파일 없음'}${f.issued?` · 발급 ${fmtYMD(f.issued)}`:''}</small></div>${f.expiry?`<span class="exp ${expCls(f.expiry)}">~${fmtYMD(f.expiry)} · ${expiryTxt(f.expiry)}</span>`:'<span></span>'}<span class="da">${v&&can?`<button type="button" class="btn sm" data-doc-view="${esc(f.id)}">미리보기</button><button type="button" class="btn sm" data-doc-dl="${esc(f.id)}" aria-label="내려받기" title="내려받기">${ICON.dl}</button>`:''}${S.canWrite?`<button type="button" class="btn sm ghost" data-doc-up="${esc(f.id)}">새 버전</button><button type="button" class="btn sm ghost" data-dd-mv="${esc(f.id)}" title="다른 폴더·칸으로 옮기기">📁 옮기기</button>`:''}<button type="button" class="btn sm ghost" data-doc-info="${esc(f.id)}">정보</button></span></div>`;}
 function slotEmptyHTML(slot,site){return `<div class="doc-row empty-slot" data-dslot="${esc(slot.k)}" data-site="${esc(site||'')}"><span class="fi none">＋</span><div class="dm"><b>${esc(slot.name)}${slot.restricted?'<span class="lock">🔒</span>':''}</b><small>미등록</small></div><span></span><span class="da">${S.canWrite?`<button type="button" class="btn sm" data-doc-new="${esc(slot.k)}" data-site="${esc(site||'')}">올리기</button>`:''}</span></div>`;}
 function renderDocs(v){const D=S.docs;const q=D.q.trim().toLowerCase();const files=Object.values(S.files);
   const match=f=>(!q||(f.title+' '+f.note+' '+f.site+' '+((curVer(f)||{}).name||'')+' '+f.txt).toLowerCase().includes(q)||f.txt.replace(/\s+/g,'').toLowerCase().includes(q.replace(/\s+/g,'')))&&(!D.exp||(f.expiry&&diffDays(today(),f.expiry)<=60));
@@ -3443,12 +3448,12 @@ function renderDocs(v){const D=S.docs;const q=D.q.trim().toLowerCase();const fil
     if(g.id==='site'){for(const site of staffSites()){const h=sec(g,site);if(h)parts.push(`<section class="panel doc-sec" data-dgrp="site" data-site="${esc(site)}"><div class="panel-h"><h2>${esc(site)}</h2><span class="sub">${esc(g.name)}</span></div>${h}</section>`);}}
     else{let h=sec(g);if(!h&&g.id==='etc'&&!filtering&&S.canWrite)h='<div class="doc-add"><span style="color:var(--ink-3);font-size:12.5px">위 분류에 없는 서류(계약서·보험증권·협약서 등)는 여기에 올리세요.</span></div>';if(h)parts.push(`<section class="panel doc-sec" data-dgrp="${g.id}"><div class="panel-h"><h2>${esc(g.name)}</h2>${g.id==='etc'&&S.canWrite?`<div class="act"><button type="button" class="btn sm" data-doc-new="etc">+ 서류 추가</button></div>`:''}</div>${h}</section>`);}}
   const soon=files.filter(f=>f.expiry&&diffDays(today(),f.expiry)<=60).length;const total=files.reduce((a,f)=>a+f.versions.reduce((x,y)=>x+y.size,0),0);
-  v.innerHTML=`<div class="home-head"><div><h1>기본서류</h1><p>조직도·정관·취업규칙·사업자등록증·인증서·공장별 건물 서류를 최신본으로 보관합니다 · ${files.length}건 · ${fmtMB(total)}${soon?` · <b style="color:var(--doing)">만료 임박 ${soon}건</b>`:''}</p></div>${piiOwner()?`<div><button type="button" class="btn pii-btn" data-pii-open>🔐 개인정보 자료 ${S.pii.length}건</button></div>`:''}</div>
-  ${S.filesDenied?`<div class="banner" style="margin:0 0 12px">기본서류를 불러올 권한이 없습니다. 관리자는 Firebase 콘솔 › Firestore › 규칙에 새 firestore.rules를 게시하세요.</div>`:''}
+  v.innerHTML=`<div class="home-head"><div><h1>자료실</h1><p>조직도·정관·취업규칙·사업자등록증·인증서·공장별 건물 서류를 최신본으로 보관합니다 · ${files.length}건 · ${fmtMB(total)}${soon?` · <b style="color:var(--doing)">만료 임박 ${soon}건</b>`:''}</p></div>${piiOwner()?`<div><button type="button" class="btn pii-btn" data-pii-open>🔐 개인정보 자료 ${S.pii.length}건</button></div>`:''}</div>
+  ${S.filesDenied?`<div class="banner" style="margin:0 0 12px">자료실을 불러올 권한이 없습니다. 관리자는 Firebase 콘솔 › Firestore › 규칙에 새 firestore.rules를 게시하세요.</div>`:''}
   <section class="filters" style="padding:0 0 12px"><div class="seg" role="group" aria-label="분류"><button type="button" data-doc-g="" aria-pressed="${!D.g}">전체</button>${DD.dirs.length?`<button type="button" data-doc-g="dir" aria-pressed="${D.g==='dir'}">📁 폴더</button>`:''}${DOC_GROUPS.map(g=>`<button type="button" data-doc-g="${g.id}" aria-pressed="${D.g===g.id}">${esc(g.name.replace(' 서류',''))}</button>`).join('')}</div>${S.canWrite?'<button type="button" class="btn sm" data-dd-new>📁＋ 새 폴더</button>':''}
     <label class="chk"><input type="checkbox" id="doc-exp" ${D.exp?'checked':''}> 만료 60일 이내만</label><input type="search" id="doc-q" placeholder="서류명·내용 검색" value="${esc(D.q)}" aria-label="서류 검색"></section>
   <div class="docs">${parts.join('')||'<section class="panel"><div class="empty">조건에 맞는 서류가 없습니다.</div></section>'}</div>${(setTimeout(docThumbBackfill,1200),'')}
-  <p class="help" style="margin-top:12px;color:var(--ink-3);font-size:12px">서류를 누르면 PDF·사진·엑셀·워드·한글·파워포인트를 바로 미리봅니다. 파일 하나당 20MB까지 올릴 수 있습니다. 같은 서류를 다시 올리면 '새 버전'으로 쌓이고 이전 버전도 내려받을 수 있습니다. 🔒 표시 서류는 관리자와 설정에서 허용한 사람만 열 수 있습니다. 이력서·급여·주민등록번호 13자리·신분증·진단서 같은 개인정보가 든 파일은 기본서류에 넣지 않고 ${esc(piiLabel())}에게만 전달됩니다(생년월일만 있는 서류는 해당 없음).</p>`;}
+  <p class="help" style="margin-top:12px;color:var(--ink-3);font-size:12px">서류를 누르면 PDF·사진·엑셀·워드·한글·파워포인트를 바로 미리봅니다. 파일 하나당 20MB까지 올릴 수 있습니다. 같은 서류를 다시 올리면 '새 버전'으로 쌓이고 이전 버전도 내려받을 수 있습니다. 🔒 표시 서류는 관리자와 설정에서 허용한 사람만 열 수 있습니다. 이력서·급여·주민등록번호 13자리·신분증·진단서 같은 개인정보가 든 파일은 자료실에 넣지 않고 ${esc(piiLabel())}에게만 전달됩니다(생년월일만 있는 서류는 해당 없음).</p>`;}
 
 /* 서류 상세 창 */
 function openDoc(id,o={}){let f=id?S.files[id]:null;
@@ -3708,7 +3713,7 @@ document.addEventListener('click',async e=>{
   const wks=T.closest('[data-wk-shift]');if(wks){S.wk.ws=addDays(S.wk.ws,7*(+wks.dataset.wkShift));refreshWeekly();return;}
   if(T.closest('#wk-copy')){copyText($('#wk-text').value,'주간업무일지를 복사했습니다. 단톡방에 붙여넣으세요.');return;}
   if(T.closest('#wk-dl')){localDownloads.save({filename:`${S.config.dept}_주간업무일지_${S.wk.ws}.txt`,data:new Blob(['﻿'+$('#wk-text').value],{type:'text/plain;charset=utf-8'})});return;}
-  // 기본서류
+  // 자료실
   const dg=T.closest('[data-doc-g]');if(dg){S.docs.g=dg.dataset.docG;render();return;}
   const dn=T.closest('[data-doc-new]');if(dn){if(!S.canWrite)return;openDoc(null,{slot:dn.dataset.docNew,site:dn.dataset.site||''});return;}
   const dv=T.closest('[data-doc-view]');if(dv){const f=S.files[dv.dataset.docView];if(f)docOpen(f,null,'view');return;}
@@ -3881,14 +3886,14 @@ async function makeThumb(blob,name){const k=kindOf(name,blob.type);
 async function docThumbSave(f,ver,blob){if(!S.canWrite||f.restricted||!ver)return;const cur=S.files[f.id];if(!cur||cur.restricted||(cur.thumbV===ver.v)||curVer(cur).v!==ver.v)return;
   if(!thumbable(ver.name,ver.type)){return;}const th=await makeThumb(blob,ver.name);
   try{await S.db.doc(`files/${f.id}`).update(clean({thumb:th||'',thumbV:ver.v}));}catch{}}
-/* 미리보기 그림이 없는 기존 서류는 기본서류를 열 때 몇 개씩 채웁니다. */
+/* 미리보기 그림이 없는 기존 서류는 자료실을 열 때 몇 개씩 채웁니다. */
 async function docThumbBackfill(){if(S.thumbFill||!S.canWrite)return;S.thumbFill=true;S.thumbTried=S.thumbTried||new Set();
   try{for(const f of Object.values(S.files)){const v=curVer(f);if(!v||f.restricted||f.thumbV===v.v||S.thumbTried.has(f.id+'@'+v.v)||!thumbable(v.name,v.type))continue;S.thumbTried.add(f.id+'@'+v.v);
       try{const blob=await fileGet(f,v);await docThumbSave(f,v,blob);}catch{}if(S.view!=='docs')break;}}
   finally{S.thumbFill=false;}}
 $('#dlg-view').addEventListener('close',()=>{vwReset();$('#vw-body').innerHTML='';});
 /* ───────── 각종서류 올리기 (서류 자동 정리) ─────────
-   올린 파일의 글자를 읽어(스캔·사진은 글자 인식 OCR) 어떤 서류인지 판단하고, 사업장·발급일·유효기간을 찾아 기본서류의 알맞은 칸에 저장합니다.
+   올린 파일의 글자를 읽어(스캔·사진은 글자 인식 OCR) 어떤 서류인지 판단하고, 사업장·발급일·유효기간을 찾아 자료실의 알맞은 칸에 저장합니다.
    판단은 파일 이름 + 본문 낱말 규칙으로 하며(외부 AI 없이 브라우저 안에서 처리), 확실하지 않은 서류는 확인을 받은 뒤 저장합니다. */
 const TESS_V='7.0.0';let _tw=null,OCR_CB=null;
 function ocrWorker(){if(!_tw)_tw=(async()=>{if(!window.Tesseract)await loadScript(`https://cdn.jsdelivr.net/npm/tesseract.js@${TESS_V}/dist/tesseract.min.js`);
@@ -3958,7 +3963,7 @@ function classifyDoc(name,text){const base=name.replace(/\.[^.]+$/,'');const fn=
   return {slot,site:st.g==='site'?site.site:'',siteFrom:site.from,title:title.slice(0,80),issued:dt.issued,expiry:/^(iso|family|goodco|sme|certetc)$/.test(slot)||dt.expiry?dt.expiry:'',restricted:!!st.restricted,conf,score:Math.round(b.s*10)/10,why:[...new Set(b.why)].slice(0,3),alt:n2.s>=2?n2.k:''};}
 async function fileHash(file){try{const h=await crypto.subtle.digest('SHA-256',await file.arrayBuffer());return Array.from(new Uint8Array(h).slice(0,12),x=>x.toString(16).padStart(2,'0')).join('');}catch{return '';}}
 function findDup(hash,file){for(const f of Object.values(S.files))for(const v of f.versions){if((hash&&v.h===hash)||(!v.h&&v.name===file.name&&v.size===file.size))return {f,v};}return null;}
-/* 기본서류에 저장 (같은 칸에 이미 서류가 있으면 새 버전으로) */
+/* 자료실에 저장 (같은 칸에 이미 서류가 있으면 새 버전으로) */
 async function storeDoc(o,onProg){const st=SLOT[o.slot]||SLOT.etc;const site=st.g==='site'?(o.site||staffSites()[0]||''):'';
   let f=o.fid?S.files[o.fid]:null;if(!f&&!st.multi&&st.k!=='etc')f=Object.values(S.files).find(x=>x.slot===st.k&&(st.g!=='site'||x.site===site))||null;
   let fid=f?f.id:(st.multi||st.k==='etc'?`d-${st.k}-${rid().slice(0,10)}`:`d-${st.k}${site?'-'+siteKey(site):''}`);if(!f&&S.files[fid])fid=`d-${st.k}-${rid().slice(0,10)}`;
@@ -4015,30 +4020,30 @@ function upItemHTML(it){const g=it.guess;const admin=S.canEdit||S.preview;
   else if(it.status==='read')body='<span class="uc-st"><i class="spin"></i>내용 읽는 중…</span>';
   else if(it.status==='ocr')body=`<span class="uc-st"><i class="spin"></i>스캔·사진 글자 인식 중… ${Math.round((it.prog||0)*100)}% <small>(처음 한 번은 인식 도구를 받느라 조금 걸립니다)</small></span>`;
   else if(it.status==='error')body=`<span class="uc-st err">${esc(it.err)}</span>`,act=`<button type="button" class="btn sm ghost" data-up-x="${it.id}">지우기</button>`;
-  else if(it.status==='pii')body=`<div class="uc-guess"><span class="uc-ok pii">🔐 ${esc(piiLabel())}에게만 전달</span></div><div class="uc-why">개인정보(${esc((it.pii||[]).join(', '))})가 있어 기본서류에 넣지 않았습니다. 총괄 관리자만 볼 수 있고, 올린 분도 다시 열 수 없습니다.</div>`;
+  else if(it.status==='pii')body=`<div class="uc-guess"><span class="uc-ok pii">🔐 ${esc(piiLabel())}에게만 전달</span></div><div class="uc-why">개인정보(${esc((it.pii||[]).join(', '))})가 있어 자료실에 넣지 않았습니다. 총괄 관리자만 볼 수 있고, 올린 분도 다시 열 수 없습니다.</div>`;
   else if(it.status==='saving'&&it.pii)body=`<span class="uc-st"><i class="spin"></i>개인정보가 있어 ${esc(piiLabel())}에게만 전달하는 중… ${Math.round((it.prog||0)*100)}%</span>`;
   else if(g){const guess=`<div class="uc-guess"><span class="uc-path">${S.up.dir&&DD.dirs.some(d=>d.id===S.up.dir)?'📁 '+esc(ddName(S.up.dir))+' · ':''}${esc(slotPath(g.slot,g.site))}</span><span class="conf c-${g.conf}">${CONF[g.conf]}</span>${g.restricted?'<span class="lock">🔒</span>':''}${g.expiry?`<span class="uc-d">유효기간 ~${fmtYMD(g.expiry)}</span>`:''}${g.issued?`<span class="uc-d">발급 ${fmtYMD(g.issued)}</span>`:''}</div><div class="uc-why">${esc(how)}${g.why.length?' · 근거: '+esc(g.why.join(', ')):''}${g.siteFrom&&g.site?` · 사업장: ${esc(g.site)}(${esc(g.siteFrom)})`:''}</div>`;
-    if(it.status==='saved'){const f=S.files[it.fid];body=`<div class="uc-guess"><span class="uc-ok">✓ 기본서류에 저장</span><span class="uc-path">${f&&ddIn(f)?'📁 '+esc(ddName(f.dir))+' · ':''}${esc(slotPath(f?f.slot:g.slot,f?f.site:g.site))}</span>${f?`<span class="uc-d">「${esc(f.title)}」 ${it.isNew?'새로 등록':`v${it.ver} 새 버전`}</span>`:''}${it.hasPdf?`<span class="tag pdf">${it.pdfConv?'PDF로 변환해 함께 저장':'같은 이름 PDF를 사본으로 저장'}</span>`:''}${it.convErr?`<span class="uc-d" style="color:var(--late)">PDF 변환 실패: 원본만 저장</span>`:''}</div><div class="uc-why">${esc(how)}${g.why.length?' · 근거: '+esc(g.why.join(', ')):''}</div>`;
+    if(it.status==='saved'){const f=S.files[it.fid];body=`<div class="uc-guess"><span class="uc-ok">✓ 자료실에 저장</span><span class="uc-path">${f&&ddIn(f)?'📁 '+esc(ddName(f.dir))+' · ':''}${esc(slotPath(f?f.slot:g.slot,f?f.site:g.site))}</span>${f?`<span class="uc-d">「<span class="dd-nm">${esc(f.title)}</span>」${S.canWrite?rnBtn('data-dd-ren',f.id):''} ${it.isNew?'새로 등록':`v${it.ver} 새 버전`}</span>`:''}${it.hasPdf?`<span class="tag pdf">${it.pdfConv?'PDF로 변환해 함께 저장':'같은 이름 PDF를 사본으로 저장'}</span>`:''}${it.convErr?`<span class="uc-d" style="color:var(--late)">PDF 변환 실패: 원본만 저장</span>`:''}</div><div class="uc-why">${esc(how)}${g.why.length?' · 근거: '+esc(g.why.join(', ')):''}</div>`;
       act=`<button type="button" class="btn sm" data-up-view="${it.id}">미리보기</button><button type="button" class="btn sm ghost" data-doc-info="${esc(it.fid||'')}">분류·정보 고치기</button>`;}
-    else if(it.status==='saving')body=guess+`<span class="uc-st"><i class="spin"></i>기본서류에 저장 중… ${Math.round((it.prog||0)*100)}%</span>`;
+    else if(it.status==='saving')body=guess+`<span class="uc-st"><i class="spin"></i>자료실에 저장 중… ${Math.round((it.prog||0)*100)}%</span>`;
     else if(it.status==='conv')body=guess+`<span class="uc-st"><i class="spin"></i>미리보기용 PDF로 바꾸는 중… ${Math.round((it.prog||0)*100)}%</span>`;
-    else if(it.status==='dup'){body=guess+`<div class="uc-why warn">이미 기본서류에 같은 파일이 있습니다: 「${esc(it.dup.f.title)}」 v${it.dup.v.v}</div>`;act=`<button type="button" class="btn sm" data-up-force="${it.id}">그래도 저장</button><button type="button" class="btn sm ghost" data-up-x="${it.id}">건너뛰기</button>`;}
+    else if(it.status==='dup'){body=guess+`<div class="uc-why warn">이미 자료실에 같은 파일이 있습니다: 「${esc(it.dup.f.title)}」 v${it.dup.v.v}</div>`;act=`<button type="button" class="btn sm" data-up-force="${it.id}">그래도 저장</button><button type="button" class="btn sm ghost" data-up-x="${it.id}">건너뛰기</button>`;}
     else{body=guess+`<div class="uc-edit" data-up-edit="${it.id}"><label>분류<select data-uf="slot">${slotOptions(g.slot)}</select></label>${SLOT[g.slot].g==='site'?`<label>사업장<select data-uf="site">${staffSites().map(s=>`<option ${s===g.site?'selected':''}>${esc(s)}</option>`).join('')}</select></label>`:''}<label class="w">서류명<input type="text" data-uf="title" maxlength="80" value="${esc(g.title)}"></label><label>발급일<input type="date" data-uf="issued" value="${esc(g.issued)}"></label><label>유효기간<input type="date" data-uf="expiry" value="${esc(g.expiry)}"></label>${admin?`<label class="chk"><input type="checkbox" data-uf="restricted" ${g.restricted?'checked':''}> 🔒</label>`:''}</div>`;
-      act=`<button type="button" class="btn sm primary" data-up-save="${it.id}">기본서류에 저장</button><button type="button" class="btn sm ghost" data-up-x="${it.id}">빼기</button>`;}}
-  return `<div class="up-card st-${it.status}" id="up-${it.id}">${head}<div class="uc-main"><div class="uc-n"><b>${esc(it.name)}</b><small>${fmtMB(it.size)}</small>${it.pairPdf?`<span class="tag pdf">+ ${esc(it.pairPdf.name)}</span>`:''}${!['saved','wait','read','pii'].includes(it.status)?`<button type="button" class="lnk" data-up-pv="${it.id}">원본 보기</button>`:''}</div>${body}</div><div class="uc-act">${act}</div></div>`;}
+      act=`<button type="button" class="btn sm primary" data-up-save="${it.id}">자료실에 저장</button><button type="button" class="btn sm ghost" data-up-x="${it.id}">빼기</button>`;}}
+  return `<div class="up-card st-${it.status}" id="up-${it.id}">${head}<div class="uc-main"><div class="uc-n"><b class="up-nm">${esc(it.name)}</b>${['ready','dup'].includes(it.status)&&S.canWrite?rnBtn('data-up-ren',it.id):''}<small>${fmtMB(it.size)}</small>${it.pairPdf?`<span class="tag pdf">+ ${esc(it.pairPdf.name)}</span>`:''}${!['saved','wait','read','pii'].includes(it.status)?`<button type="button" class="lnk" data-up-pv="${it.id}">원본 보기</button>`:''}</div>${body}</div><div class="uc-act">${act}</div></div>`;}
 function renderUpItem(it){const el=document.getElementById('up-'+it.id);if(!el){if(S.view==='upload')renderUpList();return;}const ae=document.activeElement;if(ae&&el.contains(ae)&&ae.matches('input,select'))return;el.outerHTML=upItemHTML(it);upSummary();}
 function upSummary(){const box=$('#up-sum');if(!box)return;const its=S.up.items;const c=s=>its.filter(x=>x.status===s).length;const ready=c('ready');
   box.innerHTML=its.length?`<span>${its.length}개 중 저장 ${c('saved')}${c('pii')?` · 🔐 관리자에게만 ${c('pii')}`:''} · 확인 필요 ${ready}${c('dup')?` · 중복 ${c('dup')}`:''}${its.some(x=>['wait','read','ocr','conv','saving'].includes(x.status))?' · 처리 중…':''}</span><span class="sp"></span>${ready?`<button type="button" class="btn sm primary" id="up-all">확인 필요 ${ready}건 모두 저장</button>`:''}${its.some(x=>['saved','error','dup','pii'].includes(x.status))?'<button type="button" class="btn sm ghost" id="up-clear">완료 목록 지우기</button>':''}`:'';box.hidden=!its.length;}
 function renderUpList(){const L=$('#up-list');if(!L)return;L.innerHTML=S.up.items.slice().reverse().map(upItemHTML).join('');upSummary();}
 function upRecentHTML(){const recent=Object.values(S.files).filter(f=>f.versions.length).sort((a,b)=>(curVer(b).at||'').localeCompare(curVer(a).at||'')).slice(0,8);
-  return recent.length?`<section class="panel" style="margin-top:16px"><div class="panel-h"><h2>최근 기본서류에 들어간 서류</h2><div class="act"><a class="btn sm ghost" href="#docs">전체 보기</a></div></div>${recent.map(f=>{const x=curVer(f);return `<div class="doc-row" data-doc="${esc(f.id)}" tabindex="0">${f.thumb&&!f.restricted?`<span class="fi th"><img src="${esc(f.thumb)}" alt=""><i>${fileIcon(x)}</i></span>`:`<span class="fi">${f.restricted?'🔒':fileIcon(x)}</span>`}<div class="dm"><b>${esc(f.title)}</b><small>${esc(slotPath(f.slot,f.site))} · v${x.v} · ${hhmm(x.at)} ${esc(nameOf(x.by))}</small></div><span></span><span class="da"><button type="button" class="btn sm ghost" data-doc-info="${esc(f.id)}">정보</button></span></div>`;}).join('')}</section>`:'';}
+  return recent.length?`<section class="panel" style="margin-top:16px"><div class="panel-h"><h2>최근 자료실에 들어간 서류</h2><div class="act"><a class="btn sm ghost" href="#docs">전체 보기</a></div></div>${recent.map(f=>{const x=curVer(f);return `<div class="doc-row" data-doc="${esc(f.id)}" tabindex="0">${f.thumb&&!f.restricted?`<span class="fi th"><img src="${esc(f.thumb)}" alt=""><i>${fileIcon(x)}</i></span>`:`<span class="fi">${f.restricted?'🔒':fileIcon(x)}</span>`}<div class="dm"><b><span class="dd-nm">${esc(f.title)}</span>${S.canWrite?rnBtn('data-dd-ren',f.id):''}</b><small>${esc(slotPath(f.slot,f.site))} · v${x.v} · ${hhmm(x.at)} ${esc(nameOf(x.by))}</small></div><span></span><span class="da"><button type="button" class="btn sm ghost" data-doc-info="${esc(f.id)}">정보</button></span></div>`;}).join('')}</section>`:'';}
 function renderUpRecent(){const b=$('#up-recent');if(b)b.innerHTML=upRecentHTML();}
 function renderUpload(v){
-  v.innerHTML=`<div class="home-head"><div><h1 class="up-h1">${UP_ICON}각종서류 올리기</h1><p>파일을 올리면 내용을 읽어 어떤 서류인지 알아내고, 사업장·발급일·유효기간을 찾아 <a href="#docs">기본서류</a>에 자동으로 정리합니다</p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href="#photos">${ICON.cam} 현장 사진첩</a></div></div>
+  v.innerHTML=`<div class="home-head"><div><h1 class="up-h1">${UP_ICON}각종서류 올리기</h1><p>파일을 올리면 내용을 읽어 어떤 서류인지 알아내고, 사업장·발급일·유효기간을 찾아 <a href="#docs">자료실</a>에 자동으로 정리합니다</p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href="#photos">${ICON.cam} 현장 사진첩</a></div></div>
   ${S.canWrite?`<div class="up-drop" id="up-drop"><div class="ic">${UP_ICON}</div><p><b>서류 파일을 여기에 끌어다 놓으세요</b> · 여러 개를 한 번에 올려도 됩니다</p>
     <p class="btns"><label class="btn primary file-btn">파일 선택<input type="file" id="up-input" multiple></label><label class="btn file-btn cam-only">${ICON.cam} 서류 촬영<input type="file" id="up-cam" accept="image/*" capture="environment"></label></p>
     <small>PDF · 스캔 사진(JPG·PNG) · 한글(hwp·hwpx) · 워드 · 엑셀 · 파워포인트 · 도면(dwg) — 파일 하나당 20MB까지</small></div>
-  <div class="up-opt"><label class="chk"><input type="checkbox" id="up-auto" ${S.up.auto?'checked':''}> 확실한 서류는 확인 없이 바로 기본서류에 저장</label><label class="chk"><input type="checkbox" id="up-pdf" ${S.up.pdf?'checked':''}> 엑셀·워드·파워포인트는 미리보기용 PDF로 바꿔 함께 저장</label><span class="hint">조직도·정관·취업규칙·사업자등록증·법인 등기·통장 사본(🔒)·인감증명서(🔒)·ISO·가족친화·일하기 좋은 기업·중소기업 확인서·기타 인증서·공장등록증·건축물대장·도면을 알아봅니다. 같은 칸에 이미 서류가 있으면 새 버전으로 쌓입니다. 한글·도면 파일은 같은 이름의 PDF를 함께 올리면 그 PDF로 미리봅니다(예: 소방계획서.hwp + 소방계획서.pdf). <b>🔐 이력서·급여·주민등록번호 13자리·신분증·진단서 같은 개인정보가 든 파일은 기본서류에 넣지 않고 ${esc(piiLabel())}에게만 전달합니다.</b></span></div>`:'<section class="panel"><div class="empty">보기 전용 권한이라 서류를 올릴 수 없습니다.</div></section>'}
+  <div class="up-opt"><label class="chk"><input type="checkbox" id="up-auto" ${S.up.auto?'checked':''}> 확실한 서류는 확인 없이 바로 자료실에 저장</label><label class="chk"><input type="checkbox" id="up-pdf" ${S.up.pdf?'checked':''}> 엑셀·워드·파워포인트는 미리보기용 PDF로 바꿔 함께 저장</label><span class="hint">조직도·정관·취업규칙·사업자등록증·법인 등기·통장 사본(🔒)·인감증명서(🔒)·ISO·가족친화·일하기 좋은 기업·중소기업 확인서·기타 인증서·공장등록증·건축물대장·도면을 알아봅니다. 같은 칸에 이미 서류가 있으면 새 버전으로 쌓입니다. 한글·도면 파일은 같은 이름의 PDF를 함께 올리면 그 PDF로 미리봅니다(예: 소방계획서.hwp + 소방계획서.pdf). <b>🔐 이력서·급여·주민등록번호 13자리·신분증·진단서 같은 개인정보가 든 파일은 자료실에 넣지 않고 ${esc(piiLabel())}에게만 전달합니다.</b></span></div>`:'<section class="panel"><div class="empty">보기 전용 권한이라 서류를 올릴 수 없습니다.</div></section>'}
   <div class="up-sum" id="up-sum" hidden></div><div class="up-list" id="up-list"></div>
   <div id="up-recent">${upRecentHTML()}</div>`;
   renderUpList();
@@ -4537,7 +4542,7 @@ const LEGAL_TX={wht:'fin|세무|원천세·지급명세서',simple:'fin|세무|�
   agm:'etc|경영지원|주주총회·이사회',car:'hr|차량관리|차량 정기검사'};
 function legalTx(p){const v=LEGAL_TX[p.id];if(!v){const m=normCat({cat:p.cat,sub:p.sub,title:p.name});return {...p,...m};}const [c,su,l]=v.split('|');return {...p,...txFit(c,su,l)};}
 /* ───────── 전체 검색 ─────────
-   업무(제목·내용·분류·담당·사업장) · 진행 기록 · 특이사항 · 기본서류(서류명·메모·파일명·읽어 둔 본문) · 법정 업무 · 내 비공개 업무를 한 번에 찾습니다.
+   업무(제목·내용·분류·담당·사업장) · 진행 기록 · 특이사항 · 자료실(서류명·메모·파일명·읽어 둔 본문) · 법정 업무 · 내 비공개 업무를 한 번에 찾습니다.
    네 글자 이상은 띄어쓰기를 무시하고 찾으며(예: '소화기점검' = '소화기 점검' — 짧은 낱말은 붙은 글자끼리 잘못 맞는 것을 막으려고 그대로 찾음), 여러 낱말은 모두 들어 있는 것만 보여 줍니다.
    이 기기에 이미 받아 둔 자료 안에서 찾으므로 Firebase 읽기 사용량이 늘지 않습니다. */
 const GS={scope:'all',more:{},t:0};
@@ -4940,7 +4945,7 @@ const _uxOpenMe=openMe;openMe=function(){_uxOpenMe();uxMeInit();};
 mnavInit();uxBigApply();uxPwa();
 /* ───────── 개인정보 자료 — 총괄 관리자만 ─────────
    이력서·급여·주민등록번호 13자리·신분증·건강 정보가 든 사진·파일은 올리는 순간 이 기기(브라우저) 안에서 검사합니다.
-   걸리면 사진첩·기본서류 대신 pii/{id}(내용은 pii/{id}/c/{n})에 저장하고, 보안 규칙상 app/members.pii 에 있는 총괄 관리자만 읽습니다.
+   걸리면 사진첩·자료실 대신 pii/{id}(내용은 pii/{id}/c/{n})에 저장하고, 보안 규칙상 app/members.pii 에 있는 총괄 관리자만 읽습니다.
    올린 사람을 포함한 다른 직원 화면에는 '🔐 관리자 전용' 그림만 보입니다. 생년월일만 있는 경우(예: 900101-1******)는 해당하지 않습니다.
    업무·특이사항에 직접 적은 주민등록번호 13자리는 저장할 때 뒷자리를 가립니다(clean → maskRRN). */
 const PII_PH='pii-';
@@ -4996,7 +5001,7 @@ async function piiScanPhoto(file,r,o={}){if(o.pii)return {hit:true,why:['올린 
   if(!docLike(cv))return {hit:false,skip:1};
   let text='';try{text=await withTimeout(ocrCanvas(cv,o.onProg),90000);}catch(e){const yes=await piiAsk(file&&file.name);return yes?{hit:true,why:['올린 사람이 개인정보로 지정'],ks:['manual']}:{hit:false};}
   return piiCheck(file&&file.name||'',text,{ocr:true});}
-/* ── 파일: 본문 글자(스캔·사진은 OCR)로 검사. 읽은 글자는 잠시 보관해 기본서류 저장 때 다시 읽지 않음 */
+/* ── 파일: 본문 글자(스캔·사진은 OCR)로 검사. 읽은 글자는 잠시 보관해 자료실 저장 때 다시 읽지 않음 */
 const _xdc=new Map();
 async function piiScanFile(file,o={}){let ex={text:'',how:'name'};try{ex=await extractDocText(file,o.onProg);}catch{ex={text:'',how:'fail'};}
   const r=piiCheck(`${file.name||''} ${o.title||''}`,ex.text,{ocr:ex.how==='ocr',slot:o.slot});r.text=ex.text;r.how=ex.how;return r;}
@@ -5053,7 +5058,7 @@ function piiNtf(){const out=[];if(!piiOwner()||!S.pii.length)return out;const se
 if(typeof fbAssets==='object'){const _del=fbAssets.delete;fbAssets.delete=async function(id){if(isPiiPh(id)){if(piiOwner())await piiDelete(id);return;}return _del.call(this,id);};}
 
 /* ── 관리자 창 */
-const PII_SRC={task:'업무 사진',docs:'기본서류',upload:'각종서류 올리기',move:'기존 자료에서 옮김'};
+const PII_SRC={task:'업무 사진',docs:'자료실',upload:'각종서류 올리기',move:'기존 자료에서 옮김'};
 function piiTaskOf(it){if(it.kind!=='photo')return null;return S.tasks.find(t=>t.photos.some(p=>p.id===it.id))||null;}
 function piiRowHTML(it){const t=piiTaskOf(it);const seen=lsGet('wl.piiSeen')||'';
   return `<li class="pii-row ${it.at>seen&&it.by!==myId()?'un':''}" data-pii="${esc(it.id)}"><span class="fi pii-fi">${it.kind==='photo'&&it.th?`<img data-pii-th="${esc(it.id)}" src="${PH_BLANK}" alt="">`:esc(fileIcon({name:it.name}))}</span>
@@ -5071,7 +5076,7 @@ async function piiDel(id){const it=S.pii.find(x=>x.id===id);if(!it)return;const 
   if(!await confirmDlg('개인정보 자료 삭제',`「${it.title||it.name}」(${it.name})을(를) 완전히 지웁니다. 되돌릴 수 없습니다.${t?`\n업무 「${t.title}」에서도 이 사진이 빠집니다.`:''}`,'삭제'))return;
   setSync('saving');try{if(t)await removePhoto(t,id,{at:nowISO(),by:myId(),kind:'note',text:'개인정보 사진을 총괄 관리자가 삭제함'});else await piiDelete(id);toast('삭제했습니다.');}catch(e){writeError(e);}finally{setSync('ok');}}
 async function piiRelease(id){const it=S.pii.find(x=>x.id===id);if(!it)return;const t=piiTaskOf(it);
-  if(!await confirmDlg('일반 자료로 옮기기',`「${it.title||it.name}」에 개인정보가 없다고 확인한 경우에만 옮기세요.\n${it.kind==='photo'?`업무 「${t?t.title:''}」의 사진으로 직원 모두가 보게 됩니다.`:'기본서류 › 기타 서류로 옮겨 직원 모두가 보게 됩니다.'}`,'옮기기'))return;
+  if(!await confirmDlg('일반 자료로 옮기기',`「${it.title||it.name}」에 개인정보가 없다고 확인한 경우에만 옮기세요.\n${it.kind==='photo'?`업무 「${t?t.title:''}」의 사진으로 직원 모두가 보게 됩니다.`:'자료실 › 기타 서류로 옮겨 직원 모두가 보게 됩니다.'}`,'옮기기'))return;
   setSync('saving');try{const blob=await piiBlob(it);
     if(it.kind==='photo'){if(!t)throw {userMsg:'붙어 있는 업무를 찾지 못했습니다.'};const nid='p'+rid();const th=await fbPutPhoto(nid,blob,await piiThumbBlob(id));
       await updateTask(t,{photos:t.photos.map(p=>p.id===id?{...p,id:nid,th}:p),logs:t.logs.map(l=>({...l,photos:l.photos.map(x=>x===id?nid:x)}))});}
@@ -5082,16 +5087,16 @@ async function piiRelease(id){const it=S.pii.find(x=>x.id===id);if(!it)return;co
 /* ── 기존 자료 검사 (총괄 관리자) */
 S.piiScan=null;
 function piiScanHTML(){const R=S.piiScan;
-  if(!R)return `<p class="pii-note">기본서류 서류(읽어 둔 본문·이름), 업무 사진(서류처럼 보이는 사진만 글자 인식), 업무 기록의 주민등록번호를 검사합니다. 검사만으로는 아무것도 바뀌지 않습니다.</p><button type="button" class="btn sm primary" data-pii-scan>검사 시작</button>`;
+  if(!R)return `<p class="pii-note">자료실 서류(읽어 둔 본문·이름), 업무 사진(서류처럼 보이는 사진만 글자 인식), 업무 기록의 주민등록번호를 검사합니다. 검사만으로는 아무것도 바뀌지 않습니다.</p><button type="button" class="btn sm primary" data-pii-scan>검사 시작</button>`;
   const fl=R.files,ph=R.photos,tk=R.tasks;
   return `${R.busy?`<p class="pii-note"><i class="spin"></i> ${esc(R.busy)}</p>`:`<p class="pii-note">검사 끝 · 서류 ${R.nf}건 · 사진 ${R.np}장(글자 인식 ${R.nocr}장) · 업무 ${R.nt}건</p>`}
-    ${fl.length?`<h4>기본서류 ${fl.length}건</h4><ul class="pii-list">${fl.map(x=>`<li class="pii-row"><span class="fi">${esc(fileIcon(curVer(x.f)||{name:''}))}</span><div class="dm"><b>${esc(x.f.title)}</b><small>${esc(slotPath(x.f.slot,x.f.site))} · 버전 ${x.f.versions.length}개</small><span class="pii-why">${x.why.map(w=>`<i>${esc(w)}</i>`).join('')}</span></div><span class="da">${x.done?'<span class="uc-ok">✓ 옮김</span>':`<button type="button" class="btn sm" data-doc-info="${esc(x.f.id)}">보기</button><button type="button" class="btn sm primary" data-pii-mvf="${esc(x.f.id)}">관리자 전용으로 옮기기</button>`}</span></li>`).join('')}</ul>`:''}
+    ${fl.length?`<h4>자료실 ${fl.length}건</h4><ul class="pii-list">${fl.map(x=>`<li class="pii-row"><span class="fi">${esc(fileIcon(curVer(x.f)||{name:''}))}</span><div class="dm"><b>${esc(x.f.title)}</b><small>${esc(slotPath(x.f.slot,x.f.site))} · 버전 ${x.f.versions.length}개</small><span class="pii-why">${x.why.map(w=>`<i>${esc(w)}</i>`).join('')}</span></div><span class="da">${x.done?'<span class="uc-ok">✓ 옮김</span>':`<button type="button" class="btn sm" data-doc-info="${esc(x.f.id)}">보기</button><button type="button" class="btn sm primary" data-pii-mvf="${esc(x.f.id)}">관리자 전용으로 옮기기</button>`}</span></li>`).join('')}</ul>`:''}
     ${ph.length?`<h4>업무 사진 ${ph.length}장</h4><ul class="pii-list">${ph.map(x=>`<li class="pii-row"><span class="fi pii-fi">${thumbImg(x.p)}</span><div class="dm"><b>${esc(x.t.title)}</b><small>${esc(fmtYMD(phDate(x.p)))} · ${esc(nameOf(x.p.by))}</small><span class="pii-why">${x.why.map(w=>`<i>${esc(w)}</i>`).join('')}</span></div><span class="da">${x.done?'<span class="uc-ok">✓ 옮김</span>':`<button type="button" class="btn sm" data-pii-pv="${esc(x.p.id)}">보기</button><button type="button" class="btn sm primary" data-pii-mvp="${esc(x.p.id)}">관리자 전용으로 옮기기</button>`}</span></li>`).join('')}</ul>`:''}
     ${tk.length?`<h4>업무 기록에 적힌 주민등록번호 ${tk.length}건</h4><ul class="pii-list">${tk.map(x=>`<li class="pii-row"><div class="dm"><b>${esc(x.t.title)}</b><small>${esc(x.where)}</small></div><span class="da">${x.done?'<span class="uc-ok">✓ 가림</span>':`<button type="button" class="btn sm primary" data-pii-mask="${esc(x.t.path)}">뒷자리 가리기</button>`}</span></li>`).join('')}</ul>`:''}
     ${!R.busy&&!fl.length&&!ph.length&&!tk.length?'<div class="empty">개인정보로 보이는 기존 자료가 없습니다.</div>':''}
     ${R.busy?'<button type="button" class="btn sm ghost" data-pii-stop>멈추기</button>':'<button type="button" class="btn sm ghost" data-pii-scan>다시 검사</button>'}`;}
 function piiScanSync(){const b=$('#pii-scan-b');if(b)b.innerHTML=piiScanHTML();}
-async function piiScanRun(){if(!piiOwner())return;const R=S.piiScan={files:[],photos:[],tasks:[],nf:0,np:0,nocr:0,nt:0,busy:'기본서류 검사 중…',stop:false};piiScanSync();
+async function piiScanRun(){if(!piiOwner())return;const R=S.piiScan={files:[],photos:[],tasks:[],nf:0,np:0,nocr:0,nt:0,busy:'자료실 검사 중…',stop:false};piiScanSync();
   for(const f of Object.values(S.files)){R.nf++;if(f.versions.some(v=>v.note==='개인정보 자료에서 옮김'))continue;const names=[f.title,...f.versions.map(v=>v.name)].join(' ');const c=piiCheck(names,f.txt,{slot:f.slot});if(c.hit)R.files.push({f,why:c.why});}
   const tasks=S.tasks.filter(t=>!t.sample);
   for(const t of tasks){const where=[];if(rrnList(t.title).length)where.push('업무명');if(rrnList(t.desc).length)where.push('내용');if(t.logs.some(l=>rrnList(l.text).length))where.push('진행 기록');if(where.length)R.tasks.push({t,where:where.join('·')});R.nt++;}
@@ -5102,7 +5107,7 @@ async function piiScanRun(){if(!piiOwner())return;const R=S.piiScan={files:[],ph
       if(!docLike(cv))continue;R.nocr++;const text=await withTimeout(ocrCanvas(cv),90000);const c=piiCheck('',text,{ocr:true});if(c.hit){R.photos.push({t,p,why:c.why});piiScanSync();}}catch{}}
   R.busy='';piiScanSync();}
 async function piiMoveFile(fid){const x=S.piiScan&&S.piiScan.files.find(y=>y.f.id===fid);const f=S.files[fid];if(!x||!f)return;
-  if(!await confirmDlg('관리자 전용으로 옮기기',`「${f.title}」의 모든 버전(${f.versions.length}개)을 개인정보 자료로 옮기고 기본서류에서 지웁니다.\n직원들은 더 이상 볼 수 없게 됩니다.`,'옮기기'))return;
+  if(!await confirmDlg('관리자 전용으로 옮기기',`「${f.title}」의 모든 버전(${f.versions.length}개)을 개인정보 자료로 옮기고 자료실에서 지웁니다.\n직원들은 더 이상 볼 수 없게 됩니다.`,'옮기기'))return;
   setSync('saving');try{for(const v of f.versions){const b=await fileGet({...f,restricted:false},v);await piiPutFile(b,{name:v.name,type:v.type,src:'move',title:`${f.title}${f.versions.length>1?' v'+v.v:''}`,site:f.site,why:x.why});}
     await docDeleteAll(f);x.done=true;piiScanSync();toast(`「${f.title}」을(를) 관리자 전용으로 옮겼습니다.`);}catch(e){toast(fileErrMsg(e),'err');}finally{setSync('ok');}}
 async function piiMovePhoto(pid){const x=S.piiScan&&S.piiScan.photos.find(y=>y.p.id===pid);if(!x)return;const t=findTask(x.t.path)||x.t;
@@ -5135,7 +5140,7 @@ function piiSetHTML(){if(S.mode!=='firebase'||!S.canEdit)return '';const own=pii
    · 보고서 화면은 보고서 용지만, 업무 상세 창이 열려 있으면 그 업무 한 장(정보·내용·진행 기록·사진)을 인쇄합니다.
    · 보고서: '개인별 보고서'로 직원을 고르면 그 사람이 담당했거나 진행 기록을 남긴 업무 + 일자별 진행 기록,
      '업무 범위'에서 공개+내 비공개 / 공개만 / 🔒 내 비공개만 을 고릅니다. */
-const PR_VIEW={my:'내 업무',team:'팀 현황',org:'조직도·업무분장',overview:'총괄',board:'칸반',calendar:'달력',list:'업무 목록',report:'보고서',upload:'각종서류 올리기',docs:'기본서류',legal:'법정 업무',gw:'그룹웨어 소식',photos:'사진첩',help:'사용 안내'};
+const PR_VIEW={my:'내 업무',team:'팀 현황',org:'조직도·업무분장',overview:'총괄',board:'칸반',calendar:'달력',list:'업무 목록',report:'보고서',upload:'각종서류 올리기',docs:'자료실',legal:'법정 업무',gw:'그룹웨어 소식',photos:'사진첩',help:'사용 안내'};
 function logText(l){const st=k=>ST[k]?ST[k].name:'';
   const k=l.kind==='status'?`상태 ${st(l.from)} → ${st(l.to)}`:l.kind==='progress'?`진척률 ${l.p0??0}% → ${l.p1??0}%`:l.kind==='create'?'업무 등록':l.kind==='photo'?`사진 ${(l.photos||[]).length}장 첨부`:l.kind==='record'?'완료 기록':'';
   return [k,l.text||''].filter(Boolean).join(' — ')+(l.issue?' [이슈]':'');}
@@ -5937,17 +5942,17 @@ window.apApi={ready:()=>({loaded:AP.loaded,docs:AP.docs.length,todo:apTodo().len
 /* 입력할 때마다 작성 내용 보관 (다른 화면에 다녀와도 이어서) */
 document.addEventListener('input',e=>{if(e.target&&e.target.closest&&e.target.closest('#apw'))try{apSyncW();}catch{}});
 
-/* ───────── 25차: 기본서류는 위쪽 메뉴에서 빼고 '각종서류 올리기' 안에서 전환 ───────── */
+/* ───────── 25차: 자료실은 위쪽 메뉴에서 빼고 '각종서류 올리기' 안에서 전환 ───────── */
 function upSwitchHTML(cur){let n=0;try{n=Object.keys(S.files||{}).length;}catch{}
   const fc=m=>typeof fmBy==='function'?fmBy(m).length:0;const fw=typeof fmWait==='function'?fmWait().length:0;
-  return `<nav class="team-sw up-sw" aria-label="서류 보기"><a href="#upload" ${cur==='upload'?'aria-current="page"':''}>📤 각종서류 올리기</a><a href="#docs" ${cur==='docs'?'aria-current="page"':''}>🗂 기본서류${n?` <em>${n}</em>`:''}</a>`
+  return `<nav class="team-sw up-sw" aria-label="서류 보기"><a href="#upload" ${cur==='upload'?'aria-current="page"':''}>📤 각종서류 올리기</a><a href="#docs" ${cur==='docs'?'aria-current="page"':''}>🗂 자료실${n?` <em>${n}</em>`:''}</a>`
     +`<a href="#formp" ${cur==='formp'?'aria-current="page"':''}>🖨 회사서식(출력 작성) <em ${fc('print')?'':'hidden'}>${fc('print')||''}</em></a><a href="#formd" ${cur==='formd'?'aria-current="page"':''}>✏️ 회사서식(직접 작성) <em ${fc('direct')?'':'hidden'}>${fc('direct')||''}</em></a>`
     +`<span class="fm-sw-w" ${fw?'':'hidden'}>${fw?`분류 대기 ${fw}`:''}</span></nav>`;}
 function upSwIns(v,cur){if(!v)return;const old=v.querySelector(':scope > .up-sw');const sl=old?old.scrollLeft:0;if(old)old.remove();v.insertAdjacentHTML('afterbegin',upSwitchHTML(cur));
   const sw=v.querySelector(':scope > .up-sw');const a=sw&&sw.querySelector('[aria-current]');if(sw&&a){sw.scrollLeft=sl;const r=a.offsetLeft+a.offsetWidth-sw.clientWidth;if(r>sw.scrollLeft)sw.scrollLeft=r+16;else if(a.offsetLeft<sw.scrollLeft)sw.scrollLeft=Math.max(0,a.offsetLeft-16);}}
 {const _u=renderUpload;renderUpload=function(v){const r=_u.apply(this,arguments);try{upSwIns(v,'upload');}catch(e){console.warn(e);}return r;};}
 {const _d=renderDocs;renderDocs=function(v){const r=_d.apply(this,arguments);try{upSwIns(v,'docs');}catch(e){console.warn(e);}return r;};}
-/* 기본서류 화면에서도 위쪽 '각종서류 올리기' 탭이 선택된 것으로 */
+/* 자료실 화면에서도 위쪽 '각종서류 올리기' 탭이 선택된 것으로 */
 {const _r=render;render=function(){if(['upload','docs'].includes(S.view)&&typeof fmSub==='function')try{fmSub();}catch{}const r=_r.apply(this,arguments);if(['docs','formp','formd'].includes(S.view)){const a=document.querySelector('.tabs a[data-view="upload"]');if(a)a.setAttribute('aria-current','page');}return r;};}
 /* ───────── 26차: 회사서식 — 서식 파일을 화면에서 바로 적을 수 있는 종이(HTML)로 바꾸기 ─────────
    한글(hwp·hwpx)은 표·칸 합치기·테두리·칸 배경·글자 크기·굵기·정렬·쪽 여백까지 살려 실제 크기(mm)로 그리고,
@@ -6344,12 +6349,12 @@ function fmCvTag(f){return f.cv==='html'?'<span class="fm-cv">칸에 바로 적�
 function fmRowHTML(f,mode){const adm=S.canEdit;const ck=adm||mode==='print';const sel=FM.sel.has(f.id);const dr=mode==='direct'&&fmDraftHas(f.id);
   return `<div class="fm-row${sel?' sel':''}" data-fm-row="${esc(f.id)}"${adm?' draggable="true"':''}>${ck?`<input type="checkbox" data-fm-ck="${esc(f.id)}" ${sel?'checked':''} aria-label="${esc(f.name)} 선택">`:''}
     <span class="fi">${esc(fileIcon({name:f.file.name}))}</span>
-    <span class="fm-nmw"><button type="button" class="fm-nm" ${mode==='direct'?`data-fm-open="${esc(f.id)}"`:`data-fm-pv="${esc(f.id)}"`}><b>${esc(f.name)}</b><small>${esc(fmMeta(f))}${dr?' · <em class="fm-dr">작성 중</em>':''}</small></button>${adm?`<button type="button" class="fm-ren" data-fm-ren="${esc(f.id)}" aria-label="이름 바꾸기" title="이름 바꾸기">✏️</button>`:''}</span>
+    <span class="fm-nmw"><button type="button" class="fm-nm" ${mode==='direct'?`data-fm-open="${esc(f.id)}"`:`data-fm-pv="${esc(f.id)}"`}><b>${esc(f.name)}</b><small>${esc(fmMeta(f))}${dr?' · <em class="fm-dr">작성 중</em>':''}</small></button>${adm?`<button type="button" class="fm-ren" data-fm-ren="${esc(f.id)}" aria-label="이름 바꾸기" title="이름 바꾸기 (F2)">✏️</button>`:''}</span>
     <span class="fm-act">${mode==='direct'?`<button type="button" class="btn sm primary" data-fm-open="${esc(f.id)}">✏️ ${dr?'이어서 작성':'작성하기'}</button><button type="button" class="btn sm ghost" data-fm-pv="${esc(f.id)}">미리보기</button>`
       :`<button type="button" class="btn sm" data-fm-pv="${esc(f.id)}">미리보기</button><button type="button" class="btn sm" data-fm-print="${esc(f.id)}">🖨 인쇄</button><button type="button" class="btn sm ghost" data-fm-dl="${esc(f.id)}">내려받기</button>`}
       ${adm?`<button type="button" class="btn sm ghost" data-fm-mv="${esc(f.id)}" data-to="${mode==='print'?'direct':'print'}" ${mode==='print'&&!f.cv?'disabled title="화면 작성으로 바꿀 수 없는 형식"':''}>${mode==='print'?'✏️ 직접 작성으로':'🖨 출력 작성으로'}</button><button type="button" class="btn sm ghost" data-fm-mvd="${esc(f.id)}" title="다른 폴더로 옮기기">📁 옮기기</button>`:''}</span></div>`;}
 function fmWaitRow(f){return `<div class="fm-row wait" data-fm-row="${esc(f.id)}" draggable="true"><input type="checkbox" data-fm-ck="${esc(f.id)}" ${FM.sel.has(f.id)?'checked':''} aria-label="${esc(f.name)} 선택"><span class="fi">${esc(fileIcon({name:f.file.name}))}</span>
-  <span class="fm-nmw"><button type="button" class="fm-nm" data-fm-pv="${esc(f.id)}"><b>${esc(f.name)}</b><small>${esc(fmMeta(f))} · ${fmCvTag(f)}</small></button><button type="button" class="fm-ren" data-fm-ren="${esc(f.id)}" aria-label="이름 바꾸기" title="이름 바꾸기">✏️</button></span>
+  <span class="fm-nmw"><button type="button" class="fm-nm" data-fm-pv="${esc(f.id)}"><b>${esc(f.name)}</b><small>${esc(fmMeta(f))} · ${fmCvTag(f)}</small></button><button type="button" class="fm-ren" data-fm-ren="${esc(f.id)}" aria-label="이름 바꾸기" title="이름 바꾸기 (F2)">✏️</button></span>
   <span class="fm-act"><button type="button" class="btn sm" data-fm-mv="${esc(f.id)}" data-to="print">🖨 출력 작성</button><button type="button" class="btn sm" data-fm-mv="${esc(f.id)}" data-to="direct" ${f.cv?'':'disabled title="화면 작성으로 바꿀 수 없는 형식"'}>✏️ 직접 작성</button><button type="button" class="btn sm ghost" data-fm-mvd="${esc(f.id)}">📁 옮기기</button></span></div>`;}
 function renderForms(v){const mode=S.view==='formd'?'direct':'print';fmSub();fmPickInputs();
   if(!fmOK()){v.innerHTML=`<div class="home-head"><div><h1>${FM_ICO[mode]} ${FM_LBL[mode]}</h1></div></div><div class="banner">회사서식은 실사용 업무일지(Firebase)에서 로그인한 뒤 쓸 수 있습니다.</div>`;upSwIns(v,S.view);return;}
@@ -6657,8 +6662,8 @@ GS_TYPES.form='회사서식';
 document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-fm-gs]');if(!b)return;const f=fmGet(b.dataset.fmGs);const d=$('#dlg-search');if(d&&d.open)d.close();if(!f)return;
   if(f.mode==='direct')fmOpen(f.id);else fmReviewOpen([f.id],true);});
 document.addEventListener('keydown',e=>{if(e.target&&e.target.id==='gs-q'&&e.key==='Enter'&&!$('#gs-res [data-gs-task],#gs-res [data-gs-file],#gs-res [data-gs-legal],#gs-res [data-gs-gw]')){const f=$('#gs-res [data-fm-gs]');if(f)f.click();}});
-/* ───────── 27차: 폴더 만들기 · 옮기기 · 이름 바꾸기 (각종서류 올리기 › 기본서류 · 회사서식) ─────────
-   · 기본서류: 사용자 폴더(app/docdirs.dirs [{id,name}])를 맨 위에 두고, 서류(files.dir)를 끌어다 놓거나 「📁 옮기기」로
+/* ───────── 27차: 폴더 만들기 · 옮기기 · 이름 바꾸기 (각종서류 올리기 › 자료실 · 회사서식) ─────────
+   · 자료실: 사용자 폴더(app/docdirs.dirs [{id,name}])를 맨 위에 두고, 서류(files.dir)를 끌어다 놓거나 「📁 옮기기」로
      폴더·기본 칸(사업자등록증·인증서·사업장별 등) 사이를 옮깁니다. 폴더에서 꺼내면 원래 칸으로 돌아갑니다.
    · 회사서식(ext23): 왼쪽 폴더 나무(분류 경로 'A › B' + app/formdirs.dirs 빈 폴더), 끌어다 놓기·여러 개 옮기기, 폴더 이름 바꾸기·삭제.
    · 서류·서식 이름은 ✏️를 눌러 그 자리에서 바꿉니다(Enter 저장 · Esc 취소). */
@@ -6720,10 +6725,17 @@ function inlineRename(host,cur,save,opt={}){if(!host||host.querySelector('input.
     S.dragging=false;if(S.pendingRender){S.pendingRender=false;scheduleRender();}};
   inp.addEventListener('keydown',e=>{e.stopPropagation();if(e.key==='Enter'){e.preventDefault();fin(true);}else if(e.key==='Escape'){e.preventDefault();fin(false);}});
   inp.addEventListener('blur',()=>fin(true));for(const ev of ['click','dblclick','mousedown','pointerdown'])inp.addEventListener(ev,e=>e.stopPropagation());}
-async function ddRenameDoc(id){const f=S.files[id];const row=document.querySelector(`.doc-row[data-doc="${CSS.escape(id)}"] .dd-nm`);if(!f||!row||!S.canWrite)return;
-  inlineRename(row,f.title,v=>dbUpdate(`files/${id}`,{title:v.slice(0,80),updatedAt:nowISO(),updatedBy:myId()||''}).then(()=>toast('이름을 바꿨습니다.')),{max:80});}
+function rnBtn(attr,id){return `<button type="button" class="dd-ren" ${attr}="${esc(id)}" aria-label="이름 바꾸기" title="이름 바꾸기 (F2)">✏️</button>`;}
+async function ddRenameDoc(id,from){const f=S.files[id];if(!f||!S.canWrite)return;const sc=from&&from.closest&&from.closest('.doc-row,.up-card');
+  const host=(sc&&sc.querySelector('.dd-nm'))||document.querySelector(`.doc-row[data-doc="${CSS.escape(id)}"] .dd-nm`);if(!host)return;
+  inlineRename(host,f.title,v=>dbUpdate(`files/${id}`,{title:v.slice(0,80),updatedAt:nowISO(),updatedBy:myId()||''}).then(()=>{f.title=v.slice(0,80);toast('이름을 바꿨습니다.');}),{max:80});}
+/* 28차: 올리는 중인 파일(저장 전) 이름 바꾸기 — 파일 이름과 저장될 서류명을 함께 바꿈 */
+function upRen(id,from){const it=S.up.items.find(x=>x.id===id);if(!it||!it.file)return;const sc=from&&from.closest&&from.closest('.up-card');const host=(sc||document.getElementById('up-'+id)||document).querySelector('.up-nm');if(!host)return;
+  const ext=(it.name.match(/\.[A-Za-z0-9]{1,6}$/)||[''])[0];const base=it.name.slice(0,it.name.length-ext.length);
+  inlineRename(host,base,v=>{v=v.replace(/[\\/:*?"<>|]+/g,'_').slice(0,110);const nn=v+ext;try{it.file=new File([it.file],nn,{type:it.file.type,lastModified:it.file.lastModified});}catch{}
+    it.name=nn;if(it.guess)it.guess.title=v.slice(0,80);setTimeout(()=>renderUpItem(it),0);toast('이름을 바꿨습니다.');},{max:110});}
 
-/* ── 기본서류 끌어다 놓기 ── */
+/* ── 자료실 끌어다 놓기 ── */
 let DDG=null;
 document.addEventListener('dragstart',e=>{const r=e.target.closest&&e.target.closest('.doc-row[data-doc][draggable="true"]');if(!r||S.view!=='docs')return;DDG={id:r.dataset.doc};S.dragging=true;r.classList.add('dragging');
   try{e.dataTransfer.setData('text/plain',S.files[DDG.id]?S.files[DDG.id].title:'');e.dataTransfer.effectAllowed='move';}catch{}});
@@ -6741,7 +6753,8 @@ document.addEventListener('dragend',()=>{if(DDG)ddDragEnd();});
 /* ── 클릭 ── */
 document.addEventListener('click',async e=>{const T=e.target;if(!T||!T.closest)return;
   if(T.closest('[data-dd-new]')){ddNew();return;}
-  const rn=T.closest('[data-dd-ren]');if(rn){e.stopPropagation();ddRenameDoc(rn.dataset.ddRen);return;}
+  const rn=T.closest('[data-dd-ren]');if(rn){e.stopPropagation();ddRenameDoc(rn.dataset.ddRen,rn);return;}
+  const ur=T.closest('[data-up-ren]');if(ur){e.stopPropagation();upRen(ur.dataset.upRen,ur);return;}
   const mv=T.closest('[data-dd-mv]');if(mv){const f=S.files[mv.dataset.ddMv];if(f)ddPickFor(f);return;}
   const bk=T.closest('[data-dd-back]');if(bk){const f=S.files[bk.dataset.ddBack];const row=bk.closest('[data-dslot]');if(f&&row)await ddMove(f,{slot:row.dataset.dslot,site:row.dataset.site||''});return;}
   const dr=T.closest('[data-dd-dren]');if(dr){ddRename(dr.dataset.ddDren);return;}
@@ -6751,6 +6764,10 @@ document.addEventListener('click',async e=>{const T=e.target;if(!T||!T.closest)r
 {const _u=renderUpload;renderUpload=function(v){const r=_u.apply(this,arguments);try{ddSub();const o=v.querySelector('.up-opt');if(o&&S.canWrite){if(S.up.dir&&!DD.dirs.some(d=>d.id===S.up.dir))S.up.dir='';
       o.insertAdjacentHTML('afterbegin',`<label class="chk dd-upto">📁 저장할 곳 <select id="up-dir" aria-label="저장할 곳"><option value="">자동 분류 칸 (기본)</option>${DD.dirs.map(d=>`<option value="${esc(d.id)}" ${S.up.dir===d.id?'selected':''}>📁 ${esc(d.name)}</option>`).join('')}<option value="__new">＋ 새 폴더 만들기…</option></select></label>`);}}catch(e){console.warn(e);}return r;};}
 document.addEventListener('change',async e=>{const T=e.target;if(!T||T.id!=='up-dir')return;if(T.value==='__new'){const d=await ddNew();S.up.dir=d?d.id:'';render();return;}S.up.dir=T.value;});
+
+/* 28차: F2 = 고른 파일 이름 바꾸기 (자료실·최근 서류·올리는 파일·회사서식) */
+document.addEventListener('keydown',e=>{if(e.key!=='F2'||e.altKey||e.ctrlKey||e.metaKey)return;const a=document.activeElement;if(!a||!a.closest||a.matches('input,textarea,select,[contenteditable="true"]'))return;
+  const row=a.closest('.doc-row,.fm-row,.up-card');const b=row&&row.querySelector('[data-dd-ren],[data-fm-ren],[data-up-ren]');if(b){e.preventDefault();b.click();}});
 /* ───────── 27차: 회사서식(직접 작성) 보기 좋게 다듬기 ─────────
    깃허브 공개 전자결재·인쇄 프로젝트에서 쓰는 서식 모양을 참고해, 한글 서식을 바꾼 종이를 회사 공통 모양으로 다듬습니다.
    · cognitom/paper-css(MIT): A4 종이(sheet) 크기·여백 그대로 화면과 인쇄를 맞춤 → 이미 종이(mm) 방식으로 반영
