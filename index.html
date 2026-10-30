@@ -1021,9 +1021,27 @@ img[data-pii]{outline:2px dashed #b85a6e;outline-offset:-2px}
 #r-priv-l small{color:var(--ink-3)}
 
 /* 19차: 인쇄 */
-.print-btn{width:auto!important;padding:0 10px!important;gap:5px;display:inline-flex;align-items:center}
-.print-btn span{font-size:13px;font-weight:600}
-@media (max-width:1480px){.print-btn span{display:none}.print-btn{padding:0!important;width:34px!important;justify-content:center}.me-chip small{display:none}}
+.print-btn{width:auto!important;height:36px;padding:0 12px 0 10px!important;gap:6px;display:inline-flex;align-items:center;border:2px solid var(--accent)!important;border-radius:9px!important;color:var(--accent)!important;background:#fff!important;font-weight:700}
+.print-btn svg{width:21px!important;height:21px!important;stroke-width:2.1}
+.print-btn span{font-size:14px;font-weight:700;letter-spacing:.02em}
+.print-btn:hover,.print-btn:focus-visible{background:var(--accent)!important;color:#fff!important}
+@media (max-width:760px){.print-btn{width:38px!important;padding:0!important;justify-content:center}.print-btn span{display:none}}
+@media (max-width:1480px){.me-chip small{display:none}}
+@media (max-width:1780px) and (min-width:761px){.me-chip small{display:none}.top .sync span{display:none}}
+@media (max-width:1680px) and (min-width:1561px){.tabs a{padding:0 10px}}
+@media (max-width:1560px) and (min-width:761px){.brand strong{font-size:14px}.brand small{font-size:11px}.brand{gap:8px}#btn-new{padding-left:10px!important;padding-right:10px!important}.top-right{gap:5px}.print-btn{padding:0 9px 0 7px!important;gap:4px}}
+@media (max-width:1320px) and (min-width:761px){.brand small{display:none}.top-right{gap:4px}}
+.prt-btn{border:2px solid var(--accent)!important;color:var(--accent)!important;font-weight:700!important;background:#fff}
+.prt-btn:hover{background:var(--accent)!important;color:#fff!important}
+.pr-choices{display:flex;flex-direction:column;gap:10px}
+.pr-choice{display:flex;gap:12px;align-items:flex-start;border:2px solid var(--line);border-radius:10px;padding:12px 14px;cursor:pointer}
+.pr-choice:has(input:checked){border-color:var(--accent);background:#f3f7fd}.pr-choice:has(input:disabled){opacity:.5;cursor:not-allowed}
+.pr-choice input{margin-top:3px;width:18px;height:18px;accent-color:var(--accent)}.pr-choice b{display:block;font-size:15px}.pr-choice b em{font-style:normal;font-size:11px;color:#fff;background:var(--accent);border-radius:4px;padding:1px 6px;margin-left:6px;vertical-align:2px}
+.pr-choice small{display:block;font-size:12.5px;color:var(--ink-3);margin-top:3px;line-height:1.5}
+.pr-acts{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
+#print-sheet .ps-sub{font-size:9.5pt;color:#555;margin:-6px 0 8px}#print-sheet h1 small{font-size:11pt;color:#666;font-weight:500}
+#print-sheet .ps-list{font-size:9pt;table-layout:fixed;width:100%;word-break:keep-all;overflow-wrap:anywhere}#print-sheet .ps-list th,#print-sheet .ps-list td{padding:4px 5px}#print-sheet .ps-list th{background:#eef1f5;font-weight:700;white-space:nowrap}#print-sheet .ps-list td.c{text-align:center;white-space:nowrap}#print-sheet .ps-list td.cw{text-align:center}
+#print-sheet .ps-list tr{break-inside:avoid}#print-sheet .ps-list thead{display:table-header-group}#print-sheet .ps-note{font-size:8pt;color:#666;margin-top:1px}
 .t-print{margin-left:auto;margin-right:6px}
 .r-mine{margin-top:6px;width:100%}
 #print-head,#print-sheet,.opinion-print{display:none}
@@ -1058,7 +1076,7 @@ img[data-pii]{outline:2px dashed #b85a6e;outline-offset:-2px}
   body.pr-sheet>*:not(#print-sheet){display:none!important}
   body.pr-sheet #print-sheet{display:block!important}
 }
-#print-sheet{font:10.5pt/1.55 "IBM Plex Sans KR","Malgun Gothic","Apple SD Gothic Neo",sans-serif;color:#111}
+#print-sheet{font:10.5pt/1.55 "IBM Plex Sans KR","Malgun Gothic","Apple SD Gothic Neo",sans-serif;color:#111;padding:0 2px;box-sizing:border-box}
 #print-sheet .ps-head{display:flex;justify-content:space-between;font-size:8.5pt;color:#555;border-bottom:2px solid #1f3a5f;padding-bottom:5px;margin-bottom:10px}
 #print-sheet h1{font-size:17pt;margin:4px 0 10px}#print-sheet h2{font-size:11.5pt;margin:16px 0 6px;border-left:4px solid #1f3a5f;padding-left:7px}#print-sheet h2 small{font-weight:400;color:#666;font-size:9pt}
 #print-sheet .ps-priv{font-size:10pt;color:#5b3f86;border:1px solid #b9a7dc;border-radius:4px;padding:0 5px;vertical-align:3px}
@@ -1502,6 +1520,14 @@ table.org-duty .idle-t{font-size:11px;color:#94a3b8}table.org-duty td.n{font-siz
 <dialog class="modal org-dlg" id="dlg-org" aria-label="조직도·업무분장 편집">
   <form method="dialog"><header class="modal-h"><h2>조직도 · 업무분장</h2><button type="button" class="icon-btn" data-close aria-label="닫기">✕</button></header></form>
   <div class="modal-b one" id="org-dlg-b"></div>
+</dialog>
+<dialog class="modal narrow pr-dlg" id="dlg-print" aria-labelledby="pr-h">
+  <form method="dialog"><header class="modal-h"><h2 id="pr-h">🖨 인쇄</h2><button type="button" class="icon-btn" data-close aria-label="닫기">✕</button></header></form>
+  <div class="modal-b one"><div class="pr-choices" role="radiogroup" aria-label="인쇄 방식">
+    <label class="pr-choice"><input type="radio" name="pr-mode" id="pr-c-form" value="form" checked><span><b>현재 양식 그대로 — 구분하여 표기 <em>기본</em></b><small id="pr-c-form-d"></small></span></label>
+    <label class="pr-choice"><input type="radio" name="pr-mode" id="pr-c-list" value="list"><span><b id="pr-c-list-t">업무 목록만 — 구분 없이</b><small id="pr-c-list-d"></small></span></label>
+  </div><p class="help" style="font-size:12px;color:var(--ink-3);margin:10px 0 0">인쇄 창에서 'PDF로 저장'을 고르면 파일로 남길 수 있습니다.</p>
+  <div class="pr-acts"><button type="button" class="btn" data-close>취소</button><button type="button" class="btn primary" id="pr-go">🖨 인쇄</button></div></div>
 </dialog>
 <div id="toasts" aria-live="polite"></div>
 
@@ -2000,7 +2026,7 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>휴대폰에서</b><span>아래쪽 탭(내 업무·팀 현황·달력·그룹웨어·더보기)으로 이동합니다. 브라우저 메뉴의 <em>홈 화면에 추가</em>(아이폰은 공유 › 홈 화면에 추가)를 누르면 앱처럼 아이콘으로 열립니다. 글자가 작으면 <em>더보기 › 글자 크게</em>.</span></li>
       <li><b>달력 보기</b><span>달력 아래에서 <em>내 업무만 · 완료 숨김 · 여러 날 업무는 마감일에만</em>을 고를 수 있습니다(이 기기에 기억). 칸반의 완료 칸은 이번 주 완료만 보이고, <em>지난 완료 보기</em>로 더 볼 수 있습니다.</span></li>
       <li><b>조직도·업무분장</b><span><em>팀 현황</em> 화면 맨 위의 <em>조직도·업무분장</em>을 누르면 관리부 전체 조직도, 안양본사·군포공장·화성공장 관리부 조직도(법정 선임 현황 포함), 업무분장표(정·부·대행 담당, 최근 12주 실적)를 봅니다. 이름표의 짧은 글은 주요 업무 약식이고, 이름을 누르면 그 사람의 업무분장이 나옵니다. 매주 1회 업무일지 기록과 직원 명단을 비교해 담당·대행·부담당·새 업무와 직원 변동을 자동 반영하고, 바뀐 내용은 <em>변경 이력</em>과 알림으로 알려 드립니다. 관리자는 업무를 누르면 담당을 직접 고칠 수 있습니다.</span></li>
-      <li><b>인쇄</b><span>모든 화면 위쪽의 <em>🖨 인쇄</em>(휴대폰은 더보기 › 이 화면 인쇄)를 누르면 지금 화면을 A4로 인쇄합니다. 인쇄 창에서 'PDF로 저장'을 고르면 파일로도 남길 수 있습니다. 업무 상세 창의 <em>🖨 인쇄</em>는 그 업무 한 장(정보·내용·진행 기록·사진), 보고서 화면은 보고서 용지만 인쇄합니다. <em>📄 내 업무 보고서</em>(내 업무 화면·보고서의 개인별 보고서)는 내가 담당했거나 진행 기록을 남긴 업무와 일자별 진행 기록으로 개인 보고서를 만들고, 보고서의 <em>업무 범위 › 🔒 내 비공개 업무만</em>으로 비공개 업무만 출력할 수 있습니다.</span></li>
+      <li><b>인쇄</b><span>모든 화면 위쪽의 파란 테두리 <em>🖨 인쇄</em> 단추(휴대폰은 위쪽 🖨 아이콘 또는 더보기 › 이 화면 인쇄)를 누르면 지금 화면을 A4로 인쇄합니다. 업무가 나오는 화면(내 업무·팀 현황·총괄·칸반·달력·목록·보고서·조직도)에서는 인쇄 방식을 고르는 창이 먼저 뜹니다. 기본은 <em>현재 양식 그대로(구분하여 표기)</em>이고, <em>업무 목록만(구분 없이)</em>을 고르면 칸·절·대분류 구분 없이 지금 화면의 업무 전체를 날짜순 한 표(업무명·분류·사업장·담당·상태·일정·진척, 조직도는 업무·세부 내용·주기·정·대행·부)로 인쇄합니다. 인쇄 창에서 'PDF로 저장'을 고르면 파일로도 남길 수 있습니다. 업무 상세 창의 <em>🖨 인쇄</em>는 그 업무 한 장(정보·내용·진행 기록·사진), 보고서 화면은 보고서 용지만 인쇄합니다. <em>📄 내 업무 보고서</em>(내 업무 화면·보고서의 개인별 보고서)는 내가 담당했거나 진행 기록을 남긴 업무와 일자별 진행 기록으로 개인 보고서를 만들고, 보고서의 <em>업무 범위 › 🔒 내 비공개 업무만</em>으로 비공개 업무만 출력할 수 있습니다.</span></li>
       <li><b>개인정보 자료</b><span>이력서·급여·주민등록번호 13자리·신분증·진단서 같은 개인정보가 든 사진·파일은 올리는 순간 자동으로 검사해 <em>총괄 관리자에게만</em> 전달됩니다. 다른 직원과 올린 분에게는 '관리자 전용' 그림만 보이고, 보고서·사진첩에도 나오지 않습니다. 생년월일만 있는 자료는 그대로 올라갑니다. 업무 창에서 <em>🔐 개인정보 사진</em>을 켜고 올리면 검사 없이 바로 전달됩니다. 업무 내용에 주민등록번호 13자리를 적으면 저장할 때 뒷자리가 가려집니다.</span></li>
       <li><b>정기 일정</b><span>월례조회(매월 첫째 월요일 08:30 군포공장 5층 식당, 3·6·9·12월 법정 의무교육)와 관리부 업무회의(매주 목요일 16:00 안양본사 6층 대회의실, 공휴일·월례조회 주간과 전 주는 쉬고 조회 후 진행)가 달력과 내 업무 화면에 표시되고 전날·당일 알림이 옵니다. 공휴일이면 날짜가 자동으로 옮겨지고, 그룹웨어 공지가 오면 그 날짜로 확정됩니다. 관리자는 달력의 <em>정기 일정</em>에서 날짜를 바꾸거나 쉼으로 지정할 수 있습니다.</span></li>
       <li><b>그룹웨어 소식</b><span>회사 그룹웨어(업무연락·공지사항·경조사 등) 새 글을 Claude가 평일 08~19시 매시간 확인해 요약합니다. 상단 <a href="#gw">그룹웨어</a>에서 요약·일정·관리부 할 일을 보고, 필요한 글은 <em>업무로 등록</em>을 누르면 내용이 채워진 등록 창이 열립니다. 새 글은 알림(종)에도 표시됩니다.</span></li>
@@ -2311,7 +2337,7 @@ function renderReport(v){
         ${S.sample?`<button type="button" class="btn" id="r-ai">${ICON.spark}AI 종합의견 작성</button>`:''}
         ${S.downloads?`<button type="button" class="btn" id="r-html">${ICON.dl}보고서 내려받기 (HTML·인쇄용)</button>`:''}
         ${S.downloads&&window.XLSX?`<button type="button" class="btn" id="r-xlsx">${ICON.dl}엑셀로 내려받기</button>`:''}
-        <button type="button" class="btn primary" id="r-print">🖨 바로 인쇄 (PDF 저장 가능)</button>
+        <button type="button" class="btn primary" id="r-print">🖨 인쇄 (PDF 저장 가능)</button>
         <button type="button" class="btn" id="r-copy">${ICON.copy}메신저용 텍스트 복사</button>
         <p class="hint">HTML 파일을 열어 인쇄하면 PDF로도 저장할 수 있습니다.</p>
       </div></aside><div class="paper-wrap" id="paper-wrap"></div></div>`;
@@ -3869,7 +3895,7 @@ function privSub(){if(PVU){try{PVU();}catch{}PVU=null;}S.privTasks=[];S.privDeni
   PVU=S.db.collection(cp).onSnapshot(snap=>{S.privTasks=snap.docs.filter(d=>d.exists).map(d=>{const t=normTask({...d.data(),id:d.id,path:`${cp}/${d.id}`});t.year=yearOf(t);t.priv=true;return t;});S.privDenied=false;
     if(['my','board','calendar','list','report'].includes(S.view))scheduleRender();privFilterSync();refreshDialog();ntfTick();},()=>{S.privDenied=true;if(S.view==='my')scheduleRender();});}
 function privPanelHTML(){if(!privOK())return '';const open=S.privTasks.filter(t=>t.status!=='done').sort(sortTasks);const done=S.privTasks.filter(t=>t.status==='done').sort((a,b)=>(b.doneAt||'').localeCompare(a.doneAt||''));
-  return `<section class="panel priv-panel" id="my-priv"><div class="panel-h"><h2>🔒 비공개 업무</h2><span class="sub">나만 보입니다 · ${open.length}건</span><div class="act">${S.privTasks.length?'<button type="button" class="btn sm ghost" data-priv-report title="비공개 업무만 모아 보고서로 출력(인쇄·엑셀)">🖨 비공개 업무만 출력</button>':''}${S.canWrite?'<button type="button" class="btn sm" data-new-priv>+ 비공개 업무</button>':''}</div></div>
+  return `<section class="panel priv-panel" id="my-priv"><div class="panel-h"><h2>🔒 비공개 업무</h2><span class="sub">나만 보입니다 · ${open.length}건</span><div class="act">${S.privTasks.length?'<button type="button" class="btn sm prt-btn" data-priv-report title="비공개 업무만 모아 보고서로 출력(인쇄·엑셀)">🖨 비공개 업무만 출력</button>':''}${S.canWrite?'<button type="button" class="btn sm" data-new-priv>+ 비공개 업무</button>':''}</div></div>
     <p class="priv-note">관리자와 다른 직원에게는 보이지 않습니다. 칸반·달력·목록·보고서(인쇄)에는 나에게만 🔒 비공개 표시로 함께 나옵니다.</p>
     ${S.privDenied?'<div class="banner" style="margin:0 12px 10px">비공개 업무를 불러올 권한이 없습니다. 관리자에게 새 보안 규칙(firestore.rules) 게시를 요청하세요.</div>':''}
     ${open.length?open.map(myRow).join(''):`<div class="empty">혼자 챙길 일·개인 메모처럼 공유하지 않을 업무를 적어 두세요.<br>위 입력란의 <b>🔒 나만 보기</b>를 켜고 등록해도 됩니다.</div>`}
@@ -4863,15 +4889,39 @@ async function prLoadImgs(root,max=240){if(!root)return;const imgs=$$('img[data-
 function prClear(){document.body.classList.remove('pr-view','pr-report','pr-sheet');delete document.body.dataset.prv;}
 function prSet(mode){prClear();document.body.classList.add(mode);document.body.dataset.prv=S.view||'';S._prOwned=true;}
 let _prBusy=false;
-async function printView(){if(_prBusy)return;_prBusy=true;
-  try{const dt=$('#dlg-task');if(dt&&dt.open&&S.dlg&&S.dlg.path){const t=findTask(S.dlg.path);if(t){await printTask(t);return;}}
-    if(S.view==='report'){await printReport();return;}
+/* 인쇄 방식 고르기 (21차): 기본은 지금 화면 양식(구분하여 표기), 업무가 있는 화면은 '구분 없이 업무 목록만'도 고를 수 있음 */
+const PR_LISTABLE=['my','team','overview','board','calendar','list','report','org'];
+async function printView(){const dt=$('#dlg-task');if(dt&&dt.open&&S.dlg&&S.dlg.path){const t=findTask(S.dlg.path);if(t){await printTask(t);return;}}
+  if(PR_LISTABLE.includes(S.view)){prChoose();return;}return printForm();}
+function prChoose(){const d=$('#dlg-print');if(!d){printForm();return;}const {L}=prListTasks();const isOrg=S.view==='org';
+  const formDesc={my:'내 업무 화면 그대로(정기 일정·진행 중·비공개 업무 칸 등)',team:'팀 현황 그대로(사업장·직원별 칸)',overview:'총괄 현황 그대로',board:'칸반 그대로(진행 예정·진행 중·완료·보류 칸으로 구분)',calendar:'달력 그대로(날짜 칸에 표시)',list:'목록 화면 그대로(필터·정렬 적용)',report:'보고서 양식 그대로(요약·실적·진행 중·지연·계획 절, 대분류별 구분)',org:'지금 보고 있는 조직도·업무분장표 그대로(대분류별 구분)'}[S.view]||'지금 화면 그대로';
+  $('#pr-c-form-d').textContent=formDesc;$('#pr-c-list-t').textContent=isOrg?'업무분장 목록만 — 구분 없이':'업무 목록만 — 구분 없이';
+  $('#pr-c-list-d').textContent=isOrg?`업무 ${L.length}개를 대분류 구분 없이 한 표로 (업무·세부 내용·주기·정·대행·부)`:`${L.length}건을 상태·분류 구분 없이 날짜순 한 표로 (업무명·분류·사업장·담당·상태·일정·진척)`;
+  $('#pr-c-form').checked=true;$('#pr-c-list').disabled=!L.length;if(!d.open)d.showModal();setTimeout(()=>{const b=$('#pr-go');if(b)b.focus();},30);}
+async function printForm(){if(_prBusy)return;_prBusy=true;
+  try{if(S.view==='report'){await printReport();return;}
     toast('인쇄 준비 중…');await prLoadImgs($('#view'));prHead(PR_VIEW[S.view]||'화면',prFilterTxt());prSet('pr-view');
     await new Promise(r=>setTimeout(r,120));window.print();}
   finally{_prBusy=false;}}
 async function printReport(){const paper=$('#paper');if(!paper){toast('보고서를 만드는 중입니다. 잠시 후 다시 눌러 주세요.');return;}
   const ta=$('#opinion');let op=$('.opinion-print',paper);if(!op&&ta){op=document.createElement('div');op.className='opinion opinion-print';ta.after(op);}if(op)op.textContent=(ta&&ta.value)||' ';
   await prLoadImgs(paper);prSet('pr-report');await new Promise(r=>setTimeout(r,120));window.print();}
+/* 구분 없이 업무 목록만 */
+function prListTasks(){const v=S.view;let L=[],label='';const td=today();const ms=monthStart(td);const recent=t=>t.status!=='done'||(t.doneAt||t.due||'')>=ms;
+  if(v==='org'){const o=orgCur();const P=S.orgv&&S.orgv.person;return P?{L:personDuties(o,P).map(x=>x.d),label:`${nameOf(P)} 담당 업무 — 대분류 구분 없이`,org:true}:{L:o.duties,label:'업무분장 전체 — 대분류 구분 없이',org:true};}
+  if(['board','list'].includes(v)){L=applyFilters(withPriv(S.tasks));label=prFilterTxt();}
+  else if(v==='calendar'){let a='',b='';try{a=toStr(S.cal.view.activeStart);b=addDays(toStr(S.cal.view.activeEnd),-1);}catch{}L=applyFilters(withPriv(S.tasks),{ignorePeriod:true}).filter(t=>(typeof calOk!=='function'||calOk(t))&&(!a||overlaps(t,a,b)));label=prFilterTxt();}
+  else if(v==='report'&&S.lastReport){const R=S.lastReport;L=[...new Set([...R.done,...R.doing,...R.late,...R.plan,...R.hold,...R.next])];label=`${R.title} · ${R.periodText} · ${R.scopeTxt}`;}
+  else if(v==='my'){const me=S.myStaff;L=[...S.tasks.filter(t=>me&&t.assignees.includes(me)),...(privOK()?S.privTasks:[])].filter(recent);label=`${nameOf(me)} · 진행 중·예정 업무 + 이번 달 완료`;}
+  else if(v==='team'||v==='overview'){L=S.tasks.filter(t=>!t.sample).filter(recent);label='전체 직원 · 진행 중·예정 업무 + 이번 달 완료';}
+  const key=t=>(t.start||t.due||t.doneAt||'9999-99-99');L=L.slice().sort((a,b)=>key(a).localeCompare(key(b))||(a.due||'9999').localeCompare(b.due||'9999')||a.title.localeCompare(b.title,'ko'));return {L,label};}
+async function printList(){const {L,label,org}=prListTasks();const s=prSheet();const me=S.staff[S.myStaff];const st=t=>isLate(t)?'지연':ST[t.status].name;
+  const head=`<div class="ps-head"><span>${esc(S.config.dept)} 통합 업무일지 · ${esc(PR_VIEW[S.view]||'')} · ${org?'업무분장 목록':'업무 목록'}</span><span>출력 ${esc(fmtYMD(today()))} ${esc(hhmm(nowISO()).slice(-5))}${me&&me.name?' · '+esc(me.name):''}</span></div>
+    <h1>${org?'업무분장 목록':'업무 목록'} <small>${L.length}${org?'개':'건'}</small></h1>${label?`<p class="ps-sub">${esc(label)}</p>`:''}`;
+  if(org){const nm=id=>id&&S.staff[id]?S.staff[id].name:'';
+    s.innerHTML=head+`<table class="ps-list"><colgroup><col style="width:5%"><col style="width:20%"><col><col style="width:9%"><col style="width:9%"><col style="width:8%"><col style="width:14%"></colgroup><tr><th>No</th><th>업무</th><th>세부 내용</th><th>주기</th><th>정</th><th>대행</th><th>부</th></tr>${L.map((d,i)=>`<tr><td class="c">${i+1}</td><td><b>${esc(d.name)}</b>${d.site&&!d.name.includes(d.site.replace(/(본사|공장)$/,''))?` (${esc(d.site.replace(/(본사|공장)$/,''))})`:''}</td><td>${esc(d.detail)}</td><td class="cw">${esc(d.cycle)}</td><td>${esc(nm(d.main)||(d.prev?'확인 필요':'-'))}</td><td>${esc(nm(d.act))}</td><td>${esc([...d.subs,...d.auto].map(nm).filter(Boolean).join(', '))}</td></tr>`).join('')}</table>`;}
+  else s.innerHTML=head+`<table class="ps-list"><colgroup><col style="width:4.5%"><col><col style="width:17%"><col style="width:9.5%"><col style="width:8.5%"><col style="width:9%"><col style="width:12%"><col style="width:6.5%"></colgroup><tr><th>No</th><th>업무명</th><th>분류</th><th>사업장</th><th>담당</th><th>상태</th><th>일정</th><th>진척</th></tr>${L.map((t,i)=>`<tr><td class="c">${i+1}</td><td>${t.priv||t._pv?'🔒 ':''}${esc(String(t.title).replace(/^🔒 /,''))}${lastNote(t)?`<div class="ps-note">${esc(lastNote(t).slice(0,80))}</div>`:''}</td><td>${esc([CAT[t.cat].name,t.sub].filter(Boolean).join(' › '))}</td><td>${esc(t.site||'')}</td><td>${esc(whoText(t)||'-')}</td><td class="c">${st(t)}</td><td class="c">${esc([fmtMD(t.start),fmtMD(t.due)].filter(Boolean).filter((x,j,a)=>a.indexOf(x)===j).join('~')||'-')}${t.status==='done'&&t.doneAt?`<div class="ps-note">완료 ${esc(fmtMD(t.doneAt))}</div>`:''}</td><td class="c">${t.progress}%</td></tr>`).join('')}</table>`;
+  prSet('pr-sheet');await new Promise(r=>setTimeout(r,120));window.print();}
 function prSheet(){let s=$('#print-sheet');if(!s){s=document.createElement('div');s.id='print-sheet';document.body.append(s);}return s;}
 async function printTask(t){const s=prSheet();const me=S.staff[S.myStaff];
   const rows=[['상태',isLate(t)?`지연 (${ST[t.status].name})`:ST[t.status].name],['분류',[CAT[t.cat].name,t.sub,t.leaf].filter(Boolean).join(' › ')],['사업장',t.site||'-'],['업무 구분',SC[t.scope]?SC[t.scope].name:'-'],['중요도',PR[t.priority]?PR[t.priority].name:'-'],['담당',whoText(t)||'담당 미지정'],
@@ -4894,7 +4944,7 @@ window.addEventListener('beforeprint',()=>{if(S._prOwned)return;const dt=$('#dlg
 window.addEventListener('afterprint',()=>{S._prOwned=false;setTimeout(prClear,300);});
 /* 업무 상세 창의 🖨 인쇄 단추 */
 function prTaskBtn(){const h=$('#dlg-task .modal-h');if(!h)return;let b=$('#t-print');
-  if(!b){b=document.createElement('button');b.type='button';b.id='t-print';b.className='btn sm ghost t-print';b.title='이 업무를 한 장으로 인쇄';b.textContent='🖨 인쇄';h.insertBefore(b,$('[data-close]',h));}
+  if(!b){b=document.createElement('button');b.type='button';b.id='t-print';b.className='btn sm t-print prt-btn';b.title='이 업무를 한 장으로 인쇄';b.textContent='🖨 인쇄';h.insertBefore(b,$('[data-close]',h));}
   b.hidden=!(S.dlg&&S.dlg.path);}
 {const _ot=openTask;openTask=function(...a){const r=_ot.apply(this,a);try{prTaskBtn();}catch{}return r;};}
 
@@ -4912,7 +4962,8 @@ function repSetWho(id){if(!S.rep)return;S.rep.who=id||'';const rw=$('#r-who');if
 document.addEventListener('click',e=>{const T=e.target;
   if(T.closest('#btn-print')||T.closest('[data-print]')){const sh=$('#mnav-sheet');if(sh)sh.hidden=true;printView();return;}
   if(T.closest('#t-print')){const t=S.dlg&&S.dlg.path&&findTask(S.dlg.path);if(t)printTask(t);return;}
-  if(T.closest('#r-print')){printReport();return;}
+  if(T.closest('#r-print')){prChoose();return;}
+  if(T.closest('#pr-go')){const d=$('#dlg-print');const list=$('#pr-c-list').checked;d.close();setTimeout(()=>{list?printList():printForm();},80);return;}
   if(T.closest('#r-mine')){if(!S.myStaff){toast('내 정보에서 이름을 먼저 고르세요.','err');return;}repSetWho(S.myStaff);renderPaper();return;}
   if(T.closest('[data-my-report]')){if(!S.myStaff){toast('내 정보에서 이름을 먼저 고르세요.','err');return;}repSetWho(S.myStaff);go('#report');return;}
   if(T.closest('[data-priv-report]')){if(!S.rep)return;S.rep.pmode='priv';if(S.myStaff)S.rep.who=S.myStaff;if(S.rep.kind==='day'||S.rep.kind==='week'){S.rep.kind='month';}S.rep.date=today();go('#report');return;}});
@@ -5120,7 +5171,7 @@ function orgZoomHTML(){const z=orgZoom();return `<div class="oc-zoom" role="grou
 function renderOrg(v){const o=orgCur();const T=S.orgv.tab;const tabs=[['all','전체 조직도'],...ORG_SITES.map(s=>[s,s]),['duty','업무분장표'],['log','변경 이력']];
   const sub=`${esc(o.src||ORG_SRC)} + 업무일지 실적 · ${o.checkedAt?`최근 점검 ${esc(hhmm(o.checkedAt))} (${esc(o.checkedBy||'')})`:'아직 점검 전'} · 매주 1회 자동 점검`;
   const body=S.orgv.all?[['all','전체 조직도'],...ORG_SITES.map(s=>[s,s+' 관리부 조직도']),['duty','업무분장표']].map(([k,n])=>`<section class="org-sec print-break"><h2 class="org-h2">${esc(n)}</h2>${orgBody(o,k)}</section>`).join(''):orgBody(o,T);
-  v.innerHTML=`${teamSwitchHTML('org')}<div class="home-head"><div><h1>조직도 · 업무분장</h1><p>${sub}</p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="btn" data-org-printall title="전체 조직도·공장별 조직도·업무분장표를 한 번에 인쇄">🖨 모두 인쇄</button>${S.canEdit?'<button type="button" class="btn" data-org-check>지금 점검</button><button type="button" class="btn" data-org-add>+ 업무 추가</button>':''}</div></div>
+  v.innerHTML=`${teamSwitchHTML('org')}<div class="home-head"><div><h1>조직도 · 업무분장</h1><p>${sub}</p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="btn prt-btn" data-org-printall title="전체 조직도·공장별 조직도·업무분장표를 한 번에 인쇄">🖨 모두 인쇄</button>${S.canEdit?'<button type="button" class="btn" data-org-check>지금 점검</button><button type="button" class="btn" data-org-add>+ 업무 추가</button>':''}</div></div>
   ${!S.org&&S.mode==='firebase'?`<div class="banner" style="margin:0 0 12px">${S.canEdit?'처음 여는 조직도입니다. 잠시 후 2025.02 업무분장과 업무일지 실적으로 자동 저장됩니다.':'관리자가 아직 조직도를 저장하지 않아 2025.02 업무분장 기준 초안을 보여 드립니다.'}</div>`:''}
   <div class="seg org-tabs" role="tablist">${tabs.map(([k,n])=>`<button type="button" data-org-tab="${esc(k)}" aria-pressed="${T===k}">${esc(n)}</button>`).join('')}</div>
   <div class="org-body">${body}</div>`;}
@@ -5171,7 +5222,7 @@ document.addEventListener('click',async e=>{const T=e.target;let b;
   if((b=T.closest('[data-org-pedit]'))){orgPersonEdit(b.dataset.orgPedit);return;}
   if(T.closest('[data-org-ddel]')){const id=T.closest('form').dataset.id;const d=orgCur().duties.find(x=>x.id===id);if(d&&await confirmDlg('업무 삭제',`'${d.name}'을(를) 업무분장에서 뺍니다.`,'삭제'))orgEditSave(o=>{o.duties=o.duties.filter(x=>x.id!==id);},`업무 삭제: ${d.name}`);return;}
   if(T.closest('[data-org-check]')){T.closest('[data-org-check]').disabled=true;const r=await orgWeekly({force:true,by:nameOf(myId())||'관리자'});toast(r.ok?(r.n?`점검 완료: 변경 ${r.n}건 반영`:'점검 완료: 변경 사항 없음'):r.msg,r.ok?'':'err');if(r.ok){S.orgv.tab='log';render();}return;}
-  if(T.closest('[data-org-printall]')){S.orgv.all=true;render();await new Promise(r=>setTimeout(r,60));try{await printView();}finally{setTimeout(()=>{S.orgv.all=false;if(S.view==='org')render();},1500);}return;}});
+  if(T.closest('[data-org-printall]')){S.orgv.all=true;render();await new Promise(r=>setTimeout(r,60));try{await printForm();}finally{setTimeout(()=>{S.orgv.all=false;if(S.view==='org')render();},1500);}return;}});
 
 /* ───────── 시작 ───────── */
 function boot(){
