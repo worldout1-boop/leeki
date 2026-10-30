@@ -1023,7 +1023,8 @@ img[data-pii]{outline:2px dashed #b85a6e;outline-offset:-2px}
 /* 19차: 인쇄 */
 .print-btn{width:auto!important;height:36px;padding:0 12px 0 10px!important;gap:6px;display:inline-flex;align-items:center;border:2px solid var(--accent)!important;border-radius:9px!important;color:var(--accent)!important;background:#fff!important;font-weight:700}
 .print-btn svg{width:21px!important;height:21px!important;stroke-width:2.1}
-.print-btn span{font-size:14px;font-weight:700;letter-spacing:.02em}
+.print-btn span{font-size:14px;font-weight:700;letter-spacing:.02em;white-space:nowrap}
+.print-btn,#btn-new{flex:none;white-space:nowrap}
 .print-btn:hover,.print-btn:focus-visible{background:var(--accent)!important;color:#fff!important}
 @media (max-width:760px){.print-btn{width:38px!important;padding:0!important;justify-content:center}.print-btn span{display:none}}
 @media (max-width:1480px){.me-chip small{display:none}}
