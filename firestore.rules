@@ -9,6 +9,7 @@ rules_version = '2';
 // · 사진·서류(올린 파일) 삭제는 관리자만 할 수 있습니다. 다른 구성원은 '삭제 요청'(delreq)을 보냅니다.
 // · 비공개 업무(priv/{uid})는 본인만 읽고 쓸 수 있습니다. 관리자도 볼 수 없습니다.
 // · 그룹웨어 소식(gw)은 구성원 모두 읽고, 기록은 관리자만 합니다.
+// · 전자결재(appr)는 결재선·참조에 든 사람과 관리자만 볼 수 있습니다. 결재 서식·결재선 설정은 관리자만 고칩니다.
 // · 개인정보 자료(pii — 이력서·급여·주민등록번호 13자리 등이 든 사진·파일)는 구성원 누구나 올릴 수 있지만,
 //   읽기·삭제는 app/members.pii 에 지정된 총괄 관리자만 할 수 있습니다. 올린 사람도 다시 볼 수 없습니다.
 
@@ -215,6 +216,59 @@ service cloud.firestore {
         allow update: if false;
         allow delete: if isPiiOwner();
       }
+    }
+
+    // 전자결재 — 문서는 결재선·참조에 든 사람(uids)과 관리자만 읽기.
+    // 내용(제목·본문·첨부)은 기안자만, 그것도 임시저장·회수·반려 상태일 때만 고칠 수 있음. 결재자·참조자는 결재·확인 기록만.
+    match /appr/{id} {
+      allow read: if isMember() && (isAdmin() || request.auth.uid in resource.data.uids);
+      allow create: if isMember()
+        && request.resource.data.by == request.auth.uid
+        && request.auth.uid in request.resource.data.uids
+        && request.resource.data.status in ['draft', 'run', 'done'];
+      allow update: if isMember()
+        && request.resource.data.by == resource.data.by
+        && ((resource.data.by == request.auth.uid && resource.data.status in ['draft', 'back', 'no'])
+          || ((isAdmin() || request.auth.uid in resource.data.uids)
+            && request.resource.data.uids.hasAll(resource.data.uids)
+            && request.resource.data.title == resource.data.title
+            && request.resource.data.body == resource.data.body
+            && request.resource.data.files == resource.data.files));
+      allow delete: if isAdmin()
+        || (isMember() && resource.data.by == request.auth.uid && resource.data.status in ['draft', 'back']);
+
+      // 첨부 내용 (700KB 조각) — 문서를 볼 수 있는 사람만 읽기, 기안자만 올리기
+      match /f/{cid} {
+        allow get: if isMember()
+          && (isAdmin() || request.auth.uid in get(/databases/$(database)/documents/appr/$(id)).data.uids);
+        allow list: if false;
+        allow create: if isMember()
+          && get(/databases/$(database)/documents/appr/$(id)).data.by == request.auth.uid
+          && request.resource.data.b is bytes && request.resource.data.b.size() <= 1000000;
+        allow update: if false;
+        allow delete: if isAdmin()
+          || (isMember() && get(/databases/$(database)/documents/appr/$(id)).data.by == request.auth.uid);
+      }
+    }
+    // 전자결재 문서번호 (연도별 1씩 증가)
+    match /apprseq/{year} {
+      allow read: if isMember();
+      allow create: if isMember() && request.resource.data.n == 1;
+      allow update: if isMember() && request.resource.data.n == resource.data.n + 1;
+    }
+    // 결재 서식 — 모두 읽기, 관리자만 올리기·고치기
+    match /apprtpl/{id} {
+      allow read: if isMember();
+      allow write: if isAdmin();
+      match /f/{cid} {
+        allow read: if isMember();
+        allow write: if isAdmin();
+      }
+    }
+    // 결재선 설정 — 모두 읽기, 관리자만 수정
+    match /app/appr {
+      allow read: if isMember();
+      allow write: if isAdmin();
     }
 
     // 비공개 업무·사진 — 본인만 (관리자 포함 다른 사람은 읽을 수 없음)
