@@ -1462,6 +1462,18 @@ input.ir{font:inherit;font-size:14.5px;font-weight:600;padding:4px 8px;border:2p
 .lv-c.t{background:#1d4ed8;color:#fff}.lv-c.o{background:#6d28d9;color:#fff}
 /* 34차: 기록 목록의 완료일 */
 .feed time.fd-done{color:var(--done,#15803d);font-weight:700}
+/* 35차: 자료실 분류·분류 안 폴더 */
+.doc-sec.dcat>.panel-h h2{display:flex;align-items:center;gap:4px}
+.doc-sec.dcat>.panel-h h2 .dd-ren,.dd-dir .dd-h .dd-ren{opacity:.75}
+.doc-sec .dsite{margin:2px 0 6px}.doc-sec .dsite>h3{font-size:13px;font-weight:700;color:var(--ink-2);margin:10px 4px 4px;padding-left:8px;border-left:3px solid var(--accent)}
+.doc-sec .dsite.dd-over{outline:2px solid var(--accent);border-radius:8px;background:var(--accent-soft)}
+.dd-dir{margin:10px 0 4px;border:1px solid var(--line);border-radius:10px;padding:4px 10px 8px;background:color-mix(in srgb,var(--surface) 92%,var(--accent-soft))}
+.dd-dir.dd-over{border-color:var(--accent)!important;background:var(--accent-soft)!important;box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 25%,transparent)}
+.dd-dir .dd-h{display:flex;align-items:center;gap:8px;padding:6px 2px;flex-wrap:wrap}.dd-dir .dd-h h3{display:flex;align-items:center;gap:4px;font-size:14.5px;margin:0}
+.dd-dir .dd-h .sub{color:var(--ink-3);font-size:12.5px}.dd-dir .dd-h .act{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap}
+.dd-dir .dd-h input.ir,.doc-sec.dcat>.panel-h input.ir{font:inherit;padding:2px 6px;border:1.5px solid var(--accent);border-radius:6px;min-width:12em}
+.btn.danger,.btn.ghost.danger{color:var(--late,#c53030)}
+@media (max-width:700px){.doc-sec.dcat>.panel-h{flex-wrap:wrap}.doc-sec.dcat>.panel-h .act{width:100%;justify-content:flex-end}}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -2356,6 +2368,7 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>자료실</b><span>위쪽 <em>각종서류 올리기</em> 화면 맨 위의 <em>🗂 자료실</em>을 누르면 정리된 회사 서류(사업장별·종류별, 유효기간)를 봅니다. 자료실에서 다시 <em>📤 각종서류 올리기</em>로 돌아갈 수 있습니다.</span></li>
       <li><b>업무 수정 권한</b><span>업무(일정)의 업무명·일정·담당·내용 수정과 삭제는 <em>등록한 사람</em>과 관리자만 할 수 있습니다. 담당자는 진행 상태·진척률·진행 기록·사진만 남기고, 그 밖의 직원은 보기만 합니다.</span></li>
       <li><b>연차·휴일근무 달력</b><span>전자결재 기안 오른쪽 <em>📅 달력 표기</em>에서 연차·반차·휴일근무·연차 사용 계획을 고르고 날짜를 적으면, 최종 승인된 뒤 달력에 <b>굵은 글자</b>(🌴 연차, 🛠 휴일근무)로 표시됩니다. 연차 사용 촉진에 따라 정한 예정일은 달력 위 <em>🗓 연차 사용 계획(촉진)</em>에서 적으면 <i>연차(예정)</i>으로 보입니다. 사유는 달력에 나오지 않습니다.</span></li>
+      <li><b>자료실 분류·폴더</b><span>자료실은 <em>분류</em>(회사 기본·인증서·확인서·사업장별·기타) 아래에 서류와 <em>폴더</em>가 있습니다. 자료 관리자는 분류 이름 옆 ✏️로 이름을 바꾸고, 🗑로 지우고(안의 서류·폴더는 고른 분류로 옮김), 위쪽 <em>🗂＋ 분류</em>로 새 분류를 만듭니다. 폴더는 분류의 <em>📁＋ 폴더</em>로 그 분류 아래에 만들고, 폴더 ✏️로 이름을 바꾸거나 <em>옮기기</em>로 다른 분류로 보냅니다.</span></li>
       <li><b>그룹웨어 근태계</b><span>평일 매시간 그룹웨어 게시판을 확인할 때 <em>결재문서함</em>의 근태계도 함께 읽어, 관리부 직원의 연차·반차·휴가·휴일근무·출장·외출을 달력에 표시합니다. 최종 결재된 것은 <b>굵게</b>, 결재 중인 것은 흐리게 '(결재 중)'으로 보이고, 반려·회수되면 빠집니다. 이름·종류·기간만 보이고 사유는 저장하지 않습니다.</span></li>
       <li><b>자금 결제</b><span>💰 자금 결제 문서가 최종 승인되면 자금 담당(기본 박혜진)에게 <em>결제 예정일 입력</em> 요청이 갑니다(알림·내 업무·결재함 '💰 자금 결제' 탭). 문서의 <em>💰 자금 결제</em> 칸에 예정일·메모를 저장하면 결재선(담당·결재자)과 관리자에게 알림이 가고 달력에 '💰 결제 예정'으로 보입니다. 지급이 끝나면 <em>✅ 지급 완료</em>를 누릅니다.</span></li>
       <li><b>화면 아래 알림</b><span>새 알림은 화면 오른쪽 아래에 카드로 떠서 <em>✕(확인)</em>을 누르거나 카드를 눌러 열 때까지 사라지지 않습니다. 확인하지 않으면 다시 열어도 또 보입니다. 3건이 넘으면 '알림 n건 더'로 묶입니다.</span></li>
@@ -3456,7 +3469,7 @@ async function copyText(txt,msg){try{await navigator.clipboard.writeText(txt);to
    열람 제한 서류(법인 통장 사본·인감증명서 등)는 보안 규칙에서 관리자·열람 허용자만 내용을 읽을 수 있습니다. */
 const DOC_GROUPS=[{id:'base',name:'회사 기본 서류'},{id:'cert',name:'인증서·확인서'},{id:'site',name:'사업장별 서류'},{id:'etc',name:'기타 서류'}];
 const DOC_SLOTS=[
-  {k:'org',g:'base',name:'조직도'},{k:'aoi',g:'base',name:'정관'},{k:'rules',g:'base',name:'취업규칙'},{k:'bizreg',g:'base',name:'사업자등록증'},
+  {k:'baseetc',g:'base',name:'기타 기본 서류',multi:true,hide:true},{k:'org',g:'base',name:'조직도'},{k:'aoi',g:'base',name:'정관'},{k:'rules',g:'base',name:'취업규칙'},{k:'bizreg',g:'base',name:'사업자등록증'},
   {k:'corpreg',g:'base',name:'법인 등기사항전부증명서'},{k:'bank',g:'base',name:'법인 통장 사본',restricted:true},{k:'seal',g:'base',name:'법인 인감증명서',restricted:true},
   {k:'iso',g:'cert',name:'ISO 인증서',multi:true,expiry:true},{k:'family',g:'cert',name:'가족친화인증',expiry:true},{k:'goodco',g:'cert',name:'일하기 좋은 기업',expiry:true},{k:'sme',g:'cert',name:'중소기업 확인서',expiry:true},{k:'certetc',g:'cert',name:'기타 인증·확인서',multi:true,expiry:true},
   {k:'factory',g:'site',name:'공장등록증'},{k:'bldg',g:'site',name:'건물등록증(건축물대장)'},{k:'drawing',g:'site',name:'도면',multi:true},{k:'siteetc',g:'site',name:'기타 서류',multi:true},
@@ -3501,23 +3514,30 @@ function docRowHTML(f,slot){const v=curVer(f);const lock=f.restricted?'<span cla
   const ic=v&&f.thumb&&!f.restricted?`<span class="fi th"><img src="${esc(f.thumb)}" alt="" loading="lazy"><i>${fileIcon(v)}</i></span>`:`<span class="fi ${v?'':'none'}">${v?(f.restricted?'🔒':fileIcon(v)):'—'}</span>`;
   return `<div class="doc-row" data-doc="${esc(f.id)}"${slot?` data-dslot="${esc(slot.k)}" data-site="${esc(f.site||'')}"`:''} tabindex="0" title="${v&&can?'눌러서 미리보기':'서류 정보'}"${canDoc()?' draggable="true"':''}>${ic}<div class="dm"><b><span class="dd-nm">${esc(f.title)}</span>${lock}${canDoc()?rnBtn('data-dd-ren',f.id):''}</b><small>${v?`v${v.v} · ${fmtYMD(localDate(v.at))} · ${esc(nameOf(v.by))} · ${fmtMB(v.size)}`:'파일 없음'}${f.issued?` · 발급 ${fmtYMD(f.issued)}`:''}</small></div>${f.expiry?`<span class="exp ${expCls(f.expiry)}">~${fmtYMD(f.expiry)} · ${expiryTxt(f.expiry)}</span>`:'<span></span>'}<span class="da">${v&&can?`<button type="button" class="btn sm" data-doc-view="${esc(f.id)}">미리보기</button><button type="button" class="btn sm" data-doc-dl="${esc(f.id)}" aria-label="내려받기" title="내려받기">${ICON.dl}</button>`:''}${canDoc()?`<button type="button" class="btn sm ghost" data-doc-up="${esc(f.id)}">새 버전</button><button type="button" class="btn sm ghost" data-dd-mv="${esc(f.id)}" title="다른 폴더·칸으로 옮기기">📁 옮기기</button>`:''}<button type="button" class="btn sm ghost" data-doc-info="${esc(f.id)}">정보</button></span></div>`;}
 function slotEmptyHTML(slot,site){return `<div class="doc-row empty-slot" data-dslot="${esc(slot.k)}" data-site="${esc(site||'')}"><span class="fi none">＋</span><div class="dm"><b>${esc(slot.name)}${slot.restricted?'<span class="lock">🔒</span>':''}</b><small>미등록</small></div><span></span><span class="da">${canDoc()?`<button type="button" class="btn sm" data-doc-new="${esc(slot.k)}" data-site="${esc(site||'')}">올리기</button>`:''}</span></div>`;}
-function renderDocs(v){const D=S.docs;const q=D.q.trim().toLowerCase();const files=Object.values(S.files);
+function renderDocs(v){const D=S.docs;if(D.g&&!dcGet(D.g))D.g='';const q=D.q.trim().toLowerCase();const files=Object.values(S.files);
   const match=f=>(!q||(f.title+' '+f.note+' '+f.site+' '+((curVer(f)||{}).name||'')+' '+f.txt).toLowerCase().includes(q)||f.txt.replace(/\s+/g,'').toLowerCase().includes(q.replace(/\s+/g,'')))&&(!D.exp||(f.expiry&&diffDays(today(),f.expiry)<=60));
-  const filtering=!!(q||D.exp);
-  const sec=(g,site)=>{const slots=DOC_SLOTS.filter(s=>s.g===g.id);let html='';
-    for(const s of slots){const all=files.filter(f=>f.slot===s.k&&(g.id!=='site'||f.site===site));const recs=all.filter(f=>!ddIn(f)).sort((a,b)=>a.title.localeCompare(b.title,'ko'));const shown=recs.filter(match);
+  const filtering=!!(q||D.exp);const byT=(a,b)=>a.title.localeCompare(b.title,'ko',{numeric:true});
+  const slotRows=(g,site)=>{const slots=DOC_SLOTS.filter(s=>s.g===g);let html='';
+    for(const s of slots){const all=files.filter(f=>f.slot===s.k&&(g!=='site'||f.site===site));const recs=all.filter(f=>!ddIn(f)).sort(byT);const shown=recs.filter(match);
       if(filtering&&!shown.length)continue;
-      if(!recs.length){if(s.k!=='etc'){const mv=all.find(ddIn);html+=mv&&!s.multi?ddMovedHTML(s,site,mv):slotEmptyHTML(s,site);}continue;}
-      html+=shown.map(f=>docRowHTML(f,s)).join('');if(s.multi&&canDoc()&&!filtering)html+=`<div class="doc-add"><button type="button" class="btn sm ghost" data-doc-new="${esc(s.k)}" data-site="${esc(site||'')}">+ ${esc(s.name)} 추가</button></div>`;}
+      if(!recs.length){if(s.k!=='etc'&&!s.hide){const mv=all.find(ddIn);html+=mv&&!s.multi?ddMovedHTML(s,site,mv):slotEmptyHTML(s,site);}continue;}
+      html+=shown.map(f=>docRowHTML(f,s)).join('');if(s.multi&&!s.hide&&canDoc()&&!filtering)html+=`<div class="doc-add"><button type="button" class="btn sm ghost" data-doc-new="${esc(s.k)}" data-site="${esc(site||'')}">+ ${esc(s.name)} 추가</button></div>`;}
     return html;};
-  const parts=[];if(!D.g||D.g==='dir'){const fh=ddSectionsHTML(files,match,filtering);if(fh)parts.push(fh);}
-  for(const g of DOC_GROUPS){if(D.g&&D.g!==g.id)continue;
-    if(g.id==='site'){for(const site of staffSites()){const h=sec(g,site);if(h)parts.push(`<section class="panel doc-sec" data-dgrp="site" data-site="${esc(site)}"><div class="panel-h"><h2>${esc(site)}</h2><span class="sub">${esc(g.name)}</span></div>${h}</section>`);}}
-    else{let h=sec(g);if(!h&&g.id==='etc'&&!filtering&&canDoc())h='<div class="doc-add"><span style="color:var(--ink-3);font-size:12.5px">위 분류에 없는 서류(계약서·보험증권·협약서 등)는 여기에 올리세요.</span></div>';if(h)parts.push(`<section class="panel doc-sec" data-dgrp="${g.id}"><div class="panel-h"><h2>${esc(g.name)}</h2>${g.id==='etc'&&canDoc()?`<div class="act"><button type="button" class="btn sm" data-doc-new="etc">+ 서류 추가</button></div>`:''}</div>${h}</section>`);}}
+  const bySlot=(f,c)=>dcBuilt(c)&&!ddIn(f)&&(SLOT[f.slot]||SLOT.etc).g===c&&(c!=='site'||staffSites().includes(f.site));
+  const parts=[];
+  for(const c of DD.cats){if(D.g&&D.g!==c.id)continue;const built=dcBuilt(c.id);let body='';
+    if(c.id==='site'){for(const site of staffSites()){const h=slotRows('site',site);if(h)body+=`<div class="dsite" data-dgrp="site" data-site="${esc(site)}"><h3>${esc(site)}</h3>${h}</div>`;}}
+    else if(built)body+=slotRows(c.id);
+    body+=files.filter(f=>!ddInFolder(f)&&fileCat(f)===c.id&&!bySlot(f,c.id)).filter(match).sort(byT).map(f=>docRowHTML(f,null)).join('');
+    body+=DD.dirs.filter(d=>dirCat(d)===c.id).map(d=>ddFolderHTML(d,files,match,filtering)).join('');
+    if(filtering&&!body)continue;
+    if(!body)body=c.id==='etc'||!built?`<div class="dd-empty">${canDoc()?(c.id==='etc'?'위 분류에 없는 서류(계약서·보험증권·협약서 등)는 여기에 올리세요. ':'')+'서류를 이 분류로 끌어다 놓거나 <b>＋ 서류</b>·<b>📁＋ 폴더</b>를 누르세요.':'비어 있는 분류입니다.'}</div>`:'';
+    const n=files.filter(f=>fileCat(f)===c.id).length;const site0=c.id==='site'?` data-site="${esc(staffSites()[0]||'')}"`:'';
+    parts.push(`<section class="panel doc-sec dcat" data-dgrp="${esc(c.id)}" data-dcat="${esc(c.id)}"><div class="panel-h"><h2><span class="dc-nm">${esc(c.name)}</span>${canDoc()?rnBtn('data-dc-ren',c.id).replace('이름 바꾸기 (F2)','분류 이름 바꾸기'):''}</h2><span class="sub">${n}건</span>${canDoc()?`<div class="act"><button type="button" class="btn sm ghost" data-dd-new="${esc(c.id)}" title="이 분류 아래에 폴더 만들기">📁＋ 폴더</button><button type="button" class="btn sm ghost" data-doc-new="${built?DC_LAND[c.id]:'etc'}"${built?site0:` data-dir="${esc(c.id)}"`}>＋ 서류</button><button type="button" class="btn sm ghost danger" data-dc-del="${esc(c.id)}" title="분류 삭제">🗑</button></div>`:''}</div>${body}</section>`);}
   const soon=files.filter(f=>f.expiry&&diffDays(today(),f.expiry)<=60).length;const total=files.reduce((a,f)=>a+f.versions.reduce((x,y)=>x+y.size,0),0);
   v.innerHTML=`<div class="home-head"><div><h1>자료실</h1><p>조직도·정관·취업규칙·사업자등록증·인증서·공장별 건물 서류를 최신본으로 보관합니다 · ${files.length}건 · ${fmtMB(total)}${soon?` · <b style="color:var(--doing)">만료 임박 ${soon}건</b>`:''}</p></div>${piiOwner()?`<div><button type="button" class="btn pii-btn" data-pii-open>🔐 개인정보 자료 ${S.pii.length}건</button></div>`:''}</div>
   ${S.filesDenied?`<div class="banner" style="margin:0 0 12px">자료실을 불러올 권한이 없습니다. 관리자는 Firebase 콘솔 › Firestore › 규칙에 새 firestore.rules를 게시하세요.</div>`:''}
-  <section class="filters" style="padding:0 0 12px"><div class="seg" role="group" aria-label="분류"><button type="button" data-doc-g="" aria-pressed="${!D.g}">전체</button>${DD.dirs.length?`<button type="button" data-doc-g="dir" aria-pressed="${D.g==='dir'}">📁 폴더</button>`:''}${DOC_GROUPS.map(g=>`<button type="button" data-doc-g="${g.id}" aria-pressed="${D.g===g.id}">${esc(g.name.replace(' 서류',''))}</button>`).join('')}</div>${canDoc()?'<button type="button" class="btn sm" data-dd-new>📁＋ 새 폴더</button>':''}
+  <section class="filters" style="padding:0 0 12px"><div class="seg" role="group" aria-label="분류"><button type="button" data-doc-g="" aria-pressed="${!D.g}">전체</button>${DD.cats.map(c=>`<button type="button" data-doc-g="${esc(c.id)}" aria-pressed="${D.g===c.id}">${esc(c.name.replace(/ 서류$/,''))}</button>`).join('')}</div>${canDoc()?'<button type="button" class="btn sm" data-dc-new title="분류(회사 기본·인증서 같은 큰 묶음) 추가">🗂＋ 분류</button><button type="button" class="btn sm" data-dd-new title="고른 분류 아래에 폴더 만들기">📁＋ 새 폴더</button>':''}
     <label class="chk"><input type="checkbox" id="doc-exp" ${D.exp?'checked':''}> 만료 60일 이내만</label><input type="search" id="doc-q" placeholder="서류명·내용 검색" value="${esc(D.q)}" aria-label="서류 검색"></section>
   <div class="docs">${parts.join('')||'<section class="panel"><div class="empty">조건에 맞는 서류가 없습니다.</div></section>'}</div>${(setTimeout(docThumbBackfill,1200),'')}
   <p class="help" style="margin-top:12px;color:var(--ink-3);font-size:12px">서류를 누르면 PDF·사진·엑셀·워드·한글·파워포인트를 바로 미리봅니다. 파일 하나당 20MB까지 올릴 수 있습니다. 같은 서류를 다시 올리면 '새 버전'으로 쌓이고 이전 버전도 내려받을 수 있습니다. 🔒 표시 서류는 관리자와 설정에서 허용한 사람만 열 수 있습니다. 이력서·급여·주민등록번호 13자리·신분증·진단서 같은 개인정보가 든 파일은 자료실에 넣지 않고 ${esc(piiLabel())}에게만 전달됩니다(생년월일만 있는 서류는 해당 없음).</p>`;}
@@ -3527,10 +3547,10 @@ function openDoc(id,o={}){let f=id?S.files[id]:null;
   if(!f){const slot=SLOT[o.slot]||SLOT.etc;const site=slot.g==='site'?(o.site||staffSites()[0]||''):'';
     let fid=slot.multi||slot.k==='etc'?`d-${slot.k}-${rid().slice(0,10)}`:`d-${slot.k}${site?'-'+siteKey(site):''}`;
     const ex=!slot.multi&&slot.k!=='etc'?Object.values(S.files).find(x=>x.slot===slot.k&&(slot.g!=='site'||x.site===site)):null;
-    if(ex)f=ex;else if(S.files[fid]&&S.files[fid].slot===slot.k&&!ddIn(S.files[fid])){f=S.files[fid];}else{if(S.files[fid])fid=`d-${slot.k}-${rid().slice(0,10)}`;f=null;}if(!f)f={...normFile(fid,{slot:slot.k,g:slot.g,site,title:slot.multi?'':slot.name,restricted:!!slot.restricted}),isNew:true};}
+    if(ex)f=ex;else if(S.files[fid]&&S.files[fid].slot===slot.k&&!ddIn(S.files[fid])){f=S.files[fid];}else{if(S.files[fid])fid=`d-${slot.k}-${rid().slice(0,10)}`;f=null;}if(!f)f={...normFile(fid,{slot:slot.k,g:slot.g,site,title:slot.multi?'':slot.name,restricted:!!slot.restricted,dir:o.dir&&ddPlace(o.dir)?o.dir:''}),isNew:true};}
   S.docDlg={id:f.id,isNew:!!f.isNew,base:f,file:null};const d=$('#dlg-doc');
   $('#doc-h').textContent=f.isNew?'서류 올리기':'서류 정보';$('#doc-title').value=f.isNew&&SLOT[f.slot].multi?'':(f.title||'');$('#doc-title').placeholder=SLOT[f.slot].multi?`예: ${SLOT[f.slot].k==='iso'?'ISO 9001 품질경영시스템':SLOT[f.slot].k==='drawing'?'1층 평면도':'서류명'}`:'';
-  $('#doc-where').textContent=`${(DOC_GROUPS.find(g=>g.id===f.g)||{}).name||''}${f.site?' · '+f.site:''} · ${SLOT[f.slot].name}`;
+  $('#doc-where').textContent=f.dir&&ddPlace(f.dir)?ddPlace(f.dir):`${(DOC_GROUPS.find(g=>g.id===f.g)||{}).name||''}${f.site?' · '+f.site:''} · ${SLOT[f.slot].name}`;
   $('#doc-slot').innerHTML=slotOptions(f.slot);$('#doc-site').innerHTML=staffSites().map(s=>`<option ${s===f.site?'selected':''}>${esc(s)}</option>`).join('');$('#doc-site-f').hidden=SLOT[f.slot].g!=='site';
   $('#doc-issued').value=f.issued;$('#doc-expiry').value=f.expiry;$('#doc-note').value=f.note;$('#doc-restricted').checked=f.restricted;
   $('#doc-restricted').disabled=!(S.canEdit||S.preview);$('#doc-r-help').textContent=S.canEdit||S.preview?'관리자와 설정 › 접속 허용의 "열람 허용 이메일"에 있는 사람만 파일을 열 수 있습니다.':'열람 제한 설정은 관리자만 바꿀 수 있습니다.';
@@ -3550,6 +3570,7 @@ async function saveDoc(e){e.preventDefault();const D=S.docDlg;if(!D||!canDoc())r
   const nslot=SLOT[$('#doc-slot').value]?$('#doc-slot').value:f.slot;const nst=SLOT[nslot];const nsite=nst.g==='site'?($('#doc-site').value||f.site||staffSites()[0]||''):'';
   const meta={slot:nslot,g:nst.g,site:nsite,title,issued:isDate(issued)?issued:'',expiry:isDate(expiry)?expiry:'',note:$('#doc-note').value.slice(0,500),updatedAt:nowISO(),updatedBy:myId()||''};
   if(S.canEdit||S.preview)meta.restricted=$('#doc-restricted').checked;else meta.restricted=f.restricted;
+  if(!S.files[D.id]&&f.dir)meta.dir=f.dir;else if(S.files[D.id]&&nslot!==f.slot)meta.dir='';/* 35차: 분류·폴더에 새로 올리면 그 자리, 칸을 바꾸면 그 칸으로 */
   const btn=$('#doc-save');btn.disabled=true;
   try{let versions=f.versions;
     if(file){if(file.size>FILE_MAX){toast('20MB 이하 파일만 올릴 수 있습니다. PDF는 인쇄 품질을 낮춰 다시 저장해 보세요.','err');return;}
@@ -3783,7 +3804,7 @@ document.addEventListener('click',async e=>{
   if(T.closest('#wk-dl')){localDownloads.save({filename:`${S.config.dept}_주간업무일지_${S.wk.ws}.txt`,data:new Blob(['﻿'+$('#wk-text').value],{type:'text/plain;charset=utf-8'})});return;}
   // 자료실
   const dg=T.closest('[data-doc-g]');if(dg){S.docs.g=dg.dataset.docG;render();return;}
-  const dn=T.closest('[data-doc-new]');if(dn){if(!S.canWrite)return;openDoc(null,{slot:dn.dataset.docNew,site:dn.dataset.site||''});return;}
+  const dn=T.closest('[data-doc-new]');if(dn){if(!S.canWrite)return;openDoc(null,{slot:dn.dataset.docNew,site:dn.dataset.site||'',dir:dn.dataset.dir||''});return;}
   const dv=T.closest('[data-doc-view]');if(dv){const f=S.files[dv.dataset.docView];if(f)docOpen(f,null,'view');return;}
   const dd=T.closest('[data-doc-dl]');if(dd){const f=S.files[dd.dataset.docDl];if(f)docOpen(f,null,'dl');return;}
   const du=T.closest('[data-doc-up]');if(du){openDoc(du.dataset.docUp,{pick:true});return;}
@@ -4049,7 +4070,7 @@ async function storeDoc(o,onProg){const st=SLOT[o.slot]||SLOT.etc;const site=st.
 const UP_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" aria-hidden="true"><path d="M12 16V4m0 0l-4.5 4.5M12 4l4.5 4.5"/><path d="M4 15v3.5A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5V15"/></svg>';
 const slotPath=(slot,site)=>{const st=SLOT[slot]||SLOT.etc;const g=DOC_GROUPS.find(x=>x.id===st.g);return [g&&g.name,st.g==='site'?site:'',st.name].filter(Boolean).join(' › ');};
 const CONF={high:'확실',mid:'대체로 확실',low:'확인 필요'};
-function slotOptions(sel){return DOC_GROUPS.map(g=>`<optgroup label="${esc(g.name)}">${DOC_SLOTS.filter(s=>s.g===g.id).map(s=>`<option value="${s.k}" ${s.k===sel?'selected':''}>${esc(s.name)}</option>`).join('')}</optgroup>`).join('');}
+function slotOptions(sel){return DOC_GROUPS.filter(g=>!g.off||DOC_SLOTS.some(x=>x.k===sel&&x.g===g.id)).map(g=>`<optgroup label="${esc(g.name)}">${DOC_SLOTS.filter(s=>s.g===g.id).map(s=>`<option value="${s.k}" ${s.k===sel?'selected':''}>${esc(s.name)}</option>`).join('')}</optgroup>`).join('');}
 function upAdd(files){if(!canDoc()){toast(DOCMGR_MSG,'err');return;}let n=0;
   const list=Array.from(files||[]).filter(f=>{if(!f||!f.size)return false;if(f.size>FILE_MAX){toast(`${f.name}: 20MB 이하 파일만 올릴 수 있습니다.`,'err');return false;}return true;});
   const base=n=>n.replace(/\.[^.]+$/,'').trim().toLowerCase();const pdfs=new Map();for(const f of list)if(kindOf(f.name,f.type)==='pdf')pdfs.set(base(f.name),f);const paired=new Set();
@@ -6740,51 +6761,111 @@ document.addEventListener('keydown',e=>{if(e.target&&e.target.id==='gs-q'&&e.key
      폴더·기본 칸(사업자등록증·인증서·사업장별 등) 사이를 옮깁니다. 폴더에서 꺼내면 원래 칸으로 돌아갑니다.
    · 회사서식(ext23): 왼쪽 폴더 나무(분류 경로 'A › B' + app/formdirs.dirs 빈 폴더), 끌어다 놓기·여러 개 옮기기, 폴더 이름 바꾸기·삭제.
    · 서류·서식 이름은 ✏️를 눌러 그 자리에서 바꿉니다(Enter 저장 · Esc 취소). */
-const DD={dirs:[],loaded:false};let DDU=null;
+/* 35차: 분류(회사 기본·인증서·확인서·사업장별·기타 + 직접 만든 분류)를 추가·삭제·이름 바꾸기, 폴더는 분류 아래에 만듦
+   app/docdirs = {cats:[{id,name}], dirs:[{id,name,cat}]} — cats 가 없으면 기본 4개. 기본 분류(base·cert·site·etc)는 정해진 칸(조직도·정관…)이 있고,
+   직접 만든 분류(c…)에 바로 둔 서류는 files.dir = 분류 id, 폴더 안 서류는 files.dir = 폴더 id */
+const DC_DEF=[{id:'base',name:'회사 기본 서류'},{id:'cert',name:'인증서·확인서'},{id:'site',name:'사업장별 서류'},{id:'etc',name:'기타 서류'}];
+const DC_BUILT=['base','cert','site','etc'];
+const DC_LAND={base:'baseetc',cert:'certetc',site:'siteetc',etc:'etc'};
+const DD={dirs:[],cats:DC_DEF.map(c=>({...c})),loaded:false};let DDU=null;
+function ddNorm(d){d=d||{};const cats=(Array.isArray(d.cats)?d.cats:[]).filter(x=>x&&typeof x.id==='string'&&/^[\w-]{1,40}$/.test(x.id)&&typeof x.name==='string'&&x.name.trim()).map(x=>({id:x.id,name:x.name.slice(0,60)}));
+  const C=cats.length?cats.filter((x,i)=>cats.findIndex(y=>y.id===x.id)===i):DC_DEF.map(c=>({...c}));
+  const dirs=(Array.isArray(d.dirs)?d.dirs:[]).filter(x=>x&&typeof x.id==='string'&&typeof x.name==='string').map(x=>({id:x.id.slice(0,40),name:x.name.slice(0,60),cat:typeof x.cat==='string'?x.cat.slice(0,40):''}));
+  return {cats:C,dirs};}
+function ddApply(n){DD.cats=n.cats;DD.dirs=n.dirs;for(const g of DOC_GROUPS){const c=DD.cats.find(x=>x.id===g.id);const d=DC_DEF.find(x=>x.id===g.id);g.name=c?c.name:d.name;g.off=!c;}}
 function ddSub(){if(DDU)return;if(S.mode!=='firebase'||!S.fs){DD.loaded=true;return;}
-  DDU=S.fs.doc('app/docdirs').onSnapshot(s=>{const d=s.exists?s.data():{};DD.dirs=(Array.isArray(d.dirs)?d.dirs:[]).filter(x=>x&&typeof x.id==='string'&&typeof x.name==='string').map(x=>({id:x.id.slice(0,40),name:x.name.slice(0,60)}));
+  DDU=S.fs.doc('app/docdirs').onSnapshot(s=>{ddApply(ddNorm(s.exists?s.data():{}));
       DD.loaded=true;if(['docs','upload'].includes(S.view))scheduleRender();},()=>{DD.loaded=true;});}
-{const _es=extSubs;extSubs=function(){_es.apply(this,arguments);try{try{DDU&&DDU();}catch{}DDU=null;DD.dirs=[];ddSub();S.unsubs.push(()=>{try{DDU&&DDU();}catch{}DDU=null;DD.dirs=[];});}catch(e){console.warn(e);}};}
-const ddIn=f=>!!(f&&f.dir&&DD.dirs.some(d=>d.id===f.dir));
-const ddName=id=>(DD.dirs.find(d=>d.id===id)||{}).name||'폴더';
+{const _es=extSubs;extSubs=function(){_es.apply(this,arguments);try{try{DDU&&DDU();}catch{}DDU=null;ddApply(ddNorm({}));ddSub();S.unsubs.push(()=>{try{DDU&&DDU();}catch{}DDU=null;ddApply(ddNorm({}));});}catch(e){console.warn(e);}};}
+const dcGet=id=>DD.cats.find(c=>c.id===id)||null;
+const dcBuilt=id=>DC_BUILT.includes(id);
+const dcFallback=()=>(dcGet('etc')||DD.cats[0]||{id:'etc'}).id;
+const dirCat=d=>d&&dcGet(d.cat)?d.cat:dcFallback();
+const ddFolder=id=>DD.dirs.find(d=>d.id===id)||null;
+/* 서류가 들어 있는 곳: 폴더 / 직접 만든 분류 / (기본 분류의) 칸 */
+const ddInFolder=f=>!!(f&&f.dir&&ddFolder(f.dir));
+const ddInCat=f=>!!(f&&f.dir&&!dcBuilt(f.dir)&&dcGet(f.dir));
+const ddIn=f=>ddInFolder(f)||ddInCat(f);
+function fileCat(f){if(ddInFolder(f))return dirCat(ddFolder(f.dir));if(ddInCat(f))return f.dir;const g=(SLOT[f.slot]||SLOT.etc).g;return dcGet(g)?g:dcFallback();}
+const ddPlace=id=>{const d=ddFolder(id);if(d)return `${(dcGet(dirCat(d))||{}).name||''} › 📁 ${d.name}`;const c=dcGet(id);return c?`🗂 ${c.name}`:'';};
+const ddName=id=>(ddFolder(id)||dcGet(id)||{}).name||'폴더';
 const dirClean=n=>String(n||'').replace(/[›\/\\]+/g,'-').replace(/\s+/g,' ').trim().slice(0,60);
-async function ddSave(dirs,msg){const prev=DD.dirs;DD.dirs=dirs;
-  if(S.mode==='firebase'&&S.fs){try{await fbWrite(S.fs.doc('app/docdirs').set({dirs,at:nowISO(),by:myId()||''}));if(msg)toast(msg);return true;}catch(e){DD.dirs=prev;writeError(e&&e.userMsg?e:fbErr(e));render();return false;}}
+async function ddSave(dirs,msg,cats){const prev={cats:DD.cats,dirs:DD.dirs};ddApply({cats:cats||DD.cats,dirs});
+  if(S.mode==='firebase'&&S.fs){try{await fbWrite(S.fs.doc('app/docdirs').set({cats:DD.cats,dirs:DD.dirs,at:nowISO(),by:myId()||''}));if(msg)toast(msg);render();return true;}catch(e){ddApply(prev);writeError(e&&e.userMsg?e:fbErr(e));render();return false;}}
   if(msg)toast(msg);render();return true;}
-async function ddNew(){if(!canDoc())return null;const n=dirClean(prompt('새 폴더 이름 (예: 계약서, 보험증권, 2026 감사 자료)',''));if(!n)return null;
-  if(DD.dirs.some(d=>d.name===n)){toast('같은 이름의 폴더가 있습니다.','err');return null;}const d={id:'dd'+rid().slice(0,9),name:n};
-  if(await ddSave([...DD.dirs,d],`📁 「${n}」 폴더를 만들었습니다.`)){S.docs.g='';render();return d;}return null;}
-async function ddRename(id){const d=DD.dirs.find(x=>x.id===id);if(!d)return;const n=dirClean(prompt('폴더 이름',d.name));if(!n||n===d.name)return;
-  await ddSave(DD.dirs.map(x=>x.id===id?{...x,name:n}:x),'폴더 이름을 바꿨습니다.');}
+/* 새 폴더: 어느 분류 아래에 만들지 — cat 을 주거나, 자료실에서 고른 분류, 아니면 고르기 창 */
+function dcAsk(title,cb,skip){const items=DD.cats.filter(c=>c.id!==skip).map(c=>({key:c.id,label:c.name,icon:'🗂'}));if(!items.length){toast('옮길 다른 분류가 없습니다.','err');return;}
+  dirPick(title,[{label:'분류',items}],cb);}
+async function ddNew(cat){if(!canDoc())return null;
+  if(!cat||!dcGet(cat)){const cur=S.docs&&dcGet(S.docs.g)?S.docs.g:'';if(cur)cat=cur;else if(DD.cats.length===1)cat=DD.cats[0].id;
+    else return await new Promise(res=>dcAsk('새 폴더를 만들 분류 고르기',async k=>res(await ddNew(k))));}
+  const cn=(dcGet(cat)||{}).name||'';const n=dirClean(prompt(`「${cn}」 아래에 만들 새 폴더 이름 (예: 계약서, 보험증권, 2026 감사 자료)`,''));if(!n)return null;
+  if(DD.dirs.some(d=>d.name===n&&dirCat(d)===cat)){toast('이 분류에 같은 이름의 폴더가 있습니다.','err');return null;}const d={id:'dd'+rid().slice(0,9),name:n,cat};
+  if(await ddSave([...DD.dirs,d],`📁 「${cn} › ${n}」 폴더를 만들었습니다.`))return d;return null;}
+/* 폴더 이름: 그 자리에서 바꾸기(✏️), 자리가 없으면 입력 창 */
+async function ddRename(id,from){const d=ddFolder(id);if(!d||!canDoc())return;const save=async v=>{v=dirClean(v);if(!v||v===d.name)return;if(DD.dirs.some(x=>x.id!==id&&x.name===v&&dirCat(x)===dirCat(d))){toast('이 분류에 같은 이름의 폴더가 있습니다.','err');render();return;}
+    await ddSave(DD.dirs.map(x=>x.id===id?{...x,name:v}:x),'폴더 이름을 바꿨습니다.');};
+  const host=(from&&from.closest&&from.closest('.dd-dir')||document.querySelector(`[data-ddir="${CSS.escape(id)}"]`)||document).querySelector('.dd-dnm');
+  if(host)inlineRename(host,d.name,save,{max:60});else{const n=prompt('폴더 이름',d.name);if(n!=null)await save(n);}}
+async function ddDirMove(id){const d=ddFolder(id);if(!d||!canDoc())return;
+  dcAsk(`📁 「${d.name}」 폴더를 옮길 분류`,async k=>{if(k===dirCat(d))return;await ddSave(DD.dirs.map(x=>x.id===id?{...x,cat:k}:x),`📁 「${d.name}」 → ${(dcGet(k)||{}).name}`);},dirCat(d));}
+/* ── 분류 추가·이름 바꾸기·삭제 ── */
+async function dcNew(){if(!canDoc())return null;const n=dirClean(prompt('새 분류 이름 (예: 계약서, 보험, 감사 자료, 차량)',''));if(!n)return null;
+  if(DD.cats.some(c=>c.name===n)){toast('같은 이름의 분류가 있습니다.','err');return null;}const c={id:'c'+rid().slice(0,9),name:n};
+  if(await ddSave(DD.dirs,`🗂 「${n}」 분류를 만들었습니다.`,[...DD.cats,c])){S.docs.g=c.id;render();return c;}return null;}
+async function dcRename(id,from){const c=dcGet(id);if(!c||!canDoc())return;const save=async v=>{v=dirClean(v);if(!v||v===c.name)return;if(DD.cats.some(x=>x.id!==id&&x.name===v)){toast('같은 이름의 분류가 있습니다.','err');render();return;}
+    await ddSave(DD.dirs,'분류 이름을 바꿨습니다.',DD.cats.map(x=>x.id===id?{...x,name:v}:x));};
+  const host=(from&&from.closest&&from.closest('[data-dcat]')||document.querySelector(`[data-dcat="${CSS.escape(id)}"]`)||document).querySelector('.dc-nm');
+  if(host)inlineRename(host,c.name,save,{max:60});else{const n=prompt('분류 이름',c.name);if(n!=null)await save(n);}}
+async function dcMoveTo(f,to){const st=SLOT[f.slot]||SLOT.etc;let patch;
+  if(dcBuilt(to)){const k=DC_LAND[to];patch={dir:'',slot:k,g:to,site:to==='site'?(f.site&&staffSites().includes(f.site)?f.site:staffSites()[0]||''):''};}
+  else patch={dir:to};
+  try{await dbUpdate(`files/${f.id}`,{...patch,updatedAt:nowISO(),updatedBy:myId()||''});return true;}catch{return false;}}
+async function dcDelete(id){const c=dcGet(id);if(!c||!canDoc())return;if(DD.cats.length<=1){toast('분류는 하나 이상 있어야 합니다.','err');return;}
+  const docs=Object.values(S.files).filter(f=>!ddInFolder(f)&&fileCat(f)===id);const dirs=DD.dirs.filter(d=>dirCat(d)===id);
+  const rest=DD.cats.filter(x=>x.id!==id);
+  if(!docs.length&&!dirs.length){if(!await confirmDlg('분류 삭제',`빈 분류 「${c.name}」을(를) 지웁니다.${dcBuilt(id)?' 이 분류의 기본 칸(미등록 칸)도 함께 사라집니다.':''}`,'분류 삭제'))return;
+    await ddSave(DD.dirs,`「${c.name}」 분류를 지웠습니다.`,rest);if(S.docs.g===id)S.docs.g='';render();return;}
+  dcAsk(`「${c.name}」 안의 서류 ${docs.length}건${dirs.length?`·폴더 ${dirs.length}개`:''}를 옮길 분류`,async to=>{const tn=(dcGet(to)||{}).name||'';
+    if(!await confirmDlg('분류 삭제',`「${c.name}」 분류를 지웁니다. 안에 있는 서류 ${docs.length}건${dirs.length?`과 폴더 ${dirs.length}개`:''}는 지워지지 않고 「${tn}」(으)로 옮깁니다.`,'분류 삭제'))return;
+    let bad=0;for(const f of docs)if(!await dcMoveTo(f,to))bad++;
+    await ddSave(DD.dirs.map(d=>dirCat(d)===id?{...d,cat:to}:d),`「${c.name}」 분류를 지우고 서류 ${docs.length-bad}건${dirs.length?`·폴더 ${dirs.length}개`:''}를 「${tn}」(으)로 옮겼습니다.`,rest);
+    if(S.docs.g===id)S.docs.g=to;render();},id);}
 async function ddDelete(id){const d=DD.dirs.find(x=>x.id===id);if(!d)return;const inside=Object.values(S.files).filter(f=>f.dir===id);
-  if(!await confirmDlg('폴더 삭제',inside.length?`「${d.name}」 폴더를 지웁니다. 안에 있는 서류 ${inside.length}건은 지워지지 않고 원래 칸(사업자등록증·인증서·기타 서류 등)으로 돌아갑니다.`:`빈 폴더 「${d.name}」을(를) 지웁니다.`,'폴더 삭제'))return;
-  for(const f of inside){const st=SLOT[f.slot];let patch={dir:''};if(st&&!st.multi&&st.k!=='etc'&&Object.values(S.files).some(x=>x.id!==f.id&&x.slot===f.slot&&(st.g!=='site'||x.site===f.site)&&!x.dir))patch={dir:'',slot:'etc',g:'etc',site:''};
+  if(!await confirmDlg('폴더 삭제',inside.length?`「${d.name}」 폴더를 지웁니다. 안에 있는 서류 ${inside.length}건은 지워지지 않고 「${(dcGet(dirCat(d))||{}).name||''}」 분류(원래 칸)로 돌아갑니다.`:`빈 폴더 「${d.name}」을(를) 지웁니다.`,'폴더 삭제'))return;
+  const dc=dirCat(d);
+  for(const f of inside){const st=SLOT[f.slot];let patch={dir:''};if(!dcBuilt(dc))patch={dir:dc};else if(st&&st.g!==dc)patch={dir:'',slot:DC_LAND[dc],g:dc,site:dc==='site'?(f.site||staffSites()[0]||''):''};
+    else if(st&&!st.multi&&st.k!=='etc'&&Object.values(S.files).some(x=>x.id!==f.id&&x.slot===f.slot&&(st.g!=='site'||x.site===f.site)&&!x.dir))patch={dir:'',slot:DC_LAND[dc],g:dc,site:dc==='site'?(f.site||staffSites()[0]||''):''};
     try{await dbUpdate(`files/${f.id}`,{...patch,updatedAt:nowISO(),updatedBy:myId()||''});}catch{}}
   await ddSave(DD.dirs.filter(x=>x.id!==id),`「${d.name}」 폴더를 지웠습니다.`);}
-function ddMovedHTML(s,site,f){return `<div class="doc-row empty-slot dd-moved" data-dslot="${esc(s.k)}" data-site="${esc(site||'')}"><span class="fi none">📁</span><div class="dm"><b>${esc(s.name)}</b><small>「${esc(f.title)}」이(가) 📁 ${esc(ddName(f.dir))} 폴더에 있습니다</small></div><span></span><span class="da">${canDoc()?`<button type="button" class="btn sm ghost" data-dd-back="${esc(f.id)}">이 칸으로 꺼내기</button>`:''}</span></div>`;}
-function ddSectionsHTML(files,match,filtering){if(!DD.dirs.length)return '';
-  return DD.dirs.map(d=>{const all=files.filter(f=>f.dir===d.id).sort((a,b)=>a.title.localeCompare(b.title,'ko',{numeric:true}));const L=all.filter(match);if(filtering&&!L.length)return '';
-    return `<section class="panel doc-sec dd-dir" data-ddir="${esc(d.id)}"><div class="panel-h"><h2>📁 ${esc(d.name)}</h2><span class="sub">${all.length}건</span>${canDoc()?`<div class="act"><button type="button" class="btn sm ghost" data-dd-dren="${esc(d.id)}">이름 바꾸기</button><button type="button" class="btn sm ghost" data-dd-ddel="${esc(d.id)}">폴더 삭제</button></div>`:''}</div>
-      ${L.map(f=>docRowHTML(f,null)).join('')||`<div class="dd-empty">${canDoc()?'서류를 이 폴더로 끌어다 놓거나, 서류 줄의 <b>📁 옮기기</b>를 누르세요.':'비어 있는 폴더입니다.'}</div>`}</section>`;}).join('');}
+function ddMovedHTML(s,site,f){return `<div class="doc-row empty-slot dd-moved" data-dslot="${esc(s.k)}" data-site="${esc(site||'')}"><span class="fi none">📁</span><div class="dm"><b>${esc(s.name)}</b><small>「${esc(f.title)}」이(가) ${esc(ddPlace(f.dir))}에 있습니다</small></div><span></span><span class="da">${canDoc()?`<button type="button" class="btn sm ghost" data-dd-back="${esc(f.id)}">이 칸으로 꺼내기</button>`:''}</span></div>`;}
+/* 분류 안의 폴더 한 개 */
+function ddFolderHTML(d,files,match,filtering){const all=files.filter(f=>f.dir===d.id).sort((a,b)=>a.title.localeCompare(b.title,'ko',{numeric:true}));const L=all.filter(match);if(filtering&&!L.length)return '';
+  return `<div class="dd-dir" data-ddir="${esc(d.id)}"><div class="dd-h"><h3>📁 <span class="dd-dnm">${esc(d.name)}</span>${canDoc()?rnBtn('data-dd-dren',d.id).replace('이름 바꾸기 (F2)','폴더 이름 바꾸기'):''}</h3><span class="sub">${all.length}건</span>${canDoc()?`<div class="act"><button type="button" class="btn sm ghost" data-doc-new="etc" data-dir="${esc(d.id)}">＋ 서류</button><button type="button" class="btn sm ghost" data-dd-dmv="${esc(d.id)}" title="다른 분류로 옮기기">옮기기</button><button type="button" class="btn sm ghost danger" data-dd-ddel="${esc(d.id)}">삭제</button></div>`:''}</div>
+    ${L.map(f=>docRowHTML(f,null)).join('')||`<div class="dd-empty">${canDoc()?'서류를 이 폴더로 끌어다 놓거나, 서류 줄의 <b>📁 옮기기</b>를 누르세요.':'비어 있는 폴더입니다.'}</div>`}</div>`;}
 /* 옮기기: {dir} 또는 {slot, site} */
 async function ddMove(f,dest){if(!canDoc()||!f)return false;let patch,label;
-  if(dest.dir){if(f.dir===dest.dir)return false;patch={dir:dest.dir};label='📁 '+ddName(dest.dir);}
+  if(dest.dir){if(f.dir===dest.dir)return false;patch={dir:dest.dir};label=ddPlace(dest.dir);}
   else{const st=SLOT[dest.slot];if(!st)return false;const site=st.g==='site'?(dest.site||f.site||staffSites()[0]||''):'';
     if(!st.multi&&st.k!=='etc'){const occ=Object.values(S.files).find(x=>x.id!==f.id&&x.slot===st.k&&(st.g!=='site'||x.site===site)&&!ddIn(x));if(occ){toast(`「${slotPath(st.k,site)}」 칸에는 이미 「${occ.title}」이(가) 있습니다. 그 서류를 먼저 다른 곳으로 옮기세요.`,'err');return false;}}
     if(f.slot===st.k&&f.site===site&&!ddIn(f))return false;patch={dir:'',slot:st.k,g:st.g,site};label=slotPath(st.k,site);}
   try{await dbUpdate(`files/${f.id}`,{...patch,updatedAt:nowISO(),updatedBy:myId()||''});toast(`「${f.title}」 → ${label}`);return true;}catch{return false;}}
-function ddPickFor(f){const groups=[{label:'📁 폴더',items:[...DD.dirs.map(d=>({key:'d:'+d.id,label:d.name,icon:'📁',cur:f.dir===d.id})),{key:'new',label:'새 폴더 만들어 옮기기',icon:'＋'}]}];
-  for(const g of DOC_GROUPS){const sites=g.id==='site'?staffSites():[''];for(const site of sites){const items=DOC_SLOTS.filter(s=>s.g===g.id).map(s=>{const occ=!s.multi&&s.k!=='etc'?Object.values(S.files).find(x=>x.id!==f.id&&x.slot===s.k&&(g.id!=='site'||x.site===site)&&!ddIn(x)):null;
-        return {key:`s:${s.k}:${site}`,label:s.name,icon:'🗂',sub:occ?`「${occ.title}」 있음`:'',dis:!!occ,cur:!ddIn(f)&&f.slot===s.k&&(g.id!=='site'||f.site===site)};});
-      groups.push({label:g.id==='site'?`${g.name} · ${site}`:g.name,items});}}
-  dirPick(`「${f.title}」 옮기기`,groups,async key=>{if(key==='new'){const d=await ddNew();if(d)await ddMove(f,{dir:d.id});return;}
+function ddPickFor(f){const groups=[];
+  for(const c of DD.cats){const items=[];
+    if(!dcBuilt(c.id))items.push({key:'d:'+c.id,label:`「${c.name}」에 바로 두기`,icon:'🗂',cur:f.dir===c.id});
+    else{const sites=c.id==='site'?staffSites():[''];for(const site of sites)for(const sl of DOC_SLOTS.filter(x=>x.g===c.id)){const occ=!sl.multi&&sl.k!=='etc'?Object.values(S.files).find(x=>x.id!==f.id&&x.slot===sl.k&&(c.id!=='site'||x.site===site)&&!ddIn(x)):null;
+        items.push({key:`s:${sl.k}:${site}`,label:site?`${site} · ${sl.name}`:sl.name,icon:'🗂',sub:occ?`「${occ.title}」 있음`:'',dis:!!occ,cur:!ddIn(f)&&f.slot===sl.k&&(c.id!=='site'||f.site===site)});}}
+    for(const d of DD.dirs.filter(x=>dirCat(x)===c.id))items.push({key:'d:'+d.id,label:d.name,icon:'📁',depth:1,cur:f.dir===d.id});
+    items.push({key:'n:'+c.id,label:'이 분류에 새 폴더 만들어 옮기기',icon:'＋',depth:1});
+    groups.push({label:'🗂 '+c.name,items});}
+  dirPick(`「${f.title}」 옮기기`,groups,async key=>{if(key.startsWith('n:')){const d=await ddNew(key.slice(2));if(d)await ddMove(f,{dir:d.id});return;}
     if(key.startsWith('d:'))await ddMove(f,{dir:key.slice(2)});else{const [,slot,site]=key.split(':');await ddMove(f,{slot,site});}});}
 
 /* ── 공용: 옮길 곳 고르기 창 ── */
 let DP=null;
 function dirPick(title,groups,onPick){DP={groups,onPick};const d=$('#dlg-dirpick');$('#dp-h').textContent=title;$('#dp-q').value='';dpRender();if(!d.open)d.showModal();setTimeout(()=>{const q=$('#dp-q');if(q&&groups.reduce((a,g)=>a+g.items.length,0)>12)q.focus();},40);}
 function dpRender(){if(!DP)return;const q=$('#dp-q').value.trim().toLowerCase();
-  $('#dp-list').innerHTML=DP.groups.map(g=>{const it=g.items.filter(x=>!q||x.key==='new'||(x.label+' '+(x.path||'')).toLowerCase().includes(q));if(!it.length)return '';
+  $('#dp-list').innerHTML=DP.groups.map(g=>{const it=g.items.filter(x=>!q||x.key==='new'||x.key.startsWith('n:')||(x.label+' '+(x.path||'')).toLowerCase().includes(q));if(!it.length)return '';
     return `<div class="dp-g"><h4>${esc(g.label)}</h4>${it.map(x=>`<button type="button" class="dp-it${x.cur?' cur':''}" data-dp="${esc(x.key)}" ${x.dis||x.cur?'disabled':''} style="--d:${x.depth||0}"><span class="ic">${x.icon||'📁'}</span><span class="nm">${esc(x.label)}</span>${x.cur?'<small>지금 여기</small>':x.sub?`<small>${esc(x.sub)}</small>`:''}</button>`).join('')}</div>`;}).join('')||'<p class="empty">찾는 폴더가 없습니다.</p>';}
 document.addEventListener('input',e=>{if(e.target&&e.target.id==='dp-q')dpRender();});
 document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-dp]');if(!b||!DP)return;const k=b.dataset.dp;const cb=DP.onPick;$('#dlg-dirpick').close();DP=null;try{cb(k);}catch(err){console.warn(err);}});
@@ -6819,23 +6900,30 @@ document.addEventListener('dragleave',e=>{if(!DDG)return;const t=ddTarget(e.targ
 document.addEventListener('drop',async e=>{if(!DDG)return;const t=ddTarget(e.target);const f=S.files[DDG.id];ddDragEnd();if(!t||!f)return;e.preventDefault();
   if(t.dataset.dslot)await ddMove(f,{slot:t.dataset.dslot,site:t.dataset.site||''});
   else if(t.dataset.ddir)await ddMove(f,{dir:t.dataset.ddir});
-  else if(t.dataset.dgrp){const g=t.dataset.dgrp;const k={cert:'certetc',site:'siteetc',etc:'etc'}[g];if(k)await ddMove(f,{slot:k,site:t.dataset.site||''});else ddPickFor(f);}});
+  else if(t.dataset.dgrp){const g=t.dataset.dgrp;if(!dcBuilt(g)){if(dcGet(g))await ddMove(f,{dir:g});return;}const k=DC_LAND[g];if(k)await ddMove(f,{slot:k,site:t.dataset.site||''});else ddPickFor(f);}});
 function ddDragEnd(){DDG=null;for(const x of $$('.dd-over,.doc-row.dragging'))x.classList.remove('dd-over','dragging');S.dragging=false;if(S.pendingRender){S.pendingRender=false;scheduleRender();}}
 document.addEventListener('dragend',()=>{if(DDG)ddDragEnd();});
 
 /* ── 클릭 ── */
 document.addEventListener('click',async e=>{const T=e.target;if(!T||!T.closest)return;
-  if(T.closest('[data-dd-new]')){ddNew();return;}
+  const dn=T.closest('[data-dd-new]');if(dn){ddNew(dn.dataset.ddNew||'');return;}
+  if(T.closest('[data-dc-new]')){dcNew();return;}
+  const cr=T.closest('[data-dc-ren]');if(cr){e.stopPropagation();dcRename(cr.dataset.dcRen,cr);return;}
+  const cdl=T.closest('[data-dc-del]');if(cdl){dcDelete(cdl.dataset.dcDel);return;}
+  const dm=T.closest('[data-dd-dmv]');if(dm){ddDirMove(dm.dataset.ddDmv);return;}
   const rn=T.closest('[data-dd-ren]');if(rn){e.stopPropagation();ddRenameDoc(rn.dataset.ddRen,rn);return;}
   const ur=T.closest('[data-up-ren]');if(ur){e.stopPropagation();upRen(ur.dataset.upRen,ur);return;}
   const mv=T.closest('[data-dd-mv]');if(mv){const f=S.files[mv.dataset.ddMv];if(f)ddPickFor(f);return;}
   const bk=T.closest('[data-dd-back]');if(bk){const f=S.files[bk.dataset.ddBack];const row=bk.closest('[data-dslot]');if(f&&row)await ddMove(f,{slot:row.dataset.dslot,site:row.dataset.site||''});return;}
-  const dr=T.closest('[data-dd-dren]');if(dr){ddRename(dr.dataset.ddDren);return;}
+  const dr=T.closest('[data-dd-dren]');if(dr){e.stopPropagation();ddRename(dr.dataset.ddDren,dr);return;}
   const dd=T.closest('[data-dd-ddel]');if(dd){ddDelete(dd.dataset.ddDdel);return;}},true);
 
 /* ── 각종서류 올리기: 저장할 폴더 고르기 ── */
-{const _u=renderUpload;renderUpload=function(v){const r=_u.apply(this,arguments);try{ddSub();const o=v.querySelector('.up-opt');if(o&&canDoc()){if(S.up.dir&&!DD.dirs.some(d=>d.id===S.up.dir))S.up.dir='';
-      o.insertAdjacentHTML('afterbegin',`<label class="chk dd-upto">📁 저장할 곳 <select id="up-dir" aria-label="저장할 곳"><option value="">자동 분류 칸 (기본)</option>${DD.dirs.map(d=>`<option value="${esc(d.id)}" ${S.up.dir===d.id?'selected':''}>📁 ${esc(d.name)}</option>`).join('')}<option value="__new">＋ 새 폴더 만들기…</option></select></label>`);}}catch(e){console.warn(e);}return r;};}
+{const _u=renderUpload;renderUpload=function(v){const r=_u.apply(this,arguments);try{ddSub();const o=v.querySelector('.up-opt');if(o&&canDoc()){
+      if(S.up.dir&&!ddFolder(S.up.dir)&&!(dcGet(S.up.dir)&&!dcBuilt(S.up.dir)))S.up.dir='';
+      const opt=id=>`<option value="${esc(id)}" ${S.up.dir===id?'selected':''}>${esc(ddPlace(id))}</option>`;
+      const og=DD.cats.map(c=>{const ids=[...(dcBuilt(c.id)?[]:[c.id]),...DD.dirs.filter(d=>dirCat(d)===c.id).map(d=>d.id)];return ids.length?`<optgroup label="${esc(c.name)}">${ids.map(opt).join('')}</optgroup>`:'';}).join('');
+      o.insertAdjacentHTML('afterbegin',`<label class="chk dd-upto">📁 저장할 곳 <select id="up-dir" aria-label="저장할 곳"><option value="">자동 분류 칸 (기본)</option>${og}<option value="__new">＋ 새 폴더 만들기…</option></select></label>`);}}catch(e){console.warn(e);}return r;};}
 document.addEventListener('change',async e=>{const T=e.target;if(!T||T.id!=='up-dir')return;if(T.value==='__new'){const d=await ddNew();S.up.dir=d?d.id:'';render();return;}S.up.dir=T.value;});
 
 /* 28차: F2 = 고른 파일 이름 바꾸기 (자료실·최근 서류·올리는 파일·회사서식) */
