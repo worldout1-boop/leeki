@@ -1582,6 +1582,38 @@ input.ir{font:inherit;font-size:14.5px;font-weight:600;padding:4px 8px;border:2p
 .set-err h3{font-size:14px;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.set-err h3 small{font-weight:400;color:var(--ink-3);font-size:12px}
 .err-list{list-style:none;margin:0;padding:0;display:grid;gap:5px;max-height:240px;overflow:auto}
 .err-list li{border:1px solid var(--line-2);border-radius:6px;padding:6px 9px;font-size:12.5px}.err-list li b{display:block;font-weight:600;word-break:break-all}.err-list li small{color:var(--ink-3)}
+/* ───────── 38차: 처음 사용 안내·검색·사업장 위치·설비 QR ───────── */
+.tour-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 12px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--accent-soft)}
+.driver-popover.wl-tour{font-family:var(--font);max-width:340px}.driver-popover.wl-tour .driver-popover-title{font-size:16px;font-weight:700}.driver-popover.wl-tour .driver-popover-description{font-size:14px;line-height:1.6;color:#2b3645}
+.driver-popover.wl-tour .driver-popover-footer button{font-family:var(--font);font-size:13px;padding:5px 10px;text-shadow:none}
+.gs-ko{margin:10px 0 0;font-size:13.5px}
+.geo-r{display:grid;grid-template-columns:90px 1fr 1fr auto auto;gap:6px;align-items:center;margin:4px 0}.geo-r b{font-size:13px}.geo-r input{height:30px;font-size:13px;min-width:0}
+.geo-f{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:6px}.geo-f small{color:var(--ink-3)}
+@media (max-width:640px){.geo-r{grid-template-columns:1fr 1fr}.geo-r b{grid-column:1/-1}}
+.il-eqrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.il-eq{display:inline-flex;align-items:center;gap:6px;padding:4px 6px 4px 10px;border-radius:999px;background:#eef6ee;border:1px solid #b9dcbf;font-size:13px}.il-eqx{border:0;background:none;cursor:pointer;color:var(--ink-3);font-size:13px}
+#dlg-eq{width:min(860px,96vw)}#dlg-eq .modal-h h2 small{font-weight:400;font-size:13px;color:var(--ink-3);margin-left:6px}
+.eq-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.eq-bar input[type=search]{flex:1;min-width:180px;height:36px}.eq-bar select{height:36px}
+.eq-list{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:5px;max-height:56vh;overflow:auto}
+.eq-list li{display:flex;align-items:stretch;gap:6px}.eq-ck{display:flex;align-items:center;padding:0 4px}
+.eq-row{flex:1;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) minmax(0,1.2fr);gap:8px;align-items:center;text-align:left;border:1px solid var(--line-2);border-radius:8px;background:var(--surface);padding:8px 10px;cursor:pointer;font:13.5px var(--font)}
+.eq-row:hover{border-color:var(--accent)}.eq-row span{color:var(--ink-2)}.eq-row small{color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.eq-empty{margin-top:12px;padding:14px;border:1px dashed var(--line);border-radius:10px;color:var(--ink-2);font-size:13.5px;line-height:1.6}
+.eq-cnt{font-size:13px;color:var(--ink-3)}
+.eq-one{display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap}.eq-qr svg{display:block;border:1px solid var(--line-2);border-radius:6px;width:132px;height:132px}
+.eq-info{border-collapse:collapse;flex:1;min-width:240px}.eq-info th,.eq-info td{border-bottom:1px solid var(--line-2);padding:6px 8px;text-align:left;font-size:13.5px}.eq-info th{width:70px;color:var(--ink-3);font-weight:600}
+.eq-h{font-size:15px;margin:14px 0 6px}.eq-h small{font-weight:400;color:var(--ink-3)}
+.eq-recs{list-style:none;margin:0;padding:0;display:grid;gap:4px;max-height:36vh;overflow:auto}.eq-recs button{width:100%;text-align:left;display:flex;gap:6px;align-items:baseline;flex-wrap:wrap;border:1px solid var(--line-2);border-radius:8px;background:var(--surface);padding:7px 10px;font:13.5px var(--font);cursor:pointer}.eq-recs small{margin-left:auto;color:var(--ink-3)}
+.eq-form{display:grid;grid-template-columns:1fr 1fr;gap:10px}.eq-form label{display:flex;flex-direction:column;gap:3px;font-size:12.5px;color:var(--ink-2);font-weight:600}.eq-form input,.eq-form select{height:36px;font-size:14px}.eq-form .wide{grid-column:1/-1}
+.eq-scan{display:flex;flex-direction:column;align-items:center;gap:8px}.eq-scan video{width:min(100%,520px);aspect-ratio:4/3;background:#111;border-radius:10px;object-fit:cover}
+.eq-qr-wait{width:132px;height:132px;display:grid;place-items:center;border:1px dashed var(--line);border-radius:6px;color:var(--ink-3)}
+@media (max-width:640px){#dlg-eq{width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;border-radius:0}.eq-row{grid-template-columns:1fr}.eq-form{grid-template-columns:1fr}}
+#print-sheet .eq-labels{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm}
+#print-sheet .eq-lab{border:1px dashed #9aa5b4;padding:3mm;display:flex;gap:3mm;align-items:center;break-inside:avoid;page-break-inside:avoid;height:38mm;box-sizing:border-box}
+#print-sheet .eq-lab-qr svg{width:28mm;height:28mm;display:block}
+#print-sheet .eq-lab-t{display:flex;flex-direction:column;gap:.6mm;min-width:0;font:8pt/1.3 "Malgun Gothic","Apple SD Gothic Neo",sans-serif;color:#111}
+#print-sheet .eq-lab-t b{font-size:10.5pt;line-height:1.25}#print-sheet .eq-lab-t small{font-size:6.5pt;color:#555}#print-sheet .eq-lab-t i{font-style:normal;font-size:6.5pt;color:#888}
+@media (max-width:640px){#dlg-eq>form{display:flex;flex-direction:column;height:100%}#dlg-eq .modal-b{flex:1;overflow:auto}#dlg-eq .modal-f .btn{flex:1 1 auto}}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -1980,8 +2012,11 @@ input.ir{font:inherit;font-size:14.5px;font-weight:600;padding:4px 8px;border:2p
 
 <script>
 /* 외부 도구는 화면을 막지 않고 뒤에서 불러옵니다(달력·끌어 옮기기는 바로, 엑셀·차트·사진 줄이기는 첫 화면 뒤에). wlLib(이름)으로 기다릴 수 있습니다. */
-(function(){var J='https://cdn.jsdelivr.net/npm/';var L={sortable:[J+'sortablejs@1.15.6/Sortable.min.js'],fc:[J+'fullcalendar@6.1.15/index.global.min.js',J+'@fullcalendar/core@6.1.15/locales/ko.global.min.js'],chart:[J+'chart.js@4.4.7/dist/chart.umd.js'],xlsx:[J+'xlsx@0.18.5/dist/xlsx.full.min.js'],imgc:[J+'browser-image-compression@2.0.2/dist/browser-image-compression.js']};var P={};
-function one(src){return new Promise(function(res,rej){var s=document.createElement('script');s.src=src;s.async=false;s.onload=function(){res();};s.onerror=function(){s.remove();rej(new Error('load '+src));};document.head.appendChild(s);});}
+window.WL_SRI={"https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js":"sha384-HZZ/fukV+9G8gwTNjN7zQDG0Sp7MsZy5DDN6VfY3Be7V9dvQpEpR2jF2HlyFUUjU","https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js":"sha384-B1OFx8Gy9GjPu8UbUyXbGQpzll9ubAUQ9agInFJ8NnD7nYG1u/CLR+Sqr5yifl4q","https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.15/locales/ko.global.min.js":"sha384-cq8WrYLwn5kv3EYYk3j88xg9pc0O31A1IV8Qy5VDBIHuW2waRxYsaAyx3fv9DW91","https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.js":"sha384-zYPBGXwO4633CABX/5Spf6emCKUJCfoOkhOMYyxMsatqQZPnDblmmOewfjsIVWCM","https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.2/dist/browser-image-compression.js":"sha384-dHP9fwqd9BAiDh9uJ0p10khgbbcFMh34bVEiCnJ1Ah/AT2T2k4t572VEo3WXzxXp","https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js":"sha384-+mbV2IY1Zk/X1p/nWllGySJSUN8uMs+gUAN10Or95UBH0fpj6GfKgPmgC5EXieXG","https://cdn.jsdelivr.net/npm/docx-preview@0.4.1/dist/docx-preview.min.js":"sha384-DifWB1GSGsQgwTegPEbGdEMnGZpmfhUsx9A3WuHv+rfQVCFXMhawW/v4AZcP1FzL","https://cdn.jsdelivr.net/npm/pptx-preview@1.0.7/dist/pptx-preview.umd.js":"sha384-CwntHHT2FbwZXuCmbf6K93YaEB9xRVVLaqFJ7pdMykeQABb/3MA0sbt2lGbgi1Mr","https://cdn.jsdelivr.net/npm/jspdf@4.2.1/dist/jspdf.umd.min.js":"sha384-qovJwSBbRDPP5cEjCp8S0UP66wrvnjaa60XMOGzTNanrThcrGfXfnZkvgY8N1KT3","https://cdn.jsdelivr.net/npm/tesseract.js@7.0.0/dist/tesseract.min.js":"sha384-2BQ3U3OdKOb0Uczxqr41I9UvZkzr4V9Hv8uSzMMZAlmhsFClvdZX5wi5fDCzG+tM","https://cdn.jsdelivr.net/npm/mammoth@1.13.0/mammoth.browser.min.js":"sha384-8NWE3bZDrmRI4IePMoQaEoLhAQ1MmRMJkdNgnGiHRFanTqsFKr0TmK6aSZvFJ/PO","https://cdn.jsdelivr.net/npm/html2canvas-pro@2.6.0/dist/html2canvas-pro.min.js":"sha384-AUeQzbTmwVEN7Dxfv9SE7fFFEntOFqhfys5k74/K0aZl47vtCo6niYwq4vKYndlA","https://cdn.jsdelivr.net/npm/dompurify@3.4.17/dist/purify.min.js":"sha384-P0JNneQf81HOl9VwNXK76cQ9VMD6Nfsnepxb0cCOg8+UzEdzgPHAPV4wVQrvYQSx","https://cdn.jsdelivr.net/npm/driver.js@1.10.2/dist/driver.js.iife.js":"sha384-5g481DgM/VdK19dNiL3kmTG/tz1fQriwUvSide6vc77uYGaXh0s5GLQCUN6dgI8n","https://cdn.jsdelivr.net/npm/driver.js@1.10.2/dist/driver.css":"sha384-q84NOjxOvSzdVT3EjRGos6w4J4t7ysF+ueMkf5CCMevHRH2IkF+sEvNvofEU67dW","https://cdn.jsdelivr.net/npm/es-hangul@2.4.0/dist/index.mjs":"sha384-4gu6sOyr1YRagCdF/yQSXm3vAXcRMZOtOBvMBxyYjUTC/G43D8aq8D67OiwmPKGK","https://cdn.jsdelivr.net/npm/exifr@7.1.3/dist/lite.umd.js":"sha384-KRanV2NRwHPanp7iM6nlLQC5jPCTscSYMko30dLJHzNXJaUNtcucWv+SOi3jV3PE","https://cdn.jsdelivr.net/npm/qr-scanner@1.4.2/qr-scanner.umd.min.js":"sha384-np0yBqru4jLMa2u0xLtxD3WvMtkLuNiMNQwxQ8GT132ygYFONACD2xc33tx1avQz","https://cdn.jsdelivr.net/npm/qrcode-generator@2.0.4/dist/qrcode.js":"sha384-e9EFD6BGC90bkW9aDV5xbbBfzwN7G8YImHao2lfLVKV/hPB0E0go+H3I64h7oHtA","https://cdn.jsdelivr.net/npm/pdfjs-dist@6.4.299/legacy/build/pdf.min.mjs":"sha384-oPqHr8MeYfJpkh4zgHbWYiuwabTzthRiOS5tSWsWGmCVWlwqIkS9coGro5aa48OF","https://cdn.jsdelivr.net/npm/pdfjs-dist@6.4.299/legacy/build/pdf.worker.min.mjs":"sha384-tINN5IYq7dFaoHBUBBc2yfxGwR38mZn9GhaX31UofKYNgAg/3y8A7IjUI3GuEg/8","https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js":"sha384-EnyY0/GSHQGSxSgMwaIPzSESbqoOLSexfnSMN2AP+39Ckmn92stwABZynq1JyzdT","https://cdn.jsdelivr.net/npm/@e965/xlsx@0.20.3/dist/xlsx.full.min.js":"sha384-EnyY0/GSHQGSxSgMwaIPzSESbqoOLSexfnSMN2AP+39Ckmn92stwABZynq1JyzdT","https://www.gstatic.com/firebasejs/12.19.0/firebase-app-compat.js":"sha384-aUtWR1iCiOCHS8pn1nKNXMZm3I/eDrV63IXWXgE+mHHqJfYTWYV+jGk0sCXz57+U","https://cdn.jsdelivr.net/npm/firebase@12.19.0/firebase-app-compat.js":"sha384-aUtWR1iCiOCHS8pn1nKNXMZm3I/eDrV63IXWXgE+mHHqJfYTWYV+jGk0sCXz57+U","https://www.gstatic.com/firebasejs/12.19.0/firebase-auth-compat.js":"sha384-ZRqyA8Xkw0A6FmVya9A0Werzt9yjKKAp2TCzqVJjHK1O3oyb0z9jMxpkWPVoFtUm","https://cdn.jsdelivr.net/npm/firebase@12.19.0/firebase-auth-compat.js":"sha384-ZRqyA8Xkw0A6FmVya9A0Werzt9yjKKAp2TCzqVJjHK1O3oyb0z9jMxpkWPVoFtUm","https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore-compat.js":"sha384-jxdN9nS+cvQavyzo/bNcMoHfxvk0kWtPAfPDRq3EQ/wvbCVLNheaVIphKWMD4/g0","https://cdn.jsdelivr.net/npm/firebase@12.19.0/firebase-firestore-compat.js":"sha384-jxdN9nS+cvQavyzo/bNcMoHfxvk0kWtPAfPDRq3EQ/wvbCVLNheaVIphKWMD4/g0","https://www.gstatic.com/firebasejs/12.19.0/firebase-app-check-compat.js":"sha384-B/AP4FGRp30uqxiGDJ1XO7TvHcPxaZEPR798W+ASc3xztnppTUQe2E0ThTTM2+FH","https://cdn.jsdelivr.net/npm/firebase@12.19.0/firebase-app-check-compat.js":"sha384-B/AP4FGRp30uqxiGDJ1XO7TvHcPxaZEPR798W+ASc3xztnppTUQe2E0ThTTM2+FH","https://cdn.jsdelivr.net/npm/qr-scanner@1.4.2/qr-scanner-worker.min.js":"sha384-irhTGf70Ryc7WyNLyAljPrpg7lTLXwg5QbYsw40uLuCdAa4ziKF5DVclab4C7uxc"};
+window.wlSri=function(s,src){var h=!window.WL_NOSRI&&window.WL_SRI[src];if(h){s.integrity=h;s.crossOrigin='anonymous';s.src=src+(src.indexOf('?')<0?'?':'&')+'sri';}else s.src=src;};
+(function(){var J='https://cdn.jsdelivr.net/npm/';var L={sortable:[J+'sortablejs@1.15.6/Sortable.min.js'],fc:[J+'fullcalendar@6.1.15/index.global.min.js',J+'@fullcalendar/core@6.1.15/locales/ko.global.min.js'],chart:[J+'chart.js@4.4.7/dist/chart.umd.js'],xlsx:[['https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js',J+'@e965/xlsx@0.20.3/dist/xlsx.full.min.js']],imgc:[J+'browser-image-compression@2.0.2/dist/browser-image-compression.js']};var P={};
+function one1(src){return new Promise(function(res,rej){var s=document.createElement('script');window.wlSri(s,src);s.async=false;s.onload=function(){res();};s.onerror=function(){s.remove();rej(new Error('load '+src));};document.head.appendChild(s);});}
+function one(src){if(!Array.isArray(src))return one1(src);return src.reduce(function(p,u){return p.catch(function(){return one1(u);});},Promise.reject(new Error('start')));}
 window.wlLib=function(n){if(!L[n])return Promise.resolve();if(!P[n]){P[n]=L[n].reduce(function(p,src){return p.then(function(){return one(src);});},Promise.resolve()).then(function(){try{document.dispatchEvent(new CustomEvent('wl-lib',{detail:n}));}catch(e){}},function(e){delete P[n];throw e;});}return P[n];};
 ['sortable','fc'].forEach(function(n){window.wlLib(n).catch(function(){});});
 var later=function(){['imgc','chart','xlsx'].forEach(function(n){window.wlLib(n).catch(function(){});});};
@@ -2476,6 +2511,8 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>자료실</b><span>위쪽 <em>각종서류 올리기</em> 화면 맨 위의 <em>🗂 자료실</em>을 누르면 정리된 회사 서류(사업장별·종류별, 유효기간)를 봅니다. 자료실에서 다시 <em>📤 각종서류 올리기</em>로 돌아갈 수 있습니다.</span></li>
       <li><b>업무 수정 권한</b><span>업무(일정)의 업무명·일정·담당·내용 수정과 삭제는 <em>등록한 사람</em>과 관리자만 할 수 있습니다. 담당자는 진행 상태·진척률·진행 기록·사진만 남기고, 그 밖의 직원은 보기만 합니다.</span></li>
       <li><b>연차·휴일근무 달력</b><span>전자결재 기안 오른쪽 <em>📅 달력 표기</em>에서 연차·반차·휴일근무·연차 사용 계획을 고르고 날짜를 적으면, 최종 승인된 뒤 달력에 <b>굵은 글자</b>(🌴 연차, 🛠 휴일근무)로 표시됩니다. 연차 사용 촉진에 따라 정한 예정일은 달력 위 <em>🗓 연차 사용 계획(촉진)</em>에서 적으면 <i>연차(예정)</i>으로 보입니다. 사유는 달력에 나오지 않습니다.</span></li>
+      <li><b>설비 QR</b><span>시설 일보 창의 <em>🏷 설비 QR</em>에서 설비(소화전 펌프·콤프레샤·승강기 등)를 등록하고 <em>🖨 QR 라벨</em>을 인쇄해 붙여 두면, 휴대폰 기본 카메라로 찍기만 해도 업무일지가 열려 그 설비의 점검·작업 기록과 <em>📋 이 설비 일보 쓰기</em>가 나옵니다. 앱 안의 📷 QR 스캔이나 사진으로 QR 읽기도 됩니다. 설비를 고른 일보는 '대상 설비'가 서류에 들어가고 그 설비 기록에 쌓입니다.</span></li>
+      <li><b>찾기 요령 · 사진 위치</b><span>전체 검색(🔍, Ctrl+K)은 초성으로도 찾습니다(ㅅㅎㄱ → 소화기). 한/영 전환을 깜빡해 영문으로 찍히면 한글 낱말로 찾기를 제안합니다. 관리자가 설정 › <em>사업장 위치</em>에 좌표를 넣어 두면, 시설 일보에 올린 사진의 촬영 위치로 사업장이 자동으로 정해집니다(위치값은 저장하지 않음).</span></li>
       <li><b>시설 일보 (자동 완성)</b><span>홈의 <em>📋 시설 일보</em>(또는 사진첩, 시설·공무 업무 상세의 📋 단추)에서 현장 사진을 찍어 올리고 메모를 한 줄에 한 가지씩 적은 뒤 <em>✨ 자동 완성</em>을 누르면, 회사 로고·결재란이 있는 <em>작업 일보 · 점검 일지 · 사진 대지</em>가 만들어집니다. 메모의 '위치 — 내용', 09:00~11:30, 자재:, 작업자:, ※ 특이사항, 다음: 후속 조치, 이상 없음·주의·불량을 알아서 칸에 나눠 넣습니다. 서류의 글자는 눌러서 바로 고치고, <em>💾 업무일지에 저장</em>(완료 업무 + 사진), <em>🖨 인쇄·PDF</em>, <em>📝 전자결재로 올리기</em>를 고릅니다. 후속 조치는 '할 예정' 업무로 같이 등록할 수 있고, 작성 중인 일보는 이 기기에 임시 저장됩니다. 휴대폰 홈 화면에는 주소 끝에 <em>#ilbo</em>를 붙인 바로가기를 두면 바로 열립니다.</span></li>
       <li><b>자료실 분류·폴더</b><span>자료실은 <em>분류</em>(회사 기본·인증서·확인서·사업장별·기타) 아래에 서류와 <em>폴더</em>가 있습니다. 자료 관리자는 분류 이름 옆 ✏️로 이름을 바꾸고, 🗑로 지우고(안의 서류·폴더는 고른 분류로 옮김), 위쪽 <em>🗂＋ 분류</em>로 새 분류를 만듭니다. 폴더는 분류의 <em>📁＋ 폴더</em>로 그 분류 아래에 만들고, 폴더 ✏️로 이름을 바꾸거나 <em>옮기기</em>로 다른 분류로 보냅니다.</span></li>
       <li><b>그룹웨어 근태계</b><span>평일 매시간 그룹웨어 게시판을 확인할 때 <em>결재문서함</em>의 근태계도 함께 읽어, 관리부 직원의 연차·반차·휴가·휴일근무·출장·외출을 달력에 표시합니다. 최종 결재된 것은 <b>굵게</b>, 결재 중인 것은 흐리게 '(결재 중)'으로 보이고, 반려·회수되면 빠집니다. 이름·종류·기간만 보이고 사유는 저장하지 않습니다.</span></li>
@@ -2523,9 +2560,9 @@ function renderMy(v){
   syncQA();}
 
 /* ───────── 파일·사진으로 올리기 ───────── */
-const IMP_LIBS={pdf:['https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js','https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js'],mammoth:['https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js'],jszip:['https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js']};
+const IMP_LIBS={pdf:['https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js','https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js'],mammoth:['https://cdn.jsdelivr.net/npm/mammoth@1.13.0/mammoth.browser.min.js'],jszip:['https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js']};
 const _libP={};
-function loadScript(src){return new Promise((res,rej)=>{const s=document.createElement('script');s.src=src;s.onload=res;s.onerror=()=>rej(new Error(src));document.head.append(s);});}
+function loadScript(src){return new Promise((res,rej)=>{const s=document.createElement('script');wlSri(s,src);s.onload=res;s.onerror=()=>{s.remove();rej(new Error(src));};document.head.append(s);});}
 function needLib(k){if(!_libP[k])_libP[k]=IMP_LIBS[k].reduce((p,src)=>p.then(()=>loadScript(src)),Promise.resolve()).catch(e=>{delete _libP[k];throw {userMsg:'파일 읽기 도구를 불러오지 못했습니다. 인터넷 연결을 확인하세요.'};});return _libP[k];}
 const IMP_DATE_RE=/(20\d{2})\s*[.\-/년]\s*(\d{1,2})\s*[.\-/월]\s*(\d{1,2})\s*일?\.?/;
 const IMP_MD_RE=/^(\d{1,2})\s*[./]\s*(\d{1,2})(?![\d.])\s*(\([월화수목금토일]\))?/;
@@ -2572,7 +2609,7 @@ function parseSheet(ws,src){const aoa=XLSX.utils.sheet_to_json(ws,{header:1,raw:
     out.push(mkRow(text,{date:(mp.date>=0&&cellDate(row[mp.date]))||docDate||S.imp.baseDate,status:st||statusFromText(text+' '+note)||'done',catMatch:mp.cat>=0?(matchCat(row[mp.cat])||guessCat(text)):undefined,site:mp.site>=0?matchSite(row[mp.site]):undefined,who:who||fileWho||undefined,note,src}));}
   return out;}
 function decodeText(buf){try{return new TextDecoder('utf-8',{fatal:true}).decode(buf).replace(/^﻿/,'');}catch{try{return new TextDecoder('euc-kr').decode(buf);}catch{return new TextDecoder().decode(buf);}}}
-async function pdfExtract(buf){await needLib('pdf');const pdf=await pdfjsLib.getDocument({data:new Uint8Array(buf),isEvalSupported:false}).promise;const lines=[];let len=0;
+async function pdfExtract(buf){await needLib('pdf');const pdf=await pdfjsLib.getDocument({data:new Uint8Array(buf),...PDF_OPT}).promise;const lines=[];let len=0;
   for(let i=1;i<=Math.min(pdf.numPages,30);i++){const pg=await pdf.getPage(i);const tc=await pg.getTextContent();const rows=[];
     for(const it of tc.items){if(!it.str||!it.str.trim())continue;const y=it.transform[5],x=it.transform[4];let r=rows.find(o=>Math.abs(o.y-y)<=2.5);if(!r){r={y,items:[]};rows.push(r);}r.items.push({x,w:it.width||0,s:it.str});}
     rows.sort((a,b)=>b.y-a.y);for(const r of rows){r.items.sort((a,b)=>a.x-b.x);let t='',end=null;for(const it of r.items){if(end!==null&&it.x-end>1.5)t+=' ';t+=it.s;end=it.x+it.w;}t=t.replace(/\s+/g,' ').trim();if(t){lines.push(t);len+=t.length;}}}
@@ -3316,6 +3353,7 @@ function fbCfg(){const c=[window.WL_FIREBASE_CONFIG];try{if(typeof firebaseConfi
 async function startFirebase(cfg){S.mode='firebase';S.preview=false;setSync('wait');gate('loading');
   try{await fbLoadSDK();}catch{gate('error',{msg:'Firebase 도구를 불러오지 못했습니다. 인터넷 연결을 확인한 뒤 새로고침하세요.'});return;}
   try{if(!firebase.apps.length)firebase.initializeApp(cfg);}catch(e){gate('error',{msg:'firebase-config.js 설정값이 올바르지 않습니다. Firebase 콘솔에서 다시 복사해 붙여 넣으세요.',code:e&&e.message});return;}
+  try{await wlAppCheck(cfg);}catch(e){console.warn('App Check',e);}
   S.auth=firebase.auth();try{S.auth.languageCode='ko';}catch{}
   S.fs=firebase.firestore();try{await S.fs.enablePersistence({synchronizeTabs:true});}catch{}
   S.auth.onAuthStateChanged(u=>{if(S.loggingOut)return;if(S.fbEntered){if(!u||u.uid!==S.me.id)location.reload();return;}fbCheckUser(u);});}
@@ -3973,7 +4011,7 @@ setInterval(()=>{ntfTick();legalGen();},60000);
 /* ───────── 파일 미리보기 ─────────
    새 창(팝업) 없이 업무일지 안에서 바로 봅니다. 휴대폰·Claude 앱 안 브라우저처럼 PDF 보기 기능이 없는 곳에서도 열리도록
    PDF는 pdf.js로 직접 그리고, 엑셀·워드는 표·문서로 바꾸고, 한글(hwp·hwpx)·파워포인트는 글자와 그림을 꺼내 보여 줍니다. */
-const PDF_OPT={cMapUrl:'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/cmaps/',cMapPacked:true,standardFontDataUrl:'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/standard_fonts/',isEvalSupported:false};
+const PDF_OPT={cMapUrl:'https://cdn.jsdelivr.net/npm/pdfjs-dist@6.4.299/cmaps/',cMapPacked:true,standardFontDataUrl:'https://cdn.jsdelivr.net/npm/pdfjs-dist@6.4.299/standard_fonts/',wasmUrl:'https://cdn.jsdelivr.net/npm/pdfjs-dist@6.4.299/wasm/',iccUrl:'https://cdn.jsdelivr.net/npm/pdfjs-dist@6.4.299/iccs/',isEvalSupported:false};
 function kindOf(name,type){const e=extOf(name);type=type||'';
   if(/^(dwg|dxf|doc|ppt|hwt|psd|ai)$/.test(e))return 'other';
   if(/^(jpe?g|png|gif|webp|bmp|svg|heic|heif|avif|tiff?)$/.test(e)||(!e&&/^image\//.test(type)))return 'image';
@@ -4270,7 +4308,7 @@ S.up.auto=lsGet('wl.upauto')!=='0';S.up.pdf=false;  /* 32차: 엑셀·워드·�
    (서버로 보내지 않음 · 화면에 그린 모양을 쪽 그림으로 담는 방식이라 원본과 글꼴·줄바꿈이 조금 다를 수 있음, 원본 파일은 그대로 보관)
    한글(hwp·hwpx)·캐드·옛 오피스 파일은 브라우저에서 원래 모양으로 바꿀 수 없어, 한글·캐드에서 만든 PDF를 'PDF 사본'으로 붙일 수 있게 합니다. */
 Object.assign(IMP_LIBS,{docxp:['https://cdn.jsdelivr.net/npm/docx-preview@0.4.1/dist/docx-preview.min.js'],pptxp:['https://cdn.jsdelivr.net/npm/pptx-preview@1.0.7/dist/pptx-preview.umd.js'],
-  h2c:['https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js'],jspdf:['https://cdn.jsdelivr.net/npm/jspdf@4.2.1/dist/jspdf.umd.min.js']});
+  h2c:['https://cdn.jsdelivr.net/npm/html2canvas-pro@2.6.0/dist/html2canvas-pro.min.js'],jspdf:['https://cdn.jsdelivr.net/npm/jspdf@4.2.1/dist/jspdf.umd.min.js']});
 const convertible=(name,type)=>['docx','sheet','pptx'].includes(kindOf(name,type))&&!/\.(ods|xlsb)$/i.test(name);
 const pdfAttachable=(name,type)=>!['pdf','image'].includes(kindOf(name,type));
 const PDF_NAME=n=>String(n||'파일').replace(/\.[^.]+$/,'')+'.pdf';
@@ -7666,6 +7704,7 @@ function ilBodyHTML(G,d){const K=IL_K[G.kind];const td=(x,c)=>`<td${c?` class="$
   const fld=[G.fld.sub,G.fld.leaf].filter(Boolean).join(' › ');const wk=(G.workers.length?[...new Set(G.workers)]:[myName()]).join(', ');
   const rows=G.kind==='photo'?[['작업명',G.name],['사업장',G.site],['일자',ilDate(d.date)],['작성자',ilWriter()]]
     :[[K.v+' 일자',ilDate(d.date)],['사업장',G.site],['분야',fld],[K.v+' 시간',G.time],['작성자',ilWriter()],[G.kind==='chk'?'점검자':'작업자',wk]];
+  if(d.eq&&typeof eqLabel==='function'&&eqLabel(d.eq))rows.push(['대상 설비',eqLabel(d.eq)],['설비 번호',d.eq]);
   let h=`<table class="ap-il-info"><tbody>${rows.reduce((a,r,i)=>a+(i%2?'':'<tr>')+`<th>${esc(r[0])}</th>${td(r[1])}`+(i%2?'</tr>':''),'')}</tbody></table>`;
   let n=0;const sec=t=>`<h2 class="ap-il-h">${++n}. ${esc(t)}</h2>`;
   const notes=[...G.notes.filter(x=>!G.follow.includes(x)).map(x=>`<li>${esc(x)}</li>`),...G.follow.map(x=>`<li class="ap-il-fol">후속 조치: ${esc(x)}</li>`)];
@@ -7760,6 +7799,7 @@ function ilRender(){const dl=ilDlg();const d=IL.d;if(!d)return;const doc=IL.step
 function ilInStep(){const d=IL.d;const L=ilPhs(d);const kinds=[['auto','✨ 자동'],['work',IL_K.work.ico+' 작업 일보'],['chk',IL_K.chk.ico+' 점검 일지'],['photo',IL_K.photo.ico+' 사진 대지']];
   const sites=[...new Set([...(S.config.sites||[]),d.site].filter(Boolean))];
   return `${d.path?`<p class="il-note">「${esc(d.title)}」 업무로 일보를 ${d.body?'고칩니다':'만듭니다'}.</p>`:''}
+  <div class="il-eqrow">${d.eq&&typeof eqLabel==='function'&&eqLabel(d.eq)?`<span class="il-eq">🏷 대상 설비 <b>${esc(eqLabel(d.eq))}</b><button type="button" class="il-eqx" data-il-eqx aria-label="설비 빼기">✕</button></span>`:''}<button type="button" class="btn sm ghost" data-eq-open title="설비 목록·QR 스캔 — 설비를 고르면 그 설비 일보로 씁니다">🏷 설비 QR${d.eq?' 바꾸기':''}</button></div>
   <div class="il-row"><label>날짜 <input type="date" id="il-date" value="${esc(d.date)}"></label><label>사업장 <select id="il-site">${sites.map(s=>`<option ${s===d.site?'selected':''}>${esc(s)}</option>`).join('')}</select></label>
     <div class="il-kind"><span>서류</span><div class="seg sm" role="group" aria-label="서류 종류">${kinds.map(([k,l])=>`<button type="button" data-il-k="${k}" aria-pressed="${(d.kind||'auto')===k}">${l}</button>`).join('')}</div></div></div>
   <section class="il-sec"><h3>사진 <small>${L.length}/${IL_MAXPH}장 · 구분(작업 전·중·후)은 눌러서 바꿉니다</small></h3>
@@ -7826,16 +7866,16 @@ async function ilSaveTask(quiet){const d=IL.d;if(!d||IL.busy)return null;ilColle
   if(!d.body){toast('먼저 ✨ 자동 완성을 눌러 주세요.','err');return null;}
   const K=IL_K[d.gk]||IL_K.work;const title=(d.title||'').trim()||`${K.s}: ${d.site}`;const desc=ilDescText(d).slice(0,4000);
   const fld=txFit('fac',(d.fld&&d.fld.sub)||'시설 행정',(d.fld&&d.fld.leaf)||'');
-  const ilbo={v:1,kind:d.gk||'work',docTitle:(d.docTitle||K.t).slice(0,60),body:String(d.body).slice(0,30000),memo:d.memo.slice(0,2000),ph:d.ph.slice(0,IL_MAXPH),edited:!!d.edited,at:nowISO(),by:myId()};
+  const ilbo={v:1,...(d.eq?{eq:d.eq}:{}),kind:d.gk||'work',docTitle:(d.docTitle||K.t).slice(0,60),body:String(d.body).slice(0,30000),memo:d.memo.slice(0,2000),ph:d.ph.slice(0,IL_MAXPH),edited:!!d.edited,at:nowISO(),by:myId()};
   IL.busy=true;setSync('saving');let fol=0;
   try{if(d.path){const t=findTask(d.path);if(!t){toast('원래 업무를 찾지 못했습니다. 지워졌는지 확인해 주세요.','err');return null;}
       const keep=t.photos.map(p=>{const m=d.photos.find(x=>x.id===p.id);return m?{...p,cap:String(m.cap||'').slice(0,100),tag:['before','during','after'].includes(m.tag)?m.tag:''}:p;});
       const add=d.photos.filter(p=>d.fresh.includes(p.id)&&d.ph.includes(p.id)&&!t.photos.some(x=>x.id===p.id)).map(ilMeta);
       const gone=d.fresh.filter(id=>!d.ph.includes(id));if(gone.length)deleteAssets(gone);
-      const np=await updateTask(t,{title,desc:t.desc&&!t.ilbo?t.desc:desc,site:d.site||t.site,photos:[...keep,...add],ilbo,logs:[...t.logs,{at:nowISO(),by:myId(),kind:'note',text:t.ilbo?'📋 시설 일보를 고쳤습니다':'📋 시설 일보를 만들었습니다',issue:false}]});
+      const np=await updateTask(t,{title,desc:t.desc&&!t.ilbo?t.desc:desc,site:d.site||t.site,photos:[...keep,...add],ilbo,...(d.eq?{eq:d.eq}:{}),logs:[...t.logs,{at:nowISO(),by:myId(),kind:'note',text:t.ilbo?'📋 시설 일보를 고쳤습니다':'📋 시설 일보를 만들었습니다',issue:false}]});
       if(np)d.path=np;}
     else{const gone=d.fresh.filter(id=>!d.ph.includes(id));if(gone.length)deleteAssets(gone);
-      const path=await createTask({title,cat:'fac',sub:fld.sub,leaf:fld.leaf,tx:TXV,site:d.site||'전사',scope:'day',status:'done',priority:'normal',repeat:'none',start:d.date,due:d.date,doneAt:d.date,progress:100,desc,assignees:[myId()],assigneeText:'',photos:ilPhs(d).map(ilMeta),ilbo});
+      const path=await createTask({title,cat:'fac',sub:fld.sub,leaf:fld.leaf,tx:TXV,site:d.site||'전사',scope:'day',status:'done',priority:'normal',repeat:'none',start:d.date,due:d.date,doneAt:d.date,progress:100,desc,assignees:[myId()],assigneeText:'',photos:ilPhs(d).map(ilMeta),ilbo,...(d.eq?{eq:d.eq}:{})});
       d.path=path;try{localStorage.removeItem(ilKey());}catch{}
       if(d.fol.length&&d.folOn!==false)for(const f of d.fol){try{await createTask({title:f.slice(0,100),cat:'fac',sub:fld.sub,leaf:fld.leaf,tx:TXV,site:d.site||'전사',scope:'day',status:'plan',priority:'normal',repeat:'none',start:ilNextWd(d.date),due:'',doneAt:'',progress:0,desc:`${fmtYMD(d.date)} 시설 일보 「${title}」에서 이어진 후속 조치`,assignees:[myId()],assigneeText:'',photos:[]});fol++;}catch{}}}
     d.fresh=[];d.title=title;IL.dirty=false;
@@ -7893,6 +7933,7 @@ document.addEventListener('click',async e=>{const T=e.target;if(!T||!T.closest||
   const k2=T.closest('[data-il-k2]');if(k2){if(k2.dataset.ilK2===d.gk)return;ilCollect();const old=d.kind;d.kind=k2.dataset.ilK2;const pv=d.edited;await ilAuto(false);if(d.edited&&pv)d.kind=old;return;}
   const tg=T.closest('[data-il-tag]');if(tg){ilReadIn();const p=d.photos.find(x=>x.id===tg.dataset.ilTag);if(!p)return;p.tag=PH_TAG_ORDER[(PH_TAG_ORDER.indexOf(p.tag||'')+1)%PH_TAG_ORDER.length];IL.dirty=true;ilSave();ilRender();return;}
   const dl=T.closest('[data-il-del]');if(dl){ilReadIn();const id=dl.dataset.ilDel;d.ph=d.ph.filter(x=>x!==id);if(d.fresh.includes(id)){d.fresh=d.fresh.filter(x=>x!==id);d.photos=d.photos.filter(x=>x.id!==id);deleteAssets([id]);}IL.dirty=true;ilSave();ilRender();return;}
+  if(T.closest('[data-il-eqx]')){ilReadIn();d.eq='';ilSave();ilRender();return;}
   const ro=T.closest('[data-il-open]');if(ro){const t=findTask(ro.dataset.ilOpen);if(!t)return;ilCollect();if(!d.path&&ilHas(d))ilSave();ilOpen({task:t});return;}
   if(!ilCanEdit()||IL.step!=='doc')return;
   const g=T.closest('[data-il-tg]');if(g){ilCollect();const p=d.photos.find(x=>x.id===g.dataset.ilTg);if(!p)return;p.tag=PH_TAG_ORDER[(PH_TAG_ORDER.indexOf(p.tag||'')+1)%PH_TAG_ORDER.length];IL.dirty=true;ilSave();ilRender();return;}
@@ -7948,6 +7989,269 @@ async function errPanel(){const box=$('#set-err');if(!box)return;box.innerHTML=e
       errPanel();}}catch{}return r;};}
 document.addEventListener('click',e=>{if(e.target&&e.target.closest&&e.target.closest('[data-err-reload]'))errPanel();});
 window.errApi={log:errLog,list:errList};
+
+/* ───────── 38차: 외부 도구 보안·판 올림 ─────────
+   · 모든 고정판 외부 도구에 무결성 해시(SRI, sha384) — 파일이 한 글자라도 바뀌면 실행하지 않음(WL_SRI, build28).
+   · SheetJS 0.18.5 → 0.20.3(cdn.sheetjs.com, 안 되면 같은 파일 미러), mammoth 1.8.0 → 1.13.0, html2canvas → html2canvas-pro 2.6.0,
+     pdf.js 3.11.174 → 6.4.299(legacy) — 모듈은 받아서 해시를 확인한 뒤 실행(wlVerified), 일꾼(worker)도 같은 방식으로 따로 돌림.
+   · DOMPurify 3.4.17: 결재 본문·회사서식 변환·일보 등 화면에 넣는 HTML을 한 번 더 정화(apClean 앞단, 회사서식 변환 결과).
+   · Firebase App Check: firebase-config.js 에 window.WL_APPCHECK_KEY(reCAPTCHA v3 사이트 키)를 넣으면 켜짐. */
+const LIBJ='https://cdn.jsdelivr.net/npm/';
+Object.assign(IMP_LIBS,{purify:[LIBJ+'dompurify@3.4.17/dist/purify.min.js'],exifr:[LIBJ+'exifr@7.1.3/dist/lite.umd.js'],qrscan:[LIBJ+'qr-scanner@1.4.2/qr-scanner.umd.min.js'],
+  qrgen:[LIBJ+'qrcode-generator@2.0.4/dist/qrcode.js'],driver:[LIBJ+'driver.js@1.10.2/dist/driver.js.iife.js']});
+/* 받아서 해시 확인 → 같은 출처(blob:) 주소 — ES 모듈·일꾼처럼 <script integrity>를 못 쓰는 파일용 */
+const _wlv={};
+function wlVerified(url,type='text/javascript'){if(_wlv[url])return _wlv[url];
+  const h=!window.WL_NOSRI&&(window.WL_SRI||{})[url];
+  _wlv[url]=fetch(h?url+(url.includes('?')?'&':'?')+'sri':url,{mode:'cors',credentials:'omit',...(h?{integrity:h}:{})}).then(r=>{if(!r.ok)throw new Error('load '+url);return r.blob();})
+    .then(b=>URL.createObjectURL(new Blob([b],{type}))).catch(e=>{delete _wlv[url];throw e;});
+  return _wlv[url];}
+function wlCss(url){return new Promise((res,rej)=>{if(document.querySelector(`link[data-src="${CSS.escape(url)}"]`))return res();const l=document.createElement('link');l.rel='stylesheet';l.dataset.src=url;
+  const h=!window.WL_NOSRI&&(window.WL_SRI||{})[url];if(h){l.integrity=h;l.crossOrigin='anonymous';l.href=url+'?sri';}else l.href=url;l.onload=res;l.onerror=()=>{l.remove();rej(new Error(url));};document.head.append(l);});}
+/* pdf.js 6 (legacy 빌드 — 오래된 휴대폰 브라우저까지) */
+const PDFJS_B=LIBJ+'pdfjs-dist@6.4.299/legacy/build/';let _pdfP=null;
+function pdfLoad(){if(window.pdfjsLib&&window.pdfjsLib.__wl6)return Promise.resolve();
+  if(!_pdfP)_pdfP=(async()=>{const [m,w]=await Promise.all([wlVerified(PDFJS_B+'pdf.min.mjs'),wlVerified(PDFJS_B+'pdf.worker.min.mjs')]);
+      const mod=await import(m);mod.GlobalWorkerOptions.workerSrc=w;
+      /* 6판에서 없어진 문서.destroy() 를 예전처럼 쓰도록 (불러오기 작업 destroy 로 연결) */
+      const getDocument=src=>{const task=mod.getDocument(src);const p=task.promise.then(doc=>{if(typeof doc.destroy!=='function')doc.destroy=()=>task.destroy();return doc;});
+        return new Proxy(task,{get(t,k){if(k==='promise')return p;const v=t[k];return typeof v==='function'?v.bind(t):v;},set(t,k,v){t[k]=v;return true;}});};
+      window.pdfjsLib=Object.assign(Object.create(null),mod,{getDocument,__wl6:true});})()
+    .catch(e=>{_pdfP=null;console.warn('pdf.js',e);throw {userMsg:'PDF 도구를 불러오지 못했습니다. 인터넷 연결을 확인하세요.'};});
+  return _pdfP;}
+{const _n=needLib;needLib=function(k){if(k==='pdf')return pdfLoad();return _n.apply(this,arguments);};}
+/* DOMPurify — 첫 화면 뒤에 불러 두고, 있으면 정화에 씀(없으면 기존 화이트리스트 정화만) */
+const PURIFY_OPT={ADD_ATTR:['contenteditable','colspan','rowspan'],FORBID_TAGS:['style','form','script','iframe','object','embed','link','meta','base','svg','math'],ALLOW_DATA_ATTR:true,KEEP_CONTENT:true};
+function wlPurify(html,opt){if(!window.DOMPurify||!html)return html;try{return DOMPurify.sanitize(String(html),{...PURIFY_OPT,...(opt||{})});}catch{return html;}}
+{const _a=apClean;apClean=function(html,o){return _a.call(this,wlPurify(html),o);};}
+{const _g=fmGetConv;fmGetConv=async function(f){const r=await _g.apply(this,arguments);try{if(r&&typeof r.html==='string'&&!r.__pur){await needLib('purify').catch(()=>{});
+      if(window.DOMPurify){r.html=DOMPurify.sanitize(r.html,{...PURIFY_OPT,ADD_TAGS:['input'],ADD_ATTR:['contenteditable','colspan','rowspan','checked','type','value','placeholder']});r.__pur=true;}}}catch{}return r;};}
+setTimeout(()=>{needLib('purify').catch(()=>{});},2500);
+/* Firebase App Check (reCAPTCHA v3) — 키가 있을 때만 */
+async function wlAppCheck(cfg){const key=window.WL_APPCHECK_KEY||(cfg&&cfg.appCheckKey);if(!key||!window.firebase)return false;
+  if(!firebase.appCheck){let ok=false;for(const base of FB_CDN){try{await loadScript(base+'firebase-app-check-compat.js');ok=true;break;}catch{}}if(!ok)return false;}
+  firebase.appCheck().activate(new firebase.appCheck.ReCaptchaV3Provider(key),true);return true;}
+/* 관리자 점검: 모든 외부 도구가 무결성 해시대로 받아지는지 (콘솔 libApi.check()) */
+window.libApi={sri:()=>window.WL_SRI,
+  async check(){const out={};for(const [u,h] of Object.entries(window.WL_SRI||{})){try{const r=await fetch(u+(u.includes('?')?'&':'?')+'sri',{mode:'cors',credentials:'omit',cache:'no-store'});const b=await r.arrayBuffer();
+      const d=await crypto.subtle.digest('SHA-384',b);const got='sha384-'+btoa(String.fromCharCode(...new Uint8Array(d)));out[u]=got===h?'ok':'다름 '+got;}catch(e){out[u]='못 받음 '+(e&&e.message||e);}}return out;},
+  pdf:pdfLoad,verified:wlVerified,css:wlCss};
+
+/* ───────── 38차: 처음 사용 안내 둘러보기 (driver.js 1.10.2, MIT) ─────────
+   처음 로그인한 직원에게 한 번 — 화면 메뉴·빠른 기록·시설 일보·업무 등록·알림·전체 검색·인쇄·전자결재·내 정보·사용 안내를 차례로 짚어 줌.
+   휴대폰이면 아래 탭바 기준. 사용 안내 화면 맨 위 '🧭 처음 사용 안내 다시 보기'로 언제든 다시. 자동 테스트 브라우저(webdriver)에서는 저절로 뜨지 않음. */
+const TOUR_V='1';
+const tourKey=()=>`wl.tour${TOUR_V}.${(S.me&&S.me.id)||'x'}`;
+const TOUR_STEPS=[
+  {el:null,t:'👋 환영합니다',d:'관리부 통합 업무일지를 1분 동안 둘러봅니다. 언제든 <b>사용 안내</b>에서 다시 볼 수 있습니다.'},
+  {el:['nav.tabs','#mnav'],t:'화면 메뉴',d:'내 업무·팀 현황·칸반·달력·목록·보고서, 각종서류 올리기·법정 업무·전자결재·그룹웨어로 옮겨 갑니다. 휴대폰은 아래 탭바와 <b>더보기</b>.'},
+  {el:['#qa-text'],t:'빠른 기록',d:'오늘 한 일이나 할 일을 적고 <b>Enter</b>. 분류(대·중·소)는 내용을 보고 자동으로 고르고, 날짜·상태·사진도 이 줄에서 바로 붙입니다.'},
+  {el:['#qa [data-il-open-new]'],t:'📋 시설 일보',d:'현장 사진 몇 장 + 간단한 메모 → <b>✨ 자동 완성</b>으로 작업 일보·점검 일지·사진 대지를 만들고, 업무일지 저장·인쇄·전자결재까지 한 번에.'},
+  {el:['#btn-new','#fab'],t:'+ 업무 등록',d:'마감일·담당자·반복·사진까지 자세히 적을 때 씁니다. 업무를 등록한 사람만 고칠 수 있고, 담당자는 진행 상황을 적습니다.'},
+  {el:['#btn-ntf'],t:'알림',d:'나에게 온 결재, 그룹웨어 새 글, 마감이 다가온 업무, 자료실 변경 소식이 모입니다.'},
+  {el:['#btn-search'],t:'전체 검색 (Ctrl+K)',d:'업무·자료실 서류·그룹웨어 소식·회사서식을 한 번에 찾습니다. <b>초성</b>(예: ㅅㅎㄱ → 소화기)으로도 찾을 수 있습니다.'},
+  {el:['#btn-print'],t:'인쇄·PDF',d:'지금 화면을 인쇄하거나 PDF로 저장합니다. 업무 창이 열려 있으면 그 업무 한 장, 보고서 화면이면 보고서 용지만.'},
+  {el:['a[data-view="appr"]','#mnav [data-mnav="more"]'],t:'전자결재',d:'회사서식을 직접 작성하거나 스캔을 올려 결재를 올립니다. 결재선은 직무별로 자동, 연차·휴일근무는 승인되면 달력에 표시됩니다.'},
+  {el:['#me-chip'],t:'내 정보',d:'내 이름 확인·바꾸기, 글자 크게, 휴대폰 홈 화면에 추가하는 방법이 있습니다.'},
+  {el:['a[href="#help"]'],t:'사용 안내',d:'기능별 설명이 있습니다. 이 둘러보기는 사용 안내 맨 위 <b>🧭 처음 사용 안내 다시 보기</b>로 다시 볼 수 있습니다.'}];
+const tourVis=el=>{if(!el)return false;const r=el.getBoundingClientRect();if(r.width<2||r.height<2)return false;const cs=getComputedStyle(el);return cs.visibility!=='hidden'&&cs.display!=='none'&&!el.closest('[hidden]');};
+function tourPick(c){if(!c)return null;for(const s of c){const el=$(s);if(tourVis(el))return el;}return null;}
+let TOUR_ON=false;
+async function tourStart(manual){if(TOUR_ON)return;if(S.view!=='my'&&!manual){return;}
+  try{await Promise.all([needLib('driver'),wlCss(LIBJ+'driver.js@1.10.2/dist/driver.css')]);}catch{if(manual)toast('안내 도구를 불러오지 못했습니다. 인터넷 연결을 확인하세요.','err');return;}
+  const D=window.driver&&window.driver.js&&window.driver.js.driver;if(!D)return;
+  if(manual&&S.view!=='my'){go('#my');await new Promise(r=>setTimeout(r,500));}
+  const steps=[];for(const st of TOUR_STEPS){const el=st.el?tourPick(st.el):null;if(st.el&&!el)continue;steps.push({...(el?{element:el}:{}),popover:{title:st.t,description:st.d,...(el?{}:{align:'center'})}});}
+  TOUR_ON=true;lsSet(tourKey(),'1');
+  const dv=D({showProgress:true,progressText:'{{current}} / {{total}}',nextBtnText:'다음 →',prevBtnText:'← 이전',doneBtnText:'마침',allowClose:true,overlayOpacity:.55,stagePadding:6,popoverClass:'wl-tour',
+    steps,onDestroyed:()=>{TOUR_ON=false;}});
+  dv.drive();}
+function tourAuto(){if(TOUR_ON||navigator.webdriver||!S.me||!S.me.id||!S.myStaff||S.view!=='my')return;if(lsGet(tourKey()))return;
+  if($$('dialog[open]').length||(document.getElementById('gate')&&!document.getElementById('gate').hidden))return;
+  if(!$('#qa-text'))return;tourStart(false);}
+let _tourT=0;
+{const _r=render;render=function(){const r=_r.apply(this,arguments);if(!_tourT&&!navigator.webdriver){_tourT=setTimeout(()=>{_tourT=0;tourAuto();},2800);}return r;};}
+{const _h=renderHelp;renderHelp=function(v){const r=_h.apply(this,arguments);try{if(v&&!$('[data-tour-start]',v))v.insertAdjacentHTML('afterbegin','<div class="tour-bar"><button type="button" class="btn" data-tour-start>🧭 처음 사용 안내 다시 보기</button><span class="help">화면 메뉴·빠른 기록·시설 일보·알림·검색 등을 1분 동안 짚어 줍니다.</span></div>');}catch{}return r;};}
+document.addEventListener('click',e=>{if(e.target&&e.target.closest&&e.target.closest('[data-tour-start]')){tourStart(true);}});
+window.tourApi={start:tourStart,reset:()=>{try{localStorage.removeItem(tourKey());}catch{}}};
+
+/* ───────── 38차: 한글 처리 (es-hangul 2.4.0, 토스, MIT) ─────────
+   · 전체 검색 초성: 'ㅅㅎㄱ' → 소화기, 'ㅇㅊ' → 연차 (자음 두 글자 이상만, 다른 낱말과 함께 써도 됨)
+   · 한/영 전환 실수: 'thghkrl'처럼 영문으로 찍혀 결과가 없으면 「소화기」로 찾기 제안
+   · 알림·확인 창 문장의 '을(를)·이(가)·은(는)·과(와)·(으)로'를 앞 글자 받침에 맞게 하나로 */
+let HG=null;
+const hgLoad=()=>HG?Promise.resolve(HG):wlVerified(LIBJ+'es-hangul@2.4.0/dist/index.mjs').then(u=>import(u)).then(m=>{HG=m;return m;});
+setTimeout(()=>{hgLoad().catch(()=>{});},3000);
+const hgIsCho=t=>/^[ㄱ-ㅎ]{2,}$/.test(t);
+{const _g=gsHit;gsHit=function(hay,terms){if(_g(hay,terms))return true;if(!HG||!terms||!terms.some(hgIsCho))return false;const h=String(hay||'');if(!h)return false;const low=h.toLowerCase();let cho=null;
+  return terms.every(t=>{if(hgIsCho(t)){if(cho===null){try{cho=HG.getChoseong(h.replace(/\s+/g,''));}catch{cho='';}}return cho.includes(t);}return low.includes(t)||(t.length>=4&&low.replace(/\s+/g,'').includes(t));});};}
+{const _r=gsRender;gsRender=function(){const r=_r.apply(this,arguments);try{const q=($('#gs-q')||{}).value||'';const box=$('#gs-res');
+    if(box&&$('.gs-empty',box)&&HG&&/^[a-zA-Z\s]{2,}$/.test(q.trim())&&!/[A-Z]{2,}/.test(q)){const ko=HG.convertQwertyToHangul(q.trim());
+      if(ko&&/[가-힣]/.test(ko)&&ko!==q)$('.gs-empty',box).insertAdjacentHTML('beforeend',`<p class="gs-ko">한/영 전환이 영문이었나요? <button type="button" class="btn sm" data-gs-ko="${esc(ko)}">「${esc(ko)}」로 찾기</button></p>`);}}catch{}return r;};}
+document.addEventListener('click',e=>{const b=e.target&&e.target.closest&&e.target.closest('[data-gs-ko]');if(!b)return;const q=$('#gs-q');if(q){q.value=b.dataset.gsKo;gsRender();q.focus();}});
+/* 조사 맞추기 */
+const HG_JO=[['을(를)','을/를'],['를(을)','을/를'],['이(가)','이/가'],['가(이)','이/가'],['은(는)','은/는'],['는(은)','은/는'],['과(와)','과/와'],['와(과)','과/와'],['(으)로','으로/로'],['(이)라는','이라는/라는'],['(이)나','이나/나']];
+const HG_RE=new RegExp(`([가-힣])([」』"'\\)\\]]?)(${HG_JO.map(([a])=>a.replace(/[()]/g,'\\$&')).join('|')})`,'g');
+function joFix(s){if(!HG||typeof s!=='string'||s.indexOf('(')<0)return s;try{return s.replace(HG_RE,(m,ch,q,p)=>{const pr=HG_JO.find(([a])=>a===p);if(!pr)return m;let pk='';try{pk=HG.josa.pick(ch,pr[1]);}catch{return m;}return pk?ch+q+pk:m;});}catch{return s;}}
+{const _t=toast;toast=function(m,...a){return _t.call(this,joFix(m),...a);};}
+{const _c=confirmDlg;confirmDlg=function(t,m,...a){return _c.call(this,joFix(t),joFix(m),...a);};}
+window.hgApi={load:hgLoad,jo:joFix,cho:s=>HG?HG.getChoseong(s):''};
+
+/* ───────── 38차: 사진 정보 읽기 (exifr 7.1.3 lite, MIT) ─────────
+   · 찍은 시각: JPEG뿐 아니라 HEIC·PNG·TIFF 사진도 읽음(못 읽으면 예전 방식)
+   · 찍은 위치(GPS) → 시설 일보 사업장 자동: 관리자가 설정 › '사업장 위치'에 사업장 좌표를 넣어 두면, 사진 위치에서 2km 안 가장 가까운 사업장으로 정함.
+     사진의 위치값은 사업장 판정에만 쓰고 저장하지 않음(올리는 사진은 다시 그려서 위치 정보가 빠짐). 직원이 사업장을 직접 고르면 그대로 둠. */
+const GEO={sites:null,p:null};
+const GEO_DOC='wl/_sys/geo';
+function geoLoad(force){if(S.mode!=='firebase'||!S.fs)return Promise.resolve({});if(GEO.sites&&!force)return Promise.resolve(GEO.sites);
+  if(!GEO.p||force)GEO.p=S.fs.doc(GEO_DOC).get().then(s=>{const d=s.exists?s.data():{};const o={};for(const [k,v] of Object.entries(d.sites||{}))if(Array.isArray(v)&&v.length===2&&isFinite(v[0])&&isFinite(v[1]))o[k]=[+v[0],+v[1]];GEO.sites=o;return o;}).catch(()=>{GEO.p=null;return {};});
+  return GEO.p;}
+const exifReady=()=>Promise.race([needLib('exifr'),new Promise((_,r)=>setTimeout(()=>r(new Error('timeout')),3000))]);
+{const _ed=exifDate;exifDate=async function(file){try{await exifReady();if(window.exifr&&file){const o=await exifr.parse(file,{pick:['DateTimeOriginal','CreateDate','ModifyDate'],reviveValues:false,xmp:false,icc:false,iptc:false,jfif:false,ihdr:false});
+      const v=o&&String(o.DateTimeOriginal||o.CreateDate||o.ModifyDate||'');const m=v.match(/^(\d{4})[:-](\d{2})[:-](\d{2})[ T](\d{2}):(\d{2})/);if(m&&+m[1]>1990)return `${m[1]}-${m[2]}-${m[3]}T${m[4]}:${m[5]}`;}}catch{}
+  return _ed(file);};}
+async function exifGps(files){try{await exifReady();}catch{return null;}if(!window.exifr)return null;
+  for(const f of Array.from(files||[]).slice(0,6)){try{const g=await exifr.gps(f);if(g&&isFinite(g.latitude)&&isFinite(g.longitude)&&(g.latitude||g.longitude))return {lat:g.latitude,lng:g.longitude};}catch{}}return null;}
+function geoDist(a,b){const R=6371,t=x=>x*Math.PI/180;const dl=t(b[0]-a[0]),dn=t(b[1]-a[1]);const h=Math.sin(dl/2)**2+Math.cos(t(a[0]))*Math.cos(t(b[0]))*Math.sin(dn/2)**2;return 2*R*Math.asin(Math.sqrt(h));}
+async function geoSiteOf(g){if(!g)return null;const sites=await geoLoad();let best=null;for(const [k,v] of Object.entries(sites)){if(!(S.config.sites||[]).includes(k))continue;const d=geoDist([g.lat,g.lng],v);if(d<=2&&(!best||d<best.d))best={site:k,d};}return best;}
+/* 시설 일보: 사진 위치로 사업장 */
+{const _a=ilAddPhotos;ilAddPhotos=async function(files){const d=IL.d;try{if(d&&!d.siteManual&&files&&files.length){const g=await exifGps(files);const b=await geoSiteOf(g);
+      if(b&&b.site!==d.site){d.site=b.site;const sel=$('#il-site');if(sel)sel.value=b.site;toast(`사진 위치로 사업장을 「${b.site}」(으)로 정했습니다. 다르면 사업장 칸에서 바꿔 주세요.`);}}}catch{}
+  return _a.apply(this,arguments);};}
+document.addEventListener('change',e=>{if(e.target&&e.target.id==='il-site'&&IL.d){IL.d.siteManual=true;}});
+/* 설정: 사업장 위치 (관리자) */
+function geoRows(){const sites=(S.config.sites||[]).filter(s=>s&&s!=='전사');const G=GEO.sites||{};
+  return sites.map(s=>{const v=G[s]||['',''];return `<div class="geo-r" data-geo="${esc(s)}"><b>${esc(s)}</b><input inputmode="decimal" class="geo-lat" placeholder="위도 37.39…" value="${esc(v[0])}" aria-label="${esc(s)} 위도"><input inputmode="decimal" class="geo-lng" placeholder="경도 126.95…" value="${esc(v[1])}" aria-label="${esc(s)} 경도"><button type="button" class="btn sm ghost" data-geo-here>📍 지금 위치</button><label class="btn sm ghost file-btn">🖼 사진에서<input type="file" accept="image/*" data-geo-photo hidden></label></div>`;}).join('');}
+async function geoPanel(){const box=$('#set-geo');if(!box)return;await geoLoad(true);box.innerHTML=geoRows()+'<div class="geo-f"><button type="button" class="btn sm primary" data-geo-save>위치 저장</button><small>사업장에서 「📍 지금 위치」를 누르거나, 사업장에서 찍은 사진(위치 켜짐)을 고르면 좌표가 들어갑니다. 2km 안이면 그 사업장으로 봅니다.</small></div>';}
+{const _o=openSettings;openSettings=async function(){const r=await _o.apply(this,arguments);try{if(S.canEdit&&S.mode==='firebase'){const host=$('#dlg-settings .modal-b');
+      if(host&&!$('#set-geo-sec'))(($('#set-err-sec'))||null)?$('#set-err-sec').insertAdjacentHTML('beforebegin','<section id="set-geo-sec" class="set-err"><h3>📍 사업장 위치 <small>사진 GPS로 시설 일보 사업장 자동 판정 (관리자)</small></h3><div id="set-geo"></div></section>'):host.insertAdjacentHTML('beforeend','<section id="set-geo-sec" class="set-err"><h3>📍 사업장 위치 <small>사진 GPS로 시설 일보 사업장 자동 판정 (관리자)</small></h3><div id="set-geo"></div></section>');
+      geoPanel();}}catch{}return r;};}
+document.addEventListener('click',async e=>{const T=e.target;if(!T||!T.closest)return;
+  const h=T.closest('[data-geo-here]');if(h){const row=h.closest('[data-geo]');if(!navigator.geolocation){toast('이 기기에서는 위치를 읽을 수 없습니다.','err');return;}
+    h.disabled=true;navigator.geolocation.getCurrentPosition(p=>{h.disabled=false;$('.geo-lat',row).value=p.coords.latitude.toFixed(6);$('.geo-lng',row).value=p.coords.longitude.toFixed(6);toast(`${row.dataset.geo} 좌표를 넣었습니다(정확도 약 ${Math.round(p.coords.accuracy)}m). '위치 저장'을 눌러 주세요.`);},
+      err=>{h.disabled=false;toast('위치를 읽지 못했습니다. 브라우저의 위치 권한을 확인하세요.','err');},{enableHighAccuracy:true,timeout:15000});return;}
+  if(T.closest('[data-geo-save]')){if(!S.canEdit)return;const o={};let bad=0;for(const row of $$('#set-geo [data-geo]')){const a=$('.geo-lat',row).value.trim(),b=$('.geo-lng',row).value.trim();if(!a&&!b)continue;const la=+a,ln=+b;if(!(la>32&&la<39.5&&ln>124&&ln<132)){bad++;continue;}o[row.dataset.geo]=[+la.toFixed(6),+ln.toFixed(6)];}
+    if(bad){toast('대한민국 범위가 아닌 좌표가 있습니다. 위도 33~39, 경도 124~132로 적어 주세요.','err');return;}
+    try{await fbWrite(S.fs.doc(GEO_DOC).set({sites:o,at:nowISO(),by:myId()}));GEO.sites=o;toast(`사업장 위치 ${Object.keys(o).length}곳을 저장했습니다.`);}catch(err){writeError(err);}}});
+document.addEventListener('change',async e=>{const T=e.target;if(!T||!T.matches||!T.matches('[data-geo-photo]'))return;const row=T.closest('[data-geo]');const f=T.files&&T.files[0];T.value='';if(!f||!row)return;
+  const g=await exifGps([f]);if(!g){toast('이 사진에는 위치 정보가 없습니다. 휴대폰 카메라의 위치 태그를 켜고 찍은 사진을 골라 주세요.','err');return;}
+  $('.geo-lat',row).value=g.lat.toFixed(6);$('.geo-lng',row).value=g.lng.toFixed(6);toast(`${row.dataset.geo} 좌표를 사진에서 넣었습니다. '위치 저장'을 눌러 주세요.`);});
+setTimeout(()=>{needLib('exifr').catch(()=>{});},4000);
+window.geoApi={load:geoLoad,siteOf:geoSiteOf,gps:exifGps,dist:geoDist};
+
+/* ───────── 38차: 설비 QR (qr-scanner 1.4.2 · qrcode-generator 2.0.4, MIT) ─────────
+   · 설비 목록(wl/_sys/equip/{id}: 이름·사업장·분야·위치·메모) — 관리부 누구나 등록, 고치기·지우기는 등록한 사람과 관리자.
+   · QR 라벨 인쇄(A4 3열): QR = https://…/leeki/#eq=<id> → 휴대폰 기본 카메라로 찍으면 업무일지가 열리며 그 설비 화면으로.
+   · 설비 화면: 최근 점검·작업 기록(그 설비로 쓴 일보·업무), '📋 이 설비 일보 쓰기'(사업장·위치·설비 이름을 채운 시설 일보).
+   · 앱 안 📷 QR 스캔(브라우저 내장 BarcodeDetector, 없으면 일꾼으로 읽음) · 사진으로 QR 읽기. */
+const EQ={list:null,p:null,q:'',site:'',sel:new Set(),view:'list',cur:null,scan:null};
+const EQ_COL='wl/_sys/equip';
+const eqUrl=id=>`${location.origin}${location.pathname}#eq=${encodeURIComponent(id)}`;
+function eqNorm(id,v){if(!v||typeof v.name!=='string'||v.del)return null;const s=(x,n)=>typeof x==='string'?x.slice(0,n):'';return {id,name:s(v.name,60),site:s(v.site,30),sub:s(v.sub,40),loc:s(v.loc,60),note:s(v.note,200),by:s(v.by,60),uid:s(v.uid,80),at:s(v.at,40)};}
+function eqLoad(force){if(S.mode!=='firebase'||!S.fs)return Promise.resolve(EQ.list||[]);if(EQ.list&&!force)return Promise.resolve(EQ.list);
+  if(!EQ.p||force)EQ.p=S.fs.collection(EQ_COL).get().then(qs=>{EQ.list=qs.docs.map(d=>eqNorm(d.id,d.data())).filter(Boolean).sort((a,b)=>(a.site||'').localeCompare(b.site||'','ko')||a.name.localeCompare(b.name,'ko',{numeric:true}));return EQ.list;}).catch(()=>{EQ.p=null;return EQ.list||[];});
+  return EQ.p;}
+const eqGet=id=>(EQ.list||[]).find(e=>e.id===id)||null;
+const eqLabel=id=>{const e=eqGet(id);return e?`${e.name}${e.loc?` (${e.loc})`:''}`:'';};
+const eqCanEdit=e=>S.canEdit||(e&&S.me&&e.uid===S.me.id);
+const eqTasks=id=>S.tasks.filter(t=>t.eq===id||(t.ilbo&&t.ilbo.eq===id)).sort((a,b)=>(b.doneAt||b.start||b.due||'').localeCompare(a.doneAt||a.start||a.due||''));
+function eqDlg(){let d=$('#dlg-eq');if(!d){d=document.createElement('dialog');d.className='modal eq-dlg';d.id='dlg-eq';d.setAttribute('aria-label','설비 QR');document.body.appendChild(d);
+    d.addEventListener('close',()=>{eqScanStop();});}return d;}
+async function eqOpen(id,view){if(!S.me||!S.me.id){toast('로그인한 뒤 쓸 수 있습니다.','err');return;}const d=eqDlg();EQ.view=view||(id?'one':'list');EQ.cur=id||null;
+  d.innerHTML='<div class="modal-b one"><p class="help">설비 목록을 불러오는 중…</p></div>';if(!d.open)d.showModal();await eqLoad(true);
+  if(id&&!eqGet(id)){toast('이 QR의 설비를 찾지 못했습니다. 지워졌거나 다른 업무일지의 QR입니다.','err');EQ.view='list';EQ.cur=null;}eqRender();}
+function eqRender(){const d=eqDlg();const v=EQ.view;const e=EQ.cur?eqGet(EQ.cur):null;
+  const head=`<header class="modal-h"><h2>🏷 설비 QR <small>${v==='one'&&e?esc(e.name):v==='edit'?(e?'설비 고치기':'설비 등록'):v==='scan'?'QR 스캔':'점검·작업 이력'}</small></h2><button type="button" class="icon-btn" data-eq-x aria-label="닫기">✕</button></header>`;
+  let body='',foot='';
+  if(v==='list'){const sites=[...new Set((EQ.list||[]).map(x=>x.site).filter(Boolean))];const q=EQ.q.trim().toLowerCase();
+    const L=(EQ.list||[]).filter(x=>(!EQ.site||x.site===EQ.site)&&(!q||[x.name,x.loc,x.sub,x.note,x.site].join(' ').toLowerCase().includes(q)||(typeof gsHit==='function'&&gsHit([x.name,x.loc,x.sub].join(' '),q.split(/\s+/)))));
+    body=`<div class="eq-bar"><input type="search" id="eq-q" placeholder="설비 이름·위치 찾기 (초성도 됨)" value="${esc(EQ.q)}"><select id="eq-site"><option value="">모든 사업장</option>${sites.map(s=>`<option ${s===EQ.site?'selected':''}>${esc(s)}</option>`).join('')}</select>
+      <button type="button" class="btn" data-eq-scan>📷 QR 스캔</button><button type="button" class="btn primary" data-eq-new>＋ 설비 등록</button></div>
+    ${L.length?`<ul class="eq-list">${L.map(x=>{const t=eqTasks(x.id)[0];return `<li><label class="eq-ck"><input type="checkbox" data-eq-sel="${esc(x.id)}" ${EQ.sel.has(x.id)?'checked':''} aria-label="${esc(x.name)} 고르기"></label><button type="button" class="eq-row" data-eq-one="${esc(x.id)}"><b>${esc(x.name)}</b><span>${esc([x.site,x.loc,x.sub].filter(Boolean).join(' · '))}</span><small>${t?`최근 ${esc(fmtMD(t.doneAt||t.start||t.due))} ${esc(t.title.slice(0,30))}`:'기록 없음'}</small></button></li>`;}).join('')}</ul>`
+      :`<div class="eq-empty">${(EQ.list||[]).length?'찾는 설비가 없습니다.':'아직 등록한 설비가 없습니다. <b>＋ 설비 등록</b>으로 소화전 펌프·콤프레샤·승강기·수변전 설비 등을 올리고 QR 라벨을 붙여 두면, 휴대폰 카메라로 찍어 바로 이력과 일보를 엽니다.'}</div>`}`;
+    foot=`<span class="eq-cnt">${L.length}대${EQ.sel.size?` · ${EQ.sel.size}대 고름`:''}</span><span class="spacer"></span><label class="btn ghost file-btn">🖼 사진으로 QR 읽기<input type="file" accept="image/*" data-eq-img hidden></label><button type="button" class="btn" data-eq-print ${L.length?'':'disabled'}>🖨 QR 라벨 인쇄 (${EQ.sel.size||L.length}대)</button>`;}
+  else if(v==='one'&&e){const T=eqTasks(e.id);
+    body=`<div class="eq-one"><div class="eq-qr" aria-hidden="true">${eqQrSvg(eqUrl(e.id),4)}</div><table class="eq-info"><tr><th>설비</th><td>${esc(e.name)}</td></tr><tr><th>사업장</th><td>${esc(e.site||'-')}</td></tr><tr><th>위치</th><td>${esc(e.loc||'-')}</td></tr><tr><th>분야</th><td>${esc(e.sub||'-')}</td></tr>${e.note?`<tr><th>메모</th><td>${esc(e.note)}</td></tr>`:''}<tr><th>등록</th><td>${esc(e.by||'')} ${esc(e.at?fmtYMD(localDate(e.at)):'')}</td></tr></table></div>
+      <h3 class="eq-h">점검·작업 기록 <small>${T.length}건</small></h3>${T.length?`<ul class="eq-recs">${T.slice(0,15).map(t=>`<li><button type="button" data-eq-task="${esc(t.path)}"><span>${t.ilbo?(IL_K[t.ilbo.kind]||{}).ico||'📋':'•'}</span><b>${esc(fmtMD(t.doneAt||t.start||t.due))}</b> ${esc(t.title)}<small>${esc(whoText(t)||'')}${t.photos.length?` · 📷 ${t.photos.length}`:''}</small></button></li>`).join('')}</ul>`:'<p class="help">아직 이 설비로 쓴 일보·업무가 없습니다.</p>'}`;
+    foot=`<button type="button" class="btn" data-eq-back>← 목록</button>${eqCanEdit(e)?`<button type="button" class="btn ghost" data-eq-edit>✏️ 고치기</button><button type="button" class="btn ghost danger" data-eq-del>🗑 지우기</button>`:''}<span class="spacer"></span><button type="button" class="btn" data-eq-print1>🖨 QR 라벨</button>${S.canWrite&&S.myStaff?'<button type="button" class="btn primary" data-eq-ilbo>📋 이 설비 일보 쓰기</button>':''}`;}
+  else if(v==='edit'){const x=e||{name:'',site:(S.staff[S.myStaff]||{}).site||'',sub:'',loc:'',note:''};const subs=(typeof subsOf==='function'?subsOf('fac'):[]);const sites=(S.config.sites||[]).filter(s=>s!=='전사');
+    body=`<div class="eq-form"><label>설비 이름 <input id="eq-name" maxlength="60" value="${esc(x.name)}" placeholder="예: 소화전 펌프 1호기, 콤프레샤 2호기, 승강기 1호기"></label>
+      <label>사업장 <select id="eq-site2">${[...new Set([...sites,x.site].filter(Boolean))].map(s=>`<option ${s===x.site?'selected':''}>${esc(s)}</option>`).join('')}</select></label>
+      <label>분야 <select id="eq-sub"><option value="">(고르기)</option>${subs.map(s=>`<option ${s===x.sub?'selected':''}>${esc(s)}</option>`).join('')}</select></label>
+      <label>위치 <input id="eq-loc" maxlength="60" value="${esc(x.loc)}" placeholder="예: 지하1층 기계실"></label>
+      <label class="wide">메모 <input id="eq-note" maxlength="200" value="${esc(x.note)}" placeholder="예: 매월 1회 작동 점검, 업체 ○○설비"></label></div>`;
+    foot=`<button type="button" class="btn" data-eq-cancel>취소</button><span class="spacer"></span><button type="button" class="btn primary" data-eq-save>저장</button>`;}
+  else if(v==='scan'){body=`<div class="eq-scan"><video id="eq-video" playsinline muted></video><p class="help" id="eq-scan-msg">설비에 붙인 QR을 네모 안에 맞춰 주세요.</p></div>`;
+    foot=`<button type="button" class="btn" data-eq-back>← 목록</button><span class="spacer"></span><label class="btn ghost file-btn">🖼 사진으로 QR 읽기<input type="file" accept="image/*" data-eq-img hidden></label>`;}
+  d.innerHTML=`<form method="dialog" onsubmit="return false">${head}<div class="modal-b one">${body}</div><footer class="modal-f">${foot}</footer></form>`;
+  if(v==='scan')eqScanStart();else eqScanStop();if(v==='edit')setTimeout(()=>{const n=$('#eq-name');if(n)n.focus();},50);}
+/* QR 그림 */
+function eqQr(text){if(!window.qrcode)return null;const q=qrcode(0,'M');q.addData(text);q.make();return q;}
+function eqQrSvg(text,cell){const q=eqQr(text);if(!q){needLib('qrgen').then(()=>{if($('#dlg-eq')&&$('#dlg-eq').open)eqRender();}).catch(()=>{});return '<div class="eq-qr-wait">QR…</div>';}
+  const n=q.getModuleCount(),m=2;let p='';for(let r=0;r<n;r++)for(let c=0;c<n;c++)if(q.isDark(r,c))p+=`M${c+m},${r+m}h1v1h-1z`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${n+m*2} ${n+m*2}" width="${(n+m*2)*cell}" height="${(n+m*2)*cell}" shape-rendering="crispEdges" role="img" aria-label="QR"><rect width="100%" height="100%" fill="#fff"/><path d="${p}" fill="#000"/></svg>`;}
+async function eqPrint(ids){await needLib('qrgen').catch(()=>{});if(!window.qrcode){toast('QR 도구를 불러오지 못했습니다. 인터넷 연결을 확인하세요.','err');return;}
+  const L=ids.map(eqGet).filter(Boolean);if(!L.length)return;
+  const html=`<div class="eq-labels">${L.map(e=>`<div class="eq-lab"><div class="eq-lab-qr">${eqQrSvg(eqUrl(e.id),3)}</div><div class="eq-lab-t"><b>${esc(e.name)}</b><span>${esc([e.site,e.loc].filter(Boolean).join(' · '))}</span>${e.sub?`<span>${esc(e.sub)}</span>`:''}<small>㈜태성산업 관리부 · 업무일지 설비 이력<br>휴대폰 카메라로 찍어 점검 기록·일보</small><i>${esc(e.id)}</i></div></div>`).join('')}</div>`;
+  await fmDoPrint(html,{w:210,h:297,ml:10,mr:10,mt:10,mb:10,land:false});}
+/* 스캔 — 읽는 엔진: 브라우저 내장 BarcodeDetector, 없으면 해시 확인한 일꾼(qr-scanner-worker) */
+async function eqEngine(){if('BarcodeDetector' in window){try{const f=await BarcodeDetector.getSupportedFormats();if(f.includes('qr_code'))return new BarcodeDetector({formats:['qr_code']});}catch{}}
+  const u=await wlVerified(LIBJ+'qr-scanner@1.4.2/qr-scanner-worker.min.js');const m=await import(u);return m.createWorker();}
+async function eqLib(){await needLib('qrscan');if(window.QrScanner&&QrScanner.createQrEngine!==eqEngine)QrScanner.createQrEngine=eqEngine;}
+function eqParse(txt){const m=String(txt||'').match(/#eq=([A-Za-z0-9_-]{3,40})/);return m?m[1]:null;}
+function eqFound(txt){const id=eqParse(txt);if(id&&eqGet(id)){eqScanStop();EQ.cur=id;EQ.view='one';eqRender();toast(`「${eqGet(id).name}」 설비를 열었습니다.`);return true;}
+  const m=$('#eq-scan-msg');if(m)m.textContent=id?'이 QR의 설비가 목록에 없습니다(지워졌을 수 있음).':'업무일지 설비 QR이 아닙니다.';return false;}
+async function eqScanStart(){const v=$('#eq-video');if(!v)return;try{await eqLib();}catch{const m=$('#eq-scan-msg');if(m)m.textContent='QR 도구를 불러오지 못했습니다.';return;}
+  try{if(!(await QrScanner.hasCamera())){const m=$('#eq-scan-msg');if(m)m.textContent='카메라가 없습니다. 「사진으로 QR 읽기」를 써 주세요.';return;}
+    EQ.scan=new QrScanner(v,r=>{eqFound(r&&r.data);},{returnDetailedScanResult:true,preferredCamera:'environment',highlightScanRegion:true,highlightCodeOutline:true,maxScansPerSecond:8});await EQ.scan.start();}
+  catch(e){const m=$('#eq-scan-msg');if(m)m.textContent='카메라를 켜지 못했습니다. 브라우저의 카메라 권한을 확인하거나 「사진으로 QR 읽기」를 써 주세요.';}}
+function eqScanStop(){if(EQ.scan){try{EQ.scan.stop();EQ.scan.destroy();}catch{}EQ.scan=null;}}
+async function eqScanImg(f){try{await eqLib();const r=await QrScanner.scanImage(f,{returnDetailedScanResult:true,qrEngine:await eqEngine()});if(!eqFound(r&&r.data))toast('업무일지 설비 QR이 아니거나 목록에 없는 설비입니다.','err');}catch{toast('사진에서 QR을 찾지 못했습니다. QR이 크게 나오게 다시 찍어 주세요.','err');}}
+/* 저장·지우기 */
+async function eqSave(){const e=EQ.cur?eqGet(EQ.cur):null;const name=$('#eq-name').value.trim();if(!name){toast('설비 이름을 적어 주세요.','err');$('#eq-name').focus();return;}
+  if(!S.canWrite){toast('보기 전용 권한이라 등록할 수 없습니다.','err');return;}
+  const site=$('#eq-site2').value,sub=$('#eq-sub').value,loc=$('#eq-loc').value.trim(),note=$('#eq-note').value.trim();
+  if(!e&&(EQ.list||[]).some(x=>x.name===name&&x.site===site&&x.loc===loc)){toast('같은 사업장·위치에 같은 이름의 설비가 있습니다.','err');return;}
+  const id=e?e.id:'e'+Date.now().toString(36).slice(-5)+Math.random().toString(36).slice(2,5);
+  const doc={name:name.slice(0,60),site,sub,loc:loc.slice(0,60),note:note.slice(0,200),by:e?e.by:String(myName()||'').slice(0,30),uid:e?e.uid:(S.me&&S.me.id)||'',at:e?e.at:nowISO(),upd:nowISO()};
+  try{await fbWrite(S.fs.doc(`${EQ_COL}/${id}`).set(doc));await eqLoad(true);EQ.cur=id;EQ.view='one';eqRender();toast(e?'설비를 고쳤습니다.':'설비를 등록했습니다. 🖨 QR 라벨을 인쇄해 설비에 붙여 주세요.');}catch(err){writeError(err);}}
+async function eqDelete(){const e=EQ.cur&&eqGet(EQ.cur);if(!e||!eqCanEdit(e))return;
+  if(!await confirmDlg('설비 지우기',`「${e.name}」을(를) 설비 목록에서 지울까요?\n그동안의 일보·업무 기록은 그대로 남고, 붙여 둔 QR은 더는 열리지 않습니다.`,'지우기'))return;
+  try{await fbWrite(S.fs.doc(`${EQ_COL}/${e.id}`).set({del:true,name:e.name,at:nowISO(),by:String(myName()||'').slice(0,30)}));await eqLoad(true);EQ.view='list';EQ.cur=null;EQ.sel.delete(e.id);eqRender();toast('설비를 지웠습니다.');}catch(err){writeError(err);}}
+/* 시설 일보와 잇기 */
+async function eqIlbo(id){const e=eqGet(id);if(!e)return;eqDlg().close();const dl=$('#dlg-ilbo');if(dl&&dl.open&&IL.d){try{ilCollect();}catch{}}else ilOpen();const d=IL.d;if(!d)return;
+  if(d.eq&&d.eq!==id&&ilHas(d)&&!await confirmDlg('설비 바꾸기',`작성 중인 일보의 설비를 「${e.name}」(으)로 바꿀까요?`,'바꾸기'))return;
+  d.eq=id;if(e.site&&(S.config.sites||[]).includes(e.site)){d.site=e.site;d.siteManual=true;}
+  const line=`${e.loc?e.loc+' ':''}${e.name} — `;if(!d.memo.trim())d.memo=line;else if(!d.memo.includes(e.name))d.memo=line+'\n'+d.memo;
+  if(IL.step!=='in')IL.step='in';ilSave();ilRender();const m=$('#il-memo');if(m){m.focus();m.setSelectionRange(line.length,line.length);}}
+/* 이벤트 */
+document.addEventListener('click',async ev=>{const T=ev.target;if(!T||!T.closest)return;
+  if(T.closest('[data-eq-open]')){ev.preventDefault();eqOpen(null,'list');return;}
+  if(!T.closest('#dlg-eq'))return;
+  if(T.closest('[data-eq-x]')){eqDlg().close();return;}
+  const one=T.closest('[data-eq-one]');if(one){EQ.cur=one.dataset.eqOne;EQ.view='one';eqRender();return;}
+  if(T.closest('[data-eq-back]')||T.closest('[data-eq-cancel]')){EQ.view=EQ.cur&&T.closest('[data-eq-cancel]')&&eqGet(EQ.cur)?'one':'list';if(EQ.view==='list')EQ.cur=null;eqRender();return;}
+  if(T.closest('[data-eq-new]')){EQ.cur=null;EQ.view='edit';eqRender();return;}
+  if(T.closest('[data-eq-edit]')){EQ.view='edit';eqRender();return;}
+  if(T.closest('[data-eq-save]')){eqSave();return;}
+  if(T.closest('[data-eq-del]')){eqDelete();return;}
+  if(T.closest('[data-eq-scan]')){EQ.view='scan';eqRender();return;}
+  if(T.closest('[data-eq-print]')){const q=EQ.q.trim().toLowerCase();const ids=EQ.sel.size?[...EQ.sel]:(EQ.list||[]).filter(x=>(!EQ.site||x.site===EQ.site)&&(!q||[x.name,x.loc,x.sub,x.note,x.site].join(' ').toLowerCase().includes(q))).map(x=>x.id);eqPrint(ids);return;}
+  if(T.closest('[data-eq-print1]')){eqPrint([EQ.cur]);return;}
+  if(T.closest('[data-eq-ilbo]')){eqIlbo(EQ.cur);return;}
+  const tk=T.closest('[data-eq-task]');if(tk){const t=findTask(tk.dataset.eqTask);if(!t)return;eqDlg().close();if(t.ilbo)ilOpen({task:t});else openTask(t);return;}});
+document.addEventListener('input',e=>{if(e.target&&e.target.id==='eq-q'){EQ.q=e.target.value;clearTimeout(EQ._t);EQ._t=setTimeout(()=>{const pos=e.target.selectionStart;eqRender();const q=$('#eq-q');if(q){q.focus();try{q.setSelectionRange(pos,pos);}catch{}}},250);}});
+document.addEventListener('change',e=>{const T=e.target;if(!T)return;if(T.id==='eq-site'){EQ.site=T.value;eqRender();return;}
+  if(T.matches&&T.matches('[data-eq-sel]')){if(T.checked)EQ.sel.add(T.dataset.eqSel);else EQ.sel.delete(T.dataset.eqSel);const c=$('.eq-cnt');const b=$('[data-eq-print]');if(b)b.textContent=`🖨 QR 라벨 인쇄 (${EQ.sel.size||$$('#dlg-eq .eq-list li').length}대)`;if(c)c.textContent=`${$$('#dlg-eq .eq-list li').length}대${EQ.sel.size?` · ${EQ.sel.size}대 고름`:''}`;return;}
+  if(T.matches&&T.matches('[data-eq-img]')){const f=T.files&&T.files[0];T.value='';if(f)eqScanImg(f);}});
+/* QR 주소(#eq=…)로 열기 — 휴대폰 카메라로 라벨을 찍으면 이리로 */
+function eqHash(){const m=location.hash.match(/^#eq=([A-Za-z0-9_-]{3,40})$/);if(!m)return;const id=m[1];let n=0;const tm=setInterval(()=>{n++;if(S.me&&S.me.id&&S.myStaff&&S.fs){clearInterval(tm);history.replaceState(null,'','#my');try{route();}catch{}eqOpen(id,'one');}else if(n>60)clearInterval(tm);},250);}
+window.addEventListener('hashchange',eqHash);setTimeout(eqHash,900);
+/* 시설 일보: 설비 표시·저장 */
+{const _b=ilBlank;ilBlank=function(){return {..._b.apply(this,arguments),eq:''};};}
+{const _f=ilFromTask;ilFromTask=function(t){const d=_f.apply(this,arguments);d.eq=(t.ilbo&&t.ilbo.eq)||t.eq||'';return d;};}
+window.eqApi={open:eqOpen,load:eqLoad,get:eqGet,label:eqLabel,url:eqUrl,parse:eqParse,svg:eqQrSvg,print:eqPrint,ilbo:eqIlbo,state:()=>EQ};
+{const _o=ilOpen;ilOpen=function(){const r=_o.apply(this,arguments);try{const d=IL.d;if(d&&d.eq&&!eqGet(d.eq))eqLoad().then(()=>{if(IL.d===d&&$('#dlg-ilbo')&&$('#dlg-ilbo').open)ilRender();});}catch{}return r;};}
 
 /* ───────── 시작 ───────── */
 function boot(){
