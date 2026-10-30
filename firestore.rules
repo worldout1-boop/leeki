@@ -9,6 +9,8 @@ rules_version = '2';
 // · 사진·서류(올린 파일) 삭제는 관리자만 할 수 있습니다. 다른 구성원은 '삭제 요청'(delreq)을 보냅니다.
 // · 비공개 업무(priv/{uid})는 본인만 읽고 쓸 수 있습니다. 관리자도 볼 수 없습니다.
 // · 그룹웨어 소식(gw)은 구성원 모두 읽고, 기록은 관리자만 합니다.
+// · 개인정보 자료(pii — 이력서·급여·주민등록번호 13자리 등이 든 사진·파일)는 구성원 누구나 올릴 수 있지만,
+//   읽기·삭제는 app/members.pii 에 지정된 총괄 관리자만 할 수 있습니다. 올린 사람도 다시 볼 수 없습니다.
 
 service cloud.firestore {
   match /databases/{database}/documents {
@@ -34,6 +36,10 @@ service cloud.firestore {
       return signedIn()
         && (myEmail() in members().emails || myEmail() in members().admins);
     }
+    // 개인정보 자료를 볼 수 있는 사람: 관리자 중 app/members.pii 에 지정된 총괄 관리자
+    function isPiiOwner() {
+      return isAdmin() && myEmail() in members().get('pii', []);
+    }
 
     // 접속 허용 목록 — 관리자만 수정, 처음 한 번만 '관리자로 지정' 가능
     match /app/members {
@@ -46,7 +52,11 @@ service cloud.firestore {
       allow update: if isAdmin()
         && request.resource.data.admins is list
         && request.resource.data.emails is list
-        && myEmail() in request.resource.data.admins;
+        && myEmail() in request.resource.data.admins
+        // 총괄 관리자(pii) 지정은 지금의 총괄 관리자만 바꿀 수 있음 (비어 있을 때만 관리자가 본인을 지정)
+        && (request.resource.data.get('pii', []) == resource.data.get('pii', [])
+          || myEmail() in resource.data.get('pii', [])
+          || (resource.data.get('pii', []).size() == 0 && request.resource.data.get('pii', []) == [myEmail()]));
       allow delete: if false;
     }
 
@@ -176,6 +186,29 @@ service cloud.firestore {
         && request.resource.data.at is string && request.resource.data.at.size() <= 40;
       allow get: if signedIn() && (request.auth.uid == uid || isAdmin());
       allow list, delete: if isAdmin();
+    }
+
+    // 개인정보 자료 — 올리기는 구성원 누구나, 읽기·삭제는 총괄 관리자만
+    match /pii/{id} {
+      allow get, list: if isPiiOwner();
+      allow create: if isMember()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.ts == request.time
+        && request.resource.data.kind in ['photo', 'file']
+        && request.resource.data.keys().hasOnly(['kind', 'name', 'type', 'size', 'n', 'th', 'why', 'src', 'title', 'site', 'path', 'at', 'by', 'byName', 'uid', 'ts'])
+        && request.resource.data.name is string && request.resource.data.name.size() <= 120
+        && request.resource.data.why is list && request.resource.data.why.size() <= 6;
+      allow update, delete: if isPiiOwner();
+
+      // 내용 조각 (사진 0·미리보기 th, 파일 0,1,2…) — 한 번 쓰면 바꿀 수 없음
+      match /c/{cid} {
+        allow get, list: if isPiiOwner();
+        allow create: if isMember()
+          && ((request.resource.data.get('b', null) is bytes && request.resource.data.b.size() <= 1000000)
+            || (request.resource.data.get('d', null) is string && request.resource.data.d.size() < 1000000));
+        allow update: if false;
+        allow delete: if isPiiOwner();
+      }
     }
 
     // 비공개 업무·사진 — 본인만 (관리자 포함 다른 사람은 읽을 수 없음)

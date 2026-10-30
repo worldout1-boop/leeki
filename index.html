@@ -991,6 +991,27 @@ html.big{zoom:1.12}
 .ntf-pop .ic.t-wk{background:var(--done)}.ntf-pop .ic.t-join{background:#b45309}.ntf-pop .ic.t-bk{background:var(--hold)}
 .g-admin{margin-top:10px;font-size:11.5px;color:var(--ink-3)}.g-admin summary{cursor:pointer}
 .cal-top{display:flex;align-items:center;gap:8px;margin:0 0 8px}.cal-top .cal-opts{margin-left:0}
+
+/* 17차: 개인정보 자료 */
+.pii-dlg{width:min(860px,96vw)}
+.pii-note{font-size:13px;color:var(--ink-2);line-height:1.6;margin:0 0 12px}
+.pii-list{list-style:none;margin:0 0 12px;padding:0;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.pii-row{display:grid;grid-template-columns:52px 1fr auto;gap:12px;align-items:center;padding:10px 12px;border-top:1px solid var(--line)}
+.pii-row:first-child{border-top:0}.pii-row.un{background:#fdf3f5}
+.pii-row .dm{min-width:0;display:flex;flex-direction:column;gap:2px}.pii-row .dm b{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pii-row .dm small{font-size:12px;color:var(--ink-3)}.pii-row .da{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.pii-fi{width:52px;height:40px;border-radius:6px;overflow:hidden;display:grid;place-items:center;background:#f3eef0;color:#8a2236;font-weight:700;font-size:12px}
+.pii-fi img{width:100%;height:100%;object-fit:cover}
+.pii-why{display:flex;gap:4px;flex-wrap:wrap}.pii-why i{font-style:normal;font-size:11.5px;padding:1px 7px;border-radius:999px;background:#f6e3e7;color:#7a1d31;font-weight:600}
+.pii-scan{margin-top:8px;border-top:1px solid var(--line);padding-top:10px}.pii-scan summary{cursor:pointer;font-weight:600;font-size:13.5px}.pii-scan h4{margin:12px 0 6px;font-size:13px}
+.pii-btn{border-color:#c9a3ad;color:#7a1d31}
+.pii-chk{color:#7a1d31;display:flex;gap:6px;align-items:center;margin-top:8px;font-size:12.5px;font-weight:600}
+.pii-help{font-size:11.5px;color:var(--ink-3);margin:3px 0 0}
+img[data-pii]{outline:2px dashed #b85a6e;outline-offset:-2px}
+.uc-ok.pii{color:#7a1d31;background:#f6e3e7}
+.pii-set{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.pii-set small{flex-basis:100%;color:var(--ink-3)}
+.ntf-pop .ic.t-pii{background:#8a2236;color:#fff}
+@media (max-width:640px){.pii-row{grid-template-columns:44px 1fr}.pii-row .da{grid-column:1/-1;justify-content:flex-start}}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -1123,6 +1144,8 @@ html.big{zoom:1.12}
           <div class="ph-tools" id="t-ph-tools"><div class="seg sm" id="t-ph-tag" role="group" aria-label="새 사진 구분"><button type="button" data-v="">구분 없음</button><button type="button" data-v="before">작업 전</button><button type="button" data-v="during">작업 중</button><button type="button" data-v="after">작업 후</button></div><label class="chk"><input type="checkbox" id="t-ph-stamp"> 날짜·현장 표시</label></div>
           <div class="gallery" id="t-gallery"></div>
           <div class="ph-btns"><label class="btn ghost sm file-btn" id="t-photo-btn">사진 첨부<input type="file" id="t-photo-input" accept="image/*" multiple></label><label class="btn ghost sm file-btn cam-only" id="t-cam-btn">카메라<input type="file" id="t-cam-input" accept="image/*" capture="environment"></label></div>
+          <label class="chk pii-chk" id="t-pii-row" title="켜고 올린 사진은 검사 없이 총괄 관리자에게만 전달됩니다"><input type="checkbox" id="t-ph-pii"> 🔐 개인정보 사진 — 총괄 관리자에게만</label>
+          <p class="help pii-help">이력서·급여·주민번호·신분증·진단서가 찍힌 사진은 자동으로 알아보고 관리자에게만 보냅니다.</p>
           <p class="help" id="t-photo-opt" style="font-size:11.5px;color:var(--ink-3);margin:6px 0 0">올리는 사진은 자동으로 줄이고(위치정보 삭제) 작은 미리보기를 함께 만듭니다. 사진 아래 구분 표시를 누르면 작업 전·중·후를 바꿀 수 있습니다.</p>
           <p class="help" id="t-photo-help" style="font-size:12px;color:var(--ink-3);margin:6px 0 0" hidden></p></section>
         <section id="t-log-sec"><h3>진행 기록 <small id="t-log-n"></small></h3>
@@ -1346,6 +1369,12 @@ html.big{zoom:1.12}
     <footer class="modal-f"><span class="help" style="font-size:12px;color:var(--ink-3)">달력·내 업무 화면에 표시되고, 전날·당일 알림(종)에 나옵니다.</span><span class="spacer"></span><button type="button" class="btn" data-close>닫기</button></footer>
   </form>
 </dialog>
+<dialog class="modal pii-dlg" id="dlg-pii" aria-labelledby="pii-h">
+  <form method="dialog">
+    <header class="modal-h"><div><h2 id="pii-h">🔐 개인정보 자료 — 총괄 관리자만</h2></div><button type="button" class="icon-btn" data-close aria-label="닫기">✕</button></header>
+    <div class="modal-b one"><div id="pii-body"></div></div>
+  </form>
+</dialog>
 <div id="toasts" aria-live="polite"></div>
 
 <script>
@@ -1420,7 +1449,7 @@ const fmtYMD=s=>isDate(s)?`${s.slice(0,4)}.${s.slice(5,7)}.${s.slice(8,10)}`:'';
 const fmtLong=s=>isDate(s)?`${s.slice(0,4)}년 ${+s.slice(5,7)}월 ${+s.slice(8,10)}일 ${WD[dow(s)]}요일`:'';
 const localDate=iso=>{try{return toStr(new Date(iso));}catch{return '';}};
 const rid=()=>{const a=new Uint8Array(12);crypto.getRandomValues(a);return Array.from(a,b=>'abcdefghijklmnopqrstuvwxyz0123456789'[b%36]).join('');};
-const clean=o=>JSON.parse(JSON.stringify(o));
+const clean=o=>JSON.parse(JSON.stringify(o),cleanRev);
 const isAssetId=id=>typeof id==='string'&&/^[A-Za-z0-9_-]{4,80}$/.test(id);
 function timeAgo(iso){const t=new Date(iso).getTime();if(!t)return '';const m=Math.floor((Date.now()-t)/6e4);if(m<1)return '방금';if(m<60)return m+'분 전';if(m<60*24)return Math.floor(m/60)+'시간 전';const d=new Date(t);return `${d.getMonth()+1}.${d.getDate()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;}
 function hhmm(iso){const d=new Date(iso);return isNaN(d)?'':`${d.getMonth()+1}.${d.getDate()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;}
@@ -1842,6 +1871,7 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>전체 검색</b><span>오른쪽 위 돋보기(또는 Ctrl+K)를 누르면 업무·진행 기록·특이사항·서류 내용·법정 업무·그룹웨어 소식을 한 번에 찾습니다. 띄어쓰기는 상관없습니다.</span></li>
       <li><b>휴대폰에서</b><span>아래쪽 탭(내 업무·팀 현황·달력·그룹웨어·더보기)으로 이동합니다. 브라우저 메뉴의 <em>홈 화면에 추가</em>(아이폰은 공유 › 홈 화면에 추가)를 누르면 앱처럼 아이콘으로 열립니다. 글자가 작으면 <em>더보기 › 글자 크게</em>.</span></li>
       <li><b>달력 보기</b><span>달력 아래에서 <em>내 업무만 · 완료 숨김 · 여러 날 업무는 마감일에만</em>을 고를 수 있습니다(이 기기에 기억). 칸반의 완료 칸은 이번 주 완료만 보이고, <em>지난 완료 보기</em>로 더 볼 수 있습니다.</span></li>
+      <li><b>개인정보 자료</b><span>이력서·급여·주민등록번호 13자리·신분증·진단서 같은 개인정보가 든 사진·파일은 올리는 순간 자동으로 검사해 <em>총괄 관리자에게만</em> 전달됩니다. 다른 직원과 올린 분에게는 '관리자 전용' 그림만 보이고, 보고서·사진첩에도 나오지 않습니다. 생년월일만 있는 자료는 그대로 올라갑니다. 업무 창에서 <em>🔐 개인정보 사진</em>을 켜고 올리면 검사 없이 바로 전달됩니다. 업무 내용에 주민등록번호 13자리를 적으면 저장할 때 뒷자리가 가려집니다.</span></li>
       <li><b>정기 일정</b><span>월례조회(매월 첫째 월요일 08:30 군포공장 5층 식당, 3·6·9·12월 법정 의무교육)와 관리부 업무회의(매주 목요일 16:00 안양본사 6층 대회의실, 공휴일·월례조회 주간과 전 주는 쉬고 조회 후 진행)가 달력과 내 업무 화면에 표시되고 전날·당일 알림이 옵니다. 공휴일이면 날짜가 자동으로 옮겨지고, 그룹웨어 공지가 오면 그 날짜로 확정됩니다. 관리자는 달력의 <em>정기 일정</em>에서 날짜를 바꾸거나 쉼으로 지정할 수 있습니다.</span></li>
       <li><b>그룹웨어 소식</b><span>회사 그룹웨어(업무연락·공지사항·경조사 등) 새 글을 Claude가 평일 08~19시 매시간 확인해 요약합니다. 상단 <a href="#gw">그룹웨어</a>에서 요약·일정·관리부 할 일을 보고, 필요한 글은 <em>업무로 등록</em>을 누르면 내용이 채워진 등록 창이 열립니다. 새 글은 알림(종)에도 표시됩니다.</span></li>
       <li><b>🔒 비공개 업무</b><span>내 업무 입력란의 <em>🔒 나만 보기</em>를 켜고 등록하면 나만 보는 업무가 됩니다. 관리자·다른 직원에게 보이지 않고 팀 현황·총괄·보고서·주간업무일지에도 들어가지 않습니다. 업무 상세에서 <em>팀에 공개하기</em>로 언제든 공개할 수 있습니다.</span></li>
@@ -2095,7 +2125,7 @@ function computeReport(p){
   const key=tasks.filter(t=>SC[t.scope].lv>Math.min(KIND[p.kind].lv,3)&&(overlaps(t,ps,pe)||(t.status==='doing'&&s0(t)<=pe))&&!(t.status==='done'&&t.doneAt&&t.doneAt<ps));
   const issues=[];for(const t of tasks)for(const l of t.logs){const d=localDate(l.at);if(l.issue&&d>=ps&&d<=pe)issues.push({t,l,d});}issues.sort((a,b)=>a.l.at.localeCompare(b.l.at));
   const memos=[];for(const m of S.memos){if(m.date<ps||m.date>pe)continue;for(const [u,e] of Object.entries(m.entries))if((!p.who||u===p.who)&&e&&typeof e.text==='string'&&e.text.trim())memos.push({date:m.date,uid:u,text:e.text});}memos.sort((a,b)=>a.date.localeCompare(b.date));
-  const photos=[];for(const t of tasks)for(const ph of t.photos){const d=localDate(ph.at);if(d>=ps&&d<=pe)photos.push({...ph,t,d});}photos.sort((a,b)=>a.at.localeCompare(b.at));
+  const photos=[];for(const t of tasks)for(const ph of t.photos){if(isPiiPh(ph.id))continue;const d=localDate(ph.at);if(d>=ps&&d<=pe)photos.push({...ph,t,d});}photos.sort((a,b)=>a.at.localeCompare(b.at));
   const rel=new Set([...done,...doing,...plan,...late,...hold]);
   const kpi={total:rel.size,done:done.length,doing:doing.length,plan:plan.length,late:late.length,hold:hold.length,rate:rel.size?Math.round(done.length/rel.size*100):0};
   const gk=t=>{switch(p.group){case 'site':return t.site;case 'scope':return SC[t.scope].name+' 업무';case 'who':return t.assignees.length?nameOf(t.assignees[0]):(t.assigneeText||'담당 미지정');case 'sub':return CAT[t.cat].name+' · '+(t.sub||'기타');default:return CAT[t.cat].name;}};
@@ -2235,7 +2265,7 @@ function openTask(t,defaults={}){
   const f=$('#task-form');const isNew=!t;const src=t||{};
   S.dlg={path:t?t.path:null,orig:t?JSON.parse(JSON.stringify(t)):null,pending:[],uploaded:[],assignees:[...(t?t.assignees:(defaults.who?[defaults.who]:(S.myStaff?[S.myStaff]:[])))],status:t?t.status:(defaults.status||'plan'),scopeTouched:!!t,logPhotos:[]};S.dlg.priv=t?!!t.priv:(!!defaults.priv&&privOK());
   $('#t-h').textContent=isNew?'업무 등록':'업무 상세';
-  $('#t-title').value=src.title||defaults.title||'';S.dlg.phTag='';$$('#t-ph-tag button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===''));$('#t-ph-stamp').checked=stampPref();
+  $('#t-title').value=src.title||defaults.title||'';S.dlg.phTag='';$$('#t-ph-tag button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===''));$('#t-ph-stamp').checked=stampPref();{const pq=$('#t-ph-pii');if(pq)pq.checked=false;}
   const cat=src.cat||defaults.cat||(isNew?'':'etc');fillSelect($('#t-cat'),[...(isNew?[['','자동 분류']]:[]),...CATS.map(c=>[c.id,c.name])],cat);
   fillSubs(cat,src.sub,src.leaf);
   const sites=[...S.config.sites];if(src.site&&!sites.includes(src.site))sites.push(src.site);fillSelect($('#t-site'),sites.map(s=>[s,s]),src.site||defaults.site||(S.staff[S.myStaff]&&sites.includes(S.staff[S.myStaff].site)?S.staff[S.myStaff].site:sites[0]));
@@ -2252,7 +2282,7 @@ function openTask(t,defaults={}){
   privDlgSync(t);
   $('#t-badges').innerHTML=t?`${t.legal?'<span class="tag legal">법정 업무</span> ':''}${isLate(t)?'<span class="pill s-late">지연</span>':''}${t.sample?' <span class="tag sample">예시</span>':''}`:'';
   $('#t-meta').innerHTML=t&&t.createdAt?`등록 <span data-uid="${esc(t.createdBy||'')}">${esc(nameOf(t.createdBy))}</span> · ${hhmm(t.createdAt)}${t.updatedAt?` · 최근 수정 ${hhmm(t.updatedAt)}`:''}`:'';
-  const canPhoto=!!S.assets||S.preview;$('#t-photo-btn').hidden=!canPhoto||!S.canWrite;$('#t-cam-btn').hidden=!canPhoto||!S.canWrite;$('#t-ph-tools').hidden=!canPhoto||!S.canWrite;$('#l-photo-btn').hidden=!canPhoto;$('#t-photo-help').hidden=canPhoto;$('#t-photo-help').textContent='사진 첨부는 편집·참여 권한이 있는 구성원만 할 수 있습니다.';
+  const canPhoto=!!S.assets||S.preview;$('#t-photo-btn').hidden=!canPhoto||!S.canWrite;$('#t-cam-btn').hidden=!canPhoto||!S.canWrite;$('#t-ph-tools').hidden=!canPhoto||!S.canWrite;{const pr=$('#t-pii-row');if(pr){pr.hidden=!canPhoto||!S.canWrite||!(S.mode==='firebase'||S.preview);pr.nextElementSibling.hidden=pr.hidden;}}$('#l-photo-btn').hidden=!canPhoto;$('#t-photo-help').hidden=canPhoto;$('#t-photo-help').textContent='사진 첨부는 편집·참여 권한이 있는 구성원만 할 수 있습니다.';
   $$('input,select,textarea',$('#t-body')).forEach(el=>{if(!['l-text','l-issue'].includes(el.id))el.disabled=!S.canWrite;});
   $('#l-text').value='';$('#l-issue').checked=false;$('#l-photo-n').textContent='';
   $('.compose').hidden=!S.canWrite;
@@ -2305,7 +2335,7 @@ async function openSettings(){const c=S.config;$('#s-roster').innerHTML=staffLis
   $('#s-backup').hidden=!S.downloads;$('#s-backup-photos').disabled=false;$('#s-backup-photos').closest('label').hidden=!S.downloads;$('#s-restore-btn').hidden=!editable;$('#s-restore').disabled=!editable;$('#s-backup-st').textContent='';
   const n=S.tasks.length+S.memos.length;
   const phN=S.tasks.reduce((a,t)=>a+t.photos.length,0),phB=S.tasks.reduce((a,t)=>a+t.photos.reduce((x,p)=>x+(p.sz||260e3),0),0),flB=Object.values(S.files).reduce((a,f)=>a+f.versions.reduce((x,y)=>x+y.size,0),0);
-  $('#s-usage').innerHTML=S.mode==='firebase'?`<p class="help">Firebase(Firestore)에 저장됩니다. 불러온 업무 ${S.tasks.length.toLocaleString()}건 · 특이사항 ${S.memos.length.toLocaleString()}일 · 사진 ${phN.toLocaleString()}장(약 ${fmtMB(phB)}) · 서류 ${Object.keys(S.files).length}건(${fmtMB(flB)}).</p><div class="meter"><i style="width:${Math.min(100,(phB+flB)/1073741824*100)}%"></i></div><p class="help">사진·서류 합계 약 ${fmtMB(phB+flB)} / 무료 1GB (업무 기록은 아주 작아 거의 차지하지 않습니다). 무료 한도: 저장 1GB, 하루 읽기 5만·쓰기 2만 건. 사용량은 Firebase 콘솔 › Firestore › 사용량에서 확인하세요.</p>${uxUsageHTML()}`:`<p class="help">업무·일지 문서 ${n.toLocaleString()}개 / ${DB_DOC_CAP.toLocaleString()}개 (불러온 연도 기준)</p><div class="meter"><i style="width:${Math.min(100,n/DB_DOC_CAP*100)}%"></i></div><p class="help" id="s-asset-usage"></p>`;
+  $('#s-usage').innerHTML=S.mode==='firebase'?`<p class="help">Firebase(Firestore)에 저장됩니다. 불러온 업무 ${S.tasks.length.toLocaleString()}건 · 특이사항 ${S.memos.length.toLocaleString()}일 · 사진 ${phN.toLocaleString()}장(약 ${fmtMB(phB)}) · 서류 ${Object.keys(S.files).length}건(${fmtMB(flB)}).</p><div class="meter"><i style="width:${Math.min(100,(phB+flB)/1073741824*100)}%"></i></div><p class="help">사진·서류 합계 약 ${fmtMB(phB+flB)} / 무료 1GB (업무 기록은 아주 작아 거의 차지하지 않습니다). 무료 한도: 저장 1GB, 하루 읽기 5만·쓰기 2만 건. 사용량은 Firebase 콘솔 › Firestore › 사용량에서 확인하세요.</p>${uxUsageHTML()}${piiSetHTML()}`:`<p class="help">업무·일지 문서 ${n.toLocaleString()}개 / ${DB_DOC_CAP.toLocaleString()}개 (불러온 연도 기준)</p><div class="meter"><i style="width:${Math.min(100,n/DB_DOC_CAP*100)}%"></i></div><p class="help" id="s-asset-usage"></p>`;
   $('#dlg-settings').showModal();
   if(S.assets&&S.assets.list){try{const r=await S.assets.list();const u=r.usage;$('#s-asset-usage').textContent=`사진 ${u.files.toLocaleString()}장 · ${(u.bytes/1048576).toFixed(1)}MB / ${(u.maxBytes/1048576).toFixed(0)}MB`;}catch{}}}
 async function saveSettings(e){e.preventDefault();const subs={};const tax=readTaxEditor();
@@ -2584,13 +2614,13 @@ function fbLoadPhoto(id){if(S.photoUrls[id]||!S.fs||!isAssetId(id))return Promis
 const localDownloads={async save({filename,data}){const blob=data instanceof Blob?data:new Blob([data],{type:/\.html?$/i.test(filename)?'text/html;charset=utf-8':/\.json$/i.test(filename)?'application/json':'application/octet-stream'});
   const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=filename;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),5000);}};
 const EMAIL_RE=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-function normMembers(d){d=d||{};const L=a=>Array.isArray(a)?[...new Set(a.filter(x=>typeof x==='string').map(x=>x.trim().toLowerCase()).filter(Boolean))]:[];return {admins:L(d.admins),emails:L(d.emails),viewers:L(d.viewers),names:d.names&&typeof d.names==='object'?d.names:{}};}
+function normMembers(d){d=d||{};const L=a=>Array.isArray(a)?[...new Set(a.filter(x=>typeof x==='string').map(x=>x.trim().toLowerCase()).filter(Boolean))]:[];return {admins:L(d.admins),emails:L(d.emails),viewers:L(d.viewers),pii:L(d.pii),names:d.names&&typeof d.names==='object'?d.names:{}};}
 function parseMembers(txt,adm,vw=''){const emails=[],names={},bad=[],admins=[],viewers=[];const grab=l=>{const m=l.match(/[^\s,;<>()]+@[^\s,;<>()]+/);return m&&EMAIL_RE.test(m[0])?m[0]:null;};
   for(const line of txt.split('\n')){const l=line.trim();if(!l)continue;const e0=grab(l);if(!e0){bad.push(l.slice(0,30));continue;}const e=e0.toLowerCase();if(!emails.includes(e))emails.push(e);const nm=l.replace(e0,'').replace(/[<>(),;]/g,' ').replace(/\s+/g,' ').trim();if(nm)names[e]=nm.slice(0,30);}
   for(const line of adm.split(/[\n,;]/)){const l=line.trim();if(!l)continue;const e0=grab(l);if(!e0){bad.push(l.slice(0,30));continue;}const e=e0.toLowerCase();if(!admins.includes(e))admins.push(e);}
   for(const line of String(vw).split(/[\n,;]/)){const l=line.trim();if(!l)continue;const e0=grab(l);if(!e0){bad.push(l.slice(0,30));continue;}const e=e0.toLowerCase();if(!viewers.includes(e))viewers.push(e);}
   if(S.email&&!admins.includes(S.email))admins.unshift(S.email);
-  return {bad,doc:{admins,emails,viewers,names,updatedAt:nowISO(),updatedBy:S.email||''}};}
+  return {bad,doc:{admins,emails,viewers,names,...(S.members&&(S.members.pii||[]).length?{pii:S.members.pii}:{}),updatedAt:nowISO(),updatedBy:S.email||''}};}
 
 /* 로그인 화면 */
 const G_LOGO='<svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.6 13.2l7.9 6.2C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.4 5.8c4.3-4 6.9-9.9 6.9-17.2z"/><path fill="#FBBC05" d="M10.5 28.6c-.5-1.4-.8-3-.8-4.6s.3-3.2.8-4.6l-7.9-6.2C1 16.5 0 20.1 0 24s1 7.5 2.6 10.8l7.9-6.2z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.4-5.8c-2.1 1.4-4.8 2.3-8.5 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.2C6.6 42.6 14.6 48 24 48z"/></svg>';
@@ -2761,20 +2791,25 @@ function upProg(n){let el=$('#upbar');if(!el){el=document.createElement('div');e
 async function uploadImages(files,o={}){
   const list=Array.from(files||[]).filter(f=>f&&((f.type||'').startsWith('image/')||/\.(heic|heif|jpe?g|png|webp)$/i.test(f.name||'')));if(!list.length)return [];
   if(!S.assets&&!S.preview){toast('사진 첨부 권한이 없습니다. 공유 설정에서 참여 권한 이상이 필요합니다.','err');return [];}
-  const out=[];let sz0=0,sz1=0,fail=0;setSync('saving');const pr=upProg(list.length);
+  const out=[];let sz0=0,sz1=0,fail=0,piiN=0;const piiWhy=[];const ctx=piiCtx();setSync('saving');const pr=upProg(list.length);
   for(let i=0;i<list.length;i++){const f=list[i];pr.step(i,'사진 줄이는 중');let r=null;
     try{r=await optimizePhoto(f,{stamp:o.stamp});}catch{
       try{if(window.imageCompression){const b=await imageCompression(f,{maxSizeMB:.3,maxWidthOrHeight:1600,useWebWorker:false,initialQuality:.8,fileType:'image/jpeg'});r={blob:b,thumb:null,shot:''};}}catch{}}
     if(!r||!r.blob){fail++;toast(`${f.name||'사진'}: 이 사진 형식은 열 수 없습니다. 휴대폰 카메라 설정을 '호환성 우선(JPG)'으로 바꾸거나 JPG·PNG로 올려 주세요.`,'err');continue;}
+    pr.step(i,'개인정보 확인 중');let pc={hit:false};try{pc=await piiScanPhoto(f,r,{pii:o.pii,onProg:(p,st)=>{if(st==='recognizing text')pr.step(i,`개인정보 확인 중(글자 인식 ${Math.round(p*100)}%)`);}});}catch{}
     pr.step(i,'올리는 중');
     const meta={id:'',at:nowISO(),by:myId(),cap:'',tag:PH_TAGS[o.tag]?o.tag:'',shot:r.shot||'',sz:r.blob.size+(r.thumb?r.thumb.size:0),th:false};
+    if(pc.hit){if(!(S.preview||S.mode==='firebase')){fail++;toast(`${f.name||'사진'}: 개인정보(${pc.why.join(', ')})가 있는 사진은 실사용 업무일지에서만 올릴 수 있습니다.`,'err');continue;}
+      try{meta.id=PII_PH+rid();meta.th=await piiPutPhoto(meta.id,r,f,pc,ctx);out.push(meta);piiN++;piiWhy.push(...pc.why);}
+      catch(e){fail++;toast(e&&e.code==='fb_denied'?'개인정보 사진 저장 권한이 없습니다. 관리자에게 새 보안 규칙(firestore.rules) 게시를 요청하세요.':'개인정보 사진을 저장하지 못했습니다.','err');}
+      continue;}
     try{if(S.preview){meta.id='local'+rid();S.localBlobs[meta.id]=URL.createObjectURL(r.blob);if(r.thumb){S.thumbUrls[meta.id]=URL.createObjectURL(r.thumb);meta.th=true;}}
       else if(S.mode==='firebase'){meta.id=(o.priv?PRIV_PH:'p')+rid();meta.th=await fbPutPhoto(meta.id,r.blob,r.thumb);}
       else{const x=await S.assets.upload(r.blob,{type:r.blob.type||'image/jpeg'});meta.id=x.id;}
       sz0+=f.size;sz1+=r.blob.size;out.push(meta);}
     catch(e){fail++;const c=e&&e.code;toast(c==='too_large'?'사진 용량이 너무 큽니다. 더 작은 사진으로 올려 주세요.':c==='fb_quota'?'Firebase 무료 사용량을 넘어 사진을 올리지 못했습니다.':c==='fb_denied'?'사진 저장 권한이 없습니다. 관리자에게 Firestore 규칙 게시를 확인해 달라고 하세요.':c==='unsupported_type'?'지원하지 않는 사진 형식입니다. JPG·PNG로 올려 주세요.':c==='quota_or_state'?'사진 저장 공간이 가득 찼습니다.':c==='rate_limited'?'잠시 후 다시 올려 주세요.':'사진을 올리지 못했습니다.','err');}}
-  pr.done();setSync('ok');
-  if(out.length&&sz0>sz1*1.3)toast(`사진 ${out.length}장 올림 · ${fmtMB(sz0)} → ${fmtMB(sz1)} (${Math.round((1-sz1/sz0)*100)}% 줄임)`);
+  pr.done();setSync('ok');if(piiN)piiToast(piiN,piiWhy,'사진');
+  if(out.length-piiN>0&&sz0>sz1*1.3)toast(`사진 ${out.length}장 올림 · ${fmtMB(sz0)} → ${fmtMB(sz1)} (${Math.round((1-sz1/sz0)*100)}% 줄임)`);
   return out;}
 function stampFor(site,title){return shot=>[`${shotText(shot)}${site?' · '+site:''}`,title?String(title).slice(0,40):''];}
 function stampPref(){return lsGet('wl.stamp')!=='0';}
@@ -2783,10 +2818,10 @@ function stampPref(){return lsGet('wl.stamp')!=='0';}
 const _thP={};
 function bytesURL(d){if(!d)return '';if(typeof d.d==='string'&&d.d.startsWith('data:image/'))return d.d;
   if(d.b&&typeof d.b.toUint8Array==='function'){try{return URL.createObjectURL(new Blob([d.b.toUint8Array()],{type:typeof d.type==='string'&&d.type.startsWith('image/')?d.type:'image/jpeg'}));}catch{}}return '';}
-function fbLoadThumb(id){if(S.thumbUrls[id])return Promise.resolve(S.thumbUrls[id]);if(!S.fs||!isAssetId(id))return Promise.resolve('');if(_thP[id])return _thP[id];const ref=S.fs.doc(phDoc(id,'thumbs'));
+function fbLoadThumb(id){if(isPiiPh(id)&&!piiOwner())return Promise.resolve(PII_IMG);if(S.thumbUrls[id])return Promise.resolve(S.thumbUrls[id]);if(!S.fs||!isAssetId(id))return Promise.resolve('');if(_thP[id])return _thP[id];const ref=S.fs.doc(phDoc(id,'thumbs'));
   _thP[id]=ref.get({source:'cache'}).catch(()=>null).then(s=>s&&s.exists?s:ref.get()).then(s=>{const u=s&&s.exists?bytesURL(s.data()):'';if(u)S.thumbUrls[id]=u;return u;}).catch(()=>{setTimeout(()=>{delete _thP[id];},30000);return '';});
   return _thP[id];}
-async function lzLoad(img){const id=img.dataset.pid;if(!id)return;let u='';
+async function lzLoad(img){const id=img.dataset.pid;if(!id)return;let u='';if(isPiiPh(id)&&!piiOwner()){img.src=PII_IMG;return;}
   try{if(img.dataset.th==='1'){u=S.thumbUrls[id]||'';if(!u&&S.mode==='firebase')u=await fbLoadThumb(id);}
     if(!u){if(S.mode==='firebase'){await fbLoadPhoto(id);u=S.photoUrls[id]||'';}else u=photoSrc(id);}}catch{}
   if(u&&img.isConnected&&img.src!==u)img.src=u;}
@@ -2795,12 +2830,12 @@ function lzScan(root){const list=root.matches&&root.matches('img[data-lz]')?[roo
   for(const img of list){img.removeAttribute('data-lz');if(LZ)LZ.observe(img);else lzLoad(img);}}
 new MutationObserver(ms=>{for(const m of ms)for(const n of m.addedNodes)if(n.nodeType===1)lzScan(n);}).observe(document.documentElement,{childList:true,subtree:true});
 const phMeta=(t,id)=>(t&&t.photos.find(p=>p.id===id))||{id};
-function thumbImg(p,attrs=''){return `<img src="${PH_BLANK}" data-pid="${esc(p.id)}"${p.th?' data-th="1"':''} data-lz alt="${esc(p.tag&&PH_TAGS[p.tag]?PH_TAGS[p.tag]+' 사진':'첨부 사진')}" ${attrs}>`;}
+function thumbImg(p,attrs=''){return `<img src="${isPiiPh(p.id)&&!piiOwner()?PII_IMG:PH_BLANK}" data-pid="${esc(p.id)}"${p.th?' data-th="1"':''}${isPiiPh(p.id)?' data-pii="1"':''} data-lz alt="${esc(p.tag&&PH_TAGS[p.tag]?PH_TAGS[p.tag]+' 사진':'첨부 사진')}" ${attrs}>`;}
 const phDate=p=>(p.shot&&isDate(p.shot.slice(0,10))?p.shot.slice(0,10):localDate(p.at))||'';
 const phCap=(p,t)=>[t?t.title:'',t&&t.site,fmtYMD(phDate(p)),PH_TAGS[p.tag]].filter(Boolean).join(' · ');
 
 /* ───────── 사진첩 ───────── */
-function allPhotos(){const out=[];for(const t of S.tasks)for(const p of t.photos)out.push({...p,t,d:phDate(p)});return out;}
+function allPhotos(){const out=[];const own=piiOwner();for(const t of S.tasks)for(const p of t.photos)if(own||!isPiiPh(p.id))out.push({...p,t,d:phDate(p)});return out;}
 function renderPhotos(v){const P=S.ph;const td=today();
   const rng={'7':[addDays(td,-6),td],'30':[addDays(td,-29),td],month:[monthStart(td),monthEnd(td)],prev:[monthStart(addMonths(monthStart(td),-1)),monthEnd(addMonths(monthStart(td),-1))],year:[td.slice(0,4)+'-01-01',td.slice(0,4)+'-12-31'],all:['0000-01-01','9999-12-31']}[P.range]||['0000-01-01','9999-12-31'];
   const q=P.q.trim().toLowerCase();
@@ -2827,7 +2862,7 @@ async function quickPhoto(files){files=Array.from(files||[]);if(!files.length)re
   await dlgUpload(files);}
 async function dlgUpload(files){if(!S.dlg)return;const btns=$$('#t-photo-btn,#t-cam-btn');btns.forEach(b=>b.classList.add('busy'));
   const tag=S.dlg.phTag||'';const stamp=$('#t-ph-stamp')&&$('#t-ph-stamp').checked?stampFor($('#t-site').value,$('#t-title').value.trim()):null;
-  let ups=[];try{ups=await uploadImages(files,{tag,stamp,priv:dlgPriv()});}finally{btns.forEach(b=>b.classList.remove('busy'));}
+  let ups=[];try{ups=await uploadImages(files,{tag,stamp,priv:dlgPriv(),pii:!!S.dlg.piiOn});}finally{btns.forEach(b=>b.classList.remove('busy'));}
   if(!ups.length||!S.dlg)return;
   if(!S.dlg.path){S.dlg.pending.push(...ups);S.dlg.uploaded.push(...ups.map(u=>u.id));refreshDialog();}
   else{const t=findTask(S.dlg.path);if(t){try{await appendLog(t,{at:nowISO(),by:myId(),kind:'photo',text:'',photos:ups.map(u=>u.id)},{photos:ups});}catch{deleteAssets(ups.map(u=>u.id));}}}}
@@ -2978,12 +3013,12 @@ function renderDocs(v){const D=S.docs;const q=D.q.trim().toLowerCase();const fil
     if(g.id==='site'){for(const site of staffSites()){const h=sec(g,site);if(h)parts.push(`<section class="panel doc-sec"><div class="panel-h"><h2>${esc(site)}</h2><span class="sub">${esc(g.name)}</span></div>${h}</section>`);}}
     else{let h=sec(g);if(!h&&g.id==='etc'&&!filtering&&S.canWrite)h='<div class="doc-add"><span style="color:var(--ink-3);font-size:12.5px">위 분류에 없는 서류(계약서·보험증권·협약서 등)는 여기에 올리세요.</span></div>';if(h)parts.push(`<section class="panel doc-sec"><div class="panel-h"><h2>${esc(g.name)}</h2>${g.id==='etc'&&S.canWrite?`<div class="act"><button type="button" class="btn sm" data-doc-new="etc">+ 서류 추가</button></div>`:''}</div>${h}</section>`);}}
   const soon=files.filter(f=>f.expiry&&diffDays(today(),f.expiry)<=60).length;const total=files.reduce((a,f)=>a+f.versions.reduce((x,y)=>x+y.size,0),0);
-  v.innerHTML=`<div class="home-head"><div><h1>회사 서류함</h1><p>조직도·정관·취업규칙·사업자등록증·인증서·공장별 건물 서류를 최신본으로 보관합니다 · ${files.length}건 · ${fmtMB(total)}${soon?` · <b style="color:var(--doing)">만료 임박 ${soon}건</b>`:''}</p></div></div>
+  v.innerHTML=`<div class="home-head"><div><h1>회사 서류함</h1><p>조직도·정관·취업규칙·사업자등록증·인증서·공장별 건물 서류를 최신본으로 보관합니다 · ${files.length}건 · ${fmtMB(total)}${soon?` · <b style="color:var(--doing)">만료 임박 ${soon}건</b>`:''}</p></div>${piiOwner()?`<div><button type="button" class="btn pii-btn" data-pii-open>🔐 개인정보 자료 ${S.pii.length}건</button></div>`:''}</div>
   ${S.filesDenied?`<div class="banner" style="margin:0 0 12px">서류함을 불러올 권한이 없습니다. 관리자는 Firebase 콘솔 › Firestore › 규칙에 새 firestore.rules를 게시하세요.</div>`:''}
   <section class="filters" style="padding:0 0 12px"><div class="seg" role="group" aria-label="분류"><button type="button" data-doc-g="" aria-pressed="${!D.g}">전체</button>${DOC_GROUPS.map(g=>`<button type="button" data-doc-g="${g.id}" aria-pressed="${D.g===g.id}">${esc(g.name.replace(' 서류',''))}</button>`).join('')}</div>
     <label class="chk"><input type="checkbox" id="doc-exp" ${D.exp?'checked':''}> 만료 60일 이내만</label><input type="search" id="doc-q" placeholder="서류명·내용 검색" value="${esc(D.q)}" aria-label="서류 검색"></section>
   <div class="docs">${parts.join('')||'<section class="panel"><div class="empty">조건에 맞는 서류가 없습니다.</div></section>'}</div>${(setTimeout(docThumbBackfill,1200),'')}
-  <p class="help" style="margin-top:12px;color:var(--ink-3);font-size:12px">서류를 누르면 PDF·사진·엑셀·워드·한글·파워포인트를 바로 미리봅니다. 파일 하나당 20MB까지 올릴 수 있습니다. 같은 서류를 다시 올리면 '새 버전'으로 쌓이고 이전 버전도 내려받을 수 있습니다. 🔒 표시 서류는 관리자와 설정에서 허용한 사람만 열 수 있습니다.</p>`;}
+  <p class="help" style="margin-top:12px;color:var(--ink-3);font-size:12px">서류를 누르면 PDF·사진·엑셀·워드·한글·파워포인트를 바로 미리봅니다. 파일 하나당 20MB까지 올릴 수 있습니다. 같은 서류를 다시 올리면 '새 버전'으로 쌓이고 이전 버전도 내려받을 수 있습니다. 🔒 표시 서류는 관리자와 설정에서 허용한 사람만 열 수 있습니다. 이력서·급여·주민등록번호 13자리·신분증·진단서 같은 개인정보가 든 파일은 서류함에 넣지 않고 ${esc(piiLabel())}에게만 전달됩니다(생년월일만 있는 서류는 해당 없음).</p>`;}
 
 /* 서류 상세 창 */
 function openDoc(id,o={}){let f=id?S.files[id]:null;
@@ -3017,6 +3052,9 @@ async function saveDoc(e){e.preventDefault();const D=S.docDlg;if(!D||!S.canWrite
   try{let versions=f.versions;
     if(file){if(file.size>FILE_MAX){toast('20MB 이하 파일만 올릴 수 있습니다. PDF는 인쇄 품질을 낮춰 다시 저장해 보세요.','err');return;}
       const blob=await optimizeDocImage(file);const v=(versions.length?versions[versions.length-1].v:0)+1;const pg=$('#doc-prog');pg.hidden=false;
+      pg.textContent='개인정보 확인 중…';const pfile=new File([blob],blob.name||file.name,{type:blob.type||file.type});const pc=await piiScanFile(pfile,{title:`${title} ${meta.note}`,slot:nslot,onProg:(p,ph)=>{if(ph==='ocr')pg.textContent=`개인정보 확인 중(글자 인식 ${Math.round((p||0)*100)}%)…`;}});
+      if(pc.hit){pg.textContent=`개인정보가 있어 ${piiLabel()}에게만 전달하는 중…`;await piiPutFile(blob,{name:blob.name||file.name,type:blob.type||file.type,src:'docs',title,site:nsite,why:pc.why,onProg:(i,n)=>{pg.textContent=`${piiLabel()}에게만 전달하는 중… ${Math.round(i/n*100)}%`;}});
+        $('#dlg-doc').close();piiToast(1,pc.why,'서류');return;}
       const st=await filePut(D.id,v,blob,(i,n)=>{pg.textContent=`올리는 중… ${Math.round(i/n*100)}%`;});pg.textContent='저장 중…';
       const restr=meta.restricted;if(!restr&&thumbable(blob.name||file.name,blob.type||file.type)){pg.textContent='미리보기 그림 만드는 중…';const th=await makeThumb(blob,blob.name||file.name);meta.thumb=th||'';meta.thumbV=v;}
       const fname=blob.name||file.name;if(!restr&&kindOf(fname,blob.type||file.type)!=='image'){pg.textContent='검색용 내용 읽는 중…';try{const r=await extractDocText(new File([blob],fname,{type:blob.type||file.type}));if(r&&r.text)meta.txt=String(r.text).replace(/\s+/g,' ').trim().slice(0,20000);}catch{}}
@@ -3182,7 +3220,7 @@ function ntfCompute(){const me=myId();if(!me||!S.ready)return [];const out=[];co
     if(admin&&r.status==='open')out.push({k:`dq|${r.id}`,at:r.at||td,type:'dreq',dq:r.id,title:ttl,text:`${r.name||'구성원'}님이 삭제를 요청했습니다`,sub:r.reason});
     else if(r.uid===S.me.id&&r.status!=='open'&&r.rAt>=since)out.push({k:`dqr|${r.id}|${r.status}`,at:r.rAt,type:'dreq',dq:r.id,title:ttl,text:r.status==='done'?'삭제 요청이 처리되어 삭제되었습니다':'삭제 요청이 반려되었습니다',sub:r.rNote});}
   for(const g of S.gw||[]){if(!g.at||g.at<since)continue;out.push({k:'gw|'+g.id,at:g.at,type:'gw',gw:g.id,title:gwTitle(g.title),text:`그룹웨어 ${gwShort(g.board)} 새 글${g.due?` · 일정 ${fmtMD(g.due)}`:''}`,sub:g.sum});}
-  out.push(...schNtf());out.push(...uxNtf());
+  out.push(...schNtf());out.push(...uxNtf());out.push(...piiNtf());
   if(admin){const w=gwWarn();if(w)out.push({k:'gwst|'+w.k,syn:1,at:td+'T00:00:04',type:'gw',gw:'',title:'그룹웨어 자동 확인',text:w.text});}
   if(admin||canViewRestricted())for(const f of Object.values(S.files)){if(!f.expiry)continue;const n=diffDays(td,f.expiry);if(n<=60&&n>=-30)out.push({k:`doc|${f.id}|${f.expiry}|${n<=7?'w':n<=30?'m':'q'}`,syn:1,at:td+'T00:00:03',type:'doc',f,text:`서류 유효기간 ${expiryTxt(f.expiry)} · ${fmtYMD(f.expiry)}`});}
   if(admin&&hr>=17&&dow(td)%6!==0){const idle=staffList().filter(s=>working(s)&&!S.tasks.some(t=>t.logs.some(l=>l.by===s.id&&localDate(l.at)===td)));if(idle.length)out.push({k:`idle|${td}`,syn:1,at:td+'T17:00:00',type:'idle',text:`오늘 기록 없는 근무자 ${idle.length}명`,sub:idle.map(s=>s.name).join(', ')});}
@@ -3200,7 +3238,7 @@ function ntfRun(){adminNameSync();const st=ntfState();NT.items=ntfCompute();cons
   else for(const it of un)NT.shown.add(it.k);
   if(S.view==='my')ntfBrief();}
 function ntfShow(title,body,tag,path){try{const n=new Notification(title,{body,tag,lang:'ko'});n.onclick=()=>{window.focus();if(path){const t=findTask(path);if(t)openTask(t);}n.close();};}catch{}}
-const NT_ICON={assign:'담당',act:'진행',issue:'이슈',due:'마감',late:'지연',legal:'법정',doc:'서류',idle:'기록',dreq:'삭제',gw:'게시',sch:'일정',wk:'보고',join:'접속',bk:'백업'};
+const NT_ICON={assign:'담당',act:'진행',issue:'이슈',due:'마감',late:'지연',legal:'법정',doc:'서류',idle:'기록',dreq:'삭제',gw:'게시',sch:'일정',wk:'보고',join:'접속',bk:'백업',pii:'개인'};
 function ntfRenderPop(){const st=ntfState();const pop=$('#ntf-pop');const its=NT.items;
   const canAsk='Notification' in window&&Notification.permission==='default';const blocked='Notification' in window&&Notification.permission==='denied';
   pop.innerHTML=`<div class="ntf-h"><b>알림</b><span class="sp"></span>${its.some(i=>ntfUnread(i,st))?'<button type="button" class="btn sm ghost" data-ntf-read>모두 읽음</button>':''}</div>
@@ -3222,7 +3260,7 @@ document.addEventListener('click',async e=>{
   if(T.closest('[data-ntf-read]')){ntfMarkRead();return;}
   if(T.closest('[data-ntf-perm]')){try{const r=await Notification.requestPermission();if(r==='granted'){toast('이 기기에서 알림을 받습니다.');ntfShow(`${S.config.dept} 업무일지`,'알림이 켜졌습니다.','test');}}catch{}ntfRenderPop();return;}
   const ng=T.closest('[data-ntf-go]');if(ng){const it=NT.items.find(i=>i.k===ng.dataset.ntfGo);const st=ntfState();if(it){if(it.syn)st.syn[it.k]=1;ntfSave();$('#ntf-pop').hidden=true;
-    if(it.dq)openDreqs(it.dq);else if(it.type==='sch'){schOpen(it.sch);}else if(it.type==='wk'){uxWeekReport();}else if(it.type==='join'){jrApprove(it.jr);}else if(it.type==='bk'){openSettings();}else if(it.type==='gw'){GW.focus=it.gw||'';if(S.view==='gw')renderGw($('#view'));else go('#gw');}else if(it.t){const t=findTask(it.t.path);if(t)openTask(t);}else if(it.f)go('#docs');else if(it.type==='idle')go('#overview');}ntfRun();return;}
+    if(it.dq)openDreqs(it.dq);else if(it.type==='sch'){schOpen(it.sch);}else if(it.type==='wk'){uxWeekReport();}else if(it.type==='join'){jrApprove(it.jr);}else if(it.type==='bk'){openSettings();}else if(it.type==='pii'){piiOpen();}else if(it.type==='gw'){GW.focus=it.gw||'';if(S.view==='gw')renderGw($('#view'));else go('#gw');}else if(it.t){const t=findTask(it.t.path);if(t)openTask(t);}else if(it.f)go('#docs');else if(it.type==='idle')go('#overview');}ntfRun();return;}
   if(!T.closest('#ntf-pop')&&!$('#ntf-pop').hidden)$('#ntf-pop').hidden=true;
   if(T.closest('[data-brief-x]')){const st=ntfState();st.brief=today();ntfSave();$('#my-brief').hidden=true;return;}
   // 사진첩
@@ -3522,6 +3560,11 @@ async function upProcess(it){it.status='read';renderUpItem(it);
     makeThumb(it.file,it.name).then(t=>{it.thumb=t;renderUpItem(it);}).catch(()=>{});
     let ex={text:'',how:'name'};try{ex=await extractDocText(it.file,(p,ph)=>{if(ph==='ocr'){it.status='ocr';it.prog=p;renderUpItem(it);}});}catch(e){ex={text:'',how:'fail'};}
     it.text=ex.text;it.how=ex.how;it.guess=classifyDoc(it.name,ex.text);
+    const pc=piiCheck(it.name,ex.text,{ocr:ex.how==='ocr',slot:it.guess.slot});
+    if(pc.hit){it.status='saving';it.prog=0;it.pii=pc.why;renderUpItem(it);
+      try{await piiPutFile(await optimizeDocImage(it.file),{name:it.name,type:it.file.type,src:'upload',title:it.guess.title&&it.guess.slot!=='etc'?it.guess.title:it.name.replace(/\.[^.]+$/,''),site:it.guess.site,why:pc.why,onProg:(i,n)=>{it.prog=i/n;renderUpItem(it);}});it.status='pii';it.thumb='';it.text='';piiToast(1,pc.why,'서류');}
+      catch(e){it.status='error';it.err=e&&e.code==='fb_denied'?'개인정보 서류 저장 권한이 없습니다. 관리자에게 새 보안 규칙(firestore.rules) 게시를 요청하세요.':((e&&e.userMsg)||'개인정보 서류를 저장하지 못했습니다.');}
+      renderUpItem(it);upSummary();return;}
     if(dup){it.status='dup';it.dup=dup;renderUpItem(it);return;}
     if(S.up.auto&&it.guess.conf==='high'){await upSave(it);}else{it.status='ready';renderUpItem(it);}}
   catch(e){it.status='error';it.err=(e&&e.userMsg)||'파일을 읽지 못했습니다.';renderUpItem(it);}}
@@ -3535,13 +3578,15 @@ async function upSave(it){const g=it.guess;it.status='saving';it.prog=0;renderUp
   catch(e){it.status='ready';toast(fileErrMsg(e),'err');}
   renderUpItem(it);upSummary();}
 function upItemHTML(it){const g=it.guess;const admin=S.canEdit||S.preview;
-  const head=`<span class="fi th">${it.thumb?`<img src="${esc(it.thumb)}" alt="">`:''}<i>${fileIcon({name:it.name})}</i></span>`;
+  const head=it.status==='pii'?`<span class="fi pii-fi">🔐</span>`:`<span class="fi th">${it.thumb?`<img src="${esc(it.thumb)}" alt="">`:''}<i>${fileIcon({name:it.name})}</i></span>`;
   const how=it.how==='ocr'?'글자 인식(OCR)으로 읽음':it.how==='text'?'본문 글자를 읽음':it.how==='fail'?'내용을 읽지 못해 파일 이름으로 판단':it.how==='name'?'파일 이름으로 판단':'';
   let body='',act='';
   if(it.status==='wait')body='<span class="uc-st">대기 중</span>';
   else if(it.status==='read')body='<span class="uc-st"><i class="spin"></i>내용 읽는 중…</span>';
   else if(it.status==='ocr')body=`<span class="uc-st"><i class="spin"></i>스캔·사진 글자 인식 중… ${Math.round((it.prog||0)*100)}% <small>(처음 한 번은 인식 도구를 받느라 조금 걸립니다)</small></span>`;
   else if(it.status==='error')body=`<span class="uc-st err">${esc(it.err)}</span>`,act=`<button type="button" class="btn sm ghost" data-up-x="${it.id}">지우기</button>`;
+  else if(it.status==='pii')body=`<div class="uc-guess"><span class="uc-ok pii">🔐 ${esc(piiLabel())}에게만 전달</span></div><div class="uc-why">개인정보(${esc((it.pii||[]).join(', '))})가 있어 서류함에 넣지 않았습니다. 총괄 관리자만 볼 수 있고, 올린 분도 다시 열 수 없습니다.</div>`;
+  else if(it.status==='saving'&&it.pii)body=`<span class="uc-st"><i class="spin"></i>개인정보가 있어 ${esc(piiLabel())}에게만 전달하는 중… ${Math.round((it.prog||0)*100)}%</span>`;
   else if(g){const guess=`<div class="uc-guess"><span class="uc-path">${esc(slotPath(g.slot,g.site))}</span><span class="conf c-${g.conf}">${CONF[g.conf]}</span>${g.restricted?'<span class="lock">🔒</span>':''}${g.expiry?`<span class="uc-d">유효기간 ~${fmtYMD(g.expiry)}</span>`:''}${g.issued?`<span class="uc-d">발급 ${fmtYMD(g.issued)}</span>`:''}</div><div class="uc-why">${esc(how)}${g.why.length?' · 근거: '+esc(g.why.join(', ')):''}${g.siteFrom&&g.site?` · 사업장: ${esc(g.site)}(${esc(g.siteFrom)})`:''}</div>`;
     if(it.status==='saved'){const f=S.files[it.fid];body=`<div class="uc-guess"><span class="uc-ok">✓ 서류함에 저장</span><span class="uc-path">${esc(slotPath(f?f.slot:g.slot,f?f.site:g.site))}</span>${f?`<span class="uc-d">「${esc(f.title)}」 ${it.isNew?'새로 등록':`v${it.ver} 새 버전`}</span>`:''}${it.hasPdf?`<span class="tag pdf">${it.pdfConv?'PDF로 변환해 함께 저장':'같은 이름 PDF를 사본으로 저장'}</span>`:''}${it.convErr?`<span class="uc-d" style="color:var(--late)">PDF 변환 실패: 원본만 저장</span>`:''}</div><div class="uc-why">${esc(how)}${g.why.length?' · 근거: '+esc(g.why.join(', ')):''}</div>`;
       act=`<button type="button" class="btn sm" data-up-view="${it.id}">미리보기</button><button type="button" class="btn sm ghost" data-doc-info="${esc(it.fid||'')}">분류·정보 고치기</button>`;}
@@ -3550,10 +3595,10 @@ function upItemHTML(it){const g=it.guess;const admin=S.canEdit||S.preview;
     else if(it.status==='dup'){body=guess+`<div class="uc-why warn">이미 서류함에 같은 파일이 있습니다: 「${esc(it.dup.f.title)}」 v${it.dup.v.v}</div>`;act=`<button type="button" class="btn sm" data-up-force="${it.id}">그래도 저장</button><button type="button" class="btn sm ghost" data-up-x="${it.id}">건너뛰기</button>`;}
     else{body=guess+`<div class="uc-edit" data-up-edit="${it.id}"><label>분류<select data-uf="slot">${slotOptions(g.slot)}</select></label>${SLOT[g.slot].g==='site'?`<label>사업장<select data-uf="site">${staffSites().map(s=>`<option ${s===g.site?'selected':''}>${esc(s)}</option>`).join('')}</select></label>`:''}<label class="w">서류명<input type="text" data-uf="title" maxlength="80" value="${esc(g.title)}"></label><label>발급일<input type="date" data-uf="issued" value="${esc(g.issued)}"></label><label>유효기간<input type="date" data-uf="expiry" value="${esc(g.expiry)}"></label>${admin?`<label class="chk"><input type="checkbox" data-uf="restricted" ${g.restricted?'checked':''}> 🔒</label>`:''}</div>`;
       act=`<button type="button" class="btn sm primary" data-up-save="${it.id}">서류함에 저장</button><button type="button" class="btn sm ghost" data-up-x="${it.id}">빼기</button>`;}}
-  return `<div class="up-card st-${it.status}" id="up-${it.id}">${head}<div class="uc-main"><div class="uc-n"><b>${esc(it.name)}</b><small>${fmtMB(it.size)}</small>${it.pairPdf?`<span class="tag pdf">+ ${esc(it.pairPdf.name)}</span>`:''}${it.status!=='saved'&&it.status!=='wait'&&it.status!=='read'?`<button type="button" class="lnk" data-up-pv="${it.id}">원본 보기</button>`:''}</div>${body}</div><div class="uc-act">${act}</div></div>`;}
+  return `<div class="up-card st-${it.status}" id="up-${it.id}">${head}<div class="uc-main"><div class="uc-n"><b>${esc(it.name)}</b><small>${fmtMB(it.size)}</small>${it.pairPdf?`<span class="tag pdf">+ ${esc(it.pairPdf.name)}</span>`:''}${!['saved','wait','read','pii'].includes(it.status)?`<button type="button" class="lnk" data-up-pv="${it.id}">원본 보기</button>`:''}</div>${body}</div><div class="uc-act">${act}</div></div>`;}
 function renderUpItem(it){const el=document.getElementById('up-'+it.id);if(!el){if(S.view==='upload')renderUpList();return;}const ae=document.activeElement;if(ae&&el.contains(ae)&&ae.matches('input,select'))return;el.outerHTML=upItemHTML(it);upSummary();}
 function upSummary(){const box=$('#up-sum');if(!box)return;const its=S.up.items;const c=s=>its.filter(x=>x.status===s).length;const ready=c('ready');
-  box.innerHTML=its.length?`<span>${its.length}개 중 저장 ${c('saved')} · 확인 필요 ${ready}${c('dup')?` · 중복 ${c('dup')}`:''}${its.some(x=>['wait','read','ocr','conv','saving'].includes(x.status))?' · 처리 중…':''}</span><span class="sp"></span>${ready?`<button type="button" class="btn sm primary" id="up-all">확인 필요 ${ready}건 모두 저장</button>`:''}${its.some(x=>['saved','error','dup'].includes(x.status))?'<button type="button" class="btn sm ghost" id="up-clear">완료 목록 지우기</button>':''}`:'';box.hidden=!its.length;}
+  box.innerHTML=its.length?`<span>${its.length}개 중 저장 ${c('saved')}${c('pii')?` · 🔐 관리자에게만 ${c('pii')}`:''} · 확인 필요 ${ready}${c('dup')?` · 중복 ${c('dup')}`:''}${its.some(x=>['wait','read','ocr','conv','saving'].includes(x.status))?' · 처리 중…':''}</span><span class="sp"></span>${ready?`<button type="button" class="btn sm primary" id="up-all">확인 필요 ${ready}건 모두 저장</button>`:''}${its.some(x=>['saved','error','dup','pii'].includes(x.status))?'<button type="button" class="btn sm ghost" id="up-clear">완료 목록 지우기</button>':''}`:'';box.hidden=!its.length;}
 function renderUpList(){const L=$('#up-list');if(!L)return;L.innerHTML=S.up.items.slice().reverse().map(upItemHTML).join('');upSummary();}
 function upRecentHTML(){const recent=Object.values(S.files).filter(f=>f.versions.length).sort((a,b)=>(curVer(b).at||'').localeCompare(curVer(a).at||'')).slice(0,8);
   return recent.length?`<section class="panel" style="margin-top:16px"><div class="panel-h"><h2>최근 서류함에 들어간 서류</h2><div class="act"><a class="btn sm ghost" href="#docs">전체 보기</a></div></div>${recent.map(f=>{const x=curVer(f);return `<div class="doc-row" data-doc="${esc(f.id)}" tabindex="0">${f.thumb&&!f.restricted?`<span class="fi th"><img src="${esc(f.thumb)}" alt=""><i>${fileIcon(x)}</i></span>`:`<span class="fi">${f.restricted?'🔒':fileIcon(x)}</span>`}<div class="dm"><b>${esc(f.title)}</b><small>${esc(slotPath(f.slot,f.site))} · v${x.v} · ${hhmm(x.at)} ${esc(nameOf(x.by))}</small></div><span></span><span class="da"><button type="button" class="btn sm ghost" data-doc-info="${esc(f.id)}">정보</button></span></div>`;}).join('')}</section>`:'';}
@@ -3563,7 +3608,7 @@ function renderUpload(v){
   ${S.canWrite?`<div class="up-drop" id="up-drop"><div class="ic">${UP_ICON}</div><p><b>서류 파일을 여기에 끌어다 놓으세요</b> · 여러 개를 한 번에 올려도 됩니다</p>
     <p class="btns"><label class="btn primary file-btn">파일 선택<input type="file" id="up-input" multiple></label><label class="btn file-btn cam-only">${ICON.cam} 서류 촬영<input type="file" id="up-cam" accept="image/*" capture="environment"></label></p>
     <small>PDF · 스캔 사진(JPG·PNG) · 한글(hwp·hwpx) · 워드 · 엑셀 · 파워포인트 · 도면(dwg) — 파일 하나당 20MB까지</small></div>
-  <div class="up-opt"><label class="chk"><input type="checkbox" id="up-auto" ${S.up.auto?'checked':''}> 확실한 서류는 확인 없이 바로 서류함에 저장</label><label class="chk"><input type="checkbox" id="up-pdf" ${S.up.pdf?'checked':''}> 엑셀·워드·파워포인트는 미리보기용 PDF로 바꿔 함께 저장</label><span class="hint">조직도·정관·취업규칙·사업자등록증·법인 등기·통장 사본(🔒)·인감증명서(🔒)·ISO·가족친화·일하기 좋은 기업·중소기업 확인서·기타 인증서·공장등록증·건축물대장·도면을 알아봅니다. 같은 칸에 이미 서류가 있으면 새 버전으로 쌓입니다. 한글·도면 파일은 같은 이름의 PDF를 함께 올리면 그 PDF로 미리봅니다(예: 소방계획서.hwp + 소방계획서.pdf).</span></div>`:'<section class="panel"><div class="empty">보기 전용 권한이라 서류를 올릴 수 없습니다.</div></section>'}
+  <div class="up-opt"><label class="chk"><input type="checkbox" id="up-auto" ${S.up.auto?'checked':''}> 확실한 서류는 확인 없이 바로 서류함에 저장</label><label class="chk"><input type="checkbox" id="up-pdf" ${S.up.pdf?'checked':''}> 엑셀·워드·파워포인트는 미리보기용 PDF로 바꿔 함께 저장</label><span class="hint">조직도·정관·취업규칙·사업자등록증·법인 등기·통장 사본(🔒)·인감증명서(🔒)·ISO·가족친화·일하기 좋은 기업·중소기업 확인서·기타 인증서·공장등록증·건축물대장·도면을 알아봅니다. 같은 칸에 이미 서류가 있으면 새 버전으로 쌓입니다. 한글·도면 파일은 같은 이름의 PDF를 함께 올리면 그 PDF로 미리봅니다(예: 소방계획서.hwp + 소방계획서.pdf). <b>🔐 이력서·급여·주민등록번호 13자리·신분증·진단서 같은 개인정보가 든 파일은 서류함에 넣지 않고 ${esc(piiLabel())}에게만 전달합니다.</b></span></div>`:'<section class="panel"><div class="empty">보기 전용 권한이라 서류를 올릴 수 없습니다.</div></section>'}
   <div class="up-sum" id="up-sum" hidden></div><div class="up-list" id="up-list"></div>
   <div id="up-recent">${upRecentHTML()}</div>`;
   renderUpList();
@@ -3584,7 +3629,7 @@ document.addEventListener('click',e=>{const T=e.target;
   const pv=T.closest('[data-up-pv]');if(pv){const it=S.up.items.find(i=>i.id===pv.dataset.upPv);if(it)openViewer({name:it.name,type:it.file.type,size:it.size,meta:'올린 파일',blob:it.file});return;}
   const uv=T.closest('[data-up-view]');if(uv){const it=S.up.items.find(i=>i.id===uv.dataset.upView);const f=it&&S.files[it.fid];if(f)docOpen(f,f.versions.find(v=>v.v===it.ver),'view');return;}
   if(T.closest('#up-all')){(async()=>{for(const it of S.up.items.filter(i=>i.status==='ready'))await upSave(it);})();return;}
-  if(T.closest('#up-clear')){S.up.items=S.up.items.filter(i=>!['saved','error','dup'].includes(i.status));renderUpList();return;}});
+  if(T.closest('#up-clear')){S.up.items=S.up.items.filter(i=>!['saved','error','dup','pii'].includes(i.status));renderUpList();return;}});
 
 S.up.auto=lsGet('wl.upauto')!=='0';S.up.pdf=lsGet('wl.uppdf')!=='0';
 /* ───────── PDF로 바꿔 함께 저장 ─────────
@@ -3670,7 +3715,7 @@ const PRIV_PH='priv-';
 const isPrivPh=id=>typeof id==='string'&&id.startsWith(PRIV_PH);
 const privOK=()=>!!(S.preview||(S.mode==='firebase'&&S.me&&S.me.id));
 const privBase=()=>`priv/${S.me.id}`;
-function phDoc(id,kind){return isPrivPh(id)&&S.me.id?`${privBase()}/${kind}/${id}`:`${kind}/${id}`;}
+function phDoc(id,kind){if(isPiiPh(id))return `pii/${id}/c/${kind==='thumbs'?'th':'0'}`;return isPrivPh(id)&&S.me.id?`${privBase()}/${kind}/${id}`:`${kind}/${id}`;}
 const qaPriv=()=>!!(S.qa&&S.qa.priv&&privOK());
 const myName=()=>(S.staff[S.myStaff]&&S.staff[S.myStaff].name)||S.me.name||'';
 let PVU=null;
@@ -3741,7 +3786,7 @@ let ADU=null,ADW=false;
 function adminNameSub(){if(ADU){try{ADU();}catch{}ADU=null;}if(!S.db)return;ADU=S.db.doc('app/admin').onSnapshot(s=>{const d=s.exists?s.data():null;S.adminName=d&&typeof d.name==='string'?d.name.slice(0,20):'';adminNameSync();},()=>{});}
 function adminNameSync(){if(!S.canEdit||ADW||!S.canWrite||!S.db)return;const n=myName();if(!n||!S.myStaff||n===S.adminName)return;ADW=true;S.db.doc('app/admin').set({name:n,at:nowISO()}).catch(()=>{ADW=false;});}
 const adminLabel=()=>S.adminName?`관리자(${S.adminName})`:'관리자';
-function extSubs(){privSub();delreqSub();adminNameSub();gwSub();schSub();jrSub();S.unsubs.push(()=>{for(const u of [PVU,DRU,ADU,GWU,GWSU,SCU,JRU])try{u&&u();}catch{}PVU=DRU=ADU=GWU=GWSU=SCU=JRU=null;S.joinreqs=[];S.sched=null;S.privTasks=[];S.delreqs=[];S.gw=[];S.gwStat=null;});}
+function extSubs(){privSub();delreqSub();adminNameSub();gwSub();schSub();jrSub();piiSub();S.unsubs.push(()=>{for(const u of [PVU,DRU,ADU,GWU,GWSU,SCU,JRU,PIIU])try{u&&u();}catch{}PVU=DRU=ADU=GWU=GWSU=SCU=JRU=PIIU=null;S.joinreqs=[];S.pii=[];S.piiLoaded=false;S.sched=null;S.privTasks=[];S.delreqs=[];S.gw=[];S.gwStat=null;});}
 /* 대상 찾기 */
 function taskOfPhoto(pid,hint){const h=hint&&hint.path?findTask(hint.path):null;if(h&&h.photos.some(p=>p.id===pid))return h;return S.tasks.find(t=>t.photos.some(p=>p.id===pid))||S.privTasks.find(t=>t.photos.some(p=>p.id===pid))||null;}
 function findTaskById(tid,path){return (path&&findTask(path))||S.tasks.find(t=>t.id===tid)||null;}
@@ -4452,6 +4497,195 @@ document.addEventListener('change',e=>{const T=e.target;
 const _uxOpenTask=openTask;openTask=function(t,d){_uxOpenTask(t,d);uxDlgMode(t);};
 const _uxOpenMe=openMe;openMe=function(){_uxOpenMe();uxMeInit();};
 mnavInit();uxBigApply();uxPwa();
+/* ───────── 개인정보 자료 — 총괄 관리자만 ─────────
+   이력서·급여·주민등록번호 13자리·신분증·건강 정보가 든 사진·파일은 올리는 순간 이 기기(브라우저) 안에서 검사합니다.
+   걸리면 사진첩·서류함 대신 pii/{id}(내용은 pii/{id}/c/{n})에 저장하고, 보안 규칙상 app/members.pii 에 있는 총괄 관리자만 읽습니다.
+   올린 사람을 포함한 다른 직원 화면에는 '🔐 관리자 전용' 그림만 보입니다. 생년월일만 있는 경우(예: 900101-1******)는 해당하지 않습니다.
+   업무·특이사항에 직접 적은 주민등록번호 13자리는 저장할 때 뒷자리를 가립니다(clean → maskRRN). */
+const PII_PH='pii-';
+function isPiiPh(id){return typeof id==='string'&&id.startsWith('pii-');}
+S.pii=[];S.piiLoaded=false;
+function piiOwner(){if(S.preview)return true;if(S.mode!=='firebase')return false;return !!(S.canEdit&&S.members&&(S.members.pii||[]).includes(S.email));}
+const piiLabel=()=>`총괄 관리자${S.adminName?`(${S.adminName})`:''}`;
+const PII_IMG='data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240"><rect width="320" height="240" fill="#f3eef0"/><rect x="1" y="1" width="318" height="238" fill="none" stroke="#c9a3ad" stroke-width="2" stroke-dasharray="6 5"/><g transform="translate(136 62)" fill="none" stroke="#8a2236" stroke-width="7" stroke-linecap="round"><rect x="0" y="34" width="48" height="40" rx="6" fill="#8a2236"/><path d="M10 34V22a14 14 0 0 1 28 0v12"/></g><text x="160" y="170" text-anchor="middle" font-family="Malgun Gothic,Apple SD Gothic Neo,sans-serif" font-size="22" font-weight="700" fill="#5e1726">개인정보 · 관리자 전용</text><text x="160" y="198" text-anchor="middle" font-family="Malgun Gothic,Apple SD Gothic Neo,sans-serif" font-size="15" fill="#7a5560">총괄 관리자만 볼 수 있습니다</text></svg>');
+
+/* ── 주민등록번호 13자리 (생년월일 6자리 + 성별 1~8 + 6자리). 뒷자리가 가려진 번호는 해당 없음 */
+function rrnList(s){const out=[];if(!s||s.length<13)return out;const re=/(?<![\w])(\d{2})(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])(\s?[-–—~]\s?|\s)?([1-8])(\d{6})(?![\w])/g;
+  for(const m of String(s).matchAll(re)){const pre=s.slice(Math.max(0,m.index-16),m.index).replace(/\s+/g,'');if(/(법인(등록)?번호|등기번호|법인등록|사업자번호|고유번호)[:：]?$/.test(pre))continue;out.push(m[0]);}return out;}
+let _maskN=0,_maskT=0;
+function maskRRN(s){if(typeof s!=='string'||s.length<13||s.startsWith('data:')||!/\d{6}/.test(s))return s;let n=0;
+  const r=s.replace(/(?<![\w])(\d{2})(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])(\s?[-–—]\s?|\s)?([1-8])(\d{6})(?![\w])/g,(m,y,mo,d,sep,g)=>{n++;return `${y}${mo}${d}-${g}******`;});
+  if(n){_maskN+=n;clearTimeout(_maskT);_maskT=setTimeout(()=>{if(_maskN)toast(`주민등록번호 ${_maskN}건은 생년월일만 남기고 뒷자리를 가려 저장했습니다.`);_maskN=0;},400);}return r;}
+function cleanRev(k,v){return typeof v==='string'&&v.length>=13?maskRRN(v):v;}
+
+/* ── 낱말 규칙: 파일 이름·서류 첫머리(400자)·항목 이름 */
+const PII_NOTICE=/안내|공지|공고|모집|규정|지침|양식|서식|템플릿|샘플|견본|작성요령|작성방법|매뉴얼|일정|계획|교육/;
+const PII_KW=[
+  {k:'resume',name:'이력서·인사 기록',fn:/이력서|자기소개서|경력기술서|입사지원서|인사기록|인사카드|신상카드|재직증명|경력증명|퇴직증명|resume|(?<![a-z])cv(?![a-z])/i,head:/이력서|자기소개서|경력기술서|입사지원서|인사기록카드|인사카드|재직증명서|경력증명서|퇴직증명서|RESUME/i,fields:/성명|생년월일|학력|경력사항|자격(증|면허)|현주소|연락처|휴대폰|병역|가족사항|희망연봉|지원분야|최종학교/g,min:4,need:/학력|경력사항|최종학교|지원분야/},
+  {k:'pay',name:'급여·임금 자료',fn:/급여|임금|연봉|상여|원천징수|근로소득|퇴직금|보수월액|급상여|월급|근로계약|payroll|salary|payslip/i,head:/급여명세|임금명세|급여대장|임금대장|급여내역|급여지급|급여이체|원천징수영수증|지급명세서|연봉계약서|근로계약서|상여금?지급|퇴직금정산|퇴직소득/,fields:/기본급|지급(총)?액|지급합계|총지급|공제(총)?액|공제합계|실(수령|지급)액|차인지급|국민연금|건강보험|고용보험|장기요양|소득세|연장(근로)?수당|야간(근로)?수당|식대|시급|월급여/g,min:4,need:/기본급|실수령|실지급|차인지급|시급|월급여|지급합계|총지급/},
+  {k:'id',name:'신분증·주민등록 서류',fn:/주민등록|등본|초본|가족관계|기본증명|혼인관계|신분증|운전면허|여권|외국인등록|passport/i,head:/주민등록(표|등본|초본|증)|가족관계증명|기본증명서|혼인관계증명|입양관계증명|운전면허증|외국인등록증|여권|PASSPORT|REPUBLICOFKOREA/i},
+  {k:'health',name:'건강·진단 정보',fn:/진단서|소견서|건강검진|검진결과|의무기록|진료기록|처방전|진료비|산재요양|요양급여/i,head:/진단서|소견서|건강검진결과|검진결과(표|통보)|일반건강검진결과|특수건강검진결과|의무기록|진료기록|처방전|진료비(계산서|영수증|세부)|입퇴원확인|요양급여신청/}];
+function kwHit(re,s){if(!re||!s)return '';const r=new RegExp(re.source,re.flags.replace('g','')+'g');
+  for(const m of s.matchAll(r)){const after=s.slice(m.index+m[0].length,m.index+m[0].length+14);if(PII_NOTICE.test(after))continue;if(/양식|서식|빈칸/.test(s.slice(Math.max(0,m.index-6),m.index)))continue;return m[0];}return '';}
+/* → {hit, why:[사유], ks:[종류]} */
+function piiCheck(name,text,o={}){const why=[],ks=[];const nm=String(name||'').replace(/\.[A-Za-z0-9]{1,6}$/,'');const fn=nm.replace(/[\s_\-()[\]·.,]+/g,'');
+  const raw=String(text||'');const flat=raw.replace(/\s+/g,'');const head=flat.slice(0,400);
+  let rr=rrnList(raw);if(!rr.length&&o.ocr)rr=rrnList(raw.replace(/(?<=\d)[ \t]+(?=\d)/g,''));if(!rr.length)rr=rrnList(nm);
+  if(rr.length){why.push('주민등록번호 13자리');ks.push('rrn');}
+  for(const g of PII_KW){if(o.slot&&['bank','seal','corpreg','bizreg'].includes(o.slot)&&g.k==='id')continue;
+    let hit=kwHit(g.fn,fn)||kwHit(g.fn,nm)||kwHit(g.head,head);
+    if(!hit&&g.fields){const fs=new Set(flat.match(g.fields)||[]);if(fs.size>=g.min&&(!g.need||g.need.test(flat)))hit='항목';}
+    if(hit){why.push(g.name);ks.push(g.k);}}
+  return {hit:why.length>0,why,ks};}
+
+/* ── 사진: 서류처럼 보이는 사진만 글자 인식(OCR) */
+function docLike(cv){const w=72,h=Math.max(1,Math.round(72*cv.height/Math.max(1,cv.width)));const c=document.createElement('canvas');c.width=w;c.height=h;const x=c.getContext('2d',{willReadFrequently:true});x.drawImage(cv,0,0,w,h);
+  const d=x.getImageData(0,0,w,h).data;let paper=0,gray=0;const n=w*h;
+  for(let i=0;i<d.length;i+=4){const r=d[i],g=d[i+1],b=d[i+2];const sat=Math.max(r,g,b)-Math.min(r,g,b);const L=(r*299+g*587+b*114)/1000;if(sat<40){gray++;if(L>160)paper++;}}
+  return paper/n>=.15||gray/n>=.55;}
+const withTimeout=(p,ms)=>Promise.race([p,new Promise((_,rej)=>setTimeout(()=>rej({code:'timeout'}),ms))]);
+function piiAsk(name){const no=$('#confirm-no');const t0=no.textContent;no.textContent='없음 — 그대로 올리기';
+  return confirmDlg('개인정보 확인',`「${name||'사진'}」은(는) 서류처럼 보이는데 글자를 확인하지 못했습니다.\n이력서·급여·주민등록번호·신분증·진단서 같은 개인정보가 들어 있으면 [${piiLabel()}에게만]을 누르세요.`,`${piiLabel()}에게만`).finally(()=>{no.textContent=t0;});}
+async function piiScanPhoto(file,r,o={}){if(o.pii)return {hit:true,why:['올린 사람이 개인정보로 지정'],ks:['manual']};
+  const nm=piiCheck(file&&file.name||'','');if(nm.hit)return nm;
+  let cv;try{const dec=await decodeImg(r.blob);try{cv=fitCanvas(dec.src,1600);}finally{dec.done();}}catch{return {hit:false};}
+  if(!docLike(cv))return {hit:false,skip:1};
+  let text='';try{text=await withTimeout(ocrCanvas(cv,o.onProg),90000);}catch(e){const yes=await piiAsk(file&&file.name);return yes?{hit:true,why:['올린 사람이 개인정보로 지정'],ks:['manual']}:{hit:false};}
+  return piiCheck(file&&file.name||'',text,{ocr:true});}
+/* ── 파일: 본문 글자(스캔·사진은 OCR)로 검사. 읽은 글자는 잠시 보관해 서류함 저장 때 다시 읽지 않음 */
+const _xdc=new Map();
+async function piiScanFile(file,o={}){let ex={text:'',how:'name'};try{ex=await extractDocText(file,o.onProg);}catch{ex={text:'',how:'fail'};}
+  const r=piiCheck(`${file.name||''} ${o.title||''}`,ex.text,{ocr:ex.how==='ocr',slot:o.slot});r.text=ex.text;r.how=ex.how;return r;}
+{const _xd=extractDocText;extractDocText=async function(file,onProg){const k=`${file&&file.name}|${file&&file.size}|${file&&file.type}`;const c=_xdc.get(k);if(c&&Date.now()-c.t<300000)return c.r;
+  const r=await _xd(file,onProg);_xdc.set(k,{r,t:Date.now()});if(_xdc.size>16)_xdc.delete(_xdc.keys().next().value);return r;};}
+
+/* ── 저장 (pii/{id} 정보 + pii/{id}/c/{n} 내용) */
+function piiCtx(){if(S.dlg&&$('#dlg-task')&&$('#dlg-task').open){const t=S.dlg.path?findTask(S.dlg.path):null;return {title:(($('#t-title')||{}).value||'').trim()||(t&&t.title)||'',path:S.dlg.path||'',site:(($('#t-site')||{}).value)||''};}
+  return {title:S.qa&&S.qa.text?String(S.qa.text).slice(0,80):'',path:'',site:''};}
+async function piiMetaPut(id,m){const doc={kind:m.kind==='photo'?'photo':'file',name:String(m.name||'').slice(0,120),type:String(m.type||'').slice(0,80),size:Number(m.size)||0,n:Math.max(1,m.n|0),th:!!m.th,
+    why:(m.why||[]).map(x=>String(x).slice(0,40)).slice(0,6),src:String(m.src||'').slice(0,20),title:String(m.title||'').slice(0,120),site:String(m.site||'').slice(0,30),path:String(m.path||'').slice(0,120),at:nowISO(),by:myId()||'',byName:String(myName()||'').slice(0,30),uid:S.me.id||''};
+  if(S.preview){S.pii=[{id,...doc},...S.pii];S.piiLoaded=true;piiRefresh();return;}
+  await fbWrite(S.fs.doc('pii/'+id).set({...doc,ts:firebase.firestore.FieldValue.serverTimestamp()}));}
+function piiHide(id){if(piiOwner())return;for(const m of [S.photoUrls,S.thumbUrls]){const u=m[id];if(u&&u.startsWith('blob:'))try{URL.revokeObjectURL(u);}catch{}m[id]=PII_IMG;}}
+async function piiPutPhoto(id,r,file,pc,ctx){let th=false;
+  if(S.preview){S.localBlobs[id]=URL.createObjectURL(r.blob);if(r.thumb){S.thumbUrls[id]=URL.createObjectURL(r.thumb);th=true;}}
+  else th=await fbPutPhoto(id,r.blob,r.thumb);
+  await piiMetaPut(id,{kind:'photo',name:(file&&file.name)||'사진',type:r.blob.type,size:r.blob.size+(r.thumb?r.thumb.size:0),n:1,th,why:pc.why,src:'task',...ctx});piiHide(id);return th;}
+async function piiPutFile(blob,m){const id=PII_PH+rid();
+  if(S.preview){S.localFiles[id]=blob;await piiMetaPut(id,{...m,kind:'file',type:blob.type||m.type,size:blob.size,n:1});return id;}
+  if(S.mode!=='firebase'||!S.fs)throw {code:'pii_mode',userMsg:'개인정보 서류는 실사용 업무일지(Firebase)에서만 올릴 수 있습니다.'};
+  const u8=new Uint8Array(await blob.arrayBuffer());const n=Math.max(1,Math.ceil(u8.length/FILE_CHUNK));const B=firebase.firestore.Blob;
+  for(let i=0;i<n;i++){m.onProg&&m.onProg(i,n);await fbWrite(S.fs.doc(`pii/${id}/c/${i}`).set({b:B.fromUint8Array(u8.slice(i*FILE_CHUNK,(i+1)*FILE_CHUNK)),i}));}
+  await piiMetaPut(id,{...m,kind:'file',type:blob.type||m.type||'',size:blob.size,n});return id;}
+function piiToast(n,why,kind){const w=[...new Set(why)].slice(0,3).join(', ');toast(`🔐 ${kind||'자료'} ${n>1?n+'건':''}에 개인정보(${w})가 있어 ${piiLabel()}에게만 전달했습니다. 올린 분을 포함한 다른 직원에게는 '관리자 전용'으로만 보입니다.`.replace('  ',' '));}
+
+/* ── 읽기: 총괄 관리자만 */
+async function piiBlob(it){if(S.preview){if(it.kind==='photo'){const u=S.localBlobs[it.id];return u?await (await fetch(u)).blob():null;}return S.localFiles[it.id]||null;}
+  if(!piiOwner())throw {code:'restricted',userMsg:`개인정보 자료는 ${piiLabel()}만 열 수 있습니다.`};
+  if(it.kind==='photo'){const s=await S.fs.doc(`pii/${it.id}/c/0`).get();if(!s.exists)throw {code:'missing'};const d=s.data();if(d.b)return new Blob([d.b.toUint8Array()],{type:d.type||it.type||'image/jpeg'});if(d.d)return await (await fetch(d.d)).blob();throw {code:'missing'};}
+  const parts=[];for(let i=0;i<it.n;i++){const s=await S.fs.doc(`pii/${it.id}/c/${i}`).get();if(!s.exists)throw {code:'missing'};parts.push(s.data().b.toUint8Array());}return new Blob(parts,{type:it.type||'application/octet-stream'});}
+async function piiThumbBlob(id){if(S.preview){const u=S.thumbUrls[id];return u?await (await fetch(u)).blob():null;}try{const s=await S.fs.doc(`pii/${id}/c/th`).get();if(s.exists&&s.data().b)return new Blob([s.data().b.toUint8Array()],{type:s.data().type||'image/jpeg'});}catch{}return null;}
+async function piiDelete(id){const it=S.pii.find(x=>x.id===id)||{id,n:1,kind:'photo'};if(S.preview){S.pii=S.pii.filter(x=>x.id!==id);piiRefresh();return;}if(!piiOwner()||!S.fs)return;
+  for(let i=0;i<Math.max(1,it.n||1);i++){try{await S.fs.doc(`pii/${id}/c/${i}`).delete();}catch{}}try{await S.fs.doc(`pii/${id}/c/th`).delete();}catch{}try{await S.fs.doc('pii/'+id).delete();}catch{}
+  delete S.photoUrls[id];delete S.thumbUrls[id];}
+function normPii(id,v){v=v||{};return {id,kind:v.kind==='photo'?'photo':'file',name:typeof v.name==='string'?v.name:'자료',type:typeof v.type==='string'?v.type:'',size:Number(v.size)||0,n:Math.max(1,Number(v.n)||1),th:!!v.th,why:Array.isArray(v.why)?v.why.filter(x=>typeof x==='string'):[],src:typeof v.src==='string'?v.src:'',title:typeof v.title==='string'?v.title:'',site:typeof v.site==='string'?v.site:'',path:typeof v.path==='string'?v.path:'',at:typeof v.at==='string'?v.at:'',by:typeof v.by==='string'?v.by:'',byName:typeof v.byName==='string'?v.byName:''};}
+let PIIU=null;
+function piiSub(){if(PIIU){try{PIIU();}catch{}PIIU=null;}S.pii=S.preview?S.pii:[];S.piiLoaded=!!S.preview;if(S.preview||!piiOwner()||!S.fs)return;
+  PIIU=S.fs.collection('pii').orderBy('at','desc').limit(300).onSnapshot(qs=>{const prev=new Set(S.pii.map(x=>x.id));const first=!S.piiLoaded;S.pii=qs.docs.filter(d=>d.exists).map(d=>normPii(d.id,d.data()));S.piiLoaded=true;
+    const nw=S.pii.filter(x=>!prev.has(x.id)&&x.by!==myId());if(!first&&nw.length)toast(`🔐 ${nw[0].byName||nameOf(nw[0].by)}님이 개인정보 자료(${nw[0].why.join(', ')})를 올렸습니다. 알림(종)에서 확인하세요.`);piiRefresh();},()=>{S.pii=[];S.piiLoaded=true;});}
+/* 총괄 관리자 지정: 관리자가 1명이고 아직 지정이 없으면 그 관리자 계정으로 */
+let _piiClaim=0;
+function piiTick(){if(S.mode!=='firebase'||!S.fs||!S.members)return;
+  if(S.canEdit&&!(S.members.pii||[]).length&&S.members.admins.length===1&&S.members.admins[0]===S.email&&Date.now()-_piiClaim>60000){_piiClaim=Date.now();S.fs.doc('app/members').update({pii:[S.email]}).catch(()=>{});}
+  const own=piiOwner();if(own&&!PIIU)piiSub();else if(!own&&PIIU){try{PIIU();}catch{}PIIU=null;S.pii=[];S.piiLoaded=false;}}
+setInterval(piiTick,4000);
+function piiRefresh(){ntfTick();if($('#dlg-pii')&&$('#dlg-pii').open)piiRender();if(S.view==='docs'&&piiOwner())scheduleRender();}
+function piiNtf(){const out=[];if(!piiOwner()||!S.pii.length)return out;const seen=lsGet('wl.piiSeen')||'';const nw=S.pii.filter(x=>x.at>seen&&x.by!==myId());
+  if(nw.length)out.push({k:'pii|'+nw[0].at,at:nw[0].at,type:'pii',title:`개인정보 자료 ${nw.length}건 도착`,text:nw.slice(0,3).map(x=>`${x.byName||nameOf(x.by)} · ${x.title||x.name} (${x.why.join(', ')})`).join(' / ')+' — 눌러서 확인'});return out;}
+
+/* ── 사진·서류 표시 (다른 직원: 자물쇠 그림) */
+{const _lp=fbLoadPhoto;fbLoadPhoto=function(id){if(isPiiPh(id)&&!piiOwner()){S.photoUrls[id]=PII_IMG;for(const img of document.querySelectorAll(`img[data-pid="${CSS.escape(id)}"]:not([data-th="1"])`))img.src=PII_IMG;return Promise.resolve();}return _lp(id);};}
+{const _pd=photoDataURL;photoDataURL=async function(id){if(isPiiPh(id)&&!piiOwner())return '';return _pd(id);};}
+if(typeof fbAssets==='object'){const _del=fbAssets.delete;fbAssets.delete=async function(id){if(isPiiPh(id)){if(piiOwner())await piiDelete(id);return;}return _del.call(this,id);};}
+
+/* ── 관리자 창 */
+const PII_SRC={task:'업무 사진',docs:'서류함',upload:'각종서류 올리기',move:'기존 자료에서 옮김'};
+function piiTaskOf(it){if(it.kind!=='photo')return null;return S.tasks.find(t=>t.photos.some(p=>p.id===it.id))||null;}
+function piiRowHTML(it){const t=piiTaskOf(it);const seen=lsGet('wl.piiSeen')||'';
+  return `<li class="pii-row ${it.at>seen&&it.by!==myId()?'un':''}" data-pii="${esc(it.id)}"><span class="fi pii-fi">${it.kind==='photo'&&it.th?`<img data-pii-th="${esc(it.id)}" src="${PH_BLANK}" alt="">`:esc(fileIcon({name:it.name}))}</span>
+    <div class="dm"><b>${esc(it.title||it.name)}</b><small>${esc(it.byName||nameOf(it.by))} · ${hhmm(it.at)} · ${esc(PII_SRC[it.src]||it.src||'')} · ${esc(it.name)} · ${fmtMB(it.size)}</small><span class="pii-why">${it.why.map(w=>`<i>${esc(w)}</i>`).join('')}</span>${it.kind==='photo'?`<small>${t?`업무 「${esc(t.title)}」에 붙어 있음`:'업무에 붙어 있지 않음(등록 취소·비공개 업무 등)'}</small>`:''}</div>
+    <span class="da"><button type="button" class="btn sm" data-pii-view="${esc(it.id)}">보기</button><button type="button" class="btn sm" data-pii-dl="${esc(it.id)}" aria-label="내려받기" title="내려받기">${ICON.dl}</button>${t?`<button type="button" class="btn sm ghost" data-pii-task="${esc(it.id)}">업무</button>`:''}${it.kind==='file'||t?`<button type="button" class="btn sm ghost" data-pii-rel="${esc(it.id)}" title="개인정보가 아닌 자료로 확인되면 직원 모두가 보는 곳으로 옮깁니다">일반 자료로</button>`:''}<button type="button" class="btn sm ghost danger" data-pii-del="${esc(it.id)}">삭제</button></span></li>`;}
+function piiRender(){const b=$('#pii-body');if(!b)return;if(!piiOwner()){b.innerHTML=`<p class="pii-note">개인정보 자료는 ${esc(piiLabel())}만 볼 수 있습니다.</p>`;return;}
+  const its=S.pii;b.innerHTML=`<p class="pii-note">이력서·급여·주민등록번호 13자리·신분증·건강 정보가 든 사진·파일은 올리는 순간 자동으로 이곳에만 저장됩니다. 보안 규칙상 이 계정(${esc(S.email||'')})만 열 수 있고, 올린 직원도 다시 볼 수 없습니다. 생년월일만 있는 자료는 해당하지 않습니다.</p>
+    ${S.piiLoaded?(its.length?`<ul class="pii-list">${its.map(piiRowHTML).join('')}</ul>`:'<div class="empty">아직 들어온 개인정보 자료가 없습니다.</div>'):'<div class="empty">불러오는 중…</div>'}
+    <details class="pii-scan" ${S.piiScan?'open':''}><summary>기존 자료 검사 — 이 기능 전에 올린 서류·사진·업무 기록에 개인정보가 있는지</summary><div id="pii-scan-b">${piiScanHTML()}</div></details>`;
+  for(const img of $$('img[data-pii-th]',b)){const id=img.dataset.piiTh;if(S.thumbUrls[id]&&S.thumbUrls[id]!==PII_IMG){img.src=S.thumbUrls[id];continue;}piiThumbBlob(id).then(x=>{if(x){S.thumbUrls[id]=URL.createObjectURL(x);img.src=S.thumbUrls[id];}});}}
+function piiOpen(){const d=$('#dlg-pii');if(!d)return;piiRender();if(!d.open)d.showModal();const top=S.pii[0];if(top)setTimeout(()=>{lsSet('wl.piiSeen',top.at);ntfTick();},1500);}
+async function piiView(id){const it=S.pii.find(x=>x.id===id);if(!it)return;openViewer({name:it.name,type:it.type,size:it.size,meta:`🔐 개인정보 · ${it.byName||nameOf(it.by)} · ${hhmm(it.at)}`,get:()=>piiBlob(it),dlName:it.name});}
+async function piiDl(id){const it=S.pii.find(x=>x.id===id);if(!it)return;setSync('saving');try{const b=await piiBlob(it);saveBlob(b,it.name);}catch(e){toast(fileErrMsg(e),'err');}finally{setSync('ok');}}
+async function piiDel(id){const it=S.pii.find(x=>x.id===id);if(!it)return;const t=piiTaskOf(it);
+  if(!await confirmDlg('개인정보 자료 삭제',`「${it.title||it.name}」(${it.name})을(를) 완전히 지웁니다. 되돌릴 수 없습니다.${t?`\n업무 「${t.title}」에서도 이 사진이 빠집니다.`:''}`,'삭제'))return;
+  setSync('saving');try{if(t)await removePhoto(t,id,{at:nowISO(),by:myId(),kind:'note',text:'개인정보 사진을 총괄 관리자가 삭제함'});else await piiDelete(id);toast('삭제했습니다.');}catch(e){writeError(e);}finally{setSync('ok');}}
+async function piiRelease(id){const it=S.pii.find(x=>x.id===id);if(!it)return;const t=piiTaskOf(it);
+  if(!await confirmDlg('일반 자료로 옮기기',`「${it.title||it.name}」에 개인정보가 없다고 확인한 경우에만 옮기세요.\n${it.kind==='photo'?`업무 「${t?t.title:''}」의 사진으로 직원 모두가 보게 됩니다.`:'서류함 › 기타 서류로 옮겨 직원 모두가 보게 됩니다.'}`,'옮기기'))return;
+  setSync('saving');try{const blob=await piiBlob(it);
+    if(it.kind==='photo'){if(!t)throw {userMsg:'붙어 있는 업무를 찾지 못했습니다.'};const nid='p'+rid();const th=await fbPutPhoto(nid,blob,await piiThumbBlob(id));
+      await updateTask(t,{photos:t.photos.map(p=>p.id===id?{...p,id:nid,th}:p),logs:t.logs.map(l=>({...l,photos:l.photos.map(x=>x===id?nid:x)}))});}
+    else await storeDoc({slot:'etc',title:(it.title||it.name.replace(/\.[^.]+$/,'')).slice(0,80),file:new File([blob],it.name,{type:it.type}),text:'',vnote:'개인정보 자료에서 옮김'});
+    await piiDelete(id);toast('일반 자료로 옮겼습니다.');}
+  catch(e){toast((e&&e.userMsg)||fileErrMsg(e),'err');}finally{setSync('ok');}}
+
+/* ── 기존 자료 검사 (총괄 관리자) */
+S.piiScan=null;
+function piiScanHTML(){const R=S.piiScan;
+  if(!R)return `<p class="pii-note">서류함 서류(읽어 둔 본문·이름), 업무 사진(서류처럼 보이는 사진만 글자 인식), 업무 기록의 주민등록번호를 검사합니다. 검사만으로는 아무것도 바뀌지 않습니다.</p><button type="button" class="btn sm primary" data-pii-scan>검사 시작</button>`;
+  const fl=R.files,ph=R.photos,tk=R.tasks;
+  return `${R.busy?`<p class="pii-note"><i class="spin"></i> ${esc(R.busy)}</p>`:`<p class="pii-note">검사 끝 · 서류 ${R.nf}건 · 사진 ${R.np}장(글자 인식 ${R.nocr}장) · 업무 ${R.nt}건</p>`}
+    ${fl.length?`<h4>서류함 ${fl.length}건</h4><ul class="pii-list">${fl.map(x=>`<li class="pii-row"><span class="fi">${esc(fileIcon(curVer(x.f)||{name:''}))}</span><div class="dm"><b>${esc(x.f.title)}</b><small>${esc(slotPath(x.f.slot,x.f.site))} · 버전 ${x.f.versions.length}개</small><span class="pii-why">${x.why.map(w=>`<i>${esc(w)}</i>`).join('')}</span></div><span class="da">${x.done?'<span class="uc-ok">✓ 옮김</span>':`<button type="button" class="btn sm" data-doc-info="${esc(x.f.id)}">보기</button><button type="button" class="btn sm primary" data-pii-mvf="${esc(x.f.id)}">관리자 전용으로 옮기기</button>`}</span></li>`).join('')}</ul>`:''}
+    ${ph.length?`<h4>업무 사진 ${ph.length}장</h4><ul class="pii-list">${ph.map(x=>`<li class="pii-row"><span class="fi pii-fi">${thumbImg(x.p)}</span><div class="dm"><b>${esc(x.t.title)}</b><small>${esc(fmtYMD(phDate(x.p)))} · ${esc(nameOf(x.p.by))}</small><span class="pii-why">${x.why.map(w=>`<i>${esc(w)}</i>`).join('')}</span></div><span class="da">${x.done?'<span class="uc-ok">✓ 옮김</span>':`<button type="button" class="btn sm" data-pii-pv="${esc(x.p.id)}">보기</button><button type="button" class="btn sm primary" data-pii-mvp="${esc(x.p.id)}">관리자 전용으로 옮기기</button>`}</span></li>`).join('')}</ul>`:''}
+    ${tk.length?`<h4>업무 기록에 적힌 주민등록번호 ${tk.length}건</h4><ul class="pii-list">${tk.map(x=>`<li class="pii-row"><div class="dm"><b>${esc(x.t.title)}</b><small>${esc(x.where)}</small></div><span class="da">${x.done?'<span class="uc-ok">✓ 가림</span>':`<button type="button" class="btn sm primary" data-pii-mask="${esc(x.t.path)}">뒷자리 가리기</button>`}</span></li>`).join('')}</ul>`:''}
+    ${!R.busy&&!fl.length&&!ph.length&&!tk.length?'<div class="empty">개인정보로 보이는 기존 자료가 없습니다.</div>':''}
+    ${R.busy?'<button type="button" class="btn sm ghost" data-pii-stop>멈추기</button>':'<button type="button" class="btn sm ghost" data-pii-scan>다시 검사</button>'}`;}
+function piiScanSync(){const b=$('#pii-scan-b');if(b)b.innerHTML=piiScanHTML();}
+async function piiScanRun(){if(!piiOwner())return;const R=S.piiScan={files:[],photos:[],tasks:[],nf:0,np:0,nocr:0,nt:0,busy:'서류함 검사 중…',stop:false};piiScanSync();
+  for(const f of Object.values(S.files)){R.nf++;if(f.versions.some(v=>v.note==='개인정보 자료에서 옮김'))continue;const names=[f.title,...f.versions.map(v=>v.name)].join(' ');const c=piiCheck(names,f.txt,{slot:f.slot});if(c.hit)R.files.push({f,why:c.why});}
+  const tasks=S.tasks.filter(t=>!t.sample);
+  for(const t of tasks){const where=[];if(rrnList(t.title).length)where.push('업무명');if(rrnList(t.desc).length)where.push('내용');if(t.logs.some(l=>rrnList(l.text).length))where.push('진행 기록');if(where.length)R.tasks.push({t,where:where.join('·')});R.nt++;}
+  piiScanSync();
+  const phs=[];for(const t of tasks)for(const p of t.photos)if(!isPiiPh(p.id)&&!isPrivPh(p.id))phs.push({t,p});
+  for(let i=0;i<phs.length&&!R.stop;i++){const {t,p}=phs[i];R.busy=`업무 사진 검사 중… ${i+1}/${phs.length}장 (서류처럼 보이는 사진만 글자 인식)`;if(i%3===0)piiScanSync();R.np++;
+    try{await fbLoadPhoto(p.id);const u=S.photoUrls[p.id];if(!u||u===PH_BLANK)continue;const blob=await (await fetch(u)).blob();const dec=await decodeImg(blob);let cv;try{cv=fitCanvas(dec.src,1600);}finally{dec.done();}
+      if(!docLike(cv))continue;R.nocr++;const text=await withTimeout(ocrCanvas(cv),90000);const c=piiCheck('',text,{ocr:true});if(c.hit){R.photos.push({t,p,why:c.why});piiScanSync();}}catch{}}
+  R.busy='';piiScanSync();}
+async function piiMoveFile(fid){const x=S.piiScan&&S.piiScan.files.find(y=>y.f.id===fid);const f=S.files[fid];if(!x||!f)return;
+  if(!await confirmDlg('관리자 전용으로 옮기기',`「${f.title}」의 모든 버전(${f.versions.length}개)을 개인정보 자료로 옮기고 서류함에서 지웁니다.\n직원들은 더 이상 볼 수 없게 됩니다.`,'옮기기'))return;
+  setSync('saving');try{for(const v of f.versions){const b=await fileGet({...f,restricted:false},v);await piiPutFile(b,{name:v.name,type:v.type,src:'move',title:`${f.title}${f.versions.length>1?' v'+v.v:''}`,site:f.site,why:x.why});}
+    await docDeleteAll(f);x.done=true;piiScanSync();toast(`「${f.title}」을(를) 관리자 전용으로 옮겼습니다.`);}catch(e){toast(fileErrMsg(e),'err');}finally{setSync('ok');}}
+async function piiMovePhoto(pid){const x=S.piiScan&&S.piiScan.photos.find(y=>y.p.id===pid);if(!x)return;const t=findTask(x.t.path)||x.t;
+  if(!await confirmDlg('관리자 전용으로 옮기기',`업무 「${t.title}」의 이 사진을 개인정보 자료로 옮깁니다.\n직원들에게는 '관리자 전용' 그림으로만 보입니다.`,'옮기기'))return;
+  setSync('saving');try{await fbLoadPhoto(pid);const blob=await (await fetch(S.photoUrls[pid])).blob();let thumb=null;try{const ts=await S.fs.doc('thumbs/'+pid).get();if(ts.exists&&ts.data().b)thumb=new Blob([ts.data().b.toUint8Array()],{type:ts.data().type||'image/jpeg'});}catch{}
+    const nid=PII_PH+rid();const th=await fbPutPhoto(nid,blob,thumb);await piiMetaPut(nid,{kind:'photo',name:`${t.title}.jpg`,type:blob.type,size:blob.size,n:1,th,why:x.why,src:'move',title:t.title,path:t.path,site:t.site});
+    await updateTask(t,{photos:t.photos.map(p=>p.id===pid?{...p,id:nid,th}:p),logs:t.logs.map(l=>({...l,photos:l.photos.map(y=>y===pid?nid:y)}))});
+    await S.assets.delete(pid);x.done=true;piiScanSync();toast('사진을 관리자 전용으로 옮겼습니다.');}catch(e){toast(fileErrMsg(e),'err');}finally{setSync('ok');}}
+async function piiMaskTask(path){const x=S.piiScan&&S.piiScan.tasks.find(y=>y.t.path===path);const t=findTask(path);if(!x||!t)return;
+  try{await updateTask(t,{title:maskRRN(t.title),desc:maskRRN(t.desc),logs:t.logs.map(l=>({...l,text:maskRRN(l.text)}))});x.done=true;piiScanSync();}catch(e){writeError(e);}}
+
+document.addEventListener('click',e=>{const T=e.target;
+  if(T.closest('[data-pii-open]')){piiOpen();return;}
+  let b=T.closest('[data-pii-view]');if(b){piiView(b.dataset.piiView);return;}
+  b=T.closest('[data-pii-dl]');if(b){piiDl(b.dataset.piiDl);return;}
+  b=T.closest('[data-pii-del]');if(b){piiDel(b.dataset.piiDel);return;}
+  b=T.closest('[data-pii-rel]');if(b){piiRelease(b.dataset.piiRel);return;}
+  b=T.closest('[data-pii-task]');if(b){const it=S.pii.find(x=>x.id===b.dataset.piiTask);const t=it&&piiTaskOf(it);if(t){$('#dlg-pii').close();openTask(t);}return;}
+  b=T.closest('[data-pii-pv]');if(b){const id=b.dataset.piiPv;openViewer({name:'업무 사진.jpg',type:'image/jpeg',meta:'기존 업무 사진',get:async()=>{await fbLoadPhoto(id);return await (await fetch(S.photoUrls[id])).blob();}});return;}
+  if(T.closest('[data-pii-scan]')){piiScanRun();return;}
+  if(T.closest('[data-pii-stop]')){if(S.piiScan)S.piiScan.stop=true;return;}
+  b=T.closest('[data-pii-mvf]');if(b){piiMoveFile(b.dataset.piiMvf);return;}
+  b=T.closest('[data-pii-mvp]');if(b){piiMovePhoto(b.dataset.piiMvp);return;}
+  b=T.closest('[data-pii-mask]');if(b){piiMaskTask(b.dataset.piiMask);return;}},true);
+document.addEventListener('change',e=>{if(e.target.id==='t-ph-pii'&&S.dlg)S.dlg.piiOn=e.target.checked;});
+function piiSetHTML(){if(S.mode!=='firebase'||!S.canEdit)return '';const own=piiOwner();const who=(S.members&&S.members.pii)||[];
+  return `<div class="ux-usage pii-set"><b>🔐 개인정보 자료</b> ${own?`이 계정(${esc(S.email)})만 열람 · ${S.pii.length}건 <button type="button" class="btn sm ghost" data-pii-open>열기</button>`:who.length?`총괄 관리자 계정만 열람합니다. 다른 관리자도 볼 수 없습니다.`:'아직 열람자가 지정되지 않았습니다(관리자가 1명이면 자동 지정).'}<small>이력서·급여·주민등록번호 13자리·신분증·건강 정보가 든 사진·파일은 올릴 때 자동으로 이곳에만 저장됩니다.</small></div>`;}
 
 /* ───────── 시작 ───────── */
 function boot(){
