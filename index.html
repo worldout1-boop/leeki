@@ -7787,8 +7787,9 @@ function ilDocStep(ro){const d=IL.d;const k=d.gk||'work';
   <div class="il-wrap" id="il-wrap"><div class="il-paper" id="il-paper">${ilDocHTML(d,'view')}</div></div>
   ${!ro&&d.fol.length&&!d.path?`<label class="il-fol"><input type="checkbox" id="il-fol" ${d.folOn!==false?'checked':''}> 후속 조치 ${d.fol.length}건을 '할 예정' 업무로 같이 등록 <small>${esc(d.fol.slice(0,2).join(' / '))}${d.fol.length>2?' …':''}</small></label>`:''}
   ${d.path&&!IL.dirty?`<p class="il-saved">✅ 업무일지에 저장된 일보입니다 · ${esc(d.title)}</p>`:''}`;}
-function ilZoom(){const w=$('#il-wrap'),p=$('#il-paper');if(!w||!p)return;const px=210*96/25.4;const z=IL.big?1:Math.min(1,Math.max(.3,(w.clientWidth-20)/px));p.style.zoom=z<.995?z.toFixed(3):'';const b=$('[data-il-zoom]');if(b)b.hidden=!IL.big&&z>=.995;}
-function ilPrep(){const p=$('#il-paper');if(!p)return;ilZoom();
+function ilZoom(){const w=$('#il-wrap'),p=$('#il-paper');if(!w||!p)return;const px=210*96/25.4;const z=IL.big?1:Math.min(1,Math.max(.3,(w.clientWidth-26)/px));p.style.zoom=z<.995?z.toFixed(3):'';const b=$('[data-il-zoom]');if(b)b.hidden=!IL.big&&z>=.995;}
+const IL_RO=('ResizeObserver' in window)?new ResizeObserver(()=>{if(IL.d&&IL.step==='doc')ilZoom();}):null;
+function ilPrep(){const p=$('#il-paper');if(!p)return;ilZoom();requestAnimationFrame(()=>ilZoom());try{const w=$('#il-wrap');if(IL_RO&&w)IL_RO.observe(w);}catch{}
   if(ilCanEdit()){const t=$('.ap-il-title',p),b=$('.ap-il-body',p);for(const el of [t,b])if(el)el.contentEditable='true';
     for(const th of $$('th',b))th.contentEditable='false';for(const c of $$('[data-il-cap]',p))c.contentEditable='true';}
   ilHydrate(p);}
