@@ -1175,6 +1175,54 @@ table.lst td.reg-td{color:var(--ink-3);font-size:12.5px;white-space:nowrap}table
 table.lst td.wd-td{white-space:nowrap}
 .wd-hint{margin:-4px 0 10px;font-size:12.5px;color:var(--ink-3)}.wd-hint b{color:var(--ink-2)}
 @media (max-width:640px){table.lst td:nth-child(7){display:block!important;grid-area:d;font-size:12.5px;color:var(--ink-3);text-align:right}table.lst td:nth-child(8){display:none!important}}
+
+/* 24차: 전자결재 */
+.ap-h{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.ap-h .sp{flex:1}.ap-h h1 small{font-size:14px;color:var(--ink-3);font-weight:500;margin-left:6px}
+.ap-tabs{display:flex;flex-wrap:wrap;gap:4px;margin:10px 0}.ap-tabs button{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:7px 12px;font-size:13.5px;color:var(--ink-2);cursor:pointer}
+.ap-tabs button[aria-selected=true]{border-color:var(--accent);color:var(--accent);font-weight:700;background:var(--accent-soft)}.ap-tabs em{font-style:normal;margin-left:5px;font-size:12px;color:var(--ink-3)}.ap-tabs em.on{background:var(--late);color:#fff;border-radius:9px;padding:0 6px}
+.ap-tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px}.ap-tools input{min-width:260px;flex:0 1 360px}.ap-hint{font-size:12px;color:var(--ink-3)}
+.ap-lst tr[data-ap-open]{cursor:pointer}.ap-lst tr.my-turn td{background:var(--accent-soft)}.ap-no{font-size:12.5px;color:var(--ink-3);white-space:nowrap}
+.ap-mini{display:inline-flex;flex-wrap:wrap;gap:2px 4px;font-size:12.5px;color:var(--ink-3)}.ap-mini i{font-style:normal;color:var(--line)}.ap-mini .ok{color:var(--done)}.ap-mini .no{color:var(--late);font-weight:700}.ap-mini .cur{color:var(--accent);font-weight:700}
+.ap-fund{font-size:12px}.ap-clip{font-size:12px;color:var(--ink-3)}
+.ap-strip{display:flex;flex-wrap:wrap;align-items:center;gap:8px;border:2px solid var(--accent);border-radius:12px;background:var(--accent-soft);padding:10px 14px;margin:0 0 14px}
+.ap-strip button{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:5px 10px;cursor:pointer;font-size:13px}.ap-strip button small{color:var(--ink-3);margin-left:4px}.ap-strip a{margin-left:auto}
+.ap-turn{border-left:4px solid var(--accent);background:var(--accent-soft);padding:10px 14px;border-radius:8px;margin:0 0 12px}.ap-turn.no{border-color:var(--late);background:var(--surface-2)}
+.ap-paper{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px 26px;max-width:980px}
+.ap-top,.ap-ptop{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:14px;flex-wrap:wrap}.ap-top h2{margin:2px 0 6px;font-size:22px}.ap-kind{font-size:13px;color:var(--ink-3);letter-spacing:.3em}
+.ap-stamp{border-collapse:collapse;font-size:12.5px;text-align:center}.ap-stamp th,.ap-stamp td{border:1px solid var(--ink-3);padding:3px 8px;min-width:74px}.ap-stamp th{background:var(--surface-2);font-weight:600}.ap-stamp .ap-v{min-width:24px;width:24px;line-height:1.3}
+.ap-stamp td.sg{height:54px;vertical-align:middle}.ap-stamp td.sg b{display:block;font-size:13px}.ap-stamp td.sg .wt{color:var(--ink-3)}.ap-stamp td.sg small{display:block;color:var(--accent);font-weight:700;font-size:11px}.ap-stamp td.cur{background:var(--accent-soft)}
+.ap-seal{display:inline-block;margin-top:2px;border:2px solid #c0392b;color:#c0392b;border-radius:50%;font-size:10.5px;font-weight:800;padding:2px 5px;transform:rotate(-8deg)}.ap-seal.no{border-color:var(--ink-2);color:var(--ink-2)}
+.ap-stamp td.dt{font-size:11px;color:var(--ink-3);height:18px}
+.ap-info{width:100%;border-collapse:collapse;margin-bottom:14px;font-size:13.5px}.ap-info th,.ap-info td{border:1px solid var(--line);padding:6px 10px;text-align:left}.ap-info th{background:var(--surface-2);width:13%;white-space:nowrap;font-weight:600}.ap-info small.ok{color:var(--done)}
+.ap-body{line-height:1.65;font-size:14px}.ap-body table{width:100%;border-collapse:collapse;margin:0 0 10px}.ap-body th,.ap-body td{border:1px solid var(--ink-3);padding:6px 9px;vertical-align:top;min-width:30px}
+.ap-body th,.ap-body th.lb{background:var(--surface-2);font-weight:600;text-align:center;white-space:nowrap}.ap-body td.big{height:180px}.ap-body p{margin:0 0 4px}.ap-body .ap-note{font-size:12.5px;color:var(--ink-3)}.ap-body img{max-width:100%}
+.ap-body[contenteditable=true]{border:2px dashed var(--line);border-radius:8px;padding:12px;min-height:240px;background:var(--surface);outline:none}.ap-body[contenteditable=true]:focus-within{border-color:var(--accent)}.ap-body[contenteditable=true] td:focus{outline:2px solid var(--accent)}
+.ap-sum{margin:12px 0}.ap-sum p{white-space:pre-wrap;margin:4px 0 0}
+.ap-files{margin:14px 0}.ap-files ul,.ap-wfiles{list-style:none;padding:0;margin:6px 0}.ap-files li,.ap-wfiles li{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:6px 0;border-bottom:1px solid var(--line-2)}.ap-files .nm{font-weight:600}
+.ap-log{margin-top:16px}.ap-log ul{list-style:none;padding:0;margin:6px 0;font-size:13px}.ap-log li{padding:3px 0}.ap-log time{color:var(--ink-3);margin-right:6px}.ap-log li span{color:var(--ink-2)}
+.ap-pick{display:grid;grid-template-columns:2fr 1fr;gap:22px}.ap-pick h3{margin:0 0 4px}.ap-pick h4{margin:16px 0 6px;font-size:14px}
+.ap-tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;margin-top:10px}.ap-tcard{display:flex;flex-direction:column;gap:3px;text-align:left;border:1.5px solid var(--line);border-radius:10px;background:var(--surface);padding:12px;cursor:pointer}
+.ap-tcard:hover,.ap-tcard:focus-visible{border-color:var(--accent);background:var(--accent-soft)}.ap-tcard b{font-size:15px}.ap-tcard small{color:var(--ink-3);font-size:12px}.ap-tcard span{font-size:11.5px;color:var(--accent)}
+.ap-ed{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:18px;align-items:start}.ap-lbl{display:block;font-size:13px;font-weight:600;margin:12px 0 5px}.ap-lbl small{font-weight:400;color:var(--ink-3);margin-left:6px}
+.ap-title{width:100%;font-size:16px;font-weight:600}.ap-main textarea{width:100%}
+.ap-drop{display:flex;align-items:center;gap:10px;flex-wrap:wrap;border:2px dashed var(--line);border-radius:10px;padding:12px;margin-top:12px;color:var(--ink-3);font-size:12.5px}.ap-drop.over{border-color:var(--accent);background:var(--accent-soft)}
+.ap-tplfile{margin:10px 0;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface-2)}
+.ap-side{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--surface);position:sticky;top:76px}.ap-side h3{margin:8px 0 6px;font-size:14.5px}.ap-side select,.ap-side input:not([type=checkbox]):not([type=radio]){width:100%;margin:6px 0}
+.ap-chain{list-style:none;padding:0;margin:6px 0;counter-reset:a}.ap-chain li{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:8px;padding:6px 8px;margin-bottom:5px;background:var(--surface)}.ap-chain .r{font-size:11.5px;color:var(--accent);font-weight:700;min-width:44px}
+.ap-ctl{margin-left:auto;display:flex;gap:2px}.ap-ctl button{border:1px solid var(--line);background:var(--surface);border-radius:5px;width:24px;height:24px;cursor:pointer}.ap-ctl button:disabled{opacity:.35}
+.ap-parts label{display:block;padding:3px 0;font-size:13.5px}.ap-parts small{color:var(--ink-3)}.ap-fundck{display:block;font-size:13.5px;margin:4px 0}.ap-fundck small{color:var(--ink-3)}
+.ap-cc{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0}.ap-chip{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--line);border-radius:14px;padding:2px 8px;font-size:12.5px;background:var(--surface-2);width:auto}.ap-chip button{border:0;background:none;cursor:pointer;color:var(--ink-3);padding:0 2px}.ap-chip small{color:var(--accent)}
+.ap-side .help{font-size:12px;color:var(--ink-3);margin:4px 0}.ap-side .help.warn{color:var(--doing)}
+.ap-lc{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin:12px 0}.ap-lc section{border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--surface)}.ap-lc h3 input{font-size:15px;font-weight:700;width:100%}
+.ap-lc label{display:block;font-size:13px;margin:8px 0}.ap-lc select{width:100%}.ap-lcm{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0}.ap-lcm .ap-chip button{font-size:11px}.ap-lcb{border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--surface);display:grid;gap:10px}
+@media (max-width:900px){.ap-ed,.ap-pick{grid-template-columns:1fr}.ap-side{position:static}.ap-paper{padding:14px}.ap-lst td:nth-child(2),.ap-lst th:nth-child(2),.ap-lst td:nth-child(4),.ap-lst th:nth-child(4){display:none}}
+#print-sheet .ap-ptop{display:flex;justify-content:space-between;gap:12px;margin-bottom:10px}#print-sheet .ap-stamp th,#print-sheet .ap-stamp td{border-color:#555}#print-sheet .ap-info th{background:#f1f3f6}#print-sheet .ap-body th{background:#f1f3f6}#print-sheet .ap-body td.big{height:120px}
+#print-sheet .ap-kind{letter-spacing:.3em;color:#555;font-size:10pt}
+
+/* 24차: 전자결재 탭 자리 */
+@media (max-width:1760px) and (min-width:1561px){.tabs a{padding:0 9px}}
+@media (max-width:1300px) and (min-width:761px){.tabs a{padding:0 4px}}
+@media (max-width:1340px) and (min-width:761px){.tabs a .t-gj{display:none}}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -1241,10 +1289,10 @@ table.lst td.wd-td{white-space:nowrap}
     <a href="#calendar" data-view="calendar">달력</a>
     <a href="#list" data-view="list">목록</a>
     <a href="#report" data-view="report">보고서</a>
-    <a href="#upload" data-view="upload" class="tab-up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 16V4m0 0l-4.5 4.5M12 4l4.5 4.5"/><path d="M4 15v3.5A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5V15"/></svg>각종서류 올리기</a>
+    <a href="#upload" data-view="upload" class="tab-up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 16V4m0 0l-4.5 4.5M12 4l4.5 4.5"/><path d="M4 15v3.5A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5V15"/></svg><span><span class="t-gj">각종</span>서류 올리기</span></a>
     <a href="#docs" data-view="docs">서류함</a>
     <a href="#legal" data-view="legal">법정 업무</a>
-    <a href="#gw" data-view="gw" class="tab-gw">그룹웨어<span class="nav-n" id="gw-n" hidden>0</span></a>
+    <a href="#appr" data-view="appr" class="tab-appr">전자결재<span class="nav-n" id="ap-n" hidden>0</span></a><a href="#gw" data-view="gw" class="tab-gw">그룹웨어<span class="nav-n" id="gw-n" hidden>0</span></a>
   </nav>
   <div class="top-right">
     <span class="sync" id="sync" data-s="wait"><i></i><span>연결 중</span></span>
@@ -1556,6 +1604,11 @@ table.lst td.wd-td{white-space:nowrap}
   <form method="dialog"><header class="modal-h"><h2 id="gwl-h">🔑 그룹웨어 로그인 필요</h2><button type="button" class="icon-btn" data-close aria-label="닫기">✕</button></header></form>
   <div class="modal-b one gl-body"><div id="gwl-body"></div><div class="gl-acts" id="gwl-acts" style="justify-content:flex-end;margin-top:14px"></div></div>
 </dialog>
+<dialog class="modal narrow" id="dlg-apact" aria-labelledby="apa-h">
+  <form method="dialog"><header class="modal-h"><h2 id="apa-h">승인</h2><button type="button" class="icon-btn" data-close aria-label="닫기">✕</button></header></form>
+  <div class="modal-b one"><p id="apa-msg" style="margin:0 0 10px;white-space:pre-line"></p><textarea id="apa-cmt" rows="3" maxlength="1000" style="width:100%"></textarea>
+  <div class="pr-acts"><button type="button" class="btn" data-close>취소</button><button type="button" class="btn primary" id="apa-go">승인</button></div></div>
+</dialog>
 <div id="toasts" aria-live="polite"></div>
 
 <script>
@@ -1815,7 +1868,7 @@ function render(){
   if(S.view!=='report'){S.charts.forEach(c=>c.destroy());S.charts=[];}
   $('#tab-overview').hidden=!(S.canEdit||S.preview);
   if(S.view==='legal'){const ae=document.activeElement;if(ae&&ae.closest&&ae.closest('.lg-set')&&/^(INPUT|SELECT)$/.test(ae.tagName)&&ae.type!=='checkbox'){S.pendingLegal=true;fillWhoOptions();updateMeChip();return;}}
-  if(S.view==='my')renderMy(v);else if(S.view==='team')renderTeam(v);else if(S.view==='board')renderBoard(v);else if(S.view==='calendar')renderCalendar(v);else if(S.view==='list')renderList(v);else if(S.view==='report')renderReport(v);else if(S.view==='help')renderHelp(v);else if(S.view==='overview')renderOverview(v);else if(S.view==='photos')renderPhotos(v);else if(S.view==='upload')renderUpload(v);else if(S.view==='docs')renderDocs(v);else if(S.view==='legal')renderLegal(v);else if(S.view==='gw')renderGw(v);else if(S.view==='org')renderOrg(v);
+  if(S.view==='my')renderMy(v);else if(S.view==='team')renderTeam(v);else if(S.view==='board')renderBoard(v);else if(S.view==='calendar')renderCalendar(v);else if(S.view==='list')renderList(v);else if(S.view==='report')renderReport(v);else if(S.view==='help')renderHelp(v);else if(S.view==='overview')renderOverview(v);else if(S.view==='photos')renderPhotos(v);else if(S.view==='upload')renderUpload(v);else if(S.view==='docs')renderDocs(v);else if(S.view==='legal')renderLegal(v);else if(S.view==='gw')renderGw(v);else if(S.view==='org')renderOrg(v);else if(S.view==='appr')renderAppr(v);
   fillWhoOptions();updateMeChip();patchNames();}
 
 function rowHTML(t){const d=ddayInfo(t);const late=isLate(t);
@@ -2053,6 +2106,7 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>휴대폰에서</b><span>아래쪽 탭(내 업무·팀 현황·달력·그룹웨어·더보기)으로 이동합니다. 브라우저 메뉴의 <em>홈 화면에 추가</em>(아이폰은 공유 › 홈 화면에 추가)를 누르면 앱처럼 아이콘으로 열립니다. 글자가 작으면 <em>더보기 › 글자 크게</em>.</span></li>
       <li><b>달력 보기</b><span>달력 아래에서 <em>내 업무만 · 완료 숨김 · 여러 날 업무는 마감일에만</em>을 고를 수 있습니다(이 기기에 기억). 칸반의 완료 칸은 이번 주 완료만 보이고, <em>지난 완료 보기</em>로 더 볼 수 있습니다.</span></li>
       <li><b>조직도·업무분장</b><span><em>팀 현황</em> 화면 맨 위의 <em>조직도·업무분장</em>을 누르면 관리부 전체 조직도, 안양본사·군포공장·화성공장 관리부 조직도(법정 선임 현황 포함), 업무분장표(정·부·대행 담당, 최근 12주 실적)를 봅니다. 이름표의 짧은 글은 주요 업무 약식이고, 이름을 누르면 그 사람의 업무분장이 나옵니다. 매주 1회 업무일지 기록과 직원 명단을 비교해 담당·대행·부담당·새 업무와 직원 변동을 자동 반영하고, 바뀐 내용은 <em>변경 이력</em>과 알림으로 알려 드립니다. 관리자는 업무를 누르면 담당을 직접 고칠 수 있습니다.</span></li>
+      <li><b>전자결재</b><span>위쪽 <em>전자결재</em>에서 <em>＋ 새 기안</em>을 누르고 <em>서식에 직접 작성</em>(기안서·품의서·지출결의서·구매요청서·휴가 신청서·업무 보고서·시설 수리 요청서, 관리자가 올린 워드·엑셀 서식) 또는 <em>스캔·파일 올려 결재</em>를 고릅니다. 결재선은 자동으로 <b>직무별 팀원 → 직무별 총괄(재무·회계 박혜진, 인사·총무 윤민진, 시설·공무 윤종국) → 전체 총괄(이기도)</b>로 정해지고, 두 직무를 겸하는 직원은 결재할 직무를 고릅니다. 필요할 때만 <em>결재선 변경</em>으로 결재자를 더하거나 빼고 순서를 바꿉니다. <em>자금 결제 필요</em>에 체크하면 박혜진 부장이 자동으로 참조(회람)됩니다. 결재할 차례가 되면 알림(종)과 내 업무 화면에 표시되고, 문서에서 <em>승인</em>·<em>반려</em>(사유 필수)를 누릅니다. 올린 사람은 아무도 결재하기 전이면 <em>회수</em>, 반려되면 고쳐서 다시 올릴 수 있습니다. 문서는 결재선·참조에 든 사람과 관리자만 볼 수 있고, 개인정보가 든 첨부는 총괄 관리자만 열 수 있습니다.</span></li>
       <li><b>날짜 표기</b><span>모든 화면의 업무 날짜는 <em>진행 날짜</em>(시작일~마감일, 한쪽만 있으면 그 날)를 기준으로 보여 줍니다. 진행 날짜를 정하지 않은 업무는 <em>[미정]</em>으로 표시되고, 진행 날짜와 다른 날 등록한 업무(지난 일을 나중에 기록하는 경우 등)는 '등록 10.30'처럼 등록한 날을 함께 보여 줍니다. 빠른 기록에서 '할 예정'을 고르고 날짜를 비워 두면 [미정]으로, '진행 중'은 고른 날이 시작일·마감일은 [미정]으로 등록됩니다. 목록 화면에는 진행 날짜·등록일 칸이 따로 있습니다.</span></li>
       <li><b>인쇄</b><span>모든 화면 위쪽의 파란 테두리 <em>🖨</em>(인쇄) 아이콘(휴대폰은 더보기 › 이 화면 인쇄도 가능)를 누르면 지금 화면을 A4로 인쇄합니다. 업무가 나오는 화면(내 업무·팀 현황·총괄·칸반·달력·목록·보고서·조직도)에서는 인쇄 방식을 고르는 창이 먼저 뜹니다. 기본은 <em>현재 양식 그대로(구분하여 표기)</em>이고, <em>업무 목록만(구분 없이)</em>을 고르면 칸·절·대분류 구분 없이 지금 화면의 업무 전체를 날짜순 한 표(업무명·분류·사업장·담당·상태·일정·진척, 조직도는 업무·세부 내용·주기·정·대행·부)로 인쇄합니다. 인쇄 창에서 'PDF로 저장'을 고르면 파일로도 남길 수 있습니다. 업무 상세 창의 <em>🖨 인쇄</em>는 그 업무 한 장(정보·내용·진행 기록·사진), 보고서 화면은 보고서 용지만 인쇄합니다. <em>📄 내 업무 보고서</em>(내 업무 화면·보고서의 개인별 보고서)는 내가 담당했거나 진행 기록을 남긴 업무와 일자별 진행 기록으로 개인 보고서를 만들고, 보고서의 <em>업무 범위 › 🔒 내 비공개 업무만</em>으로 비공개 업무만 출력할 수 있습니다.</span></li>
       <li><b>개인정보 자료</b><span>이력서·급여·주민등록번호 13자리·신분증·진단서 같은 개인정보가 든 사진·파일은 올리는 순간 자동으로 검사해 <em>총괄 관리자에게만</em> 전달됩니다. 다른 직원과 올린 분에게는 '관리자 전용' 그림만 보이고, 보고서·사진첩에도 나오지 않습니다. 생년월일만 있는 자료는 그대로 올라갑니다. 업무 창에서 <em>🔐 개인정보 사진</em>을 켜고 올리면 검사 없이 바로 전달됩니다. 업무 내용에 주민등록번호 13자리를 적으면 저장할 때 뒷자리가 가려집니다.</span></li>
@@ -2562,7 +2616,7 @@ function showBanner(msg){const b=$('#banner');b.textContent=msg;b.hidden=!msg;}
 
 /* ───────── 이벤트 ───────── */
 function go(h){if(location.hash===h)route();else location.hash=h;}
-function route(){let h=(location.hash||'').slice(1);if(h==='home')h='team';S.view=['my','team','org','overview','board','calendar','list','report','upload','photos','docs','legal','gw','help'].includes(h)?h:'my';if(S.view==='gw'&&GW.pv!=='gw')GW.seenNow='';GW.pv=S.view;const np=$('#ntf-pop');if(np)np.hidden=true;render();gwNav();mnavSync();}
+function route(){let h=(location.hash||'').slice(1);if(h==='home')h='team';S.view=['my','team','org','overview','board','calendar','list','report','upload','photos','docs','legal','gw','appr','help'].includes(h)?h:'my';if(S.view==='gw'&&GW.pv!=='gw')GW.seenNow='';GW.pv=S.view;const np=$('#ntf-pop');if(np)np.hidden=true;render();gwNav();mnavSync();}
 window.addEventListener('hashchange',route);
 document.addEventListener('click',async e=>{
   const o=e.target.closest('[data-open]');if(o&&!e.target.closest('[data-lb]')){const t=findTask(o.dataset.open);if(t)openTask(t);return;}
@@ -3409,7 +3463,7 @@ function ntfCompute(){const me=myId();if(!me||!S.ready)return [];const out=[];co
     if(admin&&r.status==='open')out.push({k:`dq|${r.id}`,at:r.at||td,type:'dreq',dq:r.id,title:ttl,text:`${r.name||'구성원'}님이 삭제를 요청했습니다`,sub:r.reason});
     else if(r.uid===S.me.id&&r.status!=='open'&&r.rAt>=since)out.push({k:`dqr|${r.id}|${r.status}`,at:r.rAt,type:'dreq',dq:r.id,title:ttl,text:r.status==='done'?'삭제 요청이 처리되어 삭제되었습니다':'삭제 요청이 반려되었습니다',sub:r.rNote});}
   for(const g of S.gw||[]){if(!g.at||g.at<since)continue;out.push({k:'gw|'+g.id,at:g.at,type:'gw',gw:g.id,title:gwTitle(g.title),text:`그룹웨어 ${gwShort(g.board)} 새 글${g.due?` · 일정 ${fmtMD(g.due)}`:''}`,sub:g.sum});}
-  out.push(...schNtf());out.push(...uxNtf());out.push(...piiNtf());out.push(...orgNtf());
+  out.push(...schNtf());out.push(...uxNtf());out.push(...piiNtf());out.push(...orgNtf());out.push(...apprNtf());
   if(admin){const w=gwWarn();if(w)out.push({k:'gwst|'+w.k,syn:1,at:td+'T00:00:04',type:'gw',gw:'',title:'그룹웨어 자동 확인',text:w.text});}
   if(admin||canViewRestricted())for(const f of Object.values(S.files)){if(!f.expiry)continue;const n=diffDays(td,f.expiry);if(n<=60&&n>=-30)out.push({k:`doc|${f.id}|${f.expiry}|${n<=7?'w':n<=30?'m':'q'}`,syn:1,at:td+'T00:00:03',type:'doc',f,text:`서류 유효기간 ${expiryTxt(f.expiry)} · ${fmtYMD(f.expiry)}`});}
   if(admin&&hr>=17&&dow(td)%6!==0){const idle=staffList().filter(s=>working(s)&&!S.tasks.some(t=>t.logs.some(l=>l.by===s.id&&localDate(l.at)===td)));if(idle.length)out.push({k:`idle|${td}`,syn:1,at:td+'T17:00:00',type:'idle',text:`오늘 기록 없는 근무자 ${idle.length}명`,sub:idle.map(s=>s.name).join(', ')});}
@@ -3427,7 +3481,7 @@ function ntfRun(){adminNameSync();const st=ntfState();NT.items=ntfCompute();cons
   else for(const it of un)NT.shown.add(it.k);
   if(S.view==='my')ntfBrief();}
 function ntfShow(title,body,tag,path){try{const n=new Notification(title,{body,tag,lang:'ko'});n.onclick=()=>{window.focus();if(path){const t=findTask(path);if(t)openTask(t);}n.close();};}catch{}}
-const NT_ICON={assign:'담당',act:'진행',issue:'이슈',due:'마감',late:'지연',legal:'법정',doc:'서류',idle:'기록',dreq:'삭제',gw:'게시',sch:'일정',wk:'보고',join:'접속',bk:'백업',pii:'개인',org:'조직'};
+const NT_ICON={assign:'담당',act:'진행',issue:'이슈',due:'마감',late:'지연',legal:'법정',doc:'서류',idle:'기록',dreq:'삭제',gw:'게시',sch:'일정',wk:'보고',join:'접속',bk:'백업',pii:'개인',org:'조직',appr:'결재'};
 function ntfRenderPop(){const st=ntfState();const pop=$('#ntf-pop');const its=NT.items;
   const canAsk='Notification' in window&&Notification.permission==='default';const blocked='Notification' in window&&Notification.permission==='denied';
   pop.innerHTML=`<div class="ntf-h"><b>알림</b><span class="sp"></span>${its.some(i=>ntfUnread(i,st))?'<button type="button" class="btn sm ghost" data-ntf-read>모두 읽음</button>':''}</div>
@@ -3449,7 +3503,7 @@ document.addEventListener('click',async e=>{
   if(T.closest('[data-ntf-read]')){ntfMarkRead();return;}
   if(T.closest('[data-ntf-perm]')){try{const r=await Notification.requestPermission();if(r==='granted'){toast('이 기기에서 알림을 받습니다.');ntfShow(`${S.config.dept} 업무일지`,'알림이 켜졌습니다.','test');}}catch{}ntfRenderPop();return;}
   const ng=T.closest('[data-ntf-go]');if(ng){const it=NT.items.find(i=>i.k===ng.dataset.ntfGo);const st=ntfState();if(it){if(it.syn)st.syn[it.k]=1;ntfSave();$('#ntf-pop').hidden=true;
-    if(it.dq)openDreqs(it.dq);else if(it.type==='sch'){schOpen(it.sch);}else if(it.type==='wk'){uxWeekReport();}else if(it.type==='join'){jrApprove(it.jr);}else if(it.type==='bk'){openSettings();}else if(it.type==='pii'){piiOpen();}else if(it.type==='org'){S.orgv.tab='log';const o=S.org;if(o&&o.log[0])lsSet('wl.orgSeen',o.log[0].at);go('#org');}else if(it.type==='gw'){GW.focus=it.gw||'';if(S.view==='gw')renderGw($('#view'));else go('#gw');}else if(it.t){const t=findTask(it.t.path);if(t)openTask(t);}else if(it.f)go('#docs');else if(it.type==='idle')go('#overview');}ntfRun();return;}
+    if(it.dq)openDreqs(it.dq);else if(it.type==='sch'){schOpen(it.sch);}else if(it.type==='wk'){uxWeekReport();}else if(it.type==='join'){jrApprove(it.jr);}else if(it.type==='bk'){openSettings();}else if(it.type==='pii'){piiOpen();}else if(it.type==='appr'){apGo(it.ap);}else if(it.type==='org'){S.orgv.tab='log';const o=S.org;if(o&&o.log[0])lsSet('wl.orgSeen',o.log[0].at);go('#org');}else if(it.type==='gw'){GW.focus=it.gw||'';if(S.view==='gw')renderGw($('#view'));else go('#gw');}else if(it.t){const t=findTask(it.t.path);if(t)openTask(t);}else if(it.f)go('#docs');else if(it.type==='idle')go('#overview');}ntfRun();return;}
   if(!T.closest('#ntf-pop')&&!$('#ntf-pop').hidden)$('#ntf-pop').hidden=true;
   if(T.closest('[data-brief-x]')){const st=ntfState();st.brief=today();ntfSave();$('#my-brief').hidden=true;return;}
   // 사진첩
@@ -5324,6 +5378,377 @@ document.addEventListener('change',e=>{if(e.target&&(e.target.id==='t-start'||e.
 {const _cr=computeReport;computeReport=function(p){const R=_cr.apply(this,arguments);try{if(R&&R.pe>=today()){const have=new Set(R.next.map(t=>t.path));
   const add=repTasks(p).filter(t=>t.status==='plan'&&!wdRange(t)&&!have.has(t.path)&&(!p.cat||t.cat===p.cat)&&(!p.site||t.site===p.site)&&(!p.who||t.assignees.includes(p.who)));
   if(add.length)R.next=R.next.concat(add);}}catch(e){console.warn(e);}return R;};}
+
+/* ───────── 24차: 전자결재 ─────────
+   · 문서: 서식(기본 서식 + 관리자가 올린 워드·엑셀 서식)에 직접 작성, 또는 스캔·파일을 올려 결재
+   · 결재선: 직무별 팀원 → 직무별 총괄(박혜진·윤민진·윤종국) → 전체 총괄(이기도). 겸직은 직무(결재선) 선택, 필요하면 결재선 직접 변경
+   · 자금 결제가 필요한 문서는 박혜진 자동 참조(회람)
+   · 저장: appr/{id} (결재선·참조에 든 사람 uids + 관리자만 읽기), 첨부 appr/{id}/f/{fid}_{i}, 서식 apprtpl/{id}, 설정 app/appr, 문서번호 apprseq/{연도}
+   · 개인정보가 든 첨부는 기존 규칙대로 총괄 관리자에게만(pii) */
+const AP={cfg:null,cfgLoaded:false,tpls:[],docs:[],loaded:false,denied:false,tab:'todo',q:'',open:null,edit:null,w:null,panel:'',busy:false,fixed:new Set()};
+let APU=null,APCU=null,APTU=null;
+const AP_ST={draft:'임시저장',run:'결재 중',done:'결재 완료',no:'반려',back:'회수'};
+const AP_ST_CLS={draft:'hold',run:'doing',done:'done',no:'late',back:'plan'};
+const AP_PART_DEF=[{id:'fin',name:'재무·회계',head:'박혜진',members:[['문수빈',1],['유소현',1]]},{id:'hr',name:'인사·총무',head:'윤민진',members:[['문수빈',0],['이은주',1]]},{id:'fac',name:'시설·공무',head:'윤종국',members:[['윤범섭',1],['박호준',1],['전호열',1]]}];
+const AP_FINAL_DEF='이기도',AP_FUND_DEF=['박혜진'];
+const AP_CATS=[['','공통'],['fin','재무·회계'],['hr','인사·총무'],['fac','시설·공무']];
+const AP_MAX_HTML=650000;
+const apOK=()=>S.mode==='firebase'&&!!S.fs&&!S.preview;
+const apSidByName=n=>{const s=Object.values(S.staff).find(x=>x.name===n);return s?s.id:'';};
+const apName=sid=>sid&&S.staff[sid]?S.staff[sid].name:(sid?nameOf(sid):'');
+const apUid=sid=>sid&&S.staff[sid]&&S.staff[sid].uid?S.staff[sid].uid:'';
+const apMe=()=>myId();
+
+/* ── 기본 서식 (표 머리칸은 고칠 수 없게) */
+const apTh=t=>`<th class="lb" contenteditable="false">${t}</th>`;
+const AP_TPL=[
+ {id:'b-gian',name:'기안서',cat:'',fund:false,desc:'일반 업무 기안·보고',html:`<table class="ap-f"><colgroup><col style="width:18%"><col></colgroup><tr>${apTh('시행 일자')}<td></td></tr><tr>${apTh('협조 부서')}<td></td></tr><tr>${apTh('목적')}<td></td></tr><tr>${apTh('내용')}<td class="big"><p>1. </p><p>2. </p><p>3. </p></td></tr><tr>${apTh('기대 효과')}<td></td></tr><tr>${apTh('첨부')}<td></td></tr></table>`},
+ {id:'b-pum',name:'품의서',cat:'',fund:true,desc:'구입·계약·지출 사전 승인',html:`<table class="ap-f"><colgroup><col style="width:18%"><col></colgroup><tr>${apTh('품의 사항')}<td></td></tr><tr>${apTh('목적·필요성')}<td></td></tr><tr>${apTh('세부 내용')}<td class="big"><p>1. </p><p>2. </p></td></tr><tr>${apTh('소요 예산')}<td>금 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;원 (부가세 포함)</td></tr><tr>${apTh('거래처·계약 방법')}<td></td></tr><tr>${apTh('집행 예정일')}<td></td></tr></table>`},
+ {id:'b-jichul',name:'지출결의서',cat:'fin',fund:true,desc:'비용 지출·대금 지급',html:`<table class="ap-f"><colgroup><col style="width:18%"><col><col style="width:18%"><col></colgroup><tr>${apTh('지출 일자')}<td></td>${apTh('지급 방법')}<td>계좌이체 / 법인카드 / 현금</td></tr><tr>${apTh('거래처')}<td></td>${apTh('계정 과목')}<td></td></tr><tr>${apTh('지출 사유')}<td colspan="3"></td></tr></table><table class="ap-f ap-items"><colgroup><col style="width:6%"><col><col style="width:10%"><col style="width:16%"><col style="width:18%"><col style="width:18%"></colgroup><tr>${apTh('No')}${apTh('품목·내용')}${apTh('수량')}${apTh('단가')}${apTh('금액')}${apTh('비고')}</tr><tr><td>1</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>2</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>3</td><td></td><td></td><td></td><td></td><td></td></tr><tr>${apTh('합계')}<td colspan="3"></td><td></td><td></td></tr></table><p class="ap-note">증빙(세금계산서·영수증 등)은 첨부 파일로 올려 주세요.</p>`},
+ {id:'b-gumae',name:'구매요청서',cat:'',fund:true,desc:'비품·소모품·자재 구매 요청',html:`<table class="ap-f ap-items"><colgroup><col style="width:6%"><col><col style="width:16%"><col style="width:9%"><col style="width:14%"><col style="width:15%"><col style="width:15%"></colgroup><tr>${apTh('No')}${apTh('품명')}${apTh('규격')}${apTh('수량')}${apTh('단가')}${apTh('금액')}${apTh('용도')}</tr><tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>2</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>3</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr>${apTh('합계')}<td colspan="4"></td><td></td><td></td></tr></table><table class="ap-f"><colgroup><col style="width:18%"><col></colgroup><tr>${apTh('구매 사유')}<td></td></tr><tr>${apTh('희망 납기')}<td></td></tr><tr>${apTh('구매처(견적)')}<td></td></tr></table>`},
+ {id:'b-hyuga',name:'휴가·근태 신청서',cat:'hr',fund:false,desc:'연차·반차·병가·경조·외출',html:`<table class="ap-f"><colgroup><col style="width:18%"><col></colgroup><tr>${apTh('구분')}<td>연차 / 반차(오전·오후) / 병가 / 경조 / 외출 / 기타</td></tr><tr>${apTh('기간')}<td>&nbsp;&nbsp;&nbsp;&nbsp;년 &nbsp;&nbsp;월 &nbsp;&nbsp;일 ~ &nbsp;&nbsp;&nbsp;&nbsp;년 &nbsp;&nbsp;월 &nbsp;&nbsp;일 ( &nbsp;&nbsp;일간)</td></tr><tr>${apTh('사유')}<td></td></tr><tr>${apTh('업무 대행자')}<td></td></tr><tr>${apTh('인수인계 사항')}<td></td></tr></table>`},
+ {id:'b-bogo',name:'업무 보고서',cat:'',fund:false,desc:'결과·출장·점검 보고',html:`<table class="ap-f"><colgroup><col style="width:18%"><col></colgroup><tr>${apTh('보고 기간·일시')}<td></td></tr><tr>${apTh('장소·대상')}<td></td></tr><tr>${apTh('주요 내용')}<td class="big"><p>1. </p><p>2. </p></td></tr><tr>${apTh('결과·문제점')}<td></td></tr><tr>${apTh('향후 계획')}<td></td></tr></table>`},
+ {id:'b-suri',name:'시설 작업·수리 요청서',cat:'fac',fund:false,desc:'설비 고장·수리·공사',html:`<table class="ap-f"><colgroup><col style="width:18%"><col><col style="width:18%"><col></colgroup><tr>${apTh('사업장·장소')}<td></td>${apTh('설비·시설')}<td></td></tr><tr>${apTh('현상·문제')}<td colspan="3"></td></tr><tr>${apTh('작업 내용')}<td colspan="3" class="big"></td></tr><tr>${apTh('작업 업체')}<td></td>${apTh('예상 비용')}<td>금 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;원</td></tr><tr>${apTh('작업 예정일')}<td colspan="3"></td></tr></table>`}];
+
+/* ── HTML 정리 (허용 태그·속성만) */
+const AP_TAGS=new Set(['P','BR','B','STRONG','I','EM','U','S','SPAN','DIV','H1','H2','H3','H4','UL','OL','LI','TABLE','THEAD','TBODY','TFOOT','TR','TH','TD','COLGROUP','COL','CAPTION','HR','SUP','SUB','BLOCKQUOTE','IMG']);
+const AP_CSS=/^(text-align|vertical-align|width|font-weight|text-decoration|font-style|background-color)$/;
+function apClean(html,{edit=false}={}){const doc=new DOMParser().parseFromString(`<div>${html||''}</div>`,'text/html');const root=doc.body.firstChild;
+  const walk=n=>{for(const c of [...n.childNodes]){if(c.nodeType===3){if(c.nodeValue.length>=13)c.nodeValue=maskRRN(c.nodeValue);continue;}if(c.nodeType!==1){c.remove();continue;}
+    if(!AP_TAGS.has(c.tagName)){if(['SCRIPT','STYLE','IFRAME','OBJECT','EMBED','LINK','META','TITLE','SVG','MATH','FORM','INPUT','BUTTON','TEXTAREA','SELECT'].includes(c.tagName)){c.remove();continue;}walk(c);c.replaceWith(...c.childNodes);continue;}
+    for(const a of [...c.attributes]){const k=a.name.toLowerCase();
+      if(k==='colspan'||k==='rowspan'){const v=Math.min(50,Math.max(1,parseInt(a.value)||1));c.setAttribute(k,v);continue;}
+      if(k==='class'){const v=a.value.split(/\s+/).filter(x=>/^(lb|big|ap-[a-z-]+)$/.test(x)).join(' ');if(v)c.setAttribute('class',v);else c.removeAttribute('class');continue;}
+      if(k==='contenteditable'&&c.tagName==='TH'&&a.value==='false'&&edit)continue;
+      if(k==='style'){const v=a.value.split(';').map(x=>x.trim()).filter(x=>{const [p,...r]=x.split(':');return p&&AP_CSS.test(p.trim().toLowerCase())&&!/url\(|expression|javascript/i.test(r.join(':'));}).join(';');if(v)c.setAttribute('style',v);else c.removeAttribute('style');continue;}
+      if(k==='src'&&c.tagName==='IMG'&&/^data:image\/(png|jpe?g|gif|webp);base64,/i.test(a.value)&&a.value.length<400000)continue;
+      if((k==='width'||k==='height')&&c.tagName==='IMG'&&/^\d{1,4}$/.test(a.value))continue;
+      c.removeAttribute(a.name);}
+    if(c.tagName==='IMG'&&!c.getAttribute('src')){c.remove();continue;}
+    walk(c);}};
+  walk(root);return root.innerHTML;}
+const apText=html=>{const d=document.createElement('div');d.innerHTML=html||'';return d.textContent.replace(/\s+/g,' ').trim();};
+
+/* ── 설정(결재선) */
+function apDefCfg(){return {parts:AP_PART_DEF.map(p=>({id:p.id,name:p.name,head:apSidByName(p.head),members:p.members.map(([n,m])=>({sid:apSidByName(n),main:!!m})).filter(x=>x.sid)})),final:apSidByName(AP_FINAL_DEF),fund:AP_FUND_DEF.map(apSidByName).filter(Boolean),hide:[]};}
+function apNormCfg(d){if(!d||!Array.isArray(d.parts))return null;const str=(v,n)=>typeof v==='string'?v.slice(0,n):'';
+  return {parts:d.parts.slice(0,12).map(p=>({id:str(p.id,20)||rid().slice(0,6),name:str(p.name,30)||'직무',head:str(p.head,60),members:(Array.isArray(p.members)?p.members:[]).slice(0,30).map(m=>({sid:str(m.sid,60),main:!!m.main})).filter(m=>m.sid)})),
+    final:str(d.final,60),fund:(Array.isArray(d.fund)?d.fund:[]).map(x=>str(x,60)).filter(Boolean).slice(0,6),hide:(Array.isArray(d.hide)?d.hide:[]).map(x=>str(x,40)).slice(0,60),at:str(d.at,40),by:str(d.by,60)};}
+const apCfg=()=>AP.cfg||apDefCfg();
+/* 내가 속한 직무(결재선) — 주 직무 먼저, 설정에 없으면 조직도의 소속 */
+function apMyParts(sid){const c=apCfg();const out=[];
+  for(const p of c.parts){if(p.head===sid)out.push({p,main:true,head:true});}
+  for(const p of c.parts){const m=p.members.find(x=>x.sid===sid);if(m&&!out.some(o=>o.p.id===p.id))out.push({p,main:m.main});}
+  if(!out.length){const nm=apName(sid);const u=(S.org&&S.org.people&&S.org.people[sid]&&S.org.people[sid].unit)||(typeof ORG_PEOPLE!=='undefined'&&ORG_PEOPLE[nm]&&ORG_PEOPLE[nm].unit)||'';const p=c.parts.find(x=>x.id===u);if(p)out.push({p,main:true,org:true});}
+  return out.sort((a,b)=>(b.main?1:0)-(a.main?1:0));}
+function apDefPart(sid,cat){const ps=apMyParts(sid);if(!ps.length)return '';const m=cat&&ps.find(x=>x.p.id===cat);return (m||ps[0]).p.id;}
+function apDefLine(sid,partId){const c=apCfg();const P=c.parts.find(p=>p.id===partId);const L=[sid];
+  if(P&&P.head&&!L.includes(P.head))L.push(P.head);if(c.final&&!L.includes(c.final))L.push(c.final);return L;}
+const apRole=(i,n)=>n===1?'기안·전결':i===0?'기안':i===n-1?'승인':'검토';
+function apAutoCc(w){const c=apCfg();const keep=(w.cc||[]).filter(x=>!x.auto);if(!w.fund)return keep;
+  const add=c.fund.filter(s=>!w.line.includes(s)&&!keep.some(k=>k.sid===s)).map(s=>({sid:s,auto:true}));return [...add,...keep];}
+
+/* ── 구독 */
+function apSub(){for(const u of [APU,APCU,APTU])try{u&&u();}catch{}APU=APCU=APTU=null;AP.docs=[];AP.loaded=false;AP.denied=false;AP.tpls=[];AP.cfg=null;AP.cfgLoaded=false;
+  if(!apOK()||!S.me||!S.me.id)return;
+  APCU=S.fs.doc('app/appr').onSnapshot(s=>{AP.cfg=s.exists?apNormCfg(s.data()):null;AP.cfgLoaded=true;apRefresh();},()=>{AP.cfgLoaded=true;});
+  APTU=S.fs.collection('apprtpl').onSnapshot(qs=>{AP.tpls=qs.docs.map(d=>apNormTpl(d.id,d.data())).filter(Boolean);apRefresh();},()=>{});
+  const q=S.canEdit?S.fs.collection('appr'):S.fs.collection('appr').where('uids','array-contains',S.me.id);
+  APU=q.onSnapshot(qs=>{AP.docs=qs.docs.map(d=>apNormDoc(d.id,d.data())).filter(Boolean);AP.loaded=true;AP.denied=false;apRefresh();apFixUids();},e=>{AP.loaded=true;AP.denied=true;apRefresh();});}
+{const _es=extSubs;extSubs=function(){_es.apply(this,arguments);try{apSub();S.unsubs.push(()=>{for(const u of [APU,APCU,APTU])try{u&&u();}catch{}APU=APCU=APTU=null;AP.docs=[];AP.loaded=false;});}catch(e){console.warn(e);}};}
+function apNormTpl(id,v){if(!v||typeof v.name!=='string')return null;return {id,name:v.name.slice(0,60),cat:['fin','hr','fac'].includes(v.cat)?v.cat:'',fund:!!v.fund,desc:typeof v.desc==='string'?v.desc.slice(0,120):'',kind:v.kind==='file'?'file':'html',html:typeof v.html==='string'?v.html:'',file:v.file&&typeof v.file==='object'?{name:String(v.file.name||'서식'),type:String(v.file.type||''),size:Number(v.file.size)||0,n:Math.max(1,v.file.n|0)}:null,at:String(v.at||''),by:String(v.by||''),up:true};}
+function apNormDoc(id,v){if(!v||typeof v!=='object')return null;const arr=a=>Array.isArray(a)?a:[];const str=(x,n=200)=>typeof x==='string'?x.slice(0,n):'';
+  return {id,no:str(v.no,40),title:str(v.title,200)||'(제목 없음)',tplId:str(v.tplId,40),tplName:str(v.tplName,60)||'문서',mode:v.mode==='file'?'file':'form',body:typeof v.body==='string'?v.body:'',summary:str(v.summary,4000),part:str(v.part,20),partName:str(v.partName,30),
+    fund:!!v.fund,amount:str(v.amount,40),by:str(v.by,80),bySid:str(v.bySid,80),byName:str(v.byName,40),site:str(v.site,30),
+    line:arr(v.line).map(x=>({sid:str(x.sid,80),uid:str(x.uid,80),name:str(x.name,40),role:str(x.role,10),st:['wait','ok','no'].includes(x.st)?x.st:'wait',at:str(x.at,40),cmt:str(x.cmt,1000)})),
+    cc:arr(v.cc).map(x=>({sid:str(x.sid,80),uid:str(x.uid,80),name:str(x.name,40),auto:!!x.auto,readAt:str(x.readAt,40)})),
+    custom:!!v.custom,lineNote:str(v.lineNote,200),status:AP_ST[v.status]?v.status:'draft',step:Math.max(0,v.step|0),uids:arr(v.uids).filter(x=>typeof x==='string'),sids:arr(v.sids).filter(x=>typeof x==='string'),
+    files:arr(v.files).map(f=>({fid:str(f.fid,60),name:str(f.name,160)||'파일',type:str(f.type,80),size:Number(f.size)||0,n:Math.max(1,f.n|0),pii:!!f.pii,piiId:str(f.piiId,60),why:arr(f.why).map(x=>String(x)).slice(0,6)})),
+    log:arr(v.log).slice(-200).map(l=>({at:str(l.at,40),sid:str(l.sid,80),name:str(l.name,40),act:str(l.act,20),cmt:str(l.cmt,1000)})),
+    createdAt:str(v.createdAt,40),submittedAt:str(v.submittedAt,40),doneAt:str(v.doneAt,40),updatedAt:str(v.updatedAt,40)};}
+/* 결재선·참조에 든 직원이 나중에 접속하면 관리자 화면에서 열람 권한(uids)을 채움 */
+function apFixUids(){if(!S.canEdit)return;for(const d of AP.docs){if(d.status==='draft'||AP.fixed.has(d.id))continue;const need=[...d.line.map(x=>x.sid),...d.cc.map(x=>x.sid)].map(apUid).filter(u=>u&&!d.uids.includes(u));
+  if(!need.length)continue;AP.fixed.add(d.id);S.fs.doc('appr/'+d.id).update({uids:[...d.uids,...new Set(need)]}).catch(()=>{});}}
+function apRefresh(){const n=apTodo().length;const b=$('#ap-n');if(b){b.hidden=!n;b.textContent=n;}ntfTick();
+  if(S.view==='appr'&&!AP.edit)scheduleRender();if(S.view==='my')try{apStrip();}catch{}}
+
+/* ── 분류 */
+const apMine=d=>d.by===S.me.id;
+const apCur=d=>d.status==='run'?d.line[d.step]:null;
+const apIsCc=d=>d.cc.some(c=>c.sid===apMe());
+function apTodo(){const me=apMe();return AP.docs.filter(d=>d.status==='run'&&d.line[d.step]&&d.line[d.step].sid===me);}
+function apBuckets(){const me=apMe();const D=AP.docs;const inLine=d=>d.line.some(x=>x.sid===me);
+  return {todo:apTodo(),mine:D.filter(d=>apMine(d)&&d.status==='run'),cc:D.filter(d=>apIsCc(d)&&d.status!=='draft'),done:D.filter(d=>d.status==='done'&&(inLine(d)||apMine(d))),
+    no:D.filter(d=>(d.status==='no'||d.status==='back')&&(apMine(d)||inLine(d))),draft:D.filter(d=>d.status==='draft'&&apMine(d)),all:S.canEdit?D.filter(d=>d.status!=='draft'||apMine(d)):[]};}
+const AP_TABS=[['todo','결재할 문서'],['mine','올린 문서(진행 중)'],['cc','참조·회람'],['done','완료'],['no','반려·회수'],['draft','임시저장'],['all','전체 (관리자)']];
+const apDate=d=>(d.submittedAt||d.createdAt||'').slice(0,10)?localDate(d.submittedAt||d.createdAt):'';
+
+/* ── 알림 */
+function apprNtf(){if(!AP.loaded)return [];const me=apMe();const out=[];const since=new Date(Date.now()-14*864e5).toISOString();
+  for(const d of apTodo())out.push({k:'ap|'+d.id+'|'+d.step+'|'+(d.submittedAt||''),at:d.updatedAt||d.submittedAt,type:'appr',ap:d.id,title:d.title,text:`${d.byName||'구성원'}님이 결재를 요청했습니다 (${d.tplName}${d.fund?' · 자금 결제':''})`});
+  for(const d of AP.docs){if(apMine(d)&&(d.status==='done'||d.status==='no')&&(d.doneAt||d.updatedAt)>since){const l=d.line.find(x=>x.st==='no');out.push({k:'apr|'+d.id+'|'+d.status+'|'+(d.doneAt||d.updatedAt),at:d.doneAt||d.updatedAt,type:'appr',ap:d.id,title:d.title,text:d.status==='done'?'결재가 완료되었습니다':`${l?l.name:''}님이 반려했습니다${l&&l.cmt?' — '+l.cmt.slice(0,60):''}`});}
+    const c=d.cc.find(x=>x.sid===me);if(c&&!c.readAt&&d.status!=='draft'&&(d.submittedAt||'')>since)out.push({k:'apc|'+d.id,at:d.submittedAt,type:'appr',ap:d.id,title:d.title,text:`참조(회람) 문서가 왔습니다${c.auto?' — 자금 결제 자동 참조':''}`});}
+  return out;}
+function apGo(id){AP.open=id||null;AP.edit=null;AP.panel='';if(S.view==='appr')render();else go('#appr');}
+
+/* ── 내 업무 화면 알림 줄 */
+function apStrip(){const box=$('#my-brief');if(!box)return;let c=$('#ap-strip');const L=apOK()?apTodo():[];if(!L.length){if(c)c.remove();return;}
+  if(!c){c=document.createElement('div');c.id='ap-strip';c.className='ap-strip';box.parentNode.insertBefore(c,box);}
+  c.innerHTML=`<b>📝 결재할 문서 ${L.length}건</b>${L.slice(0,3).map(d=>`<button type="button" data-ap-open="${esc(d.id)}">${esc(d.title)} <small>${esc(d.byName)}</small></button>`).join('')}<a class="btn sm primary" href="#appr">결재함</a>`;}
+{const _s=schStrip;schStrip=function(){_s.apply(this,arguments);try{apStrip();}catch(e){console.warn(e);}};}
+
+/* ── 화면 */
+function renderAppr(v){
+  if(!apOK()){v.innerHTML=`<div class="list-h"><h1>전자결재</h1></div><div class="banner">전자결재는 실사용 업무일지(Firebase)에서 로그인한 뒤 쓸 수 있습니다.</div>`;return;}
+  if(AP.edit){const ex=$('#apw',v);if(ex&&ex.dataset.k===AP.w.k)return;return apEditRender(v);}
+  if(AP.panel==='tpl')return apTplRender(v);if(AP.panel==='line')return apLineRender(v);
+  if(AP.open){const d=AP.docs.find(x=>x.id===AP.open);if(d)return apDocRender(v,d);if(AP.loaded)AP.open=null;}
+  const B=apBuckets();const tabs=AP_TABS.filter(([k])=>k!=='all'||S.canEdit);if(!tabs.some(([k])=>k===AP.tab))AP.tab='todo';
+  const q=AP.q.trim().toLowerCase();let L=B[AP.tab]||[];if(q)L=L.filter(d=>[d.title,d.no,d.tplName,d.byName,apText(d.body).slice(0,2000),d.summary].join(' ').toLowerCase().includes(q));
+  L=L.slice().sort((a,b)=>(b.updatedAt||b.createdAt).localeCompare(a.updatedAt||a.createdAt));
+  const me=apMe();const canDraft=S.canWrite&&!!S.myStaff;
+  v.innerHTML=`<div class="list-h ap-h"><h1>전자결재</h1><span class="sp"></span>${S.canEdit?`<button type="button" class="btn sm" data-ap-panel="tpl">📄 서식 관리</button><button type="button" class="btn sm" data-ap-panel="line">⚙ 결재선 설정</button>`:''}<button type="button" class="btn primary" data-ap-new ${canDraft?'':'disabled title="내 정보에서 이름을 먼저 고르세요"'}>＋ 새 기안</button></div>
+  ${AP.denied?'<div class="banner">전자결재 문서를 불러올 권한이 없습니다. 관리자에게 새 보안 규칙(firestore.rules) 게시를 요청하세요.</div>':''}
+  <div class="ap-tabs" role="tablist">${tabs.map(([k,n])=>`<button type="button" role="tab" data-ap-tab="${k}" aria-selected="${AP.tab===k}">${n}<em class="${k==='todo'&&B.todo.length?'on':''}">${(B[k]||[]).length}</em></button>`).join('')}</div>
+  <div class="ap-tools"><input type="search" id="ap-q" placeholder="제목·문서번호·기안자·내용 검색" value="${esc(AP.q)}"><span class="ap-hint">결재선: 직무별 팀원 → 직무별 총괄 → 전체 총괄 · 자금 결제는 ${esc(apCfg().fund.map(apName).join('·')||'박혜진')} 자동 참조</span></div>
+  <div class="tbl-wrap"><table class="lst ap-lst"><thead><tr><th style="width:92px">상태</th><th style="width:118px">문서번호</th><th>제목</th><th style="width:120px">서식</th><th style="width:86px">기안자</th><th style="width:96px">기안일</th><th style="width:30%">결재선</th></tr></thead><tbody>
+  ${L.length?L.map(d=>{const cur=apCur(d);return `<tr data-ap-open="${esc(d.id)}" class="${cur&&cur.sid===me?'my-turn':''}"><td><span class="pill s-${AP_ST_CLS[d.status]}">${AP_ST[d.status]}</span></td><td class="ap-no">${esc(d.no||'(임시)')}</td><td class="tt">${esc(d.title)}${d.fund?' <span class="ap-fund" title="자금 결제">💰</span>':''}${d.files.length?` <span class="ap-clip" title="첨부 ${d.files.length}개">📎${d.files.length}</span>`:''}${d.files.some(f=>f.pii)?' <span title="개인정보 첨부 — 총괄 관리자만 열람">🔐</span>':''}${apIsCc(d)?' <span class="tag">참조</span>':''}</td><td>${esc(d.tplName)}</td><td>${esc(d.byName)}</td><td>${esc(fmtMD(apDate(d))||'')}</td><td>${apLineMini(d)}</td></tr>`;}).join(''):`<tr><td colspan="7" class="empty">${AP.loaded?{todo:'결재할 문서가 없습니다.',mine:'결재 진행 중인 내 문서가 없습니다.',cc:'참조·회람 문서가 없습니다.',done:'완료된 문서가 없습니다.',no:'반려·회수된 문서가 없습니다.',draft:'임시저장한 문서가 없습니다.',all:'문서가 없습니다.'}[AP.tab]:'불러오는 중…'}</td></tr>`}
+  </tbody></table></div>`;}
+function apLineMini(d){return `<span class="ap-mini">${d.line.map((x,i)=>{const cur=d.status==='run'&&i===d.step;const cls=x.st==='ok'?'ok':x.st==='no'?'no':cur?'cur':'';return `<span class="${cls}" title="${esc(x.role)} · ${esc(x.name)}${x.at?' · '+hhmm(x.at):''}">${x.st==='ok'?'✓':x.st==='no'?'✕':cur?'●':'○'} ${esc(x.name)}</span>`;}).join('<i>›</i>')}</span>`;}
+
+/* 결재란 (도장 칸) */
+function apStampHTML(d){return `<table class="ap-stamp"><tr><th rowspan="3" class="ap-v">결<br>재</th>${d.line.map(x=>`<th>${esc(x.role)}</th>`).join('')}</tr><tr>${d.line.map((x,i)=>{const cur=d.status==='run'&&i===d.step;return `<td class="sg ${x.st}${cur?' cur':''}">${x.st==='ok'?`<b>${esc(x.name)}</b><span class="ap-seal">${i===0?'기안':'승인'}</span>`:x.st==='no'?`<b>${esc(x.name)}</b><span class="ap-seal no">반려</span>`:`<span class="wt">${esc(x.name)}</span>${cur?'<small>결재 차례</small>':''}`}</td>`;}).join('')}</tr><tr>${d.line.map(x=>`<td class="dt">${x.at?esc(hhmm(x.at).slice(0,5)):''}</td>`).join('')}</tr></table>`;}
+function apDocInfo(d){return `<table class="ap-info"><tr><th>문서번호</th><td>${esc(d.no||'(임시)')}</td><th>서식</th><td>${esc(d.tplName)}</td></tr><tr><th>기안자</th><td>${esc(d.byName)}${d.partName?` · ${esc(d.partName)}`:''}</td><th>기안일</th><td>${esc(d.submittedAt?fmtYMD(localDate(d.submittedAt))+' '+hhmm(d.submittedAt).slice(-5):'-')}</td></tr><tr><th>참조·회람</th><td colspan="3">${d.cc.length?d.cc.map(c=>`${esc(c.name)}${c.auto?' <small>(자금 결제 자동)</small>':''}${c.readAt?' <small class="ok">✓ 확인</small>':''}`).join(', '):'-'}</td></tr>${d.fund?`<tr><th>자금 결제</th><td colspan="3">💰 필요${d.amount?` · ${esc(d.amount)}`:''}</td></tr>`:''}${d.custom?`<tr><th>결재선</th><td colspan="3">직접 지정${d.lineNote?` — ${esc(d.lineNote)}`:''}</td></tr>`:''}</table>`;}
+function apFilesHTML(d,edit){if(!d.files.length)return '';return `<div class="ap-files"><b>첨부 ${d.files.length}</b><ul>${d.files.map((f,i)=>{const lock=f.pii&&!piiOwner();return `<li>${fileIcon({name:f.name})} <span class="nm">${esc(f.name)}</span> <small>${f.size?fmtMB(f.size):''}</small>${f.pii?` <span class="tag" title="${esc(f.why.join(', '))}">🔐 개인정보 · ${esc(piiLabel())}만</span>`:''}${lock?'':`<button type="button" class="btn sm" data-ap-fview="${i}">보기</button><button type="button" class="btn sm ghost" data-ap-fdl="${i}">내려받기</button>`}${edit?`<button type="button" class="btn sm ghost" data-ap-fdel="${i}">빼기</button>`:''}</li>`;}).join('')}</ul></div>`;}
+function apDocRender(v,d){const me=apMe();const cur=apCur(d);const myTurn=!!(cur&&cur.sid===me);const mine=apMine(d);const cc=d.cc.find(x=>x.sid===me);
+  const canBack=mine&&d.status==='run'&&d.step===1&&!d.line.slice(1).some(x=>x.st!=='wait');const canEdit=mine&&['draft','back','no'].includes(d.status);const canDel=(mine&&['draft','back'].includes(d.status))||(S.canEdit&&d.status!=='run');
+  if(cc&&!cc.readAt&&d.status!=='draft')apMarkRead(d);
+  v.innerHTML=`<div class="list-h ap-h"><button type="button" class="btn sm ghost" data-ap-back>← 목록</button><span class="sp"></span>
+    ${myTurn?`<button type="button" class="btn primary" data-ap-act="ok">✓ 승인</button><button type="button" class="btn danger" data-ap-act="no">반려</button>`:''}
+    ${canBack?'<button type="button" class="btn" data-ap-withdraw>회수</button>':''}${canEdit?`<button type="button" class="btn primary" data-ap-edit>${d.status==='draft'?'이어서 작성':'고쳐서 다시 올리기'}</button>`:''}${canDel?'<button type="button" class="btn ghost" data-ap-del>삭제</button>':''}
+    <button type="button" class="btn prt-btn" data-ap-print>🖨 인쇄</button></div>
+  ${myTurn?`<div class="ap-turn">📝 <b>${esc(cur.role)}</b> 결재 차례입니다. 내용과 첨부를 확인하고 승인 또는 반려해 주세요.</div>`:''}
+  ${d.status==='no'?`<div class="ap-turn no">반려됨 — ${esc((d.line.find(x=>x.st==='no')||{}).name||'')}: ${esc((d.line.find(x=>x.st==='no')||{}).cmt||'')}</div>`:''}
+  <article class="ap-paper"><div class="ap-top"><div><div class="ap-kind">${esc(d.tplName)}</div><h2>${esc(d.title)}</h2><span class="pill s-${AP_ST_CLS[d.status]}">${AP_ST[d.status]}</span>${d.fund?' <span class="ap-fund">💰 자금 결제</span>':''}</div>${apStampHTML(d)}</div>
+    ${apDocInfo(d)}
+    ${d.mode==='form'&&d.body?`<div class="ap-body ro">${apClean(d.body)}</div>`:''}${d.summary?`<div class="ap-sum"><b>${d.mode==='file'?'기안 요지':'덧붙임'}</b><p>${esc(d.summary)}</p></div>`:''}
+    ${apFilesHTML(d,false)}
+    <div class="ap-log"><b>결재 기록</b><ul>${d.log.slice().reverse().map(l=>`<li><time>${esc(hhmm(l.at))}</time> <b>${esc(l.name)}</b> ${esc({submit:'결재 올림',ok:'승인',no:'반려',back:'회수',done:'결재 완료(전결)',read:'참조 확인',save:'임시저장'}[l.act]||l.act)}${l.cmt?` — <span>${esc(l.cmt)}</span>`:''}</li>`).join('')||'<li class="none">기록 없음</li>'}</ul></div>
+  </article>`;}
+async function apMarkRead(d){const me=apMe();if(AP.fixed.has('r'+d.id))return;AP.fixed.add('r'+d.id);try{const cc=d.cc.map(x=>x.sid===me&&!x.readAt?{...x,readAt:nowISO()}:x);await S.fs.doc('appr/'+d.id).update({cc,log:[...d.log,{at:nowISO(),sid:me,name:myName(),act:'read',cmt:''}].slice(-200)});}catch{}}
+
+/* ── 작성 */
+function apTplList(){const c=apCfg();return [...AP_TPL.map(t=>({...t,kind:'html',builtin:true})),...AP.tpls].filter(t=>!c.hide.includes(t.id));}
+function apNewW(){return {k:rid(),id:null,step:'pick',mode:'form',tplId:'',tplName:'',cat:'',title:'',body:'',summary:'',part:'',line:[apMe()],custom:false,lineNote:'',cc:[],fund:false,amount:'',files:[],pending:[],lineEdit:false};}
+function apStartNew(){if(!S.canWrite||!S.myStaff){toast('내 정보에서 이름을 먼저 고르세요.','err');return;}AP.w=apNewW();AP.edit='new';AP.open=null;AP.panel='';render();}
+function apPickTpl(t){const w=AP.w;w.mode='form';w.tplId=t.id;w.tplName=t.name;w.cat=t.cat;w.fund=!!t.fund;w.body=t.kind==='html'?apClean(t.html,{edit:true}):'';w.tplFile=t.kind==='file'?t:null;if(t.kind==='file')w.mode='file';
+  w.part=apDefPart(apMe(),t.cat);w.line=apDefLine(apMe(),w.part);w.custom=false;w.cc=apAutoCc(w);w.step='edit';w.k=rid();render();}
+function apPickFile(){const w=AP.w;w.mode='file';w.tplId='scan';w.tplName='스캔·파일 문서';w.cat='';w.fund=false;w.body='';w.part=apDefPart(apMe(),'');w.line=apDefLine(apMe(),w.part);w.cc=apAutoCc(w);w.step='edit';w.k=rid();render();}
+function apEditDoc(d){AP.w={k:rid(),id:d.id,step:'edit',mode:d.mode,tplId:d.tplId,tplName:d.tplName,cat:'',title:d.title,body:d.mode==='form'?apClean(d.body,{edit:true}):'',summary:d.summary,part:d.part,line:d.line.map(x=>x.sid),custom:d.custom,lineNote:d.lineNote,cc:d.cc.map(c=>({sid:c.sid,auto:c.auto})),fund:d.fund,amount:d.amount,files:d.files.slice(),pending:[],no:d.no,status:d.status,log:d.log,createdAt:d.createdAt,lineEdit:d.custom};
+  AP.edit=d.id;AP.open=null;render();}
+function apEditRender(v){const w=AP.w;if(!w){AP.edit=null;return render();}
+  if(w.step==='pick'){const T=apTplList();
+    v.innerHTML=`<div class="list-h ap-h"><button type="button" class="btn sm ghost" data-ap-cancel>← 목록</button><h1>새 기안</h1></div>
+    <div class="ap-pick"><section><h3>📝 서식에 직접 작성</h3><p class="help">서식을 고르면 표 안에 바로 적을 수 있습니다. 관리자가 올린 워드·엑셀 서식도 여기 나옵니다.</p><div class="ap-tgrid">${T.filter(t=>t.kind==='html').map(t=>`<button type="button" class="ap-tcard" data-ap-tpl="${esc(t.id)}"><b>${esc(t.name)}</b><small>${esc(t.desc||(t.up?'올린 서식':''))}</small><span>${t.cat?esc(AP_CATS.find(c=>c[0]===t.cat)[1]):'공통'}${t.fund?' · 💰 자금 결제':''}</span></button>`).join('')}</div>
+      ${T.some(t=>t.kind==='file')?`<h4>내려받아 작성하는 서식 (한글·PDF 등)</h4><div class="ap-tgrid">${T.filter(t=>t.kind==='file').map(t=>`<button type="button" class="ap-tcard file" data-ap-tpl="${esc(t.id)}"><b>${esc(t.name)}</b><small>${esc(t.file?t.file.name:'')}</small><span>내려받아 작성 → 파일로 올림</span></button>`).join('')}</div>`:''}</section>
+      <section><h3>📎 스캔·파일 올려 결재</h3><p class="help">종이 문서를 스캔(사진)했거나 한글·워드·엑셀·PDF로 만든 문서를 올려 결재를 올립니다.</p><button type="button" class="btn primary" data-ap-scan>스캔·파일로 기안하기</button></section></div>`;return;}
+  const myParts=apMyParts(apMe());const c=apCfg();const n=w.line.length;
+  const staffOpts=staffList().filter(s=>!w.line.includes(s.id)).map(s=>`<option value="${esc(s.id)}">${esc(s.name)}${s.role?' · '+esc(s.role):''}</option>`).join('');
+  const ccOpts=staffList().filter(s=>!w.line.includes(s.id)&&!w.cc.some(x=>x.sid===s.id)).map(s=>`<option value="${esc(s.id)}">${esc(s.name)}</option>`).join('');
+  v.innerHTML=`<div id="apw" data-k="${esc(w.k)}"><div class="list-h ap-h"><button type="button" class="btn sm ghost" data-ap-cancel>← 목록</button><h1>${w.id?'기안 고치기':'새 기안'} <small>${esc(w.tplName)}</small></h1><span class="sp"></span><button type="button" class="btn" data-ap-save="draft">임시저장</button><button type="button" class="btn primary" data-ap-save="submit">${n===1?'결재 완료(전결)':'결재 올리기'}</button></div>
+  <div class="ap-ed"><div class="ap-main">
+    <label class="ap-lbl" for="apw-title">제목</label><input id="apw-title" class="ap-title" maxlength="200" placeholder="문서 제목" value="${esc(w.title)}">
+    ${w.mode==='form'?`<div class="ap-lbl">내용 <small>표 안을 눌러 바로 적습니다 (회색 머리칸은 고정)</small></div><div class="ap-body" id="apw-body" contenteditable="true" spellcheck="false">${w.body}</div>
+      <label class="ap-lbl" for="apw-sum">덧붙임 (선택)</label><textarea id="apw-sum" rows="2" maxlength="4000" placeholder="결재자에게 전할 말">${esc(w.summary)}</textarea>`
+     :`${w.tplFile?`<div class="ap-tplfile">📄 서식 <b>${esc(w.tplFile.name)}</b> — <button type="button" class="btn sm" data-ap-tpldl="${esc(w.tplFile.id)}">서식 내려받기</button> 작성한 뒤 아래에 올려 주세요.</div>`:''}
+      <label class="ap-lbl" for="apw-sum">기안 요지</label><textarea id="apw-sum" rows="4" maxlength="4000" placeholder="결재 받을 내용을 간단히 적어 주세요 (예: ○○ 계약 체결 승인 요청, 금액 ○○원)">${esc(w.summary)}</textarea>`}
+    <div class="ap-drop" id="apw-drop"><button type="button" class="btn" data-ap-addfile>📎 ${w.mode==='file'?'스캔·문서 파일 올리기':'첨부 파일 추가'}</button><span>또는 여기로 끌어다 놓기 · 사진(스캔)·PDF·한글·워드·엑셀</span></div>
+    <div id="apw-files">${apWFilesHTML()}</div>
+  </div>
+  <aside class="ap-side">
+    <h3>결재선</h3>
+    ${myParts.length>1?`<div class="ap-parts" role="radiogroup" aria-label="결재할 직무">${myParts.map(x=>`<label><input type="radio" name="apw-part" value="${esc(x.p.id)}" ${w.part===x.p.id?'checked':''}> ${esc(x.p.name)} <small>${x.head?'총괄':x.main?'주 직무':'겸직'}</small></label>`).join('')}</div><p class="help">겸직 중이라 어느 직무로 결재할지 고를 수 있습니다.</p>`:myParts.length?`<p class="help">${esc(myParts[0].p.name)} 결재선${myParts[0].org?' (조직도 소속 기준)':''}</p>`:'<p class="help">소속 직무가 정해지지 않아 전체 총괄에게 바로 올립니다. 필요하면 결재선을 바꾸세요.</p>'}
+    <ol class="ap-chain">${w.line.map((sid,i)=>`<li><span class="r">${apRole(i,n)}</span><b>${esc(apName(sid))}</b>${w.lineEdit&&i>0?`<span class="ap-ctl"><button type="button" data-ap-mv="${i}" data-d="-1" ${i<=1?'disabled':''} aria-label="위로">↑</button><button type="button" data-ap-mv="${i}" data-d="1" ${i>=n-1?'disabled':''} aria-label="아래로">↓</button><button type="button" data-ap-rm="${i}" aria-label="빼기">✕</button></span>`:''}</li>`).join('')}</ol>
+    ${w.lineEdit?`<div class="ap-add"><select id="apw-addsel"><option value="">결재자 추가…</option>${staffOpts}</select></div><input id="apw-note" maxlength="200" placeholder="결재선 변경 사유 (선택)" value="${esc(w.lineNote)}"><button type="button" class="btn sm ghost" data-ap-linereset>기본 결재선으로</button>`
+      :`<button type="button" class="btn sm" data-ap-lineedit>결재선 변경 (필요할 때만)</button>`}
+    ${w.custom?'<p class="help warn">결재선을 직접 바꿨습니다.</p>':''}
+    <h3>참조·회람</h3><label class="ap-fundck"><input type="checkbox" id="apw-fund" ${w.fund?'checked':''}> 💰 자금 결제 필요 <small>(${esc(c.fund.map(apName).join('·')||'박혜진')} 자동 참조)</small></label>
+    ${w.fund?`<input id="apw-amt" maxlength="40" placeholder="금액 (예: 1,250,000원)" value="${esc(w.amount)}">`:''}
+    <div class="ap-cc">${w.cc.map((x,i)=>`<span class="ap-chip">${esc(apName(x.sid))}${x.auto?' <small>자동</small>':''}${x.auto?'':`<button type="button" data-ap-ccrm="${i}" aria-label="빼기">✕</button>`}</span>`).join('')||'<small class="none">없음</small>'}</div>
+    <select id="apw-ccsel"><option value="">참조 추가…</option>${ccOpts}</select>
+    <p class="help">결재선·참조에 든 사람과 관리자만 이 문서를 볼 수 있습니다.</p>
+  </aside></div></div>`;}
+function apWFilesHTML(){const w=AP.w;const all=[...w.files.map((f,i)=>({f,i,saved:true})),...w.pending.map((f,i)=>({f:{name:f.name,size:f.size},i,saved:false}))];
+  return all.length?`<ul class="ap-wfiles">${all.map(x=>`<li>${fileIcon({name:x.f.name})} ${esc(x.f.name)} <small>${x.f.size?fmtMB(x.f.size):''}${x.saved?'':' · 올릴 예정'}${x.f.pii?' · 🔐 개인정보(총괄 관리자만)':''}</small><button type="button" class="btn sm ghost" data-ap-wfrm="${x.saved?'s':'p'}${x.i}">빼기</button></li>`).join('')}</ul>`:'';}
+function apSyncW(){const w=AP.w;if(!w||w.step!=='edit')return;const t=$('#apw-title');if(t)w.title=t.value;const b=$('#apw-body');if(b)w.body=b.innerHTML;const s=$('#apw-sum');if(s)w.summary=s.value;const nt=$('#apw-note');if(nt)w.lineNote=nt.value;const a=$('#apw-amt');if(a)w.amount=a.value;}
+function apReW(){const w=AP.w;w.k=rid();render();}
+
+/* 첨부 저장 */
+async function apPutFile(id,file,onProg){const fid=rid().slice(0,10);const u8=new Uint8Array(await file.arrayBuffer());const n=Math.max(1,Math.ceil(u8.length/FILE_CHUNK));const B=firebase.firestore.Blob;
+  for(let i=0;i<n;i++){onProg&&onProg(i,n);await fbWrite(S.fs.doc(`appr/${id}/f/${fid}_${i}`).set({b:B.fromUint8Array(u8.slice(i*FILE_CHUNK,(i+1)*FILE_CHUNK)),i}));}
+  return {fid,name:file.name.slice(0,160),type:file.type||'',size:file.size,n,pii:false,piiId:'',why:[]};}
+async function apGetFile(d,f){if(f.pii){const it=(S.pii||[]).find(x=>x.id===f.piiId);if(!it)throw {code:'restricted',userMsg:`개인정보 첨부는 ${piiLabel()}만 열 수 있습니다.`};return await piiBlob(it);}
+  const parts=[];for(let i=0;i<f.n;i++){let s;try{s=await S.fs.doc(`appr/${d.id}/f/${f.fid}_${i}`).get();}catch(e){throw fbErr(e);}if(!s.exists)throw {code:'missing'};parts.push(s.data().b.toUint8Array());}return new Blob(parts,{type:f.type||'application/octet-stream'});}
+async function apDelFile(id,f){if(f.pii){try{if(piiOwner())await piiDelete(f.piiId);}catch{}return;}for(let i=0;i<f.n;i++){try{await S.fs.doc(`appr/${id}/f/${f.fid}_${i}`).delete();}catch{}}}
+async function apNextNo(){const y=today().slice(0,4);const ref=S.fs.doc('apprseq/'+y);for(let k=0;k<4;k++){try{const s=await ref.get();const n=s.exists?(s.data().n|0)+1:1;await ref.set({n,at:nowISO()});return `관리-${y}-${String(n).padStart(4,'0')}`;}catch(e){if(k===3)throw e;await new Promise(r=>setTimeout(r,150+Math.random()*300));}}}
+
+async function apSave(kind){apSyncW();const w=AP.w;if(!w||AP.busy)return;const submit=kind==='submit';
+  w.title=w.title.trim();if(!w.title){toast('제목을 적어 주세요.','err');const t=$('#apw-title');if(t)t.focus();return;}
+  if(w.mode==='form'){w.body=apClean(w.body);if(submit&&!apText(w.body)&&!w.summary.trim()){toast('내용을 적어 주세요.','err');return;}if(w.body.length>AP_MAX_HTML){toast('내용이 너무 큽니다(그림이 많은 서식). 그림을 줄이거나 파일로 첨부해 주세요.','err');return;}}
+  if(w.mode==='file'&&submit&&!w.files.length&&!w.pending.length){toast('스캔·문서 파일을 올려 주세요.','err');return;}
+  const me=apMe();if(!w.line.length||w.line[0]!==me)w.line=[me,...w.line.filter(x=>x!==me)];
+  if(submit){const nm=w.line.slice(1).map(apName).join(' → ');const ok=await confirmDlg(w.line.length===1?'결재 완료(전결)':'결재 올리기',w.line.length===1?`「${w.title}」을(를) 결재선 없이 본인 전결로 완료합니다.`:`「${w.title}」\n결재선: ${myName()} → ${nm}${w.cc.length?`\n참조·회람: ${w.cc.map(x=>apName(x.sid)).join(', ')}`:''}\n\n결재를 올릴까요?`,w.line.length===1?'완료':'올리기');if(!ok)return;}
+  AP.busy=true;setSync('saving');const btns=$$('[data-ap-save]');btns.forEach(b=>b.disabled=true);
+  try{const id=w.id||rid();const now=nowISO();const part=apCfg().parts.find(p=>p.id===w.part);
+    if(!w.id){await fbWrite(S.fs.doc('appr/'+id).set({...apDocBase(w,id,now,part),status:'draft',createdAt:now,updatedAt:now}));w.id=id;w.createdAt=now;w.status='draft';}
+    const piiHits=[];
+    for(let i=0;i<w.pending.length;i++){const f=w.pending[i];toast(`파일 확인·올리는 중… ${f.name}`);let r={hit:false,why:[]};try{r=await piiScanFile(f,{title:w.title});}catch{}
+      if(r.hit){const pid=await piiPutFile(f,{name:f.name,type:f.type,why:r.why,src:'appr',title:w.title,site:(S.staff[me]||{}).site||'',path:'appr/'+id});w.files.push({fid:'',name:f.name.slice(0,160),type:f.type||'',size:f.size,n:1,pii:true,piiId:pid,why:r.why});piiHits.push(...r.why);}
+      else w.files.push(await apPutFile(id,f));}
+    w.pending=[];
+    const doc={...apDocBase(w,id,now,part),createdAt:w.createdAt||now,updatedAt:now,log:(w.log||[]).slice(-190)};
+    if(submit){doc.no=w.no||await apNextNo();doc.submittedAt=now;doc.line=doc.line.map((x,i)=>i===0?{...x,st:'ok',at:now}:{...x,st:'wait',at:'',cmt:''});doc.cc=doc.cc.map(x=>({...x,readAt:''}));
+      if(doc.line.length===1){doc.status='done';doc.step=1;doc.doneAt=now;doc.log.push({at:now,sid:me,name:myName(),act:'done',cmt:''});}else{doc.status='run';doc.step=1;doc.doneAt='';doc.log.push({at:now,sid:me,name:myName(),act:'submit',cmt:w.custom&&w.lineNote?'결재선 변경: '+w.lineNote:''});}}
+    else{doc.status='draft';doc.step=0;doc.log.push({at:now,sid:me,name:myName(),act:'save',cmt:''});}
+    await fbWrite(S.fs.doc('appr/'+id).set(doc));
+    toast(submit?(doc.status==='done'?'전결로 결재를 완료했습니다.':`결재를 올렸습니다 (${doc.no}). ${apName(doc.line[1].sid)}님 차례입니다.`):'임시저장했습니다.');
+    if(piiHits.length)piiToast(1,piiHits,'첨부');
+    AP.edit=null;AP.w=null;AP.open=id;AP.tab=submit?'mine':'draft';render();}
+  catch(e){writeError(e);btns.forEach(b=>b.disabled=false);}finally{AP.busy=false;setSync('ok');}}
+function apDocBase(w,id,now,part){const me=apMe();const n=w.line.length;const line=w.line.map((sid,i)=>({sid,uid:apUid(sid)||(i===0?S.me.id:''),name:apName(sid),role:apRole(i,n),st:'wait',at:'',cmt:''}));
+  const cc=w.cc.map(x=>({sid:x.sid,uid:apUid(x.sid),name:apName(x.sid),auto:!!x.auto,readAt:''}));
+  const uids=[...new Set([S.me.id,...line.map(x=>x.uid),...cc.map(x=>x.uid)].filter(Boolean))];
+  return {no:w.no||'',title:w.title.slice(0,200),tplId:w.tplId,tplName:w.tplName,mode:w.mode,body:w.mode==='form'?w.body:'',summary:(w.summary||'').slice(0,4000),part:w.part||'',partName:part?part.name:'',fund:!!w.fund,amount:w.fund?(w.amount||'').slice(0,40):'',
+    by:S.me.id,bySid:me,byName:myName(),site:(S.staff[me]||{}).site||'',line,cc,custom:!!w.custom,lineNote:w.custom?(w.lineNote||'').slice(0,200):'',status:'draft',step:0,uids,sids:[...new Set([...line.map(x=>x.sid),...cc.map(x=>x.sid)])],files:w.files.map(f=>({...f})),doneAt:''};}
+
+/* ── 결재 처리 */
+async function apAct(d,act){const me=apMe();const cur=apCur(d);if(!cur||cur.sid!==me)return;
+  const r=await apAsk(act==='ok'?'승인':'반려',act==='ok'?`「${d.title}」을(를) ${cur.role}${cur.role==='승인'?'':' 승인'}합니다.`:`「${d.title}」을(를) 반려합니다. 사유를 적어 주세요.`,act==='no');if(!r)return;
+  setSync('saving');try{const s=await S.fs.doc('appr/'+d.id).get();const f=apNormDoc(d.id,s.data());const c2=apCur(f);if(!c2||c2.sid!==me||f.step!==d.step){toast('문서 상태가 바뀌었습니다. 다시 확인해 주세요.','err');return;}
+    const now=nowISO();const line=f.line.map((x,i)=>i===f.step?{...x,st:act,at:now,cmt:r.cmt}:x);const last=f.step>=f.line.length-1;
+    const patch={line,updatedAt:now,log:[...f.log,{at:now,sid:me,name:myName(),act,cmt:r.cmt}].slice(-200)};
+    if(act==='no'){patch.status='no';patch.doneAt=now;}else if(last){patch.status='done';patch.step=f.step+1;patch.doneAt=now;}else patch.step=f.step+1;
+    await S.fs.doc('appr/'+d.id).update(patch);toast(act==='no'?'반려했습니다.':last?'최종 승인 — 결재가 완료되었습니다.':`승인했습니다. 다음: ${line[f.step+1].name}`);}
+  catch(e){writeError(fbErr(e));}finally{setSync('ok');}}
+async function apWithdraw(d){if(!await confirmDlg('회수',`「${d.title}」 결재를 회수합니다. 고쳐서 다시 올릴 수 있습니다.`,'회수'))return;
+  try{const now=nowISO();await S.fs.doc('appr/'+d.id).update({status:'back',updatedAt:now,log:[...d.log,{at:now,sid:apMe(),name:myName(),act:'back',cmt:''}].slice(-200)});toast('회수했습니다.');}catch(e){writeError(fbErr(e));}}
+async function apDelete(d){if(!await confirmDlg('문서 삭제',`「${d.title}」${d.no?` (${d.no})`:''}을(를) 지웁니다. 첨부도 함께 지워지며 되돌릴 수 없습니다.`,'삭제'))return;
+  setSync('saving');try{for(const f of d.files)await apDelFile(d.id,f);await S.fs.doc('appr/'+d.id).delete();AP.open=null;toast('삭제했습니다.');render();}catch(e){writeError(fbErr(e));}finally{setSync('ok');}}
+function apAsk(title,msg,need){return new Promise(res=>{const dl=$('#dlg-apact');$('#apa-h').textContent=title;$('#apa-msg').textContent=msg;const ta=$('#apa-cmt');ta.value='';ta.placeholder=need?'반려 사유 (필수)':'의견 (선택)';const go=$('#apa-go');go.textContent=title;go.className='btn '+(need?'danger':'primary');
+  const done=v=>{dl.removeEventListener('close',onClose);go.onclick=null;res(v);};const onClose=()=>done(null);dl.addEventListener('close',onClose);
+  go.onclick=()=>{const c=ta.value.trim();if(need&&!c){toast('반려 사유를 적어 주세요.','err');ta.focus();return;}dl.removeEventListener('close',onClose);dl.close();go.onclick=null;res({cmt:c.slice(0,1000)});};dl.showModal();setTimeout(()=>ta.focus(),30);});}
+
+/* ── 인쇄 */
+function printAppr(d){const s=prSheet();const me=S.staff[S.myStaff];
+  s.innerHTML=`<div class="ps-head"><span>${esc(S.config.dept)} 전자결재 · ${esc(d.no||'(임시)')}</span><span>출력 ${esc(fmtYMD(today()))} ${esc(hhmm(nowISO()).slice(-5))}${me&&me.name?' · '+esc(me.name):''}</span></div>
+  <div class="ap-ptop"><div><div class="ap-kind">${esc(d.tplName)}</div><h1>${esc(d.title)}</h1><div>${AP_ST[d.status]}${d.fund?' · 자금 결제':''}</div></div>${apStampHTML(d)}</div>${apDocInfo(d)}
+  ${d.mode==='form'&&d.body?`<div class="ap-body ro">${apClean(d.body)}</div>`:''}${d.summary?`<h2>${d.mode==='file'?'기안 요지':'덧붙임'}</h2><div class="ps-desc">${esc(d.summary)}</div>`:''}
+  ${d.files.length?`<h2>첨부 <small>${d.files.length}</small></h2><ul>${d.files.map(f=>`<li>${esc(f.name)}${f.pii?' (개인정보 — 총괄 관리자 보관)':''}</li>`).join('')}</ul>`:''}
+  ${d.line.some(x=>x.cmt)?`<h2>결재 의견</h2><table class="ps-log"><tr><th style="width:15%">결재</th><th style="width:20%">일시</th><th>의견</th></tr>${d.line.filter(x=>x.cmt).map(x=>`<tr><td>${esc(x.name)} (${x.st==='no'?'반려':'승인'})</td><td>${esc(hhmm(x.at))}</td><td>${esc(x.cmt)}</td></tr>`).join('')}</table>`:''}`;
+  prSet('pr-sheet');setTimeout(()=>window.print(),120);}
+{const _pv=printView;printView=async function(){if(S.view==='appr'&&AP.open&&!AP.edit){const d=AP.docs.find(x=>x.id===AP.open);if(d){printAppr(d);return;}}return _pv.apply(this,arguments);};}
+
+/* ── 서식 관리 (관리자) */
+function apTplRender(v){const c=apCfg();const T=[...AP_TPL.map(t=>({...t,kind:'html',builtin:true})),...AP.tpls];
+  v.innerHTML=`<div class="list-h ap-h"><button type="button" class="btn sm ghost" data-ap-back>← 목록</button><h1>결재 서식 관리</h1><span class="sp"></span><button type="button" class="btn primary" data-ap-tplup>＋ 서식 올리기</button></div>
+  <p class="help">워드(.docx)·엑셀(.xlsx) 서식은 업무일지 안에서 <b>바로 적을 수 있는 서식</b>으로 바뀝니다. 한글(.hwp)·PDF 등은 <b>내려받아 작성한 뒤 파일로 올리는 서식</b>으로 등록됩니다.</p>
+  <div class="tbl-wrap"><table class="lst ap-tpl"><thead><tr><th>서식</th><th style="width:110px">종류</th><th style="width:120px">직무(겸직 기본 결재선)</th><th style="width:90px">자금 결제</th><th style="width:80px">사용</th><th style="width:210px"></th></tr></thead><tbody>
+  ${T.map(t=>`<tr><td><b>${esc(t.name)}</b><div class="sb">${esc(t.desc||'')}${t.up?` · ${esc(apName(t.by)||'')} ${esc(t.at?fmtMD(localDate(t.at)):'')}`:''}</div></td><td>${t.builtin?'기본':t.kind==='html'?'직접 작성':'내려받기'}</td>
+    <td>${t.builtin?esc(AP_CATS.find(x=>x[0]===t.cat)[1]):`<select data-ap-tcat="${esc(t.id)}">${AP_CATS.map(([k,n])=>`<option value="${k}" ${t.cat===k?'selected':''}>${n}</option>`).join('')}</select>`}</td>
+    <td>${t.builtin?(t.fund?'💰':'-'):`<input type="checkbox" data-ap-tfund="${esc(t.id)}" ${t.fund?'checked':''} aria-label="자금 결제">`}</td>
+    <td><input type="checkbox" data-ap-thide="${esc(t.id)}" ${c.hide.includes(t.id)?'':'checked'} aria-label="사용"></td>
+    <td>${t.kind==='html'?`<button type="button" class="btn sm" data-ap-tprev="${esc(t.id)}">미리보기</button>`:`<button type="button" class="btn sm" data-ap-tpldl="${esc(t.id)}">내려받기</button>`}${t.up?`<button type="button" class="btn sm ghost" data-ap-tren="${esc(t.id)}">이름</button><button type="button" class="btn sm ghost" data-ap-tdel="${esc(t.id)}">삭제</button>`:''}</td></tr>`).join('')}
+  </tbody></table></div><div id="ap-tprev-box"></div>`;}
+async function apTplUpload(file){const ext=(file.name.split('.').pop()||'').toLowerCase();const name=file.name.replace(/\.[^.]+$/,'').slice(0,60);const id='t'+rid().slice(0,10);const base={name,cat:'',fund:/지출|구매|품의|대금|지급|송금|결제/.test(name),desc:'',at:nowISO(),by:apMe()};
+  setSync('saving');try{let doc;
+    if(ext==='docx'){await needLib('mammoth');const r=await mammoth.convertToHtml({arrayBuffer:await file.arrayBuffer()});doc={...base,kind:'html',html:apClean(r.value,{edit:true})};}
+    else if(ext==='xlsx'||ext==='xls'){await window.wlLib('xlsx');const wb=XLSX.read(new Uint8Array(await file.arrayBuffer()),{type:'array'});const parts=wb.SheetNames.slice(0,4).map(n=>{const h=XLSX.utils.sheet_to_html(wb.Sheets[n],{header:'',footer:''});const m=h.match(/<table[\s\S]*<\/table>/i);return (wb.SheetNames.length>1?`<h3>${esc(n)}</h3>`:'')+(m?m[0]:'');});doc={...base,kind:'html',html:apClean(parts.join(''),{edit:true})};}
+    else{const u8=new Uint8Array(await file.arrayBuffer());const n=Math.max(1,Math.ceil(u8.length/FILE_CHUNK));const B=firebase.firestore.Blob;for(let i=0;i<n;i++)await fbWrite(S.fs.doc(`apprtpl/${id}/f/${i}`).set({b:B.fromUint8Array(u8.slice(i*FILE_CHUNK,(i+1)*FILE_CHUNK)),i}));doc={...base,kind:'file',html:'',file:{name:file.name.slice(0,160),type:file.type||'',size:file.size,n}};}
+    if(doc.kind==='html'){if(!apText(doc.html)){toast('서식에서 글자를 읽지 못했습니다. 파일을 확인해 주세요.','err');return;}if(doc.html.length>AP_MAX_HTML){toast('서식이 너무 큽니다(그림이 많음). 그림을 줄여 다시 올려 주세요.','err');return;}}
+    await fbWrite(S.fs.doc('apprtpl/'+id).set(doc));toast(`서식 「${name}」을(를) 올렸습니다${doc.kind==='html'?' — 바로 적을 수 있는 서식':' — 내려받아 작성하는 서식'}.`);}
+  catch(e){writeError(e&&e.userMsg?e:fbErr(e));}finally{setSync('ok');}}
+async function apTplBlob(t){const parts=[];for(let i=0;i<t.file.n;i++){const s=await S.fs.doc(`apprtpl/${t.id}/f/${i}`).get();if(!s.exists)throw {code:'missing'};parts.push(s.data().b.toUint8Array());}return new Blob(parts,{type:t.file.type||'application/octet-stream'});}
+async function apCfgSave(c,msg){try{await fbWrite(S.fs.doc('app/appr').set({parts:c.parts,final:c.final,fund:c.fund,hide:c.hide,at:nowISO(),by:apMe()}));if(msg)toast(msg);}catch(e){writeError(e);}}
+
+/* ── 결재선 설정 (관리자) */
+function apLineRender(v){const c=JSON.parse(JSON.stringify(apCfg()));AP.lc=AP.lc||c;const L=AP.lc;const st=staffList();const opt=(sel,ex=[])=>st.filter(s=>!ex.includes(s.id)||s.id===sel).map(s=>`<option value="${esc(s.id)}" ${s.id===sel?'selected':''}>${esc(s.name)}${s.role?' · '+esc(s.role):''}</option>`).join('');
+  v.innerHTML=`<div class="list-h ap-h"><button type="button" class="btn sm ghost" data-ap-back>← 목록</button><h1>결재선 설정</h1><span class="sp"></span><button type="button" class="btn ghost" data-ap-lcdef>처음 값으로</button><button type="button" class="btn primary" data-ap-lcsave>저장</button></div>
+  <p class="help">기본 결재 순서: <b>직무별 팀원 → 직무별 총괄 관리자 → 전체 총괄 관리자</b>. 두 직무에 든 직원(겸직)은 기안할 때 직무를 고릅니다(주 직무가 기본). 기안자는 필요할 때만 결재선을 바꿀 수 있습니다.</p>
+  <div class="ap-lc">${L.parts.map((p,pi)=>`<section><h3><input data-ap-lcname="${pi}" value="${esc(p.name)}" maxlength="30" aria-label="직무 이름"></h3>
+    <label>직무별 총괄 <select data-ap-lchead="${pi}"><option value="">(없음)</option>${opt(p.head)}</select></label>
+    <div class="ap-lcm">${p.members.map((m,mi)=>`<span class="ap-chip">${esc(apName(m.sid))} <button type="button" data-ap-lcmain="${pi}:${mi}" title="주 직무/겸직 바꾸기">${m.main?'주':'겸'}</button><button type="button" data-ap-lcrm="${pi}:${mi}" aria-label="빼기">✕</button></span>`).join('')||'<small class="none">팀원 없음</small>'}</div>
+    <select data-ap-lcadd="${pi}"><option value="">팀원 추가…</option>${opt('',p.members.map(m=>m.sid).concat(p.head?[p.head]:[]))}</select>
+    <p class="sb">결재선 예: ${esc(p.members[0]?apName(p.members[0].sid):'팀원')} → ${esc(apName(p.head)||'(총괄 없음)')} → ${esc(apName(L.final)||'')}</p></section>`).join('')}</div>
+  <div class="ap-lcb"><label>전체 총괄 관리자(최종 승인) <select data-ap-lcfinal><option value="">(없음)</option>${opt(L.final)}</select></label>
+    <div>자금 결제 자동 참조(회람): ${L.fund.map((s,i)=>`<span class="ap-chip">${esc(apName(s))}<button type="button" data-ap-lcfrm="${i}" aria-label="빼기">✕</button></span>`).join('')} <select data-ap-lcfadd><option value="">추가…</option>${opt('',L.fund)}</select></div></div>`;}
+
+/* 파일 고르기 칸은 화면 밖(본문 끝)에 하나씩 — 화면이 다시 그려져도 고른 파일이 사라지지 않게 */
+{const mk=(id,accept,multi)=>{if(document.getElementById(id))return;const i=document.createElement('input');i.type='file';i.id=id;i.hidden=true;i.accept=accept;if(multi)i.multiple=true;document.body.appendChild(i);};
+  mk('ap-tplup','.docx,.xlsx,.xls,.hwp,.hwpx,.pdf,.doc,.ppt,.pptx',false);mk('apw-file','image/*,.pdf,.hwp,.hwpx,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.zip',true);}
+/* ── 이벤트 */
+document.addEventListener('click',async e=>{const T=e.target;if(!T.closest)return;
+  const op=T.closest('[data-ap-open]');if(op&&!T.closest('button:not([data-ap-open])')){e.preventDefault();apGo(op.dataset.apOpen);return;}
+  if(T.closest('[data-ap-tab]')){AP.tab=T.closest('[data-ap-tab]').dataset.apTab;render();return;}
+  if(T.closest('[data-ap-new]')){apStartNew();return;}
+  if(T.closest('[data-ap-back]')){AP.open=null;AP.panel='';AP.lc=null;render();return;}
+  if(T.closest('[data-ap-cancel]')){apSyncW();const w=AP.w;if(w&&w.step==='edit'&&(w.title||apText(w.body)||w.pending.length)&&!w.id&&!await confirmDlg('작성 취소','작성 중인 내용을 버리고 목록으로 갈까요?','버리기'))return;AP.edit=null;AP.w=null;render();return;}
+  if(T.closest('[data-ap-panel]')){AP.panel=T.closest('[data-ap-panel]').dataset.apPanel;AP.lc=null;render();return;}
+  const tp=T.closest('[data-ap-tpl]');if(tp){const t=apTplList().find(x=>x.id===tp.dataset.apTpl);if(t)apPickTpl(t);return;}
+  if(T.closest('[data-ap-scan]')){apPickFile();return;}
+  const sv=T.closest('[data-ap-save]');if(sv){apSave(sv.dataset.apSave);return;}
+  if(T.closest('[data-ap-addfile]')){$('#apw-file').click();return;}
+  const wr=T.closest('[data-ap-wfrm]');if(wr){apSyncW();const k=wr.dataset.apWfrm;const i=+k.slice(1);const w=AP.w;if(k[0]==='p')w.pending.splice(i,1);else{const f=w.files.splice(i,1)[0];if(f&&w.id)apDelFile(w.id,f);}$('#apw-files').innerHTML=apWFilesHTML();return;}
+  if(T.closest('[data-ap-lineedit]')){apSyncW();AP.w.lineEdit=true;apReW();return;}
+  if(T.closest('[data-ap-linereset]')){apSyncW();const w=AP.w;w.line=apDefLine(apMe(),w.part);w.custom=false;w.lineEdit=false;w.lineNote='';w.cc=apAutoCc(w);apReW();return;}
+  const mv=T.closest('[data-ap-mv]');if(mv){apSyncW();const w=AP.w;const i=+mv.dataset.apMv,dd=+mv.dataset.d;const j=i+dd;if(j<1||j>=w.line.length)return;[w.line[i],w.line[j]]=[w.line[j],w.line[i]];w.custom=true;w.cc=apAutoCc(w);apReW();return;}
+  const rm=T.closest('[data-ap-rm]');if(rm){apSyncW();const w=AP.w;w.line.splice(+rm.dataset.apRm,1);w.custom=true;w.cc=apAutoCc(w);apReW();return;}
+  const cr=T.closest('[data-ap-ccrm]');if(cr){apSyncW();AP.w.cc.splice(+cr.dataset.apCcrm,1);apReW();return;}
+  const fv=T.closest('[data-ap-fview]'),fd=T.closest('[data-ap-fdl]');if(fv||fd){const d=AP.docs.find(x=>x.id===AP.open);if(!d)return;const f=d.files[+(fv||fd).dataset[fv?'apFview':'apFdl']];if(!f)return;
+    if(fd){setSync('saving');try{saveBlob(await apGetFile(d,f),f.name);}catch(err){toast(fileErrMsg(err),'err');}finally{setSync('ok');}return;}
+    openViewer({name:f.name,type:f.type,size:f.size,meta:`전자결재 · ${d.no||''} 첨부`,get:()=>apGetFile(d,f),dlName:f.name});return;}
+  const act=T.closest('[data-ap-act]');if(act){const d=AP.docs.find(x=>x.id===AP.open);if(d)apAct(d,act.dataset.apAct);return;}
+  if(T.closest('[data-ap-withdraw]')){const d=AP.docs.find(x=>x.id===AP.open);if(d)apWithdraw(d);return;}
+  if(T.closest('[data-ap-edit]')){const d=AP.docs.find(x=>x.id===AP.open);if(d)apEditDoc(d);return;}
+  if(T.closest('[data-ap-del]')){const d=AP.docs.find(x=>x.id===AP.open);if(d)apDelete(d);return;}
+  if(T.closest('[data-ap-print]')){const d=AP.docs.find(x=>x.id===AP.open);if(d)printAppr(d);return;}
+  // 서식 관리
+  if(T.closest('[data-ap-tplup]')){$('#ap-tplup').click();return;}
+  const tdl=T.closest('[data-ap-tpldl]');if(tdl){const t=AP.tpls.find(x=>x.id===tdl.dataset.apTpldl);if(!t||!t.file)return;setSync('saving');try{saveBlob(await apTplBlob(t),t.file.name);}catch(err){toast(fileErrMsg(err),'err');}finally{setSync('ok');}return;}
+  const tpv=T.closest('[data-ap-tprev]');if(tpv){const t=[...AP_TPL,...AP.tpls].find(x=>x.id===tpv.dataset.apTprev);const b=$('#ap-tprev-box');if(t&&b)b.innerHTML=`<h3>미리보기 · ${esc(t.name)}</h3><div class="ap-body ro">${apClean(t.html)}</div>`;b&&b.scrollIntoView({block:'start',behavior:'smooth'});return;}
+  const tdel=T.closest('[data-ap-tdel]');if(tdel){const t=AP.tpls.find(x=>x.id===tdel.dataset.apTdel);if(!t||!await confirmDlg('서식 삭제',`서식 「${t.name}」을(를) 지웁니다. 이미 올린 결재 문서에는 영향이 없습니다.`,'삭제'))return;try{if(t.file)for(let i=0;i<t.file.n;i++){try{await S.fs.doc(`apprtpl/${t.id}/f/${i}`).delete();}catch{}}await S.fs.doc('apprtpl/'+t.id).delete();toast('서식을 지웠습니다.');}catch(err){writeError(fbErr(err));}return;}
+  const tren=T.closest('[data-ap-tren]');if(tren){const t=AP.tpls.find(x=>x.id===tren.dataset.apTren);if(!t)return;const n=prompt('서식 이름',t.name);if(n&&n.trim())try{await S.fs.doc('apprtpl/'+t.id).update({name:n.trim().slice(0,60)});}catch(err){writeError(fbErr(err));}return;}
+  // 결재선 설정
+  const L=AP.lc;if(L){
+    const lr=T.closest('[data-ap-lcrm]');if(lr){const [p,m]=lr.dataset.apLcrm.split(':').map(Number);L.parts[p].members.splice(m,1);render();return;}
+    const lm=T.closest('[data-ap-lcmain]');if(lm){const [p,m]=lm.dataset.apLcmain.split(':').map(Number);const x=L.parts[p].members[m];x.main=!x.main;render();return;}
+    const fr=T.closest('[data-ap-lcfrm]');if(fr){L.fund.splice(+fr.dataset.apLcfrm,1);render();return;}
+    if(T.closest('[data-ap-lcdef]')){AP.lc=apDefCfg();AP.lc.hide=apCfg().hide;render();return;}
+    if(T.closest('[data-ap-lcsave]')){await apCfgSave(L,'결재선 설정을 저장했습니다.');AP.lc=null;AP.panel='';render();return;}}
+});
+document.addEventListener('change',async e=>{const T=e.target;if(!T||!T.matches)return;
+  if(T.id==='apw-file'){apSyncW();const w=AP.w;w.pending.push(...[...T.files].filter(f=>f.size<=30*1024*1024));if([...T.files].some(f=>f.size>30*1024*1024))toast('30MB가 넘는 파일은 올릴 수 없습니다.','err');T.value='';$('#apw-files').innerHTML=apWFilesHTML();return;}
+  if(T.name==='apw-part'){apSyncW();const w=AP.w;w.part=T.value;w.line=apDefLine(apMe(),w.part);w.custom=false;w.lineEdit=false;w.cc=apAutoCc(w);apReW();return;}
+  if(T.id==='apw-addsel'&&T.value){apSyncW();const w=AP.w;w.line.push(T.value);w.custom=true;w.cc=apAutoCc(w).filter(x=>!w.line.includes(x.sid));apReW();return;}
+  if(T.id==='apw-ccsel'&&T.value){apSyncW();AP.w.cc.push({sid:T.value,auto:false});apReW();return;}
+  if(T.id==='apw-fund'){apSyncW();const w=AP.w;w.fund=T.checked;w.cc=apAutoCc(w);apReW();return;}
+  if(T.id==='ap-tplup'&&T.files[0]){const f=T.files[0];T.value='';apTplUpload(f);return;}
+  if(T.dataset.apTcat!==undefined){try{await S.fs.doc('apprtpl/'+T.dataset.apTcat).update({cat:T.value});}catch(err){writeError(fbErr(err));}return;}
+  if(T.dataset.apTfund!==undefined){try{await S.fs.doc('apprtpl/'+T.dataset.apTfund).update({fund:T.checked});}catch(err){writeError(fbErr(err));}return;}
+  if(T.dataset.apThide!==undefined){const c=JSON.parse(JSON.stringify(apCfg()));const id=T.dataset.apThide;c.hide=T.checked?c.hide.filter(x=>x!==id):[...new Set([...c.hide,id])];await apCfgSave(c,T.checked?'서식을 다시 씁니다.':'이 서식을 새 기안 목록에서 숨겼습니다.');return;}
+  const L=AP.lc;if(L){if(T.dataset.apLcname!==undefined){L.parts[+T.dataset.apLcname].name=T.value.trim()||L.parts[+T.dataset.apLcname].name;return;}
+    if(T.dataset.apLchead!==undefined){L.parts[+T.dataset.apLchead].head=T.value;render();return;}
+    if(T.dataset.apLcadd!==undefined&&T.value){L.parts[+T.dataset.apLcadd].members.push({sid:T.value,main:!L.parts.some(p=>p.members.some(m=>m.sid===T.value))});render();return;}
+    if(T.dataset.apLcfinal!==undefined){L.final=T.value;render();return;}
+    if(T.dataset.apLcfadd!==undefined&&T.value){L.fund.push(T.value);render();return;}}
+});
+document.addEventListener('input',e=>{if(e.target&&e.target.id==='ap-q'){AP.q=e.target.value;clearTimeout(AP._qt);AP._qt=setTimeout(()=>{const p=e.target.selectionStart;render();const q=$('#ap-q');if(q){q.focus();try{q.setSelectionRange(p,p);}catch{}}},250);}});
+document.addEventListener('dragover',e=>{if(e.target.closest&&e.target.closest('#apw-drop')){e.preventDefault();e.target.closest('#apw-drop').classList.add('over');}});
+document.addEventListener('dragleave',e=>{const d=e.target.closest&&e.target.closest('#apw-drop');if(d)d.classList.remove('over');});
+document.addEventListener('drop',e=>{const d=e.target.closest&&e.target.closest('#apw-drop');if(!d)return;e.preventDefault();d.classList.remove('over');apSyncW();const fs=[...(e.dataTransfer.files||[])].filter(f=>f.size<=30*1024*1024);AP.w.pending.push(...fs);$('#apw-files').innerHTML=apWFilesHTML();});
+/* 작성 중 다른 화면으로 가면 작성 상태는 유지(돌아오면 이어서) */
+window.apApi={ready:()=>({loaded:AP.loaded,docs:AP.docs.length,todo:apTodo().length,cfg:!!AP.cfg})};
+/* 입력할 때마다 작성 내용 보관 (다른 화면에 다녀와도 이어서) */
+document.addEventListener('input',e=>{if(e.target&&e.target.closest&&e.target.closest('#apw'))try{apSyncW();}catch{}});
 
 /* ───────── 시작 ───────── */
 function boot(){
