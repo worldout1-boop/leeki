@@ -82,6 +82,12 @@ service cloud.firestore {
         || (isMember() && myEmail() in members().get('viewers', []));
     }
 
+    // 조직도·업무분장 — 모두 읽기, 관리자만 수정 (매주 점검도 관리자 화면에서)
+    match /app/org {
+      allow read: if isMember();
+      allow write: if isAdmin();
+    }
+
     // 법정 업무 설정 — 모두 읽기, 관리자만 수정
     match /app/legal {
       allow read: if isMember();
