@@ -266,6 +266,14 @@ service cloud.firestore {
         allow write: if isAdmin();
       }
     }
+    // 폴더 목록 — 기본서류 폴더는 구성원 누구나 만들고 고침, 회사서식 빈 폴더 목록은 관리자만
+    match /app/docdirs {
+      allow read, write: if isMember();
+    }
+    match /app/formdirs {
+      allow read: if isMember();
+      allow write: if isAdmin();
+    }
     // 회사서식 — 구성원 모두 읽기(미리보기·인쇄·내려받기·작성), 올리기·분류·고치기·삭제는 관리자만
     match /forms/{id} {
       allow read: if isMember();
