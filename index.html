@@ -4511,7 +4511,7 @@ const PII_IMG='data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w
 
 /* ── 주민등록번호 13자리 (생년월일 6자리 + 성별 1~8 + 6자리). 뒷자리가 가려진 번호는 해당 없음 */
 function rrnList(s){const out=[];if(!s||s.length<13)return out;const re=/(?<![\w])(\d{2})(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])(\s?[-–—~]\s?|\s)?([1-8])(\d{6})(?![\w])/g;
-  for(const m of String(s).matchAll(re)){const pre=s.slice(Math.max(0,m.index-16),m.index).replace(/\s+/g,'');if(/(법인(등록)?번호|등기번호|법인등록|사업자번호|고유번호)[:：]?$/.test(pre))continue;out.push(m[0]);}return out;}
+  for(const m of String(s).matchAll(re)){const pre=s.slice(Math.max(0,m.index-16),m.index).replace(/\s+/g,'');if(/(법인(등록)?번호|등기번호|법인등록|사업자번호|고유번호)[:：]?$/.test(pre)||/(주식회사|유한회사|합자회사|합명회사|㈜|\(주\)|은행|조합|금고|공사|공단|재단|협회|회사|센터)[:：]?$/.test(pre))continue;out.push(m[0]);}return out;}
 let _maskN=0,_maskT=0;
 function maskRRN(s){if(typeof s!=='string'||s.length<13||s.startsWith('data:')||!/\d{6}/.test(s))return s;let n=0;
   const r=s.replace(/(?<![\w])(\d{2})(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])(\s?[-–—]\s?|\s)?([1-8])(\d{6})(?![\w])/g,(m,y,mo,d,sep,g)=>{n++;return `${y}${mo}${d}-${g}******`;});
@@ -4528,13 +4528,16 @@ const PII_KW=[
 function kwHit(re,s){if(!re||!s)return '';const r=new RegExp(re.source,re.flags.replace('g','')+'g');
   for(const m of s.matchAll(r)){const after=s.slice(m.index+m[0].length,m.index+m[0].length+14);if(PII_NOTICE.test(after))continue;if(/양식|서식|빈칸/.test(s.slice(Math.max(0,m.index-6),m.index)))continue;return m[0];}return '';}
 /* → {hit, why:[사유], ks:[종류]} */
+const PII_DOCSLOT=['rules','aoi','org','bizreg','corpreg','seal','bank','iso','family','goodco','sme','certetc','factory','bldg','drawing'];
+const PII_RULEDOC=/취업규칙|규정|규칙|지침|정관|약관|제1장|제1조|총칙|공고|모집요강/;
 function piiCheck(name,text,o={}){const why=[],ks=[];const nm=String(name||'').replace(/\.[A-Za-z0-9]{1,6}$/,'');const fn=nm.replace(/[\s_\-()[\]·.,]+/g,'');
   const raw=String(text||'');const flat=raw.replace(/\s+/g,'');const head=flat.slice(0,400);
   let rr=rrnList(raw);if(!rr.length&&o.ocr)rr=rrnList(raw.replace(/(?<=\d)[ \t]+(?=\d)/g,''));if(!rr.length)rr=rrnList(nm);
   if(rr.length){why.push('주민등록번호 13자리');ks.push('rrn');}
+  const ruleDoc=PII_RULEDOC.test(flat.slice(0,120))||PII_RULEDOC.test(fn)||!!(o.slot&&['rules','aoi'].includes(o.slot));
   for(const g of PII_KW){if(o.slot&&['bank','seal','corpreg','bizreg'].includes(o.slot)&&g.k==='id')continue;
-    let hit=kwHit(g.fn,fn)||kwHit(g.fn,nm)||kwHit(g.head,head);
-    if(!hit&&g.fields){const fs=new Set(flat.match(g.fields)||[]);if(fs.size>=g.min&&(!g.need||g.need.test(flat)))hit='항목';}
+    let hit=kwHit(g.fn,fn)||kwHit(g.fn,nm)||(ruleDoc?'':kwHit(g.head,head));
+    if(!hit&&g.fields&&!ruleDoc&&!(o.slot&&PII_DOCSLOT.includes(o.slot))){const fs=new Set(flat.match(g.fields)||[]);if(fs.size>=g.min&&(!g.need||g.need.test(flat)))hit='항목';}
     if(hit){why.push(g.name);ks.push(g.k);}}
   return {hit:why.length>0,why,ks};}
 
