@@ -1454,6 +1454,12 @@ input.ir{font:inherit;font-size:14.5px;font-weight:600;padding:4px 8px;border:2p
 .pay-strip{border-color:#f1d9a6!important;background:#fffaf0!important}
 .fc .ev-pay{background:#fff7e0!important;border:1.5px solid #d97706!important;color:#92400e!important}.fc .ev-pay .fc-event-title,.fc .ev-pay .fc-event-main{color:#92400e;font-weight:700}
 .fc .ev-pay-done{background:#ecfdf3!important;border-color:#15803d!important}.fc .ev-pay-done .fc-event-title,.fc .ev-pay-done .fc-event-main{color:#15803d;font-weight:600}
+/* 33차: 그룹웨어 근태계 */
+.fc .ev-lv-trip{background:#1d4ed8!important;border-color:#1d4ed8!important;color:#fff}
+.fc .ev-lv-out{background:#6d28d9!important;border-color:#6d28d9!important;color:#fff}
+.fc .ev-lv-run{opacity:.62;background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.18) 0 6px,transparent 6px 12px)!important}
+.fc .ev-lv-run .fc-event-title{font-weight:600}
+.lv-c.t{background:#1d4ed8;color:#fff}.lv-c.o{background:#6d28d9;color:#fff}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -2348,6 +2354,7 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>자료실</b><span>위쪽 <em>각종서류 올리기</em> 화면 맨 위의 <em>🗂 자료실</em>을 누르면 정리된 회사 서류(사업장별·종류별, 유효기간)를 봅니다. 자료실에서 다시 <em>📤 각종서류 올리기</em>로 돌아갈 수 있습니다.</span></li>
       <li><b>업무 수정 권한</b><span>업무(일정)의 업무명·일정·담당·내용 수정과 삭제는 <em>등록한 사람</em>과 관리자만 할 수 있습니다. 담당자는 진행 상태·진척률·진행 기록·사진만 남기고, 그 밖의 직원은 보기만 합니다.</span></li>
       <li><b>연차·휴일근무 달력</b><span>전자결재 기안 오른쪽 <em>📅 달력 표기</em>에서 연차·반차·휴일근무·연차 사용 계획을 고르고 날짜를 적으면, 최종 승인된 뒤 달력에 <b>굵은 글자</b>(🌴 연차, 🛠 휴일근무)로 표시됩니다. 연차 사용 촉진에 따라 정한 예정일은 달력 위 <em>🗓 연차 사용 계획(촉진)</em>에서 적으면 <i>연차(예정)</i>으로 보입니다. 사유는 달력에 나오지 않습니다.</span></li>
+      <li><b>그룹웨어 근태계</b><span>평일 매시간 그룹웨어 게시판을 확인할 때 <em>결재문서함</em>의 근태계도 함께 읽어, 관리부 직원의 연차·반차·휴가·휴일근무·출장·외출을 달력에 표시합니다. 최종 결재된 것은 <b>굵게</b>, 결재 중인 것은 흐리게 '(결재 중)'으로 보이고, 반려·회수되면 빠집니다. 이름·종류·기간만 보이고 사유는 저장하지 않습니다.</span></li>
       <li><b>자금 결제</b><span>💰 자금 결제 문서가 최종 승인되면 자금 담당(기본 박혜진)에게 <em>결제 예정일 입력</em> 요청이 갑니다(알림·내 업무·결재함 '💰 자금 결제' 탭). 문서의 <em>💰 자금 결제</em> 칸에 예정일·메모를 저장하면 결재선(담당·결재자)과 관리자에게 알림이 가고 달력에 '💰 결제 예정'으로 보입니다. 지급이 끝나면 <em>✅ 지급 완료</em>를 누릅니다.</span></li>
       <li><b>화면 아래 알림</b><span>새 알림은 화면 오른쪽 아래에 카드로 떠서 <em>✕(확인)</em>을 누르거나 카드를 눌러 열 때까지 사라지지 않습니다. 확인하지 않으면 다시 열어도 또 보입니다. 3건이 넘으면 '알림 n건 더'로 묶입니다.</span></li>
       <li><b>자료 관리 권한</b><span>각종서류 올리기(자료실·회사서식)에 서류를 올리고, 지우고, 이름·폴더를 바꾸는 일은 <em>자료 관리자</em>(기본: 이기도·박혜진·윤종국·윤민진·이은주)만 합니다. 다른 직원은 보기·내려받기·인쇄만 합니다. 올리기·삭제 기록은 관리부 모두에게 알림(🔔)으로 가고, 각종서류 올리기 화면 아래 <em>📜 올리기·삭제 기록</em>에서도 볼 수 있습니다. 관리자는 <em>설정 › 자료 관리 권한</em>에서 바꿉니다.</span></li>
@@ -7041,7 +7048,7 @@ function apLeaveParse(d){if(!d||d.mode!=='form')return null;if(!/휴가|근태|�
   if(/촉진|사용\s*계획/.test(d.title+d.tplName))kind='plan';else if(kw.length===1||(kw.length===2&&has('휴일')&&has('특근'))){kind=has('휴일')||has('특근')?'hw':has('반차')?(has('오후')?'pm':'am'):has('연차')?'annual':has('외출')?'':'etc';}
   if(!kind)return null;return {kind,from:ds[0],to:ds[ds.length>1?1:0]<ds[0]?ds[0]:ds[ds.length>1?1:0],sids:[d.bySid].filter(Boolean)};}
 function lvSub(){if(S.mode!=='firebase'||!S.fs||LV.u)return;
-  LV.u=S.fs.collection('leave').onSnapshot(s=>{LV.list=s.docs.map(d=>lvNorm(d.id,d.data())).filter(Boolean);LV.loaded=true;lvRefreshCal();lvSchedule();if($('#dlg-lvplan')&&$('#dlg-lvplan').open)lvPlanRender();},()=>{LV.loaded=true;});}
+  LV.u=S.fs.collection('leave').onSnapshot(s=>{LV.raw=s.docs.map(d=>({id:d.id,...d.data()}));LV.list=s.docs.map(d=>lvNorm(d.id,d.data())).filter(Boolean);LV.loaded=true;lvRefreshCal();lvSchedule();if($('#dlg-lvplan')&&$('#dlg-lvplan').open)lvPlanRender();},()=>{LV.loaded=true;});}
 {const _es=extSubs;extSubs=function(){_es.apply(this,arguments);try{try{LV.u&&LV.u();}catch{}LV.u=null;LV.list=[];LV.loaded=false;LV.tried=new Set();lvSub();S.unsubs.push(()=>{try{LV.u&&LV.u();}catch{}LV.u=null;LV.list=[];LV.loaded=false;});}catch(e){console.warn(e);}};}
 function lvRefreshCal(){if(S.view==='calendar'&&S.cal){try{S.cal.removeAllEvents();S.cal.addEventSource(calEvents());}catch{}}}
 function lvSchedule(){clearTimeout(LV.t);LV.t=setTimeout(()=>lvSync().catch(()=>{}),1200);}
@@ -7071,7 +7078,7 @@ function lvOpen(id){const x=LV.list.find(e=>e.id===id);if(!x)return;
   if(S.cal&&!S.cal.__lv){S.cal.__lv=true;let orig=null;try{orig=S.cal.getOption('eventClick');}catch{}
     S.cal.setOption('eventClick',info=>{const id=info.event.id||'';if(id.startsWith('lv:')){info.jsEvent.preventDefault();lvOpen(id.slice(3));return;}if(id.startsWith('pay:')){info.jsEvent.preventDefault();apGo(id.slice(4));return;}if(orig)orig(info);});}
   const top=v.querySelector('.cal-top');if(top&&!top.querySelector('.cal-lv')){top.insertAdjacentHTML('beforeend',`<span class="cal-lv"><label class="chk"><input type="checkbox" data-calv ${CALV.on?'checked':''}> 🌴 연차·휴일근무</label><button type="button" class="btn sm" data-lv-plan>🗓 연차 사용 계획(촉진)</button></span>`);}
-  const lg=v.querySelector('.cal-legend');if(lg&&!lg.querySelector('.lv-leg'))lg.insertAdjacentHTML('afterbegin','<span class="lv-leg"><b class="lv-c a">🌴 연차·반차</b><b class="lv-c h">🛠 휴일근무</b><i class="lv-c p">🗓 연차(예정)</i> — 전자결재 최종 승인분은 굵게 ·</span>');}catch(e){console.warn(e);}return r;};}
+  const lg=v.querySelector('.cal-legend');if(lg&&!lg.querySelector('.lv-leg'))lg.insertAdjacentHTML('afterbegin','<span class="lv-leg"><b class="lv-c a">🌴 연차·반차</b><b class="lv-c h">🛠 휴일근무</b><b class="lv-c t">🚗 출장</b><b class="lv-c o">🚶 외출·조퇴</b><i class="lv-c p">🗓 연차(예정)</i> — 전자결재·그룹웨어 근태계 최종 승인분은 굵게 ·</span>');}catch(e){console.warn(e);}return r;};}
 document.addEventListener('change',e=>{const c=e.target&&e.target.closest&&e.target.closest('[data-calv]');if(!c)return;CALV.on=c.checked;lsSet('wl.calv',JSON.stringify({on:CALV.on}));lvRefreshCal();});
 
 /* 연차 사용 계획(촉진) — 본인 계획은 본인이, 관리자는 누구 것이든 적고 지움 (적은 사람만 고침) */
@@ -7221,6 +7228,65 @@ if(!AP_TABS.some(([k])=>k==='pay'))AP_TABS.splice(Math.max(0,AP_TABS.findIndex((
 /* 달력: 결제 예정 (문서를 볼 수 있는 사람만) */
 {const _ce=calEvents;calEvents=function(){const out=_ce.apply(this,arguments);try{if(typeof AP!=='undefined'&&AP.loaded)for(const d of AP.docs){const p=d.pay;if(!d.fund||d.status!=='done'||!p||!p.date)continue;
   out.push({id:'pay:'+d.id,title:`${p.st==='paid'?'✅':'💰'} ${d.title}${d.amount?' · '+d.amount:''}${p.st==='paid'?' (지급 완료)':' 결제 예정'}`,start:p.date,allDay:true,editable:false,classNames:['ev-pay',p.st==='paid'?'ev-pay-done':''].filter(Boolean),prio:5});}}catch(e){}return out;};}
+
+/* ───────── 그룹웨어 근태계 → 달력 (33차) ─────────
+   평일 매시간 그룹웨어 게시판을 확인할 때 결재문서함도 함께 확인해, 근태계(연차·반차·휴가·휴일근무·출장·외출 등)를
+   leave/gw_{문서ID} 로 기록합니다(관리자 화면의 window.gwApi.att). 달력에는 이름·종류·기간만 — 사유·본문은 저장하지 않습니다.
+   관리부 직원(직원 명단 이름)만 표시하고, 다른 부서 직원이나 근태가 아닌 문서는 '건너뜀' 표시만 남겨 다시 읽지 않습니다. */
+Object.assign(LV_K,{trip:'출장',out:'외출·조퇴'});Object.assign(LV_IC,{trip:'🚗',out:'🚶'});
+const GWA_SINCE='2026-10-01';
+/* 근태 구분 글자 → 달력 종류 */
+function gwaKind(t){const s=String(t||'').replace(/\s+/g,'');if(!s)return '';
+  if(/휴일|특근|주말근무|휴무일근무/.test(s))return 'hw';
+  if(/반차|반일/.test(s))return /오후/.test(s)?'pm':'am';
+  if(/출장|외근|파견근무/.test(s))return 'trip';
+  if(/외출|조퇴|지각/.test(s))return 'out';
+  if(/연차|월차|년차/.test(s))return 'annual';
+  if(/휴가|병가|경조|공가|대체|보상|출산|육아|생리|특별|하계|동계|예비군|민방위|청원|포상/.test(s))return 'etc';
+  return '';}
+const gwaIdOf=v=>{const g=gwGuid(String(v||''));return g?g.slice(1,-1):String(v||'').replace(/[^0-9A-Za-z_-]/g,'').slice(0,60);};
+{const _n=lvNorm;lvNorm=function(id,d){if(d&&d.src==='gw'){if(d.skip)return null;const x=_n(id,d);if(!x)return null;const str=(v,n)=>typeof v==='string'?v.slice(0,n):'';
+    return {...x,src:'gw',st:d.st==='run'?'run':'done',gwId:str(d.gwId,60),form:str(d.form,40),no:str(d.no,40)};}return _n(id,d);};}
+/* 앱 전자결재와 같은 내용이면 그룹웨어 쪽은 숨김 */
+const gwaDup=x=>LV.list.some(y=>y!==x&&y.src==='appr'&&y.kind===x.kind&&y.from===x.from&&y.to===x.to&&x.sids.every(s=>y.sids.includes(s)));
+{const _c=lvCovered;lvCovered=function(sid,from,to){return _c.apply(this,arguments)||LV.list.some(x=>x.src==='gw'&&x.st==='done'&&!['hw','plan','trip','out'].includes(x.kind)&&x.sids.includes(sid)&&x.from<=from&&x.to>=to);};}
+{const _e=lvCalEvents;lvCalEvents=function(){const ev=_e.apply(this,arguments);const out=[];
+  for(const e of ev){const x=e.id&&e.id.startsWith('lv:gw_')?LV.list.find(y=>y.id===e.id.slice(3)):null;if(!x){out.push(e);continue;}if(gwaDup(x))continue;
+    out.push({...e,title:e.title+(x.st==='run'?' (결재 중)':''),classNames:[...e.classNames,'ev-lv-gw',...(x.st==='run'?['ev-lv-run']:[])]});}
+  return out;};}
+{const _o=lvOpen;lvOpen=function(id){const x=LV.list.find(e=>e.id===id);if(!x||x.src!=='gw')return _o.apply(this,arguments);
+  toast(`${LV_IC[x.kind]} ${lvNames(x)} ${LV_K[x.kind]} · ${lvRange(x)} — 그룹웨어 ${x.form||'근태계'} ${x.st==='run'?'결재 중':'최종 결재'}${x.no?` (${x.no})`:''}`);};}
+
+/* 자동 확인(관리자 화면)이 쓰는 기록 도구 */
+const gwaList=()=>LV.list;
+function gwaStaff(n){n=String(n||'').replace(/\s+/g,'').replace(/(이사|부장|실장|차장|과장|대리|주임|사원|팀장|님)$/,'');return n?staffList().find(s=>s.name===n):null;}
+function gwaDoc(p){if(!p||typeof p!=='object')throw new Error('형식 오류');const gwId=gwaIdOf(p.gwId||p.id);if(!gwId)throw new Error('gwId(문서 ID) 없음');
+  const st=p.st==='done'?'done':p.st==='run'?'run':'no';const s=(v,n)=>gwStr(v,n);
+  const base={src:'gw',gwId,st,no:s(p.no,40),form:s(p.form,40),at:nowISO(),by:myId()||''};
+  const kind=LV_K[p.kind]&&p.kind!=='plan'?p.kind:gwaKind(p.kindText||p.kind);
+  const names=(Array.isArray(p.names)?p.names:[p.names]).map(x=>String(x||'').trim()).filter(Boolean).slice(0,30);
+  let staff=[...new Map(names.map(gwaStaff).filter(Boolean).map(x=>[x.id,x])).values()];
+  if(!staff.length&&p.writer){const w=gwaStaff(p.writer);if(w)staff=[w];}/* 성명 칸 오타(예: 윤미진)면 기안자로 */
+  let from=isDate(p.from)?p.from:'',to=isDate(p.to)?p.to:from;if(to<from)to=from;
+  let why='';if(p.skip)why=gwStr(String(p.skip),40);else if(st==='no')why='반려·회수';else if(!kind)why='근태 아님';else if(!from)why='날짜 없음';else if(!staff.length)why='관리부 직원 아님';else if(diffDays(from,to)>92)why='기간 이상';
+  if(why)return {id:'gw_'+gwId,d:{...base,skip:true,why}};
+  return {id:'gw_'+gwId,d:{...base,kind,from,to,sids:staff.map(x=>x.id),names:staff.map(x=>x.name)}};}
+Object.assign(window.gwApi,{
+  /* 이미 기록한 근태계: {since, docs:{문서ID: 'done'|'run'|'skip'}} — 'done'·'skip'은 다시 읽지 않아도 됨, 'run'은 결재 상태가 바뀌었는지만 확인 */
+  async attKnown(ms=8000){const t0=Date.now();while(Date.now()-t0<ms&&!LV.loaded)await new Promise(r=>setTimeout(r,250));
+    if(!LV.loaded)throw new Error('달력 표기(leave)를 읽을 수 없습니다 — Firebase 규칙 게시가 필요합니다');
+    const docs={};for(const d of (LV.raw||[]))if(d.src==='gw'&&d.gwId)docs[d.gwId]=d.skip?'skip':(d.st==='run'?'run':'done');
+    const s=addDays(today(),-45);return {since:s>GWA_SINCE?s:GWA_SINCE,docs};},
+  /* 근태계 기록: [{gwId, no, form, st:'done'|'run'|'no', kindText 또는 kind, from, to, names:[이름]}] — 사유·본문은 넣지 않음 */
+  async att(list,o={}){if(!S.canEdit)throw new Error('관리자 계정으로 로그인한 화면에서만 기록할 수 있습니다');const res={written:[],shown:[],skipped:[],errors:[]};
+    list=(Array.isArray(list)?list:[list]).filter(Boolean);
+    /* 결재 중이던 문서가 목록(진행·완료)에서 사라졌으면 반려·회수로 보고 달력에서 뺌 */
+    if(Array.isArray(o.ids)){const cur=new Set(o.ids.map(gwaIdOf));const got=new Set(list.map(p=>gwaIdOf(p.gwId||p.id)));
+      for(const d of (LV.raw||[]))if(d.src==='gw'&&!d.skip&&d.st==='run'&&d.gwId&&!cur.has(d.gwId)&&!got.has(d.gwId))list.push({gwId:d.gwId,no:d.no,form:d.form,st:'no',skip:'결재 목록에서 사라짐(반려·회수)'});}
+    for(const p of list){try{const {id,d}=gwaDoc(p);await S.fs.doc('leave/'+id).set(d);res.written.push(id);
+        if(d.skip)res.skipped.push(`${d.no||id}: ${d.why}`);else res.shown.push(`${d.names.join('·')} ${LV_K[d.kind]} ${d.from===d.to?d.from:d.from+'~'+d.to}${d.st==='run'?' (결재 중)':''}`);}
+      catch(e){res.errors.push(`${String(p&&(p.no||p.gwId)||'').slice(0,40)}: ${e&&e.message||e}`);}}
+    return res;}});
 
 /* ───────── 시작 ───────── */
 function boot(){
