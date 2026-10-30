@@ -15,6 +15,7 @@
   ],
   "shortcuts": [
     {"name": "내 업무", "url": "./#my"},
+    {"name": "시설 일보", "short_name": "시설 일보", "url": "./#ilbo"},
     {"name": "그룹웨어 소식", "url": "./#gw"},
     {"name": "달력", "url": "./#calendar"}
   ]
