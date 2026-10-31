@@ -1706,6 +1706,47 @@ input.ir{font:inherit;font-size:14.5px;font-weight:600;padding:4px 8px;border:2p
 .in-seg button[aria-pressed=true][data-in-r="주의"]{background:#fff4e0;border-color:#b26a00;color:#8a5200;font-weight:700}
 .in-seg button[aria-pressed=true][data-in-r="불량"]{background:#fdeceb;border-color:#c0261d;color:#c0261d;font-weight:700}
 .in-seg button[aria-pressed=true][data-in-r="해당 없음"]{background:#eef0f3;border-color:#8b96a5;color:#46597a;font-weight:700}
+/* 44차: 점검 항목 편집 */
+.in-fq.f-H{background:#e6f6f7;color:#0f5f66}
+.in-fq.f-Y{background:#fdecef;color:#8a2440}
+.ie{border:1px solid var(--line,#dfe3ea);border-radius:12px;background:var(--card,#fff);padding:12px;margin:10px 0}
+.ie-bar{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;margin-bottom:10px}
+.ie-bar>b{font-size:15px}.ie-bar>small{flex:1 1 320px;color:var(--muted,#5b6577);line-height:1.45}
+.ie-acts{display:flex;flex-wrap:wrap;gap:6px}.ie-acts label.btn{cursor:pointer}
+.ie-secs{display:flex;flex-direction:column;gap:8px}
+.ie-sec{border:1px solid var(--line,#dfe3ea);border-radius:10px;background:var(--bg2,#fafbfc)}
+.ie-sec>summary{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;padding:9px 10px;cursor:pointer;list-style:none}
+.ie-sec>summary::-webkit-details-marker{display:none}
+.ie-sec>summary small{color:var(--muted,#5b6577);flex:1 1 200px}
+.ie-sec[open]>summary{border-bottom:1px solid var(--line,#dfe3ea)}
+.ie .in-hdl{cursor:grab;color:#8a94a6;font-size:16px;line-height:1;padding:2px 3px;user-select:none;touch-action:none}
+.ie .sortable-ghost{opacity:.45;background:#e8f0fb}
+.ie-mv{display:inline-flex;gap:2px;margin-left:auto}.ie-mv .icon-btn{width:28px;height:28px;font-size:12px}
+.ie-sf{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;padding:10px;border-bottom:1px dashed var(--line,#dfe3ea)}
+.ie-sf>label{display:flex;align-items:center;gap:6px;font-size:13px}
+.ie-sf input:not([type=checkbox]),.ie-sf select,.ie-it input:not([type=checkbox]),.ie-it select,.ie-g input,.ie-it textarea,.ie-scols textarea{font:inherit;font-size:13px;padding:5px 7px;border:1px solid var(--line,#cfd5df);border-radius:7px;background:var(--card,#fff);min-width:0}
+.ie-rr{display:inline-flex;flex-wrap:wrap;gap:4px;align-items:center}
+.ie-sites{display:inline-flex;flex-wrap:wrap;gap:4px 10px;align-items:center;font-size:13px}
+.ie-sites label{display:inline-flex;gap:3px;align-items:center}
+.ie-scols{flex:1 1 100%;font-size:12.5px;color:var(--muted,#5b6577)}
+.ie-lists{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:6px;margin-top:4px}
+.ie-lists label{display:flex;flex-direction:column;gap:2px;font-size:12px;color:var(--muted,#5b6577)}
+.ie-lists input,.ie-lists textarea{width:100%;box-sizing:border-box}
+.ie-gs{padding:6px 10px;display:flex;flex-direction:column;gap:8px}
+.ie-g{border-left:3px solid #c9d6ea;padding-left:8px}
+.ie-gh{display:flex;align-items:center;gap:6px;margin:4px 0}
+.ie-gh input{font-weight:700;flex:1 1 auto;max-width:360px}
+.ie-its{display:flex;flex-direction:column;gap:5px;min-height:14px}
+.ie-it{display:flex;gap:6px;align-items:flex-start;background:var(--card,#fff);border:1px solid var(--line,#e3e7ee);border-radius:8px;padding:6px}
+.ie-itf{flex:1 1 auto;display:flex;flex-direction:column;gap:4px;min-width:0}
+.ie-row{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.ie-row .ie-n{flex:1 1 200px;font-weight:600}
+.ie-row .ie-c{flex:1.3 1 220px;color:var(--muted,#5b6577)}
+.ie-row select{flex:0 0 auto}
+.ie-cols{font-size:12.5px}.ie-cols>label{display:inline-flex;gap:4px;align-items:center}
+.ie .sf-out{border-color:#e08a00!important;background:#fff7e8!important}
+.ie>.ie-secs>.ie-sec>.btn,.ie-sec>.btn{margin:0 10px 10px}
+@media (max-width:760px){.ie{padding:8px}.ie-row .ie-n,.ie-row .ie-c{flex-basis:100%}.ie-mv{margin-left:0}.ie-gh input{max-width:none}}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -2606,6 +2647,7 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>회사 실제 양식 (41차)</b><span>시설 일보의 <em>✨ 자동</em>은 메모에 회사 일지 낱말(역률·TR 유면·VCB / 소화기·수신기 / E/L·인승 / 콤프레샤·쿨링타워·저수조 / 집진·배출구)이 2개 이상이면 그 <em>🦺 안전관리 일지</em>로 만듭니다. 점검표 항목은 회사 「변전실 안전점검 일지」·「소방시설 안전점검 일지」·「E/L 일일 점검일지」·콤프레샤·쿨링타워·저수조 위생점검·「대기배출시설 운영기록부」(군포: 분쇄시설·여과집진)를 따르고, TR1~3 유면·전력량계 지침·호기별 토출 압력처럼 칸 여러 개로 적습니다. 일지 위 <em>회사 양식</em> 단추를 누르면 같은 회사서식(직접 작성)이 바로 열립니다. <em>작업 일보</em>는 「업체: 한빛전기 2명 — 분전반 교체」처럼 적으면 회사 업무 일지처럼 <em>외부 작업</em>(종별·업체명·인원)과 <em>자체 작업</em>으로 나누고, <em>점검 일지</em>는 변전실·발전실·경비실·저수조·펌프실 중 2곳 이상이나 '시설 순회'를 적으면 회사 「안전관리 일지」 항목으로 채웁니다. 회사서식은 원본 파일과 같은 이름의 <em>○○.화면.html</em>(회사 양식으로 다듬은 화면)을 함께 올리면 한 서식으로 묶어 바로 직접 작성으로 씁니다.</span></li>
       <li><b>그룹웨어 연결 표시 (관리자)</b><span>관리자 화면 위쪽 <em>+ 업무 등록</em> 왼쪽의 동그란 기호가 그룹웨어 자동 확인 상태입니다. <em>🔗 초록</em> = 연결됨, <em>🔑 빨강(깜박임)</em> = 로그인이 풀려 미연결, <em>주황</em> = 로그인 화면을 연 뒤 다음 자동 확인 대기 또는 확인 멈춤·오류, 회색 = 확인 기록 없음. 마우스를 올리면 마지막 확인 시각이 보입니다. 빨간 🔑를 누르면 그룹웨어 로그인 화면이 열립니다(Claude 앱 브라우저에서는 그 창에서 바로 — 로그인 뒤 ← 뒤로). 자동 확인은 관리자 컴퓨터 Claude 앱 브라우저의 로그인을 쓰므로 다른 브라우저에서는 안내 창이 먼저 뜹니다. 비밀번호는 저장·입력하지 않습니다.</span></li>
       <li><b>✅ 점검 일보 (공장별 정기 점검)</b><span>홈 빠른 기록 줄의 <em>✅ 점검 일보</em>(📋 시설 일보 왼쪽)를 누르면 사업장(안양·군포·화성)별로 회사 점검 일지 항목을 한 화면에서 적습니다. <em>매일</em>(평일: 시설 순회·수변전 09·13·17시·변전실·방화관리·E/L 호기별·콤프레샤·대기배출 / 매일: 경비 순찰), <em>주간</em>(월요일부터: 쿨링타워·소방시설), <em>월간</em>(1일부터: 저수조 위생·전기계량기·축전지·비상발전기·전기차 충전·소방안전관리자 기록, 수도 검침 15일), <em>분기</em>(분전반 부하·누설전류·열화상). <em>오늘 할 점검</em>에 그날 할 구역과 밀린 구역(⏰)이 모입니다. 점검 칸은 양호·주의·불량·해당 없음, 호기별 칸은 누를 때마다 ○→△→X→/, 수치는 기준을 벗어나면 주황, 계량기는 전월 지침·배율로 사용량을 계산합니다. 적으면 바로 저장되고, <em>📋 업무일지에 기록</em>하면 업무와 「공장 통합 점검 일보」 서류(인쇄·전자결재)가 생기며 불량은 '할 예정' 후속 업무가 됩니다. <em>📈 수치 추이</em>로 역률·온도 등을 그래프로 봅니다. 관리자는 <em>⚙ 구역 설정</em>에서 사업장에 없는 구역을 끕니다.</span></li>
+      <li><b>✏️ 점검 항목 편집</b><span>점검 일보 위쪽 <em>✏️ 항목 편집</em>(관리자·자료 관리자)을 누르면 구역·묶음·항목을 바로 고칩니다. <em>⠿</em>를 끌거나 ▲▼로 순서를 바꾸고, 이름·점검 기준·종류(점검·수치·칸 수치·칸 점검·글·계량기·측정 목록)·단위·하한·상한·칸 이름(사업장마다 따로)·계량기 목록(이름*배율)·주기(평일·매일·매주 ○요일·매월 ○일·특정 달·분기·반기·매년)·사업장을 바꾸고 <em>＋ 구역 / ＋ 묶음 / ＋ 항목</em>으로 더하거나 ✕로 뺍니다. 많이 고칠 때는 <em>📤 엑셀로 내보내기</em> → 엑셀에서 고쳐 → <em>📥 엑셀에서 가져오기</em>. <em>💾 저장</em>하면 모든 사람의 점검 일보·인쇄·업무일지 기록에 바로 반영되고, 직전 것은 <em>↶ 직전 저장본</em>으로, 처음 것은 <em>↺ 기본 항목으로</em> 되돌립니다. 이름을 바꿔도 항목 ID가 같아 지난 기록·수치 추이는 이어집니다.</span></li>
       <li><b>설비 QR</b><span>시설 일보 창의 <em>🏷 설비 QR</em>에서 설비(소화전 펌프·콤프레샤·승강기 등)를 등록하고 <em>🖨 QR 라벨</em>을 인쇄해 붙여 두면, 휴대폰 기본 카메라로 찍기만 해도 업무일지가 열려 그 설비의 점검·작업 기록과 <em>📋 이 설비 일보 쓰기</em>가 나옵니다. 앱 안의 📷 QR 스캔이나 사진으로 QR 읽기도 됩니다. 설비를 고른 일보는 '대상 설비'가 서류에 들어가고 그 설비 기록에 쌓입니다.</span></li>
       <li><b>찾기 요령 · 사진 위치</b><span>전체 검색(🔍, Ctrl+K)은 초성으로도 찾습니다(ㅅㅎㄱ → 소화기). 한/영 전환을 깜빡해 영문으로 찍히면 한글 낱말로 찾기를 제안합니다. 관리자가 설정 › <em>사업장 위치</em>에 좌표를 넣어 두면, 시설 일보에 올린 사진의 촬영 위치로 사업장이 자동으로 정해집니다(위치값은 저장하지 않음).</span></li>
       <li><b>시설 일보 (자동 완성)</b><span>홈의 <em>📋 시설 일보</em>(또는 사진첩, 시설·공무 업무 상세의 📋 단추)에서 현장 사진을 찍어 올리고 메모를 한 줄에 한 가지씩 적은 뒤 <em>✨ 자동 완성</em>을 누르면, 회사 로고·결재란이 있는 <em>작업 일보 · 점검 일지 · 사진 대지</em>가 만들어집니다. 메모의 '위치 — 내용', 09:00~11:30, 자재:, 작업자:, ※ 특이사항, 다음: 후속 조치, 이상 없음·주의·불량을 알아서 칸에 나눠 넣습니다. 서류의 글자는 눌러서 바로 고치고, <em>💾 업무일지에 저장</em>(완료 업무 + 사진), <em>🖨 인쇄·PDF</em>, <em>📝 전자결재로 올리기</em>를 고릅니다. 후속 조치는 '할 예정' 업무로 같이 등록할 수 있고, 작성 중인 일보는 이 기기에 임시 저장됩니다. 휴대폰 홈 화면에는 주소 끝에 <em>#ilbo</em>를 붙인 바로가기를 두면 바로 열립니다.</span></li>
@@ -8690,7 +8732,7 @@ document.addEventListener('change',e=>{const T=e.target;if(!T||T.id!=='il-site'|
 try{IMP_LIBS.rrule=[LIBJ+'rrule@2.8.1/dist/es5/rrule.min.js'];}catch{}
 const IN_RES=['양호','주의','불량','해당 없음'];
 const IN_SYM={'양호':'○','주의':'△','불량':'X','해당 없음':'/'};
-const IN_FQ={D:'매일',W:'주간',M:'월간',Q:'분기'};
+const IN_FQ={D:'매일',W:'주간',M:'월간',Q:'분기',H:'반기',Y:'연간'};
 const IN_DT0='2026-01-01';
 const INC={t3:['09시','13시','17시'],tr:['TR1','TR2','TR3'],kwh:['중간부하','최대부하','경부하'],out6:['배출구1','배출구2','배출구3','배출구4','배출구5','배출구6'],
   el:{G:['인승1','인승2','화물1','화물2'],_:['1호기','2호기']},comp:{G:['1호기','2호기','3호기'],_:['1호기','2호기']},ct:{G:['1층 사출실','지하2층 사출실'],_:['1호','2호']},dry:['입력','출력','흡입'],cw:['입구','출구']};
@@ -8775,13 +8817,16 @@ const IN_T=[
  {id:'ir',n:'적외선 열화상 측정 (분기, 별지 제7호)',fq:'Q',rr:'FREQ=MONTHLY;INTERVAL=3;BYMONTHDAY=1',fm:/열화상/,g:[
    ['측정',[iN('tm','최고 온도','℃',null,90,'90℃ 이하'),iN('dt','온도차(ΔT, 같은 조건 비교)','℃',null,10,'10℃ 이하 — 넘으면 정밀 점검'),iT('lo','최고 온도 위치','예) 수전반 VCB 2차 단자'),iC('r1','측정 결과 종합')]]]}];
 
+/* ── 쓰는 점검표: 관리자가 고친 점검표(wl/_sys/insp/_tpl)가 있으면 그것, 없으면 기본(IN_T) */
+let IN_CUR=null;const inTpl=()=>IN_CUR||IN_T;
 /* ── 상태 */
 const IN={site:'',date:'',day:null,last:null,cfg:null,f:'today',dirty:new Set(),t:0,unsub:[],key:'',busy:false,chart:null};
 const inCode=site=>(typeof sfCode==='function'&&sfCode(site))||String(site||'x').replace(/[^\w가-힣]/g,'_').slice(0,20);
 const inSites=()=>(typeof ilSites==='function'?ilSites():(S.config.sites||[]).filter(s=>s&&s!=='전사'));
 const inDoc=k=>S.fs.doc(`wl/_sys/insp/${k}`);
 function inOff(site){const o=IN.cfg&&IN.cfg.off&&IN.cfg.off[inCode(site)];return Array.isArray(o)?o:[];}
-function inSecs(site,all){const c=inCode(site).length===1?inCode(site):'';return IN_T.filter(T=>(!T.s||!c||T.s.includes(c))&&(all||!inOff(site).includes(T.id)));}
+const inSiteOk=(T,site)=>{if(!T.s||!T.s.length)return true;const c=inCode(site);return Array.isArray(T.s)?T.s.includes(c):(c.length!==1||T.s.includes(c));};
+function inSecs(site,all){return inTpl().filter(T=>inSiteOk(T,site)&&(all||!inOff(site).includes(T.id)));}
 function inCols(T,it,site){let c=it.cols==='@'||!it.cols?T.cols:it.cols;if(!c)return null;if(!Array.isArray(c))c=c[inCode(site)]||c._;return c;}
 function inRows(it,site){const r=it.rows;return Array.isArray(r)?r:(r[inCode(site)]||r._);}
 function inItems(T){return T.g.flatMap(([g,L])=>L.map(it=>({...it,g})));}
@@ -8793,15 +8838,16 @@ let IN_ENG='built-in';
 function inRuleRR(rr){if(!window.rrule||!window.rrule.RRule)return null;try{const o=window.rrule.RRule.parseString(rr);o.dtstart=inUTC(IN_DT0);return new window.rrule.RRule(o);}catch{return null;}}
 function inRuleOwn(rr){const P={};for(const kv of rr.split(';')){const [k,v]=kv.split('=');P[k]=v;}const iv=+P.INTERVAL||1;const days=P.BYDAY?P.BYDAY.split(','):null;const md=P.BYMONTHDAY?+P.BYMONTHDAY:null;const mons=P.BYMONTH?P.BYMONTH.split(',').map(Number):null;const DW=['SU','MO','TU','WE','TH','FR','SA'];const d0=inUTC(IN_DT0);
   const hit=d=>{if(d<d0)return false;if(mons&&!mons.includes(d.getUTCMonth()+1))return false;if(P.FREQ==='DAILY')return true;if(P.FREQ==='WEEKLY')return days?days.includes(DW[d.getUTCDay()]):d.getUTCDay()===d0.getUTCDay();
-    if(P.FREQ==='MONTHLY'){const m=(d.getUTCFullYear()-d0.getUTCFullYear())*12+d.getUTCMonth()-d0.getUTCMonth();return m%iv===0&&d.getUTCDate()===(md||d0.getUTCDate());}return false;};
+    if(P.FREQ==='MONTHLY'){const m=(d.getUTCFullYear()-d0.getUTCFullYear())*12+d.getUTCMonth()-d0.getUTCMonth();return m%iv===0&&d.getUTCDate()===(md||d0.getUTCDate());}
+    if(P.FREQ==='YEARLY'){if(!mons&&d.getUTCMonth()!==d0.getUTCMonth())return false;return (d.getUTCFullYear()-d0.getUTCFullYear())%iv===0&&d.getUTCDate()===(md||d0.getUTCDate());}return false;};
   const step=(d,inc,dir)=>{let x=new Date(d);if(!inc)x.setUTCDate(x.getUTCDate()+dir);for(let i=0;i<800;i++){if(hit(x))return x;x.setUTCDate(x.getUTCDate()+dir);}return null;};
   return {before:(d,inc)=>step(d,inc,-1),after:(d,inc)=>step(d,inc,1)};}
 const IN_RC=new Map();
 function inRule(rr){const k=(window.rrule?'r:':'o:')+rr;if(!IN_RC.has(k)){const r=inRuleRR(rr);IN_ENG=r?'rrule':'built-in';IN_RC.set(k,r||inRuleOwn(rr));}return IN_RC.get(k);}
-const IN_GRACE={D:0,W:2,M:7,Q:14};
+const IN_GRACE={D:0,W:2,M:7,Q:14,H:30,Y:30};
 function inDue(T,date){const R=inRule(T.rr);const d=inUTC(date);const occ=inYMD(R.before(d,true));const nxt=inYMD(R.after(d,false));const last=((IN.last||{}).last||{})[T.id]||'';
   const doneToday=!!inSecDone(T,IN.site);
-  const gap0=occ?Math.round((d-inUTC(occ))/864e5):0;const per=/FREQ=DAILY/.test(T.rr)?1:/FREQ=WEEKLY/.test(T.rr)?7:31*(+(T.rr.match(/INTERVAL=(\d+)/)||[0,1])[1]);
+  const gap0=occ?Math.round((d-inUTC(occ))/864e5):0;const per=/FREQ=DAILY/.test(T.rr)?1:/FREQ=WEEKLY/.test(T.rr)?7:/FREQ=YEARLY/.test(T.rr)?366:31*(+(T.rr.match(/INTERVAL=(\d+)/)||[0,1])[1]);
   if(!occ||(T.fq==='D'&&occ!==date&&!doneToday)||(gap0>=per&&!doneToday))return {st:'na',occ,nxt,last};
   if(doneToday||(last&&last>=occ&&last<=date))return {st:'ok',occ,nxt,last:doneToday?date:last};
   const gap=Math.round((inUTC(date)-inUTC(occ))/864e5);return {st:gap>IN_GRACE[T.fq]?'late':'due',occ,nxt,last,gap};}
@@ -8831,8 +8877,9 @@ function inSub(){if(!S.fs||S.mode!=='firebase'){IN.day=IN.day||{sec:{}};IN.last=
   const c=inCode(IN.site);const rr=()=>{if(S.view==='insp')inSoftRender();};
   IN.unsub.push(inDoc(`${c}_${IN.date}`).onSnapshot(s=>{const d=s.exists?s.data():{};IN.day={sec:{},...d,sec:{...(d.sec||{})}};for(const id of IN.dirty){const m=IN.mine&&IN.mine[id];if(m)IN.day.sec[id]=m;}rr();},()=>{IN.day={sec:{}};rr();}));
   IN.unsub.push(inDoc(`${c}_last`).onSnapshot(s=>{const d=s.exists?s.data():{};IN.last={last:{...(d.last||{})},mv:{...(d.mv||{})}};rr();},()=>{IN.last={last:{},mv:{}};rr();}));
-  if(!IN.cfgU)IN.cfgU=inDoc('_cfg').onSnapshot(s=>{IN.cfg=s.exists?s.data():{off:{}};rr();},()=>{IN.cfg={off:{}};});}
-function inSoftRender(){const a=document.activeElement;if(a&&a.closest&&a.closest('#insp')&&a.matches('input,textarea')){clearTimeout(IN.rt);IN.rt=setTimeout(inSoftRender,1500);return;}const y=window.scrollY;render();window.scrollTo(0,y);}
+  if(!IN.cfgU)IN.cfgU=inDoc('_cfg').onSnapshot(s=>{IN.cfg=s.exists?s.data():{off:{}};rr();},()=>{IN.cfg={off:{}};});
+  if(!IN.tplU)IN.tplU=inDoc('_tpl').onSnapshot(s=>{const d=s.exists?s.data():null;try{IN_CUR=d&&Array.isArray(d.T)&&d.T.length&&typeof inNormTpl==='function'?inNormTpl(d.T):null;}catch(e){console.warn(e);IN_CUR=null;}IN.tplAt=d&&d.at||'';IN.tplBy=d&&d.by||'';IN_RC.clear();rr();},()=>{});}
+function inSoftRender(){const a=document.activeElement;if(a&&a.closest&&a.closest('#insp')&&a.matches('input,textarea,select')){clearTimeout(IN.rt);IN.rt=setTimeout(inSoftRender,1500);return;}const y=window.scrollY;render();window.scrollTo(0,y);}
 
 /* ── 저장 (바뀐 구역만, 1초 뒤 한꺼번에) */
 function inTouch(id){if(!S.canWrite){toast('기록할 권한이 없습니다.','err');return false;}IN.dirty.add(id);IN.mine=IN.mine||{};IN.mine[id]=inSec(id);clearTimeout(IN.t);IN.t=setTimeout(()=>inFlush(),900);return true;}
@@ -8882,7 +8929,7 @@ function inSecHead(T,site,ro){const D=inDue(T,IN.date);const c=inCount(T,site);c
     <span class="in-prog" title="기록한 칸"><i style="width:${pct}%"></i><b>${c.d}/${c.n}</b></span>${st.bad?`<span class="in-badge bad">불량 ${st.bad}</span>`:''}${st.warn?`<span class="in-badge warn">주의 ${st.warn}</span>`:''}
     <span class="in-acts">${ro?'':`<button type="button" class="btn sm" data-in-ok title="결과를 고르지 않은 점검 칸을 모두 양호로">✓ 빈 칸 양호</button>${c.d<c.n?`<button type="button" class="btn sm ghost" data-in-done aria-pressed="${!!s.done}" title="측정하지 못한 칸이 있어도 이 주기 점검을 마친 것으로">${s.done?'☑ 완료 표시됨':'☐ 완료로 표시'}</button>`:''}`}${fm?`<button type="button" class="sf-form" data-sf-open="${esc(fm.id)}" title="${esc(fm.cat)} — 회사서식(직접 작성)">${esc(fm.name.replace(/^\d+\./,''))}</button>`:''}</span></header>`;}
 /* 한 구역만 다시 그림(입력칸을 건드리지 않게 머리줄만 / 단추를 누르면 그 구역 전체) */
-function inSecUpd(sid,full){const T=IN_T.find(x=>x.id===sid);const el=$(`#in-${sid}`);if(!T||!el)return;const ro=!S.canWrite;
+function inSecUpd(sid,full){const T=inTpl().find(x=>x.id===sid);const el=$(`#in-${sid}`);if(!T||!el)return;const ro=!S.canWrite;
   if(full){const y=window.scrollY;el.outerHTML=inSecHTML(T,IN.site,ro);window.scrollTo(0,y);}
   else{const h=el.querySelector(':scope>header');if(h)h.outerHTML=inSecHead(T,IN.site,ro);el.className=`in-sec st-${inDue(T,IN.date).st}`;
     for(const tr of el.querySelectorAll('tr[data-in-i]')){const it=inItems(T).find(x=>`${T.id}.${x.k}`===tr.dataset.inI);if(!it)continue;const j=inJudge(T,it,IN.site);tr.className=j==='불량'?'is-bad':j==='주의'?'is-warn':'';}}
@@ -8901,11 +8948,11 @@ function renderInsp(v){if(!S.me||!S.me.id){v.innerHTML='<p class="empty">로그�
     <div class="in-top">${ro?'':`<button type="button" class="btn primary" data-in-rec>📋 ${task?'업무일지 기록 고치기':'업무일지에 기록'}</button>`}<button type="button" class="btn" data-in-print>🖨 인쇄·PDF</button><button type="button" class="btn" data-in-trend>📈 수치 추이</button>${S.canEdit?'<button type="button" class="btn ghost" data-in-cfg>⚙ 구역 설정</button>':''}</div></div>
     <div class="in-bar"><div class="seg" role="group" aria-label="사업장">${sites.map(s=>`<button type="button" data-in-site="${esc(s)}" aria-pressed="${s===IN.site}">${esc(s)}</button>`).join('')}</div>
       <label class="in-date">점검일 <input type="date" id="in-date" value="${esc(IN.date)}" max="${today()}"></label>
-      <div class="seg sm" role="group" aria-label="주기">${[['today','오늘 할 점검'],['D','매일'],['W','주간'],['M','월간'],['Q','분기'],['all','전체']].map(([k,l])=>`<button type="button" data-in-f="${k}" aria-pressed="${IN.f===k}">${l} <em>${cnt(k)}</em></button>`).join('')}</div></div>
+      <div class="seg sm" role="group" aria-label="주기">${[['today','오늘 할 점검'],['D','매일'],['W','주간'],['M','월간'],['Q','분기'],['H','반기'],['Y','연간'],['all','전체']].filter(([k])=>!['H','Y'].includes(k)||cnt(k)).map(([k,l])=>`<button type="button" data-in-f="${k}" aria-pressed="${IN.f===k}">${l} <em>${cnt(k)}</em></button>`).join('')}</div></div>
     <p class="in-sum">${ready?inSumHTML():'불러오는 중…'}</p>
     ${IN.cfgOpen&&S.canEdit?inCfgHTML():''}${IN.trendOpen?'<div class="in-trend" id="in-trend"></div>':''}
     <div class="in-secs">${ready?(L.map(T=>inSecHTML(T,IN.site,ro)).join('')||'<p class="empty">이 주기에 할 점검이 없습니다. 위에서 다른 주기를 고르세요.</p>'):'<div class="vw-load"><i></i>점검 기록을 불러오는 중…</div>'}</div>
-    <p class="in-foot">주기 계산: ${IN_ENG==='rrule'?'rrule.js (iCalendar 반복 규칙)':'내장 계산'} · 매일 = 평일(경비 순찰은 매일), 주간 = 월요일부터, 월간 = 1일부터(수도 검침 15일), 분기 = 1·4·7·10월 · 사업장에 없는 구역은 ⚙ 구역 설정에서 끕니다.</p></div>`;
+    <p class="in-foot">주기 계산: ${IN_ENG==='rrule'?'rrule.js (iCalendar 반복 규칙)':'내장 계산'} · 매일 = 평일(경비 순찰은 매일), 주간 = 월요일부터, 월간 = 1일부터(수도 검침 15일), 분기 = 1·4·7·10월 · 사업장에 없는 구역은 ⚙ 구역 설정에서 끄고, 항목 이름·순서·기준·주기는 ✏️ 항목 편집에서 바꿉니다.${IN_CUR?' · 고친 점검표 사용 중':''}</p></div>`;
   if(IN.trendOpen)inTrend();}
 function inDueList(){return inSecs(IN.site).filter(T=>{const D=inDue(T,IN.date);return D.st==='due'||D.st==='late'||inSec(T.id);});}
 function inSumHTML(){const dueL=inDueList();const tot={n:0,d:0,bad:0,warn:0,late:0,ok:0};for(const T of dueL){const c=inCount(T,IN.site);tot.n+=c.n;tot.d+=c.d;const st=inSecStat(T,IN.site);tot.bad+=st.bad;tot.warn+=st.warn;const D=inDue(T,IN.date);if(D.st==='late')tot.late++;if(D.st==='ok')tot.ok++;}
@@ -8951,7 +8998,7 @@ async function inTrend(){const box=$('#in-trend');if(!box)return;const site=IN.s
   const ms=[0,1,2].map(i=>{const d=new Date(+IN.date.slice(0,4),+IN.date.slice(5,7)-1-i,1);return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;}).reverse();const pts=[];
   if(S.fs&&S.mode==='firebase')for(const m of ms){try{const s=await inDoc(`${inCode(site)}_m_${m}`).get();const D=s.exists?(s.data().d||{}):{};for(const dd of Object.keys(D).sort()){const x=D[dd]&&D[dd].v&&D[dd].v[IN.tk];if(typeof x==='number')pts.push([`${m}-${dd}`,x]);}}catch{}}
   const n=$('#in-trn');if(n)n.textContent=pts.length?`${pts.length}일 기록 · 최저 ${Math.min(...pts.map(p=>p[1]))} · 최고 ${Math.max(...pts.map(p=>p[1]))}`:'아직 기록이 없습니다.';
-  const T=IN_T.find(t=>IN.tk.startsWith(t.id+'.'));const it=T&&inItems(T).find(x=>IN.tk.split('.')[1]===x.k);
+  const T=inTpl().find(t=>IN.tk.startsWith(t.id+'.'));const it=T&&inItems(T).find(x=>IN.tk.split('.')[1]===x.k);
   try{await wlLib('chart');}catch{}if(!window.Chart||!$('#in-tcv'))return;if(IN.chart){try{IN.chart.destroy();}catch{}IN.chart=null;}
   const ds=[{label:(keys.find(k=>k[0]===IN.tk)||['',''])[1],data:pts.map(p=>p[1]),borderColor:'#2b5fa8',backgroundColor:'rgba(43,95,168,.12)',tension:.25,pointRadius:3,fill:true}];
   for(const [lim,lbl] of [[it&&it.lo,'하한'],[it&&it.hi,'상한']])if(lim!=null)ds.push({label:lbl+' '+lim,data:pts.map(()=>lim),borderColor:'#c0261d',borderDash:[5,4],pointRadius:0,fill:false});
@@ -8968,7 +9015,7 @@ document.addEventListener('click',async e=>{const T=e.target;if(!T||!T.closest)r
   if(T.closest('[data-in-trend]')){IN.trendOpen=!IN.trendOpen;render();if(IN.trendOpen){const b=$('#in-trend');if(b)b.scrollIntoView({block:'nearest'});}return;}
   if(T.closest('[data-in-cfg]')){IN.cfgOpen=!IN.cfgOpen;render();return;}
   const so=T.closest('[data-sf-open]');if(so){await inFlush();fmOpen(so.dataset.sfOpen);return;}
-  const sec=T.closest('[data-in-sec]');if(!sec)return;const sid=sec.dataset.inSec;const Tt=IN_T.find(x=>x.id===sid);if(!Tt)return;
+  const sec=T.closest('[data-in-sec]');if(!sec)return;const sid=sec.dataset.inSec;const Tt=inTpl().find(x=>x.id===sid);if(!Tt)return;
   const rb=T.closest('[data-in-r]');if(rb){const k=rb.closest('[data-in-i]').dataset.inI.split('.')[1];const s=inSecW(sid);s.r[k]=s.r[k]===rb.dataset.inR?'':rb.dataset.inR;if(inTouch(sid))inSecUpd(sid,true);return;}
   const cg=T.closest('[data-in-cg]');if(cg){const k=cg.dataset.inCg.split('.')[1];const it=inItems(Tt).find(x=>x.k===k);const cs=inCols(Tt,it,IN.site)||[];const s=inSecW(sid);const a=inCells(s.r[k],cs.length);const i=+cg.dataset.i;
     const nx=['','양호','주의','불량','해당 없음'];a[i]=nx[(nx.indexOf(a[i])+1)%nx.length];s.r[k]=a.some(Boolean)?a.join('|'):'';if(inTouch(sid))inSecUpd(sid,true);return;}
@@ -8981,11 +9028,11 @@ document.addEventListener('input',e=>{const T=e.target;if(!T||!T.closest||!T.clo
   else if(T.dataset.inT)inInput(T,s=>{s.r[T.dataset.inT.split('.')[1]]=T.value.slice(0,80);});
   else if(T.dataset.inA)inInput(T,s=>{s.a[T.dataset.inA.split('.')[1]]=T.value.slice(0,80);});
   else if(T.dataset.inNote)inInput(T,s=>{s.note=T.value.slice(0,200);});
-  else if(T.dataset.inG||T.dataset.inM){const key=(T.dataset.inG||T.dataset.inM).split('.')[1];const sid=T.closest('[data-in-sec]').dataset.inSec;const Tt=IN_T.find(x=>x.id===sid);const it=inItems(Tt).find(x=>x.k===key);
+  else if(T.dataset.inG||T.dataset.inM){const key=(T.dataset.inG||T.dataset.inM).split('.')[1];const sid=T.closest('[data-in-sec]').dataset.inSec;const Tt=inTpl().find(x=>x.id===sid);const it=inItems(Tt).find(x=>x.k===key);
     const n=T.dataset.inM?inRows(it,IN.site).length:(inCols(Tt,it,IN.site)||[]).length;inInput(T,s=>{const a=inCells(s.r[key],n);a[+T.dataset.i]=T.value.replace(/\|/g,'').trim().slice(0,12);s.r[key]=a.some(Boolean)?a.join('|'):'';});}
   else return;
   {const sc=T.closest('[data-in-sec]');if(sc){clearTimeout(IN.ht);const id=sc.dataset.inSec;IN.ht=setTimeout(()=>inSecUpd(id,false),350);}}
-  if(T.dataset.inN||T.dataset.inG||T.dataset.inM){const sid=T.closest('[data-in-sec]').dataset.inSec;const Tt=IN_T.find(x=>x.id===sid);const key=(T.dataset.inN||T.dataset.inG||T.dataset.inM).split('.')[1];const it=inItems(Tt).find(x=>x.k===key);
+  if(T.dataset.inN||T.dataset.inG||T.dataset.inM){const sid=T.closest('[data-in-sec]').dataset.inSec;const Tt=inTpl().find(x=>x.id===sid);const key=(T.dataset.inN||T.dataset.inG||T.dataset.inM).split('.')[1];const it=inItems(Tt).find(x=>x.k===key);
     let bad=false;if(T.dataset.inM&&it.meter){const u=inMeterUse(Tt,it,+T.dataset.i,T.value);bad=u!=null&&u<0;const cell=T.closest('tr').lastElementChild;if(cell)cell.textContent=u==null?'':`${u.toLocaleString()} ${it.u}`;}else bad=inJ1(it,T.value)==='주의';T.classList.toggle('sf-out',bad);}});
 document.addEventListener('change',e=>{const T=e.target;if(!T||!T.closest||!T.closest('#insp'))return;
   if(T.id==='in-date'&&isDate(T.value)){inFlush().then(()=>{IN.date=T.value>today()?today():T.value;render();});return;}
@@ -8999,7 +9046,218 @@ window.addEventListener('pagehide',()=>{try{inFlush();}catch{}});document.addEve
 {const _r=render;render=function(){if(S.view!=='insp'&&IN.dirty.size)try{inFlush();}catch{}if(S.view!=='insp'&&IN.chart){try{IN.chart.destroy();}catch{}IN.chart=null;}return _r.apply(this,arguments);};}
 /* 홈 빠른 기록 줄: 시설 일보 왼쪽에 ✅ 점검 일보 */
 {const _q=qaShell;qaShell=function(){const h=_q.apply(this,arguments);return h.replace('<button type="button" class="btn qa-ilbo" data-il-open-new','<button type="button" class="btn qa-insp" data-in-open title="공장별 매일·주간·월간·분기 정기 점검 — 체크와 수치 기록">✅ 점검 일보</button><button type="button" class="btn qa-ilbo" data-il-open-new');};}
-window.inspApi={T:IN_T,secs:s=>inSecs(s).map(T=>T.id),due:(id,date)=>{const T=IN_T.find(x=>x.id===id);return T?inDue(T,date||IN.date||today()):null;},rule:(rr,date,inc)=>{const R=inRule(rr);return {before:inYMD(R.before(inUTC(date),inc!==false)),after:inYMD(R.after(inUTC(date),false))};},own:(rr,date)=>{const R=inRuleOwn(rr);return {before:inYMD(R.before(inUTC(date),true)),after:inYMD(R.after(inUTC(date),false))};},eng:()=>IN_ENG,state:()=>IN,flush:()=>inFlush(),body:()=>inDocBody(IN.site,IN.date)};
+window.inspApi={get T(){return inTpl();},base:IN_T,secs:s=>inSecs(s).map(T=>T.id),due:(id,date)=>{const T=inTpl().find(x=>x.id===id);return T?inDue(T,date||IN.date||today()):null;},rule:(rr,date,inc)=>{const R=inRule(rr);return {before:inYMD(R.before(inUTC(date),inc!==false)),after:inYMD(R.after(inUTC(date),false))};},own:(rr,date)=>{const R=inRuleOwn(rr);return {before:inYMD(R.before(inUTC(date),true)),after:inYMD(R.after(inUTC(date),false))};},eng:()=>IN_ENG,state:()=>IN,flush:()=>inFlush(),body:()=>inDocBody(IN.site,IN.date)};
+/* ───────── 44차: ✅ 점검 일보 — 항목 편집 (이름·순서·내용·주기·사업장·칸·계량기 목록) ─────────
+   · 점검 일보 화면 '✏️ 항목 편집'(관리자·자료 관리자) → 구역·묶음·항목을 끌어서 순서 바꾸기(SortableJS, 이미 쓰는 도구) 또는 ▲▼,
+     이름·기준·단위·하한·상한·종류·칸 이름(사업장별)·계량기 목록·주기(매일·평일·요일·일자·특정 월·분기·반기·연 1회·직접 RRULE)·사업장·회사 양식 이름 바로 고치기, 추가·삭제
+   · 📤 엑셀로 내보내기 / 📥 엑셀에서 가져오기(SheetJS) — 표에서 한꺼번에 고치기
+   · 저장: wl/_sys/insp/_tpl {T, v, at, by} (바로 모든 사람 화면에 반영) · 저장 직전 것은 _tpl_prev 에 보관 → '↶ 직전 저장본' · '↺ 기본 항목으로'
+   · 항목 이름을 바꿔도 항목 ID가 같아 지난 기록은 그대로 이어짐 */
+const IN_TYPES=[['c','점검'],['n','수치'],['g','칸 수치'],['cg','칸 점검'],['t','글'],['m','계량기'],['mv','측정 목록']];
+const IN_TN=Object.fromEntries(IN_TYPES);
+const IN_WD=[['MO','월'],['TU','화'],['WE','수'],['TH','목'],['FR','금'],['SA','토'],['SU','일']];
+const IN_PRE=[['D5','매일(평일)'],['D7','매일(주말 포함)'],['W','매주 ○요일'],['M','매월 ○일'],['MS','특정 달 ○일'],['Q','분기(1·4·7·10월 1일)'],['H','반기(1·7월 1일)'],['Y','매년 ○월 ○일'],['R','직접 입력(RRULE)']];
+const inCanEd=()=>!!(S.canEdit||(typeof canDoc==='function'&&canDoc()));
+const inKey=p=>p+(typeof rid==='function'?rid():Math.random().toString(36)).replace(/[^a-z0-9]/gi,'').slice(0,7);
+const inEsc=w=>w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+const inFmRe=s=>{const w=String(s||'').split(/[|,]/).map(x=>x.trim()).filter(Boolean).slice(0,12);return w.length?new RegExp(w.map(inEsc).join('|')):null;};
+const inFmTxt=re=>re?(re.source||'').replace(/\\(.)/g,'$1'):'';
+/* 주기 ↔ RRULE ↔ 글 */
+function inRrParse(rr){rr=String(rr||'');let m;
+  if(rr==='FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR')return {p:'D5'};if(rr==='FREQ=DAILY')return {p:'D7'};
+  if((m=rr.match(/^FREQ=WEEKLY;BYDAY=(MO|TU|WE|TH|FR|SA|SU)$/)))return {p:'W',wd:m[1]};
+  if((m=rr.match(/^FREQ=MONTHLY;BYMONTHDAY=(\d{1,2})$/)))return {p:'M',md:+m[1]};
+  if((m=rr.match(/^FREQ=MONTHLY;BYMONTH=([\d,]+);BYMONTHDAY=(\d{1,2})$/)))return {p:'MS',months:m[1],md:+m[2]};
+  if(rr==='FREQ=MONTHLY;INTERVAL=3;BYMONTHDAY=1')return {p:'Q'};if(rr==='FREQ=MONTHLY;INTERVAL=6;BYMONTHDAY=1')return {p:'H'};
+  if((m=rr.match(/^FREQ=YEARLY;BYMONTH=(\d{1,2});BYMONTHDAY=(\d{1,2})$/)))return {p:'Y',mon:+m[1],md:+m[2]};
+  return {p:'R',rr};}
+const inClampD=x=>Math.min(28,Math.max(1,parseInt(x)||1));
+function inRrMake(o){const md=inClampD(o.md);switch(o.p){
+  case 'D5':return {rr:'FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR',fq:'D'};case 'D7':return {rr:'FREQ=DAILY',fq:'D'};
+  case 'W':return {rr:`FREQ=WEEKLY;BYDAY=${IN_WD.some(w=>w[0]===o.wd)?o.wd:'MO'}`,fq:'W'};
+  case 'M':return {rr:`FREQ=MONTHLY;BYMONTHDAY=${md}`,fq:'M'};
+  case 'MS':{const ms=[...new Set(String(o.months||'').split(/[^\d]+/).map(Number).filter(x=>x>=1&&x<=12))];return {rr:`FREQ=MONTHLY;BYMONTH=${(ms.length?ms:[1]).join(',')};BYMONTHDAY=${md}`,fq:'M'};}
+  case 'Q':return {rr:'FREQ=MONTHLY;INTERVAL=3;BYMONTHDAY=1',fq:'Q'};case 'H':return {rr:'FREQ=MONTHLY;INTERVAL=6;BYMONTHDAY=1',fq:'H'};
+  case 'Y':return {rr:`FREQ=YEARLY;BYMONTH=${Math.min(12,Math.max(1,parseInt(o.mon)||1))};BYMONTHDAY=${md}`,fq:'Y'};
+  default:{const rr=String(o.rr||'').trim().toUpperCase().replace(/^RRULE:/,'');const f=(rr.match(/FREQ=(DAILY|WEEKLY|MONTHLY|YEARLY)/)||[])[1];if(!f)return null;
+    const iv=+(rr.match(/INTERVAL=(\d+)/)||[0,1])[1];return {rr,fq:f==='DAILY'?'D':f==='WEEKLY'?'W':f==='YEARLY'?'Y':iv>=6?'H':iv>=3?'Q':'M'};}}}
+function inRrText(rr){const o=inRrParse(rr);const wd=x=>(IN_WD.find(w=>w[0]===x)||['',''])[1];
+  return {D5:'매일(평일)',D7:'매일',W:`매주 ${wd(o.wd)}요일`,M:`매월 ${o.md}일`,MS:`${String(o.months).split(',').join('·')}월 ${o.md}일`,Q:'분기(1·4·7·10월 1일)',H:'반기(1·7월 1일)',Y:`매년 ${o.mon}월 ${o.md}일`,R:rr}[o.p]||rr;}
+function inRrFromText(t){t=String(t||'').trim();let m;if(/^FREQ=/i.test(t)||/^RRULE:/i.test(t))return inRrMake({p:'R',rr:t});
+  if(/평일/.test(t))return inRrMake({p:'D5'});if(/^매일|^매일\s*\(주말/.test(t))return inRrMake({p:'D7'});
+  if((m=t.match(/매주\s*([월화수목금토일])/)))return inRrMake({p:'W',wd:(IN_WD.find(w=>w[1]===m[1])||['MO'])[0]});
+  if(/분기/.test(t))return inRrMake({p:'Q'});if(/반기/.test(t))return inRrMake({p:'H'});
+  if((m=t.match(/매년\s*(\d{1,2})\s*월\s*(\d{1,2})\s*일/)))return inRrMake({p:'Y',mon:m[1],md:m[2]});
+  if((m=t.match(/매월\s*(\d{1,2})\s*일/)))return inRrMake({p:'M',md:m[1]});
+  if((m=t.match(/^([\d·,\s]+)월\s*(\d{1,2})\s*일/)))return inRrMake({p:'MS',months:m[1],md:m[2]});
+  return null;}
+
+/* ── 점검표 ⇄ 저장 모양 (정규식·사업장 코드 정리) */
+const inListN=v=>{if(Array.isArray(v))return v.map(String).map(x=>x.trim()).filter(Boolean).slice(0,60);if(v&&typeof v==='object'){const o={};for(const k of Object.keys(v).slice(0,10)){const a=inListN(v[k]);if(a.length)o[k]=a;}return Object.keys(o).length?o:null;}return null;};
+const inRowsN=v=>{const one=a=>Array.isArray(a)?a.slice(0,80).map(r=>typeof r==='string'?{n:r}:{n:String(r&&r.n||'').slice(0,60),...(r&&+r.x&&+r.x!==1?{x:+r.x}:{})}).filter(r=>r.n):[];
+  if(Array.isArray(v))return one(v);if(v&&typeof v==='object'){const o={};for(const k of Object.keys(v).slice(0,10)){const a=one(v[k]);if(a.length)o[k]=a;}return Object.keys(o).length?o:null;}return null;};
+const inNum2=x=>{if(x===''||x==null)return null;const n=parseFloat(String(x).replace(/,/g,''));return isFinite(n)?n:null;};
+function inNormItem(it){const t=['c','n','g','cg','t','m','mv'].includes(it.t)?it.t:'c';const o={k:String(it.k||inKey('x')).replace(/[^\w]/g,'').slice(0,24)||inKey('x'),n:String(it.n||'').slice(0,80)||'(이름 없음)',c:String(it.c||'').slice(0,160),t:t==='mv'?'m':t};
+  if(['n','g','m','mv'].includes(t)){o.u=String(it.u||'').slice(0,12);o.lo=inNum2(it.lo);o.hi=inNum2(it.hi);}
+  if(t==='g'||t==='cg')o.cols=it.cols==='@'||it.cols==null?'@':inListN(it.cols)||'@';
+  if(t==='m'||t==='mv'){o.rows=inRowsN(it.rows)||[{n:'계량기 1'}];o.meter=t==='m'&&it.meter!==false;}
+  return o;}
+function inNormTpl(raw){const ids=new Set();return (raw||[]).slice(0,60).map(T=>{let id=String(T.id||inKey('u')).replace(/[^\w-]/g,'').slice(0,24)||inKey('u');while(ids.has(id))id=inKey('u');ids.add(id);
+  const rm=inRrMake(inRrParse(T.rr))||{rr:'FREQ=MONTHLY;BYMONTHDAY=1',fq:'M'};const ks=new Set();
+  const g=(Array.isArray(T.g)?T.g:[]).slice(0,30).map(G=>[String(G[0]||'').slice(0,40)||'점검',(Array.isArray(G[1])?G[1]:[]).slice(0,80).map(inNormItem).map(it=>{while(ks.has(it.k))it.k=inKey('x');ks.add(it.k);return it;})]).filter(G=>G[1].length);
+  const s=Array.isArray(T.s)?T.s.map(String).filter(Boolean):typeof T.s==='string'&&T.s?T.s.split(''):null;
+  return {id,n:String(T.n||'').slice(0,60)||'(구역)',fq:rm.fq,rr:rm.rr,...(s&&s.length?{s}:{}),fm:T.fm instanceof RegExp?T.fm:inFmRe(T.fm),...(T.cols?{cols:inListN(T.cols)}:{}),g};}).filter(T=>T.g.length);}
+function inSerTpl(L){return L.map(T=>({id:T.id,n:T.n,rr:T.rr,fq:T.fq,s:T.s?(Array.isArray(T.s)?T.s:T.s.split('')):[],fm:inFmTxt(T.fm),cols:T.cols||null,g:T.g.map(([gn,L2])=>[gn,L2.map(it=>{const o={k:it.k,n:it.n,c:it.c||'',t:it.t==='m'&&it.meter===false?'mv':it.t};
+  if(['n','g','m'].includes(it.t)){o.u=it.u||'';o.lo=it.lo==null?null:it.lo;o.hi=it.hi==null?null:it.hi;}if(it.t==='g'||it.t==='cg')o.cols=it.cols||'@';if(it.t==='m')o.rows=inRowsN(it.rows)||it.rows;return o;})])}));}
+
+/* ── 편집 화면 */
+const inSiteKeys=()=>[...new Set(inSites().map(inCode))];
+const inSiteName=c=>inSites().find(s=>inCode(s)===c)||c;
+function inListObj(v){if(!v||v==='@')return {};if(Array.isArray(v))return {_:v};return {...v};}
+function inListEdHTML(path,v,rows,meter){const o=inListObj(v);const keys=['_',...inSiteKeys()];
+  const show=x=>rows?(x||[]).map(r=>meter&&r.x&&r.x!==1?`${r.n}*${r.x}`:r.n).join('\n'):(x||[]).join(', ');
+  return `<div class="ie-lists">${keys.map(k=>`<label><span>${k==='_'?'기본':esc(inSiteName(k))}</span>${rows?`<textarea data-ie-list="${path}" data-site="${k}" rows="${Math.min(6,Math.max(2,(o[k]||[]).length))}" placeholder="${k==='_'?(meter?'한 줄에 하나 — 이름*배율':'한 줄에 하나'):'비우면 기본'}">${esc(show(o[k]))}</textarea>`:`<input data-ie-list="${path}" data-site="${k}" value="${esc(show(o[k]))}" placeholder="${k==='_'?'쉼표로 나눔 — 예) 1호기, 2호기':'비우면 기본'}">`}</label>`).join('')}</div>`;}
+function inRrEdHTML(si,rr){const o=inRrParse(rr);return `<span class="ie-rr"><select data-ie-rr="p" data-si="${si}" aria-label="주기">${IN_PRE.map(([k,l])=>`<option value="${k}" ${o.p===k?'selected':''}>${l}</option>`).join('')}</select>
+  ${o.p==='W'?`<select data-ie-rr="wd" data-si="${si}">${IN_WD.map(([k,l])=>`<option value="${k}" ${o.wd===k?'selected':''}>${l}요일</option>`).join('')}</select>`:''}
+  ${o.p==='MS'?`<input data-ie-rr="months" data-si="${si}" value="${esc(o.months)}" size="10" placeholder="11,12,1,2,3" aria-label="달">월`:''}
+  ${o.p==='Y'?`<input data-ie-rr="mon" data-si="${si}" type="number" min="1" max="12" value="${o.mon}" aria-label="월">월`:''}
+  ${['M','MS','Y'].includes(o.p)?`<input data-ie-rr="md" data-si="${si}" type="number" min="1" max="28" value="${o.md}" aria-label="일">일`:''}
+  ${o.p==='R'?`<input data-ie-rr="rr" data-si="${si}" value="${esc(rr)}" size="34" placeholder="FREQ=MONTHLY;BYMONTHDAY=10">`:''}</span>`;}
+function inItemEdHTML(si,gi,ii,it){const p=`${si}.${gi}.${ii}`;const t=it.t==='m'&&it.meter===false?'mv':it.t;
+  return `<div class="ie-it" data-ie-k="${esc(it.k)}" data-p="${p}"><span class="in-hdl ie-hi" title="끌어서 순서 바꾸기" aria-hidden="true">⠿</span>
+    <div class="ie-itf"><div class="ie-row"><input class="ie-n" data-ie-f="n" data-p="${p}" value="${esc(it.n)}" maxlength="80" aria-label="항목 이름" placeholder="항목 이름">
+      <select data-ie-f="t" data-p="${p}" aria-label="종류">${IN_TYPES.map(([k,l])=>`<option value="${k}" ${t===k?'selected':''}>${l}</option>`).join('')}</select>
+      ${['n','g','m','mv'].includes(t)?`<input data-ie-f="u" data-p="${p}" value="${esc(it.u||'')}" size="5" maxlength="12" placeholder="단위" aria-label="단위"><input data-ie-f="lo" data-p="${p}" value="${it.lo==null?'':it.lo}" size="5" inputmode="decimal" placeholder="하한" aria-label="하한"><input data-ie-f="hi" data-p="${p}" value="${it.hi==null?'':it.hi}" size="5" inputmode="decimal" placeholder="상한" aria-label="상한">`:''}
+      <input class="ie-c" data-ie-f="c" data-p="${p}" value="${esc(it.c||'')}" maxlength="160" placeholder="${t==='t'?'안내 글 (예: 18:30)':'점검 기준·설명'}" aria-label="기준">
+      <span class="ie-mv"><button type="button" class="icon-btn" data-ie-up="${p}" aria-label="위로">▲</button><button type="button" class="icon-btn" data-ie-dn="${p}" aria-label="아래로">▼</button><button type="button" class="icon-btn" data-ie-del="${p}" aria-label="항목 빼기">✕</button></span></div>
+      ${t==='g'||t==='cg'?`<div class="ie-cols"><label><input type="checkbox" data-ie-f="usesec" data-p="${p}" ${it.cols==='@'||!it.cols?'checked':''}> 구역 칸 이름 쓰기</label>${it.cols==='@'||!it.cols?'':inListEdHTML(p+'.cols',it.cols,false)}</div>`:''}
+      ${t==='m'||t==='mv'?inListEdHTML(p+'.rows',it.rows,true,t==='m'):''}</div></div>`;}
+function inSecEdHTML(T,si){const n=T.g.reduce((a,G)=>a+G[1].length,0);const open=IN.edOpen&&IN.edOpen.has(T.id);const sites=inSites();
+  return `<details class="ie-sec" data-ie-s="${si}" data-id="${esc(T.id)}" ${open?'open':''}><summary><span class="in-hdl ie-hs" title="끌어서 순서 바꾸기" aria-hidden="true">⠿</span><span class="in-fq f-${T.fq}">${IN_FQ[T.fq]||''}</span><b>${esc(T.n)}</b><small>${esc(inRrText(T.rr))} · 항목 ${n}개${T.s&&T.s.length?' · '+esc(T.s.map(inSiteName).join('·')):''}</small>
+      <span class="ie-mv"><button type="button" class="icon-btn" data-ie-sup="${si}" aria-label="구역 위로">▲</button><button type="button" class="icon-btn" data-ie-sdn="${si}" aria-label="구역 아래로">▼</button></span></summary>
+    <div class="ie-sf"><label>구역 이름 <input data-ie-s-f="n" data-si="${si}" value="${esc(T.n)}" maxlength="60"></label><label>주기 ${inRrEdHTML(si,T.rr)}</label>
+      <span class="ie-sites">사업장 ${sites.map(s=>{const c=inCode(s);return `<label><input type="checkbox" data-ie-site="${esc(c)}" data-si="${si}" ${!T.s||!T.s.length||T.s.includes(c)?'checked':''}> ${esc(s)}</label>`;}).join('')}</span>
+      <label>회사 양식 이름 <input data-ie-s-f="fm" data-si="${si}" value="${esc(inFmTxt(T.fm))}" placeholder="예) 수변전|변전실" maxlength="80"></label>
+      ${T.cols||T.g.some(G=>G[1].some(it=>(it.t==='g'||it.t==='cg')&&(it.cols==='@'||!it.cols)))?`<div class="ie-scols"><span>구역 칸 이름(호기·위치·시각) — '구역 칸 이름 쓰기'를 고른 항목에 씀</span>${inListEdHTML(si+'.scols',T.cols,false)}</div>`:''}
+      <button type="button" class="btn sm ghost danger" data-ie-sdel="${si}">🗑 구역 삭제</button></div>
+    <div class="ie-gs" data-si="${si}">${T.g.map(([gn,L],gi)=>`<div class="ie-g" data-gi="${gi}"><div class="ie-gh"><span class="in-hdl ie-hg" aria-hidden="true">⠿</span><input data-ie-g="${si}.${gi}" value="${esc(gn)}" maxlength="40" aria-label="묶음 이름"><button type="button" class="icon-btn" data-ie-gdel="${si}.${gi}" aria-label="묶음 빼기">✕</button></div>
+      <div class="ie-its" data-si="${si}" data-gi="${gi}">${L.map((it,ii)=>inItemEdHTML(si,gi,ii,it)).join('')}</div><button type="button" class="btn sm ghost" data-ie-iadd="${si}.${gi}">＋ 항목</button></div>`).join('')}</div>
+    <button type="button" class="btn sm ghost" data-ie-gadd="${si}">＋ 묶음</button></details>`;}
+function inEdHTML(){const L=IN.ed||[];const by=IN.tplBy&&S.staff[IN.tplBy]?S.staff[IN.tplBy].name:'';
+  return `<div class="ie" id="in-ed"><div class="ie-bar"><b>✏️ 점검 항목 편집</b><small>${IN_CUR?`고친 점검표 사용 중${IN.tplAt?` · ${esc(hhmm(IN.tplAt))}${by?' '+esc(by):''} 저장`:''}`:'기본 점검표 사용 중'} · 끌어서(⠿) 또는 ▲▼로 순서, 칸을 눌러 바로 고치고 💾 저장하면 모든 사람 화면에 반영됩니다. 이름을 바꿔도 지난 기록은 이어집니다.</small>
+    <span class="ie-acts"><button type="button" class="btn sm" data-ie-sadd>＋ 구역</button><button type="button" class="btn sm" data-ie-xout>📤 엑셀로 내보내기</button><label class="btn sm">📥 엑셀에서 가져오기<input type="file" id="ie-xin" accept=".xlsx,.xls" hidden></label>
+      <button type="button" class="btn sm ghost" data-ie-base>↺ 기본 항목으로</button>${IN.hasPrev?'<button type="button" class="btn sm ghost" data-ie-prev>↶ 직전 저장본</button>':''}<button type="button" class="btn sm ghost" data-ie-cancel>닫기</button><button type="button" class="btn sm primary" data-ie-save ${IN.edDirty?'':'disabled'}>💾 저장${IN.edDirty?' (바뀜)':''}</button></span></div>
+    <div class="ie-secs" id="ie-secs">${L.map((T,si)=>inSecEdHTML(T,si)).join('')}</div></div>`;}
+function inEdOpen(){if(!inCanEd()){toast('점검 항목은 관리자·자료 관리자가 고칩니다.','err');return;}IN.ed=inNormTpl(inSerTpl(inTpl()));IN.edDirty=false;IN.edOpen=new Set();IN.editing=true;IN.cfgOpen=false;IN.trendOpen=false;
+  try{inDoc('_tpl_prev').get().then(s=>{IN.hasPrev=!!(s.exists&&s.data().T);if(IN.editing&&IN.hasPrev)inEdRender();}).catch(()=>{});}catch{}render();}
+function inEdRender(){const box=$('#in-ed');if(!box)return render();const y=window.scrollY;for(const d of $$('#ie-secs details'))if(d.open)IN.edOpen.add(d.dataset.id);else IN.edOpen.delete(d.dataset.id);box.outerHTML=inEdHTML();window.scrollTo(0,y);inEdSort();}
+function inEdChanged(re){IN.edDirty=true;if(re)inEdRender();else{const b=$('[data-ie-save]');if(b){b.disabled=false;b.textContent='💾 저장 (바뀜)';}}}
+/* SortableJS — 구역·묶음·항목 끌기 */
+function inEdSort(){(IN.sorts||[]).forEach(x=>{try{x.destroy();}catch{}});IN.sorts=[];const go=()=>{if(!window.Sortable||!$('#ie-secs'))return;const o={animation:150,delay:120,delayOnTouchOnly:true};
+    IN.sorts.push(Sortable.create($('#ie-secs'),{...o,handle:'.ie-hs',draggable:'.ie-sec',onEnd:()=>{const ord=$$('#ie-secs > .ie-sec').map(d=>+d.dataset.ieS);IN.ed=ord.map(i=>IN.ed[i]);inEdChanged(true);}}));
+    for(const gs of $$('#ie-secs .ie-gs'))IN.sorts.push(Sortable.create(gs,{...o,handle:'.ie-hg',draggable:'.ie-g',onEnd:()=>{const T=IN.ed[+gs.dataset.si];const ord=$$(':scope > .ie-g',gs).map(d=>+d.dataset.gi);T.g=ord.map(i=>T.g[i]);inEdChanged(true);}}));
+    for(const L of $$('#ie-secs .ie-its'))IN.sorts.push(Sortable.create(L,{...o,handle:'.ie-hi',draggable:'.ie-it',group:'ie-its-'+L.dataset.si,onEnd:ev=>{const si=+ev.from.dataset.si;const T=IN.ed[si];const all=Object.fromEntries(T.g.flatMap(G=>G[1]).map(it=>[it.k,it]));
+      for(const box of $$(`#ie-secs .ie-its[data-si="${si}"]`))T.g[+box.dataset.gi][1]=$$(':scope > .ie-it',box).map(e=>all[e.dataset.ieK]).filter(Boolean);T.g=T.g.filter(G=>G[1].length);inEdChanged(true);}}));};
+  if(window.Sortable)go();else wlLib('sortable').then(go).catch(()=>{});}
+const inEdAt=p=>{const [si,gi,ii]=p.split('.').map(Number);const T=IN.ed[si];return {T,G:T&&T.g[gi],it:T&&T.g[gi]&&T.g[gi][1][ii],si,gi,ii};};
+function inEdSetList(path,site,val){const parts=path.split('.');const kind=parts.pop();let host,field;
+  if(kind==='scols'){host=IN.ed[+parts[0]];field='cols';}else{host=inEdAt(parts.join('.')).it;field=kind;}if(!host)return;
+  const rows=kind==='rows';const meter=rows&&host.meter!==false;const lines=String(val).split(rows?/\n/:/,/).map(x=>x.trim()).filter(Boolean);
+  const arr=rows?lines.map(x=>{const m=meter&&x.match(/^(.*?)\s*[*×]\s*(\d+(?:\.\d+)?)$/);return m?{n:m[1].trim(),x:+m[2]}:{n:x};}):lines;
+  let o=inListObj(host[field]);if(arr.length)o[site]=arr;else delete o[site];
+  const ks=Object.keys(o);host[field]=!ks.length?(kind==='cols'?'@':(kind==='scols'?null:[{n:'계량기 1'}])):(ks.length===1&&ks[0]==='_'?o._:o);if(kind==='scols'&&!host.cols)delete host.cols;}
+function inEdValidate(L){const err=[];if(!L.length)err.push('구역이 하나도 없습니다.');
+  L.forEach(T=>{if(!T.n.trim())err.push('이름 없는 구역이 있습니다.');if(!T.g.length||!T.g.some(G=>G[1].length))err.push(`「${T.n}」 구역에 항목이 없습니다.`);
+    if(!inRrMake(inRrParse(T.rr)))err.push(`「${T.n}」 주기를 알 수 없습니다.`);else{try{const r=inRuleOwn(T.rr);if(!r.after(inUTC(today()),false)&&!r.before(inUTC(today()),true))err.push(`「${T.n}」 주기에 맞는 날이 없습니다.`);}catch{err.push(`「${T.n}」 주기를 알 수 없습니다.`);}}
+    for(const [,L2] of T.g)for(const it of L2){if(!String(it.n||'').trim()||it.n==='(이름 없음)')err.push(`「${T.n}」에 이름 없는 항목이 있습니다.`);
+      if((it.t==='g'||it.t==='cg')&&(it.cols==='@'||!it.cols)&&!T.cols)err.push(`「${T.n} › ${it.n}」 칸 이름이 없습니다 — 구역 칸 이름을 적거나 항목 칸을 적으세요.`);}});
+  return [...new Set(err)].slice(0,6);}
+async function inEdSave(){if(!S.fs||S.mode!=='firebase'){toast('회사 서버에 연결된 상태에서만 저장됩니다.','err');return;}if(!inCanEd()){toast('점검 항목은 관리자·자료 관리자가 고칩니다.','err');return;}
+  const err=inEdValidate(IN.ed);if(err.length){toast(err.join(' '),'err');return;}const L=inNormTpl(inSerTpl(IN.ed));
+  if(!await confirmDlg('점검 항목 저장',`구역 ${L.length}개 · 항목 ${L.reduce((a,T)=>a+T.g.reduce((b,G)=>b+G[1].length,0),0)}개로 저장합니다. 모든 사업장·모든 사람의 점검 일보에 바로 반영됩니다. (지금 것은 '직전 저장본'으로 보관)`,'저장'))return;
+  setSync('saving');try{const cur=await inDoc('_tpl').get();const T0=cur.exists&&cur.data().T?cur.data().T:inSerTpl(IN_T);
+    await fbWrite(inDoc('_tpl_prev').set({T:T0,at:nowISO(),by:myId()}));await fbWrite(inDoc('_tpl').set({T:inSerTpl(L),v:2,at:nowISO(),by:myId()}));
+    IN_CUR=L;IN_RC.clear();IN.ed=inNormTpl(inSerTpl(L));IN.edDirty=false;IN.hasPrev=true;toast('점검 항목을 저장했습니다. 모든 사람의 점검 일보에 반영됩니다.');inEdRender();}
+  catch(e){writeError(e&&e.userMsg?e:fbErr(e));}finally{setSync('ok');}}
+
+/* ── 엑셀로 내보내기 · 가져오기 (SheetJS) */
+const IN_XH=['구역ID','구역 이름','주기','사업장','회사 양식','구역 칸','묶음','항목ID','항목 이름','기준·설명','종류','단위','하한','상한','항목 칸·목록'];
+function inListTxt(v,rows,meter){const o=inListObj(v);const one=a=>rows?(a||[]).map(r=>meter&&r.x&&r.x!==1?`${r.n}*${r.x}`:r.n).join(', '):(a||[]).join(', ');const ks=Object.keys(o);
+  if(!ks.length)return '';if(ks.length===1&&ks[0]==='_')return one(o._);return ks.map(k=>`${k==='_'?'기본':inSiteName(k)}: ${one(o[k])}`).join(' / ');}
+function inListParse(txt,rows,meter){txt=String(txt||'').trim();if(!txt)return null;const o={};
+  for(const seg of txt.split(/\s*\/\s*/)){const m=seg.match(/^([^:：]{1,12})\s*[:：]\s*(.*)$/);let k='_',body=seg;if(m){const nm=m[1].trim();const c=nm==='기본'?'_':(inSites().find(s=>s===nm||s.startsWith(nm))?inCode(inSites().find(s=>s===nm||s.startsWith(nm))):null);if(c){k=c;body=m[2];}}
+    const a=body.split(/\s*,\s*/).map(x=>x.trim()).filter(Boolean).map(x=>{if(!rows)return x;const mm=meter&&x.match(/^(.*?)\s*[*×]\s*(\d+(?:\.\d+)?)$/);return mm?{n:mm[1].trim(),x:+mm[2]}:{n:x};});if(a.length)o[k]=a;}
+  const ks=Object.keys(o);return !ks.length?null:ks.length===1&&ks[0]==='_'?o._:o;}
+async function inXOut(){try{await wlLib('xlsx');if(!window.XLSX)throw 0;}catch(e){toast('엑셀 도구를 불러오지 못했습니다. 인터넷 연결을 확인하세요.','err');return;}const L=IN.ed||inTpl();const rows=[IN_XH];
+  for(const T of L){let first=true;for(const [gn,L2] of T.g)for(const it of L2){const t=it.t==='m'&&it.meter===false?'mv':it.t;
+    rows.push([T.id,first?T.n:'',first?inRrText(T.rr):'',first?(T.s&&T.s.length?T.s.map(inSiteName).join(','):'전체'):'',first?inFmTxt(T.fm):'',first?inListTxt(T.cols,false):'',gn,it.k,it.n,it.c||'',IN_TN[t],it.u||'',it.lo==null?'':it.lo,it.hi==null?'':it.hi,
+      t==='g'||t==='cg'?(it.cols==='@'||!it.cols?'(구역 칸)':inListTxt(it.cols,false)):t==='m'||t==='mv'?inListTxt(it.rows,true,t==='m'):'']);first=false;}}
+  const ws=XLSX.utils.aoa_to_sheet(rows);ws['!cols']=[8,22,18,14,16,22,16,8,26,34,8,6,6,6,40].map(w=>({wch:w}));ws['!freeze']={xSplit:0,ySplit:1};
+  const guide=[['점검 일보 항목 — 엑셀로 고친 뒤 점검 일보 › ✏️ 항목 편집 › 📥 엑셀에서 가져오기'],[''],['· 한 줄 = 항목 하나. 줄 순서가 화면 순서입니다(구역·묶음도 위에서 나온 순서).'],['· 구역 이름·주기·사업장·회사 양식·구역 칸은 그 구역의 첫 줄에만 적으면 됩니다.'],
+    ['· 구역ID·항목ID는 지난 기록을 잇는 열쇠입니다. 그대로 두세요. 새 구역·새 항목은 비워 두면 새로 만듭니다.'],['· 주기: 매일(평일) · 매일 · 매주 월요일 · 매월 1일 · 11,12,1,2,3월 1일 · 분기 · 반기 · 매년 3월 1일 · 또는 FREQ=… (RRULE)'],
+    ['· 사업장: 전체 또는 안양본사,군포공장 처럼 쉼표로'],['· 종류: 점검 · 수치 · 칸 수치 · 칸 점검 · 글 · 계량기 · 측정 목록'],['· 칸·목록: 1호기, 2호기 (모든 사업장) / 기본: 1호기, 2호기 / 군포공장: 인승1, 인승2 처럼 사업장별로 / 계량기는 이름*배율 (예: P-사출-1A*100)'],
+    ['· 칸 수치·칸 점검 항목에 (구역 칸) 이라고 쓰면 구역 칸 이름을 씁니다.']];
+  const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,'점검 항목');const wg=XLSX.utils.aoa_to_sheet(guide);wg['!cols']=[{wch:110}];XLSX.utils.book_append_sheet(wb,wg,'안내');
+  const buf=XLSX.write(wb,{bookType:'xlsx',type:'array'});saveBlob(new Blob([buf],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}),`점검 일보 항목_${today()}.xlsx`);}
+async function inXIn(file){try{await wlLib('xlsx');if(!window.XLSX)throw 0;}catch(e){toast('엑셀 도구를 불러오지 못했습니다. 인터넷 연결을 확인하세요.','err');return;}
+  let rows;try{const wb=XLSX.read(new Uint8Array(await file.arrayBuffer()),{type:'array'});const ws=wb.Sheets['점검 항목']||wb.Sheets[wb.SheetNames[0]];rows=XLSX.utils.sheet_to_json(ws,{header:1,defval:''});}catch{toast('엑셀 파일을 읽지 못했습니다.','err');return;}
+  const h=(rows[0]||[]).map(x=>String(x).trim());const ix=k=>h.indexOf(k);if(ix('항목 이름')<0||ix('구역 이름')<0){toast('「점검 항목」 표 머리줄(구역 이름·항목 이름 …)을 찾지 못했습니다. 내보낸 엑셀에 고쳐 주세요.','err');return;}
+  const tn=Object.fromEntries(IN_TYPES.map(([k,l])=>[l,k]));const out=[];let T=null,bad=[];const old=Object.fromEntries((IN.ed||inTpl()).map(x=>[x.id,x]));
+  rows.slice(1).forEach((r,ri)=>{const g=k=>String(r[ix(k)]==null?'':r[ix(k)]).trim();if(!g('항목 이름')&&!g('구역 이름'))return;
+    const sid=g('구역ID'),sn=g('구역 이름');if(!T||(sid&&sid!==T.id)||(!sid&&sn&&sn!==T.n)){const base=old[sid]||{};const rm=g('주기')?inRrFromText(g('주기')):(base.rr?{rr:base.rr,fq:base.fq}:null);if(g('주기')&&!rm)bad.push(`${ri+2}줄 주기`);
+      const sv=g('사업장');const s=!sv||sv==='전체'?[]:sv.split(/\s*,\s*/).map(x=>{const f=inSites().find(y=>y===x||y.startsWith(x));return f?inCode(f):null;}).filter(Boolean);
+      T={id:sid||inKey('u'),n:sn||base.n||'(구역)',rr:(rm||{rr:'FREQ=MONTHLY;BYMONTHDAY=1'}).rr,fq:(rm||{fq:'M'}).fq,s,fm:g('회사 양식')||inFmTxt(base.fm),cols:g('구역 칸')?inListParse(g('구역 칸'),false):base.cols||null,g:[]};out.push(T);}
+    if(!g('항목 이름'))return;const t=tn[g('종류')]||'c';const gn=g('묶음')||'점검';let G=T.g.find(x=>x[0]===gn&&x===T.g[T.g.length-1]);if(!G){G=[gn,[]];T.g.push(G);}
+    const lt=g('항목 칸·목록');const it={k:g('항목ID')||inKey('x'),n:g('항목 이름'),c:g('기준·설명'),t,u:g('단위'),lo:g('하한'),hi:g('상한')};
+    if(t==='g'||t==='cg')it.cols=!lt||/구역\s*칸/.test(lt)?'@':inListParse(lt,false)||'@';if(t==='m'||t==='mv')it.rows=inListParse(lt,true,t==='m')||[{n:'계량기 1'}];G[1].push(it);});
+  const err=[...bad.map(x=>x+'를 알 수 없습니다.'),...inEdValidate(out.map(x=>({...x,fm:null})))];const L=err.length?[]:inNormTpl(out);if(err.length){toast(err.slice(0,4).join(' '),'err');return;}
+  IN.ed=L;IN.edDirty=true;toast(`엑셀에서 구역 ${L.length}개 · 항목 ${L.reduce((a,x)=>a+x.g.reduce((b,G)=>b+G[1].length,0),0)}개를 불러왔습니다. 확인하고 💾 저장하세요.`);inEdRender();}
+
+/* ── 이벤트 */
+document.addEventListener('click',async e=>{const T=e.target;if(!T||!T.closest)return;
+  if(T.closest('[data-in-edit]')){if(IN.editing)return;inEdOpen();return;}
+  if(!T.closest('#in-ed'))return;const d=T.closest('[data-ie-sup],[data-ie-sdn],[data-ie-up],[data-ie-dn],[data-ie-del],[data-ie-sdel],[data-ie-gdel],[data-ie-iadd],[data-ie-gadd],[data-ie-sadd],[data-ie-save],[data-ie-cancel],[data-ie-base],[data-ie-prev],[data-ie-xout]');if(!d)return;
+  if(d.matches('[data-ie-sup],[data-ie-sdn]')){e.preventDefault();const i=+(d.dataset.ieSup??d.dataset.ieSdn);const j=d.matches('[data-ie-sup]')?i-1:i+1;if(j<0||j>=IN.ed.length)return;[IN.ed[i],IN.ed[j]]=[IN.ed[j],IN.ed[i]];inEdChanged(true);return;}
+  if(d.matches('[data-ie-up],[data-ie-dn]')){const a=inEdAt(d.dataset.ieUp||d.dataset.ieDn);const L=a.G[1];const j=d.matches('[data-ie-up]')?a.ii-1:a.ii+1;
+    if(j<0||j>=L.length){const gj=d.matches('[data-ie-up]')?a.gi-1:a.gi+1;const G2=a.T.g[gj];if(!G2)return;L.splice(a.ii,1);if(d.matches('[data-ie-up]'))G2[1].push(a.it);else G2[1].unshift(a.it);a.T.g=a.T.g.filter(G=>G[1].length);}else [L[a.ii],L[j]]=[L[j],L[a.ii]];inEdChanged(true);return;}
+  if(d.matches('[data-ie-del]')){const a=inEdAt(d.dataset.ieDel);a.G[1].splice(a.ii,1);a.T.g=a.T.g.filter(G=>G[1].length);inEdChanged(true);return;}
+  if(d.matches('[data-ie-gdel]')){const [si,gi]=d.dataset.ieGdel.split('.').map(Number);const G=IN.ed[si].g[gi];if(G[1].length&&!await confirmDlg('묶음 빼기',`「${G[0]}」 묶음과 항목 ${G[1].length}개를 뺍니다. (💾 저장해야 반영)`,'빼기'))return;IN.ed[si].g.splice(gi,1);inEdChanged(true);return;}
+  if(d.matches('[data-ie-sdel]')){const si=+d.dataset.ieSdel;if(!await confirmDlg('구역 삭제',`「${IN.ed[si].n}」 구역을 뺍니다. 지난 기록은 남지만 화면에는 안 나옵니다. (💾 저장해야 반영)`,'삭제'))return;IN.ed.splice(si,1);inEdChanged(true);return;}
+  if(d.matches('[data-ie-iadd]')){const [si,gi]=d.dataset.ieIadd.split('.').map(Number);IN.ed[si].g[gi][1].push(inNormItem({k:inKey('x'),n:'새 항목',t:'c'}));inEdChanged(true);setTimeout(()=>{const L=$$(`#ie-secs .ie-its[data-si="${si}"][data-gi="${gi}"] .ie-n`);const x=L[L.length-1];if(x){x.focus();x.select();}},50);return;}
+  if(d.matches('[data-ie-gadd]')){const si=+d.dataset.ieGadd;IN.ed[si].g.push(['새 묶음',[inNormItem({k:inKey('x'),n:'새 항목',t:'c'})]]);inEdChanged(true);return;}
+  if(d.matches('[data-ie-sadd]')){const id=inKey('u');IN.ed.push({id,n:'새 구역',rr:'FREQ=MONTHLY;BYMONTHDAY=1',fq:'M',fm:null,g:[['점검',[inNormItem({k:inKey('x'),n:'새 항목',t:'c'})]]]});IN.edOpen.add(id);inEdChanged(true);setTimeout(()=>{const x=$(`#ie-secs details[data-id="${id}"]`);if(x)x.scrollIntoView({block:'center'});},60);return;}
+  if(d.matches('[data-ie-save]')){inEdSave();return;}
+  if(d.matches('[data-ie-xout]')){inXOut();return;}
+  if(d.matches('[data-ie-base]')){if(!await confirmDlg('기본 항목으로',`처음 만든 기본 점검표(구역 ${IN_T.length}개)를 불러옵니다. 💾 저장해야 반영됩니다.`,'불러오기'))return;IN.ed=inNormTpl(inSerTpl(IN_T));inEdChanged(true);return;}
+  if(d.matches('[data-ie-prev]')){try{const s=await inDoc('_tpl_prev').get();if(!s.exists||!s.data().T){toast('직전 저장본이 없습니다.','err');return;}IN.ed=inNormTpl(s.data().T);inEdChanged(true);toast('직전 저장본을 불러왔습니다. 💾 저장해야 반영됩니다.');}catch(err){writeError(err);}return;}
+  if(d.matches('[data-ie-cancel]')){if(IN.edDirty&&!await confirmDlg('편집 닫기','저장하지 않은 변경이 있습니다. 버리고 닫을까요?','버리기'))return;IN.editing=false;IN.ed=null;IN.edDirty=false;(IN.sorts||[]).forEach(x=>{try{x.destroy();}catch{}});IN.sorts=[];render();return;}});
+document.addEventListener('input',e=>{const T=e.target;if(!T||!T.closest||!T.closest('#in-ed'))return;
+  if(T.dataset.ieF&&!['t','usesec'].includes(T.dataset.ieF)){const a=inEdAt(T.dataset.p);if(!a.it)return;const f=T.dataset.ieF;a.it[f]=f==='lo'||f==='hi'?inNum2(T.value):T.value;inEdChanged(false);return;}
+  if(T.dataset.ieSF){const t=IN.ed[+T.dataset.si];if(!t)return;if(T.dataset.ieSF==='fm')t.fm=inFmRe(T.value);else{t.n=T.value;const b=T.closest('details').querySelector('summary b');if(b)b.textContent=T.value;}inEdChanged(false);return;}
+  if(T.dataset.ieG){const [si,gi]=T.dataset.ieG.split('.').map(Number);IN.ed[si].g[gi][0]=T.value.slice(0,40);inEdChanged(false);return;}
+  if(T.dataset.ieList){inEdSetList(T.dataset.ieList,T.dataset.site,T.value);inEdChanged(false);return;}
+  if(T.dataset.ieRr==='rr'||T.dataset.ieRr==='months'||T.dataset.ieRr==='md'||T.dataset.ieRr==='mon'){inEdRr(T);inEdChanged(false);}});
+function inEdRr(T){const si=+T.dataset.si;const t=IN.ed[si];const o=inRrParse(t.rr);const k=T.dataset.ieRr;
+  if(k==='p'){const nv=T.value;const keep={p:nv,wd:o.wd||'MO',md:o.md||1,months:o.months||'11,12,1,2,3',mon:o.mon||1,rr:t.rr};const m=inRrMake(keep);if(m){t.rr=m.rr;t.fq=m.fq;}return true;}
+  o[k]=T.value;const m=inRrMake(o);if(m){t.rr=m.rr;t.fq=m.fq;T.classList.remove('sf-out');inEdSum(si);}else T.classList.add('sf-out');return false;}
+function inEdSum(si){const t=IN.ed[si];const d=$(`#ie-secs details[data-ie-s="${si}"]`);if(!t||!d)return;const n=t.g.reduce((a,G)=>a+G[1].length,0);const sm=d.querySelector('summary small');if(sm)sm.textContent=`${inRrText(t.rr)} · 항목 ${n}개${t.s&&t.s.length?' · '+t.s.map(inSiteName).join('·'):''}`;const f=d.querySelector('summary .in-fq');if(f){f.className=`in-fq f-${t.fq}`;f.textContent=IN_FQ[t.fq]||'';}}
+document.addEventListener('change',e=>{const T=e.target;if(!T||!T.closest||!T.closest('#in-ed'))return;
+  if(T.id==='ie-xin'){const f=T.files&&T.files[0];T.value='';if(f)inXIn(f);return;}
+  if(T.dataset.ieRr){const re=inEdRr(T);inEdChanged(re||T.dataset.ieRr==='wd'||T.dataset.ieRr==='p');return;}
+  if(T.dataset.ieF==='t'){const a=inEdAt(T.dataset.p);const v=T.value;const n=inNormItem({...inSerTpl([{...a.T,g:[['x',[a.it]]]}])[0].g[0][1][0],t:v});n.k=a.it.k;n.n=a.it.n;n.c=a.it.c;if((v==='g'||v==='cg')&&n.cols==='@'&&!a.T.cols)n.cols=['1호기','2호기'];a.G[1][a.ii]=n;inEdChanged(true);return;}
+  if(T.dataset.ieF==='usesec'){const a=inEdAt(T.dataset.p);a.it.cols=T.checked?'@':(inListObj(a.T.cols)._?[...inListObj(a.T.cols)._]:['1','2']);inEdChanged(true);return;}
+  if(T.dataset.ieSite){const t=IN.ed[+T.dataset.si];const all=inSites().map(inCode);let s=t.s&&t.s.length?[...t.s]:[...all];if(T.checked)s.push(T.dataset.ieSite);else s=s.filter(x=>x!==T.dataset.ieSite);s=[...new Set(s)];
+    if(!s.length){T.checked=true;toast('사업장을 하나 이상 고르세요.','err');return;}t.s=s.length===all.length&&all.every(c=>s.includes(c))?[]:s;inEdChanged(true);return;}});
+document.addEventListener('toggle',e=>{const d=e.target;if(d&&d.matches&&d.matches('#ie-secs details')){if(d.open)IN.edOpen.add(d.dataset.id);else IN.edOpen.delete(d.dataset.id);}},true);
+/* 점검 일보 화면에 끼우기: 편집 단추 · 편집 중이면 기록 대신 편집 화면 */
+{const _r=renderInsp;renderInsp=function(v){_r.apply(this,arguments);try{const top=$('#insp .in-top');if(top&&inCanEd()&&!top.querySelector('[data-in-edit]'))top.insertAdjacentHTML('beforeend',`<button type="button" class="btn${IN.editing?' primary':''}" data-in-edit aria-pressed="${!!IN.editing}">✏️ 항목 편집</button>`);
+    if(IN.editing&&IN.ed){const secs=$('#insp .in-secs');if(secs){secs.outerHTML=inEdHTML();inEdSort();}}}catch(err){console.warn(err);}};}
+{const _r=render;render=function(){if(S.view!=='insp'&&IN.editing&&!IN.edDirty){IN.editing=false;IN.ed=null;}
+  if(S.view==='insp'&&IN.editing){const a=document.activeElement;if(a&&a.closest&&a.closest('#in-ed')&&/^(INPUT|SELECT|TEXTAREA)$/.test(a.tagName)&&!['checkbox','file'].includes(a.type)){IN.edPend=true;try{fillWhoOptions();updateMeChip();}catch{}return;}}
+  IN.edPend=false;return _r.apply(this,arguments);};}
+document.addEventListener('focusout',e=>{if(!IN.edPend||!e.target||!e.target.closest||!e.target.closest('#in-ed'))return;setTimeout(()=>{const a=document.activeElement;if(IN.edPend&&!(a&&a.closest&&a.closest('#in-ed')&&/^(INPUT|SELECT|TEXTAREA)$/.test(a.tagName))){const y=window.scrollY;render();window.scrollTo(0,y);}},250);});
+window.addEventListener('beforeunload',e=>{if(IN.editing&&IN.edDirty){e.preventDefault();e.returnValue='';}});
+window.inspEdApi={norm:inNormTpl,ser:inSerTpl,rrText:inRrText,rrFromText:inRrFromText,rrParse:inRrParse,listParse:inListParse,listTxt:inListTxt,state:()=>({editing:!!IN.editing,dirty:!!IN.edDirty,ed:IN.ed&&inSerTpl(IN.ed)}),xin:inXIn,xout:inXOut};
 
 /* ───────── 시작 ───────── */
 function boot(){
