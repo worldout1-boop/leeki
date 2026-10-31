@@ -1655,6 +1655,20 @@ input.ir{font:inherit;font-size:14.5px;font-weight:600;padding:4px 8px;border:2p
 @media (max-width:560px){.sf-mg{grid-column:auto}}
 .sf-forms{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin:6px 0 8px;font-size:12.5px}.sf-forms>span{color:var(--ink-3);font-weight:600;margin-right:2px}
 .sf-form{border:1px solid var(--line);background:var(--card,#fff);border-radius:999px;padding:3px 10px;font-size:12px;cursor:pointer;color:var(--ink-2)}.sf-form::before{content:'✏️ ';}.sf-form:hover{border-color:var(--accent,#2b5fa8);color:var(--accent,#2b5fa8)}
+/* 42차: 관리자 위쪽 그룹웨어 연결 표시 — 동그란 기호(🔗 연결·🔑 로그인 필요·⚠ 멈춤) + 오른쪽 아래 상태 점, 글은 마우스를 올리면 */
+.gw-chip{position:relative;display:inline-flex;align-items:center;justify-content:center;flex:none;width:34px;height:34px;padding:0;border-radius:50%;border:2px solid #9aa4b2;background:var(--surface);color:var(--ink-2);font-size:15px;line-height:1;text-decoration:none;cursor:pointer}
+.gw-chip:hover{text-decoration:none;filter:brightness(.97)}
+.gw-chip span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.gw-chip b{font-weight:400}
+.gw-chip i{position:absolute;right:-3px;bottom:-3px;width:11px;height:11px;border-radius:50%;border:2px solid var(--surface);background:#9aa4b2}
+.gw-chip.k-ok{border-color:#1d9a55;background:#eef9f2}.gw-chip.k-ok i{background:#1d9a55}
+.gw-chip.k-login{border-color:#d93025;background:#fdeceb}.gw-chip.k-login i{background:#d93025;animation:gwpulse 1.6s infinite}
+.gw-chip.k-wait,.gw-chip.k-warn{border-color:#d08a00;background:#fff6e5}.gw-chip.k-wait i,.gw-chip.k-warn i{background:#e09a00}
+@keyframes gwpulse{0%{box-shadow:0 0 0 0 rgba(217,48,37,.6)}70%{box-shadow:0 0 0 7px rgba(217,48,37,0)}100%{box-shadow:0 0 0 0 rgba(217,48,37,0)}}
+@media (prefers-reduced-motion:reduce){.gw-chip.k-login i{animation:none}}
+@media (max-width:1320px){.gw-chip{width:30px;height:30px;font-size:14px}}
+@media (max-width:760px){.top-right:has(#gw-chip){gap:8px}}
+@media print{.gw-chip{display:none!important}}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -2553,6 +2567,7 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>연차·휴일근무 달력</b><span>전자결재 기안 오른쪽 <em>📅 달력 표기</em>에서 연차·반차·휴일근무·연차 사용 계획을 고르고 날짜를 적으면, 최종 승인된 뒤 달력에 <b>굵은 글자</b>(🌴 연차, 🛠 휴일근무)로 표시됩니다. 연차 사용 촉진에 따라 정한 예정일은 달력 위 <em>🗓 연차 사용 계획(촉진)</em>에서 적으면 <i>연차(예정)</i>으로 보입니다. 사유는 달력에 나오지 않습니다.</span></li>
       <li><b>안전관리 일지 (11종)</b><span>시설 일보 창 <em>서류</em>에서 <em>🦺 안전관리 일지</em>를 누르면 산업안전·보건 · 전기 · 소방 · 유해화학물질 · 위험물옥내저장소 · 승강기 · 환경 · 폐기물(일반/지정) · 건축물관리자 · 기계설비 · 정보통신 일지 중 고를 수 있습니다. 항목마다 <em>양호·주의·불량·해당 없음</em>을 누르고(✓ 빈 칸 모두 양호), 측정값(역률·압력·온도 등)을 적으면 기준을 벗어난 값은 「주의」로 적힙니다. 사업장에 없는 공정 항목은 빠지고, 선임자는 조직도의 법정 선임 현황에서 가져옵니다. 불량 항목은 '할 예정' 후속 업무로 같이 등록할 수 있습니다. 위에 <em>작업일자·작업시간</em>을 적으면 서류의 시간 칸과 사진 아래 시각에 그대로 씁니다.</span></li>
       <li><b>회사 실제 양식 (41차)</b><span>시설 일보의 <em>✨ 자동</em>은 메모에 회사 일지 낱말(역률·TR 유면·VCB / 소화기·수신기 / E/L·인승 / 콤프레샤·쿨링타워·저수조 / 집진·배출구)이 2개 이상이면 그 <em>🦺 안전관리 일지</em>로 만듭니다. 점검표 항목은 회사 「변전실 안전점검 일지」·「소방시설 안전점검 일지」·「E/L 일일 점검일지」·콤프레샤·쿨링타워·저수조 위생점검·「대기배출시설 운영기록부」(군포: 분쇄시설·여과집진)를 따르고, TR1~3 유면·전력량계 지침·호기별 토출 압력처럼 칸 여러 개로 적습니다. 일지 위 <em>회사 양식</em> 단추를 누르면 같은 회사서식(직접 작성)이 바로 열립니다. <em>작업 일보</em>는 「업체: 한빛전기 2명 — 분전반 교체」처럼 적으면 회사 업무 일지처럼 <em>외부 작업</em>(종별·업체명·인원)과 <em>자체 작업</em>으로 나누고, <em>점검 일지</em>는 변전실·발전실·경비실·저수조·펌프실 중 2곳 이상이나 '시설 순회'를 적으면 회사 「안전관리 일지」 항목으로 채웁니다. 회사서식은 원본 파일과 같은 이름의 <em>○○.화면.html</em>(회사 양식으로 다듬은 화면)을 함께 올리면 한 서식으로 묶어 바로 직접 작성으로 씁니다.</span></li>
+      <li><b>그룹웨어 연결 표시 (관리자)</b><span>관리자 화면 위쪽 <em>+ 업무 등록</em> 왼쪽의 동그란 기호가 그룹웨어 자동 확인 상태입니다. <em>🔗 초록</em> = 연결됨, <em>🔑 빨강(깜박임)</em> = 로그인이 풀려 미연결, <em>주황</em> = 로그인 화면을 연 뒤 다음 자동 확인 대기 또는 확인 멈춤·오류, 회색 = 확인 기록 없음. 마우스를 올리면 마지막 확인 시각이 보입니다. 빨간 🔑를 누르면 그룹웨어 로그인 화면이 열립니다(Claude 앱 브라우저에서는 그 창에서 바로 — 로그인 뒤 ← 뒤로). 자동 확인은 관리자 컴퓨터 Claude 앱 브라우저의 로그인을 쓰므로 다른 브라우저에서는 안내 창이 먼저 뜹니다. 비밀번호는 저장·입력하지 않습니다.</span></li>
       <li><b>설비 QR</b><span>시설 일보 창의 <em>🏷 설비 QR</em>에서 설비(소화전 펌프·콤프레샤·승강기 등)를 등록하고 <em>🖨 QR 라벨</em>을 인쇄해 붙여 두면, 휴대폰 기본 카메라로 찍기만 해도 업무일지가 열려 그 설비의 점검·작업 기록과 <em>📋 이 설비 일보 쓰기</em>가 나옵니다. 앱 안의 📷 QR 스캔이나 사진으로 QR 읽기도 됩니다. 설비를 고른 일보는 '대상 설비'가 서류에 들어가고 그 설비 기록에 쌓입니다.</span></li>
       <li><b>찾기 요령 · 사진 위치</b><span>전체 검색(🔍, Ctrl+K)은 초성으로도 찾습니다(ㅅㅎㄱ → 소화기). 한/영 전환을 깜빡해 영문으로 찍히면 한글 낱말로 찾기를 제안합니다. 관리자가 설정 › <em>사업장 위치</em>에 좌표를 넣어 두면, 시설 일보에 올린 사진의 촬영 위치로 사업장이 자동으로 정해집니다(위치값은 저장하지 않음).</span></li>
       <li><b>시설 일보 (자동 완성)</b><span>홈의 <em>📋 시설 일보</em>(또는 사진첩, 시설·공무 업무 상세의 📋 단추)에서 현장 사진을 찍어 올리고 메모를 한 줄에 한 가지씩 적은 뒤 <em>✨ 자동 완성</em>을 누르면, 회사 로고·결재란이 있는 <em>작업 일보 · 점검 일지 · 사진 대지</em>가 만들어집니다. 메모의 '위치 — 내용', 09:00~11:30, 자재:, 작업자:, ※ 특이사항, 다음: 후속 조치, 이상 없음·주의·불량을 알아서 칸에 나눠 넣습니다. 서류의 글자는 눌러서 바로 고치고, <em>💾 업무일지에 저장</em>(완료 업무 + 사진), <em>🖨 인쇄·PDF</em>, <em>📝 전자결재로 올리기</em>를 고릅니다. 후속 조치는 '할 예정' 업무로 같이 등록할 수 있고, 작성 중인 일보는 이 기기에 임시 저장됩니다. 휴대폰 홈 화면에는 주소 끝에 <em>#ilbo</em>를 붙인 바로가기를 두면 바로 열립니다.</span></li>
@@ -5809,13 +5824,43 @@ function gwLoginStrip(){const box=$('#my-brief');if(!box)return;let c=$('#gw-log
 /* 첫 화면 안내 창: Claude 앱 브라우저는 열 때마다(로그인 풀린 동안), 다른 브라우저는 풀린 건마다 한 번 */
 let _glT=0;
 function gwLoginAsk(){const st=gwLoginNeed();const d=$('#dlg-gwlogin');if(!st||!d||d.open||!S.ready)return;
-  const key=st.badAt||st.lastRun;let seen='';try{seen=(GW_IN_CLAUDE?sessionStorage:localStorage).getItem('wl.gwLoginAsk')||'';}catch{}
+  const key=st.badAt||st.lastRun;{let tr='';try{tr=localStorage.getItem('wl.gwLoginTry')||'';}catch{}if(tr&&tr>key)return;}let seen='';try{seen=(GW_IN_CLAUDE?sessionStorage:localStorage).getItem('wl.gwLoginAsk')||'';}catch{}
   if(seen===key)return;if(document.querySelector('dialog[open]')){clearTimeout(_glT);_glT=setTimeout(gwLoginAsk,4000);return;}
   try{(GW_IN_CLAUDE?sessionStorage:localStorage).setItem('wl.gwLoginAsk',key);}catch{}
   $('#gwl-body').innerHTML=gwLoginText(st);$('#gwl-acts').innerHTML=`<button type="button" class="btn" data-close>나중에</button>${gwLoginBtn(true)}`;d.showModal();}
 {const _r=gwRefresh;gwRefresh=function(){_r.apply(this,arguments);clearTimeout(_glT);_glT=setTimeout(()=>{try{gwLoginAsk();if(S.view==='my')gwLoginStrip();}catch(e){console.warn(e);}},1500);};}
 document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('[data-gw-login]');if(!a)return;try{localStorage.setItem('wl.gwLoginTry',nowISO());}catch{}const d=$('#dlg-gwlogin');if(d&&d.open)d.close();},true);
 {const rf=()=>{if(S.view==='my')try{gwLoginStrip();}catch{}};window.addEventListener('focus',rf);window.addEventListener('pageshow',rf);document.addEventListener('visibilitychange',()=>{if(!document.hidden)rf();});}
+/* ───────── 42차: 관리자 화면 위쪽 「그룹웨어 연결」 표시 ─────────
+   · 관리자(설정 권한) 화면에만, 업무 등록 단추 왼쪽에 점+기호 — 자동 확인(app/gw) 결과로 판단
+     초록 = 연결됨(마지막 확인 정상) · 빨강 = 로그인 풀림(미연결) · 주황 = 로그인 화면 연 뒤 다음 확인 대기 / 확인 멈춤·오류 · 회색 = 확인 기록 없음
+   · 미연결일 때 누르면 그룹웨어 로그인 화면(Claude 앱 브라우저는 이 창에서 바로, 다른 브라우저는 자동 확인이 쓰는 브라우저 안내 + 새 탭)
+   · 비밀번호는 저장·입력하지 않음 */
+function gwChipOn(){return !!(S.canEdit&&!S.preview&&S.mode==='firebase'&&S.me&&S.me.id);}
+function gwChipState(){const st=S.gwStat;let tried='';try{tried=localStorage.getItem('wl.gwLoginTry')||'';}catch{}
+  const nx=gwNextRun();const nxt=nx?`${nx.getMonth()+1}.${nx.getDate()} ${String(nx.getHours()).padStart(2,'0')}:00`:'';
+  if(!st||!st.lastRun)return {k:'none',ico:'🔗',lbl:'그룹웨어 확인 전',tip:'그룹웨어 자동 확인 기록이 아직 없습니다. 누르면 그룹웨어 소식 화면을 엽니다.'};
+  const last=`마지막 확인 ${hhmm(st.lastRun)}(${timeAgo(st.lastRun)})`;
+  if(st.status==='login'){const since=st.badAt||st.lastRun;
+    if(tried&&tried>since)return {k:'wait',ico:'🔑',lbl:'로그인 확인 대기',login:1,tip:`${hhmm(tried)}에 그룹웨어 로그인 화면을 열었습니다.${nxt?` 다음 자동 확인(${nxt})에 연결되면 초록색으로 바뀝니다.`:''} 로그인하지 못했으면 다시 누르세요.`};
+    return {k:'login',ico:'🔑',lbl:'그룹웨어 미연결',login:1,tip:`그룹웨어 로그인이 풀려 ${hhmm(since)}부터 새 글을 가져오지 못했습니다. 누르면 그룹웨어 로그인 화면이 열립니다.`};}
+  const w=gwWarn();if(w)return {k:'warn',ico:'⚠',lbl:st.status==='error'?'그룹웨어 확인 오류':'그룹웨어 확인 멈춤',tip:`${w.text} 누르면 그룹웨어 소식 화면을 엽니다.`};
+  return {k:'ok',ico:'🔗',lbl:'그룹웨어 연결됨',tip:`그룹웨어 연결됨 · ${last}. 누르면 그룹웨어 소식 화면을 엽니다.`};}
+function gwChip(){const host=$('.top-right');if(!host)return;let c=$('#gw-chip');
+  if(!gwChipOn()||!S.gwReady){if(c)c.remove();return;}
+  const s=gwChipState();if(!c){c=document.createElement('a');c.id='gw-chip';const sy=$('#sync');if(sy&&sy.parentNode===host)sy.after(c);else host.prepend(c);}
+  c.className=`gw-chip k-${s.k}`;c.setAttribute('role','status');c.setAttribute('aria-live','polite');
+  c.href=s.login?GW_LOGIN_URL:'#gw';if(s.login&&!GW_IN_CLAUDE){c.target='_blank';c.rel='noopener';}else{c.removeAttribute('target');c.removeAttribute('rel');}
+  c.removeAttribute('data-gw-login');c.removeAttribute('data-gw-ask');if(s.login)c.setAttribute(GW_IN_CLAUDE?'data-gw-login':'data-gw-ask','');
+  c.title=s.tip;c.setAttribute('aria-label',`${s.lbl} — ${s.tip}`);c.dataset.k=s.k;
+  const h=`<i aria-hidden="true"></i><b aria-hidden="true">${s.ico}</b><span>${esc(s.lbl)}</span>`;if(c.innerHTML!==h)c.innerHTML=h;}
+/* 다른 브라우저에서 미연결 표시를 누르면: 자동 확인은 관리자 컴퓨터 Claude 앱 브라우저의 로그인을 쓴다는 안내 창 + 로그인 화면 새 탭 */
+document.addEventListener('click',e=>{const c=e.target.closest&&e.target.closest('#gw-chip[data-gw-ask]');if(!c)return;
+  const st=S.gwStat;const d=$('#dlg-gwlogin');if(!st||!d)return;e.preventDefault();try{localStorage.setItem('wl.gwLoginAsk',st.badAt||st.lastRun);}catch{}
+  $('#gwl-body').innerHTML=gwLoginText(st);$('#gwl-acts').innerHTML=`<button type="button" class="btn" data-close>닫기</button>${gwLoginBtn(true)}`;if(!d.open)d.showModal();});
+{const _r=gwRefresh;gwRefresh=function(){_r.apply(this,arguments);try{gwChip();}catch(e){console.warn(e);}};}
+{const rf=()=>{try{gwChip();}catch{}};window.addEventListener('focus',rf);window.addEventListener('pageshow',rf);document.addEventListener('visibilitychange',()=>{if(!document.hidden)rf();});setInterval(rf,60000);
+  document.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('[data-gw-login]'))setTimeout(rf,50);});}
 
 /* ───────── 23차: 날짜 표기 — 진행 날짜 기준 · 필요하면 등록일 · 없으면 [미정] ─────────
    진행 날짜 = 시작일~마감일(한쪽만 있으면 그 날, 둘 다 없으면 완료일). 셋 다 없으면 [미정].
