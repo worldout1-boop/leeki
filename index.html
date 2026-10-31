@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="wl-build" content="d98e642bb1e3">
+<meta name="wl-build" content="1abc95a0bf5d">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#1f3a5f">
@@ -10461,6 +10461,10 @@ function fmFixIndent(html){if(!html||html.indexOf('text-indent:-')<0)return html
     const ml=+((st.match(/margin-left:\s*([\d.]+)mm/)||[])[1]||0);if(ml>=ind-0.01)continue;const nv=Math.round((ml+ind)*100)/100;
     el.setAttribute('style',/margin-left:\s*[\d.]+mm/.test(st)?st.replace(/margin-left:\s*[\d.]+mm/,'margin-left:'+nv+'mm'):st.replace(/;?\s*$/,';')+'margin-left:'+nv+'mm');n++;}
   return n?d.innerHTML:html;}
+/* 한글·워드의 기호 글꼴(Wingdings·Symbol) 글자 → 일반 글자 (화면에 □ 로 깨져 보이던 것: 직무기술서 ☐·❑, 출장여비신청서 등 ☑, 휴가·휴직 신청서 제목 가운뎃점) */
+const FM_PUA={'\uF06E':'■','\uF06F':'□','\uF070':'□','\uF071':'❑','\uF072':'❒','\uF075':'◆','\uF076':'❖','\uF09E':'·','\uF09F':'•','\uF0A0':'·','\uF0A1':'○','\uF0A7':'▪','\uF0A8':'□','\uF0B7':'•','\uF0D8':'➢','\uF0E8':'➔','\uF0FB':'✗','\uF0FC':'✓','\uF0FD':'☒','\uF0FE':'☑'};
+const FM_PUA_RE=new RegExp('['+Object.keys(FM_PUA).join('')+']','g');
+const fmFixPua=html=>html&&FM_PUA_RE.test(html)?(FM_PUA_RE.lastIndex=0,html.replace(FM_PUA_RE,c=>FM_PUA[c])):(FM_PUA_RE.lastIndex=0,html);
 /* 따로 있는 좁은 결재란(담당·팀장·이사 …)은 오른쪽으로 — 회사서식(작성 불가) 원본 보기 화면에도 */
 function fmStampRight(html,page){if(!html||html.indexOf('<table')<0)return html;const d=document.createElement('div');d.innerHTML=html;let n=0;
   const W=(+(page&&page.w)||210)-(+(page&&page.ml)||0)-(+(page&&page.mr)||0);
@@ -10469,8 +10473,8 @@ function fmStampRight(html,page){if(!html||html.indexOf('<table')<0)return html;
     if(roles<3||tdAll.length>40||!tdAll.every(td=>fmpTxt(td).length<=30))continue;const tw=fmpMM(tb.getAttribute('style'),'width');if(!tw||tw>=W*0.8||tb.classList.contains('hw-mr'))continue;
     tb.classList.remove('hw-mc');tb.classList.add('hw-mr');n++;}
   return n?d.innerHTML:html;}
-{const _g=fmGetConv;fmGetConv=async function(f){const r=await _g.apply(this,arguments);try{if(r&&!r._fx){r.html=fmStampRight(fmFixIndent(r.html),r.page);r._fx=1;}}catch(e){console.warn(e);}return r;};}
-{const _p=fmPolish;fmPolish=function(html,page){try{html=fmFixIndent(html);}catch{}return _p.call(this,html,page);};}
+{const _g=fmGetConv;fmGetConv=async function(f){const r=await _g.apply(this,arguments);try{if(r&&!r._fx){r.html=fmStampRight(fmFixIndent(fmFixPua(r.html)),r.page);r._fx=1;}}catch(e){console.warn(e);}return r;};}
+{const _p=fmPolish;fmPolish=function(html,page){try{html=fmFixIndent(fmFixPua(html));}catch{}return _p.call(this,html,page);};}
 /* 좁은 칸 넘침 맞추기 (화면에 그린 뒤) */
 function fmFitText(root){if(!root)return 0;let fixed=0;
   for(const td of root.querySelectorAll('td,th')){if(td.querySelector('table'))continue;if(td.scrollWidth<=td.clientWidth+1)continue;
@@ -10483,7 +10487,7 @@ function fmFitText(root){if(!root)return 0;let fixed=0;
     fixed++;}
   return fixed;}
 {const _fl=fmFillLoad;fmFillLoad=async function(f,k){const r=await _fl.apply(this,arguments);try{const p=$('#fm-paper');if(p&&!FM.base&&FM.k===k){setTimeout(()=>{try{fmFitText(p);}catch{}},0);}}catch(e){console.warn(e);}return r;};}
-window.formFixApi={fixIndent:fmFixIndent,fit:fmFitText,stampRight:fmStampRight};
+window.formFixApi={fixIndent:fmFixIndent,fit:fmFitText,stampRight:fmStampRight,pua:fmFixPua};
 /* ───────── 50차 (4): 조직도 칸(파트) 추가·이름·순서·삭제 ─────────
    · 관리자: 조직도 위쪽 「🧩 파트 편집」 → 칸 이름, '파트' 글자 붙이기, 색, ▲▼ 순서, 지우기(소속 직원은 맨 위 관리부로), ＋ 칸 추가
    · 사람 고치기(소속·약식)에 '이름 옆 표시'(예: 겸직) — 병가·파견 대신 보임
