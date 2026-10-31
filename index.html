@@ -1892,6 +1892,13 @@ body.gd-mode #gd-out{height:34px}
 .fmr-imgs .fm-ovp.pv{width:min(100%,820px);cursor:default;box-shadow:0 2px 10px rgba(0,0,0,.15)}.fmr-imgs .fm-ovp.pv>img{max-width:none;box-shadow:none}
 @media (max-width:640px){.fme-bar{position:static}.fme-bar button{padding:4px 7px;font-size:12.5px}}
 @media print{.fm-wb{background:#fff!important}}
+
+/* 48차: 「← 목록」 잘 보이게 (브라우저 ← 뒤로와 같음) */
+.btn[data-fm-close],.btn[data-ap-back],.btn[data-ap-cancel],.btn[data-eq-back]{background:#1f3a5f!important;border-color:#1f3a5f!important;color:#fff!important;font-weight:800;font-size:15px;padding:8px 18px 8px 14px;border-radius:999px;box-shadow:0 2px 6px rgba(31,58,95,.28);letter-spacing:.02em;line-height:1.2;height:auto;min-height:38px;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.btn[data-fm-close]:hover,.btn[data-ap-back]:hover,.btn[data-ap-cancel]:hover,.btn[data-eq-back]:hover{background:#2c5285!important;border-color:#2c5285!important;color:#fff!important}
+.btn[data-fm-close]:focus-visible,.btn[data-ap-back]:focus-visible,.btn[data-ap-cancel]:focus-visible{outline:3px solid #9cc0f5;outline-offset:2px}
+@media (max-width:640px){.btn[data-fm-close],.btn[data-ap-back],.btn[data-ap-cancel],.btn[data-eq-back]{font-size:15px;padding:8px 16px 8px 12px}}
+@media print{.btn[data-fm-close],.btn[data-ap-back],.btn[data-ap-cancel]{display:none!important}}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -2792,6 +2799,7 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>회사 실제 양식 (41차)</b><span>시설 일보의 <em>✨ 자동</em>은 메모에 회사 일지 낱말(역률·TR 유면·VCB / 소화기·수신기 / E/L·인승 / 콤프레샤·쿨링타워·저수조 / 집진·배출구)이 2개 이상이면 그 <em>🦺 안전관리 일지</em>로 만듭니다. 점검표 항목은 회사 「변전실 안전점검 일지」·「소방시설 안전점검 일지」·「E/L 일일 점검일지」·콤프레샤·쿨링타워·저수조 위생점검·「대기배출시설 운영기록부」(군포: 분쇄시설·여과집진)를 따르고, TR1~3 유면·전력량계 지침·호기별 토출 압력처럼 칸 여러 개로 적습니다. 일지 위 <em>회사 양식</em> 단추를 누르면 같은 회사서식(직접 작성)이 바로 열립니다. <em>작업 일보</em>는 「업체: 한빛전기 2명 — 분전반 교체」처럼 적으면 회사 업무 일지처럼 <em>외부 작업</em>(종별·업체명·인원)과 <em>자체 작업</em>으로 나누고, <em>점검 일지</em>는 변전실·발전실·경비실·저수조·펌프실 중 2곳 이상이나 '시설 순회'를 적으면 회사 「안전관리 일지」 항목으로 채웁니다. 회사서식은 원본 파일과 같은 이름의 <em>○○.화면.html</em>(회사 양식으로 다듬은 화면)을 함께 올리면 한 서식으로 묶어 바로 직접 작성으로 씁니다.</span></li>
       <li><b>그룹웨어 연결 표시 (관리자)</b><span>관리자 화면 위쪽 <em>+ 업무 등록</em> 왼쪽의 동그란 기호가 그룹웨어 자동 확인 상태입니다. <em>🔗 초록</em> = 연결됨, <em>🔑 빨강(깜박임)</em> = 로그인이 풀려 미연결, <em>주황</em> = 로그인 화면을 연 뒤 다음 자동 확인 대기 또는 확인 멈춤·오류, 회색 = 확인 기록 없음. 마우스를 올리면 마지막 확인 시각이 보입니다. 빨간 🔑를 누르면 그룹웨어 로그인 화면이 열립니다(Claude 앱 브라우저에서는 그 창에서 바로 — 로그인 뒤 ← 뒤로). 자동 확인은 관리자 컴퓨터 Claude 앱 브라우저의 로그인을 쓰므로 다른 브라우저에서는 안내 창이 먼저 뜹니다. 비밀번호는 저장·입력하지 않습니다.</span></li>
       <li><b>✅ 점검 일보 (공장별 정기 점검)</b><span>홈 빠른 기록 줄의 <em>✅ 점검 일보</em>(📋 시설 일보 왼쪽)를 누르면 사업장(안양·군포·화성)별로 회사 점검 일지 항목을 한 화면에서 적습니다. <em>매일</em>(평일: 시설 순회·수변전 09·13·17시·변전실·방화관리·E/L 호기별·콤프레샤·대기배출), <em>주간</em>(월요일부터: 쿨링타워·소방시설), <em>월간</em>(1일부터: 저수조 위생·전기계량기·축전지·비상발전기·전기차 충전·소방안전관리자 기록, 수도 검침 15일), <em>분기</em>(분전반 부하·누설전류·열화상). <em>오늘 할 점검</em>에 그날 할 구역과 밀린 구역(⏰)이 모입니다. 점검 칸은 양호·주의·불량·해당 없음, 호기별 칸은 누를 때마다 ○→△→X→/, 수치는 기준을 벗어나면 주황, 계량기는 전월 지침·배율로 사용량을 계산합니다. 적으면 바로 저장되고, <em>📋 업무일지에 기록</em>하면 업무와 「공장 통합 점검 일보」 서류(인쇄·전자결재)가 생기며 불량은 '할 예정' 후속 업무가 됩니다. <em>📈 수치 추이</em>로 역률·온도 등을 그래프로 봅니다. 관리자는 <em>⚙ 구역 설정</em>에서 사업장에 없는 구역을 끕니다.</span></li>
+      <li><b>← 뒤로 · ← 목록</b><span>회사서식 작성·고치기, 전자결재 문서·새 기안·서식 관리·결재선 설정, 점검 일보·경비 일지 항목 편집처럼 화면 안에서 한 단계 들어간 곳에서는 브라우저 왼쪽 위 <em>←</em>(휴대폰 뒤로 단추)를 누르면 화면의 <em>← 목록</em>을 누른 것과 똑같이 전 단계로 돌아갑니다. 열린 창은 닫힙니다. 저장하지 않은 내용이 있으면 확인 창이 뜹니다. <em>← 목록</em> 다음 브라우저 ←를 누르면 그 전 페이지로 갑니다.</span></li>
       <li><b>✏️ 회사서식 고치기 (자료 관리자)</b><span>회사서식 목록이나 미리보기 창, 작성 화면 위쪽의 <em>✏️ 서식 수정</em>을 누르면 모든 직원에게 보이는 서식 자체를 고칩니다. 한글·워드·엑셀 서식은 글을 바로 고치고, 지울 곳은 끌어서 고른 뒤 <em>Delete</em>(그림은 눌러 고른 뒤 Delete), 위 도구줄로 <em>🧹 이 줄 지우기</em>·표 <em>＋ 위/아래에 줄</em>·<em>－ 줄 지우기</em>·<em>＋ 오른쪽 칸</em>·<em>－ 칸 지우기</em>·<em>표 지우기</em>·<em>↶ 되돌리기</em>를 씁니다. PDF·스캔 서식은 <em>⬜ 가리기(흰 상자)</em>로 지우고 <em>✏️ 글 넣기</em>로 글을 얹습니다. <em>💾 서식 수정 저장</em>을 누르면 작성·인쇄·미리보기·전자결재에 모두 반영되고, <em>원래 파일 모양으로</em> 되돌릴 수 있습니다. 한글·워드에서 직접 고친 파일은 <em>📤 파일 바꾸기</em>로 올리면 이름·폴더는 그대로 두고 파일만 바뀝니다. 직원이 작성 화면에서 고친 것은 그 기기에만 보관됩니다.</span></li>
       <li><b>📌 업무 지시 · 📨 보고</b><span>관리자는 업무를 <b>직원</b>이나 <b>직무</b>(재무·회계·인사·총무·시설·공무·안전·보건)에 지시합니다. 업무 등록 창의 <em>📌 업무 지시</em>에서 고르고 저장하거나, 업무 창의 <em>📌 업무 지시하기</em>, 또는 <em>📌 업무 지시</em> 화면의 <em>🗂 지시할 업무</em>에서 <em>⚡ 업무분장 담당자에게</em>·<em>🧩 직무에</em> 한 번에(여러 건 골라 한꺼번에도) 보냅니다. 받는 사람에게 알림(🔔·화면 아래·브라우저)이 가고, 직무 지시는 그 직무 담당 중 업무 사업장 근무자(없으면 전원)와 직무 책임자에게 갑니다 → 한 사람이 <em>🙋 내가 맡기</em>를 누르면 담당자가 됩니다. 직원은 <em>✓ 확인</em> → 일을 하고 <em>📨 보고</em>(중간·완료·문제·지연) → 관리자에게 알림 → 관리자가 <em>✅ 확인 완료</em> 또는 <em>↩ 보완 요청</em>. 내 업무 위쪽에 받은 지시·확인할 보고가 모이고, <em>📌 업무 지시</em> 화면에서 미확인·진행·지연·완료 현황을 봅니다. 직무별 담당 직원·책임자는 관리자가 <em>🧩 직무별 담당</em>에서 바꿉니다.</span></li>
       <li><b>🛡 경비 일지 (경비원 전용 화면)</b><span>홈 빠른 기록 줄의 <em>🛡 경비 일지</em>(✅ 점검 일보 왼쪽)에서 사업장·근무일(아침 9시 전이면 전날 밤 근무)별로 회사 경비 근무일지(근무자·인수자·교대 시각·날씨, 순찰 1·2차 시각·특이사항, 순찰 점검, 주차 현황, 기타 보고)와 <em>🚗 방문 차량</em>·직원 비등록 차량·우편물·택배 접수를 적습니다. 방문 차량은 위 칸에 차량번호 등을 적고 Enter(입차 시각 자동), 자주 오는 차량은 단추 한 번, 나갈 때 <em>출차 지금</em>. 관리자는 <em>👮 경비원 계정</em>에 경비원 이메일·사업장을 등록 → 경비원이 그 이메일로 가입·인증·로그인하면 <b>경비 일지 화면만</b> 보이고(업무·자료·직원 명단·검색·알림 없음) 어제·오늘 근무일만 적을 수 있습니다. 알림(종)의 접속 요청도 '경비원으로 허용'을 고를 수 있습니다. 항목은 관리자·자료 관리자가 <em>✏️ 항목 편집</em>(구역 추가·순서·순찰 장소·주차 칸·기록 목록 칸)에서 바꾸고, <em>🖨 인쇄·PDF</em>·<em>📤 이달 기록 엑셀</em>로 냅니다.</span></li>
@@ -6936,7 +6944,8 @@ function fmWaitRow(f){return `<div class="fm-row wait" data-fm-row="${esc(f.id)}
   <span class="fm-act"><button type="button" class="btn sm" data-fm-mv="${esc(f.id)}" data-to="print">🖨 출력 작성</button><button type="button" class="btn sm" data-fm-mv="${esc(f.id)}" data-to="direct" ${f.cv?'':'disabled title="화면 작성으로 바꿀 수 없는 형식"'}>✏️ 직접 작성</button><button type="button" class="btn sm ghost" data-fm-mvd="${esc(f.id)}">📁 옮기기</button></span></div>`;}
 function renderForms(v){const mode=S.view==='formd'?'direct':'print';fmSub();fmPickInputs();
   if(!fmOK()){v.innerHTML=`<div class="home-head"><div><h1>${FM_ICO[mode]} ${FM_LBL[mode]}</h1></div></div><div class="banner">회사서식은 실사용 업무일지(Firebase)에서 로그인한 뒤 쓸 수 있습니다.</div>`;upSwIns(v,S.view);return;}
-  if(mode==='direct'&&FM.open){const ex=$('#fmw',v);if(ex&&ex.dataset.k===FM.k)return;fmFillRender(v);upSwIns(v,S.view);return;}
+  if(mode==='print'&&FM.open&&!FM.base&&FM.back==='formp'){FM.open=null;FM.back='';FM.cur=null;}/* 47·48차: 출력 작성 서식 고치기는 이 화면 안에서 */
+  if(FM.open&&(mode==='direct'||(FM.base&&FM.back==='formp'))){const ex=$('#fmw',v);if(ex&&ex.dataset.k===FM.k)return;fmFillRender(v);upSwIns(v,S.view);return;}
   const adm=canDoc();const all=fmBy(mode);const wait=fmWait();
   if(FM.cat&&FM.cat!=='__none'&&!fmDirs().includes(FM.cat))FM.cat='';const q=FM.q.trim().toLowerCase();
   const catOk=f=>!FM.cat||(FM.cat==='__none'?!f.cat:fmUnder(f.cat,FM.cat));
@@ -10154,9 +10163,15 @@ document.addEventListener('click',async e=>{const T=e.target;if(!T||!T.closest)r
 /* ── 들어가기·나오기 ── */
 function fmeEdit(id){const f=fmGet(id);if(!f)return;if(!canDoc()){toast(DOCMGR_MSG,'err');return;}
   if(!f.cv){toast('이 파일 형식은 화면에서 고칠 수 없습니다. 「📤 파일 바꾸기」로 고친 파일을 올려 주세요.','err');return;}
-  const d=$('#dlg-fmrev');if(d&&d.open)d.close();FM.back=S.view==='formp'?'formp':'';fmFlushDraft();FM.open=id;FM.base=true;FM.k='';if(S.view==='formd')render();else go('#formd');}
-{const _c=fmClose;fmClose=function(){const b=FM.back;FM.back='';const r=_c.apply(this,arguments);if(b==='formp')go('#formp');return r;};}
-{const _r=fmFillRender;fmFillRender=function(v){if(!FM.base&&FM.back==='formp'&&FM.open){FM.open=null;FM.back='';FM.cur=null;go('#formp');return;}return _r.apply(this,arguments);};}
+  const d=$('#dlg-fmrev');if(d&&d.open)d.close();fmFlushDraft();
+  /* 48차: 고치기를 연 곳으로 돌아감 — 출력 작성 목록(그 화면 안에서) / 직접 작성 목록 / 작성 화면 */
+  FM.back=S.view==='formp'?'formp':FM.open===id?'':'list';FM.open=id;FM.base=true;FM.k='';if(S.view==='formd'||S.view==='formp')render();else go('#formd');}
+{const _c=fmClose;fmClose=function(){FM.back='';return _c.apply(this,arguments);};}
+{const _r=fmFillRender;fmFillRender=function(v){if(!FM.base&&FM.back==='list'&&FM.open){FM.open=null;FM.back='';FM.cur=null;return renderForms(v);}return _r.apply(this,arguments);};}
+/* 48차: 저장하지 않은 고친 내용이 있으면 취소(·브라우저 ← 뒤로) 때 확인 */
+function fmeDirty(){if(!FM.base||!FM.cur)return false;if(FM.cur.kind==='html')return FME.hist.length>0;if(FM.cur.kind==='ov'){const f=fmGet(FM.open);return !!f&&JSON.stringify(fmeOvCollect())!==JSON.stringify(f.ovb||[]);}return false;}
+document.addEventListener('click',async e=>{const b=e.target.closest&&e.target.closest('[data-fm-basecancel]');if(!b||!fmeDirty())return;e.stopPropagation();e.preventDefault();
+  if(!await confirmDlg('서식 고치기 닫기','저장하지 않은 고친 내용이 있습니다. 버리고 닫을까요?','버리기'))return;FME.hist=[];FM.base=false;FM.k='';render();},true);
 
 /* ── 📤 파일 바꾸기 ── */
 function fmeReplacePick(id){const f=fmGet(id);if(!f)return;if(!canDoc()){toast(DOCMGR_MSG,'err');return;}let inp=$('#fme-file');
@@ -10187,6 +10202,64 @@ async function fmeReplace(id,file){const f=fmGet(id);if(!f)return false;if(!canD
 window.fmeApi={edit:fmeEdit,replace:fmeReplace,grid:fmeGrid,ovbNorm:fmeOvbNorm,state:()=>({hist:FME.hist.length,redo:FME.redo.length,tool:FME.tool,img:!!FME.img})};
 /* 고치기 화면에서는 '적는 중…'(직원 보관) 표시 안 함 */
 {const _q=fmQueueSave;fmQueueSave=function(){if(FM.base)return;return _q.apply(this,arguments);};}
+/* ───────── 48차: 브라우저 ← 뒤로 = 화면의 「← 목록」 ─────────
+   · 주소(#formd 등)가 바뀌지 않는 화면 안 단계 — 회사서식 작성·고치기, 전자결재 문서·작성·서식 관리·결재선 설정,
+     점검 일보·경비 일지 항목 편집, 그리고 열린 창(대화 상자) — 에 들어갈 때마다 같은 주소로 방문 기록을 하나 쌓음(pushState)
+   · 브라우저 ← 뒤로(휴대폰 뒤로 단추 포함)를 누르면 그 단계의 「← 목록」·「취소」·「닫기」를 누른 것과 똑같이 한 단계 돌아감(창은 Esc 와 같이 닫힘)
+     — 저장 안 한 내용이 있으면 원래 확인 창이 뜨고, '아니오'면 그 자리에 남고 기록도 다시 쌓음
+   · 화면 단추로 돌아가면 그 기록을 얕은 단계로 바꿔 두고(replaceState), 뒤로 갈 때 바뀐 것 없는 같은 기록은 건너뜀
+     → 「← 목록」 다음 ← 뒤로 한 번이면 그 전 페이지로(헛누름 없음)
+   · 프로그램이 history.back() 을 먼저 부르지 않음(다른 화면으로 가는 중과 겹치지 않게) — 건너뛰기는 사용자가 뒤로·앞으로를 누른 때만 */
+const BK={i:0,hash:location.hash,q:0,want:null,lastD:0,dlg:[],skip:0};
+const bkNow=()=>{const t=Date.now()*100;BK.i=Math.max(BK.i+1,t);return BK.i;};
+function bkPage(){const L=[];const v=S.view;
+  try{if((v==='formd'||v==='formp')&&typeof FM!=='undefined'&&FM.open&&(v==='formd'||FM.base)){if(FM.base&&FM.back)L.push('fmb:'+FM.open);else{L.push('fm:'+FM.open);if(FM.base)L.push('fmb');}}}catch{}
+  try{if(v==='appr'&&typeof AP!=='undefined'){if(AP.edit&&AP.w)L.push('apw');else if(AP.panel)L.push('app:'+AP.panel);else if(AP.open)L.push('apo:'+AP.open);}}catch{}
+  try{if(v==='insp'&&typeof IN!=='undefined'&&IN.editing)L.push('ie');}catch{}
+  try{if(v==='guard'&&typeof GD!=='undefined'&&GD.editing)L.push('ge');}catch{}
+  return L;}
+const bkModal=d=>{try{return d.open&&d.matches(':modal');}catch{return false;}};
+function bkDlgs(){BK.dlg=BK.dlg.filter(d=>d.isConnected&&bkModal(d));for(const d of $$('dialog[open]'))if(bkModal(d)&&!BK.dlg.includes(d))BK.dlg.push(d);return BK.dlg;}
+function bkSig(){const P=bkPage();const D=bkDlgs().map(d=>'dlg:'+(d.id||d.className||'x'));const L=[...P,...D];return {sig:L.join('/'),d:L.length,P,D};}
+const bkSt=()=>{const s=history.state;return s&&s.wlb===1?s:{wlb:0,sig:'',d:0,i:0};};
+function bkQ(){clearTimeout(BK.q);BK.q=setTimeout(bkSync,0);}
+function bkSync(){const cur=bkSig();BK.hash=location.hash;
+  /* 뒤로 여러 단계: 한 단계씩 닫음(진행이 없으면 멈춤 — 확인 창에서 '아니오') */
+  if(BK.want!==null){if(cur.d>BK.want&&cur.d<BK.lastD){BK.lastD=cur.d;bkBackOne(cur);return;}BK.want=null;}
+  const st=bkSt();let s=history.state;
+  try{if(cur.d>st.d)history.pushState({wlb:1,sig:cur.sig,d:cur.d,i:bkNow()},'',location.href);
+    else if(cur.sig!==st.sig||!st.i)history.replaceState({...(s&&typeof s==='object'?s:{}),wlb:1,sig:cur.sig,d:cur.d,i:st.i||bkNow()},'',location.href);}catch(e){console.warn(e);}
+  BK.cur=bkSt().i;}
+/* 한 단계 닫기: 맨 위 창(Esc 와 같이) → 화면 단계의 「← 목록」·「취소」·「닫기」 */
+const BK_BTN={fmb:'[data-fm-basecancel]',fm:'[data-fm-close]',apw:'[data-ap-cancel]',app:'[data-ap-back]',apo:'[data-ap-back]',ie:'#in-ed [data-ie-cancel]',ge:'#gd-ed [data-ge-cancel]'};
+function bkBackOne(cur){cur=cur||bkSig();
+  if(cur.D.length){const d=BK.dlg[BK.dlg.length-1];if(d){const ev=new Event('cancel',{cancelable:true});d.dispatchEvent(ev);if(!ev.defaultPrevented&&d.open)d.close();bkQ();return true;}}
+  const top=cur.P[cur.P.length-1];if(!top)return false;const k=top.split(':')[0];const b=$('#view '+BK_BTN[k])||$(BK_BTN[k]);
+  if(b){b.click();bkQ();return true;}
+  /* 단추를 못 찾으면 상태만 되돌림 */
+  if(k==='fm'){FM.open=null;FM.base=false;FM.cur=null;}else if(k==='fmb'){FM.base=false;FM.k='';if(FM.back){FM.open=null;FM.back='';}}
+  else if(k==='apw'){AP.edit=null;AP.w=null;}else if(k==='app'||k==='apo'){AP.open=null;AP.panel='';}else return false;
+  render();return true;}
+window.addEventListener('popstate',e=>{
+  /* 우리가 표시하지 않은 기록(주소 # 바꾸기 등으로 막 생긴 기록 — 크롬은 # 이동에도 popstate 를 보냄)은 건드리지 않고 맞춤만 */
+  if(!(e.state&&e.state.wlb===1)){BK.hash=location.hash;bkQ();return;}
+  const st=e.state;const dir=st.i&&BK.cur&&st.i>BK.cur?1:-1;BK.cur=st.i||BK.cur;
+  if(location.hash!==BK.hash){BK.hash=location.hash;BK.skip=0;return;}/* 다른 주소로 이동 — 원래 경로(hashchange)가 그림 */
+  const cur=bkSig();
+  if(st.sig===cur.sig&&st.d===cur.d){/* 바뀐 것 없는 같은 기록 → 누른 방향으로 건너뜀 */if(BK.skip++<40){if(dir<0)history.back();else history.forward();}return;}
+  BK.skip=0;
+  if(st.d<cur.d){BK.want=st.d;BK.lastD=cur.d;bkBackOne(cur);return;}
+  /* 앞으로 가기로 지금보다 깊은 단계 기록에 온 경우 등 — 다시 만들 수 없으니 같은 방향으로 건너뜀 */
+  if(BK.skip++<40){if(dir<0)history.back();else history.forward();}
+  setTimeout(()=>{if(bkSt().sig!==bkSig().sig)bkSync();},400);});
+document.addEventListener('click',()=>{BK.skip=0;},true);document.addEventListener('keydown',()=>{BK.skip=0;},true);
+/* 창 열기·닫기, 화면 다시 그리기 뒤에 기록 맞춤 */
+{const sm=HTMLDialogElement.prototype.showModal;HTMLDialogElement.prototype.showModal=function(){const r=sm.apply(this,arguments);try{BK.dlg=BK.dlg.filter(d=>d!==this);BK.dlg.push(this);bkQ();}catch{}return r;};}
+document.addEventListener('close',e=>{if(e.target&&e.target.tagName==='DIALOG'){BK.dlg=BK.dlg.filter(d=>d!==e.target);bkQ();}},true);
+{const _r=render;render=function(){const r=_r.apply(this,arguments);bkQ();return r;};}
+window.addEventListener('hashchange',()=>{BK.skip=0;bkQ();});
+setTimeout(bkSync,1500);
+window.bkApi={sig:bkSig,state:bkSt,sync:bkSync};
 
 /* ───────── 시작 ───────── */
 function boot(){
