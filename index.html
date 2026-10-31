@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="wl-build" content="48e93ec39cd5">
+<meta name="wl-build" content="5c9c7226a4e5">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#1f3a5f">
@@ -10907,7 +10907,7 @@ window.addEventListener('resize',()=>{if(S.view==='formd')navFmPosSoon();});
 const CAL_LT={'ev-lv-am':'오전 반차','ev-lv-pm':'오후 반차','ev-lv-out':'외출·조퇴'};
 function calEvMount(info){const vt=(info.view&&info.view.type)||'';if(!vt.startsWith('list'))return;const el=info.el;if(!el)return;const tc=el.querySelector('.fc-list-event-time');if(!tc)return;
   const cls=info.event.classNames||[];let txt='';for(const c of cls)if(CAL_LT[c]){txt=CAL_LT[c];break;}
-  if(!txt&&info.event.id){const t=findTask(info.event.id);if(t&&t.startTime){txt=t.startTime+(t.dueTime&&(t.due||t.start)===t.start?'~'+t.dueTime:'');
+  if(!txt&&info.event.id){const t=findTask(info.event.id);if(t&&t.startTime){txt=t.startTime+(t.dueTime&&t.dueTime!==t.startTime&&(t.due||t.start)===t.start?'~'+t.dueTime:'');
       const a=el.querySelector('.fc-list-event-title a')||el.querySelector('.fc-list-event-title');if(a){const tn=[...a.childNodes].find(n=>n.nodeType===3&&n.nodeValue.includes(t.startTime+' '));if(tn)tn.nodeValue=tn.nodeValue.replace(t.startTime+' ','');}}}
   /* 달력이 다시 그릴 때 덮어쓰지 않도록 글자는 그대로 두고 data-lt + CSS ::after 로 보임 */
   if(txt){tc.dataset.lt=txt;tc.classList.add('lt-x');tc.setAttribute('aria-label',txt);}}
