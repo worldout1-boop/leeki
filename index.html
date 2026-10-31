@@ -1650,6 +1650,11 @@ input.ir{font:inherit;font-size:14.5px;font-weight:600;padding:4px 8px;border:2p
 :is(#print-sheet,body) .ap-il td.ap-il-crit{color:#3d4a5c;font-size:9pt}
 :is(#print-sheet,body) .ap-il .ap-il-na{color:#7b8696}
 :is(#print-sheet,body) .ap-il table.ap-il-sfw th,:is(#print-sheet,body) .ap-il table.ap-il-sfw td{font-size:8.6pt;padding:1mm 1.3mm}
+/* 41차: 칸 여러 개 측정(시간별·호기별·TR별) · 회사 양식 바로 열기 · 외부 작업 표 */
+.sf-mg{grid-column:span 2}.sf-mgi{display:flex;flex-wrap:wrap;gap:4px 6px}.sf-mgi label{display:flex;align-items:center;gap:3px;flex:1 1 74px;min-width:74px}.sf-mgi em{font-style:normal;font-size:11.5px;color:var(--ink-3);white-space:nowrap}.sf-mgi input{height:32px;width:100%;min-width:0}
+@media (max-width:560px){.sf-mg{grid-column:auto}}
+.sf-forms{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin:6px 0 8px;font-size:12.5px}.sf-forms>span{color:var(--ink-3);font-weight:600;margin-right:2px}
+.sf-form{border:1px solid var(--line);background:var(--card,#fff);border-radius:999px;padding:3px 10px;font-size:12px;cursor:pointer;color:var(--ink-2)}.sf-form::before{content:'✏️ ';}.sf-form:hover{border-color:var(--accent,#2b5fa8);color:var(--accent,#2b5fa8)}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -2547,6 +2552,7 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>업무 수정 권한</b><span>업무(일정)의 업무명·일정·담당·내용 수정과 삭제는 <em>등록한 사람</em>과 관리자만 할 수 있습니다. 담당자는 진행 상태·진척률·진행 기록·사진만 남기고, 그 밖의 직원은 보기만 합니다.</span></li>
       <li><b>연차·휴일근무 달력</b><span>전자결재 기안 오른쪽 <em>📅 달력 표기</em>에서 연차·반차·휴일근무·연차 사용 계획을 고르고 날짜를 적으면, 최종 승인된 뒤 달력에 <b>굵은 글자</b>(🌴 연차, 🛠 휴일근무)로 표시됩니다. 연차 사용 촉진에 따라 정한 예정일은 달력 위 <em>🗓 연차 사용 계획(촉진)</em>에서 적으면 <i>연차(예정)</i>으로 보입니다. 사유는 달력에 나오지 않습니다.</span></li>
       <li><b>안전관리 일지 (11종)</b><span>시설 일보 창 <em>서류</em>에서 <em>🦺 안전관리 일지</em>를 누르면 산업안전·보건 · 전기 · 소방 · 유해화학물질 · 위험물옥내저장소 · 승강기 · 환경 · 폐기물(일반/지정) · 건축물관리자 · 기계설비 · 정보통신 일지 중 고를 수 있습니다. 항목마다 <em>양호·주의·불량·해당 없음</em>을 누르고(✓ 빈 칸 모두 양호), 측정값(역률·압력·온도 등)을 적으면 기준을 벗어난 값은 「주의」로 적힙니다. 사업장에 없는 공정 항목은 빠지고, 선임자는 조직도의 법정 선임 현황에서 가져옵니다. 불량 항목은 '할 예정' 후속 업무로 같이 등록할 수 있습니다. 위에 <em>작업일자·작업시간</em>을 적으면 서류의 시간 칸과 사진 아래 시각에 그대로 씁니다.</span></li>
+      <li><b>회사 실제 양식 (41차)</b><span>시설 일보의 <em>✨ 자동</em>은 메모에 회사 일지 낱말(역률·TR 유면·VCB / 소화기·수신기 / E/L·인승 / 콤프레샤·쿨링타워·저수조 / 집진·배출구)이 2개 이상이면 그 <em>🦺 안전관리 일지</em>로 만듭니다. 점검표 항목은 회사 「변전실 안전점검 일지」·「소방시설 안전점검 일지」·「E/L 일일 점검일지」·콤프레샤·쿨링타워·저수조 위생점검·「대기배출시설 운영기록부」(군포: 분쇄시설·여과집진)를 따르고, TR1~3 유면·전력량계 지침·호기별 토출 압력처럼 칸 여러 개로 적습니다. 일지 위 <em>회사 양식</em> 단추를 누르면 같은 회사서식(직접 작성)이 바로 열립니다. <em>작업 일보</em>는 「업체: 한빛전기 2명 — 분전반 교체」처럼 적으면 회사 업무 일지처럼 <em>외부 작업</em>(종별·업체명·인원)과 <em>자체 작업</em>으로 나누고, <em>점검 일지</em>는 변전실·발전실·경비실·저수조·펌프실 중 2곳 이상이나 '시설 순회'를 적으면 회사 「안전관리 일지」 항목으로 채웁니다. 회사서식은 원본 파일과 같은 이름의 <em>○○.화면.html</em>(회사 양식으로 다듬은 화면)을 함께 올리면 한 서식으로 묶어 바로 직접 작성으로 씁니다.</span></li>
       <li><b>설비 QR</b><span>시설 일보 창의 <em>🏷 설비 QR</em>에서 설비(소화전 펌프·콤프레샤·승강기 등)를 등록하고 <em>🖨 QR 라벨</em>을 인쇄해 붙여 두면, 휴대폰 기본 카메라로 찍기만 해도 업무일지가 열려 그 설비의 점검·작업 기록과 <em>📋 이 설비 일보 쓰기</em>가 나옵니다. 앱 안의 📷 QR 스캔이나 사진으로 QR 읽기도 됩니다. 설비를 고른 일보는 '대상 설비'가 서류에 들어가고 그 설비 기록에 쌓입니다.</span></li>
       <li><b>찾기 요령 · 사진 위치</b><span>전체 검색(🔍, Ctrl+K)은 초성으로도 찾습니다(ㅅㅎㄱ → 소화기). 한/영 전환을 깜빡해 영문으로 찍히면 한글 낱말로 찾기를 제안합니다. 관리자가 설정 › <em>사업장 위치</em>에 좌표를 넣어 두면, 시설 일보에 올린 사진의 촬영 위치로 사업장이 자동으로 정해집니다(위치값은 저장하지 않음).</span></li>
       <li><b>시설 일보 (자동 완성)</b><span>홈의 <em>📋 시설 일보</em>(또는 사진첩, 시설·공무 업무 상세의 📋 단추)에서 현장 사진을 찍어 올리고 메모를 한 줄에 한 가지씩 적은 뒤 <em>✨ 자동 완성</em>을 누르면, 회사 로고·결재란이 있는 <em>작업 일보 · 점검 일지 · 사진 대지</em>가 만들어집니다. 메모의 '위치 — 내용', 09:00~11:30, 자재:, 작업자:, ※ 특이사항, 다음: 후속 조치, 이상 없음·주의·불량을 알아서 칸에 나눠 넣습니다. 서류의 글자는 눌러서 바로 고치고, <em>💾 업무일지에 저장</em>(완료 업무 + 사진), <em>🖨 인쇄·PDF</em>, <em>📝 전자결재로 올리기</em>를 고릅니다. 후속 조치는 '할 예정' 업무로 같이 등록할 수 있고, 작성 중인 일보는 이 기기에 임시 저장됩니다. 휴대폰 홈 화면에는 주소 끝에 <em>#ilbo</em>를 붙인 바로가기를 두면 바로 열립니다.</span></li>
@@ -6539,7 +6545,7 @@ const fmBy=m=>FM.list.filter(f=>f.mode===m);
 const fmWait=()=>canDoc()?FM.list.filter(f=>!f.mode):[];
 const fmGet=id=>FM.list.find(f=>f.id===id);
 /* 목록이 바뀌면: 작성 화면은 그대로 두고 숫자·목록만 갱신 */
-function fmRefresh(){fmSwUpd();if(FM.rev)fmRevSync();
+function fmRefresh(){fmSwUpd();if(FM.rev)fmRevSync();if(typeof sfFormsRefresh==='function')try{sfFormsRefresh();}catch{}
   if(['formp','formd'].includes(S.view)){if(S.view==='formd'&&FM.open&&$('#fmw'))return;scheduleRender();}
   else if(S.view==='appr'&&typeof AP==='object'&&AP.edit&&AP.w&&AP.w.step==='pick')scheduleRender();}
 function fmSwUpd(){const sw=$('#view > .up-sw');if(!sw)return;for(const m of ['print','direct']){const a=sw.querySelector(`a[href="#${m==='print'?'formp':'formd'}"] em`);const n=fmBy(m).length;if(a){a.textContent=n||'';a.hidden=!n;}}
@@ -6567,10 +6573,10 @@ async function fmDelete(ids){const L=ids.map(fmGet).filter(Boolean);if(!L.length
   setSync('saving');try{for(const f of L){for(let i=0;i<f.file.n;i++)try{await S.fs.doc(`forms/${f.id}/f/${i}`).delete();}catch{}for(let i=0;i<f.hn;i++)try{await S.fs.doc(`forms/${f.id}/h/${i}`).delete();}catch{}
       await fbWrite(S.fs.doc('forms/'+f.id).delete());FM.sel.delete(f.id);lsSet(fmDraftKey(f.id),null);}dlAdd({act:'del',kind:'form',id:L[0].id,title:L[0].name,n:L.length});toast(`${L.length}개를 지웠습니다.`);return true;}
   catch(e){writeError(e&&e.userMsg?e:fbErr(e));return false;}finally{setSync('ok');}}
-async function fmSaveBase(f,html,page){html=fmClean(html);const u8=new TextEncoder().encode(html);if(u8.length>FILE_CHUNK*40){toast('서식이 너무 큽니다.','err');return false;}setSync('saving');
+async function fmSaveBase(f,html,page,quiet){html=fmClean(html);const u8=new TextEncoder().encode(html);if(u8.length>FILE_CHUNK*40){toast('서식이 너무 큽니다.','err');return false;}setSync('saving');
   try{const n=await fmPutChunks(`forms/${f.id}/h`,u8);for(let i=n;i<f.hn;i++)try{await S.fs.doc(`forms/${f.id}/h/${i}`).delete();}catch{}
     const hv=(f.hv|0)+1,pg=page||f.page||fmA4();await fbWrite(S.fs.doc('forms/'+f.id).update({hn:n,hv,page:pg,upd:nowISO()}));
-    Object.assign(f,{hn:n,hv,page:pg});FM.conv.set(f.id+'@'+hv+'@'+f.file.size,{html:fmMarkInputs(html),page:pg,serif:f.serif,base:true});toast('서식 원본을 저장했습니다. 이제 모든 직원에게 고친 서식이 보입니다.');return true;}
+    Object.assign(f,{hn:n,hv,page:pg});FM.conv.set(f.id+'@'+hv+'@'+f.file.size,{html:fmMarkInputs(html),page:pg,serif:f.serif,base:true});if(!quiet)toast('서식 원본을 저장했습니다. 이제 모든 직원에게 고친 서식이 보입니다.');return true;}
   catch(e){writeError(e&&e.userMsg?e:fbErr(e));return false;}finally{setSync('ok');}}
 async function fmResetBase(f){if(!f.hn)return;if(!await confirmDlg('원래 파일 모양으로','고친 서식 원본을 지우고, 처음 올린 파일에서 다시 만듭니다.','되돌리기'))return;
   for(let i=0;i<f.hn;i++)try{await S.fs.doc(`forms/${f.id}/h/${i}`).delete();}catch{}await fmUpdate([f.id],{hn:0,hv:(f.hv|0)+1},'원래 파일 모양으로 되돌렸습니다.');}
@@ -6594,24 +6600,40 @@ async function fmDropEntries(dt){const out=[];const items=[...(dt.items||[])].ma
     else if(en.isDirectory){const rd=en.createReader();for(;;){const batch=await new Promise(res=>rd.readEntries(res,()=>res([])));if(!batch.length)break;for(const x of batch)await walk(x,pre+en.name+'/');}}};
   for(const en of items)await walk(en,'');return out;}
 const fmBaseName=n=>String(n).replace(/\.[^.]+$/,'').replace(/[_]+/g,' ').trim().slice(0,120)||'서식';
+/* 41차: 원본 파일과 같은 폴더의 「이름.화면.html」(회사 양식으로 다듬은 화면 원본)을 짝지어 한 서식으로 올림
+   · 원본(엑셀·한글 등)은 내려받기용, 화면 원본은 회사서식(직접 작성) 화면·인쇄용 · 짝이 없는 화면 원본은 그 자체로 한 서식 */
+const FM_BASE_RE=/\.(?:화면|screen)\.html?$/i;
+function fmPairBase(all){const key=x=>{const p=String(x.path||x.file.name);const n=x.file.name;return p.replace(/[^/]*$/,'')+'\u0000'+(FM_BASE_RE.test(n)?n.replace(FM_BASE_RE,''):n.replace(/\.[^.]+$/,'')).normalize('NFC');};
+  const bases=new Map();for(const x of all)if(FM_BASE_RE.test(x.file.name))bases.set(key(x),x);if(!bases.size)return all;
+  const used=new Set();const out=[];
+  for(const x of all){if(FM_BASE_RE.test(x.file.name))continue;const b=bases.get(key(x));if(b&&!used.has(b)){used.add(b);out.push({...x,base:b.file});}else out.push(x);}
+  for(const b of bases.values())if(!used.has(b)){const nm=b.file.name.replace(FM_BASE_RE,'.html');out.push({...b,file:new File([b.file],nm,{type:'text/html'})});}
+  return out;}
+async function fmReadBase(file){if(file.size>FILE_CHUNK*20)throw {userMsg:'화면 원본이 너무 큽니다'};let html=await file.text();let page=null;
+  const m=html.match(/<!--\s*fm-page\s*(\{[^}]*\})\s*-->/);if(m)try{const p=JSON.parse(m[1]);if(+p.w>50&&+p.h>50)page={w:+p.w,h:+p.h,ml:+p.ml||15,mr:+p.mr||15,mt:+p.mt||15,mb:+p.mb||15,land:!!p.land};}catch{}
+  const b=html.match(/<body[^>]*>([\s\S]*)<\/body>/i);if(b)html=b[1];html=fmClean(html);if(!fmHasText(html))throw {userMsg:'화면 원본에 내용이 없습니다'};
+  return {html,page:page||fmA4()};}
 async function fmUpload(list){if(!canDoc()){toast(DOCMGR_MSG,'err');return;}if(FM.up&&FM.up.busy){toast('서식을 올리는 중입니다. 끝난 뒤 다시 올려 주세요.');return;}
   if(!list.length)return;fmSub();
   FM.up={busy:true,items:[],note:'압축 푸는 중…',started:Date.now()};fmProgUpd();
   let all=[];for(const it of list){if(extOf(it.file.name)==='zip'){try{all.push(...await fmUnzip(it.file,it.path||it.file.name));}catch{all.push({file:it.file,path:it.path||it.file.name,bad:'압축 파일을 풀지 못했습니다'});}}else all.push(it);}
   all=all.filter(x=>!FM_JUNK.test(x.path||x.file.name)).slice(0,800);
+  all=fmPairBase(all);
   const dirs=all.map(x=>String(x.path||x.file.name).split('/').slice(0,-1).filter(Boolean));const root=dirs.length&&dirs[0].length?dirs[0][0]:'';
   const strip=root&&dirs.every(d=>d[0]===root)&&dirs.some(d=>d.length>=2)?1:0;
   const mode0=($('#fm-upmode')||{}).value||FM.upMode||'';
   const seen=new Set(FM.list.map(f=>f.file.name+'|'+f.file.size));
-  FM.up.items=all.map((x,i)=>{const d=dirs[i].slice(strip);const it={i,file:x.file,name:fmBaseName(x.file.name),cat:d.join(' › ').slice(0,80),size:x.file.size,st:'wait',msg:x.bad||''};
+  FM.up.items=all.map((x,i)=>{const d=dirs[i].slice(strip);const it={i,file:x.file,base:x.base||null,name:fmBaseName(x.file.name),cat:d.join(' › ').slice(0,80),size:x.file.size,st:'wait',msg:x.bad||''};
     const k=x.file.name+'|'+x.file.size;if(x.bad)it.st='err';else if(x.file.size>FM_MAX){it.st='err';it.msg='20MB를 넘는 파일';}else if(!x.file.size){it.st='err';it.msg='빈 파일';}else if(seen.has(k)){it.st='dup';it.msg='이미 올린 서식';}else seen.add(k);return it;});
   FM.up.note='';fmProgUpd();const newIds=[];
   const work=async()=>{for(;;){const it=FM.up.items.find(x=>x.st==='wait');if(!it)return;it.st='conv';fmProgUpd();
-      try{let cv=fmKind(it.file.name,it.file.type),note='',page=null,serif=false;
-        if(cv==='html'){try{const r=await fmConvert(it.file,it.file.name);page=r.page;serif=r.serif;}catch(e){cv='';note=(e&&e.userMsg)||'화면 작성으로 바꾸지 못함';}}
+      try{let cv=fmKind(it.file.name,it.file.type),note='',page=null,serif=false,bh=null;
+        if(it.base){try{bh=await fmReadBase(it.base);cv='html';page=bh.page;}catch{bh=null;}}
+        if(cv==='html'&&!bh){try{const r=await fmConvert(it.file,it.file.name);page=r.page;serif=r.serif;}catch(e){cv='';note=(e&&e.userMsg)||'화면 작성으로 바꾸지 못함';}}
         it.st='save';fmProgUpd();const id='f'+rid().slice(0,11);const u8=new Uint8Array(await it.file.arrayBuffer());const n=await fmPutChunks(`forms/${id}/f`,u8);
-        const mode=mode0==='print'?'print':mode0==='direct'?(cv?'direct':'print'):'';
+        const mode=mode0==='print'?'print':mode0==='direct'||bh?(cv?'direct':'print'):'';
         await fbWrite(S.fs.doc('forms/'+id).set({name:it.name,cat:it.cat,mode,cv,note,file:{name:it.file.name.slice(0,200),type:it.file.type||'',size:it.file.size,n},hn:0,hv:0,page:page||fmA4(),serif,at:nowISO(),by:myId(),upd:nowISO()}));
+        if(bh){const fo=fmNorm(id,{name:it.name,cat:it.cat,mode,cv,note,file:{name:it.file.name,type:it.file.type||'',size:it.file.size,n},hn:0,hv:0,page,serif:false});if(fo&&!await fmSaveBase(fo,bh.html,page,true))it.msg='화면 원본 저장 실패';else it.msg='회사 양식 화면 원본 포함';}
         it.st='ok';it.id=id;if(!mode)newIds.push(id);if(note)it.msg=note;}
       catch(e){it.st='err';it.msg=(e&&e.userMsg)||fileErrMsg(fbErr(e))||'저장 실패';}
       fmProgUpd();}};
@@ -7656,6 +7678,25 @@ const IL_CL={
   '생산설비 지원':[['사출기·로봇','안전장치·비상정지',/사출기|로봇|비상\s*정지/],['호이스트·크레인','와이어·훅·리밋',/호이스트|크레인|와이어|훅/],['제어반·설비 전원','표시등·발열',/제어반|전원|판넬|패널/]],
   '환경':[['폐기물 보관장','분리·표지·덮개',/폐기물|보관장|분리/],['배출시설','가동·방지시설 상태',/배출|방지시설|대기/],['폐수','유출 여부',/폐수|유출/]]};
 
+/* ── 41차: 회사 「안전관리 일지」(시설 순회) 항목 — 구역별 실제 점검 내용 [항목 낱말, 점검 내용, 찾을 낱말] */
+const IL_RND=[['변전실',/변전실|전기실|수변전/,[['출입구 시건','출입구 시건 상태는 양호한가',/시건|잠금|출입구/],['누전','누전되는 곳은 없는가',/누전/],['계기·작동','각종 계기와 작동 상태는 양호한가',/계기|작동|표시/],['청소','청소 상태는 양호한가',/청소|청결/],['인화물질','인화물질이 방치되지 않는가',/인화/],['소동물','쥐 등의 출입은 없는가',/쥐|소동물/]]],
+  ['발전실',/발전실|발전기/,[['누유','누유되는 곳은 없는가',/누유|기름\s*샘/],['계기·작동','각종 계기와 작동 상태는 양호한가',/계기|작동/],['밧데리','밧데리 충전 상태는 양호한가',/밧데리|배터리|축전지|충전/],['연료','기름은 충분히 채워져 있는가',/연료|기름|유량|경유/]]],
+  ['통제실(경비실)',/통제실|경비실|방재실|관제실/,[['CCTV','CCTV 작동 상태는 양호한가',/CCTV/i],['컴퓨터','컴퓨터 작동 상태는 양호한가',/컴퓨터|PC/],['UPS','UPS 작동 상태는 양호한가',/UPS/i],['청소','청소 상태는 양호한가',/청소|청결/],['비상 대처','비상시 대처 내용은 숙지했는가',/비상|대처|숙지/]]],
+  ['저수조',/저수조|물탱크/,[['뚜껑 시건','뚜껑의 시건장치는 양호한가',/뚜껑|시건|잠금|맨홀/],['누수','누수되는 곳은 없는가',/누수/],['자동제어 밸브','자동제어 밸브 작동 상태는 정상인가',/자동\s*제어|볼탭|제어\s*밸브/],['배관·밸브','배관 및 밸브의 결합 상태는 양호한가',/배관|결합|밸브/],['저수위 안전장치','저수위 안전장치 상태는 양호한가',/저수위|수위|전극봉/],['주변 청소','주변 청소 상태는 양호한가',/청소|청결/]]],
+  ['펌프실',/펌프실/,[['출입구 시건','출입구의 시건장치는 양호한가',/시건|잠금|출입구/],['펌프 작동','펌프의 작동은 정상인가',/(?<!배수\s?)펌프/],['계기·스위치','각종 계기 및 스위치 작동은 양호한가',/계기|스위치/],['배수펌프','배수펌프는 정상 가동되는가',/배수\s*펌프/],['커플링·패킹','커플링·패킹은 양호한가',/커플링|카프링|패킹|바킹/],['압력계·온도계','압력계 및 온도계 작동은 양호한가',/압력계|온도계/],['실내 상태','실내 상태는 양호한가',/실내|청소|청결/]]]];
+const IL_RNDALL=/안전\s*관리\s*일지|(?<![가-힣])시설\s*순회|전\s*구역|모든\s*구역|일일\s*순회/;
+/* ── 41차: 외부 업체 작업 (회사 「업무 일지」의 외부작업 — 종별·업체명·인원·작업 내용) */
+const IL_VEND=/업체|외부\s*(?:작업|인력|공사)|협력\s*(?:업체|사)|\(주\)|㈜|주식회사|시공사|용역/;
+const IL_PHONE=/0\d{1,2}[-\s.]?\d{3,4}[-\s.]?\d{4}/g;
+function ilExt(p){if(!IL_VEND.test(p))return null;let who='';
+  const m=p.match(/업체(?:명)?\s*[:：]\s*([^\s,，()]+)/)||p.match(/업체\s*\(\s*([^)]+?)\s*\)/)||p.match(/((?:㈜|\(주\))\s*[가-힣A-Za-z0-9]+|[가-힣A-Za-z0-9]+\s*(?:㈜|\(주\)|주식회사))/)||p.match(/([가-힣A-Za-z0-9]{2,12})\s*(?:업체|협력사)(?!\s*[:：(])/);
+  if(m)who=m[1].trim();if(/^(?:외부|협력|시공|전문|해당|관련|유지\s*보수|보수)$/.test(who))who='';
+  const n=(p.match(/(\d{1,3})\s*명/)||[])[1]||'';
+  const f=ilField(p,'work').sub;const kind=f==='건축·영선'?'건축':f==='전기설비'?'전기':'설비';
+  return {who:who.slice(0,30),n:n?n+'명':'',kind};}
+function ilExtClean(x,e){let t=String(x||'').replace(IL_PHONE,'');if(e.who)t=t.split(e.who).join(' ');
+  return t.replace(/(?:외부|협력)\s*(?:업체|사)|업체(?:명)?\s*[:：]?|\(\s*\)|㈜|\(주\)|주식회사|\d{1,3}\s*명|연락처\s*[:：]?/g,' ').replace(/\s{2,}/g,' ').replace(/^[\s,·:\-–—]+|[\s,·:\-–—]+$/g,'').trim();}
+
 /* ── 메모 읽기 */
 const IL_BUL=/^\s*(?:[-*•·▶►▷○●□■◇◆✔✓☑]|\(?\d{1,2}[.)]|[①-⑳])\s*/;
 const IL_TIME=/(?:(?:작업|점검)\s*)?(?:시간\s*[:：]?\s*)?([01]?\d|2[0-3])\s*[:시]\s*([0-5]\d)?\s*분?\s*[~\-–〜]\s*([01]?\d|2[0-3])\s*(?:[:시]\s*([0-5]\d)?)?\s*분?/;
@@ -7727,7 +7768,18 @@ function ilParse(d){const memo=String(d.memo||'');
   G.site=ilSiteOf(memo)||d.site||'';
   G.fld=ilField(G.kind==='work'&&G.pieces.length?G.pieces[0]:memo,G.kind);
   G.items=G.pieces.slice(0,30).map(p=>ilItem(p,G));
-  if(!sf&&G.kind==='chk'&&IL_CL[G.fld.sub]&&(IL_ROUND.test(memo)||!G.items.length)){
+  if(G.kind==='work')G.items=G.items.map((it,i)=>{const p=G.pieces[i];const e=ilExt(p);if(!e)return it;const c=ilExtClean(p,e);const n=c?ilItem(c,G):it;if(!c){n.loc=ilExtClean(n.loc,e);n.text=ilExtClean(n.text,e);}n.ext=e;return n;});
+  const rLocs=IL_RND.filter(([,re])=>re.test(memo));
+  if(!sf&&G.kind==='chk'&&(rLocs.length>=2||IL_RNDALL.test(memo)||(IL_ROUND.test(memo)&&G.fld.sub==='시설 행정')||(rLocs.length&&IL_ROUND.test(memo)&&!IL_CL[G.fld.sub]))){
+    const use=IL_RNDALL.test(memo)||!rLocs.length?IL_RND:rLocs;const rows=[];
+    for(const [loc,,L] of use)for(const [k,q,re] of L)rows.push({loc,text:q,res:G.gok?'양호':'',act:'',re,k});const rest=[];
+    for(const it of G.items){const full=`${it.loc} ${it.text} ${it.act}`;const Z=IL_RND.find(([,re])=>re.test(full));const zone=Z&&Z[0];
+      const cand=rows.filter(r=>!zone||r.loc===zone);const body=zone?full.replace(Z[1],' '):full;const r=cand.find(r=>!r.used&&r.re.test(body));
+      if(r){r.used=1;if(it.res)r.res=it.res;if(it.act)r.act=it.act;if(it.res==='불량'||it.res==='주의')r.text=`${r.text} — ${ilExtClean(body,{who:''})||it.text}`.slice(0,120);continue;}
+      if(zone&&it.res!=='불량'&&it.res!=='주의'&&!it.act&&(IL_OK.test(full)||IL_ROUND.test(full))){for(const x of cand)if(!x.res)x.res='양호';continue;}
+      if(IL_ROUND.test(full)&&it.res!=='불량'&&it.res!=='주의'&&!it.act){if(!G.head)G.head=full.trim().replace(IL_OKTAIL,'');continue;}rest.push(it);}
+    G.items=[...rows.map(({re,used,k,...x})=>x),...rest];G.rnd=use.map(x=>x[0]);G.fld={sub:'시설 행정',leaf:'시설점검일지'};}
+  else if(!sf&&G.kind==='chk'&&IL_CL[G.fld.sub]&&(IL_ROUND.test(memo)||!G.items.length)){
     const rows=IL_CL[G.fld.sub].map(([loc,text,re])=>({loc,text,res:G.gok?'양호':'',act:'',re}));const rest=[];
     for(const it of G.items){const full=`${it.loc} ${it.text} ${it.act}`;const r=rows.find(r=>!r.used&&r.re.test(full));
       if(!r){if(IL_ROUND.test(full)&&it.res!=='불량'&&it.res!=='주의'&&!it.act){if(!G.head)G.head=full.trim().replace(IL_OKTAIL,'');continue;}rest.push(it);continue;}r.used=1;if(it.res)r.res=it.res;if(it.act)r.act=it.act;
@@ -7736,11 +7788,12 @@ function ilParse(d){const memo=String(d.memo||'');
   G.follow=[...new Set(G.follow.map(x=>x.trim()).filter(Boolean))].slice(0,8);
   G.name=G.items.length?[G.items[0].loc,ilClause(G.items[0].text)].filter(Boolean).join(' ').slice(0,50):`${G.fld.sub==='시설 행정'?'':(G.fld.leaf||G.fld.sub)+' '}현장 사진`;
   return G;}
-function ilSummary(G,n){const f=G.fld.leaf?`${G.fld.sub}(${G.fld.leaf})`:G.fld.sub;const site=G.site&&G.site!=='전사'?G.site+' ':'';
+function ilSummary(G,n){const f=G.rnd?`시설 순회(${G.rnd.join('·')})`:G.fld.leaf?`${G.fld.sub}(${G.fld.leaf})`:G.fld.sub;const site=G.site&&G.site!=='전사'?G.site+' ':'';
   if(G.kind==='chk'){const bad=G.items.filter(i=>i.res==='불량'||i.res==='주의').length;const blank=G.items.filter(i=>!i.res).length;
     return `${site}${f} ${G.items.length}개 항목을 점검했습니다.${bad?` 불량·주의 ${bad}건은 조치가 필요합니다.`:G.items.length&&!blank?' 모두 양호합니다.':''}${n?` 현장 사진 ${n}장을 붙입니다.`:''}`;}
   const done=G.items.length&&G.items.every(i=>i.res==='완료');
-  return `${site}${f} 작업 ${G.items.length}건을 ${done?'완료했습니다':'진행했습니다'}.${G.follow.length?` 후속 조치 ${G.follow.length}건이 남았습니다.`:''}${n?` 작업 사진 ${n}장을 붙입니다.`:''}`;}
+  const ne=G.items.filter(i=>i.ext).length;
+  return `${site}${f} 작업 ${G.items.length}건${ne?`(외부 ${ne}·자체 ${G.items.length-ne})`:''}을 ${done?'완료했습니다':'진행했습니다'}.${G.follow.length?` 후속 조치 ${G.follow.length}건이 남았습니다.`:''}${n?` 작업 사진 ${n}장을 붙입니다.`:''}`;}
 function ilWriter(){const me=S.staff[S.myStaff]||{};const role=String(me.role||'').split(/\s*[-–·(]\s*/)[0].trim().slice(0,10);return [S.config.dept||'관리부',me.name||myName(),role].filter(Boolean).join(' ');}
 const ilDate=s=>isDate(s)?`${s.slice(0,4)}. ${+s.slice(5,7)}. ${+s.slice(8,10)}.(${WD[dow(s)]})`:'';
 function ilBodyHTML(G,d){const K=IL_K[G.kind];const td=(x,c)=>`<td${c?` class="${c}"`:''}>${esc(x||'')}</td>`;
@@ -7755,8 +7808,11 @@ function ilBodyHTML(G,d){const K=IL_K[G.kind];const td=(x,c)=>`<td${c?` class="$
   h+=sec(K.v+' 개요')+`<p class="ap-il-sum">${esc(ilSummary(G,ilPhs(d).length))}</p>`;
   const none=c=>`<tr><td class="ap-il-no">1</td>${'<td></td>'.repeat(c)}</tr>`;
   if(G.kind==='chk')h+=sec('점검 결과')+`<table class="ap-il-items"><thead><tr><th style="width:7%">No</th><th style="width:21%">점검 항목</th><th>점검 내용</th><th style="width:11%">결과</th><th style="width:25%">조치 사항</th></tr></thead><tbody>${G.items.map((it,i)=>`<tr><td class="ap-il-no">${i+1}</td>${td(it.loc)}${td(it.text)}<td class="ap-il-res ${ilResC(it.res)}">${esc(it.res)}</td>${td(it.act)}</tr>`).join('')||none(4)}</tbody></table>`;
+  else if(G.items.some(i=>i.ext)){const E=G.items.filter(i=>i.ext),I=G.items.filter(i=>!i.ext);
+    h+=sec('외부 작업')+`<table class="ap-il-items ap-il-ext"><thead><tr><th style="width:7%">No</th><th style="width:9%">종별</th><th style="width:19%">업체명</th><th style="width:8%">인원</th><th>작업 내용</th><th style="width:12%">결과</th></tr></thead><tbody>${E.map((it,i)=>`<tr><td class="ap-il-no">${i+1}</td><td class="ap-il-no">${esc(it.ext.kind)}</td>${td(it.ext.who)}<td class="ap-il-no">${esc(it.ext.n)}</td>${td([it.loc,it.text].filter(Boolean).join(' — '))}<td class="ap-il-res ${ilResC(it.res)}">${esc(it.res)}</td></tr>`).join('')}</tbody></table>`;
+    if(I.length)h+=sec('자체 작업')+`<table class="ap-il-items"><thead><tr><th style="width:7%">No</th><th style="width:25%">작업 위치</th><th>작업 내용</th><th style="width:13%">결과</th></tr></thead><tbody>${I.map((it,i)=>`<tr><td class="ap-il-no">${i+1}</td>${td(it.loc)}${td(it.text)}<td class="ap-il-res ${ilResC(it.res)}">${esc(it.res)}</td></tr>`).join('')}</tbody></table>`;}
   else h+=sec('작업 내용')+`<table class="ap-il-items"><thead><tr><th style="width:7%">No</th><th style="width:25%">위치·대상</th><th>작업 내용</th><th style="width:13%">결과</th></tr></thead><tbody>${G.items.map((it,i)=>`<tr><td class="ap-il-no">${i+1}</td>${td(it.loc)}${td(it.text)}<td class="ap-il-res ${ilResC(it.res)}">${esc(it.res)}</td></tr>`).join('')||none(3)}</tbody></table>`;
-  if(G.mats.length)h+=sec('사용 자재')+`<table class="ap-il-mats"><thead><tr><th style="width:7%">No</th><th>품명·규격</th><th style="width:16%">수량</th><th style="width:30%">비고</th></tr></thead><tbody>${G.mats.map((m,i)=>`<tr><td class="ap-il-no">${i+1}</td>${td(m.name)}<td class="ap-il-no">${esc(m.qty)}</td><td></td></tr>`).join('')}</tbody></table>`;
+  if(G.mats.length)h+=sec(G.items.some(i=>i.ext)?'소모 자재':'사용 자재')+`<table class="ap-il-mats"><thead><tr><th style="width:7%">No</th><th>품명·규격</th><th style="width:16%">수량</th><th style="width:30%">비고</th></tr></thead><tbody>${G.mats.map((m,i)=>`<tr><td class="ap-il-no">${i+1}</td>${td(m.name)}<td class="ap-il-no">${esc(m.qty)}</td><td></td></tr>`).join('')}</tbody></table>`;
   h+=sec(G.kind==='chk'?'조치 · 특이사항':'특이사항 · 후속 조치')+(notes.length?`<ul class="ap-il-notes">${notes.join('')}</ul>`:'<p class="ap-il-none">특이사항 없음</p>');
   return h;}
 const ilClause=s=>String(s||'').split(/\s*[,，;]\s*|\s+후\s+/)[0].replace(IL_OKTAIL,'').trim();
@@ -7831,7 +7887,7 @@ function ilTimeOf(il){if(!il)return {};const ok=x=>/^\d\d:\d\d$/.test(x||'');if(
 /* ── 창 */
 function ilDlg(){let dl=$('#dlg-ilbo');if(!dl){dl=document.createElement('dialog');dl.className='modal il-dlg';dl.id='dlg-ilbo';dl.setAttribute('aria-label','시설 일보');document.body.appendChild(dl);
     dl.addEventListener('cancel',e=>{e.preventDefault();ilClose();});}return dl;}
-function ilOpen(o={}){if(!S.me||!S.me.id){toast('로그인한 뒤 쓸 수 있습니다.','err');return;}
+function ilOpen(o={}){if(!S.me||!S.me.id){toast('로그인한 뒤 쓸 수 있습니다.','err');return;}try{if(typeof fmSub==='function')fmSub();}catch{}
   IL.src={};IL.dirty=false;
   if(o.task){IL.d=ilFromTask(o.task);IL.step=IL.d.body?'doc':'in';}
   else{if(!S.canWrite||!S.myStaff){toast('내 정보에서 이름을 먼저 고르세요. (보기 전용 권한이면 일보를 쓸 수 없습니다)','err');return;}
@@ -7874,7 +7930,9 @@ function ilInStep(){const d=IL.d;const L=ilPhs(d);const kinds=[['auto','✨ 자�
     <li><b>작업시간</b> 칸에 적으면 그 시간을, 비워 두면 메모의 09:10~11:40 같은 시간을 씁니다(자동 완성 때 칸에도 채움).</li>
     <li><b>🦺 안전관리 일지</b>: 산업안전·보건·전기·소방·유해화학물질·위험물옥내저장소·승강기·환경·폐기물·건축물·기계설비·정보통신 중 골라 점검표를 채웁니다. 메모의 「소화기 압력 불량」, 「역률 95」 같은 줄도 해당 항목·측정값에 넣습니다.</li>
     <li><b>시간</b> 09:10~11:40 · <b>자재:</b> 품명 수량 · <b>작업자:</b> 이름 · <b>※</b> 특이사항 · <b>다음:</b> 후속 조치</li>
-    <li><b>점검</b>·확인·순회가 많으면 점검 일지, <b>교체</b>·수리·청소가 많으면 작업 일보, 메모 없이 사진만 있으면 사진 대지가 됩니다.</li>
+    <li><b>✨ 자동</b>: 점검·확인·순회가 많으면 점검 일지, <b>교체</b>·수리·청소가 많으면 작업 일보, 메모 없이 사진만 있으면 사진 대지가 됩니다. 「역률·TR 유면·VCB」, 「소화기·수신기」, 「E/L·인승」, 「콤프레샤·쿨링타워·저수조」, 「집진·배출구」처럼 회사 일지 낱말이 2개 이상이면 그 <b>안전관리 일지</b>로 만듭니다.</li>
+    <li><b>외부 업체 작업</b>: 「업체: 한빛전기 2명 — 1층 분전반 차단기 교체」처럼 업체·인원을 적으면 회사 업무 일지처럼 <b>외부 작업</b>(종별 건축·설비·전기 · 업체명 · 인원)과 <b>자체 작업</b>으로 나눠 적습니다. 전화번호는 서류에 넣지 않습니다.</li>
+    <li><b>시설 순회</b>: 「변전실·발전실·경비실·저수조·펌프실」 중 2곳 이상이나 '시설 순회'를 적으면 회사 「안전관리 일지」 항목(구역별 점검 내용)으로 채웁니다.</li>
     <li>이상 없음·양호 → <i>양호</i>, 노후·마모 → <i>주의</i>, 불량·고장·누수 → <i>불량</i>. '순회 점검'이면 분야별 기본 점검 항목을 채웁니다.</li>
     <li>필요·요청·주문·예정이 들어간 줄은 <b>후속 조치</b>로 모아, 저장할 때 '할 예정' 업무로 같이 등록할 수 있습니다.</li></ul></details>
   ${ilRecentHTML()}`;}
@@ -7912,6 +7970,7 @@ async function ilAuto(force){const d=IL.d;if(!d)return;ilCollect();
   if(d.kind==='safe'&&!(d.sf&&typeof sfT==='function'&&sfT(d.sf))){toast('안전관리 일지 종류를 먼저 고르세요.','err');if(IL.step!=='in'){IL.step='in';ilRender();}const b=$('#sf-box');if(b)b.scrollIntoView({block:'start'});return;}
   if(d.kind!=='safe'&&!d.memo.trim()&&!d.ph.length){toast('사진을 올리거나 메모를 적어 주세요.','err');const m=$('#il-memo');if(m)m.focus();return;}
   if(d.edited&&!force&&!await confirmDlg('다시 자동 완성','서류에서 고친 글자는 사라지고 메모로 다시 만듭니다. 계속할까요?','다시 만들기'))return;
+  if((!d.kind||d.kind==='auto')&&typeof sfGuess==='function'){const g=sfGuess(d.memo);if(g&&sfT(g)){d.kind='safe';d.sf=g;d.sfr={};d.sfm={};if(sfT(g).w&&!(d.sfw&&d.sfw.length))d.sfw=sfWaste(d.site);toast(`메모를 보고 「${sfT(g).t}」로 만들었습니다. 서류 종류는 메모 화면에서 바꿀 수 있습니다.`);}}
   const G=ilParse(d);
   if(!d.t1&&G.time){const tm=G.time.match(/(\d\d:\d\d)(?:\s*~\s*(\d\d:\d\d))?/);if(tm){d.t1=tm[1];d.t2=tm[2]||'';}}
   if(d.kind==='safe'){if(G.site)d.site=G.site;sfBuild(d,G);}
@@ -8027,7 +8086,7 @@ function ilTaskBtn(){const h=$('#dlg-task .modal-h');if(!h)return;let b=$('#t-il
 {const _ot=openTask;openTask=function(...a){const r=_ot.apply(this,a);try{ilTaskBtn();}catch{}return r;};}
 function ilHash(){if(location.hash!=='#ilbo')return;let n=0;const tm=setInterval(()=>{n++;if(S.me&&S.me.id&&S.myStaff&&S.loaded!==false&&document.readyState==='complete'){clearInterval(tm);history.replaceState(null,'','#my');try{route();}catch{}ilOpen();}else if(n>40)clearInterval(tm);},250);}
 window.addEventListener('hashchange',ilHash);setTimeout(ilHash,800);
-window.ilApi={parse:m=>{const d={...ilBlank(),memo:m};const G=ilParse(d);return {kind:G.kind,site:G.site,fld:G.fld,time:G.time,workers:G.workers,mats:G.mats,notes:G.notes,follow:G.follow,items:G.items,title:ilTaskTitle(G)};},open:ilOpen,state:()=>IL};
+window.ilApi={parse:m=>{const d={...ilBlank(),memo:m};const G=ilParse(d);return {kind:G.kind,site:G.site,fld:G.fld,time:G.time,workers:G.workers,mats:G.mats,notes:G.notes,follow:G.follow,items:G.items,rnd:G.rnd||null,guess:typeof sfGuess==='function'?sfGuess(m):'',title:ilTaskTitle(G)};},open:ilOpen,state:()=>IL};
 
 /* ───────── 37차: 화면 오류 기록 (월요일 전 직원 사용 시작 — 첫 주 점검용) ─────────
    직원 기기에서 난 화면 오류(스크립트 오류·처리되지 않은 비동기 오류)를 wl/_sys/err 에 짧게 남김.
@@ -8340,17 +8399,20 @@ const SF_T=[
      ['운반·하역·압력',[['지게차','제동·조종장치, 하역장치·유압, 바퀴, 전조등·후진경보',/지게차/],['호이스트·크레인','권과방지·브레이크·와이어로프·훅 해지장치',/호이스트|크레인|와이어|훅/,'AG'],['압력용기·공기탱크','안전밸브·압력계 정상, 드레인',/압력\s*용기|공기\s*탱크|안전\s*밸브/]]],
      ['보건',[['국소배기장치','후드 흡인 상태·덕트 파손 없음 (인쇄·착색·코팅)',/국소\s*배기|후드|배기/,'GH'],['유기용제 취급','용기 밀폐·경고표지·환기',/유기\s*용제|시너|용제|잉크|도료/,'GH'],['소음 작업','청력보호구 지급·착용 (사출·분쇄)',/소음|청력/],['온열·한랭 대책','휴게 공간·물·냉난방',/온열|폭염|한랭|휴게|냉방|난방/],['중량물·근골격계','보조기구 사용·반복작업 휴식',/중량물|근골격|허리/],['구급함·세안설비','구급약품·세안설비 상태',/구급|세안/]]]],
   m:[['tbm','TBM 참석 인원','명',null,null,'',/TBM\s*(?:참석)?\s*(?:인원)?/i]]},
- {id:'ele',n:'전기',ico:'⚡',t:'전기안전관리 일지',role:/전기안전/,law:'전기안전관리법 · 「전기안전관리자의 직무에 관한 고시」(점검 기록 작성·보존)',cyc:'일상점검(순회) 매일 · 월차·연차 점검은 직무고시 주기',keep:'',tx:'fac|전기설비|수변전·전기실',
-  g:[['수변전설비',[['수전반·차단기(VCB)','투입 표시, 이상음·냄새·발열 없음',/수전|VCB|(?<!누전)차단기|특고압|LBS|COS/i],['변압기','온도·소음·진동·누유',/변압기|TR(?![a-z])/],['보호계전기','동작·경보 표시 없음',/계전기|OCR|OVR|UVR|경보/],['진상콘덴서','팽창·누유·소음',/콘덴서|진상/],['전기실 환경','온도·환기·누수, 소동물 침입, 출입 잠금',/전기실|누수|환기|잠금|쥐/]]],
-     ['배전·부하설비',[['배전반·분전반','발열·변색·이물, 문 닫힘·잠금',/배전반|분전반|판넬/],['누전차단기','시험 버튼 동작',/누전/],['생산설비 전원반','단자 조임·발열(열화상) — 사출·블로우·인쇄·증착',/전원반|제어반|열화상|단자/],['조명·콘센트','파손·과열·문어발 없음',/조명|콘센트|멀티탭|문어발/],['전기차 충전기','외관·케이블·접지',/충전기|충전/,'A']]],
-     ['비상전원·접지',[['비상발전기','연료·배터리·냉각수, 자동 기동 상태',/발전기/],['자동절체(ATS)','자동 위치',/ATS|절체/i],['UPS·축전지','충전 상태·경보',/UPS|축전지|배터리/i],['접지·피뢰설비','접지선 탈락·부식 없음',/접지|피뢰/]]]],
-  m:[['kv','수전 전압','kV',null,null,'22.9kV 계통 — 평소 값과 비교',/수전\s*전압|특고압\s*전압/],['vl','저압 선간 전압','V',342,418,'380V ±10%',/저압\s*(?:선간)?\s*전압|선간\s*전압/],['ia','부하 전류(최대 상)','A',null,null,'정격 대비 확인',/부하\s*전류/],['tt','변압기 온도','℃',null,90,'유입식 90℃ 이하 · 몰드식은 제조사 기준',/변압기\s*온도|TR\s*온도/],['pf','역률','%',90,null,'90% 이상 (한전 역률 기준)',/역률/],['kw','최대 수요전력','kW',null,null,'계약전력 대비 확인',/최대\s*(?:수요)?\s*전력|피크\s*전력/],['ig','저항성 누설전류','mA',null,1,'1mA 이하 (KEC)',/누설\s*전류/]]},
- {id:'fire',n:'소방',ico:'🧯',t:'소방안전관리 점검 일지',role:/소방안전관리/,law:'화재예방법 제24조(소방안전관리 업무) · 시행규칙 제10조(업무수행 기록)',cyc:'업무수행 기록 월 1회 이상',keep:'작성일부터 2년 보관',tx:'fac|소방설비|소방시설 점검',
-  g:[['소화설비',[['소화기','비치 위치·압력게이지(녹색)·사용기한',/소화기/],['옥내소화전','호스·관창 비치, 함 앞 적치물 없음',/소화전/],['스프링클러','헤드 손상·도장 없음, 알람밸브 압력',/스프링클러|헤드|알람\s*밸브/],['소화펌프','자동 기동 위치·압력·누수',/소화\s*펌프|펌프/]]],
-     ['경보·피난설비',[['자동화재탐지설비','수신기 화재·고장 표시 없음, 감지기 외관',/수신기|감지기|자탐/],['유도등·비상조명','점등·예비전원',/유도등|비상\s*조명/],['비상방송','송출·연동',/비상\s*방송|방송/]]],
-     ['피난·방화시설',[['비상구·피난통로','잠금·적치물 없음',/비상구|피난|통로/],['방화문·방화셔터','자동 닫힘, 고임목 없음',/방화문|셔터/],['방화구획 관통부','배관·배선 관통부 마감',/방화\s*구획|관통/]]],
-     ['화기·인화물',[['화기 작업 감독','용접·절단 작업 허가·화재감시자·소화기 배치',/용접|절단|화기|그라인더/],['인화성 물질 보관','잉크·시너·도료 보관함 밀폐·지정 장소',/시너|잉크|도료|인화/,'GH'],['전열기·문어발','개인 전열기·문어발 사용 없음',/전열기|난로|문어발/]]],
-     ['교육·훈련',[['자위소방대·비상연락망','편성·연락망 현행화',/자위소방대|비상\s*연락/],['소방훈련·교육','연 1회 이상 실시 계획 대비',/훈련|교육/]]]],
+ {id:'ele',n:'전기',ico:'⚡',t:'전기안전관리 일지',role:/전기안전/,law:'전기안전관리법 · 「전기안전관리자의 직무에 관한 고시」(점검 기록 작성·보존) · 회사 「변전실 안전점검 일지」·「수변전 일지」 항목',cyc:'일상점검(순회) 매일 · 수변전 일지 09·13·17시 · 월차·연차 점검은 직무고시 주기',keep:'',tx:'fac|전기설비|수변전·전기실',fm:/수변전|변전실|발전|축전지|밧데리|전기설비|분전반|판넬|열화상|전기자동차|계량기/,
+  g:[['수변전설비',[['인입선로(전선·케이블)','인입구 배선·접지선, 헤드 단말처리부 균열·붓싱 손상',/인입|케이블|붓싱|단말/],['수전반·차단기(VCB)','LBS·LA·VCB·PF·COS 접속부 과열·변색, 진동·음향, 개폐 표시·접촉 불량',/수전|VCB|(?<!누전)차단기|특고압|LBS|COS|개폐기/i],['계기용변성기(MOF·PT·CT)','접촉부 과열·변색, 유량 부족·진동·음향',/MOF|변성기|PT(?![a-z])|CT(?![a-z])/],['변압기','본체·접속부 과열, 누유·유량·온도·소음·진동',/변압기|TR(?![a-z])/],['모선·애자','접속부 과열·변색, 애자 균열·선간 절연',/모선|애자/],['보호계전기','OCR·UVR·OCGR 동작 표시·과열·변색, 경보 없음',/계전기|OCR|OVR|UVR|OCGR|경보/],['진상콘덴서','팽창·누유·소음',/콘덴서|진상/],['전기실 환경','온도·환기·누수, 소동물 침입, 출입 잠금',/전기실|변전실|누수|환기|잠금|쥐/]]],
+     ['배전·부하설비',[['배전반·분전반','발열·변색·이물, 문 닫힘·잠금',/배전반|분전반|판넬/],['누전차단기','시험 버튼 동작',/누전/],['생산설비 전원반','단자 조임·발열(열화상) — 사출·블로우·인쇄·증착',/전원반|제어반|열화상|단자/],['조명·콘센트','파손·과열·문어발 없음',/조명|콘센트|멀티탭|문어발/],['전기차 충전기','외관·케이블·접지',/충전기|충전/,'AG']]],
+     ['비상전원·접지',[['비상발전기','연료·배터리·냉각수, 자동 기동 상태',/발전기/],['자동절체(ATS)','자동 위치',/ATS|절체/i],['UPS·축전지','UPS 경보, 정류기 축전지 전압·충전, 단자 고정·청결',/UPS|축전지|배터리|밧데리|정류기/i],['접지·피뢰설비','접지선 탈락·부식 없음',/접지|피뢰/]]]],
+  m:[['kv','수전 전압','kV',null,null,'22.9kV 계통 — 평소 값과 비교',/수전\s*전압|특고압\s*전압/],['vl','저압 선간 전압','V',342,418,'380V ±10%',/저압\s*(?:선간)?\s*전압|선간\s*전압/],['ia','부하 전류(최대 상)','A',null,null,'정격 대비 확인',/부하\s*전류/],['tt','변압기 온도','℃',null,90,'유입식 90℃ 이하 · 몰드식은 제조사 기준 (수변전 일지 적정 40~80℃)',/변압기\s*온도|TR\s*온도/],['pf','역률','%',90,null,'90% 이상 (한전 역률 기준)',/역률/],['kw','최대 수요전력','kW',null,null,'계약전력 대비 확인',/최대\s*(?:수요)?\s*전력|피크\s*전력/],['ig','저항성 누설전류','mA',null,1,'1mA 이하 (KEC)',/누설\s*전류/],
+     ['tro','변압기 유면','%',50,null,'50% 이상',/유면/,'','g','주의',['TR1','TR2','TR3']],['dc','정류기 DC 전압','V',null,null,'정격 전압과 비교',/정류기\s*(?:DC)?\s*전압|DC\s*전압/i],['mtr','전력량계 지침','kWh',null,null,'전일 지침과 비교 (사용량 = 금일 − 전일)',/전력량계|지침/,'','g','',['중간부하','최대부하','경부하']]]},
+ {id:'fire',n:'소방',ico:'🧯',t:'소방안전관리 점검 일지',role:/소방안전관리/,law:'화재예방법 제24조(소방안전관리 업무) · 시행규칙 제10조(업무수행 기록) · 회사 「소방시설 안전점검 일지」 항목',cyc:'일상점검 매일(사내) · 업무수행 기록 월 1회 이상',keep:'작성일부터 2년 보관',tx:'fac|소방설비|소방시설 점검',fm:/소방|방화관리|소화기|용접/,
+  g:[['자동화재탐지설비',[['수신기','작동에 지장을 주는 장애물 없음, 스위치 정위치(자동)',/수신기|자탐|스위치/],['감지기','변형·손상·탈락·현저한 부식 없음',/감지기/],['비상전원','방전 여부',/비상\s*전원|예비\s*전원|방전/],['발신기세트','발신기·경종·표시등 변형·손상 없음',/발신기|경종/]]],
+     ['소화기',[['설치 위치(소화기)','잘 보이는 곳, 보행거리 적정',/보행\s*거리|설치\s*위치/],['소화기 용기·압력','변형·손상·부식, 압력게이지(녹색), 안전핀 고정',/소화기|안전핀|게이지/],['노후·압력미달 소화기','10년 경과 폐기 대상·압력 미달 소화기 비치 없음',/10년|폐기|압력\s*미달|노후/]]],
+     ['옥내소화전설비',[['소화전 표시등','위치 표시등 점등',/위치\s*표시등|소화전\s*표시등/],['소화전함 주변','사용 장애물 없음',/소화전/],['소화펌프·제어반','펌프·배관 누수 없음, 제어반 정상(자동) 위치',/소화\s*펌프|펌프|제어반/],['호스·노즐·밸브','호스·노즐·배관·밸브 변형·손상 없음, 방수구함 상태',/호스|노즐|관창|방수구/]]],
+     ['스프링클러설비',[['제어밸브','개폐·작동 용이, 수압 정상압 유지',/제어\s*밸브|알람\s*밸브|수압/],['배관·헤드','누수 없음, 감열·살수 방해물 없음',/스프링클러|헤드|살수/],['동결·부식 방호','보온·방호 조치',/동결|보온|부식/]]],
+     ['피난·방화시설',[['피난기구','사용방법 표시, 고정장치 노후·파손 없음',/피난\s*기구|완강기|구조대/],['비상구','밖으로 쉽게 열림, 잠금·적치물 없음',/비상구/],['피난통로·계단','피난 방해 물건 적치 없음',/피난|통로|계단/],['유도등·유도표지','파손·탈락 없음, 점등·예비배터리',/유도등|유도\s*표지|비상\s*조명/],['방화문·방화셔터','자동 닫힘, 고임목 없음',/방화문|셔터/]]],
+     ['흡연장·취약지역',[['흡연장','소화기 비치·관리, 꽁초 처리',/흡연/],['주차장','화재 위험요소 없음',/주차장/],['쓰레기·분리수거장','정리정돈',/쓰레기|재활용|분리\s*수거/],['방화 표지','주의·경고 표지 부착',/표지|경고/]]],
+     ['화기·교육',[['화기 작업 감독','용접·절단 작업 사전 신청·화재감시자·소화기 배치',/용접|절단|화기|그라인더/],['인화성 물질 보관','잉크·시너·도료 보관함 밀폐·지정 장소',/시너|잉크|도료|인화/,'GH'],['전열기·문어발','개인 전열기·문어발 사용 없음',/전열기|난로|문어발|난방\s*기구/],['자위소방대·훈련','비상연락망 현행화, 소방훈련·교육 연 1회 이상',/자위소방대|비상\s*연락|훈련|교육/]]]],
   m:[['pp','소화펌프 압력','MPa',null,null,'설정 압력과 비교',/펌프\s*압력/]]},
  {id:'chem',n:'유해화학물질',ico:'🧪',t:'유해화학물질 취급시설 자체점검 일지',role:/유해화학물질/,law:'화학물질관리법 제26조(취급시설 등의 자체 점검)',cyc:'주 1회 이상',keep:'',tx:'safe|작업환경·화학물질|유해화학물질',
   g:[['저장·보관',[['보관 용기','밀폐·부식·누출 없음',/용기|누출|부식|샘/],['보관장소 잠금','잠금장치, 관계자 외 출입 금지 표시',/잠금|시건|출입\s*금지/],['방류턱·누출 방지','방류턱·트레이 균열·이물 없음',/방류|방지턱|트레이/],['유해화학물질 표시','용기·보관장소 GHS 경고표지',/표시|표지|라벨|GHS/i],['물질별 분리 보관','산·알칼리·인화성 분리',/분리|혼재/]]],
@@ -8362,16 +8424,19 @@ const SF_T=[
      ['설비',[['환기·배출설비','팬 작동, 인화성 증기 체류 없음',/환기|배출|팬/],['조명·전기설비','방폭 기구 손상·배선 이상 없음',/조명|방폭|전기|배선/],['피뢰·접지설비','접지선 탈락·부식 없음',/피뢰|접지/],['소화설비','소화기 비치·압력 정상',/소화기|소화/],['경보설비','작동 정상',/경보|감지|비상벨/]]],
      ['저장·관리',[['표지·게시판','“위험물 옥내저장소” 표지, 유별·품명·최대수량·안전관리자 게시',/표지|게시판/],['유별·품명 구분 저장','혼재 금지 준수, 품명별 구분',/유별|혼재|구분/],['용기 적재 높이','3m 이하 (기계 하역 6m·제3·4석유류 4m)',/적재|높이|쌓/],['용기 밀폐·누설','마개 닫힘, 누설·변형 없음',/용기|누설|마개|샘/],['저장 수량','허가 수량(지정수량 배수) 이내',/수량|배수|지정\s*수량/],['주변 화기·적치','주변 화기 금지, 가연물 적치 없음',/화기|가연물|적치/]]]],
   m:[['tp','저장소 실내 온도','℃',null,55,'수납 위험물 55℃ 이하',/실내\s*온도|저장소\s*온도/,'','',  '불량'],['qx','저장량 (지정수량 배수)','배',null,null,'허가 배수 이내',/지정\s*수량\s*배수|배수/]]},
- {id:'elev',n:'승강기',ico:'🛗',t:'승강기 운행관리 점검 일지',role:/승강기/,law:'승강기 안전관리법 제31조(자체점검 월 1회 이상 · 10일 이내 승강기안전종합정보망 입력)',cyc:'운행 일상점검 매일 · 자체점검 월 1회',keep:'',tx:'fac|승강기|자체점검',
-  g:[['운행 상태',[['운행·착상','층 정지·착상 단차, 이상 소음·진동 없음',/운행|착상|단차|소음|진동/],['승강장·카 도어','개폐 원활, 문닫힘 안전장치 작동',/도어|문/],['호출·표시','버튼·층 표시등 정상',/버튼|표시등|호출/],['비상통화장치','통화 시험(관리실 연결)',/비상\s*통화|인터폰/],['카 내부','조명·환기팬·비상조명',/조명|환기|팬/]]],
-     ['기계실·화물용',[['기계실','온도·청결, 출입문 잠금, 소화기',/기계실/],['화물용 적재','정격하중 이내, 지게차 진입 금지 표시',/화물|적재|하중|지게차/],['구출 장비','비상 열쇠·구출 절차 비치',/열쇠|구출/]]],
-     ['법정 관리',[['검사합격·준수사항 게시','검사합격증명서·이용자 준수사항 부착',/합격|준수|부착/],['월 자체점검','유지관리업체 점검·정보망 입력(10일 이내) 확인',/자체\s*점검|정보망|유지\s*관리/],['정기검사','유효기간 확인',/정기\s*검사|유효/]]]],
-  m:[['no','점검 호기','',null,null,'예) 1호기(승객용), 2호기(화물용)',/호기/,'','t'],['mt','기계실 온도','℃',null,40,'40℃ 이하',/기계실\s*온도/]]},
- {id:'env',n:'환경',ico:'🌫',t:'대기배출시설·방지시설 운영 일지',role:/환경기술인/,law:'대기환경보전법 제31조(배출시설·방지시설 운영) · 제39조(자가측정)',cyc:'가동일마다 운영 기록 · 자가측정은 사업장 종별 주기(4·5종 반기 1회)',keep:'',tx:'fac|환경|대기 자가측정',env:1,
-  g:[['배출시설',[['배출시설 가동','가동 호기·이상 운전 없음 (사출·인쇄·증착·코팅)',/배출\s*시설|가동/],['원료·연료 사용','도료·잉크·시너 사용량 기록',/사용량|원료|연료|도료|잉크|시너/]]],
-     ['방지시설',[['송풍기','작동·이상음·벨트 장력',/송풍기|벨트/],['흡착탑(활성탄)','차압·교체 주기 준수',/활성탄|흡착/],['전처리 필터','막힘·교체',/필터|여과/],['후드·덕트','흡인 상태·누설·파손',/후드|덕트/],['배출구','이상 배출(악취·연기) 없음, 측정구 상태',/배출구|굴뚝|연돌|악취|측정구/],['적산전력계','방지시설 가동시간 기록과 일치',/적산|전력계/]]],
+ {id:'elev',n:'승강기',ico:'🛗',t:'승강기 운행관리 점검 일지',role:/승강기/,law:'승강기 안전관리법 제31조(자체점검 월 1회 이상 · 10일 이내 승강기안전종합정보망 입력) · 회사 「E/L 일일 점검일지」 항목',cyc:'일일 점검 매일 · 자체점검 월 1회',keep:'',tx:'fac|승강기|자체점검',fm:/승강기/,
+  g:[['관리',[['비상키','신속히 대처할 수 있게, 아무나 쓸 수 없게 보관',/비상\s*키|열쇠/],['비상연락망','관리실·전기실·경비실에서 신속히 대처',/비상\s*연락/],['고장·수리 일지','작성·결재 확인',/고장|수리\s*일지/]]],
+     ['승강장(각 층)',[['호출 버튼','누르면 등록층에 정확히 도착',/호출|승강장\s*버튼/],['승강장 표시기','램프류·표시장치 작동',/표시기|램프/],['승강로 습기','물청소 등으로 습기 유입 없음',/습기|물청소/],['승강장 문','도어슈 탈락·흔들림, 여닫힘 속도, 변형·마모·부식 없음',/승강장\s*문|외부\s*문|도어슈|도어/]]],
+     ['카 내부',[['부착물','이용자 안전수칙·비상연락망·관리카드 부착',/부착|안전\s*수칙|관리\s*카드/],['표시장치·조작반','층 표시·운행방향 램프, 조작반 잠금',/층\s*표시|운행\s*방향|조작반/],['행선·열림 버튼','동작 상태',/행선|열림\s*버튼|버튼/],['통화장치(인터폰)','카 안 통화·경보장치',/통화|인터폰|경보/],['문닫힘 안전장치','세이프티슈·광전장치 작동',/세이프티|세프티|광전|문\s*닫힘/],['카 문·문턱','변형·마모·부식, 문턱 홈 이물질, 개폐 원활',/카\s*문|문턱|착상/],['운행 진동·소음','정상 운행 중 과도한 진동·소음 없음',/진동|소음|운행/]]],
+     ['기계실',[['기계실 통로·출입문','장애물·조명, 출입문 시건',/기계실|통로|시건/],['조명·환기·누수','조명·환기 작동, 천장·창문 누수·빗물 유입 없음',/조명|환기|누수|빗물/],['전동기·권상기','이상 발열·소음 없음',/전동기|권상기|모터/]]],
+     ['법정 관리',[['검사합격·준수사항 게시','검사합격증명서·이용자 준수사항 부착',/합격|준수/],['월 자체점검','유지관리업체 점검·정보망 입력(10일 이내) 확인',/자체\s*점검|정보망|유지\s*관리/],['정기검사','유효기간 확인',/정기\s*검사|유효/]]]],
+  m:[['no','점검 호기','',null,null,'예) 인승1·인승2·화물1·화물2',/호기/,'','t'],['mt','기계실 온도','℃',null,40,'40℃ 이하',/기계실\s*온도/]]},
+ {id:'env',n:'환경',ico:'🌫',t:'대기배출시설·방지시설 운영 일지',role:/환경기술인/,law:'대기환경보전법 제31조(배출시설·방지시설 운영) · 제39조(자가측정) · 회사 「대기배출시설 및 방지시설 운영기록부」 항목',cyc:'가동일마다 운영 기록 · 자가측정은 사업장 종별 주기(4·5종 반기 1회)',keep:'',tx:'fac|환경|대기 자가측정',env:1,fm:/대기배출/,
+  g:[['배출시설',[['배출시설 가동','가동 호기·이상 운전 없음 (사출·인쇄·증착·코팅)',/배출\s*시설|가동/,'AH'],['분쇄·혼합·성형시설','배출구 1~6 가동시간 기록, 이상 운전 없음',/분쇄|혼합|성형|배출\s*시설|가동/,'G'],['원료·연료 사용','도료·잉크·시너 사용량 기록',/사용량|원료|연료|도료|잉크|시너/]]],
+     ['방지시설',[['송풍기','작동·이상음·벨트 장력',/송풍기|벨트/],['흡착탑(활성탄)','차압·교체 주기 준수',/활성탄|흡착/,'AH'],['여과집진시설(백필터)','차압·탈진 작동, 필터 파손·분진 누출 없음',/여과|집진|백\s*필터|탈진|필터/,'G'],['전처리 필터','막힘·교체',/필터|여과/,'AH'],['후드·덕트','흡인 상태·누설·파손',/후드|덕트/],['배출구','이상 배출(악취·연기·분진) 없음, 측정구 상태',/배출구|굴뚝|연돌|악취|측정구/],['적산전력계','방지시설 가동시간·전력 지침 기록',/적산|전력계|지침/]]],
      ['기타',[['비산먼지·악취','야적·분진·악취 민원 없음',/비산|먼지|분진|민원/],['폐수·우수','유출·우수관 오염 없음',/폐수|우수|유출/,'H'],['자가측정·보고','측정 일정·결과 보관',/자가\s*측정/]]]],
-  m:[['eh','배출시설 가동시간','h',null,null,'',/배출\s*시설\s*가동/],['ph','방지시설 가동시간','h',null,null,'배출시설 가동시간 이상',/방지\s*시설\s*가동/],['dp','흡착탑 차압','mmAq',null,null,'평소 값·교체 기준과 비교',/차압/],['fa','송풍기 전류','A',null,null,'정격 대비',/송풍기\s*전류/],['ac','활성탄 최근 교체일','',null,null,'교체 주기 확인',/활성탄\s*교체/,'','t'],['us','원료 사용량','',null,null,'예) 도료 20L, 시너 10L',/원료\s*사용량/,'','t']]},
+  m:[['eh','배출시설 가동시간','h',null,null,'',/배출\s*시설\s*가동/],['ph','방지시설 가동시간','h',null,null,'배출시설 가동시간 이상',/방지\s*시설\s*가동/],['dp','방지시설 차압','mmAq',null,null,'평소 값·교체 기준과 비교',/차압/],['fa','송풍기 전류','A',null,null,'정격 대비',/송풍기\s*전류/],['ac','활성탄 최근 교체일','',null,null,'교체 주기 확인',/활성탄\s*교체/,'AH','t'],['us','원료 사용량','',null,null,'예) 도료 20L, 시너 10L',/원료\s*사용량/,'','t'],
+     ['ekw','방지시설 전력 지침','kWh',null,null,'배출구별 1일 사용량 기록 (운영기록부)',/전력\s*(?:사용량|지침)|지침/,'G','g','',['1','2','3','4','5','6']]]},
  {id:'waste',n:'폐기물(일반/지정)',ico:'♻',t:'폐기물 관리 일지 (일반·지정)',role:/폐기물/,law:'폐기물관리법 제17조(사업장폐기물 배출자) · 제18조(올바로 인계)',cyc:'배출·반출할 때 기록 · 지정폐기물 보관 45일/60일 이내',keep:'관리대장·인계서 3년 보존',tx:'fac|환경|폐기물 처리·신고',w:1,
   g:[['보관장소',[['보관장소 표지판','종류·보관기간·관리책임자 표시',/표지판|표지/],['지붕·바닥·덮개','빗물 유입·침출수 방지',/지붕|바닥|덮개|침출|빗물/],['종류별 분리 보관','혼합 보관 없음',/분리|혼합/],['지정폐기물 용기','밀폐·누출 방지턱·라벨',/용기|누출|방지턱|드럼/]]],
      ['처리',[['보관 기간','지정폐기물 45일(폐유·폐유기용제·폐흡착제 등)·60일 이내 반출',/보관\s*기간|기간/],['올바로 인계서','반출 시 인계서 입력·확인',/올바로|인계/],['위탁 처리업체','허가증·위탁계약 유효',/업체|계약|허가/],['폐합성수지 재활용','사출·블로우 스크랩 분리·재활용',/스크랩|재활용|합성수지|불량품/,'AG']]]],
@@ -8382,13 +8447,14 @@ const SF_T=[
      ['외곽·부대',[['주차장·도로·배수로','포장 파손·배수 막힘',/주차장|도로|배수로|맨홀/],['담장·옹벽·조경','기울어짐·균열·수목 전도 위험',/담장|옹벽|조경|수목/],['침수 대비','배수펌프·차수판 상태',/침수|차수|배수\s*펌프|지하/]]],
      ['법정',[['정기점검 일정','대상 건축물 정기점검 시기 확인',/정기\s*점검/]]]],
   m:[]},
- {id:'mech',n:'기계설비',ico:'⚙',t:'기계설비 유지관리 점검 일지',role:/기계설비/,law:'기계설비법 제17조 · 「기계설비 유지관리기준」',cyc:'유지관리점검 반기 1회 이상 · 성능점검 연 1회',keep:'성능점검 기록 10년 보존',tx:'fac|기계설비·공조|',
-  g:[['냉각·열원 (금형 냉각)',[['칠러(냉동기)','냉수 온도·압력, 이상음·경보',/칠러|냉동기/],['냉각탑','팬·수위·스케일, 수처리(레지오넬라)',/냉각탑/],['냉각수 펌프·배관','누수·진동·보온',/냉각수|순환\s*펌프/]]],
-     ['압축공기',[['공기압축기','토출 압력·오일·온도·이상음',/콤프레샤|컴프레서|컴프레샤|압축기/],['에어 드라이어·드레인','이슬점·자동 드레인 작동',/드라이어|드레인|이슬점/],['공기탱크·안전밸브','안전밸브·압력계 정상',/공기\s*탱크|안전\s*밸브|리시버/]]],
-     ['공조·환기',[['냉난방기·공조기','필터·벨트·작동',/공조|에어컨|냉난방|필터|AHU/i],['급배기 팬·덕트','작동·소음',/급배기|환기|팬|덕트/]]],
-     ['급배수·위생',[['저수조·급수펌프','수위·잠금·청결 (청소 반기 1회)',/저수조|물탱크|급수/],['배수·오수 펌프','작동·막힘',/배수|오수/],['위생기구','누수·작동',/화장실|위생|세면대|변기|소변기/]]],
-     ['가스·보일러',[['가스설비','누설 검사·차단밸브',/가스/],['보일러·온수기','압력·온도·안전장치',/보일러|온수/]]]],
-  m:[['cp','압축기 토출 압력','kgf/㎠',5,9.5,'설정 압력 범위 (보통 6~8)',/토출\s*압력|압축기\s*압력|에어\s*압력/],['cw','칠러 냉수 출구 온도','℃',5,20,'금형 냉각 설정값과 비교',/냉수\s*(?:출구)?\s*온도|칠러\s*온도/],['ct','냉각탑 수온','℃',null,37,'37℃ 이하',/냉각탑\s*수온|냉각수\s*온도/],['wl','저수조 수위','%',30,null,'30% 이상',/저수조\s*수위|수위/]]},
+ {id:'mech',n:'기계설비',ico:'⚙',t:'기계설비 유지관리 점검 일지',role:/기계설비/,law:'기계설비법 제17조 · 「기계설비 유지관리기준」 · 수도법 시행규칙 제22조의3(저수조 위생점검 월 1회) · 회사 콤프레샤·쿨링타워·저수조 일지 항목',cyc:'콤프레샤·온수기 매일 13시 · 쿨링타워 주 1회 · 저수조 위생 월 1회 · 성능점검 연 1회',keep:'성능점검 기록 10년 보존',tx:'fac|기계설비·공조|',fm:/콤프레샤|쿨링타워|저수조|온수기|수도계량기/,
+  g:[['공기압축기 (매일)',[['공기압축기','호기별 토출 압력·온도, 운전·부하 시간, 인버터, 이상음',/콤프레샤|컴프레서|컴프레샤|압축기/],['에어 드라이어·애프터쿨러','입력·출력·흡입 공기압, 자동 드레인',/드라이어|드레인|애프터|이슬점/],['공기탱크(리시버)·안전밸브','압력·안전밸브·압력계',/공기\s*탱크|리시버|안전\s*밸브|receiver/i]]],
+     ['전기온수기',[['전기온수기','설정·현재 온도(80℃ 이하)·압력(8.6bar 이하)',/온수기|온수/]]],
+     ['쿨링타워 (주간)',[['MCC 판넬','차단기·MC 동작, 판넬 청결',/MCC|판넬/],['냉각수 순환모터','구동·진동·누수, 흡입·토출 압력',/순환\s*(?:모터|펌프)|냉각수/],['물탱크','수위·부유물',/물탱크|부유물/],['냉각팬·V벨트','팬모터 구동·진동, V벨트 마모',/냉각\s*(?:휀|팬)|휀|벨트/],['내부·상부수조 청결','이끼·이물질 없음',/이끼|이물질|상부\s*수조/]]],
+     ['저수조 위생 (월간)',[['주위 청결','청결, 쓰레기·오물·고인 물 없음',/저수조\s*주위|고인\s*물|오물/],['본체 균열·누수','균열·누수·빗물 유입 없음, 유출·배수관 접합 고정·밀폐',/본체|균열|유출관|배수관/],['윗부분 오염','오염 우려 설비 없음, 물 고임·먼지 없음',/윗부분|상부/],['내부 오물·녹','오물·녹·도장 떨어짐·부유물 없음',/저수조\s*(?:안|내부)|녹|도장/],['맨홀 잠금','먼지 유입 막는 구조, 잠금장치',/맨홀|뚜껑|잠금/],['월류관·통기관','끝부분 방충망 훼손 없음',/월류관|통기관|방충망/],['냄새·맛·색도·탁도','이상한 냄새·맛·색·탁함 없음',/냄새|맛|색도|탁도|수질/]]],
+     ['냉각·공조·위생',[['칠러(냉동기)','냉수 온도·압력, 이상음·경보',/칠러|냉동기/],['냉난방기·공조기','필터·벨트·작동',/공조|에어컨|냉난방|필터|AHU/i],['급배기 팬·덕트','작동·소음',/급배기|환기|팬|덕트/],['급수·배수 펌프','작동·막힘·누수',/급수|배수|오수|펌프/],['가스·보일러','누설 검사·차단밸브, 압력·온도·안전장치',/가스|보일러/]]]],
+  m:[['cp','압축기 토출 압력','bar',5,9.5,'설정 범위 (보통 6~8, 0.85MPa 이하)',/토출\s*압력|압축기\s*압력|에어\s*압력/,'','g','주의',['1호기','2호기','3호기']],['cpt','압축기 토출 온도','℃',null,100,'100℃ 이하 (제조사 기준 확인)',/토출\s*온도/,'','g','주의',['1호기','2호기','3호기']],['rtp','공기탱크 압력','bar',null,9.5,'안전밸브 설정 이하',/탱크\s*압력|리시버\s*압력/],['hwt','전기온수기 온도','℃',null,80,'80℃ 이하',/온수기\s*(?:현재\s*)?온도/],['hwp','전기온수기 압력','bar',null,8.6,'8.6bar 이하',/온수기\s*압력/],
+     ['ctw','쿨링타워 냉각수 온도','℃',null,37,'37℃ 이하',/냉각수\s*온도|냉각탑\s*수온/,'','g','주의',['입구','출구']],['cw','칠러 냉수 출구 온도','℃',5,20,'금형 냉각 설정값과 비교',/냉수\s*(?:출구)?\s*온도|칠러\s*온도/],['wl','저수조 수위','%',30,null,'30% 이상',/저수조\s*수위|수위/]]},
  {id:'ict',n:'정보통신',ico:'📡',t:'정보통신설비 유지보수·관리 점검 일지',role:/정보통신/,law:'정보통신공사업법 · 「정보통신설비 유지보수·관리기준」(연면적 기준 단계 적용)',cyc:'유지보수·관리 점검 반기 1회 이상 · 성능점검 연 1회',keep:'성능점검표 5년 보존',tx:'fac|보안·통신|',
   g:[['통신실·전원',[['통신실(MDF·IDF)','온·습도, 청결, 출입 잠금',/통신실|MDF|IDF|전산실|서버실/],['랙·배선','케이블 정리·라벨·손상',/랙|배선|케이블|패치/],['UPS·전원','부하·배터리·경보',/UPS|전원/i]]],
      ['네트워크·서버',[['인터넷 회선·라우터','접속·속도',/인터넷|회선|라우터/],['스위치·무선 AP','포트·링크 상태',/스위치|와이파이|무선|AP(?![a-z])/],['방화벽·백업','보안 로그·백업 완료 (서버·ERP)',/방화벽|백업|서버|ERP/i]]],
@@ -8400,7 +8466,13 @@ const sfT=id=>SF_T.find(t=>t.id===id)||null;
 const sfCode=site=>/안양/.test(site||'')?'A':/군포/.test(site||'')?'G':/화성/.test(site||'')?'H':'';
 const sfOn=(s,site)=>{const c=sfCode(site);return !s||!c||s.includes(c);};
 function sfItems(T,site){const out=[];T.g.forEach(([g,L],gi)=>L.forEach(([n,c,re,s],ii)=>{if(sfOn(s,site))out.push({id:`${gi}.${ii}`,g,n,c,re});}));return out;}
-function sfMeas(T,site){return T.m.filter(m=>sfOn(m[7],site)).map(([k,l,u,lo,hi,c,re,s,ty,sev])=>({k,l,u,lo,hi,c,re,t:ty==='t',sev:sev||'주의'}));}
+function sfMeas(T,site){return T.m.filter(m=>sfOn(m[7],site)).map(([k,l,u,lo,hi,c,re,s,ty,sev,cols])=>({k,l,u,lo,hi,c,re,t:ty==='t',g:ty==='g'&&Array.isArray(cols)?cols:null,sev:sev||'주의'}));}
+/* 41차: 칸 여러 개 측정(시간별·호기별·TR별) — 값은 '7.2|7.0|' 처럼 | 로 이어 저장 */
+const sfVals=(m,v)=>m.g?m.g.map((_,i)=>String(v||'').split('|')[i]||''):[String(v||'')];
+const sfShow=(m,v)=>m.g?m.g.map((c,i)=>{const x=sfVals(m,v)[i];return x?`${c} ${x}`:'';}).filter(Boolean).join(' · '):String(v||'');
+function sfGridMemo(m,memo){const mm=memo.match(new RegExp('(?:'+m.re.source+')([^\n]*)',m.re.flags.replace('g','')));if(!mm)return '';
+  const rest=mm[mm.length-1].replace(/\d+\s*호기|TR\s*\d|\d{1,2}\s*시(?![간])|\d{1,2}:\d{2}|배출구\s*\d/gi,' ');const nums=(rest.match(/-?\d+(?:\.\d+)?/g)||[]).slice(0,m.g.length);
+  return nums.length?m.g.map((_,i)=>nums[i]||'').join('|'):'';}
 function sfSeon(T,site){try{const o=typeof orgCur==='function'?orgCur():S.org;const L=(o&&o.seon&&o.seon[site])||[];return L.filter(x=>T.role.test(x.role||'')).map(x=>`${x.role} ${x.who}${x.note?` (${x.note})`:''}`).join(' · ').slice(0,160);}catch{return '';}}
 function sfWaste(site){const c=sfCode(site);const R=(n,k)=>({n,k,s:'',q:'',o:'',v:''});
   if(c==='A')return [R('폐합성수지 (사출·블로우 스크랩)','일반'),R('폐지·포장재','일반'),R('폐유 (설비 윤활유·작동유)','지정45'),R('폐흡착제 (오일 걸레·흡착포)','지정45')];
@@ -8408,7 +8480,7 @@ function sfWaste(site){const c=sfCode(site);const R=(n,k)=>({n,k,s:'',q:'',o:'',
   if(c==='H')return [R('폐도료·코팅 찌꺼기','지정60'),R('폐유기용제 (시너)','지정45'),R('폐활성탄 (방지시설 — 지정 여부 확인)','지정45'),R('폐지·포장재','일반')];
   return [R('폐합성수지','일반'),R('폐지·포장재','일반'),R('폐유','지정45'),R('폐유기용제','지정45')];}
 const sfNum=v=>{const x=parseFloat(String(v||'').replace(/,/g,'').replace(/[^\d.\-]/g,''));return isFinite(x)?x:null;};
-function sfJudge(m,v){if(m.t||v===''||v==null)return '';const x=sfNum(v);if(x==null)return '';if((m.lo!=null&&x<m.lo)||(m.hi!=null&&x>m.hi))return m.sev;return (m.lo!=null||m.hi!=null)?'양호':'';}
+function sfJudge(m,v){if(m.g){const J=sfVals(m,v).map(x=>sfJudge({...m,g:null},x));return J.includes('불량')?'불량':J.includes('주의')?'주의':J.includes('양호')?'양호':'';}if(m.t||v===''||v==null)return '';const x=sfNum(v);if(x==null)return '';if((m.lo!=null&&x<m.lo)||(m.hi!=null&&x>m.hi))return m.sev;return (m.lo!=null||m.hi!=null)?'양호':'';}
 function sfWJudge(w,date){if(!/^지정/.test(w.k)||!isDate(w.s))return {j:'',txt:''};const lim=w.k==='지정60'?60:45;const days=Math.round((new Date(date)-new Date(w.s))/864e5);
   if(days<0)return {j:'',txt:''};const left=lim-days;return {j:left<0?'불량':left<=7?'주의':'양호',txt:left<0?`${days}일 — 기한 ${-left}일 초과`:`${days}일 / 기한 ${lim}일 (남은 ${left}일)`};}
 
@@ -8420,22 +8492,31 @@ function sfInner(d){const site=d.site;
   const T=sfT(d.sf);const items=sfItems(T,site);const M=sfMeas(T,site);const sn=sfSeon(T,site);const R=d.sfr||{};
   let gi='';const rows=items.map(it=>{const r=R[it.id]||{};const gh=it.g!==gi?(gi=it.g,`<tr class="sf-gh"><th colspan="2">${esc(it.g)}</th></tr>`):'';
     return `${gh}<tr data-sf-i="${it.id}"><td class="sf-it"><b>${esc(it.n)}</b><small>${esc(it.c)}</small></td><td class="sf-rc"><div class="sf-seg" role="group" aria-label="${esc(it.n)} 결과">${SF_RES.map(x=>`<button type="button" data-sf-r="${x}" aria-pressed="${r.r===x}">${x}</button>`).join('')}</div><input class="sf-a" data-sf-a="${it.id}" maxlength="80" placeholder="조치 사항 (불량·주의일 때)" value="${esc(r.a||'')}"></td></tr>`;}).join('');
-  const ms=M.length?`<h4 class="sf-h4">측정 기록 <small>기준을 벗어나면 서류에 「주의」로 적힙니다</small></h4><div class="sf-ms">${M.map(m=>{const v=(d.sfm||{})[m.k]||'';const j=sfJudge(m,v);return `<label class="sf-m"><span>${esc(m.l)}</span><span class="sf-mi"><input data-sf-m="${m.k}" ${m.t?'':'inputmode="decimal"'} maxlength="${m.t?60:12}" value="${esc(v)}" class="${j&&j!=='양호'?'sf-out':''}">${m.u?`<i>${esc(m.u)}</i>`:''}</span>${m.c?`<small>${esc(m.c)}</small>`:''}</label>`;}).join('')}</div>`:'';
+  const ms=M.length?`<h4 class="sf-h4">측정 기록 <small>기준을 벗어나면 서류에 「주의」로 적힙니다</small></h4><div class="sf-ms">${M.map(m=>{const v=(d.sfm||{})[m.k]||'';
+    if(m.g)return `<div class="sf-m sf-mg"><span>${esc(m.l)}${m.u?` <i>(${esc(m.u)})</i>`:''}</span><span class="sf-mgi">${m.g.map((c,i)=>{const x=sfVals(m,v)[i];const j=sfJudge({...m,g:null},x);return `<label><em>${esc(c)}</em><input data-sf-m="${m.k}" data-sf-c="${i}" inputmode="decimal" maxlength="10" value="${esc(x)}" aria-label="${esc(m.l+' '+c)}" class="${j&&j!=='양호'?'sf-out':''}"></label>`;}).join('')}</span>${m.c?`<small>${esc(m.c)}</small>`:''}</div>`;
+    const j=sfJudge(m,v);return `<label class="sf-m"><span>${esc(m.l)}</span><span class="sf-mi"><input data-sf-m="${m.k}" ${m.t?'':'inputmode="decimal"'} maxlength="${m.t?60:12}" value="${esc(v)}" class="${j&&j!=='양호'?'sf-out':''}">${m.u?`<i>${esc(m.u)}</i>`:''}</span>${m.c?`<small>${esc(m.c)}</small>`:''}</label>`;}).join('')}</div>`:'';
   const W=T.w?`<h4 class="sf-h4">폐기물 보관·반출 <small>지정폐기물은 보관 시작일을 넣으면 기한(45일·60일)을 계산합니다</small><button type="button" class="btn sm ghost" data-sf-wadd>＋ 줄 추가</button></h4><div class="sf-wt"><table><thead><tr><th>폐기물 종류</th><th style="width:118px">구분</th><th style="width:140px">보관 시작일</th><th style="width:82px">보관량(kg)</th><th style="width:82px">반출량(kg)</th><th>처리업체·인계번호</th><th style="width:34px"></th></tr></thead><tbody>${(d.sfw||[]).map((w,i)=>`<tr data-sf-w="${i}"><td><input data-wf="n" maxlength="40" value="${esc(w.n)}"></td><td><select data-wf="k">${SF_WK.map(([k,l])=>`<option value="${k}" ${w.k===k?'selected':''}>${l}</option>`).join('')}</select></td><td><input type="date" data-wf="s" value="${esc(w.s)}"></td><td><input data-wf="q" inputmode="decimal" maxlength="10" value="${esc(w.q)}"></td><td><input data-wf="o" inputmode="decimal" maxlength="10" value="${esc(w.o)}"></td><td><input data-wf="v" maxlength="50" value="${esc(w.v)}"></td><td><button type="button" class="icon-btn" data-sf-wdel="${i}" aria-label="줄 빼기">✕</button></td></tr>`).join('')}</tbody></table></div>`:'';
   return `<h3>${T.ico} ${esc(T.t)} <button type="button" class="btn sm ghost" data-sf-chg>종류 바꾸기</button></h3>
     <p class="sf-law">근거 ${esc(T.law)} · 주기 ${esc(T.cyc)}${T.keep?` · ${esc(T.keep)}`:''}</p>${sn?`<p class="sf-seon">선임(관리)자 ${esc(sn)}</p>`:''}
-    <div class="sf-tools"><button type="button" class="btn sm" data-sf-allok>✓ 빈 칸 모두 양호</button><span class="sf-cnt" id="sf-cnt">${sfCountTxt(d)}</span></div>
+    ${sfFormsHTML(T)}<div class="sf-tools"><button type="button" class="btn sm" data-sf-allok>✓ 빈 칸 모두 양호</button><span class="sf-cnt" id="sf-cnt">${sfCountTxt(d)}</span></div>
     <table class="sf-tbl"><tbody>${rows}</tbody></table>${ms}${W}`;}
+/* 41차: 이 일지와 같은 회사서식(직접 작성) — 실제 회사 양식으로 적을 때 바로 열기 */
+function sfFormsHTML(T){try{if(typeof fmSub==='function')fmSub();}catch{}const L=T.fm&&typeof FM!=='undefined'&&Array.isArray(FM.list)?FM.list.filter(f=>f.mode==='direct'&&f.cv&&T.fm.test(f.name)).sort((a,b)=>(a.cat+a.name).localeCompare(b.cat+b.name,'ko')).slice(0,14):[];
+  return `<div class="sf-forms"${L.length?'':' hidden'}>${L.length?`<span>회사 양식</span>${L.map(f=>`<button type="button" class="sf-form" data-sf-form="${esc(f.id)}" title="${esc(f.cat)} — 회사서식(직접 작성)으로 열기">${esc(f.name.replace(/^\d+\./,''))}</button>`).join('')}`:''}</div>`;}
+/* 회사서식 목록이 늦게 오면 그 줄만 다시 */
+function sfFormsRefresh(){const box=document.querySelector('#sf-box .sf-forms');if(!box||!IL.d||!IL.d.sf)return;const T=sfT(IL.d.sf);if(!T)return;const t=document.createElement('div');t.innerHTML=sfFormsHTML(T);const n=t.firstElementChild;if(n&&n.outerHTML!==box.outerHTML)box.replaceWith(n);}
 function sfCountTxt(d){const T=sfT(d.sf);if(!T)return '';const items=sfItems(T,d.site);const R=d.sfr||{};const c={};for(const it of items){const r=(R[it.id]||{}).r||'';c[r]=(c[r]||0)+1;}
   return `${items.length}개 항목 · 양호 ${c['양호']||0} · 주의 ${c['주의']||0} · 불량 ${c['불량']||0} · 해당 없음 ${c['해당 없음']||0} · 빈 칸 ${c['']||0}`;}
 function sfRefresh(){const b=$('#sf-box');if(b&&IL.d)b.innerHTML=sfInner(IL.d);}
 function sfRead(d){if(!d||!$('#sf-box'))return;d.sfr=d.sfr||{};d.sfm=d.sfm||{};
   for(const a of $$('#sf-box [data-sf-a]')){const id=a.dataset.sfA;const r=d.sfr[id]||{};r.a=a.value.trim().slice(0,80);d.sfr[id]=r;}
-  for(const m of $$('#sf-box [data-sf-m]'))d.sfm[m.dataset.sfM]=m.value.trim().slice(0,60);
+  const GR={};for(const m of $$('#sf-box [data-sf-m]')){const k=m.dataset.sfM;if(m.dataset.sfC!=null)(GR[k]=GR[k]||[])[+m.dataset.sfC]=m.value.trim().replace(/\|/g,'').slice(0,10);else d.sfm[k]=m.value.trim().slice(0,60);}
+  for(const k in GR){const a=[...GR[k]].map(x=>x||'');d.sfm[k]=a.some(Boolean)?a.join('|'):'';}
   const rows=$$('#sf-box [data-sf-w]');if(rows.length||(d.sfw&&d.sfw.length&&$('#sf-box .sf-wt')))d.sfw=rows.map(tr=>{const g=f=>{const el=$(`[data-wf="${f}"]`,tr);return el?el.value.trim().slice(0,50):'';};return {n:g('n'),k:SF_WK.some(x=>x[0]===g('k'))?g('k'):'일반',s:isDate(g('s'))?g('s'):'',q:g('q'),o:g('o'),v:g('v')};});}
 document.addEventListener('click',e=>{const T=e.target;if(!T||!T.closest||!T.closest('#dlg-ilbo')||!IL.d||IL.step!=='in')return;const d=IL.d;
   const c=T.closest('[data-sf-t]');if(c){ilReadIn();const was=d.sf;d.sf=c.dataset.sfT;d.kind='safe';if(was!==d.sf){d.sfr={};d.sfm={};}if(sfT(d.sf).w&&!(d.sfw&&d.sfw.length))d.sfw=sfWaste(d.site);IL.dirty=true;sfRefresh();ilSave();const b=$('#sf-box');if(b)b.scrollIntoView({block:'start',behavior:'smooth'});return;}
   if(T.closest('[data-sf-chg]')){ilReadIn();d.sf='';sfRefresh();ilSave();return;}
+  const fo=T.closest('[data-sf-form]');if(fo){ilReadIn();ilSave();const id=fo.dataset.sfForm;const dl=$('#dlg-ilbo');if(dl&&dl.open)dl.close();if(typeof fmOpen==='function')fmOpen(id);return;}
   const rb=T.closest('[data-sf-r]');if(rb){const tr=rb.closest('[data-sf-i]');if(!tr)return;ilReadIn();const id=tr.dataset.sfI;const r=d.sfr[id]||{};r.r=r.r===rb.dataset.sfR?'':rb.dataset.sfR;d.sfr[id]=r;
     for(const b of $$('[data-sf-r]',tr))b.setAttribute('aria-pressed',String(b.dataset.sfR===r.r));const cn=$('#sf-cnt');if(cn)cn.textContent=sfCountTxt(d);IL.dirty=true;ilSave();return;}
   if(T.closest('[data-sf-allok]')){ilReadIn();const Tt=sfT(d.sf);if(!Tt)return;let n=0;for(const it of sfItems(Tt,d.site)){const r=d.sfr[it.id]||{};if(!r.r){r.r='양호';n++;}d.sfr[it.id]=r;}sfRefresh();IL.dirty=true;ilSave();toast(n?`빈 칸 ${n}개를 「양호」로 채웠습니다. 다른 결과는 눌러서 바꾸세요.`:'빈 칸이 없습니다.');return;}
@@ -8454,7 +8535,7 @@ function sfBuild(d,G){const T=sfT(d.sf);const site=G.site||d.site||'';const item
     if(IL_ROUND.test(full)&&it.res!=='불량'&&it.res!=='주의'&&!it.act)continue;extra.push(it);}
   if(G.gok)for(const id in R)if(!R[id].r)R[id].r='양호';
   for(const it of items)d.sfr[it.id]={r:R[it.id].r,a:R[it.id].a};
-  const MV=M.map(m=>{let v=String(d.sfm[m.k]||'').trim();if(!v&&m.re&&!m.t){const mm=memo.match(new RegExp('(?:'+m.re.source+')[^\\d\\n\\-]{0,10}(-?\\d+(?:[.,]\\d+)?)',m.re.flags.replace('g','')));if(mm){v=mm[1].replace(',','.');d.sfm[m.k]=v;}}
+  const MV=M.map(m=>{let v=String(d.sfm[m.k]||'').trim();if(!v&&m.re&&m.g){v=sfGridMemo(m,memo);if(v)d.sfm[m.k]=v;}else if(!v&&m.re&&!m.t){const mm=memo.match(new RegExp('(?:'+m.re.source+')[^\\d\\n\\-]{0,10}(-?\\d+(?:[.,]\\d+)?)',m.re.flags.replace('g','')));if(mm){v=mm[1].replace(',','.');d.sfm[m.k]=v;}}
     return {...m,v,j:sfJudge(m,v),x:''};});
   if(T.env){const eh=MV.find(m=>m.k==='eh'),ph=MV.find(m=>m.k==='ph');const a=eh&&sfNum(eh.v),b=ph&&sfNum(ph.v);if(a!=null&&b!=null){ph.j=b<a?'불량':'양호';if(b<a)ph.x='방지시설을 배출시설보다 짧게 가동 — 대기환경보전법 제31조 확인';}}
   const W=T.w?(d.sfw||[]).filter(w=>w.q||w.o||w.v||w.s).map(w=>({...w,...sfWJudge(w,d.date)})):[];
@@ -8467,15 +8548,15 @@ function sfBuild(d,G){const T=sfT(d.sf);const site=G.site||d.site||'';const item
   let n=0;const sec=t=>`<h2 class="ap-il-h">${++n}. ${esc(t)}</h2>`;
   const nb=cnt['불량'],nw=cnt['주의'];const s1=`${site&&site!=='전사'?site+' ':''}${T.n} 점검 ${items.length}개 항목 — 양호 ${cnt['양호']}, 주의 ${nw}, 불량 ${nb}${cnt['해당 없음']?`, 해당 없음 ${cnt['해당 없음']}`:''}${cnt['']?`, 미기록 ${cnt['']}`:''}.`;
   const s2=nb+nw?' 불량·주의 항목은 조치가 필요합니다.':cnt['']?'':' 모두 양호합니다.';
-  const mv=MV.filter(m=>m.v).length;const s3=mv?` 측정 ${mv}건 기록${mOut.length?`(기준 벗어남 ${mOut.length}건)`:''}.`:'';const s4=W.length?` 폐기물 ${W.length}종 기록${wOut.length?`(보관 기한 확인 ${wOut.length}건)`:''}.`:'';
+  const mv=MV.filter(m=>m.v&&sfShow(m,m.v)).length;const s3=mv?` 측정 ${mv}건 기록${mOut.length?`(기준 벗어남 ${mOut.length}건)`:''}.`:'';const s4=W.length?` 폐기물 ${W.length}종 기록${wOut.length?`(보관 기한 확인 ${wOut.length}건)`:''}.`:'';
   const np=ilPhs(d).length;h+=sec('점검 개요')+`<p class="ap-il-sum">${esc(s1+s2+s3+s4+(np?` 현장 사진 ${np}장을 붙입니다.`:''))}</p>`;
   let rows='',k=0;const groups=[...new Set(items.map(i=>i.g))];
   for(const g of groups){const L=items.filter(i=>i.g===g);L.forEach((it,i)=>{const r=R[it.id];k++;rows+=`<tr><td class="ap-il-no">${k}</td>${i===0?`<td class="ap-il-grp" rowspan="${L.length}">${esc(g)}</td>`:''}<td class="ap-il-it">${esc(it.n)}</td><td class="ap-il-crit">${esc(r.x?`${it.c} — ${r.x}`:it.c)}</td><td class="ap-il-res ${ilResC(r.r)}">${esc(r.r)}</td><td class="ap-il-act">${esc(r.a)}</td></tr>`;});}
   h+=sec('점검 결과')+`<table class="ap-il-items ap-il-sf"><thead><tr><th style="width:6%">No</th><th style="width:13%">구분</th><th style="width:19%">점검 항목</th><th>점검 기준</th><th style="width:9%">결과</th><th style="width:20%">조치 사항</th></tr></thead><tbody>${rows}</tbody></table>`;
-  if(MV.length)h+=sec('측정 기록')+`<table class="ap-il-items ap-il-sfm"><thead><tr><th style="width:6%">No</th><th style="width:27%">측정 항목</th><th style="width:20%">측정값</th><th>기준</th><th style="width:9%">판정</th></tr></thead><tbody>${MV.map((m,i)=>`<tr><td class="ap-il-no">${i+1}</td><td class="ap-il-it">${esc(m.l)}</td><td class="ap-il-no">${esc(m.v?`${m.v}${m.u?' '+m.u:''}`:'')}</td><td class="ap-il-crit">${esc(m.x||m.c)}</td><td class="ap-il-res ${ilResC(m.j)}">${esc(m.j)}</td></tr>`).join('')}</tbody></table>`;
+  if(MV.length)h+=sec('측정 기록')+`<table class="ap-il-items ap-il-sfm"><thead><tr><th style="width:6%">No</th><th style="width:27%">측정 항목</th><th style="width:20%">측정값</th><th>기준</th><th style="width:9%">판정</th></tr></thead><tbody>${MV.map((m,i)=>`<tr><td class="ap-il-no">${i+1}</td><td class="ap-il-it">${esc(m.l)}</td><td class="ap-il-no">${esc(m.v?`${sfShow(m,m.v)}${m.u?' '+m.u:''}`:'')}</td><td class="ap-il-crit">${esc(m.x||m.c)}</td><td class="ap-il-res ${ilResC(m.j)}">${esc(m.j)}</td></tr>`).join('')}</tbody></table>`;
   if(T.w)h+=sec('폐기물 보관·반출 현황')+`<table class="ap-il-items ap-il-sfw"><thead><tr><th style="width:5%">No</th><th>폐기물 종류</th><th style="width:10%">구분</th><th style="width:12%">보관 시작일</th><th style="width:17%">경과 / 기한</th><th style="width:13%">보관·반출(kg)</th><th style="width:17%">처리업체·인계번호</th><th style="width:8%">판정</th></tr></thead><tbody>${W.length?W.map((w,i)=>`<tr><td class="ap-il-no">${i+1}</td><td class="ap-il-it">${esc(w.n)}</td><td class="ap-il-no">${esc((SF_WK.find(x=>x[0]===w.k)||['',''])[1])}</td><td class="ap-il-no">${esc(w.s?fmtYMD(w.s):'')}</td>${td(w.txt)}<td class="ap-il-no">${esc([w.q,w.o].some(Boolean)?`${w.q||0} / ${w.o||0}`:'')}</td>${td(w.v)}<td class="ap-il-res ${ilResC(w.j)}">${esc(w.j)}</td></tr>`).join(''):'<tr><td class="ap-il-no">1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>'}</tbody></table>`;
   const notes=[];for(const it of items){const r=R[it.id];if(r.r==='불량'||r.r==='주의')notes.push(`<li>${esc(`[${r.r}] ${it.n}${r.x?` — ${r.x}`:''} → ${r.a||'조치 필요'}`)}</li>`);}
-  for(const m of mOut)notes.push(`<li>${esc(`[측정 ${m.j}] ${m.l} ${m.v}${m.u?' '+m.u:''} — ${m.x||'기준 '+m.c}`)}</li>`);
+  for(const m of mOut)notes.push(`<li>${esc(`[측정 ${m.j}] ${m.l} ${sfShow(m,m.v)}${m.u?' '+m.u:''} — ${m.x||'기준 '+m.c}`)}</li>`);
   for(const w of wOut)notes.push(`<li>${esc(`[폐기물 ${w.j}] ${w.n} — ${w.txt}`)}</li>`);
   for(const it of extra)notes.push(`<li>${esc(`[기타] ${[it.loc,it.text].filter(Boolean).join(' ')}${it.res?` (${it.res})`:''}${it.act?` → ${it.act}`:''}`)}</li>`);
   for(const x of G.notes.filter(x=>!G.follow.includes(x)))notes.push(`<li>${esc(x)}</li>`);
@@ -8501,7 +8582,18 @@ function sfDesc(d){const box=document.createElement('div');box.innerHTML=d.body|
   const ws=$$('table.ap-il-sfw tbody tr',box).map(tr=>{const c=[...tr.cells].map(x=>x.textContent.trim());return c[1]?`${c[1]}${c[5]?` ${c[5]}kg`:''}${c[7]?`(${c[7]})`:''}`:'';}).filter(Boolean);if(ws.length)out.push('폐기물: '+ws.join(', '));
   for(const li of $$('ul.ap-il-notes li',box))out.push((li.classList.contains('ap-il-fol')?'▶ ':'※ ')+li.textContent.replace(/\s+/g,' ').trim());
   const ph=ilPhs(d);if(ph.length)out.push(`사진 ${ph.length}장`);return out.join('\n');}
-window.sfApi={types:()=>SF_T.map(t=>({id:t.id,n:t.n,t:t.t})),items:(id,site)=>sfItems(sfT(id),site),meas:(id,site)=>sfMeas(sfT(id),site),seon:(id,site)=>sfSeon(sfT(id),site),waste:sfWaste,judgeW:sfWJudge};
+/* 41차 자동: 메모 낱말로 알맞은 안전관리 일지 고르기 (회사 실제 양식 기준) — 확실할 때만 */
+const SF_GUESS=[['ele',/수변전|변전실|전기실|역률|VCB|ACB|특고압|수전\s*전압|변압기|TR\s*\d?\s*(?:온도|유면)|유면|정류기|전력량계|누설\s*전류|열화상|분전반|비상\s*발전기|축전지|밧데리/gi],
+  ['fire',/소화기|소화전|수신기|감지기|유도등|스프링클러|방화문|방화\s*셔터|발신기|피난|소방/g],
+  ['elev',/승강기|엘리베이터|E\s*\/\s*[LV]|권상기|인승|카\s*(?:문|내부)|비상\s*통화|인터폰/gi],
+  ['mech',/콤프레샤|컴프레서|컴프레샤|압축기|쿨링\s*타워|냉각탑|저수조|온수기|칠러|에어\s*드라이어|토출\s*(?:압력|온도)|냉각수/g],
+  ['env',/집진|배출구|방지\s*시설|배출\s*시설|대기\s*배출|백\s*필터|활성탄|분쇄\s*시설/g],
+  ['waste',/폐기물|올바로|폐유|폐합성수지|폐유기용제|지정\s*폐/g],
+  ['haz',/위험물|옥내\s*저장소/g],['chem',/유해\s*화학|화학\s*물질|방류턱/g]];
+function sfGuess(memo){memo=String(memo||'');if(!memo.trim())return '';const sc=SF_GUESS.map(([id,re])=>[id,new Set((memo.match(re)||[]).map(x=>x.replace(/\s+/g,'').toUpperCase())).size]).sort((a,b)=>b[1]-a[1]);
+  const nc=(memo.match(IL_CHKW)||[]).length,nw=(memo.match(IL_WORKW)||[]).length;
+  if(sc[0][1]>=2&&sc[0][1]>sc[1][1]&&nc>=nw&&!/업체|외부\s*작업|협력\s*(?:업체|사)/.test(memo))return sc[0][0];return '';}
+window.sfApi={guess:sfGuess,types:()=>SF_T.map(t=>({id:t.id,n:t.n,t:t.t})),items:(id,site)=>sfItems(sfT(id),site),meas:(id,site)=>sfMeas(sfT(id),site),seon:(id,site)=>sfSeon(sfT(id),site),waste:sfWaste,judgeW:sfWJudge};
 /* 사업장을 바꾸면 그 사업장 공정 항목·선임자로 다시 그림 (적은 결과는 그대로) */
 document.addEventListener('change',e=>{const T=e.target;if(!T||T.id!=='il-site'||!IL.d||IL.d.kind!=='safe'||IL.step!=='in')return;setTimeout(()=>{if(IL.d&&$('#sf-box'))sfRefresh();},0);});
 
