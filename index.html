@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="wl-build" content="6a6d4c96cdcb">
+<meta name="wl-build" content="48e93ec39cd5">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#1f3a5f">
@@ -968,7 +968,8 @@ button.gs-it:has(.fi){grid-template-columns:36px minmax(0,1fr)}
   .sch-strip>b{flex:none}
   .sch-strip .sp{display:none}
   .sch-strip .btn{flex:none}
-  .ntf-pop{bottom:auto}
+  /* 53차 점검: top·bottom 이 모두 auto 라 휴대폰 알림 창이 화면 맨 아래 밖(문서 끝)에 열리던 것 → 아래 탭 바로 위 시트 */
+  .ntf-pop{top:auto;bottom:calc(60px + env(safe-area-inset-bottom,0px));left:0;right:0;width:100%;max-height:72vh;border-radius:14px 14px 0 0}
 }
 @media (max-width:640px){
   .tbl-wrap{overflow:visible;background:none;border:0}
@@ -1985,6 +1986,69 @@ dialog .nav-arrow.in-dlg{width:46px;min-height:84px}dialog .nav-arrow.in-dlg.pre
 input[type=time]{height:34px;padding:0 8px;border:1px solid var(--line);border-radius:7px;background:var(--surface);color:var(--ink);font:inherit;min-width:0}
 .ir input[type=time]{height:32px;font-size:13px;padding:0 6px}
 .qa-auto.empty{display:none!important}
+/* 53차 ① 내 업무 머리: 정렬을 「＋ 상세업무 등록」 오른쪽에 */
+.home-head > div:last-child:has(> .vs-hd){align-items:center}
+.vsort.vs-hd{display:inline-flex;margin:0;padding:3px 4px 3px 10px;border:1px solid var(--line);border-radius:10px;background:var(--surface);min-height:38px;box-sizing:border-box}
+.btn.my-new{font-weight:700;padding-left:16px;padding-right:16px}
+@media (max-width:640px){.vsort.vs-hd{width:100%;justify-content:flex-start}}
+/* 53차 ② 위쪽 화면 탭: 글자 조금 크게, 더 진하게 */
+.tabs a{font-size:15px;font-weight:600;color:#33415a;letter-spacing:-.1px}
+.tabs a:hover{color:var(--ink);background:rgba(37,99,235,.05)}
+.tabs a[aria-current="page"]{color:var(--accent);font-weight:800;border-bottom-width:3px}
+@media (max-width:1560px) and (min-width:761px){.tabs a{font-size:14.5px}}
+@media (max-width:1400px) and (min-width:761px){.tabs a{font-size:14px}}
+@media (max-width:1300px) and (min-width:761px){.tabs a{font-size:13.5px}}
+/* 53차 ③ 내 업무 지시 카드: 줄도 머리·안내 줄과 같은 여백 */
+.od-card .od-row{padding:10px 14px}
+.od-card .od-more{padding:0 14px;margin:8px 0}
+.od-card .od-row:last-child{border-bottom-left-radius:var(--r);border-bottom-right-radius:var(--r)}
+/* 53차 ④ ‹ › 크게 · 종이 옆으로 (위치는 ext52 navFmPos) */
+.nav-arrow{width:68px;min-height:124px;border-radius:16px;gap:4px;padding:8px 3px}
+.nav-arrow .na-ch{font-size:60px;font-weight:300}
+.nav-arrow .na-n{font-size:11.5px;max-width:62px}
+.nav-pos{top:calc(50% + 74px);text-align:center;box-sizing:border-box;font-size:12px;font-weight:600}
+dialog .nav-arrow.in-dlg{width:58px;min-height:108px}dialog .nav-arrow.in-dlg .na-ch{font-size:50px}dialog .nav-arrow.in-dlg.prev{left:10px}dialog .nav-arrow.in-dlg.next{right:10px}
+dialog .nav-pos{left:10px;top:calc(50% + 64px)}
+@media (max-width:760px){.nav-arrow{width:40px;min-height:76px;padding:2px}.nav-arrow .na-ch{font-size:38px}.nav-arrow .na-n{display:none}dialog .nav-arrow.in-dlg{width:38px;min-height:70px}dialog .nav-arrow.in-dlg .na-ch{font-size:34px}.nav-arrow.prev,dialog .nav-arrow.in-dlg.prev{left:4px}.nav-arrow.next,dialog .nav-arrow.in-dlg.next{right:4px}.nav-pos,dialog .nav-pos{left:4px;top:calc(50% + 46px)}}
+/* 53차 ⑤ 달력 목록: 반차·외출·시각 */
+.fc .fc-list-event-time.lt-x{font-size:0!important;white-space:nowrap}
+.fc .fc-list-event-time.lt-x::after{content:attr(data-lt);font-size:13px;font-weight:700;letter-spacing:-.2px}
+/* 53차 점검: 「⚙ 탭 편집」이 휴대폰 탭 줄에서 세로로 늘어나 위쪽에 빈 칸이 생기던 것 */
+.upt-ed{white-space:nowrap;flex:none;align-self:center}
+/* 53차 점검: 업무 창 — 52차 시각 칸 때문에 PC에서 「반복」 칸이 화살표만 남고, 휴대폰에서 창 내용이 오른쪽으로 잘리던 것 */
+.form .r3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.form .r3.r3-dt{grid-template-columns:repeat(2,minmax(0,1fr))}
+#dlg-task .modal-h h2{white-space:nowrap;flex:none}
+@media (max-width:760px){
+  .form .r3{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .form .r3.r3-dt{grid-template-columns:minmax(0,1fr)}
+}
+/* 53차 점검: 남이 등록한 업무를 열면 🔒 안내가 왼쪽 칸 전체를 차지해 입력란이 오른쪽으로 밀리고 사진·진행 기록이 아래로 떨어지던 것 */
+#t-body > .t-own-note{grid-column:1/-1}
+/* 날짜+시각 칸: 좁으면 시각이 아래 줄로 (넘침 방지) */
+.dt2{flex-wrap:wrap;min-width:0}.dt2 input[type=date]{flex:1 1 128px;min-width:0;width:auto}.dt2 input[type=time]{flex:1 1 104px;max-width:150px;min-width:0;width:auto}
+/* 53차 점검: 설정 › 직원 명단 — 이름·근무 건물·직급 칸이 한 글자 폭으로 눌리던 것 (창을 넓히고 칸 최소 폭) */
+dialog.modal.narrow#dlg-settings{width:min(940px,96vw)}
+.roster .rr{grid-template-columns:minmax(72px,.9fr) minmax(92px,1fr) minmax(120px,1.4fr) 104px minmax(170px,1.7fr) auto auto}
+.roster .rr input,.roster .rr select{min-width:0;width:100%;box-sizing:border-box}
+@media (max-width:760px){.roster .rr{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* 53차 점검: 업무 목록 표에서 「안양본사」「안전보건교육」이 글자 단위로 끊겨 두 줄이 되던 것 — 낱말 단위로 줄바꿈 */
+table.lst td{word-break:keep-all;overflow-wrap:break-word}
+/* 업무 제목은 낱말 단위로 줄바꿈 (칸반 카드·내 업무 줄·지시 카드·달력 목록) — 띄어쓰기 없는 긴 글은 넘치지 않게 필요할 때만 끊음 */
+.card h3,.mrow .tt,.od-row .od-t,.od-row b,.fc-list-event-title,.tm-card .nm,.up-row .tt{word-break:keep-all;overflow-wrap:anywhere}
+/* 53차 점검: 휴대폰에서 창 내용이 길면 글자 단추 줄(.seg 등, overflow:hidden)이 2px 로 눌려 안 보이던 것 — 업무 지시 창의 「👤 직원에게 / 🧩 직무에게」 */
+.modal-b > .seg,.modal-b .seg,.modal-b > .od-chips,.modal-b .od-tabs{min-height:max-content;flex-shrink:0}
+.modal-b.one{grid-auto-rows:max-content}
+/* 53차 점검: 휴대폰 + 「글자 크게」에서 위쪽 아이콘 줄이 화면보다 4~40px 넓어 내 이름 칸이 잘리고 화면이 옆으로 밀리던 것 */
+@media (max-width:760px){
+  .top-right{min-width:0;max-width:100%}
+  .top-right > *{flex-shrink:0}
+  .top-right > .me-chip{flex-shrink:1;min-width:0;overflow:hidden}
+  .me-chip .nm{min-width:0}
+  html.big .top-right{gap:4px}
+}
+@media (max-width:420px){html.big .top-right .icon-btn{width:34px;min-width:34px}html.big .me-chip{padding-right:8px}}
+@media (max-width:420px){html.big .top-right a.icon-btn[href="#help"],html.big .top-right #btn-print{display:none}html.big .top-right > .me-chip{min-width:40px}}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -2105,7 +2169,7 @@ input[type=time]{height:34px;padding:0 8px;border:1px solid var(--line);border-r
           <div class="f"><label for="t-scope">업무 구분</label><select id="t-scope"></select></div>
           <div class="f"><label for="t-prio">중요도</label><select id="t-prio"></select></div>
         </div>
-        <div class="r3">
+        <div class="r3 r3-dt">
           <div class="f"><label for="t-start">시작일 · 시각</label><div class="dt2"><input type="date" id="t-start"><input type="time" id="t-stime" aria-label="시작 시각" title="시각 (선택)"></div></div>
           <div class="f"><label for="t-due">마감일 · 시각</label><div class="dt2"><input type="date" id="t-due"><input type="time" id="t-dtime" aria-label="마감 시각" title="시각 (선택)"></div></div>
           <div class="f"><label for="t-repeat">반복</label><select id="t-repeat"></select></div>
@@ -2911,7 +2975,7 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>회사서식</b><span>위쪽 <em>각종서류 올리기</em> 화면 맨 위의 <em>🖨 회사서식(작성 불가)</em>은 인쇄해서 손으로 적는 서식(미리보기·인쇄·원본 내려받기), <em>✏️ 회사서식(작성 가능)</em>은 화면에서 바로 적는 서식입니다. 서식을 열어 파란 칸을 눌러 적고(PDF·스캔 서식은 적을 곳을 눌러 글상자), <em>인쇄</em>하거나 <em>전자결재로 올리기</em>를 누릅니다. 적던 내용은 이 기기에 자동 보관됩니다. 관리자는 서식 파일·폴더·압축(zip)을 통째로 올린 뒤 <em>하나씩 보며 분류하기</em>에서 숫자키 1(출력 작성)·2(직접 작성)로 빠르게 고릅니다. 폴더 이름은 서식 분류가 됩니다.</span></li>
       <li><b>전자결재</b><span>위쪽 <em>전자결재</em>에서 <em>＋ 새 기안</em>을 누르고 <em>서식에 직접 작성</em>(기안서·품의서·지출결의서·구매요청서·휴가 신청서·업무 보고서·시설 수리 요청서, 관리자가 올린 워드·엑셀 서식) 또는 <em>스캔·파일 올려 결재</em>를 고릅니다. 결재선은 자동으로 <b>직무별 팀원 → 직무별 총괄(재무·회계 박혜진, 인사·총무 윤민진, 시설·공무 윤종국) → 전체 총괄(이기도)</b>로 정해지고, 두 직무를 겸하는 직원은 결재할 직무를 고릅니다. 필요할 때만 <em>결재선 변경</em>으로 결재자를 더하거나 빼고 순서를 바꿉니다. <em>자금 결제 필요</em>에 체크하면 박혜진 부장이 자동으로 참조(회람)됩니다. 결재할 차례가 되면 알림(종)과 내 업무 화면에 표시되고, 문서에서 <em>승인</em>·<em>반려</em>(사유 필수)를 누릅니다. 올린 사람은 아무도 결재하기 전이면 <em>회수</em>, 반려되면 고쳐서 다시 올릴 수 있습니다. 문서는 결재선·참조에 든 사람과 관리자만 볼 수 있고, 개인정보가 든 첨부는 총괄 관리자만 열 수 있습니다.</span></li>
       <li><b>날짜 표기</b><span>모든 화면의 업무 날짜는 <em>진행 날짜</em>(시작일~마감일, 한쪽만 있으면 그 날)를 기준으로 보여 줍니다. 진행 날짜를 정하지 않은 업무는 <em>[미정]</em>으로 표시되고, 진행 날짜와 다른 날 등록한 업무(지난 일을 나중에 기록하는 경우 등)는 '등록 10.30'처럼 등록한 날을 함께 보여 줍니다. 빠른 기록에서 '할 예정'을 고르고 날짜를 비워 두면 [미정]으로, '진행 중'은 고른 날이 시작일·마감일은 [미정]으로 등록됩니다. 목록 화면에는 진행 날짜·등록일 칸이 따로 있습니다.</span></li>
-      <li><b>인쇄</b><span>모든 화면 위쪽의 파란 테두리 <em>🖨</em>(인쇄) 아이콘(휴대폰은 더보기 › 이 화면 인쇄도 가능)를 누르면 지금 화면을 A4로 인쇄합니다. 업무가 나오는 화면(내 업무·팀 현황·총괄·칸반·달력·목록·보고서·조직도)에서는 인쇄 방식을 고르는 창이 먼저 뜹니다. 기본은 <em>현재 양식 그대로(구분하여 표기)</em>이고, <em>업무 목록만(구분 없이)</em>을 고르면 칸·절·대분류 구분 없이 지금 화면의 업무 전체를 날짜순 한 표(업무명·분류·사업장·담당·상태·일정·진척, 조직도는 업무·세부 내용·주기·정·대행·부)로 인쇄합니다. 인쇄 창에서 'PDF로 저장'을 고르면 파일로도 남길 수 있습니다. 업무 상세 창의 <em>🖨 인쇄</em>는 그 업무 한 장(정보·내용·진행 기록·사진), 보고서 화면은 보고서 용지만 인쇄합니다. <em>📄 내 업무 보고서</em>(내 업무 화면·보고서의 개인별 보고서)는 내가 담당했거나 진행 기록을 남긴 업무와 일자별 진행 기록으로 개인 보고서를 만들고, 보고서의 <em>업무 범위 › 🔒 내 비공개 업무만</em>으로 비공개 업무만 출력할 수 있습니다.</span></li>
+      <li><b>인쇄</b><span>모든 화면 위쪽의 파란 테두리 <em>🖨</em>(인쇄) 아이콘(휴대폰은 더보기 › 이 화면 인쇄도 가능)를 누르면 지금 화면을 A4로 인쇄합니다. 업무가 나오는 화면(내 업무·팀 현황·총괄·칸반·달력·목록·보고서·조직도)에서는 인쇄 방식을 고르는 창이 먼저 뜹니다. 기본은 <em>현재 양식 그대로(구분하여 표기)</em>이고, <em>업무 목록만(구분 없이)</em>을 고르면 칸·절·대분류 구분 없이 지금 화면의 업무 전체를 날짜순 한 표(업무명·분류·사업장·담당·상태·일정·진척, 조직도는 업무·세부 내용·주기·정·대행·부)로 인쇄합니다. 인쇄 창에서 'PDF로 저장'을 고르면 파일로도 남길 수 있습니다. 업무 상세 창의 <em>🖨 인쇄</em>는 그 업무 한 장(정보·내용·진행 기록·사진), 보고서 화면은 보고서 용지만 인쇄합니다. <em>👤 내 업무 보고서</em>(보고서 화면 · 개인별 보고서 옆)는 내가 담당했거나 진행 기록을 남긴 업무와 일자별 진행 기록으로 개인 보고서를 만들고, 보고서의 <em>업무 범위 › 🔒 내 비공개 업무만</em>으로 비공개 업무만 출력할 수 있습니다.</span></li>
       <li><b>개인정보 자료</b><span>이력서·급여·주민등록번호 13자리·신분증·진단서 같은 개인정보가 든 사진·파일은 올리는 순간 자동으로 검사해 <em>총괄 관리자에게만</em> 전달됩니다. 다른 직원과 올린 분에게는 '관리자 전용' 그림만 보이고, 보고서·사진첩에도 나오지 않습니다. 생년월일만 있는 자료는 그대로 올라갑니다. 업무 창에서 <em>🔐 개인정보 사진</em>을 켜고 올리면 검사 없이 바로 전달됩니다. 업무 내용에 주민등록번호 13자리를 적으면 저장할 때 뒷자리가 가려집니다.</span></li>
       <li><b>정기 일정</b><span>월례조회(매월 첫째 월요일 08:30 군포공장 5층 식당, 3·6·9·12월 법정 의무교육)와 관리부 업무회의(매주 목요일 16:00 안양본사 6층 대회의실, 공휴일·월례조회 주간과 전 주는 쉬고 조회 후 진행)가 달력과 내 업무 화면에 표시되고 전날·당일 알림이 옵니다. 공휴일이면 날짜가 자동으로 옮겨지고, 그룹웨어 공지가 오면 그 날짜로 확정됩니다. 관리자는 달력의 <em>정기 일정</em>에서 날짜를 바꾸거나 쉼으로 지정할 수 있습니다.</span></li>
       <li><b>그룹웨어 소식</b><span>회사 그룹웨어(업무연락·공지사항·경조사 등) 새 글을 Claude가 평일 08~19시 매시간 확인해 요약합니다. 상단 <a href="#gw">그룹웨어</a>에서 요약·일정·관리부 할 일을 보고, 필요한 글은 <em>업무로 등록</em>을 누르면 내용이 채워진 등록 창이 열립니다. 새 글은 알림(종)에도 표시됩니다.</span></li>
@@ -2926,7 +2990,7 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
   </div></div>`;}
 
 function renderMy(v){
-  if(!$('#qa',v)){v.innerHTML=`<div class="home-head"><div><h1>내 업무</h1><p id="my-sub"></p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="btn" data-my-report title="내가 담당했거나 진행 기록을 남긴 업무로 개인 보고서 만들기·인쇄">📄 내 업무 보고서</button><a class="btn" href="#team">팀 현황 보기</a><button type="button" class="btn" data-new>상세 등록</button></div></div>
+  if(!$('#qa',v)){v.innerHTML=`<div class="home-head"><div><h1>내 업무</h1><p id="my-sub"></p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="btn primary my-new" data-new title="담당자·기간·시각·반복·첨부·업무 지시까지 자세히 입력해 업무 등록">＋ 상세업무 등록</button></div></div>
     <div class="brief" id="my-brief" hidden></div>
     <div class="sch-strip" id="sch-strip" hidden></div>
     ${qaShell()}
@@ -3130,7 +3194,7 @@ function renderCalendar(v){
   v.innerHTML=`<div class="cal-top">${calOptsHTML()}</div><div id="cal"></div><div class="cal-legend">${CATS.map(c=>`<span class="catchip cat-${c.id}">${esc(c.name)}</span>`).join('')}<span>· 날짜를 누르면 그날 업무를 등록하고, 막대를 끌면 일정이 바뀝니다. 3주 넘게 이어지는 업무는 마감일에만 표시됩니다</span><button type="button" class="btn sm ghost" data-sch-open="" style="margin-left:auto">📅 정기 일정 (월례조회·업무회의)</button></div>`;
   S.cal=new FullCalendar.Calendar($('#cal',v),{locale:'ko',firstDay:1,height:'auto',initialView:innerWidth<700?'listMonth':'dayGridMonth',
     headerToolbar:{left:'prev,next today',center:'title',right:'dayGridMonth,dayGridWeek,listMonth'},buttonText:{today:'오늘',month:'월',week:'주',list:'목록'},
-    dayMaxEvents:4,editable:S.canWrite,events:calEvents(),eventOrder:'-prio,start,-duration,allDay,title',
+    dayMaxEvents:4,editable:S.canWrite,events:calEvents(),eventDidMount:info=>{try{if(typeof calEvMount==='function')calEvMount(info);}catch(e){console.warn(e);}},eventOrder:'-prio,start,-duration,allDay,title',
     eventClick:info=>{info.jsEvent.preventDefault();const id=info.event.id||'';if(id.startsWith('sch:')){schOpen(id.slice(4));return;}if(id.startsWith('hol:'))return;const t=findTask(id);if(t)openTask(t);},
     dateClick:info=>openTask(null,{start:info.dateStr,due:info.dateStr}),
     eventDrop:async info=>{const t=findTask(info.event.id);if(!t){info.revert();return;}const d=diffDays(toStr(info.oldEvent.start),toStr(info.event.start));
@@ -10809,6 +10873,46 @@ document.addEventListener('click',async e=>{const b=e.target.closest&&e.target.c
   if(kind==='fp'){const R=FM.rev;if(!R)return;R.ids=[to];R.i=0;fmRevShow();return;}
   if(kind==='doc'){const f=S.files[to];if(f)docOpen(f,null,'view');}});
 window.navApi={state:NAV,list:navList,neighbors:navNeighbors};
+/* ───────── 53차: 화면 다듬기 ─────────
+   ① 내 업무 머리: 정렬(↕ 정렬 · 최근 날짜 먼저)을 「＋ 상세업무 등록」 오른쪽에 (다른 화면은 그대로 머리 아래)
+   ② 서식 작성 화면 ‹ › : 크게, 종이 바로 옆(회색 바탕)으로
+   ③ 달력 목록 보기: 반차는 「종일」 대신 「오전 반차/오후 반차」, 외출·조퇴는 「외출·조퇴」, 시각 있는 업무는 그 시각 */
+
+/* ① */
+{const _m=vsMount;vsMount=function(){if(S.view!=='my')return _m.apply(this,arguments);
+  const view=$('#view');const head=view&&view.querySelector('.home-head');const hd=head&&head.querySelector(':scope > div:last-child');if(!hd)return _m.apply(this,arguments);
+  const nx=head.nextElementSibling;if(nx&&nx.classList.contains('vsort'))nx.remove();
+  const h=vsHTML('my','vs-hd');const old=hd.querySelector(':scope > .vsort');if(old){old.outerHTML=h;return;}
+  const nb=hd.querySelector(':scope > [data-new]');if(nb)nb.insertAdjacentHTML('afterend',h);else hd.insertAdjacentHTML('beforeend',h);};}
+
+/* ①-2 「📌 업무 지시 / 받은 지시」 단추: 관리자 여부가 나중에 정해져도 글자 맞춤 */
+{const _r=renderMy;renderMy=function(){const r=_r.apply(this,arguments);try{const a=$('#view .home-head [data-od-go]');if(a&&typeof odAdmin==='function'){const t='📌 '+(odAdmin()?'업무 지시':'받은 지시');if(a.textContent!==t)a.textContent=t;}}catch(e){console.warn(e);}return r;};}
+
+/* ② */
+function navFmPos(){const w=$('#fmw');if(!w)return;const P=w.querySelector(':scope > .nav-arrow.prev'),N=w.querySelector(':scope > .nav-arrow.next'),pos=w.querySelector(':scope > .nav-pos');if(!P&&!N)return;
+  const clr=()=>[P,N,pos].forEach(x=>{if(x){x.style.left='';x.style.right='';}});
+  if(innerWidth<=760){clr();return;}
+  const paper=$('#fm-paper')||w.querySelector('.fm-paper');const desk=$('#fm-desk');const el=paper||desk;if(!el){clr();return;}
+  const r=el.getBoundingClientRect();if(!r.width){clr();return;}
+  const vw=document.documentElement.clientWidth;const bw=(P||N).offsetWidth||68;const gap=20;
+  const dr=desk?desk.getBoundingClientRect():{left:0,right:vw};const minL=Math.max(10,Math.round(dr.left)+6),minR=Math.max(10,Math.round(vw-dr.right)+6);
+  const L=Math.max(minL,Math.round(r.left-bw-gap)),R=Math.max(minR,Math.round(vw-r.right-bw-gap));
+  if(P){P.style.left=L+'px';P.style.right='auto';}if(N){N.style.right=R+'px';N.style.left='auto';}if(pos){pos.style.left=L+'px';pos.style.right='auto';pos.style.width=bw+'px';}}
+const navFmPosSoon=()=>{requestAnimationFrame(()=>{try{navFmPos();}catch{}});setTimeout(()=>{try{navFmPos();}catch{}},350);};
+{const _n=navFmMount;navFmMount=function(){const r=_n.apply(this,arguments);navFmPosSoon();return r;};}
+{const _f=fmFitPaper;fmFitPaper=function(){const r=_f.apply(this,arguments);navFmPosSoon();return r;};}
+window.addEventListener('resize',()=>{if(S.view==='formd')navFmPosSoon();});
+
+/* ③ */
+const CAL_LT={'ev-lv-am':'오전 반차','ev-lv-pm':'오후 반차','ev-lv-out':'외출·조퇴'};
+function calEvMount(info){const vt=(info.view&&info.view.type)||'';if(!vt.startsWith('list'))return;const el=info.el;if(!el)return;const tc=el.querySelector('.fc-list-event-time');if(!tc)return;
+  const cls=info.event.classNames||[];let txt='';for(const c of cls)if(CAL_LT[c]){txt=CAL_LT[c];break;}
+  if(!txt&&info.event.id){const t=findTask(info.event.id);if(t&&t.startTime){txt=t.startTime+(t.dueTime&&(t.due||t.start)===t.start?'~'+t.dueTime:'');
+      const a=el.querySelector('.fc-list-event-title a')||el.querySelector('.fc-list-event-title');if(a){const tn=[...a.childNodes].find(n=>n.nodeType===3&&n.nodeValue.includes(t.startTime+' '));if(tn)tn.nodeValue=tn.nodeValue.replace(t.startTime+' ','');}}}
+  /* 달력이 다시 그릴 때 덮어쓰지 않도록 글자는 그대로 두고 data-lt + CSS ::after 로 보임 */
+  if(txt){tc.dataset.lt=txt;tc.classList.add('lt-x');tc.setAttribute('aria-label',txt);}}
+
+window.polish53Api={navFmPos,calEvMount};
 
 /* ───────── 시작 ───────── */
 function boot(){
