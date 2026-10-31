@@ -3424,12 +3424,18 @@ async function exifDate(file){try{if(!/jpe?g/i.test(file.type||file.name||''))re
     if(mk===0xFFE1&&v.getUint32(o+4)===0x45786966){const t=o+10;const le=v.getUint16(t)===0x4949;const g16=p=>v.getUint16(p,le),g32=p=>v.getUint32(p,le);
       const ifd=(off,want)=>{const p=t+off;if(p+2>v.byteLength)return null;const n=g16(p);for(let i=0;i<n&&i<400;i++){const e=p+2+i*12;if(e+12>v.byteLength)return null;const tag=g16(e);if(want.includes(tag))return {cnt:g32(e+4),val:e+8};}return null;};
       const str=en=>{if(!en)return '';const off=en.cnt>4?t+g32(en.val):en.val;let s='';for(let i=0;i<Math.min(en.cnt,24)&&off+i<v.byteLength;i++){const c=v.getUint8(off+i);if(!c)break;s+=String.fromCharCode(c);}return s;};
-      const i0=g32(t+4);const ex=ifd(i0,[0x8769]);let s=ex?str(ifd(g32(ex.val),[0x9003,0x9004])):'';if(!s)s=str(ifd(i0,[0x0132]));
+      const i0=g32(t+4);const ex=ifd(i0,[0x8769]);let s=ex?str(ifd(g32(ex.val),[0x9003,0x9004])):'';
       const m=s.match(/^(\d{4}):(\d{2}):(\d{2}) (\d{2}):(\d{2})/);return m&&+m[1]>1990?`${m[1]}-${m[2]}-${m[3]}T${m[4]}:${m[5]}`:'';}
     if(mk===0xFFDA||len<2)break;o+=2+len;}}catch{}return '';}
 const fmtMB=b=>b>=1048576?(b/1048576).toFixed(1)+'MB':Math.max(1,Math.round(b/1024))+'KB';
-function shotText(shot){const d=shot&&isDate(shot.slice(0,10))?shot:'';if(d)return `${fmtYMD(d.slice(0,10))} ${d.slice(11,16)}`;const n=new Date();return `${fmtYMD(toStr(n))} ${pad(n.getHours())}:${pad(n.getMinutes())}`;}
-async function optimizePhoto(file,o={}){const P=PHOTO_PRESET[o.q||S.config.photo]||PHOTO_PRESET.std;const shot=await exifDate(file);
+/* 39차: 찍은 시각을 모르면 새기지 않음(예전엔 올린 시각을 새김) */
+function shotText(shot){const d=shot&&isDate(shot.slice(0,10))&&shot.length>=16?shot:'';return d?`${fmtYMD(d.slice(0,10))} ${d.slice(11,16)}`:'';}
+/* 39차: 카메라로 바로 찍은 사진(촬영 단추)은 사진 정보에 시각이 없어도 찍은 순간을 압니다 — 파일 시각이 고른 순간 10분 안일 때만 */
+const CAM_T=new WeakMap();
+document.addEventListener('change',e=>{const T=e.target;if(!T||T.tagName!=='INPUT'||T.type!=='file'||!T.hasAttribute('capture')||!T.files)return;const now=Date.now();
+  for(const f of Array.from(T.files)){const lm=+f.lastModified||0;if(lm&&Math.abs(now-lm)<6e5)CAM_T.set(f,lm);}},true);
+const camShot=f=>{const v=f&&CAM_T.get(f);if(!v)return '';const n=new Date(v);return `${toStr(n)}T${pad(n.getHours())}:${pad(n.getMinutes())}`;};
+async function optimizePhoto(file,o={}){const P=PHOTO_PRESET[o.q||S.config.photo]||PHOTO_PRESET.std;const shot=(await exifDate(file))||camShot(file);
   const dec=await decodeImg(file);
   try{let cv=fitCanvas(dec.src,P.max);if(o.stamp)stampCanvas(cv,o.stamp(shot));
     let q=P.q,blob=await encCanvas(cv,q);if(!blob)throw {code:'encode'};
@@ -3471,7 +3477,7 @@ async function uploadImages(files,o={}){
   pr.done();setSync('ok');if(piiN)piiToast(piiN,piiWhy,'사진');
   if(out.length-piiN>0&&sz0>sz1*1.3)toast(`사진 ${out.length}장 올림 · ${fmtMB(sz0)} → ${fmtMB(sz1)} (${Math.round((1-sz1/sz0)*100)}% 줄임)`);
   return out;}
-function stampFor(site,title){return shot=>[`${shotText(shot)}${site?' · '+site:''}`,title?String(title).slice(0,40):''];}
+function stampFor(site,title){return shot=>[[shotText(shot),site].filter(Boolean).join(' · '),title?String(title).slice(0,40):''];}
 function stampPref(){return lsGet('wl.stamp')!=='0';}
 
 /* 미리보기(썸네일) 지연 로딩 — 화면에 보이는 사진만 불러와 읽기 사용량을 줄입니다. */
@@ -7726,22 +7732,34 @@ function ilTaskTitle(G){const site=G.site&&G.site!=='전사'?G.site+' ':'';const
 
 /* ── 사진 */
 const ilPhs=d=>(d.ph||[]).map(id=>d.photos.find(p=>p.id===id)).filter(Boolean);
-const ilShot=p=>{const s=p.shot&&isDate(p.shot.slice(0,10))?p.shot:(p.at?localDate(p.at)+'T'+hhmm(p.at).slice(-5):'');return s&&s.length>=16?`${+s.slice(5,7)}.${+s.slice(8,10)} ${s.slice(11,16)}`:'';};
-function ilOrder(d,kind){const L=ilPhs(d);if(L.length<2)return;const t=p=>p.shot||p.at||'';
+/* 39차: 사진 아래 시각 = 실제 작업한 시각만 (올린 시각·파일 시각은 쓰지 않음)
+   ① 사진에 담긴 찍은 시각(EXIF 원본 시각, 또는 카메라로 바로 찍은 시각)이 일보 날짜와 같은 날이면 그 시각
+   ② 아니면 일보의 작업·점검 시간(정보 표 '…시간' 칸, 표에 시간 칸이 없는 사진 대지는 메모의 13:30~14:30) → '10.30 13:30~14:30'
+   ③ 둘 다 모르면 비움 */
+const ilShotOk=(p,d)=>!!(p&&typeof p.shot==='string'&&p.shot.length>=16&&isDate(p.shot.slice(0,10))&&!(d&&isDate(d.date)&&p.shot.slice(0,10)!==d.date));
+function ilWorkTime(d){if(!d)return '';let s='',row=false;
+  try{const b=document.createElement('div');b.innerHTML=d.body||'';for(const th of b.querySelectorAll('.ap-il-info th'))if(/시간$/.test(th.textContent.trim())){row=true;s=th.nextElementSibling?th.nextElementSibling.textContent:'';break;}}catch{}
+  if(!row)s=String(d.memo||'');
+  const m=String(s).match(IL_TIME);if(m)return `${pad(+m[1])}:${m[2]||'00'}~${pad(+m[3])}:${m[4]||'00'}`;
+  const one=row&&String(s).match(/\b([01]?\d|2[0-3])\s*:\s*([0-5]\d)\b/);return one?`${pad(+one[1])}:${one[2]}`:'';}
+const ilMD=s=>`${+s.slice(5,7)}.${+s.slice(8,10)}`;
+const ilShot=(p,d,wt)=>ilShotOk(p,d)?`${ilMD(p.shot)} ${p.shot.slice(11,16)}`:(wt&&d&&isDate(d.date)?`${ilMD(d.date)} ${wt}`:'');
+const ilShotT=(p,d)=>ilShotOk(p,d)?'사진을 찍은 시각':'일보의 작업 시간(사진에 찍은 시각 정보가 없거나 일보 날짜와 다름)';
+function ilOrder(d,kind){const L=ilPhs(d);if(L.length<2)return;const t=p=>ilShotOk(p,d)?p.shot:(p.at?localDate(p.at)+'T'+hhmm(p.at).slice(-5):'');
   d.autoTag=false;
-  if(kind==='work'&&L.length<=6&&L.every(p=>!p.tag)&&L.every(p=>p.shot&&p.shot.length>=16)){const s=L.slice().sort((a,b)=>t(a).localeCompare(t(b)));
+  if(kind==='work'&&L.length<=6&&L.every(p=>!p.tag)&&L.every(p=>ilShotOk(p,d))){const s=L.slice().sort((a,b)=>t(a).localeCompare(t(b)));
     const span=(new Date(s[s.length-1].shot)-new Date(s[0].shot))/60000;
     if(span>=10){s[0].tag='before';s[s.length-1].tag='after';for(const p of s.slice(1,-1))p.tag='during';d.autoTag=true;}}
   const ord={before:0,during:1,after:2,'':3};let s=L.slice().sort((a,b)=>(ord[a.tag||'']-ord[b.tag||''])||t(a).localeCompare(t(b)));
   const B=s.filter(p=>p.tag==='before'),A=s.filter(p=>p.tag==='after'),M=s.filter(p=>p.tag==='during'),U=s.filter(p=>!p.tag);
   if(B.length&&B.length===A.length&&!M.length){s=[];B.forEach((b,i)=>s.push(b,A[i]));s.push(...U);}
   d.ph=s.map(p=>p.id);}
-function ilPhotosHTML(d,mode,M){const L=ilPhs(d);if(!L.length)return '';const n=((d.body||'').match(/<h2/g)||[]).length+1;const kind=d.gk||'work';
+function ilPhotosHTML(d,mode,M){const L=ilPhs(d);if(!L.length)return '';const wt=ilWorkTime(d);const sh=p=>{const x=ilShot(p,d,wt);return x?`<span class="ap-il-sh"${mode==='view'?` title="${esc(ilShotT(p,d))}"`:''}>${esc(x)}</span>`:'';};const n=((d.body||'').match(/<h2/g)||[]).length+1;const kind=d.gk||'work';
   const src=p=>mode==='view'?`src="${esc(IL.src[p.id]||PH_BLANK)}" data-ilp="${esc(p.id)}"`:`src="${esc((M&&M[p.id])||PH_BLANK)}"`;
   const tg=(p,i)=>`<b class="ap-il-tg ap-il-t-${p.tag||'no'}"${mode==='view'?` data-il-tg="${esc(p.id)}" title="눌러서 작업 전·중·후 바꾸기"`:''}>${esc(PH_TAGS[p.tag]||'사진 '+(i+1))}</b>`;
   const cap=p=>`<span class="ap-il-capt"${mode==='view'?` data-il-cap="${esc(p.id)}"`:''}>${esc(p.cap||'')}</span>`;
-  if(kind==='photo')return `<h2 class="ap-il-h">${n}. 사진 대지 <span class="ap-il-n">${L.length}장</span></h2><div class="ap-il-photos ap-il-sheet">${L.map((p,i)=>`<div class="ap-il-ph"><div class="ap-il-im"><img ${src(p)} alt=""></div><table class="ap-il-ct"><tbody><tr><th>구분</th><td>${tg(p,i)}</td><th>일시</th><td>${esc(ilShot(p))}</td></tr><tr><th>내용</th><td colspan="3">${cap(p)}</td></tr></tbody></table></div>`).join('')}</div>`;
-  return `<h2 class="ap-il-h">${n}. ${kind==='chk'?'점검':'작업'} 사진 <span class="ap-il-n">${L.length}장</span></h2><div class="ap-il-photos">${L.map((p,i)=>`<div class="ap-il-ph"><div class="ap-il-im"><img ${src(p)} alt=""></div><div class="ap-il-cap">${tg(p,i)} <span class="ap-il-sh">${esc(ilShot(p))}</span> ${cap(p)}</div></div>`).join('')}</div>`;}
+  if(kind==='photo')return `<h2 class="ap-il-h">${n}. 사진 대지 <span class="ap-il-n">${L.length}장</span></h2><div class="ap-il-photos ap-il-sheet">${L.map((p,i)=>`<div class="ap-il-ph"><div class="ap-il-im"><img ${src(p)} alt=""></div><table class="ap-il-ct"><tbody><tr><th>구분</th><td>${tg(p,i)}</td><th>일시</th><td>${sh(p)}</td></tr><tr><th>내용</th><td colspan="3">${cap(p)}</td></tr></tbody></table></div>`).join('')}</div>`;
+  return `<h2 class="ap-il-h">${n}. ${kind==='chk'?'점검':'작업'} 사진 <span class="ap-il-n">${L.length}장</span></h2><div class="ap-il-photos">${L.map((p,i)=>`<div class="ap-il-ph"><div class="ap-il-im"><img ${src(p)} alt=""></div><div class="ap-il-cap">${tg(p,i)} ${sh(p)} ${cap(p)}</div></div>`).join('')}</div>`;}
 function ilDocHTML(d,mode,M){const K=IL_K[d.gk]||IL_K.work;const ap=(S.config.approvals||[]).slice(0,6);
   const sign=mode==='appr'||!ap.length?'':`<table class="ap-il-sign"><tbody><tr><th rowspan="2" class="ap-il-v">결<br>재</th>${ap.map(a=>`<th>${esc(a)}</th>`).join('')}</tr><tr>${ap.map(()=>'<td></td>').join('')}</tr></tbody></table>`;
   return `<div class="ap-il ap-il-k-${d.gk||'work'}"><div class="ap-il-top"><div class="ap-il-logo"><img src="${IL_LOGO}" alt="TAESUNG"></div>${sign}</div><h1 class="ap-il-title">${esc(d.docTitle||K.t)}</h1><div class="ap-il-body">${d.body||''}</div>${ilPhotosHTML(d,mode,M)}<div class="ap-il-foot">㈜태성산업 ${esc(S.config.dept||'관리부')} · 시설·공무 · ${esc(fmtYMD(d.date))}${d.site?' · '+esc(d.site):''}</div></div>`;}
@@ -7804,7 +7822,7 @@ function ilInStep(){const d=IL.d;const L=ilPhs(d);const kinds=[['auto','✨ 자�
   <section class="il-sec"><h3>사진 <small>${L.length}/${IL_MAXPH}장 · 구분(작업 전·중·후)은 눌러서 바꿉니다</small></h3>
     <div class="il-grid">${L.map((p,i)=>`<figure class="il-th" data-il-ph="${esc(p.id)}">${thumbImg(p)}<button type="button" class="il-tag t-${p.tag||'no'}" data-il-tag="${esc(p.id)}">${esc(PH_TAGS[p.tag]||'구분 없음')}</button><button type="button" class="il-del" data-il-del="${esc(p.id)}" aria-label="사진 빼기">✕</button><input class="il-cap" data-il-cap="${esc(p.id)}" maxlength="60" placeholder="사진 설명 (선택)" value="${esc(p.cap||'')}"><span class="il-no">${i+1}</span></figure>`).join('')}
       ${L.length<IL_MAXPH?`<label class="il-add cam-only"><span>📷</span>촬영<input type="file" id="il-cam" accept="image/*" capture="environment"></label><label class="il-add"><span>🖼</span>사진 고르기<input type="file" id="il-pick" accept="image/*" multiple></label>`:''}</div>
-    <label class="il-stamp"><input type="checkbox" id="il-stamp" ${d.stamp?'checked':''}> 새로 올리는 사진에 날짜·사업장 새기기 <small>(사업장을 먼저 고르세요)</small></label></section>
+    <label class="il-stamp"><input type="checkbox" id="il-stamp" ${d.stamp?'checked':''}> 새로 올리는 사진에 날짜·사업장 새기기 <small>(날짜·사업장을 먼저 고르세요 — 찍은 시각을 모르거나 일보 날짜와 다른 날 찍은 사진은 사업장만)</small></label></section>
   <section class="il-sec"><h3>메모 <small>한 줄에 한 가지씩, 꾸미지 않아도 됩니다</small></h3>
     <textarea id="il-memo" rows="7" maxlength="2000" placeholder="예)&#10;2층 화장실 세면대 — 배수 막힘, 트랩 분해 청소 후 배수 이상 없음&#10;1층 복도 LED 등 3개 교체&#10;09:10~11:40&#10;자재: LED 등 3개, 세면대 트랩 1개&#10;※ 소변기 센서 불량 — 부품 주문 필요">${esc(d.memo)}</textarea>
     <div class="il-chips" role="group" aria-label="자주 쓰는 말 넣기">${[['⏱ 시간','09:00~12:00'],['🧰 자재','자재: '],['👷 작업자','작업자: '],['✓ 이상 없음','이상 없음'],['※ 특이사항','※ '],['▶ 후속 조치','다음: ']].map(([l,v])=>`<button type="button" class="il-chip" data-il-chip="${esc(v)}">${l}</button>`).join('')}<button type="button" class="il-chip ghost" data-il-sample>예시 넣어 보기</button></div></section>
@@ -7907,7 +7925,9 @@ async function ilAddPhotos(files){const d=IL.d;files=Array.from(files||[]).filte
   const room=IL_MAXPH-d.ph.length;if(room<=0){toast(`사진은 일보 하나에 ${IL_MAXPH}장까지 붙입니다.`,'err');return;}
   if(files.length>room){toast(`${IL_MAXPH}장까지만 붙입니다 — ${files.length-room}장은 빠졌습니다.`,'err');files=files.slice(0,room);}
   ilCollect();IL.busy=true;const b=$('#il-busy');if(b)b.hidden=false;let ups=[];
-  try{ups=await uploadImages(files,{tag:'',stamp:d.stamp?stampFor(d.site,''):null,priv:false,pii:false,q:S.config.photo==='high'?'high':'save'});}finally{IL.busy=false;const b2=$('#il-busy');if(b2)b2.hidden=true;}
+  let off=0;const st=d.stamp?shot=>{const ok=!!shot&&shot.slice(0,10)===d.date;if(shot&&!ok)off++;return stampFor(d.site,'')(ok?shot:'');}:null;
+  try{ups=await uploadImages(files,{tag:'',stamp:st,priv:false,pii:false,q:S.config.photo==='high'?'high':'save'});}finally{IL.busy=false;const b2=$('#il-busy');if(b2)b2.hidden=true;}
+  if(off&&ups.length)toast(`사진 ${off}장은 찍은 날짜가 일보 날짜(${ilMD(d.date)})와 달라 시각은 새기지 않았습니다. 일보 날짜를 먼저 고르고 올리면 찍은 시각이 함께 새겨집니다.`);
   if(!ups.length||IL.d!==d)return;d.photos.push(...ups);d.ph.push(...ups.map(u=>u.id));d.fresh.push(...ups.map(u=>u.id));IL.dirty=true;ilSave();if(IL.step==='in')ilRender();}
 const IL_SAMPLE='군포공장 2층 화장실 세면대 — 배수 막힘, 트랩 분해 청소 후 배수 이상 없음\n1층 복도 LED 등 3개 교체\n09:10~11:40\n자재: LED 등 3개, 세면대 트랩 1개\n※ 남자 화장실 소변기 센서 불량 — 부품 주문 필요';
 
@@ -8097,7 +8117,7 @@ function joFix(s){if(!HG||typeof s!=='string'||s.indexOf('(')<0)return s;try{ret
 window.hgApi={load:hgLoad,jo:joFix,cho:s=>HG?HG.getChoseong(s):''};
 
 /* ───────── 38차: 사진 정보 읽기 (exifr 7.1.3 lite, MIT) ─────────
-   · 찍은 시각: JPEG뿐 아니라 HEIC·PNG·TIFF 사진도 읽음(못 읽으면 예전 방식)
+   · 찍은 시각: JPEG뿐 아니라 HEIC·PNG·TIFF 사진도 읽음(못 읽으면 예전 방식). 39차: 원본 시각(DateTimeOriginal·CreateDate)만 — 고친 시각(ModifyDate)은 편집·캡처 시각일 수 있어 안 씀
    · 찍은 위치(GPS) → 시설 일보 사업장 자동: 관리자가 설정 › '사업장 위치'에 사업장 좌표를 넣어 두면, 사진 위치에서 2km 안 가장 가까운 사업장으로 정함.
      사진의 위치값은 사업장 판정에만 쓰고 저장하지 않음(올리는 사진은 다시 그려서 위치 정보가 빠짐). 직원이 사업장을 직접 고르면 그대로 둠. */
 const GEO={sites:null,p:null};
@@ -8106,8 +8126,8 @@ function geoLoad(force){if(S.mode!=='firebase'||!S.fs)return Promise.resolve({})
   if(!GEO.p||force)GEO.p=S.fs.doc(GEO_DOC).get().then(s=>{const d=s.exists?s.data():{};const o={};for(const [k,v] of Object.entries(d.sites||{}))if(Array.isArray(v)&&v.length===2&&isFinite(v[0])&&isFinite(v[1]))o[k]=[+v[0],+v[1]];GEO.sites=o;return o;}).catch(()=>{GEO.p=null;return {};});
   return GEO.p;}
 const exifReady=()=>Promise.race([needLib('exifr'),new Promise((_,r)=>setTimeout(()=>r(new Error('timeout')),3000))]);
-{const _ed=exifDate;exifDate=async function(file){try{await exifReady();if(window.exifr&&file){const o=await exifr.parse(file,{pick:['DateTimeOriginal','CreateDate','ModifyDate'],reviveValues:false,xmp:false,icc:false,iptc:false,jfif:false,ihdr:false});
-      const v=o&&String(o.DateTimeOriginal||o.CreateDate||o.ModifyDate||'');const m=v.match(/^(\d{4})[:-](\d{2})[:-](\d{2})[ T](\d{2}):(\d{2})/);if(m&&+m[1]>1990)return `${m[1]}-${m[2]}-${m[3]}T${m[4]}:${m[5]}`;}}catch{}
+{const _ed=exifDate;exifDate=async function(file){try{await exifReady();if(window.exifr&&file){const o=await exifr.parse(file,{pick:['DateTimeOriginal','CreateDate'],reviveValues:false,xmp:false,icc:false,iptc:false,jfif:false,ihdr:false});
+      const v=o&&String(o.DateTimeOriginal||o.CreateDate||'');const m=v.match(/^(\d{4})[:-](\d{2})[:-](\d{2})[ T](\d{2}):(\d{2})/);if(m&&+m[1]>1990)return `${m[1]}-${m[2]}-${m[3]}T${m[4]}:${m[5]}`;}}catch{}
   return _ed(file);};}
 async function exifGps(files){try{await exifReady();}catch{return null;}if(!window.exifr)return null;
   for(const f of Array.from(files||[]).slice(0,6)){try{const g=await exifr.gps(f);if(g&&isFinite(g.latitude)&&isFinite(g.longitude)&&(g.latitude||g.longitude))return {lat:g.latitude,lng:g.longitude};}catch{}}return null;}
