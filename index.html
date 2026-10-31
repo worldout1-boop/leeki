@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="wl-build" content="630e8607eab6">
+<meta name="wl-build" content="6a6d4c96cdcb">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#1f3a5f">
@@ -1906,7 +1906,7 @@ body.gd-mode #gd-out{height:34px}
 @media print{.up-new{display:none!important}}
 /* ── 50차 ── */
 .od-pre{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:9px;background:#fdf3e1;color:#8a5a00;border:1px solid #f0d49a;font-size:11.5px;font-weight:700;vertical-align:middle}
-.od-chip.me{border-style:dashed;border-color:#1f4f96}
+.od-chip.od-self{border-style:dashed;border-color:#1f4f96}
 #qa-text{resize:none;overflow:hidden;line-height:1.5;min-height:56px;max-height:none}
 .upt-ed{margin-left:auto;border:1px dashed var(--line);background:transparent;border-radius:8px;padding:5px 10px;font:inherit;font-size:13px;color:var(--ink-2);cursor:pointer}
 .upt-ed:hover{background:var(--surface-2);color:var(--ink)}
@@ -1946,12 +1946,53 @@ body.gd-mode #gd-out{height:34px}
 .vsort.vs-col label{flex:1}.vsort.vs-col select{flex:1;max-width:none}
 @media (max-width:640px){.vsort.vs-row{justify-content:flex-start}.vsort select{max-width:150px}.vsort.vs-in-f{margin-left:0}}
 @media print{.vsort,.vs-fld{display:none!important}}
+/* ── 52차 ── */
+.dt2{display:flex;gap:6px;align-items:center}.dt2 input[type=date]{flex:1;min-width:0}.dt2 input[type=time]{width:112px;flex:none}
+#qa-time{width:108px;flex:none}
+@media (min-width:761px){.ir{grid-template-columns:20px 136px 100px minmax(180px,1fr) 96px 112px 96px 96px}}
+@media (max-width:760px){.ir [data-f=time]{grid-column:3;grid-row:1}.ir [data-f=status]{grid-column:2;grid-row:4}.ir [data-f=who]{grid-column:3;grid-row:4}}
+.od-box .od-new .lbl{font-size:13px;font-weight:600;color:var(--ink-2);display:block;margin-bottom:6px}.od-box .od-new .lbl small{font-weight:400;color:var(--ink-3)}
+.od-box .od-tm{margin:0 0 6px;flex-wrap:wrap}.od-box .od-tm button{font-size:13px}
+.od-fq{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:2px 0 4px}.od-fq small{color:var(--ink-3);font-size:12px;margin-right:2px}
+.od-fq .btn.on{border-color:#1f4f96;background:#e8f0fb;color:#1f4f96;font-weight:700}
+.od-box .od-new input#t-ord-memo{margin-top:6px}
+.t-att{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;margin:6px 0 10px;padding:8px 10px;border:1px dashed var(--line);border-radius:9px;background:var(--surface-2);font-size:13px}
+.t-att-i{display:inline-flex;align-items:center;gap:6px}.t-att-i small{color:var(--ink-3)}
+.imp-files li{flex-wrap:wrap;align-items:center}
+.imp-mode{margin-left:auto}.imp-mode button{font-size:12px;padding:3px 8px}
+.imp-one{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px 10px;padding:10px 12px;border:1.5px solid var(--accent);border-radius:10px;background:var(--surface);margin:6px 0}
+.imp-one.off{opacity:.55;border-color:var(--line)}
+.imp-one .io-h{grid-column:1/-1;display:flex;gap:10px;align-items:center;flex-wrap:wrap}.imp-one .io-h small{color:var(--ink-3)}
+.imp-one .io-f{display:grid;gap:4px;font-size:12.5px;font-weight:600;color:var(--ink-2)}.imp-one .io-f small{font-weight:400;color:var(--ink-3)}
+.imp-one .io-w{grid-column:1/-1}
+.imp-one input,.imp-one select,.imp-one textarea{font:inherit;font-size:14px;font-weight:400;color:var(--ink);padding:6px 8px;border:1px solid var(--line);border-radius:7px;background:var(--surface);min-width:0;width:100%}
+.imp-one textarea{resize:vertical;line-height:1.5}
+.imp-one .io-att{font-weight:600;font-size:13px}.imp-one .io-att small{font-weight:400;color:var(--ink-3)}
+@media (max-width:760px){.imp-one{grid-template-columns:1fr 1fr}}
+.nav-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:40;width:54px;min-height:96px;padding:6px 2px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.94);box-shadow:0 3px 12px rgba(20,30,50,.16);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;color:var(--ink);font:inherit}
+.nav-arrow .na-ch{font-size:44px;line-height:.9;font-weight:300}
+.nav-arrow .na-n{font-size:10.5px;line-height:1.25;color:var(--ink-3);max-width:50px;word-break:keep-all;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;text-align:center}
+.nav-arrow:hover,.nav-arrow:focus-visible{background:#fff;border-color:var(--accent);color:var(--accent)}
+.nav-arrow.prev{left:12px}.nav-arrow.next{right:12px}
+.nav-arrow.fixed{position:fixed}
+.nav-pos{position:absolute;left:12px;top:calc(50% + 60px);font-size:11.5px;color:var(--ink-3);background:rgba(255,255,255,.9);border-radius:9px;padding:1px 7px;z-index:40}
+.nav-pos.fixed{position:fixed}
+dialog .nav-arrow.in-dlg{width:46px;min-height:84px}dialog .nav-arrow.in-dlg.prev{left:6px}dialog .nav-arrow.in-dlg.next{right:6px}
+@media (max-width:760px){.nav-arrow{width:34px;min-height:64px;padding:2px}.nav-arrow .na-ch{font-size:32px}.nav-arrow .na-n{display:none}.nav-arrow.prev{left:4px}.nav-arrow.next{right:4px}.nav-pos{left:4px}}
+@media print{.nav-arrow,.nav-pos,.t-att .btn{display:none!important}}
+.imp-one input[type=checkbox]{width:auto;flex:none;margin:0}.imp-one label.chk{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}.imp-one .io-att{display:flex;flex-wrap:wrap;gap:6px;white-space:normal}
+.vsort.vs-col .vs-l{display:none}
+input[type=time]{height:34px;padding:0 8px;border:1px solid var(--line);border-radius:7px;background:var(--surface);color:var(--ink);font:inherit;min-width:0}
+.ir input[type=time]{height:32px;font-size:13px;padding:0 6px}
+.qa-auto.empty{display:none!important}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
   background:var(--pbg);color:var(--pi);width:800px;max-width:none;margin:0 auto;padding:44px 48px 52px;border:1px solid #d5dbe3;box-shadow:0 2px 10px rgba(0,0,0,.08);
   font-family:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;font-size:12.5px;line-height:1.55;font-variant-numeric:tabular-nums;color-scheme:light}
-.paper .doc-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;padding-bottom:14px;border-bottom:3px double var(--ph)}
+.paper .doc-head{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"k k" "t a";column-gap:20px;align-items:end;padding-bottom:14px;border-bottom:3px double var(--ph)}
+.paper .doc-head .kicker{grid-area:k;margin:0 0 8px}.paper .doc-head .dh-t{grid-area:t;min-width:0}.paper .doc-head table.approve{grid-area:a}
+.paper .doc-head h1{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .paper .kicker{margin:0 0 4px;font-size:12px;color:var(--pi2);letter-spacing:.06em}
 .paper h1{font-family:"Nanum Myeongjo","AppleMyungjo","Batang",serif;font-size:27px;font-weight:800;margin:0;color:var(--pi);letter-spacing:-.01em}
 .paper .period{margin:6px 0 0;font-size:13px;color:var(--pi2)}
@@ -2065,8 +2106,8 @@ body.gd-mode #gd-out{height:34px}
           <div class="f"><label for="t-prio">중요도</label><select id="t-prio"></select></div>
         </div>
         <div class="r3">
-          <div class="f"><label for="t-start">시작일</label><input type="date" id="t-start"></div>
-          <div class="f"><label for="t-due">마감일</label><input type="date" id="t-due"></div>
+          <div class="f"><label for="t-start">시작일 · 시각</label><div class="dt2"><input type="date" id="t-start"><input type="time" id="t-stime" aria-label="시작 시각" title="시각 (선택)"></div></div>
+          <div class="f"><label for="t-due">마감일 · 시각</label><div class="dt2"><input type="date" id="t-due"><input type="time" id="t-dtime" aria-label="마감 시각" title="시각 (선택)"></div></div>
           <div class="f"><label for="t-repeat">반복</label><select id="t-repeat"></select></div>
         </div>
         <div class="f"><span class="lbl" id="t-status-lbl">진행 상태</span><div class="seg status-seg" id="t-status" role="group" aria-labelledby="t-status-lbl"></div></div>
@@ -2714,7 +2755,7 @@ function guessCat(text){return classify(text);}
 function qaShell(){return `<section class="qa" id="qa" aria-label="빠른 업무 기록">
   <div class="qa-top"><label class="sr" for="qa-text">업무 내용</label><textarea id="qa-text" rows="2" maxlength="600" placeholder="오늘 한 일이나 할 일을 적고 「등록」을 누르세요 (Enter 는 줄바꿈)&#10;예: 군포공장 소화기 42대 압력 점검, 2대 교체 요청"></textarea><button type="button" class="btn primary qa-go" id="qa-go">등록</button></div>
   <div class="qa-opts"><div class="seg" id="qa-status" role="group" aria-label="진행 상태"><button type="button" class="s-done" data-v="done">완료</button><button type="button" class="s-doing" data-v="doing">진행 중</button><button type="button" class="s-plan" data-v="plan">할 예정</button></div><button type="button" class="btn qa-priv" id="qa-priv" aria-pressed="false" hidden title="켜면 나만 보는 비공개 업무로 등록됩니다 (관리자·다른 직원에게 보이지 않음)">🔒 나만 보기</button>
-    <input type="date" id="qa-date" aria-label="날짜"><select id="qa-cat" aria-label="대분류"></select><select id="qa-sub" aria-label="중분류"></select><select id="qa-leaf" aria-label="소분류"></select><span class="qa-auto" id="qa-auto" hidden></span><select id="qa-site" aria-label="사업장"></select>
+    <input type="date" id="qa-date" aria-label="날짜"><input type="time" id="qa-time" aria-label="시각" title="시각 (선택)"><select id="qa-cat" aria-label="대분류"></select><select id="qa-sub" aria-label="중분류"></select><select id="qa-leaf" aria-label="소분류"></select><span class="qa-auto" id="qa-auto" hidden></span><select id="qa-site" aria-label="사업장"></select>
     <label class="btn file-btn cam-only" id="qa-cam-btn">${ICON.cam} 현장 사진 기록<input type="file" id="qa-cam" accept="image/*" capture="environment"></label><button type="button" class="btn" id="qa-import">${ICON.dl} 파일·사진으로 올리기</button></div>
   <div class="qa-more"><p class="qa-hint">Enter 는 줄바꿈이고, 다 적은 뒤 <b>등록</b>(또는 Ctrl+Enter)을 누르면 등록됩니다. 첫 줄은 업무명, 다음 줄부터는 내용이 됩니다. 분야는 내용을 보고 자동으로 고르니, 다르면 바꿔 주세요. 종이 업무일지 사진이나 엑셀·한글·워드·PDF 파일은 끌어다 놓아도 됩니다.</p><button type="button" class="qa-multi" id="qa-multi" hidden></button></div></section>`;}
 function qaSubs(){const auto=!S.qa.cat;$('#qa-sub').hidden=auto;$('#qa-leaf').hidden=auto;qaAutoPreview();if(auto)return;const sel=$('#qa-sub');const subs=subsOf(S.qa.cat);if(!subs.includes(S.qa.sub))S.qa.sub=subs[0];fillSelect(sel,subs.map(s=>[s,s]),S.qa.sub);qaLeaves();}
@@ -2744,10 +2785,10 @@ function initQA(){const q=S.qa;$('#qa-text').value=q.text;
   qaMultiHint();}
 async function submitQA(){const q=S.qa;const raw=$('#qa-text').value.trim();if(!raw){$('#qa-text').focus();return;}if(!S.canWrite){toast('보기 전용 권한이라 등록할 수 없습니다.','err');return;}
   if(S.qaBusy)return;S.qaBusy=true;const lines=raw.split('\n');const first=lines[0].trim();const title=first.slice(0,120);const desc=first.length>120?raw:lines.slice(1).join('\n').trim();
-  const date=q.dateTouched?(q.date||''):(q.status==='plan'?'':today());const btn=$('#qa-go');btn.disabled=true;btn.textContent='등록 중…';
+  const qaTm=(($('#qa-time')||{}).value||'');const date=q.dateTouched?(q.date||''):(q.status==='plan'&&!qaTm?'':today());const btn=$('#qa-go');btn.disabled=true;btn.textContent='등록 중…';
   try{const ups=q.files.length?await uploadImages(q.files,{priv:qaPriv(),stamp:stampPref()?stampFor(q.site,title):null}):[];
-    await createTask({priv:qaPriv(),title,...qaCatFields(raw),site:q.site||S.config.sites[0],scope:'day',priority:'normal',repeat:'none',start:date,due:(q.status==='doing'&&!q.dateTouched)?'':date,status:q.status,progress:q.status==='done'?100:0,doneAt:q.status==='done'?date:'',assignees:S.myStaff?[S.myStaff]:[],assigneeText:'',desc,photos:ups,logs:ups.length?[{at:nowISO(),by:myId(),kind:'photo',text:'',photos:ups.map(u=>u.id)}]:[]});
-    q.text='';q.files=[];q.catTouched=false;q.cat='';q.sub='';q.leaf='';q.dateTouched=false;q.date=today();if(!q.siteTouched)q.site='';syncQA();const ta=$('#qa-text');if(ta){ta.value='';ta.focus();}const pi=$('#qa-photo');if(pi)pi.value='';const qf=$('#qa-files');if(qf)qf.textContent='';
+    await createTask({priv:qaPriv(),title,...qaCatFields(raw),site:q.site||S.config.sites[0],scope:'day',priority:'normal',repeat:'none',start:date,startTime:qaTm,due:(q.status==='doing'&&!q.dateTouched)?'':date,status:q.status,progress:q.status==='done'?100:0,doneAt:q.status==='done'?date:'',assignees:S.myStaff?[S.myStaff]:[],assigneeText:'',desc,photos:ups,logs:ups.length?[{at:nowISO(),by:myId(),kind:'photo',text:'',photos:ups.map(u=>u.id)}]:[]});
+    q.text='';q.files=[];q.catTouched=false;q.cat='';q.sub='';q.leaf='';q.dateTouched=false;q.date=today();if(!q.siteTouched)q.site='';{const qt=$('#qa-time');if(qt)qt.value='';}syncQA();const ta=$('#qa-text');if(ta){ta.value='';ta.focus();}const pi=$('#qa-photo');if(pi)pi.value='';const qf=$('#qa-files');if(qf)qf.textContent='';
     toast((qaPriv()?'🔒 비공개 업무로 등록했습니다':q.status==='done'?'한 일을 기록했습니다':'업무를 등록했습니다')+(S.lastAuto?` · 자동 분류: ${catText(S.lastAuto)}`:'')+'.');}
   catch{}finally{S.qaBusy=false;const b=$('#qa-go');if(b){b.disabled=!S.canWrite;b.textContent='등록';}}}
 function myRow(t){const d=ddayInfo(t);const late=isLate(t);const p=esc(t.path);
@@ -2855,6 +2896,10 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>↕ 정렬 (모든 업무 화면)</b><span>내 업무·팀 현황·총괄·칸반·달력·목록·보고서·업무 지시 화면 위쪽(칸반·달력·목록은 거르기 줄, 보고서는 왼쪽 조건)의 <em>↕ 정렬</em>에서 기준(진행 날짜·등록일·최근 진행·마감일·중요도·상태·업무명·담당자·사업장·분야 등)과 방향(<em>↓ 최근 날짜 먼저 / ↑ 이른 날짜 먼저</em>)을 고릅니다. 처음에는 진행 날짜가 최근인 업무가 맨 위이고, <em>🔒 비공개 업무</em>는 공개 업무 아래에 따로 같은 기준으로 모입니다(<em>🔒 비공개는 아래로</em>를 끄면 섞어서 정렬). 화면마다 이 기기에 기억되고, 인쇄(업무 목록만)·엑셀 내려받기도 화면 정렬대로 나옵니다. 달력은 하루 칸 안의 순서가 바뀝니다.</span></li>
       <li><b>⚙ 탭 편집 (자료 관리자)</b><span>각종서류 올리기·자료실·회사서식 화면 위 탭 줄 끝의 <em>⚙ 탭 편집</em>에서 탭 이름·아이콘·순서를 바꾸고, 기본 탭은 보이기를 끄고, <em>＋ 탭 추가</em>로 자료실·회사서식(작성 불가)·회사서식(작성 가능) 종류의 탭을 만들거나(기존 폴더 연결 또는 새 폴더) 지웁니다. 비어 있는 서류 칸(예: 법인 인감증명서)은 칸의 <em>🗑</em>로 지우고, 아래 <em>지운 빈 칸 다시 보이기</em>로 되살립니다.</span></li>
       <li><b>🧩 조직도 파트 편집 (관리자)</b><span>조직도 위 <em>🧩 파트 편집</em>에서 칸(파트) 이름·색·순서(▲▼, 위가 왼쪽)를 바꾸고 <em>＋ 칸 추가</em>·<em>지우기</em>를 합니다. '파트' 글자를 끄면 '브리티카페'처럼 이름만 보입니다. 사람을 칸에 넣으려면 그 사람의 <em>소속·약식 고치기</em>에서 소속 파트를 고르고, <em>이름 옆 표시</em>에 '겸직' 같은 짧은 표시를 적을 수 있습니다.</span></li>
+      <li><b>⏰ 시각 · 마감일 자동</b><span>업무 창의 시작일·마감일 옆, 빠른 기록 줄 날짜 옆, 파일 올리기 표의 날짜 옆에 <em>시각</em>을 넣을 수 있습니다(선택). 넣은 시각은 모든 화면의 날짜 옆과 달력 막대 앞에 나옵니다. 시작일만 넣으면 마감일이 시작일과 같게 들어갑니다(마감일을 직접 고친 경우는 그대로).</span></li>
+      <li><b>📄 파일 1개 = 업무 1건 (원본 첨부)</b><span><em>파일·사진으로 올리기</em>에 한 가지 업무에 관한 문서(워드·한글·PDF·글)를 올리면 줄마다 나누지 않고 <em>📄 업무 1건으로 정리</em> 카드를 만듭니다 — 제목, 날짜·시각(문서의 일정), 주요 내용(일정·인원·연락처 같은 줄)이 채워지니 고친 뒤 <em>등록</em>을 누르면 확인 창이 한 번 더 뜨고, 원본 파일이 업무에 첨부됩니다(업무 창 <em>📎 첨부 원본</em>에서 미리보기·내려받기). 업무일지처럼 날짜별 줄이 많은 파일은 지금처럼 여러 건으로 나뉘고, 파일 줄의 <em>📄 업무 1건 / ☰ 줄마다 여러 건</em>으로 바꿀 수 있습니다.</span></li>
+      <li><b>◀ ▶ 서식·자료 넘기기</b><span>회사서식(작성 가능) 작성 화면 양옆, 회사서식 미리보기 창과 자료실 파일 보기 창 양옆의 <em>‹ ›</em>를 누르면 목록 순서대로 위(이전)·아래(다음) 서식·파일이 열립니다. 적던 내용은 이 기기에 자동 보관됩니다.</span></li>
+      <li><b>📌 여러 명·공장별 지시</b><span>업무 등록 창의 <em>📌 업무 지시</em>에서 <em>👤 직원 (여러 명)</em>을 골라 여러 명을 누르거나 <em>🏭 공장 전체 넣기</em>, <em>🏭 공장별</em>(그 공장 근무 직원 모두), <em>🧩 직무</em>로 지시합니다. 업무 창의 지시 창에도 공장 전체 넣기·빼기가 있습니다. 지시·보고 기록과 알림에는 이름 옆에 직급이 나옵니다.</span></li>
       <li><b>설비 QR</b><span>시설 일보 창의 <em>🏷 설비 QR</em>에서 설비(소화전 펌프·콤프레샤·승강기 등)를 등록하고 <em>🖨 QR 라벨</em>을 인쇄해 붙여 두면, 휴대폰 기본 카메라로 찍기만 해도 업무일지가 열려 그 설비의 점검·작업 기록과 <em>📋 이 설비 일보 쓰기</em>가 나옵니다. 앱 안의 📷 QR 스캔이나 사진으로 QR 읽기도 됩니다. 설비를 고른 일보는 '대상 설비'가 서류에 들어가고 그 설비 기록에 쌓입니다.</span></li>
       <li><b>찾기 요령 · 사진 위치</b><span>전체 검색(🔍, Ctrl+K)은 초성으로도 찾습니다(ㅅㅎㄱ → 소화기). 한/영 전환을 깜빡해 영문으로 찍히면 한글 낱말로 찾기를 제안합니다. 관리자가 설정 › <em>사업장 위치</em>에 좌표를 넣어 두면, 시설 일보에 올린 사진의 촬영 위치로 사업장이 자동으로 정해집니다(위치값은 저장하지 않음).</span></li>
       <li><b>시설 일보 (자동 완성)</b><span>홈의 <em>📋 시설 일보</em>(또는 사진첩, 시설·공무 업무 상세의 📋 단추)에서 현장 사진을 찍어 올리고 메모를 한 줄에 한 가지씩 적은 뒤 <em>✨ 자동 완성</em>을 누르면, 회사 로고·결재란이 있는 <em>작업 일보 · 점검 일지 · 사진 대지</em>가 만들어집니다. 메모의 '위치 — 내용', 09:00~11:30, 자재:, 작업자:, ※ 특이사항, 다음: 후속 조치, 이상 없음·주의·불량을 알아서 칸에 나눠 넣습니다. 서류의 글자는 눌러서 바로 고치고, <em>💾 업무일지에 저장</em>(완료 업무 + 사진), <em>🖨 인쇄·PDF</em>, <em>📝 전자결재로 올리기</em>를 고릅니다. 후속 조치는 '할 예정' 업무로 같이 등록할 수 있고, 작성 중인 일보는 이 기기에 임시 저장됩니다. 휴대폰 홈 화면에는 주소 끝에 <em>#ilbo</em>를 붙인 바로가기를 두면 바로 열립니다.</span></li>
@@ -3006,7 +3051,7 @@ function renderImport(){if(!S.imp)return;const I=S.imp;renderImpFiles();
   $('#imp-rows-sec').hidden=!I.rows.length;$('#imp-photos-sec').hidden=!I.photos.length;$('#imp-drop').classList.toggle('slim',!!(I.rows.length||I.photos.length));
   $('#imp-rows-n').textContent=`${I.rows.filter(r=>r.on).length}/${I.rows.length}건 선택`;$('#imp-all').checked=I.rows.length&&I.rows.every(r=>r.on);
   $('#imp-b-site').innerHTML='<option value="">건물 일괄</option>'+optHTML(sites,'');$('#imp-b-who').innerHTML='<option value="">담당 일괄</option>'+optHTML(staffOpts.slice(1),'');
-  $('#imp-rows').innerHTML=I.rows.map((r,i)=>`<div class="ir ${r.on?'':'off'}" data-ri="${i}"><input type="checkbox" data-f="on" ${r.on?'checked':''} aria-label="선택"><input type="date" data-f="date" value="${esc(r.date)}" aria-label="날짜"><input type="text" data-f="text" value="${esc(r.text)}" aria-label="업무 내용" maxlength="300"><select data-f="status" aria-label="상태">${optHTML(STATUSES.map(s=>[s.id,s.name]),r.status)}</select><select data-f="cat" aria-label="대분류">${optHTML(CATS.map(c=>[c.id,c.name]),r.cat)}</select><select data-f="site" aria-label="건물">${optHTML(sites,r.site)}</select><select data-f="who" aria-label="담당">${optHTML(staffOpts,r.who)}</select></div>`).join('');
+  $('#imp-rows').innerHTML=I.rows.map((r,i)=>`<div class="ir ${r.on?'':'off'}" data-ri="${i}"><input type="checkbox" data-f="on" ${r.on?'checked':''} aria-label="선택"><input type="date" data-f="date" value="${esc(r.date)}" aria-label="날짜"><input type="time" data-f="time" value="${esc(r.time||'')}" aria-label="시각"><input type="text" data-f="text" value="${esc(r.text)}" aria-label="업무 내용" maxlength="300"><select data-f="status" aria-label="상태">${optHTML(STATUSES.map(s=>[s.id,s.name]),r.status)}</select><select data-f="cat" aria-label="대분류">${optHTML(CATS.map(c=>[c.id,c.name]),r.cat)}</select><select data-f="site" aria-label="건물">${optHTML(sites,r.site)}</select><select data-f="who" aria-label="담당">${optHTML(staffOpts,r.who)}</select></div>`).join('');
   $('#imp-raw').textContent=I.raw||'';
   $('#imp-ph').innerHTML=I.photos.map((p,i)=>`<figure class="${p.on?'':'off'}"><img src="${esc(p.url)}" alt="${esc(p.src)}"><label class="chk"><input type="checkbox" data-pi="${i}" ${p.on?'checked':''}> 포함</label></figure>`).join('');
   $('#imp-ph-n').textContent=`${I.photos.filter(p=>p.on).length}/${I.photos.length}장`;
@@ -3031,7 +3076,7 @@ ${I.raw.trim()?'\n[파일에서 읽은 글]\n'+I.raw.slice(0,20000):''}`;
 async function impSubmit(e){e.preventDefault();const I=S.imp;if(!I||I.busy)return;const rows=I.rows.filter(r=>r.on&&r.text.trim());const photos=I.photos.filter(p=>p.on);if(!rows.length&&!photos.length)return;
   I.busy=true;const btn=$('#imp-go');const total=rows.length+(photos.length?1:0);let n=0;btn.disabled=true;
   try{for(const r of rows){btn.textContent=`등록 중 ${n+1}/${total}`;const text=r.text.trim();const desc=[text.length>120?text:'',r.note,`출처: ${r.src||'파일'}`].filter(Boolean).join('\n');
-      await createTask({title:text.slice(0,120),desc,cat:r.cat,sub:subsOf(r.cat).includes(r.sub)?r.sub:subsOf(r.cat)[0],leaf:subsOf(r.cat).includes(r.sub)?(r.leaf||''):'',tx:TXV,site:r.site,scope:'day',priority:'normal',repeat:'none',start:r.date||I.baseDate,due:r.date||I.baseDate,status:r.status,progress:r.status==='done'?100:0,doneAt:r.status==='done'?(r.date||I.baseDate):'',assignees:r.who?[r.who]:[],assigneeText:'',photos:[],logs:[]});n++;}
+      await createTask({title:text.slice(0,120),desc,cat:r.cat,sub:subsOf(r.cat).includes(r.sub)?r.sub:subsOf(r.cat)[0],leaf:subsOf(r.cat).includes(r.sub)?(r.leaf||''):'',tx:TXV,site:r.site,scope:'day',priority:'normal',repeat:'none',start:r.date||I.baseDate,due:r.date||I.baseDate,startTime:r.time||'',status:r.status,progress:r.status==='done'?100:0,doneAt:r.status==='done'?(r.date||I.baseDate):'',assignees:r.who?[r.who]:[],assigneeText:'',photos:[],logs:[]});n++;}
     if(photos.length){btn.textContent=`사진 올리는 중… (${photos.length}장)`;const ups=await uploadImages(photos.map(p=>p.file));
       if(ups.length){const title=($('#imp-ph-title').value||'').trim()||`업무일지 사진 ${fmtMD(I.photoDate)}`;const g=autoCat(title);const dt=I.photoDate||I.baseDate;
         await createTask({title:title.slice(0,120),desc:`출처: ${[...new Set(photos.map(p=>p.src))].join(', ')}`,cat:g.cat,sub:g.sub,leaf:g.leaf||'',tx:TXV,site:I.photoSite,scope:'day',priority:'normal',repeat:'none',start:dt,due:dt,status:'done',progress:100,doneAt:dt,assignees:I.photoWho?[I.photoWho]:[],assigneeText:'',photos:ups,logs:[{at:nowISO(),by:myId(),kind:'photo',text:'',photos:ups.map(u=>u.id)}]});n++;}}
@@ -3155,7 +3200,7 @@ function paperHTML(R){
   const op=S.opDraft[R.oKey]!=null?S.opDraft[R.oKey]:(S.opinions[R.oKey]||'');
   sec.push(`<section>${H('종합 의견')}<textarea class="opinion" id="opinion" aria-label="종합 의견" placeholder="종합 의견을 직접 입력하거나 왼쪽의 'AI 종합의견 작성'을 누르세요">${esc(op)}</textarea><div class="op-tools"><button type="button" class="btn sm" id="op-save">의견 저장</button><span class="st" id="op-st">${S.opinions[R.oKey]!=null&&S.opinions[R.oKey]===op&&op?'저장됨':''}</span></div></section>`);
   return `<article class="paper" id="paper">
-    <header class="doc-head"><div><p class="kicker">${esc(c.dept)} · ${esc(R.scopeTxt)}</p><h1>${esc(R.title)}</h1><p class="period">${esc(R.periodText)}</p></div>
+    <header class="doc-head"><p class="kicker">${esc(c.dept)} · ${esc(R.scopeTxt)}</p><div class="dh-t"><h1${R.title.length>12?` style="font-size:${Math.max(17,Math.round(27*12/R.title.length))}px"`:''}>${esc(R.title)}</h1><p class="period">${esc(R.periodText)}</p></div>
     <table class="approve"><tr><th rowspan="2" class="v">결<br>재</th>${c.approvals.map(a=>`<th>${esc(a)}</th>`).join('')}</tr><tr>${c.approvals.map(()=>'<td></td>').join('')}</tr></table></header>
     <dl class="meta"><div><dt>보고 기간</dt><dd>${fmtYMD(R.ps)}${R.ps!==R.pe?' ~ '+fmtYMD(R.pe):''}</dd></div><div><dt>작성일</dt><dd>${fmtYMD(today())}</dd></div><div><dt>작성자</dt><dd><span data-uid="${esc(myId()||'')}">${esc(nameOf(myId()))}</span></dd></div><div><dt>분류 기준</dt><dd>${esc(GROUPS[R.p.group])}별</dd></div></dl>
     ${sec.join('')}
@@ -3273,7 +3318,7 @@ function openTask(t,defaults={}){
   fillSelect($('#t-scope'),SCOPES.map(s=>[s.id,s.name+' 업무']),src.scope||defaults.scope||guessScope(st,du||st));
   fillSelect($('#t-prio'),PRIOS.map(p=>[p.id,p.name]),src.priority||'normal');
   fillSelect($('#t-repeat'),REPEATS.map(r=>[r.id,r.name]),src.repeat||'none');
-  $('#t-start').value=isNew?st:(src.start||'');$('#t-due').value=isNew?du:(src.due||'');
+  $('#t-start').value=isNew?st:(src.start||'');$('#t-due').value=isNew?du:(src.due||'');$('#t-stime').value=isNew?(defaults.startTime||''):(src.startTime||'');$('#t-dtime').value=isNew?(defaults.dueTime||''):(src.dueTime||'');S.dlg.dueTouched=false;
   $('#t-status').innerHTML=STATUSES.map(s=>`<button type="button" class="s-${s.id}" data-v="${s.id}" aria-pressed="${s.id===S.dlg.status}">${s.name}</button>`).join('');
   $('#t-progress').value=src.progress||0;$('#t-progress-out').textContent=(src.progress||0)+'%';
   $('#t-assignee-text').value=src.assigneeText||'';$('#t-desc').value=src.desc||'';$('#t-assignee-q').value='';$('#t-pick-menu').hidden=true;
@@ -3305,9 +3350,9 @@ function refreshDialog(force){
 }
 async function submitTask(e){e.preventDefault();if(!S.canWrite)return;
   const title=$('#t-title').value.trim();if(!title){$('#t-title').focus();toast('업무명을 입력하세요.','err');return;}
-  const start=$('#t-start').value,due=$('#t-due').value;if(start&&due&&due<start){toast('마감일이 시작일보다 빠릅니다.','err');$('#t-due').focus();return;}
+  const start=$('#t-start').value;let due=$('#t-due').value;if(start&&(!due||(!S.dlg.dueTouched&&due<start))){due=start;$('#t-due').value=start;}if(start&&due&&due<start){toast('마감일이 시작일보다 빠릅니다.','err');$('#t-due').focus();return;}
   const status=S.dlg.status;let progress=+$('#t-progress').value;if(status==='done')progress=100;
-  const data={title,...dlgCatFields(title,$('#t-desc').value),site:$('#t-site').value,scope:$('#t-scope').value,priority:$('#t-prio').value,repeat:$('#t-repeat').value,start,due,status,progress,assignees:S.dlg.assignees,assigneeText:$('#t-assignee-text').value.trim(),desc:$('#t-desc').value};
+  const data={title,...dlgCatFields(title,$('#t-desc').value),site:$('#t-site').value,scope:$('#t-scope').value,priority:$('#t-prio').value,repeat:$('#t-repeat').value,start,due,startTime:$('#t-stime').value||'',dueTime:$('#t-dtime').value||'',status,progress,assignees:S.dlg.assignees,assigneeText:$('#t-assignee-text').value.trim(),desc:$('#t-desc').value};
   const btn=$('#t-save');btn.disabled=true;
   try{
     if(!S.dlg.path){if(S.dlg.priv&&privOK())data.priv=true;data.doneAt=status==='done'?today():'';data.photos=S.dlg.pending;const logs=[];if(S.dlg.pending.length)logs.push({at:nowISO(),by:myId(),kind:'photo',text:'',photos:S.dlg.pending.map(p=>p.id)});data.logs=logs;
@@ -3449,7 +3494,7 @@ $('#dlg-doc').addEventListener('close',()=>{S.docDlg=null;});
 $('#dlg-task').addEventListener('cancel',e=>{e.preventDefault();closeTask(false);});
 $('#t-cat').addEventListener('change',e=>fillSubs(e.target.value));
 $('#t-scope').addEventListener('change',()=>{if(S.dlg)S.dlg.scopeTouched=true;});
-['t-start','t-due'].forEach(id=>$('#'+id).addEventListener('change',()=>{if(S.dlg&&!S.dlg.scopeTouched){const s=$('#t-start').value,d=$('#t-due').value;$('#t-scope').value=guessScope(s||d,d||s);}if(id==='t-start'&&!$('#t-due').value)$('#t-due').value=$('#t-start').value;}));
+['t-start','t-due'].forEach(id=>$('#'+id).addEventListener('change',()=>{if(S.dlg&&!S.dlg.scopeTouched){const s=$('#t-start').value,d=$('#t-due').value;$('#t-scope').value=guessScope(s||d,d||s);}if(id==='t-due'&&S.dlg)S.dlg.dueTouched=true;if(id==='t-start'&&$('#t-start').value&&(!$('#t-due').value||(!(S.dlg&&S.dlg.dueTouched)&&$('#t-due').value<$('#t-start').value)))$('#t-due').value=$('#t-start').value;}));
 $('#t-progress').addEventListener('input',e=>{$('#t-progress-out').textContent=e.target.value+'%';if(S.dlg&&+e.target.value>0&&S.dlg.status==='plan'){S.dlg.status='doing';$$('#t-status button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v==='doing'));}});
 $('#t-assignee-q').addEventListener('focus',()=>searchPeople(''));
 $('#t-assignee-q').addEventListener('input',e=>searchPeople(e.target.value.trim()));
@@ -5814,7 +5859,7 @@ function plogHTML(R,H){const L=R.plog.slice(0,300);
   return `<section>${H('일자별 진행 기록',`${esc(nameOf(R.p.who))} · ${R.plog.length}건${R.plog.length>300?' 중 300건':''}`)}<table class="t"><colgroup><col style="width:6%"><col style="width:10%"><col style="width:8%"><col style="width:30%"><col></colgroup><tr><th>No</th><th>일자</th><th>시각</th><th>업무명</th><th>진행 내용</th></tr>${L.length?L.map((x,i)=>`<tr><td class="c">${i+1}</td><td class="c">${fmtMD(x.d)}</td><td class="c">${x.d===localDate(x.l.at)?esc(hhmm(x.l.at).slice(-5)):'-'}</td><td>${esc(x.t.title)}</td><td>${esc(logText(x.l))}${x.d!==localDate(x.l.at)?` <span class="sb">(${esc(fmtMD(localDate(x.l.at)))} 등록)</span>`:''}</td></tr>`).join(''):'<tr><td colspan="5" class="none">해당 없음</td></tr>'}</table></section>`;}
 {const _cr=computeReport;computeReport=function(p){const R=_cr(p);
   try{const pm=repPrivMode(p);const base=(p.cat&&CAT[p.cat]?CAT[p.cat].name+' ':'')+KIND[p.kind].title;
-    R.title=[p.who?nameOf(p.who):'',pm==='priv'&&privOK()&&(S.privTasks||[]).length?'비공개':(p.who?'개인':''),base].filter(Boolean).join(' ');R.plog=null;
+    R.title=[pm==='priv'&&privOK()&&(S.privTasks||[]).length?'비공개':(p.who?'개인':''),base].filter(Boolean).join(' ');/* 52차: 이름은 작성자·범위 줄에 있으므로 제목에서 뺌 */R.plog=null;
     if(p.who){const pool=repTasks(p).filter(t=>(!p.cat||t.cat===p.cat)&&(!p.site||t.site===p.site));const out=[];
       for(const t of pool)for(const l of t.logs){if(l.by!==p.who)continue;const d=plogDate(t,l);if(d>=R.ps&&d<=R.pe)out.push({d,t,l});}
       out.sort((a,b)=>a.d.localeCompare(b.d)||a.l.at.localeCompare(b.l.at));R.plog=out;}}catch{}
@@ -6181,9 +6226,9 @@ function wdDlgSync(){const s=$('#t-start'),d=$('#t-due');if(!s||!d)return;let h=
   if(!h&&box){h=document.createElement('p');h.id='t-wd-hint';h.className='wd-hint';box.after(h);}
   if(!h)return;const t=S.dlg&&S.dlg.path?findTask(S.dlg.path):null;const none=!s.value&&!d.value;
   const reg=t&&t.createdAt?` · 등록 ${fmtMD(localDate(t.createdAt))}`:'';
-  h.innerHTML=none?`진행 날짜 <b>${WD_NONE}</b> — 시작일·마감일을 비워 두면 모든 화면에 [미정]으로 표시됩니다${esc(reg)}`:`진행 날짜 <b>${esc(wdTxt({start:s.value,due:d.value}))}</b>${esc(reg)}`;}
+  h.innerHTML=none?`진행 날짜 <b>${WD_NONE}</b> — 시작일·마감일을 비워 두면 모든 화면에 [미정]으로 표시됩니다${esc(reg)}`:`진행 날짜 <b>${esc(wdTxt({start:s.value,due:d.value,startTime:($('#t-stime')||{}).value||'',dueTime:($('#t-dtime')||{}).value||''}))}</b>${esc(reg)}`;}
 {const _ot=openTask;openTask=function(...a){const r=_ot.apply(this,a);try{wdDlgSync();}catch(e){console.warn(e);}return r;};}
-document.addEventListener('input',e=>{if(e.target&&(e.target.id==='t-start'||e.target.id==='t-due'))wdDlgSync();});
+document.addEventListener('input',e=>{if(e.target&&['t-start','t-due','t-stime','t-dtime'].includes(e.target.id))wdDlgSync();});
 document.addEventListener('change',e=>{if(e.target&&(e.target.id==='t-start'||e.target.id==='t-due'))wdDlgSync();});
 /* 보고서: 진행 날짜가 [미정]인 '할 예정' 업무는 이번·앞으로 보고서의 다음 계획에 함께 */
 {const _cr=computeReport;computeReport=function(p){const R=_cr.apply(this,arguments);try{if(R&&R.pe>=today()){const have=new Set(R.next.map(t=>t.path));
@@ -9821,7 +9866,8 @@ const OD={roles:null,rolesAt:'',rolesBy:'',rolesU:null,tab:'',sel:new Set(),who:
 const odAdmin=()=>!!S.canEdit;
 const odDoc=()=>S.fs.doc('wl/_sys/cfg/ordroles');/* 50차: 문서 경로는 짝수 칸이어야 함(wl/_sys/ordroles 는 실제 Firebase 에서 오류 → #ord 화면이 안 열리던 원인) */
 const odStr=(x,n)=>String(x==null?'':x).replace(/[\u0000-\u001f]/g,' ').trim().slice(0,n);
-const odName=id=>id&&S.staff[id]?S.staff[id].name:nameOf(id);
+const odRank=s=>{const r=String((s&&s.role)||'').split(/\s*[-·(]\s*/)[0].trim();return r&&r.length<=6?r:'';};
+const odName=id=>{const s=id&&S.staff[id];if(!s)return nameOf(id);const r=odRank(s);return r?`${s.name} ${r}`:s.name;};/* 52차: 이름 + 직급 */
 const odNames=a=>(a||[]).map(odName).join('·');
 
 /* ── 직무 */
@@ -9865,7 +9911,7 @@ function ordBuild(target,t,memo){const me=myId();const now=nowISO();let to=[],ro
   if(target.mode==='staff'){to=[...new Set(target.sids||[])].filter(id=>S.staff[id]);if(!to.length)return null;}/* 50차: 나에게도 지시 */
   else{role=ordRoles().find(r=>r.id===target.role);if(!role)return null;to=ordRoleTo(role,target.siteOnly===false?'':t.site);if(!to.length)return null;}
   const ord={v:1,mode:target.mode,by:me,at:now,to,role:role?role.id:'',rn:role?role.n:'',memo:odStr(memo,500),ack:{},claim:'',cAt:'',ok:'',okBy:'',cx:'',seen:''};
-  const lbl=role?`🧩 ${role.n} 직무에 지시 (${odNames(to)})`:`👤 ${odNames(to)}에게 지시`;
+  const lbl=role?`🧩 ${role.n} 직무에 지시 (${odNames(to)})`:target.sites&&target.sites.length?`🏭 ${target.sites.join('·')} (${odNames(to)})에게 지시`:`👤 ${odNames(to)}에게 지시`;
   return {ord,assignees:role?[]:to,log:{at:now,by:me,kind:'order',text:`${lbl}${ord.memo?' — '+ord.memo:''}`}};}
 async function ordSend(tasks,target,memo){let n=0,bad=0;setSync('saving');
   try{for(const t of tasks){if(!t||t.priv){bad++;continue;}const b=ordBuild(target,t,memo);if(!b){bad++;continue;}
@@ -9967,15 +10013,15 @@ function odCardHTML(){const A=odAdmin();const X=odLists();
 /* ── 업무 창(상세·등록)의 지시 칸 */
 function odTargetOptions(t){const me=myId();const sg=t?ordSuggest(t):null;const rr=t?ordRoleOf(t):'';const st=[...staffList().filter(s=>s.id===me),...staffList().filter(s=>s.id!==me&&working(s))];
   return `<option value="">지시 안 함 (내가 할 일)</option><option value="pick">👤 위 담당자 칸의 직원에게</option><optgroup label="직원">${st.map(s=>`<option value="s:${esc(s.id)}">${sg&&sg.sid===s.id?'⚡ ':''}${esc(s.name)}${s.id===me?' (나)':''}${s.role?' · '+esc(s.role.split(/\s*-\s*/)[0]):''} (${esc(s.site)})</option>`).join('')}</optgroup><optgroup label="직무">${ordRoles().map(r=>`<option value="r:${esc(r.id)}">🧩 ${esc(r.n)}${r.id===rr?' ★':''}</option>`).join('')}</optgroup>`;}
-function odSelTarget(v,site){if(!v)return null;if(v==='pick')return {mode:'staff',sids:((S.dlg&&S.dlg.assignees)||[]).filter(id=>id!==myId())};if(v.startsWith('s:'))return {mode:'staff',sids:[v.slice(2)]};if(v.startsWith('r:'))return {mode:'role',role:v.slice(2),siteOnly:true};return null;}
-function odPreview(v,site){const tg=odSelTarget(v,site);if(!tg)return v?'':'';if(tg.mode==='staff')return tg.sids.length?`알림 받을 사람: ${odNames(tg.sids)}`:'위 담당자 칸에 직원을 먼저 고르세요.';const r=ordRoles().find(x=>x.id===tg.role);const to=ordRoleTo(r,site);return to.length?`알림 받을 사람: ${odNames(to)}${site&&site!=='전사'?` (${site} 근무자 우선 + 직무 책임자)`:''} — 한 사람이 맡으면 담당자가 됩니다`:'이 직무에 담당 직원이 없습니다. 🧩 직무별 담당에서 넣어 주세요.';}
+const odSites=()=>{const W=staffList().filter(s=>working(s));const L=[...S.config.sites.filter(x=>x!=='전사'),...W.map(s=>s.site)];return [...new Set(L)].filter(x=>x&&W.some(s=>s.site===x));};
+const odSiteStaff=sites=>staffList().filter(s=>working(s)&&sites.includes(s.site)&&s.id!==myId()).map(s=>s.id);
+function odSelTarget(v,site){if(!v)return null;if(v.startsWith('m:'))return {mode:'staff',sids:v.slice(2).split(',').filter(Boolean)};if(v.startsWith('f:')){const sites=v.slice(2).split(',').filter(Boolean);return {mode:'staff',sids:odSiteStaff(sites),sites};}if(v==='pick')return {mode:'staff',sids:((S.dlg&&S.dlg.assignees)||[]).filter(id=>id!==myId())};if(v.startsWith('s:'))return {mode:'staff',sids:[v.slice(2)]};if(v.startsWith('r:'))return {mode:'role',role:v.slice(2),siteOnly:true};return null;}
+function odPreview(v,site){const tg=odSelTarget(v,site);if(!tg)return v?'':'';if(tg.mode==='staff')return tg.sids.length?`알림 받을 사람: ${odNames(tg.sids)}`:v==='pick'?'위 담당자 칸에 직원을 먼저 고르세요.':tg.sites?'그 공장에 근무 중인 직원이 없습니다.':'받을 사람을 고르세요.';const r=ordRoles().find(x=>x.id===tg.role);const to=ordRoleTo(r,site);return to.length?`알림 받을 사람: ${odNames(to)}${site&&site!=='전사'?` (${site} 근무자 우선 + 직무 책임자)`:''} — 한 사람이 맡으면 담당자가 됩니다`:'이 직무에 담당 직원이 없습니다. 🧩 직무별 담당에서 넣어 주세요.';}
 function odDlgRender(){const d=$('#dlg-task');if(!d||!S.dlg)return;let box=$('#t-ord');const anchor=$('#t-who-f');if(!anchor)return;if(!box){anchor.insertAdjacentHTML('beforebegin','<section class="od-box" id="t-ord" hidden></section>');box=$('#t-ord');}
   const a=document.activeElement;if(a&&box.contains(a)&&a.matches('input,textarea,select'))return;
   const t=S.dlg.path?findTask(S.dlg.path):null;const me=myId();const A=odAdmin();
   if(S.dlg.priv||(t&&t.priv)){box.hidden=true;return;}
-  if(!t){if(!A||!S.canWrite){box.hidden=true;return;}const site=$('#t-site')?$('#t-site').value:'';const v=S.dlg.ordSel||'';
-    box.hidden=false;box.innerHTML=`<div class="f"><label for="t-ord-sel">📌 업무 지시 <small>저장하면 바로 알림</small></label><select id="t-ord-sel">${odTargetOptions({cat:$('#t-cat').value,sub:$('#t-sub').value,leaf:$('#t-leaf')?$('#t-leaf').value:'',site})}</select>
-      <input id="t-ord-memo" maxlength="500" placeholder="지시 메모 (선택) — 예) 금요일까지 견적 2곳 받아 보고" value="${esc(S.dlg.ordMemo||'')}" ${v?'':'hidden'}><small class="od-pv" id="t-ord-pv">${esc(odPreview(v,site))}</small></div>`;$('#t-ord-sel').value=v;return;}
+  if(!t){if(!A||!S.canWrite){box.hidden=true;return;}const site=$('#t-site')?$('#t-site').value:'';box.hidden=false;box.innerHTML=odNewHTML(site);return;}
   const o=ordOf(t);const st=ordSt(t);const mineTo=ordTo(t).includes(me);const btn=(k,l,c)=>`<button type="button" class="btn sm${c?' '+c:''}" data-od-${k}="${esc(t.path)}">${l}</button>`;
   if(!o){const can=A&&t.status!=='done'&&S.canWrite;const rep=!A&&t.assignees.includes(me);if(!can&&!rep){box.hidden=true;return;}
     box.hidden=false;box.innerHTML=`<div class="od-dh"><b>📌 업무 지시 · 📨 보고</b>${can?btn('order','📌 업무 지시하기','primary'):''}${rep?btn('rep','📨 관리자에게 보고'):''}</div>${can?`<small class="od-pv">${(()=>{const sg=ordSuggest(t);const r=ordRoles().find(x=>x.id===ordRoleOf(t));const L=[sg?`업무분장 ${odName(sg.sid)}(${sg.main?'정':'부'})`:'',r?`직무 ${r.n}`:''].filter(Boolean);return (L.length?'지시할 때 추천 — '+L.join(' · ')+'. ':'')+(typeof admOnly==='function'&&admOnly(t)?'🔒 아직 지시하지 않아 관리자만 볼 수 있습니다. 「업무 지시하기」를 누르면 받은 사람에게 알림이 가고 관리부에 공유됩니다.':'');})()}</small>`:''}`;return;}
@@ -9994,6 +10040,29 @@ document.addEventListener('change',e=>{const T=e.target;if(!T)return;if(T.id==='
   if((T.id==='t-site'||T.id==='t-cat')&&S.dlg&&!S.dlg.path){const pv=$('#t-ord-pv');if(pv&&S.dlg.ordSel)pv.textContent=odPreview(S.dlg.ordSel,$('#t-site').value);}});
 document.addEventListener('input',e=>{if(e.target&&e.target.id==='t-ord-memo'&&S.dlg)S.dlg.ordMemo=e.target.value;});
 
+/* 52차: 등록 창 지시 — 직원 여러 명 · 공장별 · 직무 */
+function odNewSel(){const D=S.dlg.od||(S.dlg.od={mode:'',sids:[],sites:[],role:''});S.dlg.ordSel=D.mode==='staff'?'m:'+D.sids.join(','):D.mode==='site'?'f:'+D.sites.join(','):D.mode==='role'?(D.role?'r:'+D.role:''):'';return S.dlg.ordSel;}
+function odNewHTML(site){const D=S.dlg.od||(S.dlg.od={mode:'',sids:[],sites:[],role:''});const v=odNewSel();const me=myId();
+  const tt={cat:$('#t-cat')?$('#t-cat').value:'',sub:$('#t-sub')?$('#t-sub').value:'',leaf:$('#t-leaf')?$('#t-leaf').value:'',site};const sg=ordSuggest(tt);const rr=ordRoleOf(tt);
+  const st=[...staffList().filter(s=>s.id===me),...staffList().filter(s=>s.id!==me&&working(s))];const SI=odSites();
+  const seg=[['','지시 안 함'],['staff','👤 직원 (여러 명)'],['site','🏭 공장별'],['role','🧩 직무']].map(([k,n])=>`<button type="button" data-tod-mode="${k}" aria-pressed="${D.mode===k}">${n}</button>`).join('');
+  let body='';
+  if(D.mode==='staff')body=`<div class="od-chips sm">${st.map(s=>`<button type="button" class="od-chip${s.id===me?' od-self':''}" data-tod-sid="${esc(s.id)}" aria-pressed="${D.sids.includes(s.id)}">${sg&&sg.sid===s.id?'⚡ ':''}${esc(s.name)}${s.id===me?' (나)':''}<small>${esc(odRank(s)||'')}${odRank(s)?' · ':''}${esc(s.site||'')}</small></button>`).join('')}</div>
+    <div class="od-fq"><small>공장 전체 넣기·빼기</small>${SI.map(x=>{const ids=odSiteStaff([x]);const on=ids.length&&ids.every(id=>D.sids.includes(id));return `<button type="button" class="btn sm${on?' on':''}" data-tod-fadd="${esc(x)}" aria-pressed="${on}">🏭 ${esc(x)} ${ids.length}명</button>`;}).join('')}${D.sids.length?'<button type="button" class="btn sm ghost" data-tod-clear>모두 빼기</button>':''}</div>`;
+  else if(D.mode==='site')body=`<div class="od-chips sm">${SI.map(x=>{const ids=odSiteStaff([x]);return `<button type="button" class="od-chip" data-tod-site="${esc(x)}" aria-pressed="${D.sites.includes(x)}">🏭 ${esc(x)}<small>${esc(odNames(ids))||'근무 직원 없음'}</small></button>`;}).join('')}</div>`;
+  else if(D.mode==='role')body=`<div class="od-chips sm">${ordRoles().map(r=>`<button type="button" class="od-chip" data-tod-role="${esc(r.id)}" aria-pressed="${D.role===r.id}">🧩 ${esc(r.n)}${r.id===rr?' ★':''}</button>`).join('')}</div>`;
+  return `<div class="f od-new"><span class="lbl">📌 업무 지시 <small>저장하면 바로 알림 · 여러 명·공장별로 고를 수 있습니다</small></span><div class="seg sm od-tm" role="group" aria-label="지시 방법">${seg}</div>${body}
+    <input id="t-ord-memo" maxlength="500" placeholder="지시 메모 (선택) — 예) 금요일까지 견적 2곳 받아 보고" value="${esc(S.dlg.ordMemo||'')}" ${D.mode?'':'hidden'}><small class="od-pv" id="t-ord-pv">${esc(D.mode?(odPreview(v,site)||'받을 사람을 고르세요.'):'')}</small></div>`;}
+document.addEventListener('click',e=>{const T=e.target;if(!T||!T.closest||!S.dlg||!T.closest('#t-ord'))return;const D=S.dlg.od||(S.dlg.od={mode:'',sids:[],sites:[],role:''});let b;
+  if((b=T.closest('[data-tod-mode]'))){D.mode=b.dataset.todMode;if(D.mode==='staff'&&!D.sids.length){const sg=ordSuggest({cat:$('#t-cat').value,sub:$('#t-sub').value,leaf:$('#t-leaf')?$('#t-leaf').value:'',site:$('#t-site').value});if(sg)D.sids=[sg.sid];}if(D.mode==='role'&&!D.role)D.role=ordRoleOf({cat:$('#t-cat').value,sub:$('#t-sub').value,leaf:$('#t-leaf')?$('#t-leaf').value:''})||'';}
+  else if((b=T.closest('[data-tod-sid]'))){const id=b.dataset.todSid;D.sids=D.sids.includes(id)?D.sids.filter(x=>x!==id):[...D.sids,id];}
+  else if((b=T.closest('[data-tod-fadd]'))){const ids=odSiteStaff([b.dataset.todFadd]);const on=ids.length&&ids.every(id=>D.sids.includes(id));D.sids=on?D.sids.filter(x=>!ids.includes(x)):[...new Set([...D.sids,...ids])];}
+  else if(T.closest('[data-tod-clear]'))D.sids=[];
+  else if((b=T.closest('[data-tod-site]'))){const x=b.dataset.todSite;D.sites=D.sites.includes(x)?D.sites.filter(y=>y!==x):[...D.sites,x];}
+  else if((b=T.closest('[data-tod-role]')))D.role=D.role===b.dataset.todRole?'':b.dataset.todRole;
+  else return;
+  odNewSel();const box=$('#t-ord');if(box)box.innerHTML=odNewHTML($('#t-site')?$('#t-site').value:'');});
+{const _o=openTask;openTask=function(){if(S.dlg)S.dlg.od=null;const r=_o.apply(this,arguments);try{if(S.dlg){S.dlg.od={mode:'',sids:[],sites:[],role:''};S.dlg.ordSel='';const box=$('#t-ord');if(box&&!S.dlg.path&&!box.hidden)box.innerHTML=odNewHTML($('#t-site')?$('#t-site').value:'');}}catch(e){console.warn(e);}return r;};}
 /* ── 창: 지시 보내기 · 보고 · 보완 요청 · 직무 설정 */
 function odDlg(html){let d=$('#dlg-ord');if(!d){d=document.createElement('dialog');d.className='modal narrow';d.id='dlg-ord';document.body.appendChild(d);d.addEventListener('close',()=>{OD.dlg=null;});}d.innerHTML=html;if(!d.open)d.showModal();return d;}
 function odOrderDlg(paths){const ts=paths.map(findTask).filter(Boolean);if(!ts.length)return;const t0=ts[0];const one=ts.length===1;const sg=one?ordSuggest(t0):null;const rr=ordRoleOf(t0);const o=ordOf(t0);
@@ -10005,7 +10074,7 @@ function odOrderDlg(paths){const ts=paths.map(findTask).filter(Boolean);if(!ts.l
   odDlg(`<form method="dialog" class="od-dlg"><header class="modal-h"><h2>📌 업무 지시${one?'':` — ${ts.length}건`}</h2><button type="button" class="icon-btn" data-od-x aria-label="닫기">✕</button></header><div class="modal-b one">
     <p class="od-dt">${one?`<b>${esc(t0.title)}</b><small>${esc(catText(t0))} · ${esc(t0.site)}</small>`:ts.slice(0,5).map(t=>esc(t.title)).join(' · ')+(ts.length>5?` 외 ${ts.length-5}건`:'')}</p>
     <div class="seg" role="group" aria-label="지시 방법"><button type="button" data-odd-mode="staff" aria-pressed="${D.mode==='staff'}">👤 직원에게</button><button type="button" data-odd-mode="role" aria-pressed="${D.mode==='role'}">🧩 직무에게</button></div>
-    ${D.mode==='staff'?`<div class="od-chips">${st.map(s=>`<button type="button" class="od-chip${s.id===me?' me':''}" data-odd-sid="${esc(s.id)}" aria-pressed="${D.sids.includes(s.id)}">${sg&&sg.sid===s.id?'⚡ ':''}${esc(s.name)}${s.id===me?' (나)':''}<small>${esc((s.role||'').split(/\s*-\s*/)[0])} · ${esc(s.site)}</small></button>`).join('')}</div>${sg?`<small class="od-pv">⚡ 업무분장 「${esc(sg.duty)}」 ${sg.main?'정':'부'} 담당</small>`:''}`
+    ${D.mode==='staff'?`<div class="od-chips">${st.map(s=>`<button type="button" class="od-chip${s.id===me?' od-self':''}" data-odd-sid="${esc(s.id)}" aria-pressed="${D.sids.includes(s.id)}">${sg&&sg.sid===s.id?'⚡ ':''}${esc(s.name)}${s.id===me?' (나)':''}<small>${esc((s.role||'').split(/\s*-\s*/)[0])} · ${esc(s.site)}</small></button>`).join('')}</div><div class="od-fq"><small>공장 전체 넣기·빼기</small>${odSites().map(x=>{const ids=odSiteStaff([x]);const on=ids.length&&ids.every(id=>D.sids.includes(id));return `<button type="button" class="btn sm${on?' on':''}" data-odd-fadd="${esc(x)}" aria-pressed="${on}">🏭 ${esc(x)} ${ids.length}명</button>`;}).join('')}</div>${sg?`<small class="od-pv">⚡ 업무분장 「${esc(sg.duty)}」 ${sg.main?'정':'부'} 담당</small>`:''}`
       :`<div class="od-chips">${R.map(r=>`<button type="button" class="od-chip" data-odd-role="${esc(r.id)}" aria-pressed="${D.role===r.id}">🧩 ${esc(r.n)}${r.id===rr?' ★':''}<small>${esc(odNames((r.sids||[]).filter(id=>S.staff[id]&&working(S.staff[id]))))||'담당 없음'}</small></button>`).join('')}</div>
         ${one&&t0.site&&t0.site!=='전사'?`<label class="chk"><input type="checkbox" id="odd-site" ${D.siteOnly?'checked':''}> ${esc(t0.site)} 근무자에게만 (직무 책임자는 늘 포함)</label>`:sites.length>1||!one?'<small class="od-pv">여러 건이면 업무마다 그 사업장 근무자에게 갑니다.</small>':''}`}
     <p class="od-to">${to.length?`알림 받을 사람: <b>${esc(odNames(to))}</b>${D.mode==='role'?' — 이 중 한 사람이 「내가 맡기」로 담당':''}`:'<span class="bad">받을 사람을 고르세요.</span>'}</p>
@@ -10051,6 +10120,7 @@ document.addEventListener('click',async e=>{const T=e.target;if(!T||!T.closest)r
   if(!T.closest('#dlg-ord'))return;const D=OD.dlg;if(!D)return;
   if(T.closest('[data-od-x]')){e.preventDefault();$('#dlg-ord').close();return;}
   if(D.k==='order'){if((b=T.closest('[data-odd-mode]'))){D.mode=b.dataset.oddMode;D.memo=$('#odd-memo').value;if($('#odd-due'))D.due=$('#odd-due').value;odOrderDlg(D.paths);return;}
+    if((b=T.closest('[data-odd-fadd]'))){const ids=odSiteStaff([b.dataset.oddFadd]);const on=ids.length&&ids.every(id=>D.sids.includes(id));D.sids=on?D.sids.filter(x=>!ids.includes(x)):[...new Set([...D.sids,...ids])];D.memo=$('#odd-memo').value;if($('#odd-due'))D.due=$('#odd-due').value;odOrderDlg(D.paths);return;}
     if((b=T.closest('[data-odd-sid]'))){const id=b.dataset.oddSid;D.sids=D.sids.includes(id)?D.sids.filter(x=>x!==id):[...D.sids,id];D.memo=$('#odd-memo').value;if($('#odd-due'))D.due=$('#odd-due').value;odOrderDlg(D.paths);return;}
     if((b=T.closest('[data-odd-role]'))){D.role=b.dataset.oddRole;D.memo=$('#odd-memo').value;if($('#odd-due'))D.due=$('#odd-due').value;odOrderDlg(D.paths);return;}
     if(T.closest('[data-odd-send]')){e.preventDefault();const memo=$('#odd-memo').value;const due=$('#odd-due')?$('#odd-due').value:null;let ts=D.paths.map(findTask).filter(Boolean);
@@ -10078,6 +10148,14 @@ document.addEventListener('change',e=>{const T=e.target;if(!T)return;
   if(OD.dlg&&OD.dlg.k==='roles'){if(T.dataset.odrHead!=null){OD.dlg.R[+T.dataset.odrHead].head=T.value;return;}}});
 document.addEventListener('input',e=>{const T=e.target;if(T&&T.dataset&&T.dataset.odrN!=null&&OD.dlg&&OD.dlg.k==='roles')OD.dlg.R[+T.dataset.odrN].n=T.value;});
 window.ordApi={roles:ordRoles,roleDefault:ordRoleDefault,roleTo:(id,site)=>ordRoleTo(ordRoles().find(r=>r.id===id),site),roleOf:ordRoleOf,suggest:ordSuggest,st:p=>ordSt(findTask(p)),lists:()=>{const X=odLists();return Object.fromEntries(Object.entries(X).map(([k,v])=>[k,v.map(t=>t.path)]));},send:(paths,tg,memo)=>ordSend(paths.map(findTask),tg,memo),act:(p,k,x)=>ordAct(findTask(p),k,x),ntf:()=>ordNtf()};
+
+/* 52차: 지시·보고 기록에 나오는 이름 → 이름 + 직급 (예: 박혜진에게 지시 → 박혜진 부장에게 지시) */
+const OD_LK=new Set(['order','ack','claim','rep_mid','rep_done','rep_issue','approve','redo','ocancel']);
+let _odRx=[],_odRxK='';
+function odRankify(txt){if(!txt)return txt;const L=staffList().map(s=>[s.name,odRank(s)]).filter(([n,r])=>n&&r).sort((a,b)=>b[0].length-a[0].length);const k=L.map(x=>x.join(':')).join('|');
+  if(k!==_odRxK){_odRxK=k;const er=x=>x.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');_odRx=L.map(([n,r])=>[new RegExp(er(n)+'(?!\\s*'+er(r)+')(?=에게|님|·|,|\\s|\\)|$)','g'),n+' '+r]);}
+  let o=String(txt);for(const [re,rep] of _odRx)o=o.replace(re,rep);return o;}
+{const _rb=rebuild;rebuild=function(){const r=_rb.apply(this,arguments);try{for(const t of [...(S.tasks||[]),...(S.privTasks||[])])for(const l of t.logs||[])if(OD_LK.has(l.kind)&&l.text)l.text=odRankify(l.text);}catch(e){console.warn(e);}return r;};}
 /* ───────── 47차: 모든 회사서식 고치기 (자료 관리자) ─────────
    · 한글·워드·엑셀 서식(칸에 바로 적기): ✏️ 서식 수정 → 글 고치기 + 도구줄(되돌리기·다시·굵게·고른 것 지우기·문단 지우기,
      표 줄 위/아래 더하기·줄 지우기·칸 오른쪽 더하기·칸 지우기·표 지우기, 그림은 눌러 고른 뒤 Delete) → 💾 서식 수정 저장(모든 직원)
@@ -10541,7 +10619,7 @@ function vsSet(v,o){VS[v]={...vsGet(v),...o};try{localStorage.setItem('wl.vsort'
 /* 목록 표 머리글(th[data-sort])·옛 S.listSort 도 같은 설정 */
 Object.defineProperty(S,'listSort',{configurable:true,get(){const o=vsGet('list');return {key:o.key,dir:o.dir};},set(o){if(o&&typeof o.key==='string')vsSet('list',{key:VS_KEYS.some(x=>x[0]===o.key)?o.key:'wd',dir:o.dir===1?1:-1});}});
 function vsVal(t,k){switch(k){
-  case 'wd':{const r=wdRange(t);return r?r[0]+'|'+r[1]:null;}
+  case 'wd':{const r=wdRange(t);return r?r[0]+' '+(t.startTime||'00:00')+'|'+r[1]+' '+(t.dueTime||'00:00'):null;}
   case 'reg':return t.createdAt||null;
   case 'updatedAt':return t.updatedAt||t.createdAt||null;
   case 'due':return t.due||null;
@@ -10585,6 +10663,152 @@ const VS_CAL_ORDER='vsRank,start,-duration,allDay,title';
 /* 인쇄 '업무 목록만'도 화면 정렬대로 */
 {const _p=prListTasks;prListTasks=function(){const r=_p.apply(this,arguments);try{if(r&&!r.org&&Array.isArray(r.L)&&VS_VIEWS[S.view])r.L=r.L.slice().sort(vsCmpOf(S.view));}catch(e){console.warn(e);}return r;};}
 window.vsortApi={get:vsGet,set:(v,o)=>{vsSet(v,o);render();},cmp:vsCmpOf,keys:VS_KEYS,views:VS_VIEWS};
+/* ───────── 52차: 시각 · 업무 첨부 원본 · 파일 1개 = 업무 1건(정리·확인 후 등록) ─────────
+   · 시각: 업무 창(시작·마감 시각)·빠른 기록·파일 올리기 표에 시각 칸 → startTime·dueTime('HH:MM'), 모든 화면 날짜 옆에 시각, 달력 막대 앞에 시각
+   · 시작일만 넣으면 마감일 = 시작일 (마감일을 직접 고치지 않았을 때 — build28 ⑫)
+   · 업무 첨부 원본: 공개 업무 wl/_att/c/{id}_{n}, 비공개 업무 priv/{uid}/att/{id}_{n} (700KB 조각, 15MB까지 — 규칙 변경 없음), 업무.att=[{id,name,type,size,n,pv,at,by}]
+   · 파일·사진으로 올리기: 문서(워드·한글·PDF·글) 1개가 업무 한 건에 대한 것이면 '📄 업무 1건으로' — 제목·주요 내용 정리·날짜·시각을 채운 확인 카드,
+     고친 뒤 등록하면 확인 창 → 원본 파일을 첨부해 1건 등록. '☰ 줄마다 여러 건' 으로 바꿀 수 있음(업무일지 표·일지 형식은 처음부터 여러 건) */
+const TM_RE=/^([01]\d|2[0-3]):[0-5]\d$/;
+const tmOk=x=>typeof x==='string'&&TM_RE.test(x)?x:'';
+function attNorm(a){return Array.isArray(a)?a.filter(x=>x&&typeof x.id==='string'&&/^[\w-]{4,40}$/.test(x.id)).slice(0,10).map(x=>({id:x.id,name:String(x.name||'파일').slice(0,140),type:String(x.type||'').slice(0,100),size:Math.max(0,+x.size||0),n:Math.max(1,Math.min(40,Math.round(+x.n||1))),pv:!!x.pv,at:typeof x.at==='string'?x.at:'',by:typeof x.by==='string'?x.by:''})):[];}
+{const _n=normTask;normTask=function(r){const t=_n.apply(this,arguments);try{t.startTime=tmOk(r&&r.startTime);t.dueTime=tmOk(r&&r.dueTime);t.att=attNorm(r&&r.att);}catch{}return t;};}
+/* 날짜 표기에 시각 */
+{const _w=wdTxt;wdTxt=function(t,o={}){const s=_w.apply(this,arguments);try{if(!t||(!t.startTime&&!t.dueTime))return s;const r=wdRange(t);if(!r)return s;const f=o&&o.long?fmtYMD:fmtMD;
+  const a=f(r[0])+(t.startTime?' '+t.startTime:'');if(r[0]===r[1])return t.dueTime&&t.dueTime!==t.startTime?`${a} ~ ${t.dueTime}`:a;return `${a} ~ ${f(r[1])}${t.dueTime?' '+t.dueTime:''}`;}catch{return s;}};}
+/* 달력 막대 앞에 시각 */
+{const _ce=calEvents;calEvents=function(){const ev=_ce.apply(this,arguments);try{for(const e of ev){if(!e||!e.id)continue;const t=findTask(e.id);if(t&&t.startTime&&typeof e.title==='string'&&!e.title.includes(t.startTime))e.title=e.title.replace(/^(✓ )?/,m=>m+t.startTime+' ');}}catch(e){console.warn(e);}return ev;};}
+/* 글에서 시각 찾기: 오전 10시 · 오후 2시 30분 · 14:00 · 3시 반 */
+function tmFromText(s){s=String(s||'');let m=s.match(/(오전|오후|AM|PM|am|pm)?\s*(\d{1,2})\s*(?::\s*(\d{2})|시(?!간)(?:\s*(\d{1,2})\s*분|\s*(반))?)/);if(!m)return '';
+  let h=+m[2];const mi=m[3]!=null?+m[3]:m[4]!=null?+m[4]:m[5]?30:0;const ap=(m[1]||'').toLowerCase();if(h>23||mi>59)return '';
+  if(ap==='오후'||ap==='pm'){if(h<12)h+=12;}else if(ap==='오전'||ap==='am'){if(h===12)h=0;}else if(m[3]==null&&h>=1&&h<=6)h+=12;
+  return String(h).padStart(2,'0')+':'+String(mi).padStart(2,'0');}
+{const _m=mkRow;mkRow=function(text,o={}){const r=_m.apply(this,arguments);try{r.time=tmOk(o&&o.time)||tmFromText(r.text);}catch{r.time='';}return r;};}
+
+/* ── 업무 첨부 원본 ── */
+const ATT_MAX=15*1048576,ATT_CH=700*1024;
+const attPath=(a,i)=>a.pv?`priv/${S.me.id}/att/${a.id}_${i}`:`wl/_att/c/${a.id}_${i}`;
+async function attPut(file,priv){if(S.mode!=='firebase'||!S.fs)throw {userMsg:'원본 첨부는 실사용 업무일지(Firebase)에서만 됩니다.'};if(file.size>ATT_MAX)throw {userMsg:'15MB를 넘는 파일은 원본으로 첨부할 수 없습니다.'};
+  const u8=new Uint8Array(await file.arrayBuffer());const n=Math.max(1,Math.ceil(u8.length/ATT_CH));const B=firebase.firestore.Blob;
+  const a={id:'a'+rid().replace(/[^\w-]/g,'').slice(0,14),name:file.name,type:file.type||'',size:file.size,n,pv:!!(priv&&privOK()),at:nowISO(),by:myId()||''};
+  for(let i=0;i<n;i++)await fbWrite(S.fs.doc(attPath(a,i)).set({b:B.fromUint8Array(u8.slice(i*ATT_CH,(i+1)*ATT_CH)),i,at:a.at}));return a;}
+async function attGet(a){const parts=[];for(let i=0;i<a.n;i++){let s;try{s=await S.fs.doc(attPath(a,i)).get();}catch(e){throw fbErr(e);}if(!s.exists)throw {code:'missing'};parts.push(s.data().b.toUint8Array());}return new Blob(parts,{type:a.type||'application/octet-stream'});}
+function attOpen(t,i,dl){const a=t&&t.att&&t.att[i];if(!a)return;if(dl){setSync('saving');attGet(a).then(b=>{setSync('ok');saveBlob(b,a.name);}).catch(e=>{setSync('ok');toast(fileErrMsg(e),'err');});return;}
+  openViewer({name:a.name,type:a.type,size:a.size,meta:`업무 첨부 원본 · ${t.title.slice(0,40)}`,get:()=>attGet(a),dlName:a.name});}
+function attDlgRender(){const d=$('#dlg-task');if(!d||!S.dlg)return;const t=S.dlg.path?findTask(S.dlg.path):null;let box=$('#t-att');const L=(t&&t.att)||[];
+  if(!L.length){if(box)box.hidden=true;return;}
+  if(!box){const desc=$('#t-desc');const host=desc&&(desc.closest('.f')||desc.parentElement);if(!host)return;host.insertAdjacentHTML('afterend','<div class="t-att" id="t-att"></div>');box=$('#t-att');}
+  box.hidden=false;box.innerHTML=`<b>📎 첨부 원본</b>${L.map((a,i)=>`<span class="t-att-i"><button type="button" class="linkish" data-att-open="${i}" title="미리보기">${esc(fileIcon({name:a.name}))} ${esc(a.name)}</button><small>${esc(fmtMB(a.size))}</small><button type="button" class="btn sm ghost" data-att-dl="${i}">내려받기</button></span>`).join('')}`;}
+{const _o=openTask;openTask=function(){const r=_o.apply(this,arguments);try{attDlgRender();}catch(e){console.warn(e);}return r;};}
+{const _f=refreshDialog;refreshDialog=function(){const r=_f.apply(this,arguments);try{attDlgRender();}catch(e){console.warn(e);}return r;};}
+document.addEventListener('click',e=>{const T=e.target;if(!T||!T.closest)return;const b=T.closest('[data-att-open],[data-att-dl]');if(!b||!S.dlg)return;const t=findTask(S.dlg.path);if(!t)return;
+  if(b.dataset.attDl!=null)attOpen(t,+b.dataset.attDl,true);else attOpen(t,+b.dataset.attOpen,false);});
+
+/* ── 파일 1개 = 업무 1건 ── */
+const IMPX={text:{}};
+{const _a=impAddText;impAddText=function(text,src){IMPX.text[src]=String(text||'');return _a.apply(this,arguments);};}
+const IMP_DOC_EXT=['docx','hwp','hwpx','pdf','txt','md','text'];
+function impLooksLog(name,text){if(/업무\s*일지|일일\s*업무|주간\s*업무|월간\s*업무|업무\s*보고|일지|실적/.test(name))return true;
+  const L=String(text||'').split('\n').map(x=>x.trim()).filter(Boolean);const dated=L.filter(l=>IMP_MD_RE.test(l)||/^\(?(20\d{2})\s*[.\-/년]\s*\d{1,2}/.test(l)||/^\d{1,2}\s*월\s*\d{1,2}\s*일/.test(l)).length;
+  return dated>=3&&dated>=L.length*0.15;}
+function impCleanLines(text){const out=[];const seen=new Set();for(let l of String(text||'').split('\n')){l=l.replace(/\t+/g,' | ').replace(/\s+/g,' ').replace(/^[\s|·•\-–—*]+|[\s|]+$/g,'').trim();if(l.length<2)continue;const k=l.replace(/\s/g,'');if(seen.has(k))continue;seen.add(k);out.push(l);}return out;}
+function impTitleOf(lines,name){const t=lines.find(l=>l.length>=4&&l.length<=60&&!/^[\d\s.\-/:|()]+$/.test(l)&&!/^(항목|구분|내용|비고|번호|No\.?)$/i.test(l));
+  return (t||String(name).replace(/\.[^.]+$/,'').replace(/[_]+/g,' ')).replace(/[.。:：]+$/,'').slice(0,120);}
+const IMP_KEY=/\d{1,2}\s*[월/.]\s*\d{1,2}|\d{1,2}\s*시|\d{1,2}:\d{2}|오전|오후|일정|방문|도착|출발|회의|미팅|마감|기한|확정|예정|담당|연락|인원|명|장소|준비|요청|협의|비용|금액|원|예산|확인|결정|참석|대상|목적|주의/;
+function impMergeLabels(L){const out=[];for(let i=0;i<L.length;i++){const l=L[i],n=L[i+1];const lab=l.length<=8&&!/\d/.test(l)&&!/[.:]$/.test(l);
+    if(lab&&n&&n.length>l.length+2&&!(n.length<=8&&!/\d/.test(n))){out.push(`${l}: ${n}`);i++;continue;}if(lab)continue;out.push(l);}return out;}
+function impSummaryOf(lines,title){const body=impMergeLabels(lines.filter(l=>l!==title));const key=body.filter(l=>IMP_KEY.test(l));let pick=key.slice(0,14);
+  if(pick.length<8)pick=body.filter(l=>pick.includes(l)||pick.length<14).slice(0,14);
+  return pick.map(l=>'· '+(l.length>140?l.slice(0,139)+'…':l)).join('\n');}
+function impOneFrom(ent){const I=S.imp;const text=IMPX.text[ent.name]||'';const lines=impCleanLines(text);const title=impTitleOf(lines,ent.name);
+  const rows=I.rows.filter(r=>r.src===ent.name);const ds=[...new Set(rows.map(r=>r.date).filter(d=>d&&d!==I.baseDate))].sort();const td=today();
+  const key=ds.find(d=>d>=td)||ds[ds.length-1]||'';const kr=key?rows.find(r=>r.date===key):null;const time=(kr&&tmFromText(kr.text))||'';
+  const sum=impSummaryOf(lines,title);const g=autoCat(title+' '+sum);const d=impDefaults();
+  return {src:ent.name,file:ent.file||null,on:true,title,desc:'■ 주요 내용\n'+sum,start:key||td,due:key||td,time,dueTime:'',status:key&&key>td?'plan':'doing',cat:g.cat,sub:g.sub,leaf:g.leaf||'',site:guessSite(title+' '+text.slice(0,2000))||d.site,who:d.who,att:!!ent.file,n:rows.length};}
+function impSetOne(i,on){const I=S.imp;const ent=I.files[i];if(!ent)return;I.ones=I.ones||[];
+  if(on){if(I.ones.some(o=>o.src===ent.name))return;const one=impOneFrom(ent);ent._rows=I.rows.filter(r=>r.src===ent.name);I.rows=I.rows.filter(r=>r.src!==ent.name);I.ones.push(one);ent.one=true;}
+  else{I.ones=I.ones.filter(o=>o.src!==ent.name);if(ent._rows){I.rows.push(...ent._rows);ent._rows=null;}ent.one=false;}}
+{const _r=readImportFile;readImportFile=async function(f){const st=await _r.apply(this,arguments);try{const ext=(f.name.split('.').pop()||'').toLowerCase();const I=S.imp;
+    if(I&&IMP_DOC_EXT.includes(ext)&&IMPX.text[f.name]!=null){const i=I.files.findIndex(x=>x.file===f);if(i>=0){I.files[i].doc=true;if(!impLooksLog(f.name,IMPX.text[f.name])){impSetOne(i,true);return '업무 1건으로 정리';}}}}catch(e){console.warn(e);}return st;};}
+/* 파일 목록: 1건 / 여러 건 바꾸기 */
+{const _f=renderImpFiles;renderImpFiles=function(){const r=_f.apply(this,arguments);try{const I=S.imp;const lis=$$('#imp-files > li');I.files.forEach((ent,i)=>{const li=lis[i];if(!li||!ent.doc||ent.ok!==true)return;
+    li.insertAdjacentHTML('beforeend',`<span class="imp-mode seg sm" role="group" aria-label="읽는 방법"><button type="button" data-imp-one="${i}" aria-pressed="${!!ent.one}" title="이 파일을 업무 한 건으로 — 원본 첨부">📄 업무 1건</button><button type="button" data-imp-many="${i}" aria-pressed="${!ent.one}" title="줄마다 업무로 나눔">☰ 줄마다 여러 건${ent.one?'':''}</button></span>`);});}catch(e){console.warn(e);}return r;};}
+function impOneHTML(o,i){const sites=S.config.sites.map(s=>[s,s]);const staffOpts=[['','담당 미지정'],...staffList().map(s=>[s.id,s.name])];
+  return `<div class="imp-one${o.on?'':' off'}" data-oi="${i}"><div class="io-h"><label class="chk"><input type="checkbox" data-of="on" ${o.on?'checked':''}> 등록</label><small>📄 ${esc(o.src)} → 업무 1건 (줄 ${o.n}개를 하나로 정리)</small></div>
+    <label class="io-f io-w">업무명<input data-of="title" value="${esc(o.title)}" maxlength="120"></label>
+    <label class="io-f">시작일 · 시각<span class="dt2"><input type="date" data-of="start" value="${esc(o.start)}"><input type="time" data-of="time" value="${esc(o.time)}" aria-label="시작 시각"></span></label>
+    <label class="io-f">마감일 · 시각<span class="dt2"><input type="date" data-of="due" value="${esc(o.due)}"><input type="time" data-of="dueTime" value="${esc(o.dueTime)}" aria-label="마감 시각"></span></label>
+    <label class="io-f">상태<select data-of="status">${optHTML(STATUSES.map(s=>[s.id,s.name]),o.status)}</select></label>
+    <label class="io-f">대분류<select data-of="cat">${optHTML(CATS.map(c=>[c.id,c.name]),o.cat)}</select></label>
+    <label class="io-f">사업장<select data-of="site">${optHTML(sites,o.site)}</select></label>
+    <label class="io-f">담당<select data-of="who">${optHTML(staffOpts,o.who)}</select></label>
+    <label class="io-f io-w">주요 내용 <small>파일에서 날짜·시각·일정·인원 같은 줄을 골라 정리했습니다. 고쳐서 등록하세요.</small><textarea data-of="desc" rows="9" maxlength="3800">${esc(o.desc)}</textarea></label>
+    <label class="chk io-w io-att"><input type="checkbox" data-of="att" ${o.att?'checked':''} ${o.file?'':'disabled'}> 📎 원본 파일 첨부 <small>${o.file?`${esc(o.file.name)} · ${esc(fmtMB(o.file.size))} — 업무 창에서 열어 볼 수 있습니다`:'원본 없음'}</small></label></div>`;}
+{const _ri=renderImport;renderImport=function(){const r=_ri.apply(this,arguments);try{const I=S.imp;if(!I)return r;I.ones=I.ones||[];let sec=$('#imp-one-sec');
+    if(!sec){$('#imp-rows-sec').insertAdjacentHTML('beforebegin','<section class="imp-sec" id="imp-one-sec" hidden><div class="imp-h"><h3>📄 업무 1건으로 정리 <small>등록 전에 확인·수정하세요</small></h3></div><div id="imp-ones"></div></section>');sec=$('#imp-one-sec');}
+    sec.hidden=!I.ones.length;const a=document.activeElement;if(!(a&&sec.contains(a)&&a.matches('input,textarea,select')))$('#imp-ones').innerHTML=I.ones.map(impOneHTML).join('');
+    if(I.ones.length)$('#imp-drop').classList.add('slim');impSummary();}catch(e){console.warn(e);}return r;};}
+{const _s=impSummary;impSummary=function(){const r=_s.apply(this,arguments);try{const I=S.imp;const n=(I&&I.ones||[]).filter(o=>o.on&&o.title.trim()).length;if(!n)return r;
+    const rr=I.rows.filter(x=>x.on&&x.text.trim()).length,p=I.photos.filter(x=>x.on).length;const parts=[`파일 정리 업무 ${n}건`];if(rr)parts.push(`업무 ${rr}건`);if(p)parts.push(`사진 ${p}장`);
+    if(!I.files.some(f=>f.ok===null))$('#imp-sum').textContent=parts.join(' + ')+' 등록 준비 — 등록 전에 한 번 더 확인합니다';$('#imp-go').disabled=!!I.busy;$('#imp-go').textContent=`${parts.join(' + ')} 등록`;}catch(e){console.warn(e);}return r;};}
+document.addEventListener('input',e=>{const T=e.target;const c=T&&T.closest&&T.closest('#imp-ones [data-oi]');if(!c||!S.imp)return;const o=(S.imp.ones||[])[+c.dataset.oi];const f=T.dataset.of;if(!o||!f)return;
+  if(f==='on'||f==='att')o[f]=T.checked;else o[f]=T.value;if(f==='on')c.classList.toggle('off',!o.on);
+  if(f==='start'&&o.start&&(!o.due||o.due<o.start))o.due=o.start,c.querySelector('[data-of=due]').value=o.start;
+  if(f==='cat'){const g=guessCat(o.title+' '+o.desc);o.sub=g&&g.cat===o.cat?g.sub:subsOf(o.cat)[0];o.leaf=g&&g.cat===o.cat?(g.leaf||''):'';}impSummary();});
+document.addEventListener('change',e=>{const T=e.target;if(T&&T.closest&&T.closest('#imp-ones [data-oi]')&&T.matches('select,input[type=checkbox],input[type=date],input[type=time]'))T.dispatchEvent(new Event('input',{bubbles:true}));});
+document.addEventListener('click',e=>{const T=e.target;if(!T||!T.closest||!S.imp)return;const a=T.closest('[data-imp-one],[data-imp-many]');if(!a)return;e.preventDefault();
+  const i=+(a.dataset.impOne!=null?a.dataset.impOne:a.dataset.impMany);impSetOne(i,a.dataset.impOne!=null);const ent=S.imp.files[i];if(ent)ent.status=ent.one?'업무 1건으로 정리':`업무 ${(ent._rows||S.imp.rows.filter(r=>r.src===ent.name)).length}건 읽음`;renderImport();});
+/* 등록: 1건 정리 → 확인 창 → 원본 첨부해 등록, 그다음 나머지(여러 건·사진)는 원래대로 */
+async function impOneSubmit(){const I=S.imp;const ones=(I.ones||[]).filter(o=>o.on&&o.title.trim());if(!ones.length||I.busy)return false;
+  const rest=I.rows.filter(r=>r.on&&r.text.trim()).length+(I.photos.some(p=>p.on)?1:0);
+  const msg=ones.map(o=>`「${o.title.trim().slice(0,60)}」\n  ${wdTxt({start:o.start,due:o.due||o.start,startTime:o.time,dueTime:o.dueTime})} · ${ST[o.status].name} · ${o.who?(typeof odName==='function'?odName(o.who):nameOf(o.who)):'담당 미지정'} · ${o.site}${o.att&&o.file?`\n  📎 원본 첨부: ${o.file.name}`:''}`).join('\n')+(rest?`\n\n그 밖에 업무·사진 ${rest}건도 함께 등록합니다.`:'');
+  if(!await confirmDlg('업무 등록 확인',msg+'\n\n이대로 등록할까요? (고치려면 「취소」)','등록'))return true;
+  I.busy=true;const btn=$('#imp-go');btn.disabled=true;let n=0;
+  try{for(const o of ones){let att=[];if(o.att&&o.file){btn.textContent=`원본 올리는 중… ${o.file.name.slice(0,20)}`;try{att=[await attPut(o.file,false)];}catch(err){toast((err&&err.userMsg)||'원본 파일을 올리지 못했습니다.','err');if(!await confirmDlg('원본 첨부 실패','원본 파일을 첨부하지 못했습니다. 원본 없이 등록할까요?','원본 없이 등록')){I.busy=false;impSummary();return true;}}}
+      btn.textContent=`등록 중 ${n+1}/${ones.length}`;const st=o.start||'',du=o.due||o.start||'';
+      await createTask({title:o.title.trim().slice(0,120),desc:(o.desc||'').trim()+(att.length?`\n\n📎 원본: ${att[0].name}`:`\n\n출처: ${o.src}`),cat:o.cat,sub:subsOf(o.cat).includes(o.sub)?o.sub:subsOf(o.cat)[0],leaf:subsOf(o.cat).includes(o.sub)?(o.leaf||''):'',tx:TXV,site:o.site,scope:guessScope(st,du||st),priority:'normal',repeat:'none',start:st,due:du,startTime:tmOk(o.time),dueTime:tmOk(o.dueTime),status:o.status,progress:o.status==='done'?100:0,doneAt:o.status==='done'?(du||st||today()):'',assignees:o.who?[o.who]:[],assigneeText:'',photos:[],logs:[],att});n++;}
+    I.ones=I.ones.filter(o=>!ones.includes(o));toast(`업무 ${n}건을 정리해 등록했습니다${ones.some(o=>o.att&&o.file)?' (원본 첨부)':''}.`);}
+  catch(err){toast(`${n}건까지 등록하고 멈췄습니다. 남은 항목을 확인한 뒤 다시 등록하세요.`,'err');I.ones=I.ones.filter(o=>!ones.slice(0,n).includes(o));I.busy=false;renderImport();return true;}
+  I.busy=false;if(rest){renderImport();await impSubmit({preventDefault(){}});}else{I.photos.forEach(p=>URL.revokeObjectURL(p.url));$('#dlg-import').close();S.imp=null;}return true;}
+document.addEventListener('submit',e=>{if(!e.target||e.target.id!=='imp-form'||!S.imp||!(S.imp.ones||[]).some(o=>o.on&&o.title.trim()))return;e.preventDefault();e.stopImmediatePropagation();impOneSubmit();},true);
+window.task52Api={tmFromText,attPut,attGet,impLooksLog,impCleanLines,IMPX};
+/* 빠른 기록 줄: 시각 칸이 들어간 만큼 — 글이 없을 때의 '자동 분류 내용을 보고 정합니다' 안내는 숨김(분류 칸에 이미 '자동 분류') */
+{const _q=qaAutoPreview;qaAutoPreview=function(){const r=_q.apply(this,arguments);try{const el=$('#qa-auto');if(el)el.classList.toggle('empty',!(($('#qa-text')||{}).value||'').trim());}catch{}return r;};}
+/* ───────── 52차: 서식·자료 ◀ ▶ — 목록 순서대로 위(이전)·아래(다음) 서식 열기 ─────────
+   · 회사서식(작성 가능) 작성 화면: 종이 양옆(화면 가장자리) ◀ ▶ → 목록에서 위·아래 서식 (적던 내용은 이 기기에 자동 보관)
+   · 회사서식(작성 불가)·미리보기 창, 자료실 파일 보기 창: 창 양옆 ◀ ▶
+   · 순서 = 그 서식을 연 목록 화면에 보이던 순서(폴더·검색 반영). 목록 밖에서 열었으면 지금 폴더·검색 기준 목록 순서 */
+const NAV={fm:null,fp:null,doc:null,docOn:false};
+const navUniq=a=>[...new Set(a.filter(Boolean))];
+document.addEventListener('click',e=>{const T=e.target;if(!T||!T.closest)return;
+  if(T.closest('#view .fm-list [data-fm-open]'))NAV.fm=navUniq([...document.querySelectorAll('#view .fm-list [data-fm-open]')].map(b=>b.dataset.fmOpen));
+  if(T.closest('#view .fm-list [data-fm-pv]'))NAV.fp=navUniq([...document.querySelectorAll('#view .fm-list [data-fm-pv]')].map(b=>b.dataset.fmPv));
+  if(T.closest('#view .doc-row[data-doc]'))NAV.doc=navUniq([...document.querySelectorAll('#view .doc-row[data-doc]')].map(r=>r.dataset.doc));},true);
+function fmVisIds(mode){try{const all=fmBy(mode);const q=(FM.q||'').trim().toLowerCase();const catOk=f=>!FM.cat||(FM.cat==='__none'?!f.cat:fmUnder(f.cat,FM.cat));
+  const L=all.filter(f=>catOk(f)&&(!q||[f.name,f.cat,f.file.name].join(' ').toLowerCase().includes(q)));const g=[];for(const f of L){let x=g.find(y=>y.cat===f.cat);if(!x){x={cat:f.cat,L:[]};g.push(x);}x.L.push(f);}return g.flatMap(x=>x.L.map(f=>f.id));}catch{return [];}}
+function navList(kind,cur){const L=kind==='fm'?NAV.fm:kind==='fp'?NAV.fp:NAV.doc;if(L&&L.includes(cur))return L;if(kind==='doc')return [];return fmVisIds(kind==='fm'?'direct':(S.view==='formd'?'direct':'print'));}
+const navName=(kind,id)=>{if(kind==='doc'){const f=S.files[id];return f?(f.title&&f.title!=='서류'?f.title:((curVer(f)||{}).name||'파일')):'';}const f=fmGet(id);return f?f.name:'';};
+const docViewOk=f=>!!(f&&curVer(f)&&(!f.restricted||canViewRestricted()));
+function navNeighbors(kind,cur){let L=navList(kind,cur);if(kind==='doc')L=L.filter(id=>id===cur||docViewOk(S.files[id]));else L=L.filter(id=>fmGet(id));const i=L.indexOf(cur);return {L,i,prev:i>0?L[i-1]:null,next:i>=0&&i<L.length-1?L[i+1]:null};}
+function navBtns(kind,cur,cls){const N=navNeighbors(kind,cur);if(N.i<0||N.L.length<2)return '';const w=kind==='doc'?'파일':'서식';
+  const b=(dir,id,ch,lbl)=>id?`<button type="button" class="nav-arrow ${dir} ${cls||''}" data-nav="${kind}" data-nav-to="${esc(id)}" title="${lbl} ${w}: ${esc(navName(kind,id))}" aria-label="${lbl} ${w}: ${esc(navName(kind,id))}"><span class="na-ch">${ch}</span><small class="na-n">${esc(navName(kind,id).slice(0,18))}</small></button>`:'';
+  return b('prev',N.prev,'‹','위(이전)')+b('next',N.next,'›','아래(다음)')+`<span class="nav-pos ${cls||''}">${N.i+1} / ${N.L.length}</span>`;}
+/* 작성 화면 */
+function navFmMount(){const w=$('#fmw');if(!w)return;w.querySelectorAll(':scope > .nav-arrow, :scope > .nav-pos').forEach(x=>x.remove());if(S.view!=='formd'||!FM.open||FM.base)return;w.insertAdjacentHTML('beforeend',navBtns('fm',FM.open,'fixed'));}
+{const _r=render;render=function(){const r=_r.apply(this,arguments);try{navFmMount();}catch(e){console.warn(e);}return r;};}
+{const _fl=fmFillLoad;fmFillLoad=async function(){const r=await _fl.apply(this,arguments);try{navFmMount();}catch{}return r;};}
+/* 미리보기 창(작성 불가 등) */
+function navFpMount(){const d=$('#dlg-fmrev');if(!d)return;d.querySelectorAll('.nav-arrow,.nav-pos').forEach(x=>x.remove());const R=FM.rev;if(!R||!R.single||!d.open)return;const id=R.ids[R.i];if(!id)return;d.insertAdjacentHTML('beforeend',navBtns('fp',id,'in-dlg'));}
+{const _s=fmRevShow;fmRevShow=async function(){const p=_s.apply(this,arguments);try{navFpMount();}catch{}return p;};}
+/* 자료실 보기 창 */
+{const _d=docOpen;docOpen=async function(f,ver,mode){if(mode==='view'){NAV.docOn=true;NAV.docCur=f&&f.id;}try{return await _d.apply(this,arguments);}finally{NAV.docOn=false;setTimeout(navDocMount,0);}};}
+{const _o=openViewer;openViewer=function(o){if(!NAV.docOn)NAV.docCur=null;const r=_o.apply(this,arguments);try{navDocMount();}catch{}return r;};}
+function navDocMount(){const d=$('#dlg-view');if(!d)return;d.querySelectorAll('.nav-arrow,.nav-pos').forEach(x=>x.remove());if(!NAV.docCur||!d.open)return;d.insertAdjacentHTML('beforeend',navBtns('doc',NAV.docCur,'in-dlg'));}
+document.addEventListener('click',async e=>{const b=e.target.closest&&e.target.closest('[data-nav]');if(!b)return;e.preventDefault();const kind=b.dataset.nav,to=b.dataset.navTo;
+  if(kind==='fm'){if(FM.base&&typeof fmeDirty==='function'&&fmeDirty()&&!await confirmDlg('다른 서식 열기','저장하지 않은 고친 내용이 있습니다. 버리고 넘어갈까요?','버리기'))return;fmOpen(to);window.scrollTo(0,0);return;}
+  if(kind==='fp'){const R=FM.rev;if(!R)return;R.ids=[to];R.i=0;fmRevShow();return;}
+  if(kind==='doc'){const f=S.files[to];if(f)docOpen(f,null,'view');}});
+window.navApi={state:NAV,list:navList,neighbors:navNeighbors};
 
 /* ───────── 시작 ───────── */
 function boot(){
