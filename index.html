@@ -1874,6 +1874,24 @@ body.gd-mode #gd-out{height:34px}
 .od-rh label{font-size:12.5px;color:var(--ink-2)}.od-rh select{font:inherit;font-size:13px}.od-rh .icon-btn{margin-left:auto}
 .ntf-pop .ic.t-ord{background:#1f4f96;color:#fff}.ntf-pop .ic.t-rep{background:#6b46a8;color:#fff}
 @media (max-width:760px){.od-tabs button{white-space:normal;height:auto;min-height:36px;line-height:1.25;padding:4px 6px}.od-row{flex-wrap:wrap}.od-acts{max-width:none;justify-content:flex-start;width:100%}.od-sum{gap:4px 10px}}
+
+/* 47차: 회사서식 고치기 */
+.fme-bar{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin:0 0 8px;padding:6px 8px;background:#fff;border:1px solid var(--line);border-radius:10px;position:sticky;top:calc(var(--top-h,56px) + 4px);z-index:5;box-shadow:0 2px 8px rgba(15,23,42,.06)}
+.fme-bar button{border:1px solid var(--line);background:var(--bg-2,#f6f8fb);color:var(--ink);border-radius:7px;padding:4px 9px;font:inherit;font-size:13px;cursor:pointer;white-space:nowrap}
+.fme-bar button:hover{border-color:#2f6fd6;color:#1f4f96;background:#eef4ff}.fme-bar i{width:1px;height:20px;background:var(--line);margin:0 3px}.fme-bar .fme-l{font-size:12.5px;color:var(--ink-3);margin-left:2px}
+#fm-paper.base img{cursor:pointer}#fm-paper.base img.fme-sel{outline:3px solid #2f6fd6;outline-offset:2px}
+.fm-wb{position:absolute;background:#fff}
+.fm-wb.e{outline:1.5px dashed #c8102e;outline-offset:-1px;cursor:default;min-width:6px;min-height:4px}
+.fm-wbh{position:absolute;left:-18px;top:-2px;color:#c8102e;cursor:grab;font-size:15px;line-height:1;user-select:none;touch-action:none;padding:2px}
+.fm-wbx{position:absolute;right:-9px;top:-9px;width:18px;height:18px;border-radius:50%;border:0;background:#c8102e;color:#fff;font-size:11px;line-height:18px;padding:0;cursor:pointer;opacity:.85}
+.fm-wbr{position:absolute;right:-5px;bottom:-5px;width:11px;height:11px;background:#c8102e;border-radius:2px;cursor:nwse-resize;touch-action:none}
+.fm-wb.e.drag{outline-style:solid}
+.fm-tb.fmb:not(.e){pointer-events:none}.fm-ovs .fm-tb.fmb:not(.e) .fm-tbt,#print-sheet .fm-tb.fmb .fm-tbt,.fm-ovp.pv .fm-tb.fmb .fm-tbt{background:none;box-shadow:none}
+.fm-ovs .fm-tb.fmb.e .fm-tbt{background:rgba(200,16,46,.05);box-shadow:inset 0 0 0 1px rgba(200,16,46,.45)}.fm-tb.fmb.e .fm-tbh{color:#c8102e}
+.fm-ovs.base .fm-ovp{cursor:crosshair}
+.fmr-imgs .fm-ovp.pv{width:min(100%,820px);cursor:default;box-shadow:0 2px 10px rgba(0,0,0,.15)}.fmr-imgs .fm-ovp.pv>img{max-width:none;box-shadow:none}
+@media (max-width:640px){.fme-bar{position:static}.fme-bar button{padding:4px 7px;font-size:12.5px}}
+@media print{.fm-wb{background:#fff!important}}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -2774,6 +2792,7 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>회사 실제 양식 (41차)</b><span>시설 일보의 <em>✨ 자동</em>은 메모에 회사 일지 낱말(역률·TR 유면·VCB / 소화기·수신기 / E/L·인승 / 콤프레샤·쿨링타워·저수조 / 집진·배출구)이 2개 이상이면 그 <em>🦺 안전관리 일지</em>로 만듭니다. 점검표 항목은 회사 「변전실 안전점검 일지」·「소방시설 안전점검 일지」·「E/L 일일 점검일지」·콤프레샤·쿨링타워·저수조 위생점검·「대기배출시설 운영기록부」(군포: 분쇄시설·여과집진)를 따르고, TR1~3 유면·전력량계 지침·호기별 토출 압력처럼 칸 여러 개로 적습니다. 일지 위 <em>회사 양식</em> 단추를 누르면 같은 회사서식(직접 작성)이 바로 열립니다. <em>작업 일보</em>는 「업체: 한빛전기 2명 — 분전반 교체」처럼 적으면 회사 업무 일지처럼 <em>외부 작업</em>(종별·업체명·인원)과 <em>자체 작업</em>으로 나누고, <em>점검 일지</em>는 변전실·발전실·경비실·저수조·펌프실 중 2곳 이상이나 '시설 순회'를 적으면 회사 「안전관리 일지」 항목으로 채웁니다. 회사서식은 원본 파일과 같은 이름의 <em>○○.화면.html</em>(회사 양식으로 다듬은 화면)을 함께 올리면 한 서식으로 묶어 바로 직접 작성으로 씁니다.</span></li>
       <li><b>그룹웨어 연결 표시 (관리자)</b><span>관리자 화면 위쪽 <em>+ 업무 등록</em> 왼쪽의 동그란 기호가 그룹웨어 자동 확인 상태입니다. <em>🔗 초록</em> = 연결됨, <em>🔑 빨강(깜박임)</em> = 로그인이 풀려 미연결, <em>주황</em> = 로그인 화면을 연 뒤 다음 자동 확인 대기 또는 확인 멈춤·오류, 회색 = 확인 기록 없음. 마우스를 올리면 마지막 확인 시각이 보입니다. 빨간 🔑를 누르면 그룹웨어 로그인 화면이 열립니다(Claude 앱 브라우저에서는 그 창에서 바로 — 로그인 뒤 ← 뒤로). 자동 확인은 관리자 컴퓨터 Claude 앱 브라우저의 로그인을 쓰므로 다른 브라우저에서는 안내 창이 먼저 뜹니다. 비밀번호는 저장·입력하지 않습니다.</span></li>
       <li><b>✅ 점검 일보 (공장별 정기 점검)</b><span>홈 빠른 기록 줄의 <em>✅ 점검 일보</em>(📋 시설 일보 왼쪽)를 누르면 사업장(안양·군포·화성)별로 회사 점검 일지 항목을 한 화면에서 적습니다. <em>매일</em>(평일: 시설 순회·수변전 09·13·17시·변전실·방화관리·E/L 호기별·콤프레샤·대기배출), <em>주간</em>(월요일부터: 쿨링타워·소방시설), <em>월간</em>(1일부터: 저수조 위생·전기계량기·축전지·비상발전기·전기차 충전·소방안전관리자 기록, 수도 검침 15일), <em>분기</em>(분전반 부하·누설전류·열화상). <em>오늘 할 점검</em>에 그날 할 구역과 밀린 구역(⏰)이 모입니다. 점검 칸은 양호·주의·불량·해당 없음, 호기별 칸은 누를 때마다 ○→△→X→/, 수치는 기준을 벗어나면 주황, 계량기는 전월 지침·배율로 사용량을 계산합니다. 적으면 바로 저장되고, <em>📋 업무일지에 기록</em>하면 업무와 「공장 통합 점검 일보」 서류(인쇄·전자결재)가 생기며 불량은 '할 예정' 후속 업무가 됩니다. <em>📈 수치 추이</em>로 역률·온도 등을 그래프로 봅니다. 관리자는 <em>⚙ 구역 설정</em>에서 사업장에 없는 구역을 끕니다.</span></li>
+      <li><b>✏️ 회사서식 고치기 (자료 관리자)</b><span>회사서식 목록이나 미리보기 창, 작성 화면 위쪽의 <em>✏️ 서식 수정</em>을 누르면 모든 직원에게 보이는 서식 자체를 고칩니다. 한글·워드·엑셀 서식은 글을 바로 고치고, 지울 곳은 끌어서 고른 뒤 <em>Delete</em>(그림은 눌러 고른 뒤 Delete), 위 도구줄로 <em>🧹 이 줄 지우기</em>·표 <em>＋ 위/아래에 줄</em>·<em>－ 줄 지우기</em>·<em>＋ 오른쪽 칸</em>·<em>－ 칸 지우기</em>·<em>표 지우기</em>·<em>↶ 되돌리기</em>를 씁니다. PDF·스캔 서식은 <em>⬜ 가리기(흰 상자)</em>로 지우고 <em>✏️ 글 넣기</em>로 글을 얹습니다. <em>💾 서식 수정 저장</em>을 누르면 작성·인쇄·미리보기·전자결재에 모두 반영되고, <em>원래 파일 모양으로</em> 되돌릴 수 있습니다. 한글·워드에서 직접 고친 파일은 <em>📤 파일 바꾸기</em>로 올리면 이름·폴더는 그대로 두고 파일만 바뀝니다. 직원이 작성 화면에서 고친 것은 그 기기에만 보관됩니다.</span></li>
       <li><b>📌 업무 지시 · 📨 보고</b><span>관리자는 업무를 <b>직원</b>이나 <b>직무</b>(재무·회계·인사·총무·시설·공무·안전·보건)에 지시합니다. 업무 등록 창의 <em>📌 업무 지시</em>에서 고르고 저장하거나, 업무 창의 <em>📌 업무 지시하기</em>, 또는 <em>📌 업무 지시</em> 화면의 <em>🗂 지시할 업무</em>에서 <em>⚡ 업무분장 담당자에게</em>·<em>🧩 직무에</em> 한 번에(여러 건 골라 한꺼번에도) 보냅니다. 받는 사람에게 알림(🔔·화면 아래·브라우저)이 가고, 직무 지시는 그 직무 담당 중 업무 사업장 근무자(없으면 전원)와 직무 책임자에게 갑니다 → 한 사람이 <em>🙋 내가 맡기</em>를 누르면 담당자가 됩니다. 직원은 <em>✓ 확인</em> → 일을 하고 <em>📨 보고</em>(중간·완료·문제·지연) → 관리자에게 알림 → 관리자가 <em>✅ 확인 완료</em> 또는 <em>↩ 보완 요청</em>. 내 업무 위쪽에 받은 지시·확인할 보고가 모이고, <em>📌 업무 지시</em> 화면에서 미확인·진행·지연·완료 현황을 봅니다. 직무별 담당 직원·책임자는 관리자가 <em>🧩 직무별 담당</em>에서 바꿉니다.</span></li>
       <li><b>🛡 경비 일지 (경비원 전용 화면)</b><span>홈 빠른 기록 줄의 <em>🛡 경비 일지</em>(✅ 점검 일보 왼쪽)에서 사업장·근무일(아침 9시 전이면 전날 밤 근무)별로 회사 경비 근무일지(근무자·인수자·교대 시각·날씨, 순찰 1·2차 시각·특이사항, 순찰 점검, 주차 현황, 기타 보고)와 <em>🚗 방문 차량</em>·직원 비등록 차량·우편물·택배 접수를 적습니다. 방문 차량은 위 칸에 차량번호 등을 적고 Enter(입차 시각 자동), 자주 오는 차량은 단추 한 번, 나갈 때 <em>출차 지금</em>. 관리자는 <em>👮 경비원 계정</em>에 경비원 이메일·사업장을 등록 → 경비원이 그 이메일로 가입·인증·로그인하면 <b>경비 일지 화면만</b> 보이고(업무·자료·직원 명단·검색·알림 없음) 어제·오늘 근무일만 적을 수 있습니다. 알림(종)의 접속 요청도 '경비원으로 허용'을 고를 수 있습니다. 항목은 관리자·자료 관리자가 <em>✏️ 항목 편집</em>(구역 추가·순서·순찰 장소·주차 칸·기록 목록 칸)에서 바꾸고, <em>🖨 인쇄·PDF</em>·<em>📤 이달 기록 엑셀</em>로 냅니다.</span></li>
       <li><b>✏️ 점검 항목 편집</b><span>점검 일보 위쪽 <em>✏️ 항목 편집</em>(관리자·자료 관리자)을 누르면 구역·묶음·항목을 바로 고칩니다. <em>⠿</em>를 끌거나 ▲▼로 순서를 바꾸고, 이름·점검 기준·종류(점검·수치·칸 수치·칸 점검·글·계량기·측정 목록)·단위·하한·상한·칸 이름(사업장마다 따로)·계량기 목록(이름*배율)·주기(평일·매일·매주 ○요일·매월 ○일·특정 달·분기·반기·매년)·사업장을 바꾸고 <em>＋ 구역 / ＋ 묶음 / ＋ 항목</em>으로 더하거나 ✕로 뺍니다. 많이 고칠 때는 <em>📤 엑셀로 내보내기</em> → 엑셀에서 고쳐 → <em>📥 엑셀에서 가져오기</em>. <em>💾 저장</em>하면 모든 사람의 점검 일보·인쇄·업무일지 기록에 바로 반영되고, 직전 것은 <em>↶ 직전 저장본</em>으로, 처음 것은 <em>↺ 기본 항목으로</em> 되돌립니다. 이름을 바꿔도 항목 ID가 같아 지난 기록·수치 추이는 이어집니다.</span></li>
@@ -6787,7 +6806,7 @@ const FM_FUND=/지출|구매|품의|대금|지급|송금|결제|경비|정산|�
 
 function fmNorm(id,v){if(!v||typeof v.name!=='string'||!v.file||typeof v.file!=='object')return null;const f=v.file;const P=v.page&&typeof v.page==='object'?v.page:null;
   return {id,name:v.name.slice(0,120),cat:typeof v.cat==='string'?v.cat.slice(0,80):'',mode:['print','direct'].includes(v.mode)?v.mode:'',cv:['html','ov'].includes(v.cv)?v.cv:'',note:typeof v.note==='string'?v.note.slice(0,200):'',
-    file:{name:String(f.name||'서식').slice(0,200),type:String(f.type||''),size:Number(f.size)||0,n:Math.max(1,Math.min(60,f.n|0))},hn:Math.max(0,Math.min(60,v.hn|0)),hv:v.hv|0,
+    file:{name:String(f.name||'서식').slice(0,200),type:String(f.type||''),size:Number(f.size)||0,n:Math.max(1,Math.min(60,f.n|0)),g:/^g[0-9a-z]{4,14}$/.test(f.g||'')?f.g:''},ovb:fmeOvbNorm(v.ovb),hn:Math.max(0,Math.min(60,v.hn|0)),hv:v.hv|0,
     page:P&&+P.w>50?{w:+P.w,h:+P.h||297,ml:+P.ml||20,mr:+P.mr||20,mt:+P.mt||20,mb:+P.mb||15,land:!!P.land}:null,serif:!!v.serif,at:String(v.at||''),by:String(v.by||''),upd:String(v.upd||'')};}
 function fmSub(){if(FMU||!fmOK()||!S.me||!S.me.id)return;
   FMU=S.fs.collection('forms').onSnapshot(qs=>{FM.list=qs.docs.map(d=>fmNorm(d.id,d.data())).filter(Boolean).sort((a,b)=>(a.cat||'￿').localeCompare(b.cat||'￿','ko')||a.name.localeCompare(b.name,'ko',{numeric:true}));
@@ -6806,8 +6825,8 @@ function fmSwUpd(){const sw=$('#view > .up-sw');if(!sw)return;for(const m of ['p
   const w=sw.querySelector('.fm-sw-w');if(w){const n=fmWait().length;w.textContent=n?`분류 대기 ${n}`:'';w.hidden=!n;}}
 
 /* ── 저장소 읽기·쓰기 ── */
-async function fmBlob(f){const key=f.id+'@'+f.file.size+'@'+f.file.n;if(FM.blobs.has(key))return FM.blobs.get(key);const parts=[];
-  for(let i=0;i<f.file.n;i++){let s;try{s=await S.fs.doc(`forms/${f.id}/f/${i}`).get();}catch(e){throw fbErr(e);}if(!s.exists)throw {code:'missing',userMsg:'서식 파일 일부를 찾지 못했습니다. 관리자에게 다시 올려 달라고 하세요.'};parts.push(s.data().b.toUint8Array());}
+async function fmBlob(f){const key=f.id+'@'+f.file.size+'@'+f.file.n+'@'+(f.file.g||'');if(FM.blobs.has(key))return FM.blobs.get(key);const parts=[];
+  for(let i=0;i<f.file.n;i++){let s;try{s=await S.fs.doc(`forms/${f.id}/f/${fmChunkId(f.file,i)}`).get();}catch(e){throw fbErr(e);}if(!s.exists)throw {code:'missing',userMsg:'서식 파일 일부를 찾지 못했습니다. 관리자에게 다시 올려 달라고 하세요.'};parts.push(s.data().b.toUint8Array());}
   const b=new Blob(parts,{type:f.file.type||'application/octet-stream'});FM.blobs.set(key,b);if(FM.blobs.size>40)FM.blobs.delete(FM.blobs.keys().next().value);return b;}
 async function fmBaseHtml(f){if(!f.hn)return null;const parts=[];for(let i=0;i<f.hn;i++){const s=await S.fs.doc(`forms/${f.id}/h/${i}`).get();if(!s.exists)return null;parts.push(s.data().b.toUint8Array());}return await new Blob(parts).text();}
 /* 화면 작성용 종이 = 관리자가 고친 원본(있으면) 또는 원본 파일을 바꾼 것 */
@@ -6824,7 +6843,7 @@ async function fmSetMode(ids,mode){const L=ids.map(fmGet).filter(Boolean);const 
   if(!ok.length)return false;return fmUpdate(ok,{mode},ids.length>1?`${ok.length}개를 ${FM_LBL[mode]}으로 옮겼습니다.`:'');}
 async function fmDelete(ids){const L=ids.map(fmGet).filter(Boolean);if(!L.length)return;
   if(!await confirmDlg('회사서식 삭제',`${L.length>1?`서식 ${L.length}개`:`「${L[0].name}」`}을(를) 지웁니다. 원본 파일도 함께 지워지며 되돌릴 수 없습니다.`,'삭제'))return false;
-  setSync('saving');try{for(const f of L){for(let i=0;i<f.file.n;i++)try{await S.fs.doc(`forms/${f.id}/f/${i}`).delete();}catch{}for(let i=0;i<f.hn;i++)try{await S.fs.doc(`forms/${f.id}/h/${i}`).delete();}catch{}
+  setSync('saving');try{for(const f of L){for(let i=0;i<f.file.n;i++)try{await S.fs.doc(`forms/${f.id}/f/${fmChunkId(f.file,i)}`).delete();}catch{}for(let i=0;i<f.hn;i++)try{await S.fs.doc(`forms/${f.id}/h/${i}`).delete();}catch{}
       await fbWrite(S.fs.doc('forms/'+f.id).delete());FM.sel.delete(f.id);lsSet(fmDraftKey(f.id),null);}dlAdd({act:'del',kind:'form',id:L[0].id,title:L[0].name,n:L.length});toast(`${L.length}개를 지웠습니다.`);return true;}
   catch(e){writeError(e&&e.userMsg?e:fbErr(e));return false;}finally{setSync('ok');}}
 async function fmSaveBase(f,html,page,quiet){html=fmClean(html);const u8=new TextEncoder().encode(html);if(u8.length>FILE_CHUNK*40){toast('서식이 너무 큽니다.','err');return false;}setSync('saving');
@@ -6911,7 +6930,7 @@ function fmRowHTML(f,mode){const adm=canDoc();const ck=adm||mode==='print';const
     <span class="fm-nmw"><button type="button" class="fm-nm" ${mode==='direct'?`data-fm-open="${esc(f.id)}"`:`data-fm-pv="${esc(f.id)}"`}><b>${esc(f.name)}</b><small>${esc(fmMeta(f))}${dr?' · <em class="fm-dr">작성 중</em>':''}</small></button>${adm?`<button type="button" class="fm-ren" data-fm-ren="${esc(f.id)}" aria-label="이름 바꾸기" title="이름 바꾸기 (F2)">✏️</button>`:''}</span>
     <span class="fm-act">${mode==='direct'?`<button type="button" class="btn sm primary" data-fm-open="${esc(f.id)}">✏️ ${dr?'이어서 작성':'작성하기'}</button><button type="button" class="btn sm ghost" data-fm-pv="${esc(f.id)}">미리보기</button>`
       :`<button type="button" class="btn sm" data-fm-pv="${esc(f.id)}">미리보기</button><button type="button" class="btn sm" data-fm-print="${esc(f.id)}">🖨 인쇄</button><button type="button" class="btn sm ghost" data-fm-dl="${esc(f.id)}">내려받기</button>`}
-      ${adm?`<button type="button" class="btn sm ghost" data-fm-mv="${esc(f.id)}" data-to="${mode==='print'?'direct':'print'}" ${mode==='print'&&!f.cv?'disabled title="화면 작성으로 바꿀 수 없는 형식"':''}>${mode==='print'?'✏️ 직접 작성으로':'🖨 출력 작성으로'}</button><button type="button" class="btn sm ghost" data-fm-mvd="${esc(f.id)}" title="다른 폴더로 옮기기">📁 옮기기</button>`:''}</span></div>`;}
+      ${adm?`<button type="button" class="btn sm ghost" data-fm-mv="${esc(f.id)}" data-to="${mode==='print'?'direct':'print'}" ${mode==='print'&&!f.cv?'disabled title="화면 작성으로 바꿀 수 없는 형식"':''}>${mode==='print'?'✏️ 직접 작성으로':'🖨 출력 작성으로'}</button><button type="button" class="btn sm ghost" data-fm-mvd="${esc(f.id)}" title="다른 폴더로 옮기기">📁 옮기기</button>${f.cv?`<button type="button" class="btn sm ghost" data-fme-edit="${esc(f.id)}" title="서식 자체를 고칩니다 — 모든 직원에게 보임">✏️ 서식 수정</button>`:`<button type="button" class="btn sm ghost" data-fme-rep="${esc(f.id)}" title="고친 파일로 바꿉니다">📤 파일 바꾸기</button>`}`:''}</span></div>`;}
 function fmWaitRow(f){return `<div class="fm-row wait" data-fm-row="${esc(f.id)}" draggable="true"><input type="checkbox" data-fm-ck="${esc(f.id)}" ${FM.sel.has(f.id)?'checked':''} aria-label="${esc(f.name)} 선택"><span class="fi">${esc(fileIcon({name:f.file.name}))}</span>
   <span class="fm-nmw"><button type="button" class="fm-nm" data-fm-pv="${esc(f.id)}"><b>${esc(f.name)}</b><small>${esc(fmMeta(f))} · ${fmCvTag(f)}</small></button><button type="button" class="fm-ren" data-fm-ren="${esc(f.id)}" aria-label="이름 바꾸기" title="이름 바꾸기 (F2)">✏️</button></span>
   <span class="fm-act"><button type="button" class="btn sm" data-fm-mv="${esc(f.id)}" data-to="print">🖨 출력 작성</button><button type="button" class="btn sm" data-fm-mv="${esc(f.id)}" data-to="direct" ${f.cv?'':'disabled title="화면 작성으로 바꿀 수 없는 형식"'}>✏️ 직접 작성</button><button type="button" class="btn sm ghost" data-fm-mvd="${esc(f.id)}">📁 옮기기</button></span></div>`;}
@@ -6998,7 +7017,7 @@ function fmRevSide(){const R=FM.rev;const f=fmGet(R.ids[R.i]);const side=$('#fmr
     ${R.single?'':`<div class="fmr-nav"><button type="button" class="btn sm" data-fmr="prev" ${R.i?'':'disabled'}>← 이전</button><button type="button" class="btn sm" data-fmr="next">${R.i>=R.ids.length-1?'마치기':'나중에 →'}</button></div><p class="fmr-cnt">이번에 고른 서식 ${nDone}개 · 남은 서식 ${R.ids.filter(id=>!R.done[id]&&!(fmGet(id)||{}).mode).length}개</p>`}
     <details class="fmr-more"><summary>이름·분류 고치기 · 삭제</summary><label>서식 이름<input id="fmr-nm" maxlength="120" value="${esc(f.name)}"></label><label>분류(폴더)<input id="fmr-cat" maxlength="80" list="fmr-cats" value="${esc(f.cat)}" placeholder="예: 인사·총무"></label><datalist id="fmr-cats">${cats.map(c=>`<option value="${esc(c)}">`).join('')}</datalist>
       <button type="button" class="btn sm ghost danger" data-fmr="del">이 서식 삭제</button></details>`:''}
-    <div class="fmr-acts">${f.mode==='direct'||(!adm&&f.cv)?`<button type="button" class="btn sm primary" data-fmr="open">✏️ 작성하기</button>`:''}<button type="button" class="btn sm" data-fmr="print-out">🖨 인쇄</button><button type="button" class="btn sm ghost" data-fmr="dl">⬇ 원본 내려받기</button></div>`;}
+    <div class="fmr-acts">${f.mode==='direct'||(!adm&&f.cv)?`<button type="button" class="btn sm primary" data-fmr="open">✏️ 작성하기</button>`:''}<button type="button" class="btn sm" data-fmr="print-out">🖨 인쇄</button><button type="button" class="btn sm ghost" data-fmr="dl">⬇ 원본 내려받기</button>${adm?`${f.cv?`<button type="button" class="btn sm ghost" data-fme-edit="${esc(f.id)}">✏️ 서식 수정</button>`:''}<button type="button" class="btn sm ghost" data-fme-rep="${esc(f.id)}">📤 파일 바꾸기</button>`:''}</div>`;}
 async function fmRevShow(){const R=FM.rev;const d=$('#dlg-fmrev');if(!R||!d.open)return;const f=fmGet(R.ids[R.i]);const pv=$('#fmr-pv');
   if(!f){pv.innerHTML='<div class="vw-load"><i></i>불러오는 중…</div>';return;}
   fmRevSide();const tok=++R.tok;pv.innerHTML='<div class="vw-load"><i></i>서식을 여는 중…</div>';pv.scrollTop=0;
@@ -7013,8 +7032,8 @@ async function fmPreview(f,host,alive){if(f.cv==='html'||(f.cv===''&&fmKind(f.fi
       host.innerHTML=`<div class="fmr-imgs"><img src="${u}" alt="첫 쪽 미리보기"></div><p class="fmr-note">⚠️ ${esc(fileErrMsg(err))} (한글 파일에 든 첫 쪽 미리보기 그림입니다)</p>`;return;}}
   const blob=await fmBlob(f);if(!alive())return;const k=kindOf(f.file.name,blob.type||f.file.type);
   if(k==='pdf'){const pages=await fmPdfPages(blob,3,900);if(!alive()){pages.forEach(p=>URL.revokeObjectURL(p.url));return;}
-    host.innerHTML=`<div class="fmr-imgs">${pages.map((p,i)=>`<img src="${p.url}" alt="${i+1}쪽">`).join('')}</div>${pages.n>3?`<p class="fmr-note">앞의 3쪽만 보여 줍니다 (전체 ${pages.n}쪽).</p>`:''}`;return;}
-  if(k==='image'){const u=URL.createObjectURL(blob);host.innerHTML=`<div class="fmr-imgs"><img src="${u}" alt="${esc(f.name)}"></div>`;return;}
+    host.innerHTML=`<div class="fmr-imgs">${pages.map((p,i)=>f.ovb.some(b=>b.p===i)?`<div class="fm-ovp pv" style="aspect-ratio:${p.w}/${p.h};--pw:${p.w}"><img src="${p.url}" alt="${i+1}쪽">${fmeOvBaseHTML(f.ovb,i)}</div>`:`<img src="${p.url}" alt="${i+1}쪽">`).join('')}</div>${pages.n>3?`<p class="fmr-note">앞의 3쪽만 보여 줍니다 (전체 ${pages.n}쪽).</p>`:''}`;return;}
+  if(k==='image'){const u=URL.createObjectURL(blob);if(f.ovb.length){const P=await fmeImgPage(blob,u);if(!alive())return;host.innerHTML=`<div class="fmr-imgs"><div class="fm-ovp pv" style="aspect-ratio:${P.w}/${P.h};--pw:${P.w}"><img src="${u}" alt="${esc(f.name)}">${fmeOvBaseHTML(f.ovb,0)}</div></div>`;return;}host.innerHTML=`<div class="fmr-imgs"><img src="${u}" alt="${esc(f.name)}"></div>`;return;}
   host.innerHTML=`<div class="vw-msg"><span class="fi">${esc(fileIcon({name:f.file.name}))}</span><b>${esc(f.file.name)}</b><p>${esc(f.note||'이 형식은 미리볼 수 없습니다. 원본을 내려받아 확인하세요.')}</p><button type="button" class="btn" data-fmr="dl">⬇ 원본 내려받기</button></div>`;}
 async function fmPrvImage(f){const blob=await fmBlob(f);const k=extOf(f.file.name)==='hwt'?'hwp':kindOf(f.file.name,f.file.type);let u8=null;
   if(k==='hwp'){if(!window.XLSX)await wlLib('xlsx');const cfb=XLSX.CFB.read(new Uint8Array(await blob.arrayBuffer()),{type:'array'});const pe=XLSX.CFB.find(cfb,'/PrvImage');if(pe&&pe.content)u8=new Uint8Array(pe.content);}
@@ -7048,8 +7067,8 @@ function fmOvFree(){if(FM.ov){for(const p of FM.ov.pages||[])try{URL.revokeObjec
 function fmFillRender(v){const f=fmGet(FM.open);if(!f){if(FM.loaded){FM.open=null;return renderForms(v);}v.innerHTML='<div class="vw-load"><i></i>서식을 불러오는 중…</div>';return;}
   FM.k=rid();const k=FM.k;const adm=canDoc();
   v.innerHTML=`<div id="fmw" data-k="${esc(k)}"><div class="list-h fm-h"><button type="button" class="btn sm ghost" data-fm-close>← 목록</button><h1>${esc(f.name)}${f.cat?` <small>${esc(f.cat)}</small>`:''}</h1><span class="sp"></span><span class="fm-saved" id="fm-saved" aria-live="polite"></span>
-    ${FM.base?`<button type="button" class="btn" data-fm-basecancel>취소</button>${f.hn?'<button type="button" class="btn ghost" data-fm-basereset>원래 파일 모양으로</button>':''}<button type="button" class="btn primary" data-fm-basesave>서식 원본 저장</button>`
-     :`${f.cv==='html'&&f.mode==='direct'?`<button type="button" class="btn ghost" data-fm-styl title="${fmpOrig()?'회사 공통 모양으로 다듬어 봅니다':'올린 한글·워드 서식 모양 그대로 봅니다'}">${fmpOrig()?'✨ 다듬은 모양':'원래 모양'}</button>`:''}<button type="button" class="btn" data-fm-reset>↺ 처음 서식으로</button><button type="button" class="btn" data-fm-printw>🖨 인쇄</button>${typeof apOK==='function'&&apOK()?'<button type="button" class="btn primary" data-fm-appr>📝 전자결재로 올리기</button>':''}${adm&&f.cv==='html'?'<button type="button" class="btn ghost" data-fm-base>서식 원본 고치기</button>':''}`}</div>
+    ${FM.base?`<button type="button" class="btn" data-fm-basecancel>취소</button>${f.hn||(f.cv==='ov'&&f.ovb.length)?'<button type="button" class="btn ghost" data-fm-basereset>원래 파일 모양으로</button>':''}<button type="button" class="btn primary" data-fm-basesave>💾 서식 수정 저장</button>`
+     :`${f.cv==='html'&&f.mode==='direct'?`<button type="button" class="btn ghost" data-fm-styl title="${fmpOrig()?'회사 공통 모양으로 다듬어 봅니다':'올린 한글·워드 서식 모양 그대로 봅니다'}">${fmpOrig()?'✨ 다듬은 모양':'원래 모양'}</button>`:''}<button type="button" class="btn" data-fm-reset>↺ 처음 서식으로</button><button type="button" class="btn" data-fm-printw>🖨 인쇄</button>${typeof apOK==='function'&&apOK()?'<button type="button" class="btn primary" data-fm-appr>📝 전자결재로 올리기</button>':''}${adm&&f.cv?'<button type="button" class="btn ghost" data-fm-base title="모든 직원에게 보이는 서식 자체를 고칩니다 (자료 관리자)">✏️ 서식 수정</button>':''}${adm?`<button type="button" class="btn ghost" data-fme-rep="${esc(f.id)}" title="한글·워드 등에서 고친 파일로 바꿉니다 (자료 관리자)">📤 파일 바꾸기</button>`:''}`}</div>
     <div id="fm-note"></div><div class="fm-desk" id="fm-desk"><div class="vw-load"><i></i>서식을 여는 중…</div></div></div>`;
   fmFillLoad(f,k);}
 async function fmFillLoad(f,k){const desk=$('#fm-desk');const note=$('#fm-note');const alive=()=>FM.k===k&&$('#fmw')&&$('#fmw').dataset.k===k;
@@ -7058,7 +7077,7 @@ async function fmFillLoad(f,k){const desk=$('#fm-desk');const note=$('#fm-note')
     const pol=!FM.base&&f.mode==='direct'&&!fmpOrig();const pg=pol?fmpPage(r.page):r.page;if(pol)html=fmPolish(html,pg);const brand=pol&&!fmpHasLogo(r.html);
     FM.cur={id:f.id,kind:'html',page:pg,serif:r.serif,pol,brand};
     desk.innerHTML=`<div class="fm-paper fmx${r.serif&&!pol?' serif':''}${FM.base?' base':''}${pol?' fm-pol':''}${brand?' fm-brand':''}" id="fm-paper" contenteditable="true" spellcheck="false" style="${fmPaperStyle(pg)};--mr:${pg.mr}mm">${html}</div>`;fmpBind($('#fm-paper'));
-    note.innerHTML=FM.base?'<div class="fm-n warn">✎ <b>서식 원본을 고치는 중입니다.</b> 칸 이름·안내 글을 바로잡고 <b>서식 원본 저장</b>을 누르면 모든 직원에게 고친 서식이 보입니다. (적는 칸은 비워 두세요)</div>'
+    note.innerHTML=FM.base?'<div class="fm-n warn">✎ <b>서식을 고치는 중입니다.</b> 글은 바로 고치고, 지울 곳은 끌어서 고른 뒤 <b>Delete</b>(또는 🗑), 그림은 눌러 고른 뒤 <b>Delete</b>, 표 줄·칸은 그 칸을 누르고 위 단추로 더하거나 지웁니다. <b>💾 서식 수정 저장</b>을 누르면 모든 직원에게 고친 서식이 보입니다. (적는 칸은 비워 두세요)</div>'
       :d&&d.html?`<div class="fm-n${(d.hv|0)!==(f.hv|0)?' warn':''}">📝 ${esc(fmWhen(d.at))}에 이 기기에서 적던 내용을 불러왔습니다.${(d.hv|0)!==(f.hv|0)?' ⚠️ 그 뒤 관리자가 서식 원본을 고쳤습니다.':''} 새로 쓰려면 <button type="button" class="linkish" data-fm-reset>처음 서식으로</button>.</div>`
       :`<div class="fm-n">파란 칸을 눌러 바로 적습니다.${pol?' □ 칸은 눌러서 ☑, 밑줄 친 날짜는 눌러서 오늘 날짜가 들어갑니다.':''} 적은 내용은 이 기기에 자동 보관됩니다.${r.base?'':' 화면용으로 바꾼 서식이라 원본과 조금 다를 수 있습니다.'}</div>`;
     fmFitPaper($('#fmw'));}
@@ -7082,7 +7101,7 @@ async function fmOvLoad(f,k){fmOvFree();const desk=$('#fm-desk');const blob=awai
     <div class="fm-ovs">${pages.map((p,i)=>`<div class="fm-ovp" data-p="${i}" style="aspect-ratio:${p.w}/${p.h};--pw:${p.w}"><img src="${p.url}" alt="${i+1}쪽" draggable="false">${FM.ov.boxes.map((b,j)=>b.p===i?fmBoxHTML(b,j):'').join('')}</div>`).join('')}</div>`;
   $('#fm-note').innerHTML=d&&d.ov&&d.ov.length?`<div class="fm-n">📝 ${esc(fmWhen(d.at))}에 이 기기에서 적던 내용을 불러왔습니다. 새로 쓰려면 <button type="button" class="linkish" data-fm-reset>처음 서식으로</button>.</div>`:'<div class="fm-n">PDF·스캔 서식입니다. 적을 곳을 누르면 글상자가 생깁니다. 적은 내용은 이 기기에 자동 보관됩니다.</div>';}
 const fmBoxHTML=(b,j)=>`<div class="fm-tb" data-b="${j}" style="left:${b.x}%;top:${b.y}%;--fs:${b.fs}"><span class="fm-tbh" title="끌어서 옮기기" aria-hidden="true">⠿</span><div class="fm-tbt" contenteditable="true" spellcheck="false">${esc(b.t).replace(/\n/g,'<br>')}</div></div>`;
-function fmOvCollect(){if(!FM.ov)return;const out=[];for(const el of $$('.fm-ovp .fm-tb')){const t=el.querySelector('.fm-tbt').innerText.replace(/ /g,' ').replace(/\n$/,'');if(!t.trim())continue;
+function fmOvCollect(){if(!FM.ov||FM.base)return;const out=[];for(const el of $$('.fm-ovp .fm-tb:not(.fmb)')){const t=el.querySelector('.fm-tbt').innerText.replace(/ /g,' ').replace(/\n$/,'');if(!t.trim())continue;
     out.push({p:+el.closest('.fm-ovp').dataset.p,x:parseFloat(el.style.left)||0,y:parseFloat(el.style.top)||0,fs:+getComputedStyle(el).getPropertyValue('--fs')||11,t:t.slice(0,4000)});}FM.ov.boxes=out;}
 function fmOvAdd(pg,e){const r=pg.getBoundingClientRect();const pw=+getComputedStyle(pg).getPropertyValue('--pw')||595;const fsPx=FM.fs/pw*r.width;
   const x=Math.max(0,Math.min(96,(e.clientX-r.left)/r.width*100)),y=Math.max(0,Math.min(98,(e.clientY-r.top-fsPx*.75)/r.height*100));
@@ -7107,10 +7126,11 @@ async function fmPrintFill(){const c=FM.cur;if(!c){toast('서식을 여는 중�
     await fmDoPrint(`<div class="fmx fm-print${c.serif&&!c.pol?' serif':''}${c.pol?' fm-pol':''}${c.brand?' fm-brand-p':''}" style="width:${Math.max(60,p.w-p.ml-p.mr)}mm">${paper.innerHTML}</div>`,p);return;}
   if(c.kind==='ov'){fmOvCollect();await fmDoPrint(fmOvPrintHTML(),{w:210,h:297,land:false},true);}}
 function fmOvPrintHTML(){return FM.ov.pages.map((p,i)=>{const land=p.w>p.h*1.05;const W=land?285:198;const Hmax=land?198:285;const w=Math.min(W,Hmax*p.w/p.h);
-  return `<div class="fm-ovp pr" style="width:${w.toFixed(1)}mm;aspect-ratio:${p.w}/${p.h};--pw:${p.w}${i?';break-before:page':''}"><img src="${p.url}" alt="">${FM.ov.boxes.filter(b=>b.p===i).map(b=>`<div class="fm-tb" style="left:${b.x}%;top:${b.y}%;--fs:${b.fs}"><div class="fm-tbt">${esc(b.t).replace(/\n/g,'<br>')}</div></div>`).join('')}</div>`;}).join('');}
+  return `<div class="fm-ovp pr" style="width:${w.toFixed(1)}mm;aspect-ratio:${p.w}/${p.h};--pw:${p.w}${i?';break-before:page':''}"><img src="${p.url}" alt="">${fmeOvBaseHTML((fmGet(FM.cur&&FM.cur.id)||{}).ovb,i)}${FM.ov.boxes.filter(b=>b.p===i).map(b=>`<div class="fm-tb" style="left:${b.x}%;top:${b.y}%;--fs:${b.fs}"><div class="fm-tbt">${esc(b.t).replace(/\n/g,'<br>')}</div></div>`).join('')}</div>`;}).join('');}
 /* 출력 작성 서식 인쇄 (하나 또는 여러 개 한 번에) */
 async function fmPrintForms(ids){const L=ids.map(fmGet).filter(Boolean);if(!L.length)return;toast(L.length>1?`서식 ${L.length}개 인쇄 준비 중…`:'인쇄 준비 중…');const parts=[];const skip=[];let page=null,full=false;
   for(const f of L){try{const blob=await fmBlob(f);const k=kindOf(f.file.name,blob.type||f.file.type);
+      if((k==='pdf'||k==='image')&&f.ovb.length){parts.push(await fmeOvPrintForm(f,blob,k));full=true;continue;}
       if(k==='pdf'){const P=await fmPdfPages(blob,30,1600);for(const p of P){const land=p.w>p.h*1.05;parts.push(`<div class="fm-pimg"><img src="${p.url}" alt="" style="${land?'width:285mm;max-height:198mm':'width:198mm;max-height:285mm'}"></div>`);}full=true;continue;}
       if(k==='image'){parts.push(`<div class="fm-pimg"><img src="${URL.createObjectURL(blob)}" alt="" style="max-width:198mm;max-height:285mm"></div>`);full=true;continue;}
       if(f.cv==='html'||fmKind(f.file.name,f.file.type)==='html'){const r=await fmGetConv(f);const pol=f.mode==='direct'&&!fmpOrig();const pg=pol?fmpPage(r.page):r.page;if(!page)page=pg;parts.push(`<div class="fmx fm-print${r.serif&&!pol?' serif':''}${pol?' fm-pol':''}${pol&&!fmpHasLogo(r.html)?' fm-brand-p':''}" style="width:${Math.max(60,pg.w-pg.ml-pg.mr)}mm">${(pol?fmPolish(r.html,pg):r.html).replace(/ class="fm-in"/g,'').replace(/ fm-in\b/g,'')}</div>`);continue;}
@@ -7129,7 +7149,7 @@ async function fmToAppr(){const f=fmGet(FM.open);const c=FM.cur;if(!f||!c)return
   go('#appr');toast('작성한 서식을 전자결재 새 기안으로 옮겼습니다. 결재선을 확인하고 올리세요.');}
 async function fmOvImages(f){const out=[];for(let i=0;i<FM.ov.pages.length;i++){const p=FM.ov.pages[i];const img=new Image();img.src=p.url;try{await img.decode();}catch{continue;}
     const W=Math.min(1654,img.naturalWidth),H=Math.round(W*img.naturalHeight/img.naturalWidth);const cv=document.createElement('canvas');cv.width=W;cv.height=H;const cx=cv.getContext('2d');cx.fillStyle='#fff';cx.fillRect(0,0,W,H);cx.drawImage(img,0,0,W,H);
-    cx.fillStyle='#0b1a33';cx.textBaseline='top';for(const b of FM.ov.boxes.filter(b=>b.p===i)){const fs=b.fs/p.w*W;cx.font=`${fs}px "Malgun Gothic","Apple SD Gothic Neo","Noto Sans KR",sans-serif`;b.t.split('\n').forEach((ln,j)=>cx.fillText(ln,b.x/100*W+fs*.12,b.y/100*H+fs*.15+j*fs*1.35));}
+    fmeOvDraw(cx,(fmGet(f.id)||f).ovb,i,W,H,p);cx.fillStyle='#0b1a33';cx.textBaseline='top';for(const b of FM.ov.boxes.filter(b=>b.p===i)){const fs=b.fs/p.w*W;cx.font=`${fs}px "Malgun Gothic","Apple SD Gothic Neo","Noto Sans KR",sans-serif`;b.t.split('\n').forEach((ln,j)=>cx.fillText(ln,b.x/100*W+fs*.12,b.y/100*H+fs*.15+j*fs*1.35));}
     const blob=await new Promise(r=>cv.toBlob(r,'image/jpeg',.9));if(blob)out.push(new File([blob],`${f.name}${FM.ov.pages.length>1?`_${i+1}쪽`:''}.jpg`.replace(/[\\/:*?"<>|]/g,'_'),{type:'image/jpeg'}));}
   return out;}
 
@@ -7400,7 +7420,7 @@ document.addEventListener('keydown',e=>{if(e.key!=='F2'||e.altKey||e.ctrlKey||e.
    · GTR-Dev-Comm/gtr-approval: 종이 양식 그대로 표 위에 바로 입력, 항목 칸 옅은 배경·진한 1px 선, 결재란 직위 칸 회색·도장 칸 높이 확보
    · Daisy7942/eApproval-spring-mvc: 양식 제목 자간 벌림, 결재 칸 너비 고정(도장이 들어가도 칸이 커지지 않게), 인쇄 A4 고정
    (위 두 저장소는 라이선스 표시가 없어 코드는 가져오지 않고 모양만 참고)
-   · 회사에 맞춤: 제목·선·항목 칸을 태성 남색(#1f3a5f) 계열로, 로고가 없는 서식은 위에 ㈜태성산업 표시
+   · 회사에 맞춤: 제목·선·항목 칸을 태성 남색(#1f3a5f) 계열로, 로고가 없는 서식에 붙이던 ㈜태성산업 표시는 47차에 없앰
    · 쓰기 편하게: □ 체크 칸은 눌러서 ☑, 비어 있는 '202 년 월 일'은 눌러서 오늘 날짜
    다듬기는 화면·인쇄에만 적용되고 원본 파일은 그대로입니다. 작성 화면의 「원래 모양」으로 언제든 되돌려 볼 수 있습니다. */
 const FMP_NAVY='#1f3a5f';
@@ -7452,12 +7472,13 @@ function fmPolish(html,page){const d=document.createElement('div');d.innerHTML=h
       if(m[1]){sp.className='fm-date';sp.textContent=m[1];}else{sp.className=m[2]==='☑'?'fm-ck fm-on':'fm-ck';sp.textContent=m[2]==='☑'?'☑':'□';}frag.append(sp);i=m.index+m[0].length;}
     if(i<s.length)frag.append(s.slice(i));n.replaceWith(frag);}
   return d.innerHTML;}
-/* 36차: 로고가 없으면 머리 왼쪽에 ㈜태성산업 글자를 넣으므로(fmpHead) 예전 오른쪽 위 표시는 쓰지 않음 */
+/* 36·47차: 서식에 없는 회사 표시는 붙이지 않음(예전 오른쪽 위·머리 왼쪽 ㈜태성산업 모두 없앰) */
 const fmpHasLogo=()=>true;
 /* ── 36차: 회사 로고는 왼쪽, 개정서식 일자는 오른쪽, 좌우 여백 균일 ──
    · 쪽(쪽 나눔 fm-pb 로 나뉜 구간)마다 앞쪽 3덩어리 안의 로고 그림(가로가 세로의 2.5배 이상·폭 25mm 이상)과
      '[2023.08.24. - 개정서식]'·'[2026-04-13-개정]' 같은 개정 일자를 꺼내 맨 위 한 줄(fm-hd)에 왼쪽·오른쪽으로 둠
-   · 로고가 없는 서식은 첫 쪽 머리 왼쪽에 ㈜태성산업
+   · 47차: 로고가 없는 서식에 자동으로 넣던 '■ ㈜태성산업'은 없앰(서식에 원래 있는 것만 보임). 예전 작성 중 보관본에 남은 것도 열 때 지움
+   · 47차: 머리도 다른 곳처럼 고치거나 지울 수 있음(편집 잠금 없앰)
    · 종이 좌우 여백은 같게(fmpPage), 본문 폭의 85% 이상인 표와 본문보다 넓은 표는 본문 폭에 딱 맞게 칸 너비까지 같은 비율로 늘이거나 줄임(fmpFit)
    · 여러 번 적용해도 같은 결과(작성 중 보관본에 다시 적용) */
 const FMP_REV=/\[\s*\d{4}\s*[.\-\/]\s*\d{1,2}\s*[.\-\/]\s*\d{1,2}\s*\.?\s*[-–~]?\s*(?:개정|제정)(?:\s*서식)?\s*\]/;
@@ -7470,7 +7491,10 @@ function fmpTakeRev(el){/* el 안의 개정 일자 글자를 떼어 내고 그 �
   for(const [n,o] of ns){const e=o+n.nodeValue.length;if(e<=a||o>=b)continue;const v=n.nodeValue;n.nodeValue=v.slice(0,Math.max(0,a-o))+v.slice(Math.min(v.length,b-o));}
   return m[0].replace(/\s+/g,' ').replace(/\[\s+/,'[').replace(/\s+\]/,']');}
 const fmpEmpty=el=>!el.textContent.replace(/[\s\u00a0\u3000]/g,'')&&!el.querySelector('img,table,.fm-ck,.fm-date,br+br');
-function fmpHead(d){if(d.querySelector(':scope > .fm-hd'))return;
+function fmpHead(d){if(d.querySelector(':scope > .fm-hd')){/* 47차: 예전 보관본 정리 */
+    for(const hd of d.querySelectorAll(':scope > .fm-hd')){hd.removeAttribute('contenteditable');for(const b of hd.querySelectorAll('.fm-hd-brand'))b.remove();
+      if(!hd.querySelector('img')&&!hd.textContent.replace(/[\s\u00a0\u3000]/g,''))hd.remove();}
+    return;}
   const kids=[...d.children];const starts=[0];kids.forEach((c,i)=>{if(c.classList.contains('fm-pb'))starts.push(i+1);});
   let first=true;
   for(const s0 of starts){const seg=[];for(let i=s0;i<kids.length&&seg.length<3;i++){if(kids[i].classList.contains('fm-pb'))break;seg.push(kids[i]);}
@@ -7478,12 +7502,10 @@ function fmpHead(d){if(d.querySelector(':scope > .fm-hd'))return;
     for(const el of seg){if(!logo)for(const im of el.querySelectorAll('img'))if(fmpIsLogo(im)){logo=im;break;}
       if(!rev){const host=[...el.querySelectorAll('p,td,th,span')].reverse().find(x=>FMP_REV.test(x.textContent)&&!x.querySelector('table'))||(FMP_REV.test(el.textContent)&&!el.querySelector('table')?el:null);
         if(host){const owner=host.closest('p,td,th')||host;rev=fmpTakeRev(host);if(rev&&owner.tagName==='P'&&fmpEmpty(owner)&&!owner.closest('table'))owner.remove();}}}
-    const brand=first&&!logo&&!/태성|TAESUNG/i.test(d.textContent.slice(0,600));
-    if(!logo&&!rev&&!brand){first=false;continue;}
-    const hd=document.createElement('div');hd.className='fm-hd';hd.setAttribute('contenteditable','false');
+    if(!logo&&!rev){first=false;continue;}
+    const hd=document.createElement('div');hd.className='fm-hd';
     const L=document.createElement('span');L.className='fm-hd-l';const Rr=document.createElement('span');Rr.className='fm-hd-r';
     if(logo){const holder=logo.closest('p');logo.remove();if(holder&&!holder.closest('table')&&fmpEmpty(holder))holder.remove();L.append(logo);}
-    else if(brand){const b=document.createElement('span');b.className='fm-hd-brand';b.textContent='㈜태성산업';L.append(b);}
     if(rev)Rr.textContent=rev;hd.append(L,Rr);
     const nx=kids.slice(s0).find(x=>x.parentNode===d);if(nx)nx.before(hd);else d.append(hd);
     first=false;}}
@@ -9991,6 +10013,180 @@ document.addEventListener('change',e=>{const T=e.target;if(!T)return;
   if(OD.dlg&&OD.dlg.k==='roles'){if(T.dataset.odrHead!=null){OD.dlg.R[+T.dataset.odrHead].head=T.value;return;}}});
 document.addEventListener('input',e=>{const T=e.target;if(T&&T.dataset&&T.dataset.odrN!=null&&OD.dlg&&OD.dlg.k==='roles')OD.dlg.R[+T.dataset.odrN].n=T.value;});
 window.ordApi={roles:ordRoles,roleDefault:ordRoleDefault,roleTo:(id,site)=>ordRoleTo(ordRoles().find(r=>r.id===id),site),roleOf:ordRoleOf,suggest:ordSuggest,st:p=>ordSt(findTask(p)),lists:()=>{const X=odLists();return Object.fromEntries(Object.entries(X).map(([k,v])=>[k,v.map(t=>t.path)]));},send:(paths,tg,memo)=>ordSend(paths.map(findTask),tg,memo),act:(p,k,x)=>ordAct(findTask(p),k,x),ntf:()=>ordNtf()};
+/* ───────── 47차: 모든 회사서식 고치기 (자료 관리자) ─────────
+   · 한글·워드·엑셀 서식(칸에 바로 적기): ✏️ 서식 수정 → 글 고치기 + 도구줄(되돌리기·다시·굵게·고른 것 지우기·문단 지우기,
+     표 줄 위/아래 더하기·줄 지우기·칸 오른쪽 더하기·칸 지우기·표 지우기, 그림은 눌러 고른 뒤 Delete) → 💾 서식 수정 저장(모든 직원)
+   · PDF·사진 서식(글상자로 적기): ✏️ 서식 수정 → ⬜ 가리기(흰 상자, 끌어 옮기기·크기 바꾸기·✕) · ✏️ 글 넣기(고정 글) → forms/{id}.ovb
+     작성 화면·인쇄·미리보기·전자결재 그림·출력 작성 인쇄에 모두 반영
+   · 모든 형식: 📤 파일 바꾸기 — 한글·워드 등에서 고친 파일로 원본을 바꿈(이름·분류·사용 방식 유지, 새 조각 경로 file.g 로 쓴 뒤 바꿔 반쯤 바뀐 파일이 생기지 않음)
+   · 출력 작성 서식도 목록·미리보기 창에서 ✏️ 서식 수정 / 📤 파일 바꾸기
+   · 보안 규칙 변경 없음(forms/** 자료 관리자 쓰기) */
+const FME={hist:[],redo:[],last:0,img:null,tool:'w'};
+const fmeN=x=>{x=+x;return isFinite(x)?Math.round(Math.max(-5,Math.min(105,x))*100)/100:0;};
+function fmeOvbNorm(a){if(!Array.isArray(a))return [];
+  return a.slice(0,400).map(b=>b&&typeof b==='object'?{k:b.k==='w'?'w':'t',p:Math.max(0,Math.min(59,b.p|0)),x:fmeN(b.x),y:fmeN(b.y),w:fmeN(b.w),h:fmeN(b.h),fs:Math.max(6,Math.min(40,+b.fs||11)),t:typeof b.t==='string'?b.t.slice(0,4000):''}:null)
+    .filter(b=>b&&(b.k==='w'?b.w>0.2&&b.h>0.2:!!b.t.trim()));}
+const fmChunkId=(file,i)=>file&&file.g?`${file.g}_${i}`:String(i);
+
+/* ── PDF·사진 서식: 고정 층(흰 상자·글) ── */
+function fmeOvBaseHTML(ovb,i,edit){const L=(ovb||[]).filter(b=>b.p===i);if(!L.length)return '';
+  return L.filter(b=>b.k==='w').map(b=>fmeWbHTML(b,edit)).join('')+L.filter(b=>b.k==='t').map(b=>fmeTbHTML(b,edit)).join('');}
+const fmeWbHTML=(b,edit)=>`<div class="fm-wb${edit?' e':''}" style="left:${b.x}%;top:${b.y}%;width:${b.w}%;height:${b.h}%">${edit?'<span class="fm-wbh" title="끌어서 옮기기" aria-hidden="true">⠿</span><button type="button" class="fm-wbx" data-fme-wbx title="이 흰 상자 지우기" aria-label="흰 상자 지우기">✕</button><span class="fm-wbr" title="끌어서 크기 바꾸기" aria-hidden="true"></span>':''}</div>`;
+const fmeTbHTML=(b,edit)=>`<div class="fm-tb fmb${edit?' e':''}" style="left:${b.x}%;top:${b.y}%;--fs:${b.fs}">${edit?'<span class="fm-tbh" title="끌어서 옮기기" aria-hidden="true">⠿</span>':''}<div class="fm-tbt"${edit?' contenteditable="true" spellcheck="false"':''}>${esc(b.t).replace(/\n/g,'<br>')}</div></div>`;
+function fmeOvDraw(cx,ovb,i,W,H,p){const L=(ovb||[]).filter(b=>b.p===i);if(!L.length)return;
+  cx.fillStyle='#fff';for(const b of L.filter(b=>b.k==='w'))cx.fillRect(b.x/100*W,b.y/100*H,b.w/100*W,b.h/100*H);
+  cx.fillStyle='#0b1a33';cx.textBaseline='top';for(const b of L.filter(b=>b.k==='t')){const fs=b.fs/p.w*W;cx.font=`${fs}px "Malgun Gothic","Apple SD Gothic Neo","Noto Sans KR",sans-serif`;b.t.split('\n').forEach((ln,j)=>cx.fillText(ln,b.x/100*W+fs*.12,b.y/100*H+fs*.15+j*fs*1.35));}}
+async function fmeImgPage(blob,url){const dec=await decodeImg(blob);let w,h;try{w=dec.src.width||dec.src.naturalWidth;h=dec.src.height||dec.src.naturalHeight;}finally{dec.done();}return {url,w:595.3,h:595.3*h/w};}
+/* 출력 작성 인쇄(PDF·사진 + 고정 층) */
+async function fmeOvPrintForm(f,blob,k){const pages=k==='pdf'?(await fmPdfPages(blob,30,1600)).map(p=>({url:p.url,w:p.w,h:p.h})):[await fmeImgPage(blob,URL.createObjectURL(blob))];
+  return pages.map((p,i)=>{const land=p.w>p.h*1.05;const W=land?285:198;const Hmax=land?198:285;const w=Math.min(W,Hmax*p.w/p.h);
+    return `<div class="fm-ovp pr" style="width:${w.toFixed(1)}mm;aspect-ratio:${p.w}/${p.h};--pw:${p.w}${i?';break-before:page':''}"><img src="${p.url}" alt="">${fmeOvBaseHTML(f.ovb,i)}</div>`;}).join('');}
+/* 작성 화면: 직원이 적는 글상자 아래에 고정 층 / 고치기 화면: 고정 층만 고치기 */
+{const _o=fmOvLoad;fmOvLoad=async function(f,k){if(FM.base)return fmeOvLoad(f,k);await _o.apply(this,arguments);if(FM.k!==k)return;
+  const ovb=(fmGet(f.id)||f).ovb;if(!ovb||!ovb.length)return;for(const pg of $$('.fm-ovs .fm-ovp')){const im=pg.querySelector(':scope > img');if(im)im.insertAdjacentHTML('afterend',fmeOvBaseHTML(ovb,+pg.dataset.p));}};}
+async function fmeOvLoad(f,k){fmOvFree();const desk=$('#fm-desk');const blob=await fmBlob(f);const kd=kindOf(f.file.name,blob.type||f.file.type);let pages=[];
+  if(kd==='pdf'){const P=await fmPdfPages(blob,12,1400);pages=P.map(p=>({url:p.url,w:p.w,h:p.h}));if(P.n>12)toast(`앞의 12쪽만 고칠 수 있습니다 (전체 ${P.n}쪽).`);}
+  else pages=[await fmeImgPage(blob,URL.createObjectURL(blob))];
+  if(FM.k!==k){pages.forEach(p=>URL.revokeObjectURL(p.url));return;}
+  FM.ov={pages,boxes:[]};FM.cur={id:f.id,kind:'ov',base:true};FME.tool='w';const ovb=(fmGet(f.id)||f).ovb;
+  desk.innerHTML=`<div class="fm-ovtools fme-ovtools"><span>도구</span><div class="seg sm" role="group" aria-label="고치기 도구"><button type="button" data-fme-tool="w" aria-pressed="${FME.tool==='w'}">⬜ 가리기(흰 상자)</button><button type="button" data-fme-tool="t" aria-pressed="${FME.tool==='t'}">✏️ 글 넣기</button></div>
+    <span>글자 크기</span><div class="seg sm" role="group" aria-label="글자 크기">${[[9,'작게'],[11,'보통'],[14,'크게'],[18,'아주 크게']].map(([n,l])=>`<button type="button" data-fm-fs="${n}" aria-pressed="${FM.fs===n}">${l}</button>`).join('')}</div>
+    <span class="help">지울 곳을 누르면 흰 상자가 생깁니다 · ⠿ 끌어 옮기기 · 오른쪽 아래 모서리 끌어 크기 · ✕ 지우기 · 글 넣기는 누른 곳에 고정 글</span></div>
+    <div class="fm-ovs base">${pages.map((p,i)=>`<div class="fm-ovp" data-p="${i}" style="aspect-ratio:${p.w}/${p.h};--pw:${p.w}"><img src="${p.url}" alt="${i+1}쪽" draggable="false">${fmeOvBaseHTML(ovb,i,true)}</div>`).join('')}</div>`;
+  $('#fm-note').innerHTML='<div class="fm-n warn">✎ <b>PDF·스캔 서식을 고치는 중입니다.</b> 원본 그림은 그대로 두고, 지울 곳은 <b>⬜ 흰 상자</b>로 가리고 바꿀 글은 <b>✏️ 글 넣기</b>로 얹습니다. <b>💾 서식 수정 저장</b>을 누르면 모든 직원의 작성·인쇄 화면에 보입니다.</div>';}
+function fmeOvCollect(){const out=[];const pf=v=>Math.round((parseFloat(v)||0)*100)/100;
+  for(const pg of $$('.fm-ovs.base .fm-ovp')){const p=+pg.dataset.p;
+    for(const el of pg.querySelectorAll('.fm-wb.e'))out.push({k:'w',p,x:pf(el.style.left),y:pf(el.style.top),w:pf(el.style.width),h:pf(el.style.height)});
+    for(const el of pg.querySelectorAll('.fm-tb.fmb.e')){const t=el.querySelector('.fm-tbt').innerText.replace(/ /g,' ').replace(/\n$/,'');if(!t.trim())continue;
+      out.push({k:'t',p,x:pf(el.style.left),y:pf(el.style.top),fs:+getComputedStyle(el).getPropertyValue('--fs')||11,t:t.slice(0,4000)});}}
+  return fmeOvbNorm(out);}
+async function fmeOvSave(f){const ovb=fmeOvCollect();const hv=(f.hv|0)+1;if(await fmUpdate([f.id],{ovb,hv},ovb.length?`서식 수정을 저장했습니다 (가리기 ${ovb.filter(b=>b.k==='w').length} · 글 ${ovb.filter(b=>b.k==='t').length}). 이제 모든 직원에게 보입니다.`:'서식 수정 내용을 모두 지웠습니다.')){Object.assign(f,{ovb,hv});return true;}return false;}
+function fmeOvAdd(pg,e){const r=pg.getBoundingClientRect();const x=Math.max(0,Math.min(97,(e.clientX-r.left)/r.width*100)),y=Math.max(0,Math.min(98,(e.clientY-r.top)/r.height*100));const R=v=>Math.round(v*100)/100;
+  if(FME.tool==='w'){const w=Math.min(18,100-x),h=Math.min(3.2,100-y);pg.insertAdjacentHTML('beforeend',fmeWbHTML({x:R(x),y:R(y),w:R(w),h:R(h)},true));return;}
+  const pw=+getComputedStyle(pg).getPropertyValue('--pw')||595;const fsPx=FM.fs/pw*r.width;
+  pg.insertAdjacentHTML('beforeend',fmeTbHTML({x:R(x),y:R(Math.max(0,y-fsPx*.75/r.height*100)),fs:FM.fs,t:''},true));const t=pg.lastElementChild.querySelector('.fm-tbt');t.focus();}
+/* 흰 상자 옮기기·크기 */
+document.addEventListener('pointerdown',e=>{const h=e.target.closest&&e.target.closest('.fm-wb.e .fm-wbh,.fm-wb.e .fm-wbr');if(!h)return;e.preventDefault();const box=h.parentElement;const pg=box.closest('.fm-ovp');const r=pg.getBoundingClientRect();
+  const rs=h.classList.contains('fm-wbr');const sx=e.clientX,sy=e.clientY,x0=parseFloat(box.style.left)||0,y0=parseFloat(box.style.top)||0,w0=parseFloat(box.style.width)||10,h0=parseFloat(box.style.height)||3;
+  h.setPointerCapture&&h.setPointerCapture(e.pointerId);box.classList.add('drag');
+  const mv=ev=>{const dx=(ev.clientX-sx)/r.width*100,dy=(ev.clientY-sy)/r.height*100;
+    if(rs){box.style.width=Math.max(.8,Math.min(105-x0,w0+dx)).toFixed(2)+'%';box.style.height=Math.max(.6,Math.min(105-y0,h0+dy)).toFixed(2)+'%';}
+    else{box.style.left=Math.max(-3,Math.min(100,x0+dx)).toFixed(2)+'%';box.style.top=Math.max(-3,Math.min(100,y0+dy)).toFixed(2)+'%';}};
+  const up=()=>{h.removeEventListener('pointermove',mv);h.removeEventListener('pointerup',up);h.removeEventListener('pointercancel',up);box.classList.remove('drag');};
+  h.addEventListener('pointermove',mv);h.addEventListener('pointerup',up);h.addEventListener('pointercancel',up);});
+
+/* ── 한글·워드 서식: 고치기 도구줄 ── */
+const fmePaper=()=>{const p=$('#fm-paper.base');return p&&FM.base?p:null;};
+function fmeBarHTML(){const B=(a,t,l)=>`<button type="button" data-fme="${a}" title="${t}">${l}</button>`;
+  return `<div class="fme-bar" role="toolbar" aria-label="서식 고치기 도구">${B('undo','되돌리기 (Ctrl+Z)','↶ 되돌리기')}${B('redo','다시 (Ctrl+Y)','↷ 다시')}<i></i>${B('bold','고른 글 굵게 (Ctrl+B)','<b>가</b> 굵게')}${B('del','끌어서 고른 글·눌러 고른 그림 지우기 (Delete)','🗑 고른 것 지우기')}${B('para','글자 커서가 있는 줄(문단)을 통째로 지우기','🧹 이 줄 지우기')}
+    <i></i><span class="fme-l">표</span>${B('row-above','누른 칸 위에 줄 더하기','＋ 위에 줄')}${B('row-below','누른 칸 아래에 줄 더하기','＋ 아래에 줄')}${B('row-del','누른 칸이 있는 줄 지우기','－ 줄 지우기')}${B('col-right','누른 칸 오른쪽에 칸 더하기(그 칸 너비를 나눔)','＋ 오른쪽 칸')}${B('col-del','누른 칸이 있는 세로 칸 지우기','－ 칸 지우기')}${B('tbl-del','누른 칸이 있는 표 통째로 지우기','표 지우기')}</div>`;}
+{const _fl=fmFillLoad;fmFillLoad=async function(f,k){const r=await _fl.apply(this,arguments);try{if(FM.base&&FM.k===k&&FM.cur&&FM.cur.kind==='html'&&$('#fm-paper')){FME.hist=[];FME.redo=[];FME.last=0;FME.img=null;const n=$('#fm-note');if(n&&!n.querySelector('.fme-bar'))n.insertAdjacentHTML('afterbegin',fmeBarHTML());}}catch(e){console.warn(e);}return r;};}
+function fmeSnap(force){const p=fmePaper();if(!p)return;const now=Date.now();if(!force&&now-FME.last<1200)return;FME.last=now;const im=FME.img&&p.contains(FME.img)?FME.img:null;if(im)im.classList.remove('fme-sel');FME.hist.push(p.innerHTML);if(im)im.classList.add('fme-sel');if(FME.hist.length>60)FME.hist.shift();FME.redo=[];}
+function fmeUndo(redo){const p=fmePaper();if(!p)return;const A=redo?FME.redo:FME.hist,Bk=redo?FME.hist:FME.redo;if(!A.length){toast(redo?'다시 할 것이 없습니다.':'되돌릴 것이 없습니다.');return;}fmeImgOff();Bk.push(p.innerHTML);p.innerHTML=A.pop();FME.last=0;}
+function fmeImgOff(){if(FME.img){FME.img.classList.remove('fme-sel');if(!FME.img.getAttribute('class'))FME.img.removeAttribute('class');}FME.img=null;}
+function fmeCell(){const p=fmePaper();if(!p)return null;const s=getSelection();let n=s&&s.rangeCount?s.getRangeAt(0).startContainer:null;if(!n&&FME.lastCell&&p.contains(FME.lastCell))return FME.lastCell;
+  if(n&&n.nodeType===3)n=n.parentElement;const td=n&&n.closest?n.closest('td,th'):null;return td&&p.contains(td)?td:(FME.lastCell&&p.contains(FME.lastCell)?FME.lastCell:null);}
+function fmeGrid(tb){const rows=[...tb.rows];const G=[];const pos=new Map();
+  rows.forEach((tr,r)=>{G[r]=G[r]||[];let c=0;for(const td of tr.cells){while(G[r][c])c++;const rs=Math.max(1,td.rowSpan|0),cs=Math.max(1,td.colSpan|0);pos.set(td,[r,c]);
+      for(let i=0;i<rs&&r+i<rows.length;i++){G[r+i]=G[r+i]||[];for(let j=0;j<cs;j++)G[r+i][c+j]=td;}c+=cs;}});
+  const W=Math.max(0,...G.map(x=>x?x.length:0));return {rows,G,pos,W};}
+const fmeMM=(el,k='width')=>{const m=(el.getAttribute('style')||'').match(new RegExp('(?:^|;)\\s*'+k+':\\s*([\\d.]+)mm'));return m?+m[1]:0;};
+const fmeSetMM=(el,v,k='width')=>{const st=el.getAttribute('style')||'';const re=new RegExp('((?:^|;)\\s*'+k+':\\s*)([\\d.]+)mm');el.setAttribute('style',re.test(st)?st.replace(re,(m,a)=>a+(Math.round(v*100)/100)+'mm'):(st?st.replace(/;?\s*$/,';'):'')+`${k}:${Math.round(v*100)/100}mm`);};
+function fmeNewCell(ref,cs,rs){const td=document.createElement(ref&&ref.tagName==='TH'?'th':'td');const st=(ref&&ref.getAttribute('style')||'').split(';').filter(x=>x.trim()&&!/^\s*(height|min-height)\s*:/i.test(x)).join(';');if(st)td.setAttribute('style',st);
+  if(cs>1)td.colSpan=cs;if(rs>1)td.rowSpan=rs;td.className='fm-in';td.innerHTML='<br>';return td;}
+function fmeRowAdd(below){const td=fmeCell();if(!td){toast('표 안의 칸을 먼저 누르세요.','err');return;}const tb=td.closest('table');const {rows,G,pos,W}=fmeGrid(tb);const [r0]=pos.get(td);
+  const R=below?r0+Math.max(1,td.rowSpan|0)-1:r0;const ref=rows[R];const tr=document.createElement('tr');const ts=ref.getAttribute('style');if(ts)tr.setAttribute('style',ts);const grown=new Set();
+  for(let c=0;c<W;){const X=G[R]&&G[R][c];if(!X){c++;continue;}const [xr,xc]=pos.get(X);const xs=Math.max(1,X.colSpan|0),xrs=Math.max(1,X.rowSpan|0);
+    const cross=below?xr+xrs-1>R:xr<R;if(cross){if(!grown.has(X)){X.rowSpan=xrs+1;grown.add(X);}c=xc+xs;continue;}tr.append(fmeNewCell(X,xs,1));c=xc+xs;}
+  if(below)ref.after(tr);else ref.before(tr);const c0=tr.querySelector('td,th');if(c0)fmeCaret(c0);}
+function fmeRowDel(){const td=fmeCell();if(!td){toast('지울 줄의 칸을 먼저 누르세요.','err');return;}const tb=td.closest('table');const {rows,G,pos,W}=fmeGrid(tb);
+  const s=getSelection();const r=rows.indexOf(td.parentElement);if(rows.length<=1){tb.remove();FME.lastCell=null;return;}const done=new Set();
+  for(let c=0;c<W;c++){const X=G[r]&&G[r][c];if(!X||done.has(X))continue;done.add(X);const [xr,xc]=pos.get(X);const xrs=Math.max(1,X.rowSpan|0);if(xrs<=1)continue;
+    if(xr===r){const nx=rows[r+1];if(!nx)continue;X.rowSpan=xrs-1;const after=[...nx.cells].find(y=>pos.get(y)[1]>xc);if(after)after.before(X);else nx.append(X);}else X.rowSpan=xrs-1;}
+  rows[r].remove();FME.lastCell=null;if(s)s.removeAllRanges();}
+function fmeColAdd(){const td=fmeCell();if(!td){toast('표 안의 칸을 먼저 누르세요.','err');return;}const tb=td.closest('table');const {rows,G,pos,W}=fmeGrid(tb);const [,c0]=pos.get(td);const c=c0+Math.max(1,td.colSpan|0)-1;
+  const cg=tb.querySelector(':scope > colgroup');const cols=cg?[...cg.children]:[];const colOk=cols.length===W&&cols.every(x=>!x.span||x.span===1);const half=colOk?fmeMM(cols[c])/2:0;
+  if(colOk&&half){fmeSetMM(cols[c],half);const nc=document.createElement('col');nc.setAttribute('style',`width:${Math.round(half*100)/100}mm`);cols[c].after(nc);}
+  const done=new Set();for(let r=0;r<rows.length;r++){const X=G[r]&&G[r][c];if(!X||done.has(X))continue;done.add(X);const [,xc]=pos.get(X);const xs=Math.max(1,X.colSpan|0);
+    if(xc+xs-1>c){X.colSpan=xs+1;continue;}const w=fmeMM(X);const n=fmeNewCell(X,1,Math.max(1,X.rowSpan|0));if(w){const h=w/2;fmeSetMM(X,h);fmeSetMM(n,h);}X.after(n);}}
+function fmeColDel(){const td=fmeCell();if(!td){toast('지울 칸을 먼저 누르세요.','err');return;}const tb=td.closest('table');const {rows,G,pos,W}=fmeGrid(tb);const [,c]=pos.get(td);
+  if(W<=1){tb.remove();FME.lastCell=null;return;}const cg=tb.querySelector(':scope > colgroup');const cols=cg?[...cg.children]:[];const colOk=cols.length===W&&cols.every(x=>!x.span||x.span===1);const cw=colOk?fmeMM(cols[c]):0;
+  const done=new Set();for(let r=0;r<rows.length;r++){const X=G[r]&&G[r][c];if(!X||done.has(X))continue;done.add(X);const xs=Math.max(1,X.colSpan|0);if(xs>1){X.colSpan=xs-1;const w=fmeMM(X);if(w&&cw&&w>cw)fmeSetMM(X,w-cw);}else X.remove();}
+  if(colOk)cols[c].remove();const tw=fmeMM(tb);if(tw&&cw&&tw>cw)fmeSetMM(tb,tw-cw);
+  rows.forEach((tr,r)=>{if(tr.cells.length)return;const seen=new Set();for(const X of G[r]||[])if(X&&X.isConnected&&!seen.has(X)){seen.add(X);X.rowSpan=Math.max(1,(X.rowSpan|0)-1);}tr.remove();});if(!tb.rows.length)tb.remove();FME.lastCell=null;const s=getSelection();if(s)s.removeAllRanges();}
+function fmeCaret(el){try{const r=document.createRange();r.selectNodeContents(el);r.collapse(true);const s=getSelection();s.removeAllRanges();s.addRange(r);FME.lastCell=el.closest('td,th');}catch{}}
+function fmeDelSel(){const p=fmePaper();if(!p)return false;if(FME.img&&p.contains(FME.img)){const im=FME.img;FME.img=null;const hold=im.parentElement;im.remove();if(hold&&hold!==p&&hold.tagName==='P'&&!hold.textContent.trim()&&!hold.querySelector('img,table'))hold.remove();return true;}
+  const s=getSelection();if(!s||!s.rangeCount||s.isCollapsed||!p.contains(s.getRangeAt(0).commonAncestorContainer)){toast('지울 글을 끌어서 고르거나 그림을 눌러 고르세요.','err');return false;}
+  document.execCommand('delete');return true;}
+function fmePara(){const p=fmePaper();const s=getSelection();let n=s&&s.rangeCount?s.getRangeAt(0).startContainer:null;if(n&&n.nodeType===3)n=n.parentElement;
+  if(!p||!n||!p.contains(n)||n===p){toast('지울 줄(문단)에 글자 커서를 두세요.','err');return false;}
+  let b=n.closest('p,h1,h2,h3,h4,h5,h6,li,.fm-hd');if(!b||!p.contains(b)){b=n;while(b.parentElement&&b.parentElement!==p)b=b.parentElement;}
+  if(b.tagName==='TABLE'||b.querySelector('table')){toast('표는 「표 지우기」로 지웁니다.','err');return false;}b.remove();s.removeAllRanges();return true;}
+document.addEventListener('mousedown',e=>{if(e.target.closest&&e.target.closest('.fme-bar button'))e.preventDefault();},true);
+document.addEventListener('click',e=>{const T=e.target;if(!T||!T.closest)return;
+  /* 그림 고르기 */
+  const p=fmePaper();if(p&&p.contains(T)){if(T.tagName==='IMG'){fmeImgOff();FME.img=T;T.classList.add('fme-sel');try{const r=document.createRange();r.selectNode(T);const s=getSelection();s.removeAllRanges();s.addRange(r);}catch{}}else fmeImgOff();const td=T.closest('td,th');if(td&&p.contains(td))FME.lastCell=td;}
+  const b=T.closest('[data-fme]');if(b&&fmePaper()){const a=b.dataset.fme;
+    if(a==='undo'){fmeUndo(false);return;}if(a==='redo'){fmeUndo(true);return;}
+    fmeSnap(true);let ok=true;
+    if(a==='bold')document.execCommand('bold');else if(a==='del')ok=fmeDelSel();else if(a==='para')ok=fmePara();
+    else if(a==='row-above')fmeRowAdd(false);else if(a==='row-below')fmeRowAdd(true);else if(a==='row-del')fmeRowDel();else if(a==='col-right')fmeColAdd();else if(a==='col-del')fmeColDel();
+    else if(a==='tbl-del'){const td=fmeCell();if(td){td.closest('table').remove();FME.lastCell=null;}else{ok=false;toast('지울 표의 칸을 먼저 누르세요.','err');}}
+    if(ok===false)FME.hist.pop();return;}
+  const ed=T.closest('[data-fme-edit]');if(ed){fmeEdit(ed.dataset.fmeEdit);return;}
+  const rp=T.closest('[data-fme-rep]');if(rp){fmeReplacePick(rp.dataset.fmeRep);return;}
+  const tl=T.closest('[data-fme-tool]');if(tl){FME.tool=tl.dataset.fmeTool==='t'?'t':'w';$$('[data-fme-tool]').forEach(x=>x.setAttribute('aria-pressed',x===tl));return;}});
+document.addEventListener('keydown',e=>{const p=fmePaper();if(!p||!p.contains(e.target))return;const k=e.key.toLowerCase();
+  if((e.ctrlKey||e.metaKey)&&!e.altKey&&(k==='z'||k==='y')){e.preventDefault();fmeUndo(k==='y'||(k==='z'&&e.shiftKey));return;}
+  if((e.key==='Delete'||e.key==='Backspace')&&FME.img&&p.contains(FME.img)){e.preventDefault();fmeSnap(true);fmeDelSel();return;}
+  if(e.key==='Delete'||e.key==='Backspace'||e.key==='Enter'){const s=getSelection();fmeSnap(!!(s&&!s.isCollapsed));}else if((e.ctrlKey||e.metaKey)&&k==='b')fmeSnap(true);});
+document.addEventListener('beforeinput',e=>{const p=fmePaper();if(p&&p.contains(e.target))fmeSnap(false);},true);
+/* PDF·사진 고치기: 페이지 누르기 · 흰 상자 지우기 · 저장·되돌리기 (기존 처리보다 먼저) */
+document.addEventListener('click',async e=>{const T=e.target;if(!T||!T.closest)return;
+  if(FM.base&&FM.cur&&FM.cur.kind==='ov'){
+    const x=T.closest('[data-fme-wbx]');if(x){e.stopPropagation();x.parentElement.remove();return;}
+    const pg=T.closest('.fm-ovs.base .fm-ovp');if(pg){e.stopPropagation();if(!T.closest('.fm-tb,.fm-wb'))fmeOvAdd(pg,e);return;}
+    if(T.closest('[data-fm-basesave]')){e.stopPropagation();const f=fmGet(FM.open);if(f&&await fmeOvSave(f)){FM.base=false;FM.k='';render();}return;}
+    if(T.closest('[data-fm-basereset]')){e.stopPropagation();const f=fmGet(FM.open);if(!f)return;if(!await confirmDlg('원래 파일 모양으로','흰 상자·고정 글을 모두 지우고 처음 올린 파일 모양으로 되돌립니다.','되돌리기'))return;
+      if(await fmUpdate([f.id],{ovb:[],hv:(f.hv|0)+1},'원래 파일 모양으로 되돌렸습니다.')){Object.assign(f,{ovb:[],hv:(f.hv|0)+1});FM.base=false;FM.k='';render();}return;}}
+  if(T.closest('[data-fm-basesave]')&&fmePaper())fmeImgOff();},true);
+
+/* ── 들어가기·나오기 ── */
+function fmeEdit(id){const f=fmGet(id);if(!f)return;if(!canDoc()){toast(DOCMGR_MSG,'err');return;}
+  if(!f.cv){toast('이 파일 형식은 화면에서 고칠 수 없습니다. 「📤 파일 바꾸기」로 고친 파일을 올려 주세요.','err');return;}
+  const d=$('#dlg-fmrev');if(d&&d.open)d.close();FM.back=S.view==='formp'?'formp':'';fmFlushDraft();FM.open=id;FM.base=true;FM.k='';if(S.view==='formd')render();else go('#formd');}
+{const _c=fmClose;fmClose=function(){const b=FM.back;FM.back='';const r=_c.apply(this,arguments);if(b==='formp')go('#formp');return r;};}
+{const _r=fmFillRender;fmFillRender=function(v){if(!FM.base&&FM.back==='formp'&&FM.open){FM.open=null;FM.back='';FM.cur=null;go('#formp');return;}return _r.apply(this,arguments);};}
+
+/* ── 📤 파일 바꾸기 ── */
+function fmeReplacePick(id){const f=fmGet(id);if(!f)return;if(!canDoc()){toast(DOCMGR_MSG,'err');return;}let inp=$('#fme-file');
+  if(!inp){document.body.insertAdjacentHTML('beforeend','<input type="file" id="fme-file" hidden>');inp=$('#fme-file');
+    inp.addEventListener('change',()=>{const file=inp.files&&inp.files[0];const tid=inp.dataset.id;inp.value='';if(file&&tid)fmeReplace(tid,file);});}
+  inp.dataset.id=id;inp.click();}
+async function fmeReplace(id,file){const f=fmGet(id);if(!f)return false;if(!canDoc()){toast(DOCMGR_MSG,'err');return false;}
+  if(!file.size){toast('빈 파일입니다.','err');return false;}if(file.size>FM_MAX){toast('20MB를 넘는 파일은 올릴 수 없습니다.','err');return false;}
+  const edited=f.hn||f.ovb.length;
+  if(!await confirmDlg('서식 파일 바꾸기',`「${f.name}」의 파일을 「${file.name}」(으)로 바꿉니다. 서식 이름·분류·사용 방식은 그대로입니다.${edited?' 화면에서 고친 내용(✏️ 서식 수정)은 지워집니다.':''} 직원들이 이 기기에서 적던 내용은 남지만 새 서식과 맞지 않을 수 있습니다.`,'바꾸기'))return false;
+  setSync('saving');toast('파일을 바꾸는 중…');
+  try{let cv=fmKind(file.name,file.type),note='',page=null,serif=false;
+    if(cv==='html'){try{const r=await fmConvert(file,file.name);page=r.page;serif=r.serif;}catch(e){cv='';note=(e&&e.userMsg)||'화면 작성으로 바꾸지 못함';}}
+    const g='g'+Date.now().toString(36);const u8=new Uint8Array(await file.arrayBuffer());const n=Math.max(1,Math.ceil(u8.length/FILE_CHUNK));const B=firebase.firestore.Blob;
+    for(let i=0;i<n;i++)await fbWrite(S.fs.doc(`forms/${f.id}/f/${g}_${i}`).set({b:B.fromUint8Array(u8.slice(i*FILE_CHUNK,(i+1)*FILE_CHUNK)),i}));
+    const old={file:{...f.file},hn:f.hn};const hv=(f.hv|0)+1;const moved=f.mode==='direct'&&!cv;const mode=moved?'print':f.mode;
+    const fileM={name:file.name.slice(0,200),type:file.type||'',size:file.size,n,g};
+    await fbWrite(S.fs.doc('forms/'+f.id).update({file:fileM,cv,note,page:page||fmA4(),serif,hn:0,hv,ovb:[],mode,upd:nowISO()}));
+    Object.assign(f,{file:fileM,cv,note,page:page||fmA4(),serif,hn:0,hv,ovb:[],mode});
+    for(let i=0;i<old.file.n;i++)try{await S.fs.doc(`forms/${f.id}/f/${fmChunkId(old.file,i)}`).delete();}catch{}
+    for(let i=0;i<old.hn;i++)try{await S.fs.doc(`forms/${f.id}/h/${i}`).delete();}catch{}
+    dlAdd({act:'ver',kind:'form',id:f.id,title:f.name,v:hv});
+    toast(`「${f.name}」 파일을 바꿨습니다.${moved?' 화면 작성이 안 되는 형식이라 출력 작성으로 옮겼습니다.':''}`);
+    if(FM.open===f.id){if(!cv){FM.open=null;FM.base=false;}FM.k='';}render();
+    const d=$('#dlg-fmrev');if(d&&d.open&&FM.rev&&FM.rev.ids.includes(f.id))try{fmRevShow();}catch{}
+    return true;}
+  catch(e){writeError(e&&e.userMsg?e:fbErr(e));return false;}finally{setSync('ok');}}
+window.fmeApi={edit:fmeEdit,replace:fmeReplace,grid:fmeGrid,ovbNorm:fmeOvbNorm,state:()=>({hist:FME.hist.length,redo:FME.redo.length,tool:FME.tool,img:!!FME.img})};
+/* 고치기 화면에서는 '적는 중…'(직원 보관) 표시 안 함 */
+{const _q=fmQueueSave;fmQueueSave=function(){if(FM.base)return;return _q.apply(this,arguments);};}
 
 /* ───────── 시작 ───────── */
 function boot(){
