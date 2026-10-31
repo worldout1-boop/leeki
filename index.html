@@ -1614,6 +1614,42 @@ input.ir{font:inherit;font-size:14.5px;font-weight:600;padding:4px 8px;border:2p
 #print-sheet .eq-lab-t{display:flex;flex-direction:column;gap:.6mm;min-width:0;font:8pt/1.3 "Malgun Gothic","Apple SD Gothic Neo",sans-serif;color:#111}
 #print-sheet .eq-lab-t b{font-size:10.5pt;line-height:1.25}#print-sheet .eq-lab-t small{font-size:6.5pt;color:#555}#print-sheet .eq-lab-t i{font-style:normal;font-size:6.5pt;color:#888}
 @media (max-width:640px){#dlg-eq>form{display:flex;flex-direction:column;height:100%}#dlg-eq .modal-b{flex:1;overflow:auto}#dlg-eq .modal-f .btn{flex:1 1 auto}}
+
+/* 40차: 작업시간 칸 · 🦺 안전관리 일지 */
+.il-tm{display:flex;align-items:center;gap:4px}.il-tm input{width:116px}.il-tm b{font-weight:400;color:var(--ink-3)}
+.sf-sec{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--surface)}
+.sf-pick{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.sf-card{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);cursor:pointer;min-height:104px;font:inherit}
+.sf-card:hover,.sf-card:focus-visible{border-color:var(--accent);background:var(--accent-soft)}
+.sf-card .sf-ico{font-size:20px;line-height:1.2}.sf-card b{font-size:14.5px}.sf-card small{color:var(--ink-2);font-size:12px}
+.sf-card i{font-style:normal;color:var(--ink-3);font-size:11.5px}.sf-card em{font-style:normal;font-size:11.5px;color:var(--accent)}.sf-card em.sf-none{color:var(--ink-3)}
+.sf-law,.sf-seon{margin:2px 0;font-size:12.5px;color:var(--ink-2)}.sf-seon{color:var(--accent);font-weight:600}
+.sf-tools{display:flex;gap:10px;align-items:center;margin:8px 0;flex-wrap:wrap}.sf-cnt{font-size:12.5px;color:var(--ink-2)}
+.sf-tbl{width:100%;border-collapse:collapse}
+.sf-tbl tr.sf-gh th{text-align:left;background:var(--surface-2);color:var(--ink);font-size:12.5px;padding:6px 8px;border-radius:6px}
+.sf-tbl td{border-bottom:1px solid var(--line);padding:7px 8px;vertical-align:top}
+.sf-it b{display:block;font-size:13.5px}.sf-it small{color:var(--ink-3);font-size:12px}
+.sf-rc{width:50%}
+.sf-seg{display:flex;gap:4px;flex-wrap:wrap}
+.sf-seg button{height:30px;padding:0 10px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink-2);font:inherit;font-size:12.5px;cursor:pointer}
+.sf-seg button[aria-pressed=true][data-sf-r="양호"]{background:#e7f6ee;border-color:#1d7a46;color:#1d7a46;font-weight:700}
+.sf-seg button[aria-pressed=true][data-sf-r="주의"]{background:#fff4e0;border-color:#b26a00;color:#8a5200;font-weight:700}
+.sf-seg button[aria-pressed=true][data-sf-r="불량"]{background:#fdeceb;border-color:#c0261d;color:#c0261d;font-weight:700}
+.sf-seg button[aria-pressed=true][data-sf-r="해당 없음"]{background:#eef0f3;border-color:#8b96a5;color:#46597a;font-weight:700}
+.sf-a{margin-top:5px;width:100%;height:30px;font-size:12.5px}
+.sf-h4{margin:14px 0 6px;font-size:14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.sf-h4 small{font-weight:400;color:var(--ink-3);font-size:12px}.sf-h4 .btn{margin-left:auto}
+.sf-ms{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px 12px}
+.sf-m{display:flex;flex-direction:column;gap:2px;font-size:12.5px}.sf-m>span:first-child{font-weight:600;color:var(--ink-2)}
+.sf-m .sf-mi{display:flex;align-items:center;gap:5px}.sf-m input{height:32px;width:100%}.sf-m i{font-style:normal;color:var(--ink-3);white-space:nowrap}.sf-m small{color:var(--ink-3);font-size:11.5px}
+.sf-m input.sf-out{border-color:#b26a00;background:#fff8ec}
+.sf-wt{overflow-x:auto}.sf-wt table{border-collapse:collapse;min-width:760px;width:100%}.sf-wt th{font-size:12px;background:var(--surface-2);padding:5px;text-align:left}.sf-wt td{padding:3px}
+.sf-wt input,.sf-wt select{height:30px;width:100%;font-size:12.5px}
+@media (max-width:640px){.sf-tbl td{display:block;width:auto}.sf-tbl td.sf-it{border-bottom:0;padding-bottom:2px}.sf-rc{width:auto}.sf-pick{grid-template-columns:1fr 1fr}.sf-card{min-height:0}.il-tm input{width:96px}}
+:is(#print-sheet,body) .ap-il p.ap-il-law{margin:1.4mm 0 0;font-size:8.4pt;color:#46597a;line-height:1.4}
+:is(#print-sheet,body) .ap-il td.ap-il-grp{text-align:center;font-weight:700;background:#f6f8fb;color:#1f3a5f}
+:is(#print-sheet,body) .ap-il td.ap-il-crit{color:#3d4a5c;font-size:9pt}
+:is(#print-sheet,body) .ap-il .ap-il-na{color:#7b8696}
+:is(#print-sheet,body) .ap-il table.ap-il-sfw th,:is(#print-sheet,body) .ap-il table.ap-il-sfw td{font-size:8.6pt;padding:1mm 1.3mm}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -2510,6 +2546,7 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>자료실</b><span>위쪽 <em>각종서류 올리기</em> 화면 맨 위의 <em>🗂 자료실</em>을 누르면 정리된 회사 서류(사업장별·종류별, 유효기간)를 봅니다. 자료실에서 다시 <em>📤 각종서류 올리기</em>로 돌아갈 수 있습니다.</span></li>
       <li><b>업무 수정 권한</b><span>업무(일정)의 업무명·일정·담당·내용 수정과 삭제는 <em>등록한 사람</em>과 관리자만 할 수 있습니다. 담당자는 진행 상태·진척률·진행 기록·사진만 남기고, 그 밖의 직원은 보기만 합니다.</span></li>
       <li><b>연차·휴일근무 달력</b><span>전자결재 기안 오른쪽 <em>📅 달력 표기</em>에서 연차·반차·휴일근무·연차 사용 계획을 고르고 날짜를 적으면, 최종 승인된 뒤 달력에 <b>굵은 글자</b>(🌴 연차, 🛠 휴일근무)로 표시됩니다. 연차 사용 촉진에 따라 정한 예정일은 달력 위 <em>🗓 연차 사용 계획(촉진)</em>에서 적으면 <i>연차(예정)</i>으로 보입니다. 사유는 달력에 나오지 않습니다.</span></li>
+      <li><b>안전관리 일지 (11종)</b><span>시설 일보 창 <em>서류</em>에서 <em>🦺 안전관리 일지</em>를 누르면 산업안전·보건 · 전기 · 소방 · 유해화학물질 · 위험물옥내저장소 · 승강기 · 환경 · 폐기물(일반/지정) · 건축물관리자 · 기계설비 · 정보통신 일지 중 고를 수 있습니다. 항목마다 <em>양호·주의·불량·해당 없음</em>을 누르고(✓ 빈 칸 모두 양호), 측정값(역률·압력·온도 등)을 적으면 기준을 벗어난 값은 「주의」로 적힙니다. 사업장에 없는 공정 항목은 빠지고, 선임자는 조직도의 법정 선임 현황에서 가져옵니다. 불량 항목은 '할 예정' 후속 업무로 같이 등록할 수 있습니다. 위에 <em>작업일자·작업시간</em>을 적으면 서류의 시간 칸과 사진 아래 시각에 그대로 씁니다.</span></li>
       <li><b>설비 QR</b><span>시설 일보 창의 <em>🏷 설비 QR</em>에서 설비(소화전 펌프·콤프레샤·승강기 등)를 등록하고 <em>🖨 QR 라벨</em>을 인쇄해 붙여 두면, 휴대폰 기본 카메라로 찍기만 해도 업무일지가 열려 그 설비의 점검·작업 기록과 <em>📋 이 설비 일보 쓰기</em>가 나옵니다. 앱 안의 📷 QR 스캔이나 사진으로 QR 읽기도 됩니다. 설비를 고른 일보는 '대상 설비'가 서류에 들어가고 그 설비 기록에 쌓입니다.</span></li>
       <li><b>찾기 요령 · 사진 위치</b><span>전체 검색(🔍, Ctrl+K)은 초성으로도 찾습니다(ㅅㅎㄱ → 소화기). 한/영 전환을 깜빡해 영문으로 찍히면 한글 낱말로 찾기를 제안합니다. 관리자가 설정 › <em>사업장 위치</em>에 좌표를 넣어 두면, 시설 일보에 올린 사진의 촬영 위치로 사업장이 자동으로 정해집니다(위치값은 저장하지 않음).</span></li>
       <li><b>시설 일보 (자동 완성)</b><span>홈의 <em>📋 시설 일보</em>(또는 사진첩, 시설·공무 업무 상세의 📋 단추)에서 현장 사진을 찍어 올리고 메모를 한 줄에 한 가지씩 적은 뒤 <em>✨ 자동 완성</em>을 누르면, 회사 로고·결재란이 있는 <em>작업 일보 · 점검 일지 · 사진 대지</em>가 만들어집니다. 메모의 '위치 — 내용', 09:00~11:30, 자재:, 작업자:, ※ 특이사항, 다음: 후속 조치, 이상 없음·주의·불량을 알아서 칸에 나눠 넣습니다. 서류의 글자는 눌러서 바로 고치고, <em>💾 업무일지에 저장</em>(완료 업무 + 사진), <em>🖨 인쇄·PDF</em>, <em>📝 전자결재로 올리기</em>를 고릅니다. 후속 조치는 '할 예정' 업무로 같이 등록할 수 있고, 작성 중인 일보는 이 기기에 임시 저장됩니다. 휴대폰 홈 화면에는 주소 끝에 <em>#ilbo</em>를 붙인 바로가기를 두면 바로 열립니다.</span></li>
@@ -7590,9 +7627,9 @@ Object.assign(window.gwApi,{
    · 후속 조치는 '할 예정' 업무로 같이 등록(선택). 업무 상세 창의 📋 단추로 다시 열어 보고 고침. 이번 달 일보 모아 인쇄. */
 const IL_LOGO='data:image/png;base64,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';
 const IL_MAXPH=12;
-const IL_K={work:{t:'시설 작업 일보',s:'작업 일보',ico:'🛠',v:'작업'},chk:{t:'시설 점검 일지',s:'점검 일지',ico:'🔍',v:'점검'},photo:{t:'작업 사진 대지',s:'사진 대지',ico:'🖼',v:'작업'}};
-const IL_RES={chk:['양호','주의','불량',''],work:['완료','진행 중','후속 필요','']};
-const ilResC=r=>({'양호':'ap-il-ok','완료':'ap-il-ok','주의':'ap-il-warn','진행 중':'ap-il-warn','불량':'ap-il-bad','후속 필요':'ap-il-bad'})[r]||'';
+const IL_K={work:{t:'시설 작업 일보',s:'작업 일보',ico:'🛠',v:'작업'},chk:{t:'시설 점검 일지',s:'점검 일지',ico:'🔍',v:'점검'},photo:{t:'작업 사진 대지',s:'사진 대지',ico:'🖼',v:'작업'},safe:{t:'안전관리 일지',s:'안전관리 일지',ico:'🦺',v:'점검'}};
+const IL_RES={chk:['양호','주의','불량',''],safe:['양호','주의','불량','해당 없음',''],work:['완료','진행 중','후속 필요','']};
+const ilResC=r=>({'양호':'ap-il-ok','완료':'ap-il-ok','주의':'ap-il-warn','진행 중':'ap-il-warn','불량':'ap-il-bad','후속 필요':'ap-il-bad','해당 없음':'ap-il-na'})[r]||'';
 const IL={d:null,step:'in',busy:false,dirty:false,src:{}};
 const ilKey=()=>'wl.ilbo.'+((S.me&&S.me.id)||'x');
 
@@ -7684,12 +7721,13 @@ function ilParse(d){const memo=String(d.memo||'');
     const hasSep=/\s+[—–-]{1,2}\s+|→|=>|[:：]\s/.test(ln);
     const parts=hasSep?[ln]:ln.split(/\s*[,，;]\s*/).map(x=>x.trim()).filter(Boolean);
     G.pieces.push(...(parts.length>1&&parts.every(x=>x.length>=7)?parts:[ln]));}
-  const nc=(memo.match(IL_CHKW)||[]).length,nw=(memo.match(IL_WORKW)||[]).length;
-  G.kind=['work','chk','photo'].includes(d.kind)?d.kind:(!G.pieces.length&&ilPhs(d).length?'photo':nc>nw?'chk':'work');
+  const nc=(memo.match(IL_CHKW)||[]).length,nw=(memo.match(IL_WORKW)||[]).length;const sf=d.kind==='safe'&&!!d.sf;
+  if(d.t1)G.time=d.t2?`${d.t1} ~ ${d.t2}`:d.t1;
+  G.kind=sf?'chk':['work','chk','photo'].includes(d.kind)?d.kind:(!G.pieces.length&&ilPhs(d).length?'photo':nc>nw?'chk':'work');
   G.site=ilSiteOf(memo)||d.site||'';
   G.fld=ilField(G.kind==='work'&&G.pieces.length?G.pieces[0]:memo,G.kind);
   G.items=G.pieces.slice(0,30).map(p=>ilItem(p,G));
-  if(G.kind==='chk'&&IL_CL[G.fld.sub]&&(IL_ROUND.test(memo)||!G.items.length)){
+  if(!sf&&G.kind==='chk'&&IL_CL[G.fld.sub]&&(IL_ROUND.test(memo)||!G.items.length)){
     const rows=IL_CL[G.fld.sub].map(([loc,text,re])=>({loc,text,res:G.gok?'양호':'',act:'',re}));const rest=[];
     for(const it of G.items){const full=`${it.loc} ${it.text} ${it.act}`;const r=rows.find(r=>!r.used&&r.re.test(full));
       if(!r){if(IL_ROUND.test(full)&&it.res!=='불량'&&it.res!=='주의'&&!it.act){if(!G.head)G.head=full.trim().replace(IL_OKTAIL,'');continue;}rest.push(it);continue;}r.used=1;if(it.res)r.res=it.res;if(it.act)r.act=it.act;
@@ -7759,10 +7797,10 @@ function ilPhotosHTML(d,mode,M){const L=ilPhs(d);if(!L.length)return '';const wt
   const tg=(p,i)=>`<b class="ap-il-tg ap-il-t-${p.tag||'no'}"${mode==='view'?` data-il-tg="${esc(p.id)}" title="눌러서 작업 전·중·후 바꾸기"`:''}>${esc(PH_TAGS[p.tag]||'사진 '+(i+1))}</b>`;
   const cap=p=>`<span class="ap-il-capt"${mode==='view'?` data-il-cap="${esc(p.id)}"`:''}>${esc(p.cap||'')}</span>`;
   if(kind==='photo')return `<h2 class="ap-il-h">${n}. 사진 대지 <span class="ap-il-n">${L.length}장</span></h2><div class="ap-il-photos ap-il-sheet">${L.map((p,i)=>`<div class="ap-il-ph"><div class="ap-il-im"><img ${src(p)} alt=""></div><table class="ap-il-ct"><tbody><tr><th>구분</th><td>${tg(p,i)}</td><th>일시</th><td>${sh(p)}</td></tr><tr><th>내용</th><td colspan="3">${cap(p)}</td></tr></tbody></table></div>`).join('')}</div>`;
-  return `<h2 class="ap-il-h">${n}. ${kind==='chk'?'점검':'작업'} 사진 <span class="ap-il-n">${L.length}장</span></h2><div class="ap-il-photos">${L.map((p,i)=>`<div class="ap-il-ph"><div class="ap-il-im"><img ${src(p)} alt=""></div><div class="ap-il-cap">${tg(p,i)} ${sh(p)} ${cap(p)}</div></div>`).join('')}</div>`;}
+  return `<h2 class="ap-il-h">${n}. ${kind==='chk'||kind==='safe'?'점검':'작업'} 사진 <span class="ap-il-n">${L.length}장</span></h2><div class="ap-il-photos">${L.map((p,i)=>`<div class="ap-il-ph"><div class="ap-il-im"><img ${src(p)} alt=""></div><div class="ap-il-cap">${tg(p,i)} ${sh(p)} ${cap(p)}</div></div>`).join('')}</div>`;}
 function ilDocHTML(d,mode,M){const K=IL_K[d.gk]||IL_K.work;const ap=(S.config.approvals||[]).slice(0,6);
   const sign=mode==='appr'||!ap.length?'':`<table class="ap-il-sign"><tbody><tr><th rowspan="2" class="ap-il-v">결<br>재</th>${ap.map(a=>`<th>${esc(a)}</th>`).join('')}</tr><tr>${ap.map(()=>'<td></td>').join('')}</tr></tbody></table>`;
-  return `<div class="ap-il ap-il-k-${d.gk||'work'}"><div class="ap-il-top"><div class="ap-il-logo"><img src="${IL_LOGO}" alt="TAESUNG"></div>${sign}</div><h1 class="ap-il-title">${esc(d.docTitle||K.t)}</h1><div class="ap-il-body">${d.body||''}</div>${ilPhotosHTML(d,mode,M)}<div class="ap-il-foot">㈜태성산업 ${esc(S.config.dept||'관리부')} · 시설·공무 · ${esc(fmtYMD(d.date))}${d.site?' · '+esc(d.site):''}</div></div>`;}
+  return `<div class="ap-il ap-il-k-${d.gk||'work'}"><div class="ap-il-top"><div class="ap-il-logo"><img src="${IL_LOGO}" alt="TAESUNG"></div>${sign}</div><h1 class="ap-il-title">${esc(d.docTitle||K.t)}</h1><div class="ap-il-body">${d.body||''}</div>${ilPhotosHTML(d,mode,M)}<div class="ap-il-foot">㈜태성산업 ${esc(S.config.dept||'관리부')} · ${d.gk==='safe'?'안전관리':'시설·공무'} · ${esc(fmtYMD(d.date))}${d.site?' · '+esc(d.site):''}</div></div>`;}
 async function ilFull(id){if(IL.src[id]&&IL.src[id]!==PH_BLANK&&IL.src[id].startsWith('data:'))return IL.src[id];let u='';try{u=await photoDataURL(id);}catch{}if(u)IL.src[id]=u;return u;}
 function ilHydrate(root){for(const img of $$('img[data-ilp]',root)){const id=img.dataset.ilp;if(IL.src[id]){img.src=IL.src[id];continue;}
     try{fbLoadThumb(id).then(u=>{if(u&&!IL.src[id]&&img.isConnected)img.src=u;}).catch(()=>{});}catch{}
@@ -7775,16 +7813,20 @@ async function ilSmall(id,budget){const u=await ilFull(id);if(!u)return '';const
   return '';}
 
 /* ── 초안 */
-function ilBlank(){const me=S.staff[S.myStaff];return {v:1,date:today(),site:me&&realSite(me.site)?me.site:(ilSites()[0]||S.config.sites[0]||''),kind:'auto',memo:'',photos:[],ph:[],fresh:[],stamp:stampPref(),path:'',title:'',docTitle:'',body:'',gk:'',fol:[],folOn:true,fld:null,autoTag:false,edited:false};}
+function ilBlank(){const me=S.staff[S.myStaff];return {v:1,date:today(),site:me&&realSite(me.site)?me.site:(ilSites()[0]||S.config.sites[0]||''),kind:'auto',memo:'',photos:[],ph:[],fresh:[],stamp:stampPref(),path:'',title:'',docTitle:'',body:'',gk:'',fol:[],folOn:true,fld:null,autoTag:false,edited:false,t1:'',t2:'',sf:'',sfr:{},sfm:{},sfw:[]};}
 function ilLoad(){try{const j=JSON.parse(lsGet(ilKey())||'null');if(!j||j.v!==1)return null;const b=ilBlank();
     const photos=(Array.isArray(j.photos)?j.photos:[]).filter(p=>p&&isAssetId(p.id)).slice(0,IL_MAXPH);
     return {...b,...j,photos,ph:(Array.isArray(j.ph)?j.ph:[]).filter(id=>photos.some(p=>p.id===id)),fresh:(Array.isArray(j.fresh)?j.fresh:[]).filter(isAssetId),path:'',fol:Array.isArray(j.fol)?j.fol.filter(x=>typeof x==='string'):[],body:typeof j.body==='string'?apClean(j.body):''};}catch{return null;}}
-function ilSave(){const d=IL.d;if(!d||d.path)return;try{if(!d.memo.trim()&&!d.ph.length&&!d.body)localStorage.removeItem(ilKey());else lsSet(ilKey(),JSON.stringify(d));}catch{}}
-const ilHas=d=>!!d&&(!!d.memo.trim()||d.ph.length>0||!!d.body);
+function ilSave(){const d=IL.d;if(!d||d.path)return;try{if(!d.memo.trim()&&!d.ph.length&&!d.body&&!d.sf)localStorage.removeItem(ilKey());else lsSet(ilKey(),JSON.stringify(d));}catch{}}
+const ilHas=d=>!!d&&(!!d.memo.trim()||d.ph.length>0||!!d.body||!!d.sf);
 function ilFromTask(t){const il=t.ilbo&&typeof t.ilbo==='object'?t.ilbo:null;const kind=il&&IL_K[il.kind]?il.kind:'';
   const ph=il&&Array.isArray(il.ph)?il.ph.filter(id=>t.photos.some(p=>p.id===id)):t.photos.map(p=>p.id);
   return {...ilBlank(),date:t.doneAt||t.start||t.due||today(),site:t.site,kind:kind||'auto',memo:il?String(il.memo||''):[t.title,t.desc].filter(Boolean).join('\n'),
-    photos:t.photos.map(p=>({...p})),ph:ph.slice(0,IL_MAXPH),path:t.path,title:t.title,docTitle:il?String(il.docTitle||''):'',body:il?apClean(String(il.body||'')):'',gk:kind,folOn:false,fld:{sub:t.sub,leaf:t.leaf},edited:!!(il&&il.edited)};}
+    photos:t.photos.map(p=>({...p})),ph:ph.slice(0,IL_MAXPH),path:t.path,title:t.title,docTitle:il?String(il.docTitle||''):'',body:il?apClean(String(il.body||'')):'',gk:kind,folOn:false,fld:{sub:t.sub,leaf:t.leaf},edited:!!(il&&il.edited),...ilTimeOf(il),
+    ...(il&&il.sf&&typeof il.sf==='object'?{sf:String(il.sf.t||''),sfr:il.sf.r&&typeof il.sf.r==='object'?il.sf.r:{},sfm:il.sf.m&&typeof il.sf.m==='object'?il.sf.m:{},sfw:Array.isArray(il.sf.w)?il.sf.w:[]}:{})};}
+/* 40차: 작업시간 — 저장된 값, 없으면(예전 일보) 서류 정보 표의 '…시간' 칸에서 */
+function ilTimeOf(il){if(!il)return {};const ok=x=>/^\d\d:\d\d$/.test(x||'');if(ok(il.t1))return {t1:il.t1,t2:ok(il.t2)?il.t2:''};
+  const m=ilWorkTime({body:String(il.body||''),memo:''}).match(/^(\d\d:\d\d)(?:~(\d\d:\d\d))?$/);return m?{t1:m[1],t2:m[2]||''}:{};}
 
 /* ── 창 */
 function ilDlg(){let dl=$('#dlg-ilbo');if(!dl){dl=document.createElement('dialog');dl.className='modal il-dlg';dl.id='dlg-ilbo';dl.setAttribute('aria-label','시설 일보');document.body.appendChild(dl);
@@ -7813,12 +7855,13 @@ function ilRender(){const dl=ilDlg();const d=IL.d;if(!d)return;const doc=IL.step
       <button type="button" class="btn" data-il-print>🖨 인쇄·PDF</button>${ro?'':`<button type="button" class="btn" data-il-appr>📝 전자결재로 올리기</button><button type="button" class="btn primary" data-il-save>💾 ${d.path?'업무일지에 고쳐 저장':'업무일지에 저장'}</button>`}`
     :`${d.path?'':'<button type="button" class="btn ghost" data-il-discard>🗑 버리기</button>'}<span class="spacer"></span><span class="il-busy" id="il-busy" hidden>사진 올리는 중…</span><button type="button" class="btn primary il-go" data-il-auto>✨ 자동 완성</button>`}</footer></form>`;
   if(doc)ilPrep();else{try{lzScan(dl);}catch{}const m=$('#il-memo');if(m&&!d.memo&&!d.ph.length)setTimeout(()=>{try{m.focus();}catch{}},60);}}
-function ilInStep(){const d=IL.d;const L=ilPhs(d);const kinds=[['auto','✨ 자동'],['work',IL_K.work.ico+' 작업 일보'],['chk',IL_K.chk.ico+' 점검 일지'],['photo',IL_K.photo.ico+' 사진 대지']];
+function ilInStep(){const d=IL.d;const L=ilPhs(d);const kinds=[['auto','✨ 자동'],['work',IL_K.work.ico+' 작업 일보'],['chk',IL_K.chk.ico+' 점검 일지'],['safe',IL_K.safe.ico+' 안전관리 일지'],['photo',IL_K.photo.ico+' 사진 대지']];
   const sites=[...new Set([...(S.config.sites||[]),d.site].filter(Boolean))];
   return `${d.path?`<p class="il-note">「${esc(d.title)}」 업무로 일보를 ${d.body?'고칩니다':'만듭니다'}.</p>`:''}
   <div class="il-eqrow">${d.eq&&typeof eqLabel==='function'&&eqLabel(d.eq)?`<span class="il-eq">🏷 대상 설비 <b>${esc(eqLabel(d.eq))}</b><button type="button" class="il-eqx" data-il-eqx aria-label="설비 빼기">✕</button></span>`:''}<button type="button" class="btn sm ghost" data-eq-open title="설비 목록·QR 스캔 — 설비를 고르면 그 설비 일보로 씁니다">🏷 설비 QR${d.eq?' 바꾸기':''}</button></div>
-  <div class="il-row"><label>날짜 <input type="date" id="il-date" value="${esc(d.date)}"></label><label>사업장 <select id="il-site">${sites.map(s=>`<option ${s===d.site?'selected':''}>${esc(s)}</option>`).join('')}</select></label>
+  <div class="il-row"><label>작업일자 <input type="date" id="il-date" value="${esc(d.date)}"></label><label>작업시간 <span class="il-tm"><input type="time" id="il-t1" value="${esc(d.t1||'')}" aria-label="작업 시작 시각"><b>~</b><input type="time" id="il-t2" value="${esc(d.t2||'')}" aria-label="작업 끝 시각"></span></label><label>사업장 <select id="il-site">${sites.map(s=>`<option ${s===d.site?'selected':''}>${esc(s)}</option>`).join('')}</select></label>
     <div class="il-kind"><span>서류</span><div class="seg sm" role="group" aria-label="서류 종류">${kinds.map(([k,l])=>`<button type="button" data-il-k="${k}" aria-pressed="${(d.kind||'auto')===k}">${l}</button>`).join('')}</div></div></div>
+  ${d.kind==='safe'&&typeof sfFormHTML==='function'?sfFormHTML(d):''}
   <section class="il-sec"><h3>사진 <small>${L.length}/${IL_MAXPH}장 · 구분(작업 전·중·후)은 눌러서 바꿉니다</small></h3>
     <div class="il-grid">${L.map((p,i)=>`<figure class="il-th" data-il-ph="${esc(p.id)}">${thumbImg(p)}<button type="button" class="il-tag t-${p.tag||'no'}" data-il-tag="${esc(p.id)}">${esc(PH_TAGS[p.tag]||'구분 없음')}</button><button type="button" class="il-del" data-il-del="${esc(p.id)}" aria-label="사진 빼기">✕</button><input class="il-cap" data-il-cap="${esc(p.id)}" maxlength="60" placeholder="사진 설명 (선택)" value="${esc(p.cap||'')}"><span class="il-no">${i+1}</span></figure>`).join('')}
       ${L.length<IL_MAXPH?`<label class="il-add cam-only"><span>📷</span>촬영<input type="file" id="il-cam" accept="image/*" capture="environment"></label><label class="il-add"><span>🖼</span>사진 고르기<input type="file" id="il-pick" accept="image/*" multiple></label>`:''}</div>
@@ -7828,6 +7871,8 @@ function ilInStep(){const d=IL.d;const L=ilPhs(d);const kinds=[['auto','✨ 자�
     <div class="il-chips" role="group" aria-label="자주 쓰는 말 넣기">${[['⏱ 시간','09:00~12:00'],['🧰 자재','자재: '],['👷 작업자','작업자: '],['✓ 이상 없음','이상 없음'],['※ 특이사항','※ '],['▶ 후속 조치','다음: ']].map(([l,v])=>`<button type="button" class="il-chip" data-il-chip="${esc(v)}">${l}</button>`).join('')}<button type="button" class="il-chip ghost" data-il-sample>예시 넣어 보기</button></div></section>
   <details class="il-tip"><summary>메모를 이렇게 읽습니다</summary><ul>
     <li><b>위치 — 내용</b>: 줄표(—, -) 앞은 위치·대상, 뒤는 작업 내용으로 나눕니다. 쉼표로 여러 건을 한 줄에 적어도 됩니다.</li>
+    <li><b>작업시간</b> 칸에 적으면 그 시간을, 비워 두면 메모의 09:10~11:40 같은 시간을 씁니다(자동 완성 때 칸에도 채움).</li>
+    <li><b>🦺 안전관리 일지</b>: 산업안전·보건·전기·소방·유해화학물질·위험물옥내저장소·승강기·환경·폐기물·건축물·기계설비·정보통신 중 골라 점검표를 채웁니다. 메모의 「소화기 압력 불량」, 「역률 95」 같은 줄도 해당 항목·측정값에 넣습니다.</li>
     <li><b>시간</b> 09:10~11:40 · <b>자재:</b> 품명 수량 · <b>작업자:</b> 이름 · <b>※</b> 특이사항 · <b>다음:</b> 후속 조치</li>
     <li><b>점검</b>·확인·순회가 많으면 점검 일지, <b>교체</b>·수리·청소가 많으면 작업 일보, 메모 없이 사진만 있으면 사진 대지가 됩니다.</li>
     <li>이상 없음·양호 → <i>양호</i>, 노후·마모 → <i>주의</i>, 불량·고장·누수 → <i>불량</i>. '순회 점검'이면 분야별 기본 점검 항목을 채웁니다.</li>
@@ -7838,9 +7883,9 @@ function ilRecentHTML(){const L=ilRecent();if(!L.length)return '';const ym=today
     <ul>${L.slice(0,6).map(t=>`<li><button type="button" data-il-open="${esc(t.path)}"><span class="il-rk">${IL_K[t.ilbo.kind]?IL_K[t.ilbo.kind].ico:'📋'}</span><b>${esc(fmtMD(t.doneAt||t.start))}</b> ${esc(t.title)}<small>${esc(t.site||'')} · ${esc(whoText(t)||'')}${t.photos.length?` · 📷 ${t.photos.length}`:''}</small></button></li>`).join('')}</ul></section>`;}
 const ilRecent=()=>S.tasks.filter(t=>t.ilbo&&typeof t.ilbo==='object'&&!t.priv&&t.path).sort((a,b)=>(b.doneAt||b.start||'').localeCompare(a.doneAt||a.start||'')||(b.updatedAt||'').localeCompare(a.updatedAt||''));
 function ilDocStep(ro){const d=IL.d;const k=d.gk||'work';
-  return `${ro?'<p class="il-note">보기 전용입니다 — 인쇄·PDF만 할 수 있습니다.</p>':`<div class="il-bar"><div class="seg sm" role="group" aria-label="서류 종류">${['work','chk','photo'].map(x=>`<button type="button" data-il-k2="${x}" aria-pressed="${x===k}">${IL_K[x].ico} ${IL_K[x].s}</button>`).join('')}</div>
+  return `${ro?'<p class="il-note">보기 전용입니다 — 인쇄·PDF만 할 수 있습니다.</p>':`<div class="il-bar"><div class="seg sm" role="group" aria-label="서류 종류">${['work','chk','safe','photo'].map(x=>`<button type="button" data-il-k2="${x}" aria-pressed="${x===k}">${IL_K[x].ico} ${x==='safe'&&d.sf&&typeof sfT==='function'&&sfT(d.sf)?sfT(d.sf).n+' 일지':IL_K[x].s}</button>`).join('')}</div>
     <label class="il-tt">업무일지 제목 <input id="il-title" maxlength="100" value="${esc(d.title)}"></label></div>
-  <p class="help il-help">✏️ 서류의 글자를 눌러 바로 고칩니다 · ${k==='photo'?'':`결과 칸(${k==='chk'?'양호→주의→불량':'완료→진행 중→후속 필요'})과 `}사진 구분은 누를 때마다 바뀝니다.${d.autoTag?' · 사진 구분(작업 전·중·후)은 찍은 시간 순서로 정했습니다.':''} <button type="button" class="btn sm ghost il-zbtn" data-il-zoom>${IL.big?'↙ 한 장에 맞춰 보기':'🔍 크게 보기'}</button></p>`}
+  <p class="help il-help">✏️ 서류의 글자를 눌러 바로 고칩니다 · ${k==='photo'?'':`결과 칸(${k==='chk'?'양호→주의→불량':k==='safe'?'양호→주의→불량→해당 없음':'완료→진행 중→후속 필요'})과 `}${k==='safe'?'점검표를 고치려면 「← 사진·메모 고치기」 · ':''}사진 구분은 누를 때마다 바뀝니다.${d.autoTag?' · 사진 구분(작업 전·중·후)은 찍은 시간 순서로 정했습니다.':''} <button type="button" class="btn sm ghost il-zbtn" data-il-zoom>${IL.big?'↙ 한 장에 맞춰 보기':'🔍 크게 보기'}</button></p>`}
   <div class="il-wrap" id="il-wrap"><div class="il-paper" id="il-paper">${ilDocHTML(d,'view')}</div></div>
   ${!ro&&d.fol.length&&!d.path?`<label class="il-fol"><input type="checkbox" id="il-fol" ${d.folOn!==false?'checked':''}> 후속 조치 ${d.fol.length}건을 '할 예정' 업무로 같이 등록 <small>${esc(d.fol.slice(0,2).join(' / '))}${d.fol.length>2?' …':''}</small></label>`:''}
   ${d.path&&!IL.dirty?`<p class="il-saved">✅ 업무일지에 저장된 일보입니다 · ${esc(d.title)}</p>`:''}`;}
@@ -7854,6 +7899,8 @@ window.addEventListener('resize',()=>{if(IL.d&&IL.step==='doc')ilZoom();});
 function ilReadIn(){const d=IL.d;if(!d||IL.step!=='in')return;const g=id=>$(id);
   if(g('#il-date')&&isDate(g('#il-date').value))d.date=g('#il-date').value;if(g('#il-site'))d.site=g('#il-site').value;if(g('#il-memo'))d.memo=g('#il-memo').value.slice(0,2000);
   if(g('#il-stamp'))d.stamp=g('#il-stamp').checked;
+  {const tm=x=>{const v=g(x)&&g(x).value;return /^\d\d:\d\d$/.test(v||'')?v:'';};if(g('#il-t1')){d.t1=tm('#il-t1');d.t2=d.t1?tm('#il-t2'):'';}}
+  if(typeof sfRead==='function'&&d.kind==='safe')sfRead(d);
   for(const c of $$('#dlg-ilbo input[data-il-cap]')){const p=d.photos.find(x=>x.id===c.dataset.ilCap);if(p)p.cap=c.value.trim().slice(0,100);}}
 function ilCollect(){const d=IL.d;if(!d)return;if(IL.step==='in'){ilReadIn();return;}const p=$('#il-paper');if(!p)return;
   const t=$('.ap-il-title',p),b=$('.ap-il-body',p);if(t)d.docTitle=t.textContent.replace(/\s+/g,' ').trim().slice(0,60);if(b)d.body=apClean(b.innerHTML);
@@ -7862,13 +7909,17 @@ function ilCollect(){const d=IL.d;if(!d)return;if(IL.step==='in'){ilReadIn();ret
 
 /* ── 자동 완성 */
 async function ilAuto(force){const d=IL.d;if(!d)return;ilCollect();
-  if(!d.memo.trim()&&!d.ph.length){toast('사진을 올리거나 메모를 적어 주세요.','err');const m=$('#il-memo');if(m)m.focus();return;}
+  if(d.kind==='safe'&&!(d.sf&&typeof sfT==='function'&&sfT(d.sf))){toast('안전관리 일지 종류를 먼저 고르세요.','err');if(IL.step!=='in'){IL.step='in';ilRender();}const b=$('#sf-box');if(b)b.scrollIntoView({block:'start'});return;}
+  if(d.kind!=='safe'&&!d.memo.trim()&&!d.ph.length){toast('사진을 올리거나 메모를 적어 주세요.','err');const m=$('#il-memo');if(m)m.focus();return;}
   if(d.edited&&!force&&!await confirmDlg('다시 자동 완성','서류에서 고친 글자는 사라지고 메모로 다시 만듭니다. 계속할까요?','다시 만들기'))return;
-  const G=ilParse(d);ilOrder(d,G.kind);
-  d.gk=G.kind;if(G.site)d.site=G.site;d.fld=G.fld;d.fol=G.follow;d.docTitle=IL_K[G.kind].t;d.body=ilBodyHTML(G,d);if(!d.path||!d.title)d.title=ilTaskTitle(G);
-  if(G.kind!=='photo'&&G.items.length===1){const one=[G.items[0].loc,G.items[0].text].filter(Boolean).join(' ').slice(0,60);for(const p of ilPhs(d))if(!p.cap)p.cap=one;}
+  const G=ilParse(d);
+  if(!d.t1&&G.time){const tm=G.time.match(/(\d\d:\d\d)(?:\s*~\s*(\d\d:\d\d))?/);if(tm){d.t1=tm[1];d.t2=tm[2]||'';}}
+  if(d.kind==='safe'){if(G.site)d.site=G.site;sfBuild(d,G);}
+  else{ilOrder(d,G.kind);
+  d.gk=G.kind;if(G.site)d.site=G.site;d.fld=G.fld;d.fol=G.follow;d.docTitle=IL_K[G.kind].t;d.body=ilBodyHTML(G,d);if(!d.path||!d.title)d.title=ilTaskTitle(G);}
+  if(d.kind!=='safe'&&G.kind!=='photo'&&G.items.length===1){const one=[G.items[0].loc,G.items[0].text].filter(Boolean).join(' ').slice(0,60);for(const p of ilPhs(d))if(!p.cap)p.cap=one;}
   IL.step='doc';d.edited=false;IL.dirty=true;ilSave();ilRender();}
-function ilDescText(d){const box=document.createElement('div');box.innerHTML=d.body||'';const K=IL_K[d.gk]||IL_K.work;const out=[`[${K.s}] ${fmtYMD(d.date)} ${d.site||''}`.trim()];
+function ilDescText(d){if(d.gk==='safe'&&typeof sfDesc==='function')return sfDesc(d);const box=document.createElement('div');box.innerHTML=d.body||'';const K=IL_K[d.gk]||IL_K.work;const out=[`[${K.s}] ${fmtYMD(d.date)} ${d.site||''}`.trim()];
   const info=$('.ap-il-info',box);if(info){const tm=[...info.querySelectorAll('th')].find(th=>/시간/.test(th.textContent));const v=tm&&tm.nextElementSibling&&tm.nextElementSibling.textContent.trim();if(v)out[0]+=' · '+v;}
   for(const p of $$('p.ap-il-sum',box))out.push(p.textContent.trim());
   for(const tr of $$('table.ap-il-items tbody tr',box)){const c=[...tr.cells].map(x=>x.textContent.replace(/\s+/g,' ').trim());const no=c.shift();const res=d.gk==='chk'?c.splice(2,1)[0]:c.pop();const txt=c.filter(Boolean).join(' · ');if(txt||res)out.push(`${no}. ${txt}${res?` (${res})`:''}`);}
@@ -7882,8 +7933,9 @@ async function ilSaveTask(quiet){const d=IL.d;if(!d||IL.busy)return null;ilColle
   if(!ilCanEdit()){toast('업무일지에 적을 권한이 없습니다.','err');return null;}
   if(!d.body){toast('먼저 ✨ 자동 완성을 눌러 주세요.','err');return null;}
   const K=IL_K[d.gk]||IL_K.work;const title=(d.title||'').trim()||`${K.s}: ${d.site}`;const desc=ilDescText(d).slice(0,4000);
-  const fld=txFit('fac',(d.fld&&d.fld.sub)||'시설 행정',(d.fld&&d.fld.leaf)||'');
-  const ilbo={v:1,...(d.eq?{eq:d.eq}:{}),kind:d.gk||'work',docTitle:(d.docTitle||K.t).slice(0,60),body:String(d.body).slice(0,30000),memo:d.memo.slice(0,2000),ph:d.ph.slice(0,IL_MAXPH),edited:!!d.edited,at:nowISO(),by:myId()};
+  const stx=d.gk==='safe'&&typeof sfTx==='function'?sfTx(d):null;const cat=stx?stx.cat:'fac';
+  const fld=stx?txFit(cat,stx.sub,stx.leaf):txFit('fac',(d.fld&&d.fld.sub)||'시설 행정',(d.fld&&d.fld.leaf)||'');
+  const ilbo={v:1,...(d.eq?{eq:d.eq}:{}),...(d.t1?{t1:d.t1,t2:d.t2||''}:{}),...(d.gk==='safe'&&d.sf?{sf:{t:d.sf,r:d.sfr||{},m:d.sfm||{},w:(d.sfw||[]).slice(0,12)}}:{}),kind:d.gk||'work',docTitle:(d.docTitle||K.t).slice(0,60),body:String(d.body).slice(0,30000),memo:d.memo.slice(0,2000),ph:d.ph.slice(0,IL_MAXPH),edited:!!d.edited,at:nowISO(),by:myId()};
   IL.busy=true;setSync('saving');let fol=0;
   try{if(d.path){const t=findTask(d.path);if(!t){toast('원래 업무를 찾지 못했습니다. 지워졌는지 확인해 주세요.','err');return null;}
       const keep=t.photos.map(p=>{const m=d.photos.find(x=>x.id===p.id);return m?{...p,cap:String(m.cap||'').slice(0,100),tag:['before','during','after'].includes(m.tag)?m.tag:''}:p;});
@@ -7892,9 +7944,9 @@ async function ilSaveTask(quiet){const d=IL.d;if(!d||IL.busy)return null;ilColle
       const np=await updateTask(t,{title,desc:t.desc&&!t.ilbo?t.desc:desc,site:d.site||t.site,photos:[...keep,...add],ilbo,...(d.eq?{eq:d.eq}:{}),logs:[...t.logs,{at:nowISO(),by:myId(),kind:'note',text:t.ilbo?'📋 시설 일보를 고쳤습니다':'📋 시설 일보를 만들었습니다',issue:false}]});
       if(np)d.path=np;}
     else{const gone=d.fresh.filter(id=>!d.ph.includes(id));if(gone.length)deleteAssets(gone);
-      const path=await createTask({title,cat:'fac',sub:fld.sub,leaf:fld.leaf,tx:TXV,site:d.site||'전사',scope:'day',status:'done',priority:'normal',repeat:'none',start:d.date,due:d.date,doneAt:d.date,progress:100,desc,assignees:[myId()],assigneeText:'',photos:ilPhs(d).map(ilMeta),ilbo,...(d.eq?{eq:d.eq}:{})});
+      const path=await createTask({title,cat:fld.cat||cat,sub:fld.sub,leaf:fld.leaf,tx:TXV,site:d.site||'전사',scope:'day',status:'done',priority:'normal',repeat:'none',start:d.date,due:d.date,doneAt:d.date,progress:100,desc,assignees:[myId()],assigneeText:'',photos:ilPhs(d).map(ilMeta),ilbo,...(d.eq?{eq:d.eq}:{})});
       d.path=path;try{localStorage.removeItem(ilKey());}catch{}
-      if(d.fol.length&&d.folOn!==false)for(const f of d.fol){try{await createTask({title:f.slice(0,100),cat:'fac',sub:fld.sub,leaf:fld.leaf,tx:TXV,site:d.site||'전사',scope:'day',status:'plan',priority:'normal',repeat:'none',start:ilNextWd(d.date),due:'',doneAt:'',progress:0,desc:`${fmtYMD(d.date)} 시설 일보 「${title}」에서 이어진 후속 조치`,assignees:[myId()],assigneeText:'',photos:[]});fol++;}catch{}}}
+      if(d.fol.length&&d.folOn!==false)for(const f of d.fol){try{await createTask({title:f.slice(0,100),cat:fld.cat||cat,sub:fld.sub,leaf:fld.leaf,tx:TXV,site:d.site||'전사',scope:'day',status:'plan',priority:'normal',repeat:'none',start:ilNextWd(d.date),due:'',doneAt:'',progress:0,desc:`${fmtYMD(d.date)} 시설 일보 「${title}」에서 이어진 후속 조치`,assignees:[myId()],assigneeText:'',photos:[]});fol++;}catch{}}}
     d.fresh=[];d.title=title;IL.dirty=false;
     if(!quiet)toast(`업무일지에 저장했습니다${fol?` · 후속 조치 ${fol}건을 '할 예정'으로 등록`:''}. 업무 상세의 📋 단추로 다시 열 수 있습니다.`);
     return d.path;}
@@ -7948,15 +8000,15 @@ document.addEventListener('click',async e=>{const T=e.target;if(!T||!T.closest||
   if(T.closest('[data-il-zoom]')){IL.big=!IL.big;const b=T.closest('[data-il-zoom]');b.textContent=IL.big?'↙ 한 장에 맞춰 보기':'🔍 크게 보기';ilZoom();return;}
   if(T.closest('[data-il-sample]')){const m=$('#il-memo');if(m){if(m.value.trim()&&!await confirmDlg('예시 넣기','지금 메모를 예시로 바꿀까요?','바꾸기'))return;m.value=IL_SAMPLE;d.memo=IL_SAMPLE;ilSave();m.focus();}return;}
   const ch=T.closest('[data-il-chip]');if(ch){const m=$('#il-memo');if(!m)return;const v=ch.dataset.ilChip;const pre=m.value&&!m.value.endsWith('\n')?'\n':'';m.value+=pre+v;d.memo=m.value;ilSave();m.focus();m.setSelectionRange(m.value.length,m.value.length);return;}
-  const k=T.closest('[data-il-k]');if(k){ilReadIn();d.kind=k.dataset.ilK;for(const b of $$('#dlg-ilbo [data-il-k]'))b.setAttribute('aria-pressed',String(b===k));ilSave();return;}
-  const k2=T.closest('[data-il-k2]');if(k2){if(k2.dataset.ilK2===d.gk)return;ilCollect();const old=d.kind;d.kind=k2.dataset.ilK2;const pv=d.edited;await ilAuto(false);if(d.edited&&pv)d.kind=old;return;}
+  const k=T.closest('[data-il-k]');if(k){ilReadIn();const was=d.kind;d.kind=k.dataset.ilK;for(const b of $$('#dlg-ilbo [data-il-k]'))b.setAttribute('aria-pressed',String(b===k));ilSave();if(was==='safe'||d.kind==='safe'){ilRender();if(d.kind==='safe'){const b=$('#sf-box');if(b)b.scrollIntoView({block:'start'});}}return;}
+  const k2=T.closest('[data-il-k2]');if(k2){if(k2.dataset.ilK2===d.gk)return;if(k2.dataset.ilK2==='safe'&&!d.sf){ilCollect();d.kind='safe';IL.step='in';ilRender();return;}ilCollect();const old=d.kind;d.kind=k2.dataset.ilK2;const pv=d.edited;await ilAuto(false);if(d.edited&&pv)d.kind=old;return;}
   const tg=T.closest('[data-il-tag]');if(tg){ilReadIn();const p=d.photos.find(x=>x.id===tg.dataset.ilTag);if(!p)return;p.tag=PH_TAG_ORDER[(PH_TAG_ORDER.indexOf(p.tag||'')+1)%PH_TAG_ORDER.length];IL.dirty=true;ilSave();ilRender();return;}
   const dl=T.closest('[data-il-del]');if(dl){ilReadIn();const id=dl.dataset.ilDel;d.ph=d.ph.filter(x=>x!==id);if(d.fresh.includes(id)){d.fresh=d.fresh.filter(x=>x!==id);d.photos=d.photos.filter(x=>x.id!==id);deleteAssets([id]);}IL.dirty=true;ilSave();ilRender();return;}
   if(T.closest('[data-il-eqx]')){ilReadIn();d.eq='';ilSave();ilRender();return;}
   const ro=T.closest('[data-il-open]');if(ro){const t=findTask(ro.dataset.ilOpen);if(!t)return;ilCollect();if(!d.path&&ilHas(d))ilSave();ilOpen({task:t});return;}
   if(!ilCanEdit()||IL.step!=='doc')return;
   const g=T.closest('[data-il-tg]');if(g){ilCollect();const p=d.photos.find(x=>x.id===g.dataset.ilTg);if(!p)return;p.tag=PH_TAG_ORDER[(PH_TAG_ORDER.indexOf(p.tag||'')+1)%PH_TAG_ORDER.length];IL.dirty=true;ilSave();ilRender();return;}
-  const rc=T.closest('#il-paper td.ap-il-res');if(rc){const cyc=IL_RES[d.gk==='chk'?'chk':'work'];const cur=rc.textContent.trim();const nx=cyc[(cyc.indexOf(cur)+1)%cyc.length];rc.textContent=nx;rc.className='ap-il-res '+ilResC(nx);d.edited=IL.dirty=true;ilCollect();ilSave();return;}});
+  const rc=T.closest('#il-paper td.ap-il-res');if(rc){const cyc=IL_RES[d.gk==='chk'?'chk':d.gk==='safe'?'safe':'work'];const cur=rc.textContent.trim();const nx=cyc[(cyc.indexOf(cur)+1)%cyc.length];rc.textContent=nx;rc.className='ap-il-res '+ilResC(nx);d.edited=IL.dirty=true;ilCollect();ilSave();return;}});
 document.addEventListener('input',e=>{const T=e.target;if(!T||!T.closest||!T.closest('#dlg-ilbo')||!IL.d)return;
   if(T.closest('#il-paper')){IL.d.edited=IL.dirty=true;clearTimeout(IL._t);IL._t=setTimeout(()=>{if(IL.d&&IL.step==='doc'){ilCollect();ilSave();}},600);return;}
   IL.dirty=true;clearTimeout(IL._t);IL._t=setTimeout(()=>{if(IL.d){ilCollect();ilSave();}},400);});
@@ -7970,7 +8022,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target&&e.target.c
 {const _r=renderPhotos;renderPhotos=function(v){const r=_r.apply(this,arguments);try{const h=v&&v.querySelector('.home-head > div:last-child');if(h&&!h.querySelector('[data-il-open-new]')&&S.canWrite)h.insertAdjacentHTML('afterbegin','<button type="button" class="btn" data-il-open-new>📋 시설 일보</button>');}catch{}return r;};}
 function ilTaskBtn(){const h=$('#dlg-task .modal-h');if(!h)return;let b=$('#t-ilbo');
   if(!b){b=document.createElement('button');b.type='button';b.id='t-ilbo';b.className='btn sm t-ilbo';h.insertBefore(b,$('#t-print',h)||$('[data-close]',h));}
-  const t=S.dlg&&S.dlg.path?findTask(S.dlg.path):null;const show=!!t&&t.cat==='fac'&&!t.priv&&(!!t.ilbo||ilCanEdit());b.hidden=!show;
+  const t=S.dlg&&S.dlg.path?findTask(S.dlg.path):null;const show=!!t&&!t.priv&&(!!t.ilbo||(t.cat==='fac'&&ilCanEdit()));b.hidden=!show;
   if(show){b.textContent=t.ilbo?'📋 일보':'📋 일보 만들기';b.title=t.ilbo?'이 업무의 시설 일보를 보고 인쇄하거나 고칩니다':'이 업무의 사진·내용으로 시설 일보를 만듭니다';}}
 {const _ot=openTask;openTask=function(...a){const r=_ot.apply(this,a);try{ilTaskBtn();}catch{}return r;};}
 function ilHash(){if(location.hash!=='#ilbo')return;let n=0;const tm=setInterval(()=>{n++;if(S.me&&S.me.id&&S.myStaff&&S.loaded!==false&&document.readyState==='complete'){clearInterval(tm);history.replaceState(null,'','#my');try{route();}catch{}ilOpen();}else if(n>40)clearInterval(tm);},250);}
@@ -8271,6 +8323,187 @@ window.addEventListener('hashchange',eqHash);setTimeout(eqHash,900);
 {const _f=ilFromTask;ilFromTask=function(t){const d=_f.apply(this,arguments);d.eq=(t.ilbo&&t.ilbo.eq)||t.eq||'';return d;};}
 window.eqApi={open:eqOpen,load:eqLoad,get:eqGet,label:eqLabel,url:eqUrl,parse:eqParse,svg:eqQrSvg,print:eqPrint,ilbo:eqIlbo,state:()=>EQ};
 {const _o=ilOpen;ilOpen=function(){const r=_o.apply(this,arguments);try{const d=IL.d;if(d&&d.eq&&!eqGet(d.eq))eqLoad().then(()=>{if(IL.d===d&&$('#dlg-ilbo')&&$('#dlg-ilbo').open)ilRender();});}catch{}return r;};}
+
+/* ───────── 40차: 시설 일보 서류 종류 '🦺 안전관리 일지' (11종) ─────────
+   · 점검표 구조는 깃허브 오픈소스 CMMS(Atlas CMMS, github.com/grashjs/cmms — 체크리스트 항목 종류: 점검(Pass/Flag/Fail)·계량값(Meter Reading),
+     불량이면 후속 작업)를 참고해(코드는 가져오지 않고 구조만) → 양호/주의/불량/해당 없음 · 측정값(기준 벗어나면 주의) · 불량 → '할 예정' 후속 업무.
+   · 항목은 태성산업 공정(안양 사출·블로우·펌프조립·금형 / 군포 사출·인쇄·조립·착색 / 화성 증착·코팅)에 맞추고, 사업장에 없는 공정 항목은 숨김.
+   · 선임(관리)자는 조직도의 법정 선임 현황(app/org.seon)에서 사업장별로 가져옴.
+   · 근거·주기 문구는 참고용 — 법령 개정 시 선임자가 확인. */
+const SF_RES=['양호','주의','불량','해당 없음'];
+/* 항목: [이름, 점검 기준, 메모에서 찾을 낱말, 사업장(A 안양·G 군포·H 화성, 비우면 모두)]
+   측정: [키, 이름, 단위, 하한, 상한, 기준 글, 메모 낱말, 사업장, 종류('t'=글), 벗어날 때 판정] */
+const SF_T=[
+ {id:'ind',n:'산업안전·보건',ico:'🦺',t:'산업안전보건 점검 일지',role:/관리감독자|안전보건관리책임자/,law:'산업안전보건법 제16조(관리감독자) · 안전보건규칙 제35조 [별표 3](작업시작 전 점검사항)',cyc:'매일 작업 시작 전',keep:'위험성평가 결과 3년 보존(법 제36조)',tx:'safe|사업장 안전점검|안전순찰·현장점검',
+  g:[['작업장 공통',[['통로·정리정돈','통로 확보, 적치물·바닥 기름·물기 없음',/통로|정리|정돈|적치|기름|물기|미끄/],['보호구 착용','안전화·장갑·보안경, 소음 작업 귀마개',/보호구|안전화|장갑|보안경|귀마개|안전모/],['안전보건표지·MSDS','표지 부착, MSDS 게시·비치(최신본)',/표지|MSDS|게시/i],['비상구·소화기','비상구 개방, 소화기 비치·앞 통로 확보',/비상구|소화기/],['TBM(작업 전 회의)','작업 전 위험요인 공유·참석 서명',/TBM|툴박스|작업\s*전\s*회의/i]]],
+     ['생산설비',[['사출성형기','방호문 인터록·비상정지, 히터부 방호덮개',/사출/,'AG'],['블로우 성형기','금형 개폐부 방호·인터록·비상정지',/블로우|브로우/,'A'],['인쇄기','회전부 덮개·말림점 방호·비상정지',/인쇄/,'G'],['증착기·코팅기','챔버 도어 인터록·접지·배기',/증착|코팅/,'H'],['조립 라인·컨베이어','비상정지 스위치·끼임 방호',/조립|컨베이어|라인/],['분쇄기','투입구 덮개·인터록, 청소 시 전원 차단·잠금',/분쇄|파쇄/,'AG'],['금형 작업','금형 교체 시 전원 차단·고정, 공구 정리',/금형/,'AG']]],
+     ['운반·하역·압력',[['지게차','제동·조종장치, 하역장치·유압, 바퀴, 전조등·후진경보',/지게차/],['호이스트·크레인','권과방지·브레이크·와이어로프·훅 해지장치',/호이스트|크레인|와이어|훅/,'AG'],['압력용기·공기탱크','안전밸브·압력계 정상, 드레인',/압력\s*용기|공기\s*탱크|안전\s*밸브/]]],
+     ['보건',[['국소배기장치','후드 흡인 상태·덕트 파손 없음 (인쇄·착색·코팅)',/국소\s*배기|후드|배기/,'GH'],['유기용제 취급','용기 밀폐·경고표지·환기',/유기\s*용제|시너|용제|잉크|도료/,'GH'],['소음 작업','청력보호구 지급·착용 (사출·분쇄)',/소음|청력/],['온열·한랭 대책','휴게 공간·물·냉난방',/온열|폭염|한랭|휴게|냉방|난방/],['중량물·근골격계','보조기구 사용·반복작업 휴식',/중량물|근골격|허리/],['구급함·세안설비','구급약품·세안설비 상태',/구급|세안/]]]],
+  m:[['tbm','TBM 참석 인원','명',null,null,'',/TBM\s*(?:참석)?\s*(?:인원)?/i]]},
+ {id:'ele',n:'전기',ico:'⚡',t:'전기안전관리 일지',role:/전기안전/,law:'전기안전관리법 · 「전기안전관리자의 직무에 관한 고시」(점검 기록 작성·보존)',cyc:'일상점검(순회) 매일 · 월차·연차 점검은 직무고시 주기',keep:'',tx:'fac|전기설비|수변전·전기실',
+  g:[['수변전설비',[['수전반·차단기(VCB)','투입 표시, 이상음·냄새·발열 없음',/수전|VCB|(?<!누전)차단기|특고압|LBS|COS/i],['변압기','온도·소음·진동·누유',/변압기|TR(?![a-z])/],['보호계전기','동작·경보 표시 없음',/계전기|OCR|OVR|UVR|경보/],['진상콘덴서','팽창·누유·소음',/콘덴서|진상/],['전기실 환경','온도·환기·누수, 소동물 침입, 출입 잠금',/전기실|누수|환기|잠금|쥐/]]],
+     ['배전·부하설비',[['배전반·분전반','발열·변색·이물, 문 닫힘·잠금',/배전반|분전반|판넬/],['누전차단기','시험 버튼 동작',/누전/],['생산설비 전원반','단자 조임·발열(열화상) — 사출·블로우·인쇄·증착',/전원반|제어반|열화상|단자/],['조명·콘센트','파손·과열·문어발 없음',/조명|콘센트|멀티탭|문어발/],['전기차 충전기','외관·케이블·접지',/충전기|충전/,'A']]],
+     ['비상전원·접지',[['비상발전기','연료·배터리·냉각수, 자동 기동 상태',/발전기/],['자동절체(ATS)','자동 위치',/ATS|절체/i],['UPS·축전지','충전 상태·경보',/UPS|축전지|배터리/i],['접지·피뢰설비','접지선 탈락·부식 없음',/접지|피뢰/]]]],
+  m:[['kv','수전 전압','kV',null,null,'22.9kV 계통 — 평소 값과 비교',/수전\s*전압|특고압\s*전압/],['vl','저압 선간 전압','V',342,418,'380V ±10%',/저압\s*(?:선간)?\s*전압|선간\s*전압/],['ia','부하 전류(최대 상)','A',null,null,'정격 대비 확인',/부하\s*전류/],['tt','변압기 온도','℃',null,90,'유입식 90℃ 이하 · 몰드식은 제조사 기준',/변압기\s*온도|TR\s*온도/],['pf','역률','%',90,null,'90% 이상 (한전 역률 기준)',/역률/],['kw','최대 수요전력','kW',null,null,'계약전력 대비 확인',/최대\s*(?:수요)?\s*전력|피크\s*전력/],['ig','저항성 누설전류','mA',null,1,'1mA 이하 (KEC)',/누설\s*전류/]]},
+ {id:'fire',n:'소방',ico:'🧯',t:'소방안전관리 점검 일지',role:/소방안전관리/,law:'화재예방법 제24조(소방안전관리 업무) · 시행규칙 제10조(업무수행 기록)',cyc:'업무수행 기록 월 1회 이상',keep:'작성일부터 2년 보관',tx:'fac|소방설비|소방시설 점검',
+  g:[['소화설비',[['소화기','비치 위치·압력게이지(녹색)·사용기한',/소화기/],['옥내소화전','호스·관창 비치, 함 앞 적치물 없음',/소화전/],['스프링클러','헤드 손상·도장 없음, 알람밸브 압력',/스프링클러|헤드|알람\s*밸브/],['소화펌프','자동 기동 위치·압력·누수',/소화\s*펌프|펌프/]]],
+     ['경보·피난설비',[['자동화재탐지설비','수신기 화재·고장 표시 없음, 감지기 외관',/수신기|감지기|자탐/],['유도등·비상조명','점등·예비전원',/유도등|비상\s*조명/],['비상방송','송출·연동',/비상\s*방송|방송/]]],
+     ['피난·방화시설',[['비상구·피난통로','잠금·적치물 없음',/비상구|피난|통로/],['방화문·방화셔터','자동 닫힘, 고임목 없음',/방화문|셔터/],['방화구획 관통부','배관·배선 관통부 마감',/방화\s*구획|관통/]]],
+     ['화기·인화물',[['화기 작업 감독','용접·절단 작업 허가·화재감시자·소화기 배치',/용접|절단|화기|그라인더/],['인화성 물질 보관','잉크·시너·도료 보관함 밀폐·지정 장소',/시너|잉크|도료|인화/,'GH'],['전열기·문어발','개인 전열기·문어발 사용 없음',/전열기|난로|문어발/]]],
+     ['교육·훈련',[['자위소방대·비상연락망','편성·연락망 현행화',/자위소방대|비상\s*연락/],['소방훈련·교육','연 1회 이상 실시 계획 대비',/훈련|교육/]]]],
+  m:[['pp','소화펌프 압력','MPa',null,null,'설정 압력과 비교',/펌프\s*압력/]]},
+ {id:'chem',n:'유해화학물질',ico:'🧪',t:'유해화학물질 취급시설 자체점검 일지',role:/유해화학물질/,law:'화학물질관리법 제26조(취급시설 등의 자체 점검)',cyc:'주 1회 이상',keep:'',tx:'safe|작업환경·화학물질|유해화학물질',
+  g:[['저장·보관',[['보관 용기','밀폐·부식·누출 없음',/용기|누출|부식|샘/],['보관장소 잠금','잠금장치, 관계자 외 출입 금지 표시',/잠금|시건|출입\s*금지/],['방류턱·누출 방지','방류턱·트레이 균열·이물 없음',/방류|방지턱|트레이/],['유해화학물질 표시','용기·보관장소 GHS 경고표지',/표시|표지|라벨|GHS/i],['물질별 분리 보관','산·알칼리·인화성 분리',/분리|혼재/]]],
+     ['취급·방재',[['환기·배기설비','작동, 증기 체류 없음',/환기|배기|후드/],['비상샤워·세안설비','작동·물 공급',/샤워|세안/],['누출 대응 물품','흡착포·중화제·누출 키트 비치',/흡착|중화|키트|방제/],['개인보호구','방독마스크·내화학 장갑·보안경 비치',/보호구|마스크|장갑|보안경/],['경보·감지기','누출 감지·경보 작동',/경보|감지/]]],
+     ['관리',[['MSDS 비치·교육','최신 MSDS 비치, 취급자 교육',/MSDS|교육/i],['취급량 기록','입고·사용·재고 기록',/사용량|입고|재고|기록|대장/]]]],
+  m:[['st','주요 물질·보관량','',null,null,'예) 톨루엔 18L, 메틸알코올 20L',/보관량/,'','t']]},
+ {id:'haz',n:'위험물옥내저장소',ico:'🛢',t:'위험물 옥내저장소 일상점검 일지',role:/위험물/,law:'위험물안전관리법 제15조(위험물안전관리자) · 제18조(정기점검 연 1회)',cyc:'저장·취급하는 날 일상점검 · 정기점검 연 1회',keep:'',tx:'fac|소방설비|위험물 저장소',
+  g:[['건축물·구조',[['벽·기둥·바닥·지붕','균열·손상·누수 없음',/벽|기둥|바닥|지붕|균열|누수/],['출입구 방화문','자동 닫힘·변형 없음',/방화문|출입구|출입문/],['바닥 경사·집유설비','기름 고임 없음·청결',/집유|경사|고임/]]],
+     ['설비',[['환기·배출설비','팬 작동, 인화성 증기 체류 없음',/환기|배출|팬/],['조명·전기설비','방폭 기구 손상·배선 이상 없음',/조명|방폭|전기|배선/],['피뢰·접지설비','접지선 탈락·부식 없음',/피뢰|접지/],['소화설비','소화기 비치·압력 정상',/소화기|소화/],['경보설비','작동 정상',/경보|감지|비상벨/]]],
+     ['저장·관리',[['표지·게시판','“위험물 옥내저장소” 표지, 유별·품명·최대수량·안전관리자 게시',/표지|게시판/],['유별·품명 구분 저장','혼재 금지 준수, 품명별 구분',/유별|혼재|구분/],['용기 적재 높이','3m 이하 (기계 하역 6m·제3·4석유류 4m)',/적재|높이|쌓/],['용기 밀폐·누설','마개 닫힘, 누설·변형 없음',/용기|누설|마개|샘/],['저장 수량','허가 수량(지정수량 배수) 이내',/수량|배수|지정\s*수량/],['주변 화기·적치','주변 화기 금지, 가연물 적치 없음',/화기|가연물|적치/]]]],
+  m:[['tp','저장소 실내 온도','℃',null,55,'수납 위험물 55℃ 이하',/실내\s*온도|저장소\s*온도/,'','',  '불량'],['qx','저장량 (지정수량 배수)','배',null,null,'허가 배수 이내',/지정\s*수량\s*배수|배수/]]},
+ {id:'elev',n:'승강기',ico:'🛗',t:'승강기 운행관리 점검 일지',role:/승강기/,law:'승강기 안전관리법 제31조(자체점검 월 1회 이상 · 10일 이내 승강기안전종합정보망 입력)',cyc:'운행 일상점검 매일 · 자체점검 월 1회',keep:'',tx:'fac|승강기|자체점검',
+  g:[['운행 상태',[['운행·착상','층 정지·착상 단차, 이상 소음·진동 없음',/운행|착상|단차|소음|진동/],['승강장·카 도어','개폐 원활, 문닫힘 안전장치 작동',/도어|문/],['호출·표시','버튼·층 표시등 정상',/버튼|표시등|호출/],['비상통화장치','통화 시험(관리실 연결)',/비상\s*통화|인터폰/],['카 내부','조명·환기팬·비상조명',/조명|환기|팬/]]],
+     ['기계실·화물용',[['기계실','온도·청결, 출입문 잠금, 소화기',/기계실/],['화물용 적재','정격하중 이내, 지게차 진입 금지 표시',/화물|적재|하중|지게차/],['구출 장비','비상 열쇠·구출 절차 비치',/열쇠|구출/]]],
+     ['법정 관리',[['검사합격·준수사항 게시','검사합격증명서·이용자 준수사항 부착',/합격|준수|부착/],['월 자체점검','유지관리업체 점검·정보망 입력(10일 이내) 확인',/자체\s*점검|정보망|유지\s*관리/],['정기검사','유효기간 확인',/정기\s*검사|유효/]]]],
+  m:[['no','점검 호기','',null,null,'예) 1호기(승객용), 2호기(화물용)',/호기/,'','t'],['mt','기계실 온도','℃',null,40,'40℃ 이하',/기계실\s*온도/]]},
+ {id:'env',n:'환경',ico:'🌫',t:'대기배출시설·방지시설 운영 일지',role:/환경기술인/,law:'대기환경보전법 제31조(배출시설·방지시설 운영) · 제39조(자가측정)',cyc:'가동일마다 운영 기록 · 자가측정은 사업장 종별 주기(4·5종 반기 1회)',keep:'',tx:'fac|환경|대기 자가측정',env:1,
+  g:[['배출시설',[['배출시설 가동','가동 호기·이상 운전 없음 (사출·인쇄·증착·코팅)',/배출\s*시설|가동/],['원료·연료 사용','도료·잉크·시너 사용량 기록',/사용량|원료|연료|도료|잉크|시너/]]],
+     ['방지시설',[['송풍기','작동·이상음·벨트 장력',/송풍기|벨트/],['흡착탑(활성탄)','차압·교체 주기 준수',/활성탄|흡착/],['전처리 필터','막힘·교체',/필터|여과/],['후드·덕트','흡인 상태·누설·파손',/후드|덕트/],['배출구','이상 배출(악취·연기) 없음, 측정구 상태',/배출구|굴뚝|연돌|악취|측정구/],['적산전력계','방지시설 가동시간 기록과 일치',/적산|전력계/]]],
+     ['기타',[['비산먼지·악취','야적·분진·악취 민원 없음',/비산|먼지|분진|민원/],['폐수·우수','유출·우수관 오염 없음',/폐수|우수|유출/,'H'],['자가측정·보고','측정 일정·결과 보관',/자가\s*측정/]]]],
+  m:[['eh','배출시설 가동시간','h',null,null,'',/배출\s*시설\s*가동/],['ph','방지시설 가동시간','h',null,null,'배출시설 가동시간 이상',/방지\s*시설\s*가동/],['dp','흡착탑 차압','mmAq',null,null,'평소 값·교체 기준과 비교',/차압/],['fa','송풍기 전류','A',null,null,'정격 대비',/송풍기\s*전류/],['ac','활성탄 최근 교체일','',null,null,'교체 주기 확인',/활성탄\s*교체/,'','t'],['us','원료 사용량','',null,null,'예) 도료 20L, 시너 10L',/원료\s*사용량/,'','t']]},
+ {id:'waste',n:'폐기물(일반/지정)',ico:'♻',t:'폐기물 관리 일지 (일반·지정)',role:/폐기물/,law:'폐기물관리법 제17조(사업장폐기물 배출자) · 제18조(올바로 인계)',cyc:'배출·반출할 때 기록 · 지정폐기물 보관 45일/60일 이내',keep:'관리대장·인계서 3년 보존',tx:'fac|환경|폐기물 처리·신고',w:1,
+  g:[['보관장소',[['보관장소 표지판','종류·보관기간·관리책임자 표시',/표지판|표지/],['지붕·바닥·덮개','빗물 유입·침출수 방지',/지붕|바닥|덮개|침출|빗물/],['종류별 분리 보관','혼합 보관 없음',/분리|혼합/],['지정폐기물 용기','밀폐·누출 방지턱·라벨',/용기|누출|방지턱|드럼/]]],
+     ['처리',[['보관 기간','지정폐기물 45일(폐유·폐유기용제·폐흡착제 등)·60일 이내 반출',/보관\s*기간|기간/],['올바로 인계서','반출 시 인계서 입력·확인',/올바로|인계/],['위탁 처리업체','허가증·위탁계약 유효',/업체|계약|허가/],['폐합성수지 재활용','사출·블로우 스크랩 분리·재활용',/스크랩|재활용|합성수지|불량품/,'AG']]]],
+  m:[]},
+ {id:'bldg',n:'건축물관리자',ico:'🏢',t:'건축물 유지관리 점검 일지',role:/건축물/,law:'건축물관리법 제4조(관리자 책무) · 제13조(정기점검 — 대상 건축물: 사용승인 5년 이내 최초, 3년마다)',cyc:'일상점검 월 1회 이상(사내 기준)',keep:'',tx:'fac|건축·영선|',
+  g:[['구조·외부',[['기둥·보·벽체','균열·처짐·철근 노출 없음',/기둥|벽체|균열|처짐|철근/],['외벽 마감·간판','탈락·들뜸 위험 없음',/외벽|마감|간판|탈락|들뜸/],['지붕·옥상','방수층 손상·배수구(루프드레인) 막힘 없음',/지붕|옥상|방수|드레인|배수구/],['창호·출입문·셔터','개폐·잠금·파손',/창호|창문|출입문|셔터|도어/]]],
+     ['내부·피난',[['계단·난간','파손·흔들림·미끄럼',/계단|난간/],['바닥·천장','파손, 누수 흔적, 천장재 처짐',/바닥|천장|천정|누수/],['무단 증축·용도변경','칸막이·증축·용도변경 없음',/증축|용도|칸막이|가설/]]],
+     ['외곽·부대',[['주차장·도로·배수로','포장 파손·배수 막힘',/주차장|도로|배수로|맨홀/],['담장·옹벽·조경','기울어짐·균열·수목 전도 위험',/담장|옹벽|조경|수목/],['침수 대비','배수펌프·차수판 상태',/침수|차수|배수\s*펌프|지하/]]],
+     ['법정',[['정기점검 일정','대상 건축물 정기점검 시기 확인',/정기\s*점검/]]]],
+  m:[]},
+ {id:'mech',n:'기계설비',ico:'⚙',t:'기계설비 유지관리 점검 일지',role:/기계설비/,law:'기계설비법 제17조 · 「기계설비 유지관리기준」',cyc:'유지관리점검 반기 1회 이상 · 성능점검 연 1회',keep:'성능점검 기록 10년 보존',tx:'fac|기계설비·공조|',
+  g:[['냉각·열원 (금형 냉각)',[['칠러(냉동기)','냉수 온도·압력, 이상음·경보',/칠러|냉동기/],['냉각탑','팬·수위·스케일, 수처리(레지오넬라)',/냉각탑/],['냉각수 펌프·배관','누수·진동·보온',/냉각수|순환\s*펌프/]]],
+     ['압축공기',[['공기압축기','토출 압력·오일·온도·이상음',/콤프레샤|컴프레서|컴프레샤|압축기/],['에어 드라이어·드레인','이슬점·자동 드레인 작동',/드라이어|드레인|이슬점/],['공기탱크·안전밸브','안전밸브·압력계 정상',/공기\s*탱크|안전\s*밸브|리시버/]]],
+     ['공조·환기',[['냉난방기·공조기','필터·벨트·작동',/공조|에어컨|냉난방|필터|AHU/i],['급배기 팬·덕트','작동·소음',/급배기|환기|팬|덕트/]]],
+     ['급배수·위생',[['저수조·급수펌프','수위·잠금·청결 (청소 반기 1회)',/저수조|물탱크|급수/],['배수·오수 펌프','작동·막힘',/배수|오수/],['위생기구','누수·작동',/화장실|위생|세면대|변기|소변기/]]],
+     ['가스·보일러',[['가스설비','누설 검사·차단밸브',/가스/],['보일러·온수기','압력·온도·안전장치',/보일러|온수/]]]],
+  m:[['cp','압축기 토출 압력','kgf/㎠',5,9.5,'설정 압력 범위 (보통 6~8)',/토출\s*압력|압축기\s*압력|에어\s*압력/],['cw','칠러 냉수 출구 온도','℃',5,20,'금형 냉각 설정값과 비교',/냉수\s*(?:출구)?\s*온도|칠러\s*온도/],['ct','냉각탑 수온','℃',null,37,'37℃ 이하',/냉각탑\s*수온|냉각수\s*온도/],['wl','저수조 수위','%',30,null,'30% 이상',/저수조\s*수위|수위/]]},
+ {id:'ict',n:'정보통신',ico:'📡',t:'정보통신설비 유지보수·관리 점검 일지',role:/정보통신/,law:'정보통신공사업법 · 「정보통신설비 유지보수·관리기준」(연면적 기준 단계 적용)',cyc:'유지보수·관리 점검 반기 1회 이상 · 성능점검 연 1회',keep:'성능점검표 5년 보존',tx:'fac|보안·통신|',
+  g:[['통신실·전원',[['통신실(MDF·IDF)','온·습도, 청결, 출입 잠금',/통신실|MDF|IDF|전산실|서버실/],['랙·배선','케이블 정리·라벨·손상',/랙|배선|케이블|패치/],['UPS·전원','부하·배터리·경보',/UPS|전원/i]]],
+     ['네트워크·서버',[['인터넷 회선·라우터','접속·속도',/인터넷|회선|라우터/],['스위치·무선 AP','포트·링크 상태',/스위치|와이파이|무선|AP(?![a-z])/],['방화벽·백업','보안 로그·백업 완료 (서버·ERP)',/방화벽|백업|서버|ERP/i]]],
+     ['영상·출입·방송',[['CCTV','카메라 화면·녹화·시간 동기',/CCTV|녹화|카메라/i],['출입통제','카드리더·출입문 연동',/출입|카드|지문/],['전화(교환기·내선)','통화 상태',/전화|교환기|내선/],['방송음향','비상방송 연동·스피커',/방송|스피커|앰프/]]],
+     ['법정',[['유지보수·관리자·성능점검','대상(연면적 기준) 여부·점검 일정',/선임|성능\s*점검/]]]],
+  m:[['rt','통신실 온도','℃',18,27,'18~27℃',/통신실\s*온도|서버실\s*온도/],['rh','통신실 습도','%',20,70,'20~70%',/습도/],['ul','UPS 부하율','%',null,80,'80% 이하',/UPS\s*부하|부하율/i],['cd','CCTV 녹화 보관 일수','일',null,null,'회사 방침 일수',/녹화\s*(?:보관)?\s*일수|보관\s*일수/]]}];
+const SF_WK=[['일반','일반'],['지정45','지정 (45일)'],['지정60','지정 (60일)']];
+const sfT=id=>SF_T.find(t=>t.id===id)||null;
+const sfCode=site=>/안양/.test(site||'')?'A':/군포/.test(site||'')?'G':/화성/.test(site||'')?'H':'';
+const sfOn=(s,site)=>{const c=sfCode(site);return !s||!c||s.includes(c);};
+function sfItems(T,site){const out=[];T.g.forEach(([g,L],gi)=>L.forEach(([n,c,re,s],ii)=>{if(sfOn(s,site))out.push({id:`${gi}.${ii}`,g,n,c,re});}));return out;}
+function sfMeas(T,site){return T.m.filter(m=>sfOn(m[7],site)).map(([k,l,u,lo,hi,c,re,s,ty,sev])=>({k,l,u,lo,hi,c,re,t:ty==='t',sev:sev||'주의'}));}
+function sfSeon(T,site){try{const o=typeof orgCur==='function'?orgCur():S.org;const L=(o&&o.seon&&o.seon[site])||[];return L.filter(x=>T.role.test(x.role||'')).map(x=>`${x.role} ${x.who}${x.note?` (${x.note})`:''}`).join(' · ').slice(0,160);}catch{return '';}}
+function sfWaste(site){const c=sfCode(site);const R=(n,k)=>({n,k,s:'',q:'',o:'',v:''});
+  if(c==='A')return [R('폐합성수지 (사출·블로우 스크랩)','일반'),R('폐지·포장재','일반'),R('폐유 (설비 윤활유·작동유)','지정45'),R('폐흡착제 (오일 걸레·흡착포)','지정45')];
+  if(c==='G')return [R('폐합성수지 (사출 스크랩)','일반'),R('폐지·포장재','일반'),R('폐유기용제 (인쇄 세척 시너)','지정45'),R('폐잉크·폐페인트','지정60'),R('폐유 (설비 윤활유)','지정45')];
+  if(c==='H')return [R('폐도료·코팅 찌꺼기','지정60'),R('폐유기용제 (시너)','지정45'),R('폐활성탄 (방지시설 — 지정 여부 확인)','지정45'),R('폐지·포장재','일반')];
+  return [R('폐합성수지','일반'),R('폐지·포장재','일반'),R('폐유','지정45'),R('폐유기용제','지정45')];}
+const sfNum=v=>{const x=parseFloat(String(v||'').replace(/,/g,'').replace(/[^\d.\-]/g,''));return isFinite(x)?x:null;};
+function sfJudge(m,v){if(m.t||v===''||v==null)return '';const x=sfNum(v);if(x==null)return '';if((m.lo!=null&&x<m.lo)||(m.hi!=null&&x>m.hi))return m.sev;return (m.lo!=null||m.hi!=null)?'양호':'';}
+function sfWJudge(w,date){if(!/^지정/.test(w.k)||!isDate(w.s))return {j:'',txt:''};const lim=w.k==='지정60'?60:45;const days=Math.round((new Date(date)-new Date(w.s))/864e5);
+  if(days<0)return {j:'',txt:''};const left=lim-days;return {j:left<0?'불량':left<=7?'주의':'양호',txt:left<0?`${days}일 — 기한 ${-left}일 초과`:`${days}일 / 기한 ${lim}일 (남은 ${left}일)`};}
+
+/* ── 입력 화면 (서류 종류에서 🦺 안전관리 일지를 고르면) */
+function sfFormHTML(d){return `<section class="il-sec sf-sec" id="sf-box">${sfInner(d)}</section>`;}
+function sfInner(d){const site=d.site;
+  if(!d.sf||!sfT(d.sf))return `<h3>🦺 안전관리 일지 <small>일지 종류를 고르세요 · ${esc(site||'')} 선임 현황은 조직도에서 가져옵니다</small></h3>
+    <div class="sf-pick">${SF_T.map(T=>{const sn=sfSeon(T,site);return `<button type="button" class="sf-card" data-sf-t="${T.id}"><span class="sf-ico">${T.ico}</span><b>${esc(T.n)}</b><small>${esc(T.t)}</small><i>${esc(T.cyc)}</i>${sn?`<em>${esc(sn)}</em>`:'<em class="sf-none">이 사업장 선임 정보 없음</em>'}</button>`;}).join('')}</div>`;
+  const T=sfT(d.sf);const items=sfItems(T,site);const M=sfMeas(T,site);const sn=sfSeon(T,site);const R=d.sfr||{};
+  let gi='';const rows=items.map(it=>{const r=R[it.id]||{};const gh=it.g!==gi?(gi=it.g,`<tr class="sf-gh"><th colspan="2">${esc(it.g)}</th></tr>`):'';
+    return `${gh}<tr data-sf-i="${it.id}"><td class="sf-it"><b>${esc(it.n)}</b><small>${esc(it.c)}</small></td><td class="sf-rc"><div class="sf-seg" role="group" aria-label="${esc(it.n)} 결과">${SF_RES.map(x=>`<button type="button" data-sf-r="${x}" aria-pressed="${r.r===x}">${x}</button>`).join('')}</div><input class="sf-a" data-sf-a="${it.id}" maxlength="80" placeholder="조치 사항 (불량·주의일 때)" value="${esc(r.a||'')}"></td></tr>`;}).join('');
+  const ms=M.length?`<h4 class="sf-h4">측정 기록 <small>기준을 벗어나면 서류에 「주의」로 적힙니다</small></h4><div class="sf-ms">${M.map(m=>{const v=(d.sfm||{})[m.k]||'';const j=sfJudge(m,v);return `<label class="sf-m"><span>${esc(m.l)}</span><span class="sf-mi"><input data-sf-m="${m.k}" ${m.t?'':'inputmode="decimal"'} maxlength="${m.t?60:12}" value="${esc(v)}" class="${j&&j!=='양호'?'sf-out':''}">${m.u?`<i>${esc(m.u)}</i>`:''}</span>${m.c?`<small>${esc(m.c)}</small>`:''}</label>`;}).join('')}</div>`:'';
+  const W=T.w?`<h4 class="sf-h4">폐기물 보관·반출 <small>지정폐기물은 보관 시작일을 넣으면 기한(45일·60일)을 계산합니다</small><button type="button" class="btn sm ghost" data-sf-wadd>＋ 줄 추가</button></h4><div class="sf-wt"><table><thead><tr><th>폐기물 종류</th><th style="width:118px">구분</th><th style="width:140px">보관 시작일</th><th style="width:82px">보관량(kg)</th><th style="width:82px">반출량(kg)</th><th>처리업체·인계번호</th><th style="width:34px"></th></tr></thead><tbody>${(d.sfw||[]).map((w,i)=>`<tr data-sf-w="${i}"><td><input data-wf="n" maxlength="40" value="${esc(w.n)}"></td><td><select data-wf="k">${SF_WK.map(([k,l])=>`<option value="${k}" ${w.k===k?'selected':''}>${l}</option>`).join('')}</select></td><td><input type="date" data-wf="s" value="${esc(w.s)}"></td><td><input data-wf="q" inputmode="decimal" maxlength="10" value="${esc(w.q)}"></td><td><input data-wf="o" inputmode="decimal" maxlength="10" value="${esc(w.o)}"></td><td><input data-wf="v" maxlength="50" value="${esc(w.v)}"></td><td><button type="button" class="icon-btn" data-sf-wdel="${i}" aria-label="줄 빼기">✕</button></td></tr>`).join('')}</tbody></table></div>`:'';
+  return `<h3>${T.ico} ${esc(T.t)} <button type="button" class="btn sm ghost" data-sf-chg>종류 바꾸기</button></h3>
+    <p class="sf-law">근거 ${esc(T.law)} · 주기 ${esc(T.cyc)}${T.keep?` · ${esc(T.keep)}`:''}</p>${sn?`<p class="sf-seon">선임(관리)자 ${esc(sn)}</p>`:''}
+    <div class="sf-tools"><button type="button" class="btn sm" data-sf-allok>✓ 빈 칸 모두 양호</button><span class="sf-cnt" id="sf-cnt">${sfCountTxt(d)}</span></div>
+    <table class="sf-tbl"><tbody>${rows}</tbody></table>${ms}${W}`;}
+function sfCountTxt(d){const T=sfT(d.sf);if(!T)return '';const items=sfItems(T,d.site);const R=d.sfr||{};const c={};for(const it of items){const r=(R[it.id]||{}).r||'';c[r]=(c[r]||0)+1;}
+  return `${items.length}개 항목 · 양호 ${c['양호']||0} · 주의 ${c['주의']||0} · 불량 ${c['불량']||0} · 해당 없음 ${c['해당 없음']||0} · 빈 칸 ${c['']||0}`;}
+function sfRefresh(){const b=$('#sf-box');if(b&&IL.d)b.innerHTML=sfInner(IL.d);}
+function sfRead(d){if(!d||!$('#sf-box'))return;d.sfr=d.sfr||{};d.sfm=d.sfm||{};
+  for(const a of $$('#sf-box [data-sf-a]')){const id=a.dataset.sfA;const r=d.sfr[id]||{};r.a=a.value.trim().slice(0,80);d.sfr[id]=r;}
+  for(const m of $$('#sf-box [data-sf-m]'))d.sfm[m.dataset.sfM]=m.value.trim().slice(0,60);
+  const rows=$$('#sf-box [data-sf-w]');if(rows.length||(d.sfw&&d.sfw.length&&$('#sf-box .sf-wt')))d.sfw=rows.map(tr=>{const g=f=>{const el=$(`[data-wf="${f}"]`,tr);return el?el.value.trim().slice(0,50):'';};return {n:g('n'),k:SF_WK.some(x=>x[0]===g('k'))?g('k'):'일반',s:isDate(g('s'))?g('s'):'',q:g('q'),o:g('o'),v:g('v')};});}
+document.addEventListener('click',e=>{const T=e.target;if(!T||!T.closest||!T.closest('#dlg-ilbo')||!IL.d||IL.step!=='in')return;const d=IL.d;
+  const c=T.closest('[data-sf-t]');if(c){ilReadIn();const was=d.sf;d.sf=c.dataset.sfT;d.kind='safe';if(was!==d.sf){d.sfr={};d.sfm={};}if(sfT(d.sf).w&&!(d.sfw&&d.sfw.length))d.sfw=sfWaste(d.site);IL.dirty=true;sfRefresh();ilSave();const b=$('#sf-box');if(b)b.scrollIntoView({block:'start',behavior:'smooth'});return;}
+  if(T.closest('[data-sf-chg]')){ilReadIn();d.sf='';sfRefresh();ilSave();return;}
+  const rb=T.closest('[data-sf-r]');if(rb){const tr=rb.closest('[data-sf-i]');if(!tr)return;ilReadIn();const id=tr.dataset.sfI;const r=d.sfr[id]||{};r.r=r.r===rb.dataset.sfR?'':rb.dataset.sfR;d.sfr[id]=r;
+    for(const b of $$('[data-sf-r]',tr))b.setAttribute('aria-pressed',String(b.dataset.sfR===r.r));const cn=$('#sf-cnt');if(cn)cn.textContent=sfCountTxt(d);IL.dirty=true;ilSave();return;}
+  if(T.closest('[data-sf-allok]')){ilReadIn();const Tt=sfT(d.sf);if(!Tt)return;let n=0;for(const it of sfItems(Tt,d.site)){const r=d.sfr[it.id]||{};if(!r.r){r.r='양호';n++;}d.sfr[it.id]=r;}sfRefresh();IL.dirty=true;ilSave();toast(n?`빈 칸 ${n}개를 「양호」로 채웠습니다. 다른 결과는 눌러서 바꾸세요.`:'빈 칸이 없습니다.');return;}
+  if(T.closest('[data-sf-wadd]')){ilReadIn();d.sfw=d.sfw||[];if(d.sfw.length>=12){toast('폐기물은 12줄까지 적습니다.','err');return;}d.sfw.push({n:'',k:'일반',s:'',q:'',o:'',v:''});sfRefresh();ilSave();return;}
+  const wd=T.closest('[data-sf-wdel]');if(wd){ilReadIn();d.sfw.splice(+wd.dataset.sfWdel,1);sfRefresh();ilSave();return;}});
+document.addEventListener('input',e=>{const T=e.target;if(!T||!T.matches||!T.matches('#sf-box [data-sf-m]')||!IL.d)return;const Tt=sfT(IL.d.sf);if(!Tt)return;const m=sfMeas(Tt,IL.d.site).find(x=>x.k===T.dataset.sfM);if(!m)return;const j=sfJudge(m,T.value);T.classList.toggle('sf-out',!!j&&j!=='양호');});
+
+/* ── 자동 완성: 점검표 + 메모 → 안전관리 일지 서류 */
+function sfBuild(d,G){const T=sfT(d.sf);const site=G.site||d.site||'';const items=sfItems(T,site);const M=sfMeas(T,site);d.sfr=d.sfr||{};d.sfm=d.sfm||{};
+  const R={};for(const it of items){const r=d.sfr[it.id]||{};R[it.id]={r:r.r||'',a:r.a||'',x:'',m:0};}
+  const memo=String(d.memo||'');const extra=[];
+  for(const it of G.items){const full=`${it.loc} ${it.text} ${it.act}`.trim();
+    if(M.some(m=>m.re&&m.re.test(full)&&/\d/.test(full)))continue;
+    const hit=sfMatch(items.filter(x=>!R[x.id].m),full);
+    if(hit){const r=R[hit.id];r.m=1;if(it.res&&(!r.r||r.r==='양호'))r.r=it.res;if(it.act&&!r.a)r.a=it.act.slice(0,80);if(it.res==='불량'||it.res==='주의')r.x=[it.loc,it.text].filter(Boolean).join(' ').slice(0,80);continue;}
+    if(IL_ROUND.test(full)&&it.res!=='불량'&&it.res!=='주의'&&!it.act)continue;extra.push(it);}
+  if(G.gok)for(const id in R)if(!R[id].r)R[id].r='양호';
+  for(const it of items)d.sfr[it.id]={r:R[it.id].r,a:R[it.id].a};
+  const MV=M.map(m=>{let v=String(d.sfm[m.k]||'').trim();if(!v&&m.re&&!m.t){const mm=memo.match(new RegExp('(?:'+m.re.source+')[^\\d\\n\\-]{0,10}(-?\\d+(?:[.,]\\d+)?)',m.re.flags.replace('g','')));if(mm){v=mm[1].replace(',','.');d.sfm[m.k]=v;}}
+    return {...m,v,j:sfJudge(m,v),x:''};});
+  if(T.env){const eh=MV.find(m=>m.k==='eh'),ph=MV.find(m=>m.k==='ph');const a=eh&&sfNum(eh.v),b=ph&&sfNum(ph.v);if(a!=null&&b!=null){ph.j=b<a?'불량':'양호';if(b<a)ph.x='방지시설을 배출시설보다 짧게 가동 — 대기환경보전법 제31조 확인';}}
+  const W=T.w?(d.sfw||[]).filter(w=>w.q||w.o||w.v||w.s).map(w=>({...w,...sfWJudge(w,d.date)})):[];
+  const cnt={양호:0,주의:0,불량:0,'해당 없음':0,'':0};for(const it of items)cnt[R[it.id].r]=(cnt[R[it.id].r]||0)+1;
+  const mOut=MV.filter(m=>m.j&&m.j!=='양호');const wOut=W.filter(w=>w.j&&w.j!=='양호');
+  const td=(x,c)=>`<td${c?` class="${c}"`:''}>${esc(x||'')}</td>`;const sn=sfSeon(T,site);
+  const wk=(G.workers.length?[...new Set(G.workers)].join(', '):'')||ilWriter();
+  let h=`<table class="ap-il-info"><tbody><tr><th>점검 일자</th>${td(ilDate(d.date))}<th>사업장</th>${td(site)}</tr><tr><th>점검 시간</th>${td(G.time)}<th>점검자</th>${td(wk)}</tr>${sn?`<tr><th>선임(관리)자</th><td colspan="3">${esc(sn)}</td></tr>`:''}${d.eq&&typeof eqLabel==='function'&&eqLabel(d.eq)?`<tr><th>대상 설비</th>${td(eqLabel(d.eq))}<th>설비 번호</th>${td(d.eq)}</tr>`:''}</tbody></table>`;
+  h+=`<p class="ap-il-law">근거 ${esc(T.law)} · 주기 ${esc(T.cyc)}${T.keep?` · ${esc(T.keep)}`:''}</p>`;
+  let n=0;const sec=t=>`<h2 class="ap-il-h">${++n}. ${esc(t)}</h2>`;
+  const nb=cnt['불량'],nw=cnt['주의'];const s1=`${site&&site!=='전사'?site+' ':''}${T.n} 점검 ${items.length}개 항목 — 양호 ${cnt['양호']}, 주의 ${nw}, 불량 ${nb}${cnt['해당 없음']?`, 해당 없음 ${cnt['해당 없음']}`:''}${cnt['']?`, 미기록 ${cnt['']}`:''}.`;
+  const s2=nb+nw?' 불량·주의 항목은 조치가 필요합니다.':cnt['']?'':' 모두 양호합니다.';
+  const mv=MV.filter(m=>m.v).length;const s3=mv?` 측정 ${mv}건 기록${mOut.length?`(기준 벗어남 ${mOut.length}건)`:''}.`:'';const s4=W.length?` 폐기물 ${W.length}종 기록${wOut.length?`(보관 기한 확인 ${wOut.length}건)`:''}.`:'';
+  const np=ilPhs(d).length;h+=sec('점검 개요')+`<p class="ap-il-sum">${esc(s1+s2+s3+s4+(np?` 현장 사진 ${np}장을 붙입니다.`:''))}</p>`;
+  let rows='',k=0;const groups=[...new Set(items.map(i=>i.g))];
+  for(const g of groups){const L=items.filter(i=>i.g===g);L.forEach((it,i)=>{const r=R[it.id];k++;rows+=`<tr><td class="ap-il-no">${k}</td>${i===0?`<td class="ap-il-grp" rowspan="${L.length}">${esc(g)}</td>`:''}<td class="ap-il-it">${esc(it.n)}</td><td class="ap-il-crit">${esc(r.x?`${it.c} — ${r.x}`:it.c)}</td><td class="ap-il-res ${ilResC(r.r)}">${esc(r.r)}</td><td class="ap-il-act">${esc(r.a)}</td></tr>`;});}
+  h+=sec('점검 결과')+`<table class="ap-il-items ap-il-sf"><thead><tr><th style="width:6%">No</th><th style="width:13%">구분</th><th style="width:19%">점검 항목</th><th>점검 기준</th><th style="width:9%">결과</th><th style="width:20%">조치 사항</th></tr></thead><tbody>${rows}</tbody></table>`;
+  if(MV.length)h+=sec('측정 기록')+`<table class="ap-il-items ap-il-sfm"><thead><tr><th style="width:6%">No</th><th style="width:27%">측정 항목</th><th style="width:20%">측정값</th><th>기준</th><th style="width:9%">판정</th></tr></thead><tbody>${MV.map((m,i)=>`<tr><td class="ap-il-no">${i+1}</td><td class="ap-il-it">${esc(m.l)}</td><td class="ap-il-no">${esc(m.v?`${m.v}${m.u?' '+m.u:''}`:'')}</td><td class="ap-il-crit">${esc(m.x||m.c)}</td><td class="ap-il-res ${ilResC(m.j)}">${esc(m.j)}</td></tr>`).join('')}</tbody></table>`;
+  if(T.w)h+=sec('폐기물 보관·반출 현황')+`<table class="ap-il-items ap-il-sfw"><thead><tr><th style="width:5%">No</th><th>폐기물 종류</th><th style="width:10%">구분</th><th style="width:12%">보관 시작일</th><th style="width:17%">경과 / 기한</th><th style="width:13%">보관·반출(kg)</th><th style="width:17%">처리업체·인계번호</th><th style="width:8%">판정</th></tr></thead><tbody>${W.length?W.map((w,i)=>`<tr><td class="ap-il-no">${i+1}</td><td class="ap-il-it">${esc(w.n)}</td><td class="ap-il-no">${esc((SF_WK.find(x=>x[0]===w.k)||['',''])[1])}</td><td class="ap-il-no">${esc(w.s?fmtYMD(w.s):'')}</td>${td(w.txt)}<td class="ap-il-no">${esc([w.q,w.o].some(Boolean)?`${w.q||0} / ${w.o||0}`:'')}</td>${td(w.v)}<td class="ap-il-res ${ilResC(w.j)}">${esc(w.j)}</td></tr>`).join(''):'<tr><td class="ap-il-no">1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>'}</tbody></table>`;
+  const notes=[];for(const it of items){const r=R[it.id];if(r.r==='불량'||r.r==='주의')notes.push(`<li>${esc(`[${r.r}] ${it.n}${r.x?` — ${r.x}`:''} → ${r.a||'조치 필요'}`)}</li>`);}
+  for(const m of mOut)notes.push(`<li>${esc(`[측정 ${m.j}] ${m.l} ${m.v}${m.u?' '+m.u:''} — ${m.x||'기준 '+m.c}`)}</li>`);
+  for(const w of wOut)notes.push(`<li>${esc(`[폐기물 ${w.j}] ${w.n} — ${w.txt}`)}</li>`);
+  for(const it of extra)notes.push(`<li>${esc(`[기타] ${[it.loc,it.text].filter(Boolean).join(' ')}${it.res?` (${it.res})`:''}${it.act?` → ${it.act}`:''}`)}</li>`);
+  for(const x of G.notes.filter(x=>!G.follow.includes(x)))notes.push(`<li>${esc(x)}</li>`);
+  for(const x of G.follow)notes.push(`<li class="ap-il-fol">후속 조치: ${esc(x)}</li>`);
+  if(G.mats.length)notes.push(`<li>${esc('사용 자재: '+G.mats.map(m=>[m.name,m.qty].filter(Boolean).join(' ')).join(', '))}</li>`);
+  h+=sec('조치 · 특이사항')+(notes.length?`<ul class="ap-il-notes">${notes.join('')}</ul>`:'<p class="ap-il-none">특이사항 없음</p>');
+  const fol=[...G.follow];for(const it of items){const r=R[it.id];const key=it.n.replace(/\(.*?\)/g,'').split('·')[0].trim();if(r.r==='불량'&&!/완료|조치함|교체함|수리함/.test(r.a)&&!fol.some(f=>f.includes(key)))fol.push(`${T.n} ${it.n} ${r.a||'조치 필요'}`.slice(0,100));}
+  for(const w of wOut)if(w.j==='불량')fol.push(`${w.n} 반출 (보관 기한 초과)`);
+  d.gk='safe';d.docTitle=T.t;d.body=h;d.fol=[...new Set(fol.map(x=>x.trim()).filter(Boolean))].slice(0,8);
+  const tx=sfTx(d);d.fld={sub:tx.sub,leaf:tx.leaf};
+  if(!d.path||!d.title)d.title=`${T.t}: ${site&&site!=='전사'?site+' ':''}— ${nb+nw+mOut.length+wOut.length?`불량·주의 ${nb+nw+mOut.length+wOut.length}건`:cnt['']===items.length?'점검 기록':'이상 없음'}`.replace(': — ',': ').slice(0,100);}
+/* 메모 한 줄 → 가장 알맞은 항목: 항목 이름(· 앞뒤 낱말)이 그대로 들어 있으면 먼저, 아니면 낱말이 가장 길게 맞는 항목 */
+function sfMatch(items,full){let best=null,bs=0;for(const x of items){let sc=0;
+    for(const w of x.n.replace(/\(.*?\)/g,'').split(/[·\s]+/).filter(w=>w.length>=2))if(full.includes(w))sc=Math.max(sc,100+w.length);
+    if(x.re){const m=full.match(x.re);if(m)sc=Math.max(sc,m[0].length);}
+    if(sc>bs){bs=sc;best=x;}}return best;}
+function sfTx(d){const T=sfT(d.sf);const [cat,sub,leaf]=(T?T.tx:'fac|시설 행정|시설점검일지').split('|');return {cat,sub,leaf:leaf||''};}
+function sfDesc(d){const box=document.createElement('div');box.innerHTML=d.body||'';const T=sfT(d.sf);const out=[`[안전관리 일지] ${T?T.t:d.docTitle} ${fmtYMD(d.date)} ${d.site||''}`.trim()];
+  const info=$('.ap-il-info',box);if(info){const tm=[...info.querySelectorAll('th')].find(th=>/시간/.test(th.textContent));const v=tm&&tm.nextElementSibling&&tm.nextElementSibling.textContent.trim();if(v)out[0]+=' · '+v;}
+  for(const p of $$('p.ap-il-sum',box))out.push(p.textContent.trim());
+  for(const tr of $$('table.ap-il-sf tbody tr',box)){const res=($('td.ap-il-res',tr)||{}).textContent||'';if(!/불량|주의/.test(res))continue;const it=($('td.ap-il-it',tr)||{}).textContent||'';const a=($('td.ap-il-act',tr)||{}).textContent||'';out.push(`- ${it.trim()}: ${res.trim()}${a.trim()?` → ${a.trim()}`:''}`);}
+  const ms=$$('table.ap-il-sfm tbody tr',box).map(tr=>{const c=[...tr.cells].map(x=>x.textContent.trim());return c[2]?`${c[1]} ${c[2]}${c[4]?`(${c[4]})`:''}`:'';}).filter(Boolean);if(ms.length)out.push('측정: '+ms.join(', '));
+  const ws=$$('table.ap-il-sfw tbody tr',box).map(tr=>{const c=[...tr.cells].map(x=>x.textContent.trim());return c[1]?`${c[1]}${c[5]?` ${c[5]}kg`:''}${c[7]?`(${c[7]})`:''}`:'';}).filter(Boolean);if(ws.length)out.push('폐기물: '+ws.join(', '));
+  for(const li of $$('ul.ap-il-notes li',box))out.push((li.classList.contains('ap-il-fol')?'▶ ':'※ ')+li.textContent.replace(/\s+/g,' ').trim());
+  const ph=ilPhs(d);if(ph.length)out.push(`사진 ${ph.length}장`);return out.join('\n');}
+window.sfApi={types:()=>SF_T.map(t=>({id:t.id,n:t.n,t:t.t})),items:(id,site)=>sfItems(sfT(id),site),meas:(id,site)=>sfMeas(sfT(id),site),seon:(id,site)=>sfSeon(sfT(id),site),waste:sfWaste,judgeW:sfWJudge};
+/* 사업장을 바꾸면 그 사업장 공정 항목·선임자로 다시 그림 (적은 결과는 그대로) */
+document.addEventListener('change',e=>{const T=e.target;if(!T||T.id!=='il-site'||!IL.d||IL.d.kind!=='safe'||IL.step!=='in')return;setTimeout(()=>{if(IL.d&&$('#sf-box'))sfRefresh();},0);});
 
 /* ───────── 시작 ───────── */
 function boot(){
