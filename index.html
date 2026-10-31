@@ -2383,14 +2383,14 @@ function qaShell(){return `<section class="qa" id="qa" aria-label="빠른 업무
   <div class="qa-top"><label class="sr" for="qa-text">업무 내용</label><textarea id="qa-text" rows="2" maxlength="600" placeholder="오늘 한 일이나 할 일을 적고 Enter&#10;예: 군포공장 소화기 42대 압력 점검, 2대 교체 요청"></textarea><button type="button" class="btn primary qa-go" id="qa-go">등록</button></div>
   <div class="qa-opts"><div class="seg" id="qa-status" role="group" aria-label="진행 상태"><button type="button" class="s-done" data-v="done">완료</button><button type="button" class="s-doing" data-v="doing">진행 중</button><button type="button" class="s-plan" data-v="plan">할 예정</button></div><button type="button" class="btn qa-priv" id="qa-priv" aria-pressed="false" hidden title="켜면 나만 보는 비공개 업무로 등록됩니다 (관리자·다른 직원에게 보이지 않음)">🔒 나만 보기</button>
     <input type="date" id="qa-date" aria-label="날짜"><select id="qa-cat" aria-label="대분류"></select><select id="qa-sub" aria-label="중분류"></select><select id="qa-leaf" aria-label="소분류"></select><span class="qa-auto" id="qa-auto" hidden></span><select id="qa-site" aria-label="사업장"></select>
-    <label class="btn file-btn" id="qa-photo-btn">${ICON.cam} 사진<input type="file" id="qa-photo" accept="image/*" multiple></label><span class="qa-files" id="qa-files"></span><label class="btn file-btn cam-only" id="qa-cam-btn">${ICON.cam} 현장 사진 기록<input type="file" id="qa-cam" accept="image/*" capture="environment"></label><button type="button" class="btn" id="qa-import">${ICON.dl} 파일·사진으로 올리기</button></div>
+    <label class="btn file-btn cam-only" id="qa-cam-btn">${ICON.cam} 현장 사진 기록<input type="file" id="qa-cam" accept="image/*" capture="environment"></label><button type="button" class="btn" id="qa-import">${ICON.dl} 파일·사진으로 올리기</button></div>
   <div class="qa-more"><p class="qa-hint">Enter를 누르면 바로 등록됩니다 (줄바꿈은 Shift+Enter). 분야는 내용을 보고 자동으로 고르니, 다르면 바꿔 주세요. 종이 업무일지 사진이나 엑셀·한글·워드·PDF 파일은 끌어다 놓아도 됩니다.</p><button type="button" class="qa-multi" id="qa-multi" hidden></button></div></section>`;}
 function qaSubs(){const auto=!S.qa.cat;$('#qa-sub').hidden=auto;$('#qa-leaf').hidden=auto;qaAutoPreview();if(auto)return;const sel=$('#qa-sub');const subs=subsOf(S.qa.cat);if(!subs.includes(S.qa.sub))S.qa.sub=subs[0];fillSelect(sel,subs.map(s=>[s,s]),S.qa.sub);qaLeaves();}
 function syncQA(){const q=S.qa;if(!$('#qa'))return;const td=today();if(!q.dateTouched)q.date=td;
   const me=S.staff[S.myStaff];const sites=[...S.config.sites];if(!q.siteTouched||!q.site)q.site=(me&&me.site)||sites[0];if(q.site&&!sites.includes(q.site))sites.push(q.site);
   fillSelect($('#qa-site'),sites.map(s=>[s,s]),q.site);$('#qa-date').value=q.date;$('#qa-cat').value=q.cat;qaSubs();
   $$('#qa-status button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===q.status));
-  $('#qa-files').textContent=q.files.length?`사진 ${q.files.length}장`:'';$('#qa-photo-btn').hidden=!(S.assets||S.preview);
+  
   $$('#qa textarea,#qa input,#qa select,#qa button').forEach(el=>el.disabled=!S.canWrite);qaPrivSync();qaMultiHint();}
 function qaMultiHint(){const b=$('#qa-multi');if(!b)return;const n=S.qa.text.split('\n').filter(l=>l.trim()).length;b.hidden=n<2;b.textContent=`여러 줄을 각각 업무로 나눠 등록 (${n}줄)`;}
 function initQA(){const q=S.qa;$('#qa-text').value=q.text;
@@ -2403,7 +2403,6 @@ function initQA(){const q=S.qa;$('#qa-text').value=q.text;
   $('#qa-cat').addEventListener('change',e=>{q.cat=e.target.value;q.catTouched=true;q.sub='';q.leaf='';qaSubs();});
   $('#qa-sub').addEventListener('change',e=>{q.sub=e.target.value;q.leaf='';q.catTouched=true;qaLeaves();});
   $('#qa-site').addEventListener('change',e=>{q.site=e.target.value;q.siteTouched=true;});
-  $('#qa-photo').addEventListener('change',e=>{q.files=Array.from(e.target.files||[]);$('#qa-files').textContent=q.files.length?`사진 ${q.files.length}장`:'';});
   $('#qa-go').addEventListener('click',submitQA);
   $('#qa-import').addEventListener('click',()=>openImport());
   $('#qa-multi').addEventListener('click',()=>{const t=$('#qa-text').value;q.text='';$('#qa-text').value='';qaMultiHint();openImport(null,t);});
