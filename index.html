@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
+<meta name="wl-build" content="1a3b46c16eb0">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#1f3a5f">
@@ -1893,12 +1894,16 @@ body.gd-mode #gd-out{height:34px}
 @media (max-width:640px){.fme-bar{position:static}.fme-bar button{padding:4px 7px;font-size:12.5px}}
 @media print{.fm-wb{background:#fff!important}}
 
-/* 48차: 「← 목록」 잘 보이게 (브라우저 ← 뒤로와 같음) */
-.btn[data-fm-close],.btn[data-ap-back],.btn[data-ap-cancel],.btn[data-eq-back]{background:#1f3a5f!important;border-color:#1f3a5f!important;color:#fff!important;font-weight:800;font-size:15px;padding:8px 18px 8px 14px;border-radius:999px;box-shadow:0 2px 6px rgba(31,58,95,.28);letter-spacing:.02em;line-height:1.2;height:auto;min-height:38px;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
-.btn[data-fm-close]:hover,.btn[data-ap-back]:hover,.btn[data-ap-cancel]:hover,.btn[data-eq-back]:hover{background:#2c5285!important;border-color:#2c5285!important;color:#fff!important}
-.btn[data-fm-close]:focus-visible,.btn[data-ap-back]:focus-visible,.btn[data-ap-cancel]:focus-visible{outline:3px solid #9cc0f5;outline-offset:2px}
-@media (max-width:640px){.btn[data-fm-close],.btn[data-ap-back],.btn[data-ap-cancel],.btn[data-eq-back]{font-size:15px;padding:8px 16px 8px 12px}}
+/* 48·49차: 「← 목록」 = 위쪽 「+ 업무 등록」과 같은 모양(.btn.primary — 남색 바탕·흰 글자·높이 34px·모서리 7px) */
+.btn[data-fm-close],.btn[data-ap-back],.btn[data-ap-cancel],.btn[data-eq-back]{background:var(--accent)!important;border-color:var(--accent)!important;color:var(--accent-ink)!important;height:34px;padding:0 14px;border-radius:7px;font-size:14px;font-weight:500;box-shadow:none;letter-spacing:normal;line-height:normal;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:none}
+.btn[data-fm-close]:hover,.btn[data-ap-back]:hover,.btn[data-ap-cancel]:hover,.btn[data-eq-back]:hover{filter:brightness(1.08);border-color:var(--accent)!important}
+.btn[data-fm-close]:focus-visible,.btn[data-ap-back]:focus-visible,.btn[data-ap-cancel]:focus-visible,.btn[data-eq-back]:focus-visible{outline:3px solid #9cc0f5;outline-offset:2px}
 @media print{.btn[data-fm-close],.btn[data-ap-back],.btn[data-ap-cancel]{display:none!important}}
+/* 49차: 새 버전 알림 띠 */
+.up-new{position:fixed;left:0;right:0;margin:0 auto;width:max-content;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:9000;display:flex;align-items:center;gap:12px;background:#fff;color:var(--ink,#17202c);border:1px solid #c9d3e0;border-left:5px solid #1f3a5f;border-radius:10px;padding:10px 10px 10px 14px;box-shadow:0 8px 28px rgba(15,23,42,.22);font-size:14px;max-width:calc(100vw - 24px)}
+.up-new .up-x{border:0;background:none;color:#6b7686;font-size:15px;cursor:pointer;padding:4px 6px}
+@media (max-width:640px){.up-new{bottom:calc(76px + env(safe-area-inset-bottom,0px));font-size:13.5px;gap:8px}}
+@media print{.up-new{display:none!important}}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -10260,6 +10265,22 @@ document.addEventListener('close',e=>{if(e.target&&e.target.tagName==='DIALOG'){
 window.addEventListener('hashchange',()=>{BK.skip=0;bkQ();});
 setTimeout(bkSync,1500);
 window.bkApi={sig:bkSig,state:bkSt,sync:bkSync};
+/* ───────── 49차: 새 버전 알림 ─────────
+   · 업무일지를 하루 종일 켜 두면 새로 올린 버전이 안 보임(새로고침해야 반영) → 화면으로 돌아올 때(최소 10분 간격)·30분마다
+     서버의 index.html 머리(앞 1KB, Range)에서 버전 표시(meta wl-build)를 읽어 지금 것과 다르면 화면 아래에 '새 버전 · 새로고침' 띠
+   · 실사용 주소(github.io)에서만 확인. 새로고침 전 작성 중 서식은 보관 */
+const WL_BUILD=(()=>{const m=document.querySelector('meta[name="wl-build"]');return m?m.content:'';})();
+const UP={shown:false,last:0};
+async function upCheck(force){if(UP.shown||!WL_BUILD)return false;if(!force&&!/\.github\.io$/.test(location.hostname))return false;const now=Date.now();if(!force&&now-UP.last<10*60*1000)return false;UP.last=now;
+  try{const r=await fetch(location.pathname+'?v='+now,{cache:'no-store',headers:{Range:'bytes=0-1023'}});if(!(r.ok||r.status===206))return false;
+    const t=(await r.text()).slice(0,4000);const m=t.match(/<meta name="wl-build" content="([0-9a-z]+)"/);if(m&&m[1]!==WL_BUILD){upShow();return true;}}catch{}return false;}
+function upShow(){if(UP.shown||$('#up-new'))return;UP.shown=true;document.body.insertAdjacentHTML('beforeend','<div class="up-new" id="up-new" role="status"><span>🔄 업무일지 <b>새 버전</b>이 나왔습니다.</span><button type="button" class="btn primary" data-up-reload>새로고침</button><button type="button" class="up-x" data-up-x aria-label="닫기" title="나중에">✕</button></div>');}
+document.addEventListener('click',e=>{const T=e.target;if(!T||!T.closest)return;
+  if(T.closest('[data-up-reload]')){try{if(typeof fmFlushDraft==='function')fmFlushDraft();}catch{}location.reload();return;}
+  if(T.closest('[data-up-x]')){const b=$('#up-new');if(b)b.remove();}});
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')upCheck();});
+setInterval(()=>upCheck(),30*60*1000);setTimeout(()=>upCheck(),90*1000);
+window.upApi={check:upCheck,show:upShow,build:WL_BUILD};
 
 /* ───────── 시작 ───────── */
 function boot(){
