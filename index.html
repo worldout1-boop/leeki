@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="wl-build" content="1abc95a0bf5d">
+<meta name="wl-build" content="630e8607eab6">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#1f3a5f">
@@ -1908,10 +1908,6 @@ body.gd-mode #gd-out{height:34px}
 .od-pre{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:9px;background:#fdf3e1;color:#8a5a00;border:1px solid #f0d49a;font-size:11.5px;font-weight:700;vertical-align:middle}
 .od-chip.me{border-style:dashed;border-color:#1f4f96}
 #qa-text{resize:none;overflow:hidden;line-height:1.5;min-height:56px;max-height:none}
-.lst-sort{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 8px;font-size:13.5px}
-.lst-sort label{display:flex;align-items:center;gap:6px;font-weight:600}
-.lst-sort select{font:inherit;padding:4px 8px;border:1px solid var(--line);border-radius:7px;background:var(--surface)}
-.lst-sort small{color:var(--ink-3)}
 .upt-ed{margin-left:auto;border:1px dashed var(--line);background:transparent;border-radius:8px;padding:5px 10px;font:inherit;font-size:13px;color:var(--ink-2);cursor:pointer}
 .upt-ed:hover{background:var(--surface-2);color:var(--ink)}
 .upt-dlg{max-width:640px;width:calc(100vw - 24px)}
@@ -1936,6 +1932,20 @@ body.gd-mode #gd-out{height:34px}
 .orgx-list li>small{grid-area:s;color:var(--ink-3);font-size:12px}
 .orgx-a{grid-area:a;display:flex;gap:4px;justify-content:flex-end}
 @media (max-width:640px){.upt-row{grid-template-columns:44px minmax(0,1fr);grid-template-areas:"ic lb" "a a" "sm sm"}.orgx-list li{grid-template-columns:minmax(0,1fr) 44px;grid-template-areas:"n c" "p p" "s s" "a a"}}
+/* ── 51차: 정렬 ── */
+.vsort{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:13px}
+.vsort label{display:inline-flex;align-items:center;gap:5px}
+.vsort .vs-l{font-weight:700;color:var(--ink-2);white-space:nowrap}
+.vsort select{font:inherit;font-size:13px;padding:4px 8px;border:1px solid var(--line);border-radius:7px;background:var(--surface);color:var(--ink);max-width:190px}
+.vsort .vs-dir{white-space:nowrap}
+.vsort .vs-pl{font-size:12.5px;white-space:nowrap;color:var(--ink-2)}
+.vsort.vs-row{display:flex;justify-content:flex-end;margin:-4px 0 12px}
+.vsort.vs-in-f{margin-left:auto}
+.vsort.vs-in-f + .count{margin-left:8px}
+.vsort.vs-col{display:flex}
+.vsort.vs-col label{flex:1}.vsort.vs-col select{flex:1;max-width:none}
+@media (max-width:640px){.vsort.vs-row{justify-content:flex-start}.vsort select{max-width:150px}.vsort.vs-in-f{margin-left:0}}
+@media print{.vsort,.vs-fld{display:none!important}}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -2509,7 +2519,7 @@ const isLate=t=>t.status!=='done'&&t.status!=='hold'&&!!t.due&&t.due<today();
 const s0=t=>t.start||t.due, e0=t=>t.due||t.start;
 const overlaps=(t,a,b)=>{const s=s0(t),e=e0(t);return !!s&&s<=b&&e>=a;};
 function inPeriod(t,a,b){if(!s0(t))return t.status!=='done';if(t.status==='done')return t.doneAt?(t.doneAt>=a&&t.doneAt<=b):overlaps(t,a,b);return overlaps(t,a,b)||(isLate(t)&&e0(t)<a&&a<=today());}
-const sortTasks=(a,b)=>(isLate(b)-isLate(a))||(PR[a.priority].w-PR[b.priority].w)||((a.due||'9999').localeCompare(b.due||'9999'))||a.title.localeCompare(b.title,'ko');
+let sortTasks=(a,b)=>(isLate(b)-isLate(a))||(PR[a.priority].w-PR[b.priority].w)||((a.due||'9999').localeCompare(b.due||'9999'))||a.title.localeCompare(b.title,'ko');
 const findTask=p=>S.tasks.find(t=>t.path===p)||(S.privTasks||[]).find(t=>t.path===p);
 function rebuild(){S.tasks=Object.values(S.byYear).flat();S.memos=Object.values(S.memosByYear).flat();}
 function whoMatch(t,w){if(!w)return true;if(w==='me')return t.assignees.includes(myId());if(w==='none')return !t.assignees.length&&!t.assigneeText;return t.assignees.includes(w);}
@@ -2842,7 +2852,7 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>🛡 경비 일지 (경비원 전용 화면)</b><span>홈 빠른 기록 줄의 <em>🛡 경비 일지</em>(✅ 점검 일보 왼쪽)에서 사업장·근무일(아침 9시 전이면 전날 밤 근무)별로 회사 경비 근무일지(근무자·인수자·교대 시각·날씨, 순찰 1·2차 시각·특이사항, 순찰 점검, 주차 현황, 기타 보고)와 <em>🚗 방문 차량</em>·직원 비등록 차량·우편물·택배 접수를 적습니다. 방문 차량은 위 칸에 차량번호 등을 적고 Enter(입차 시각 자동), 자주 오는 차량은 단추 한 번, 나갈 때 <em>출차 지금</em>. 관리자는 <em>👮 경비원 계정</em>에 경비원 이메일·사업장을 등록 → 경비원이 그 이메일로 가입·인증·로그인하면 <b>경비 일지 화면만</b> 보이고(업무·자료·직원 명단·검색·알림 없음) 어제·오늘 근무일만 적을 수 있습니다. 알림(종)의 접속 요청도 '경비원으로 허용'을 고를 수 있습니다. 항목은 관리자·자료 관리자가 <em>✏️ 항목 편집</em>(구역 추가·순서·순찰 장소·주차 칸·기록 목록 칸)에서 바꾸고, <em>🖨 인쇄·PDF</em>·<em>📤 이달 기록 엑셀</em>로 냅니다.</span></li>
       <li><b>✏️ 점검 항목 편집</b><span>점검 일보 위쪽 <em>✏️ 항목 편집</em>(관리자·자료 관리자)을 누르면 구역·묶음·항목을 바로 고칩니다. <em>⠿</em>를 끌거나 ▲▼로 순서를 바꾸고, 이름·점검 기준·종류(점검·수치·칸 수치·칸 점검·글·계량기·측정 목록)·단위·하한·상한·칸 이름(사업장마다 따로)·계량기 목록(이름*배율)·주기(평일·매일·매주 ○요일·매월 ○일·특정 달·분기·반기·매년)·사업장을 바꾸고 <em>＋ 구역 / ＋ 묶음 / ＋ 항목</em>으로 더하거나 ✕로 뺍니다. 많이 고칠 때는 <em>📤 엑셀로 내보내기</em> → 엑셀에서 고쳐 → <em>📥 엑셀에서 가져오기</em>. <em>💾 저장</em>하면 모든 사람의 점검 일보·인쇄·업무일지 기록에 바로 반영되고, 직전 것은 <em>↶ 직전 저장본</em>으로, 처음 것은 <em>↺ 기본 항목으로</em> 되돌립니다. 이름을 바꿔도 항목 ID가 같아 지난 기록·수치 추이는 이어집니다.</span></li>
       <li><b>🔒 관리자 업무 · 지시 전</b><span>총괄 관리자가 등록한 업무(담당이 관리자 본인뿐인 업무)는 <em>🔒 지시 전</em> 표시가 붙고 관리자만 봅니다. 업무 창의 <em>📌 업무 지시하기</em>로 직원·직무(파트)에 지시해야 받은 사람에게 알림이 가고 관리부에 공유됩니다. 지시 받을 사람 명단 맨 앞의 <em>(나)</em>를 고르면 자기에게도 지시할 수 있습니다.</span></li>
-      <li><b>↕ 목록 정렬</b><span>업무 목록 위 <em>정렬</em>에서 기준(작업일 최근순·마감일·등록순·상태·담당 등)과 <em>↑ 오름차순 / ↓ 내림차순</em>을 고릅니다. 처음에는 작업일 최근 날짜가 맨 위이고, 고른 정렬은 이 기기에 기억됩니다. 표 머리글을 눌러도 정렬됩니다.</span></li>
+      <li><b>↕ 정렬 (모든 업무 화면)</b><span>내 업무·팀 현황·총괄·칸반·달력·목록·보고서·업무 지시 화면 위쪽(칸반·달력·목록은 거르기 줄, 보고서는 왼쪽 조건)의 <em>↕ 정렬</em>에서 기준(진행 날짜·등록일·최근 진행·마감일·중요도·상태·업무명·담당자·사업장·분야 등)과 방향(<em>↓ 최근 날짜 먼저 / ↑ 이른 날짜 먼저</em>)을 고릅니다. 처음에는 진행 날짜가 최근인 업무가 맨 위이고, <em>🔒 비공개 업무</em>는 공개 업무 아래에 따로 같은 기준으로 모입니다(<em>🔒 비공개는 아래로</em>를 끄면 섞어서 정렬). 화면마다 이 기기에 기억되고, 인쇄(업무 목록만)·엑셀 내려받기도 화면 정렬대로 나옵니다. 달력은 하루 칸 안의 순서가 바뀝니다.</span></li>
       <li><b>⚙ 탭 편집 (자료 관리자)</b><span>각종서류 올리기·자료실·회사서식 화면 위 탭 줄 끝의 <em>⚙ 탭 편집</em>에서 탭 이름·아이콘·순서를 바꾸고, 기본 탭은 보이기를 끄고, <em>＋ 탭 추가</em>로 자료실·회사서식(작성 불가)·회사서식(작성 가능) 종류의 탭을 만들거나(기존 폴더 연결 또는 새 폴더) 지웁니다. 비어 있는 서류 칸(예: 법인 인감증명서)은 칸의 <em>🗑</em>로 지우고, 아래 <em>지운 빈 칸 다시 보이기</em>로 되살립니다.</span></li>
       <li><b>🧩 조직도 파트 편집 (관리자)</b><span>조직도 위 <em>🧩 파트 편집</em>에서 칸(파트) 이름·색·순서(▲▼, 위가 왼쪽)를 바꾸고 <em>＋ 칸 추가</em>·<em>지우기</em>를 합니다. '파트' 글자를 끄면 '브리티카페'처럼 이름만 보입니다. 사람을 칸에 넣으려면 그 사람의 <em>소속·약식 고치기</em>에서 소속 파트를 고르고, <em>이름 옆 표시</em>에 '겸직' 같은 짧은 표시를 적을 수 있습니다.</span></li>
       <li><b>설비 QR</b><span>시설 일보 창의 <em>🏷 설비 QR</em>에서 설비(소화전 펌프·콤프레샤·승강기 등)를 등록하고 <em>🖨 QR 라벨</em>을 인쇄해 붙여 두면, 휴대폰 기본 카메라로 찍기만 해도 업무일지가 열려 그 설비의 점검·작업 기록과 <em>📋 이 설비 일보 쓰기</em>가 나옵니다. 앱 안의 📷 QR 스캔이나 사진으로 QR 읽기도 됩니다. 설비를 고른 일보는 '대상 설비'가 서류에 들어가고 그 설비 기록에 쌓입니다.</span></li>
@@ -2884,7 +2894,7 @@ function renderMy(v){
   if(!S.myStaff){left.innerHTML=`<section class="panel"><div class="empty">본인을 등록하면 내 업무만 모아 보고, 팀 현황에 내 기록이 표시됩니다.<br><br><button type="button" class="btn primary" data-open-me>내 정보 등록</button></div></section>`;right.innerHTML='<div class="empty">본인 등록 후 오늘 한 일이 여기에 모입니다.</div>';syncQA();return;}
   const st=personStats(S.myStaff,td);
   const now=st.open.filter(t=>!isLate(t)&&(t.status==='doing'||overlaps(t,td,td)||!s0(t))).sort(sortTasks);
-  const upcoming=st.open.filter(t=>!isLate(t)&&t.status==='plan'&&s0(t)&&s0(t)>td&&s0(t)<=addDays(td,7)).sort((a,b)=>s0(a).localeCompare(s0(b)));
+  const upcoming=st.open.filter(t=>!isLate(t)&&t.status==='plan'&&s0(t)&&s0(t)>td&&s0(t)<=addDays(td,7)).sort(sortTasks);
   left.innerHTML=`<section class="panel"><div class="panel-h"><h2>진행 중·오늘 할 일</h2><span class="sub">${now.length}건</span></div>${now.length?now.map(myRow).join(''):'<div class="empty">진행 중인 업무가 없습니다. 위 입력란에 오늘 할 일을 적어 보세요.</div>'}</section>
     ${st.late.length?`<section class="panel"><div class="panel-h"><h2 style="color:var(--late)">지연</h2><span class="sub">${st.late.length}건 · 마감일이 지났습니다</span></div>${st.late.map(myRow).join('')}</section>`:''}
     <section class="panel"><div class="panel-h"><h2>다가오는 일정</h2><span class="sub">7일 안에 시작</span></div>${upcoming.length?upcoming.map(myRow).join(''):'<div class="empty">7일 안에 시작할 업무가 없습니다.</div>'}</section>`;
@@ -3056,7 +3066,7 @@ function renderBoard(v){
   const list=applyFilters(withPriv(S.tasks));$('#f-count').textContent=`${list.length}건`;
   S.sortables.forEach(s=>s.destroy());S.sortables=[];
   v.innerHTML=`<div class="board">${STATUSES.map(s=>{let items=list.filter(t=>t.status===s.id);let more=0;
-    if(s.id==='done'){items.sort((a,b)=>(b.doneAt||b.due||'').localeCompare(a.doneAt||a.due||''));const ws=addDays(today(),-((dow(today())+6)%7));const show=S.boardOld?items.slice(0,S.boardOld):items.filter(t=>(t.doneAt||t.due||'')>=ws).slice(0,40);more=items.length-show.length;items=show;}else items.sort(sortTasks);
+    if(s.id==='done'){const ws=addDays(today(),-((dow(today())+6)%7));const base=(S.boardOld?items.slice():items.filter(t=>(t.doneAt||t.due||'')>=ws)).sort(sortTasks);const c=vsCap(base,S.boardOld||40);more=items.length-c.items.length;items=c.items;}else items.sort(sortTasks);
     return `<section class="bcol s-${s.id}" aria-label="${s.name}"><div class="bcol-h"><span class="pill s-${s.id}">${s.name}</span><span class="n">${list.filter(t=>t.status===s.id).length}</span>${s.id!=='done'?`<button type="button" class="icon-btn" data-new-status="${s.id}" aria-label="${s.name} 업무 등록">${ICON.plus}</button>`:''}</div><div class="bcards" data-status="${s.id}">${items.map(cardHTML).join('')}</div>${more?`<div class="more"><button type="button" class="btn sm ghost" data-board-old>${S.boardOld?`30건 더 보기 (남은 ${more}건)`:`지난 완료 보기 (${more}건)`}</button></div>`:''}</section>`;}).join('')}</div>`;
   if(window.Sortable&&S.canWrite)$$('.bcards',v).forEach(el=>S.sortables.push(Sortable.create(el,{group:'wl-board',animation:150,sort:false,draggable:'.card',delay:120,delayOnTouchOnly:true,
     onStart:()=>{S.dragging=true;},
@@ -3090,7 +3100,7 @@ const LIST_COLS=[['status','상태'],['cat','분야'],['title','업무명'],['si
 function listVal(t,k){switch(k){case 'status':return (isLate(t)?'0':'1')+STATUSES.findIndex(s=>s.id===t.status);case 'cat':return CATS.findIndex(c=>c.id===t.cat)+t.sub+'|'+(t.leaf||'');case 'who':return whoText(t);case 'scope':return SC[t.scope].lv;case 'progress':return t.progress;case 'wd':return wdKey(t);case 'reg':return t.createdAt||'';default:return t[k]||'';}}
 function renderList(v){
   const list=applyFilters(withPriv(S.tasks));$('#f-count').textContent=`${list.length}건`;const {key,dir}=S.listSort;
-  list.sort((a,b)=>{const x=listVal(a,key),y=listVal(b,key);const r=typeof x==='number'?x-y:String(x).localeCompare(String(y),'ko');return (r||sortTasks(a,b))*dir;});
+  list.sort(sortTasks);
   v.innerHTML=`<div class="list-h"><h1>업무 목록</h1><span class="spacer" style="flex:1"></span>${S.downloads&&window.XLSX?`<button type="button" class="btn sm" id="list-xlsx">${ICON.dl}엑셀로 내려받기</button>`:''}</div>
   <div class="tbl-wrap"><table class="lst"><thead><tr>${LIST_COLS.map(([k,n])=>`<th data-sort="${k}" ${key===k?`aria-sort="${dir>0?'ascending':'descending'}"`:''} scope="col">${n}</th>`).join('')}</tr></thead><tbody>
   ${list.length?list.map(t=>{const late=isLate(t);const d=ddayInfo(t);return `<tr data-open="${esc(t.path)}"><td><span class="pill s-${late?'late':t.status}">${late?'지연':ST[t.status].name}</span></td><td><span class="catchip cat-${t.cat}">${esc(CAT[t.cat].name)}</span><div style="font-size:12px;color:var(--ink-3)">${esc(t.sub)}</div></td><td class="tt">${t.priv?'<span class="priv-tag" title="나만 보는 비공개 업무">🔒 비공개</span> ':''}${esc(t.title)} ${t.sample?'<span class="tag sample">예시</span>':''}</td><td>${esc(t.site)}</td><td>${SC[t.scope].name}</td><td>${whoHTML(t)}</td><td class="wd-td">${wdHTML(t,{noReg:1})} ${d?`<span class="dday ${d.cls}">${d.txt}</span>`:''}</td><td class="reg-td ${regNeed(t)?'need':''}">${regDate(t)?esc(fmtMD(regDate(t))):''}</td><td style="min-width:90px"><div class="pbar"><i style="width:${t.progress}%"></i></div><span style="font-size:12px;color:var(--ink-3)">${t.progress}%</span></td><td class="note">${esc(lastNote(t).slice(0,80))}</td></tr>`;}).join(''):`<tr><td colspan="10" class="empty">조건에 맞는 업무가 없습니다.</td></tr>`}
@@ -3121,7 +3131,7 @@ function computeReport(p){
   let monthly=null;if(p.kind==='year'){const y=ps.slice(0,4);monthly=CATS.map(c=>({c,data:[...Array(12)].map((_,i)=>done.filter(t=>t.cat===c.id&&(t.doneAt||e0(t)||'').startsWith(`${y}-${pad(i+1)}`)).length)}));}
   const pvN=new Set([...rel,...next].filter(t=>t._pv)).size;const scopeTxt=[p.who?nameOf(p.who):'',p.cat?CAT[p.cat].name:'전체 분야',p.site||'전 사업장',pvN?(repPrivMode(p)==='priv'?`🔒 비공개 업무만 (${pvN}건)`:`🔒 내 비공개 ${pvN}건 포함`):''].filter(Boolean).join(' · ');
   const oKey=`${p.kind}-${ps}${p.cat?'-'+p.cat:''}${p.site?'-s'+Math.max(0,S.config.sites.indexOf(p.site)):''}${p.who&&/^[A-Za-z0-9_-]+$/.test(p.who)?'-p'+p.who:''}`;
-  return {p,ps,pe,ns,ne,done:done.sort((a,b)=>(a.doneAt||'').localeCompare(b.doneAt||'')),doing:doing.sort(sortTasks),plan:plan.sort(sortTasks),late:late.sort(sortTasks),hold,next,key:key.sort(sortTasks),issues,memos,photos,kpi,gk,gorder,chart,monthly,scopeTxt,oKey,
+  return {p,ps,pe,ns,ne,done:done.sort(sortTasks),doing:doing.sort(sortTasks),plan:plan.sort(sortTasks),late:late.sort(sortTasks),hold:hold.sort(sortTasks),next,key:key.sort(sortTasks),issues,memos,photos,kpi,gk,gorder,chart,monthly,scopeTxt,oKey,
     title:(p.who?nameOf(p.who)+' ':'')+(p.cat?CAT[p.cat].name+' ':'')+KIND[p.kind].title,periodText:periodLabel(p.kind,p.date),nextText:periodLabel(p.kind,na)};
 }
 function groupRows(R,list,cols,rowFn){if(!list.length)return `<tr><td colspan="${cols}" class="none">해당 없음</td></tr>`;const m=new Map();for(const t of list){const g=R.gk(t);if(!m.has(g))m.set(g,[]);m.get(g).push(t);}
@@ -3884,11 +3894,11 @@ function renderOverview(v){const O=S.ov;const td=today();const base=O.date||td;c
   const staff=staffList();const work=staff.filter(working);const st={};staff.forEach(s=>st[s.id]=ovStats(s,a,b));
   const rec=work.filter(s=>st[s.id].logs.length).length;
   const all=S.tasks;const open=all.filter(t=>t.status!=='done'&&t.status!=='hold');const late=open.filter(isLate).sort(sortTasks);
-  const doneP=all.filter(t=>t.status==='done'&&t.doneAt>=a&&t.doneAt<=b);const doing=all.filter(t=>t.status==='doing');
+  const doneP=all.filter(t=>t.status==='done'&&t.doneAt>=a&&t.doneAt<=b).sort(sortTasks);const doing=all.filter(t=>t.status==='doing').sort(sortTasks);
   const issues=[];for(const t of all)for(const l of t.logs){const d=localDate(l.at);if(l.issue&&d>=a&&d<=b)issues.push({t,l});}issues.sort((x,y)=>y.l.at.localeCompare(x.l.at));
-  const legalSoon=open.filter(t=>t.legal&&t.due&&t.due<=addDays(td,30)).sort((x,y)=>x.due.localeCompare(y.due));
+  const legalSoon=open.filter(t=>t.legal&&t.due&&t.due<=addDays(td,30)).sort(sortTasks);
   const docsSoon=Object.values(S.files).filter(f=>f.expiry&&diffDays(td,f.expiry)<=60).sort((x,y)=>x.expiry.localeCompare(y.expiry));
-  const dueSoon=open.filter(t=>t.due&&t.due>=td&&t.due<=addDays(td,7)).sort((x,y)=>x.due.localeCompare(y.due)||sortTasks(x,y));
+  const dueSoon=open.filter(t=>t.due&&t.due>=td&&t.due<=addDays(td,7)).sort(sortTasks);
   const label=O.mode==='week'?`${weekLabel(base)} (${fmtMD(a)} ~ ${fmtMD(b)})`:fmtLong(base);
   const kp=[['기록한 직원',`${rec}/${work.length}`,O.mode==='week'?'이번 주 1건 이상':'오늘 1건 이상','var(--accent)'],['완료',doneP.length,O.mode==='week'?'이번 주 완료':'오늘 완료','var(--done)'],['진행 중',doing.length,'전체','var(--doing)'],['지연',late.length,late.length?'마감 경과':'없음','var(--late)'],['이슈',issues.length,'기간 내 이슈 기록','var(--late)'],['법정 업무',legalSoon.length,'30일 안 마감','var(--c-gov)']];
   const sites=teamSites();
@@ -4744,7 +4754,7 @@ let PVU=null;
 function privSub(){if(PVU){try{PVU();}catch{}PVU=null;}S.privTasks=[];S.privDenied=false;if(!privOK()||!S.db)return;const cp=`${privBase()}/tasks`;
   PVU=S.db.collection(cp).onSnapshot(snap=>{S.privTasks=snap.docs.filter(d=>d.exists).map(d=>{const t=normTask({...d.data(),id:d.id,path:`${cp}/${d.id}`});t.year=yearOf(t);t.priv=true;return t;});S.privDenied=false;
     if(['my','board','calendar','list','report'].includes(S.view))scheduleRender();privFilterSync();refreshDialog();ntfTick();},()=>{S.privDenied=true;if(S.view==='my')scheduleRender();});}
-function privPanelHTML(){if(!privOK())return '';const open=S.privTasks.filter(t=>t.status!=='done').sort(sortTasks);const done=S.privTasks.filter(t=>t.status==='done').sort((a,b)=>(b.doneAt||'').localeCompare(a.doneAt||''));
+function privPanelHTML(){if(!privOK())return '';const open=S.privTasks.filter(t=>t.status!=='done').sort(sortTasks);const done=S.privTasks.filter(t=>t.status==='done').sort(sortTasks);
   return `<section class="panel priv-panel" id="my-priv"><div class="panel-h"><h2>🔒 비공개 업무</h2><span class="sub">나만 보입니다 · ${open.length}건</span><div class="act">${S.privTasks.length?'<button type="button" class="btn sm prt-btn" data-priv-report title="비공개 업무만 모아 보고서로 출력(인쇄·엑셀)">🖨 비공개 업무만 출력</button>':''}${S.canWrite?'<button type="button" class="btn sm" data-new-priv>+ 비공개 업무</button>':''}</div></div>
     <p class="priv-note">관리자와 다른 직원에게는 보이지 않습니다. 칸반·달력·목록·보고서(인쇄)에는 나에게만 🔒 비공개 표시로 함께 나옵니다.</p>
     ${S.privDenied?'<div class="banner" style="margin:0 12px 10px">비공개 업무를 불러올 권한이 없습니다. 관리자에게 새 보안 규칙(firestore.rules) 게시를 요청하세요.</div>':''}
@@ -4752,7 +4762,7 @@ function privPanelHTML(){if(!privOK())return '';const open=S.privTasks.filter(t=
     ${done.length?`<details class="priv-done" ${S.privDoneOpen?'open':''}><summary>완료한 비공개 업무 ${done.length}건</summary>${done.slice(0,60).map(myRow).join('')}</details>`:''}</section>`;}
 function qaPrivSync(){const b=$('#qa-priv');if(!b)return;const ta=$('#qa-text');if(ta&&ta.dataset.ph0==null)ta.dataset.ph0=ta.placeholder;
   b.hidden=!privOK();const on=qaPriv();b.setAttribute('aria-pressed',String(on));$('#qa').classList.toggle('is-priv',on);
-  if(ta)ta.placeholder=on?'🔒 나만 보는 비공개 업무를 적고 Enter — 관리자·다른 직원에게 보이지 않습니다':ta.dataset.ph0;$('#qa-go').textContent=S.qaBusy?'등록 중…':on?'🔒 등록':'등록';}
+  if(ta)ta.placeholder=on?'🔒 나만 보는 비공개 업무를 적고 「🔒 등록」을 누르세요 (Enter 는 줄바꿈) — 관리자·다른 직원에게 보이지 않습니다':ta.dataset.ph0;$('#qa-go').textContent=S.qaBusy?'등록 중…':on?'🔒 등록':'등록';}
 /* 업무 상세 창: 비공개 표시·전환 */
 const canMakePriv=t=>!!(t&&privOK()&&S.canWrite&&!t.priv&&!t.legal&&!t.sample&&t.createdBy===myId()&&t.assignees.every(a=>a===myId())&&!t.photos.length&&t.logs.every(l=>!l.by||l.by===myId()));
 const canDelSaved=t=>!!(t&&(t.priv||S.canEdit));
@@ -9921,9 +9931,9 @@ function odRow(t,ctx){const o=ordOf(t);const me=myId();const p=esc(t.path);const
 /* ── 화면 #ord */
 function odLists(){const me=myId();const L=S.tasks.filter(t=>!t.priv);
   const mine=L.filter(t=>{const o=ordOf(t);return o&&ordForMe(t)&&ordLive(t)&&ordSt(t)!=='reported'&&!(o.mode==='role'&&o.claim&&o.claim!==me);}).sort((a,b)=>(ordSt(a)==='open'?0:1)-(ordSt(b)==='open'?0:1)||sortTasks(a,b));
-  const myRep=L.filter(t=>ordOf(t)&&t.logs.some(l=>/^rep_/.test(l.kind)&&l.by===me)).sort((a,b)=>String(b.updatedAt).localeCompare(String(a.updatedAt))).slice(0,60);
-  const sent=L.filter(t=>{const o=ordOf(t);return o&&o.mode!=='self'&&(o.by===me||odAdmin());}).sort((a,b)=>(ordLive(b)-ordLive(a))||String(ordOf(b).at).localeCompare(String(ordOf(a).at)));
-  const rep=odAdmin()?L.filter(t=>ordRepPending(t)).sort((a,b)=>(ordSt(a)==='reported'?0:1)-(ordSt(b)==='reported'?0:1)||ordRepPending(b).at.localeCompare(ordRepPending(a).at)):[];
+  const myRep=L.filter(t=>ordOf(t)&&t.logs.some(l=>/^rep_/.test(l.kind)&&l.by===me)).sort(sortTasks).slice(0,60);
+  const sent=L.filter(t=>{const o=ordOf(t);return o&&o.mode!=='self'&&(o.by===me||odAdmin());}).sort((a,b)=>(ordLive(b)-ordLive(a))||sortTasks(a,b));
+  const rep=odAdmin()?L.filter(t=>ordRepPending(t)).sort((a,b)=>(ordSt(a)==='reported'?0:1)-(ordSt(b)==='reported'?0:1)||sortTasks(a,b)):[];
   const todo=odAdmin()?L.filter(t=>!ordOf(t)&&t.createdBy===me&&t.status!=='done'&&t.status!=='hold'&&(!t.assignees.length||(t.assignees.length===1&&t.assignees[0]===me))).sort(sortTasks):[];
   return {mine,myRep,sent,rep,todo};}
 function renderOrd(v){if(!S.me||!S.me.id){v.innerHTML='<p class="empty">로그인한 뒤 쓸 수 있습니다.</p>';return;}odRolesSub();const A=odAdmin();const X=odLists();
@@ -10327,7 +10337,7 @@ window.upApi={check:upCheck,show:upShow,build:WL_BUILD};
      직원 화면(내 업무·팀 현황·칸반·달력·목록·보고서·검색·알림)에서 빠지고, 「📌 업무 지시하기」를 누르면 받은 사람에게 알림이 가고 관리부에 공유됨
      (법정 업무 자동 등록, 직원을 담당자로 넣은 업무는 지금처럼 공유). 관리자 화면에는 '🔒 지시 전' 표시
    · 내 업무 입력칸: Enter 는 줄바꿈(등록 안 함), 글이 길어지면 칸이 아래로 늘어남, 등록은 「등록」 단추(또는 Ctrl+Enter)
-   · 업무 목록: 기본은 진행 날짜 최근순(맨 위가 최근), 위쪽 '정렬' 칸으로 기준·방향을 고르고 기기에 기억 */
+   · (업무 목록 정렬은 51차 ext49_vsort.js 로 옮김) */
 function admIds(){const m=S.members||{};const A=(m.admins||[]).map(x=>String(x).toLowerCase());const an=S.adminName||'';
   return new Set(Object.values(S.staff||{}).filter(s=>(s.email&&A.includes(String(s.email).toLowerCase()))||(an&&s.name===an)).map(s=>s.id));}
 function admOnlyA(t,A){if(!t||t.priv||t.legal||!A.has(t.createdBy))return false;if(!t.assignees.every(a=>a===t.createdBy))return false;
@@ -10343,18 +10353,8 @@ document.addEventListener('input',e=>{if(e.target&&e.target.id==='qa-text')qaGro
 {const _q=submitQA;submitQA=async function(){const r=await _q.apply(this,arguments);try{qaGrow();}catch{}return r;};}
 window.addEventListener('resize',()=>{try{qaGrow();}catch{}});
 
-/* ── 업무 목록 정렬 ── */
-const LS_SORTS=[['wd',-1,'진행 날짜 · 최근순'],['wd',1,'진행 날짜 · 오래된순'],['reg',-1,'등록일 · 최근순'],['updatedAt',-1,'최근 진행순'],['due',1,'마감 임박순'],['status',1,'상태순'],['title',1,'업무명순'],['who',1,'담당자순'],['site',1,'사업장순']];
-try{const v=JSON.parse(localStorage.getItem('wl.listSort')||'null');S.listSort=v&&typeof v.key==='string'&&(v.dir===1||v.dir===-1)?{key:v.key,dir:v.dir}:{key:'wd',dir:-1};}catch{S.listSort={key:'wd',dir:-1};}
-{const _lv=listVal;listVal=function(t,k){if(k==='wd'){const r=wdRange(t);return r?r[0]+'|'+r[1]:(S.listSort.dir>0?'9999':'');}if(k==='reg')return t.createdAt||'';if(k==='due')return t.status==='done'?'9999-12-31':(t.due||'9999-12-30');return _lv.apply(this,arguments);};}
-function lsSortHTML(){const {key,dir}=S.listSort;const cur=LS_SORTS.findIndex(([k,d])=>k===key&&d===dir);
-  return `<div class="lst-sort"><label>정렬 <select id="lst-sort">${LS_SORTS.map(([k,d,n],i)=>`<option value="${i}" ${i===cur?'selected':''}>${n}</option>`).join('')}${cur<0?`<option value="-1" selected>${esc((LIST_COLS.find(c=>c[0]===key)||[0,key])[1])} · ${dir>0?'오름차순':'내림차순'}</option>`:''}</select></label>
-    <button type="button" class="btn sm" data-lst-dir title="정렬 방향 바꾸기">${dir>0?'↑ 오름차순':'↓ 내림차순'}</button><small>표 머리글을 눌러도 정렬됩니다</small></div>`;}
-{const _rl=renderList;renderList=function(v){const r=_rl.apply(this,arguments);try{const h=v.querySelector('.list-h');if(h&&!v.querySelector('.lst-sort'))h.insertAdjacentHTML('afterend',lsSortHTML());lsSave();}catch(e){console.warn(e);}return r;};}
-const lsSave=()=>{try{localStorage.setItem('wl.listSort',JSON.stringify(S.listSort));}catch{}};
-document.addEventListener('change',e=>{if(e.target&&e.target.id==='lst-sort'){const i=+e.target.value;const s=LS_SORTS[i];if(s){S.listSort={key:s[0],dir:s[1]};lsSave();render();}}});
-document.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('[data-lst-dir]')){S.listSort={key:S.listSort.key,dir:-S.listSort.dir};lsSave();render();}},true);
-window.shareApi={admIds,admOnly,qaGrow,sorts:LS_SORTS};
+/* 업무 목록 정렬은 51차 ext49_vsort.js (모든 업무 화면 공통) 로 옮김 */
+window.shareApi={admIds,admOnly,qaGrow};
 /* ───────── 50차 (2): 각종서류 올리기 탭 편집 · 자료실 빈 칸 지우기 ─────────
    · 위쪽 탭(📤 각종서류 올리기 · 🗂 자료실 · 🖨 회사서식(작성 불가) · ✏️ 회사서식(작성 가능)) — 자료 관리자가 「⚙ 탭 편집」에서
      이름·아이콘 바꾸기, 순서(▲▼), 숨기기(기본 탭) / 지우기(추가한 탭), ＋ 탭 추가(자료실 분류 · 회사서식(작성 불가)·(작성 가능) 폴더를 탭으로).
@@ -10522,6 +10522,69 @@ async function orgApply50(){const o0=orgCur();const kong=staffByName('공창배'
       const pc=o.people[choi.id]||{};o.people[choi.id]={...pc,unit:'lv',badge:pc.badge||''};},
     '조직도: 공창배 과장 4번째 칸(브리티카페 대표이사 겸직) · 최호정 대리 5번째 칸(산재 병가)');}
 window.orgxApi={apply50:orgApply50,units:()=>orgCur().units};
+/* ───────── 51차: 모든 업무 화면에 정렬 기준 · 비공개 업무는 아래에 따로 ─────────
+   · 내 업무·팀 현황·총괄·칸반·달력·목록·보고서·📌 업무 지시 — 화면마다 '↕ 정렬'(기준·방향·🔒 비공개는 아래로), 화면마다 이 기기에 기억(wl.vsort)
+   · 기본: 진행 날짜 최근순(날짜 없는 업무는 맨 끝), 🔒 비공개 업무는 공개 업무 아래에 따로 같은 기준(최근순)으로
+   · 칸반 각 칸·달력 하루 칸 안 순서·목록 표·보고서 각 묶음·인쇄(업무 목록만)·엑셀 내려받기도 화면 정렬대로
+   · 기존 sortTasks(지연·중요도·마감) 는 '중요도순' 기준으로 남김 */
+const sortTasks0=sortTasks;
+const VS_VIEWS={my:'내 업무',team:'팀 현황',overview:'총괄',board:'칸반',calendar:'달력',list:'목록',report:'보고서',ord:'업무 지시'};
+const VS_KEYS=[['wd','진행 날짜',-1],['reg','등록일',-1],['updatedAt','최근 진행',-1],['due','마감일',1],['imp','중요도 (지연·중요도·마감)',1],['status','상태',1],['title','업무명',1],['who','담당자',1],['site','사업장',1],['cat','분야',1],['scope','구분',1],['progress','진척',-1]];
+const VS_DATE=new Set(['wd','reg','updatedAt','due']);
+const VS_PRIV_VIEWS=new Set(['board','calendar','list','report']);
+const VS_DEF={key:'wd',dir:-1,pl:true};
+let VS={};
+try{const j=JSON.parse(localStorage.getItem('wl.vsort')||'{}');if(j&&typeof j==='object')VS=j;}catch{}
+try{if(!VS.list){const o=JSON.parse(localStorage.getItem('wl.listSort')||'null');if(o&&typeof o.key==='string'&&(o.dir===1||o.dir===-1))VS.list={key:o.key,dir:o.dir,pl:true};}}catch{}
+function vsGet(v){const o=VS[v]||{};const k=VS_KEYS.some(x=>x[0]===o.key)?o.key:VS_DEF.key;return {key:k,dir:o.dir===1||o.dir===-1?o.dir:(VS_KEYS.find(x=>x[0]===k)||VS_KEYS[0])[2],pl:o.pl!==false};}
+function vsSet(v,o){VS[v]={...vsGet(v),...o};try{localStorage.setItem('wl.vsort',JSON.stringify(VS));}catch{}}
+/* 목록 표 머리글(th[data-sort])·옛 S.listSort 도 같은 설정 */
+Object.defineProperty(S,'listSort',{configurable:true,get(){const o=vsGet('list');return {key:o.key,dir:o.dir};},set(o){if(o&&typeof o.key==='string')vsSet('list',{key:VS_KEYS.some(x=>x[0]===o.key)?o.key:'wd',dir:o.dir===1?1:-1});}});
+function vsVal(t,k){switch(k){
+  case 'wd':{const r=wdRange(t);return r?r[0]+'|'+r[1]:null;}
+  case 'reg':return t.createdAt||null;
+  case 'updatedAt':return t.updatedAt||t.createdAt||null;
+  case 'due':return t.due||null;
+  default:{let x;try{x=listVal(t,k);}catch{x=t[k];}return x===''||x==null?null:x;}}}
+function vsCmpOf(v){const o=vsGet(v);const k=o.key,d=o.dir;
+  return (a,b)=>{if(o.pl){const p=(a.priv?1:0)-(b.priv?1:0);if(p)return p;}
+    let r=0;if(k==='imp')r=sortTasks0(a,b)*d;
+    else{const x=vsVal(a,k),y=vsVal(b,k);if(x==null||y==null)r=x==null&&y==null?0:x==null?1:-1;else r=(typeof x==='number'&&typeof y==='number'?x-y:String(x).localeCompare(String(y),'ko'))*d;}
+    if(r)return r;
+    if(k!=='wd'){const x=vsVal(a,'wd'),y=vsVal(b,'wd');if(x!==y){if(x==null)return 1;if(y==null)return -1;return y<x?-1:1;}}
+    return String(a.title||'').localeCompare(String(b.title||''),'ko');};}
+const vsView=()=>VS_VIEWS[S.view]?S.view:'_';
+let _vsK='',_vsF=null;
+sortTasks=(a,b)=>{const v=vsView();const k=v+JSON.stringify(VS[v]||'');if(k!==_vsK||!_vsF){_vsK=k;_vsF=vsCmpOf(v);}return _vsF(a,b);};
+/* 칸반 완료 칸처럼 개수를 자를 때 — 비공개는 아래에 따로 (공개 n개 + 비공개 n개) */
+function vsCap(items,n){const o=vsGet(vsView());if(!o.pl||!items.some(t=>t.priv))return {items:items.slice(0,n),more:Math.max(0,items.length-n)};
+  const a=items.filter(t=>!t.priv).slice(0,n),b=items.filter(t=>t.priv).slice(0,n);return {items:a.concat(b),more:items.length-a.length-b.length};}
+/* 정렬 칸 */
+function vsDirTxt(o){return VS_DATE.has(o.key)?(o.dir<0?'↓ 최근 날짜 먼저':'↑ 이른 날짜 먼저'):(o.dir<0?'↓ 내림차순':'↑ 오름차순');}
+function vsHTML(v,cls){const o=vsGet(v);const pv=VS_PRIV_VIEWS.has(v)&&privOK()&&(S.privTasks||[]).length>0;
+  return `<div class="vsort ${cls||''}" data-vsv="${v}" role="group" aria-label="${esc(VS_VIEWS[v]||'')} 정렬"><label><span class="vs-l">↕ 정렬</span><select data-vs-key aria-label="정렬 기준">${VS_KEYS.map(([id,n])=>`<option value="${id}" ${id===o.key?'selected':''}>${n}</option>`).join('')}</select></label><button type="button" class="btn sm vs-dir" data-vs-dir title="정렬 방향 바꾸기">${vsDirTxt(o)}</button>${pv?`<label class="chk vs-pl" title="🔒 비공개 업무를 공개 업무 아래에 따로 모아 같은 기준으로 정렬"><input type="checkbox" data-vs-pl ${o.pl?'checked':''}> 🔒 비공개는 아래로</label>`:''}</div>`;}
+function vsPut(host,where,html){const old=host.querySelector(':scope > .vsort, :scope > .vs-fld');if(old){old.outerHTML=html;return;}host.insertAdjacentHTML(where,html);}
+function vsMount(){const v=S.view;if(!VS_VIEWS[v])return;const view=$('#view');if(!view)return;
+  if(v==='board'||v==='list'||v==='calendar'){const f=$('#filters');if(!f)return;const old=f.querySelector('.vsort');const h=vsHTML(v,'vs-in-f');if(old)old.outerHTML=h;else{const c=$('#f-count');if(c)c.insertAdjacentHTML('beforebegin',h);else f.insertAdjacentHTML('beforeend',h);}return;}
+  if(v==='report'){const c=$('#rep-ctl',view);if(!c)return;const old=c.querySelector('.vs-fld');const h=`<div class="fld vs-fld"><span class="lbl">정렬 (업무 순서)</span>${vsHTML(v,'vs-col')}</div>`;if(old)old.outerHTML=h;else{const g=$('#r-group',c);const fld=g&&g.closest('.fld');if(fld)fld.insertAdjacentHTML('afterend',h);else c.insertAdjacentHTML('beforeend',h);}return;}
+  const hd=view.querySelector('.home-head');const h=vsHTML(v,'vs-row');
+  if(hd){const nx=hd.nextElementSibling;if(nx&&nx.classList.contains('vsort'))nx.outerHTML=h;else hd.insertAdjacentHTML('afterend',h);}
+  else{const old=view.querySelector(':scope > .vsort');if(old)old.outerHTML=h;else view.insertAdjacentHTML('afterbegin',h);}}
+{const _r=render;render=function(){const r=_r.apply(this,arguments);try{vsMount();}catch(e){console.warn(e);}return r;};}
+const vsHost=el=>el&&el.closest&&el.closest('.vsort');
+document.addEventListener('change',e=>{const h=vsHost(e.target);if(!h)return;const v=h.dataset.vsv;
+  if(e.target.matches('[data-vs-key]')){const k=e.target.value;const def=(VS_KEYS.find(x=>x[0]===k)||VS_KEYS[0])[2];vsSet(v,{key:k,dir:def});}
+  else if(e.target.matches('[data-vs-pl]'))vsSet(v,{pl:e.target.checked});else return;
+  render();});
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-vs-dir]');if(!b)return;const h=vsHost(b);if(!h)return;const v=h.dataset.vsv;vsSet(v,{dir:-vsGet(v).dir});render();});
+/* 달력: 하루 칸 안 순서(연차·결제 표시는 맨 위, 업무는 정렬대로, 비공개는 아래) */
+{const _ce=calEvents;calEvents=function(){const ev=_ce.apply(this,arguments);try{const cmp=vsCmpOf('calendar');const T=ev.map(e=>({e,t:e&&e.id?findTask(e.id):null}));
+  T.filter(x=>x.t).sort((a,b)=>cmp(a.t,b.t)).forEach((x,i)=>{x.e.vsRank=i+1;});for(const x of T)if(!x.t&&x.e)x.e.vsRank=0;}catch(e){console.warn(e);}return ev;};}
+const VS_CAL_ORDER='vsRank,start,-duration,allDay,title';
+{const _rc=renderCalendar;renderCalendar=function(v){const r=_rc.apply(this,arguments);try{if(S.cal&&S.cal.getOption('eventOrder')!==VS_CAL_ORDER)S.cal.setOption('eventOrder',VS_CAL_ORDER);}catch(e){console.warn(e);}return r;};}
+/* 인쇄 '업무 목록만'도 화면 정렬대로 */
+{const _p=prListTasks;prListTasks=function(){const r=_p.apply(this,arguments);try{if(r&&!r.org&&Array.isArray(r.L)&&VS_VIEWS[S.view])r.L=r.L.slice().sort(vsCmpOf(S.view));}catch(e){console.warn(e);}return r;};}
+window.vsortApi={get:vsGet,set:(v,o)=>{vsSet(v,o);render();},cmp:vsCmpOf,keys:VS_KEYS,views:VS_VIEWS};
 
 /* ───────── 시작 ───────── */
 function boot(){
