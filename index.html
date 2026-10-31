@@ -1822,6 +1822,58 @@ body.gd-mode #gd-out{height:34px}
   .gd-f{grid-template-columns:repeat(2,minmax(0,1fr))}.gd-tm input{min-width:0}.gd-gt td input{max-width:72px}
   .gd-at thead{display:none}.gd-at tr{display:grid;grid-template-columns:1fr auto}.gd-at td{border:0}
 }
+/* 46차: 📌 업무 지시 · 📨 보고 */
+.od-st{display:inline-block;padding:1px 8px;border-radius:999px;font-size:11.5px;font-weight:700;background:#eef0f3;color:#46597a;white-space:nowrap}
+.od-st.od-sent{background:#fdeceb;color:#b42318}.od-st.od-acked{background:#e8f0fb;color:#1f4f96}.od-st.od-open{background:#fff4e0;color:#8a5200}
+.od-st.od-doing{background:#e8f0fb;color:#1f4f96}.od-st.od-reported{background:#f3ecfb;color:#5b3a8a}.od-st.od-redo{background:#fff4e0;color:#8a5200}
+.od-st.od-closed{background:#e7f6ee;color:#1d7a46}.od-st.od-cancel{background:#eef0f3;color:#8b96a5;text-decoration:line-through}
+.od-dd{font-size:12px;color:var(--ink-2)}.od-dd.soon{color:#8a5200;font-weight:600}.od-dd.late{color:#c0261d;font-weight:700}
+.od-row{display:flex;gap:10px;align-items:flex-start;padding:10px 4px;border-top:1px solid var(--line)}
+.od-row:first-child{border-top:0}.od-row.late{background:#fffafa}
+.od-ck{margin-top:6px}
+.od-main{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:4px}
+.od-t{border:0;background:none;padding:0;text-align:left;font:inherit;font-weight:700;color:var(--ink);cursor:pointer;font-size:14.5px}
+.od-t:hover{text-decoration:underline}
+.od-meta{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;font-size:12.5px;color:var(--ink-2)}
+.od-cat{color:var(--ink-3)}
+.od-memo{font-size:13px;color:var(--ink-2);background:#f7f8fa;border-radius:7px;padding:5px 8px}
+.od-acks{display:flex;flex-wrap:wrap;gap:4px}
+.od-ack{font-size:11.5px;border:1px solid var(--line);border-radius:999px;padding:1px 8px;color:var(--ink-3)}
+.od-ack.on{border-color:#9fd3b4;background:#effaf3;color:#1d7a46}
+.od-ack small{color:var(--ink-3);margin-left:2px}
+.od-rep{font-size:13px;border-left:3px solid #8e6cc0;background:#f8f5fc;padding:5px 8px;border-radius:0 7px 7px 0}
+.od-rep.k-rep_issue{border-color:#c0261d;background:#fff6f5}.od-rep.k-rep_done{border-color:#1d7a46;background:#f2faf5}
+.od-rep p{margin:3px 0 0;white-space:pre-wrap;color:var(--ink)}
+.od-acts{display:flex;flex-wrap:wrap;gap:5px;justify-content:flex-end;flex:0 0 auto;max-width:46%}
+.od-sum{display:flex;flex-wrap:wrap;gap:6px 14px;margin:4px 0 10px;font-size:13px;color:var(--ink-2)}
+.od-sum b{color:var(--ink);font-size:15px}.od-sum .late,.od-sum .late b{color:#c0261d}
+.od-tabs{margin-bottom:8px}.od-tabs em{font-style:normal;font-weight:700;margin-left:3px}
+.od-list{border:1px solid var(--line);border-radius:12px;background:var(--card,#fff);padding:4px 12px}
+.od-filt{padding:8px 0;font-size:13px}.od-filt select{font:inherit;font-size:13px;padding:4px 6px;border:1px solid var(--line);border-radius:7px}
+.od-help{font-size:12.5px;color:var(--ink-3);margin:8px 0;line-height:1.55}
+.od-bulk{display:flex;gap:10px;align-items:center;padding:4px 0 8px}
+.od-card .od-row{padding:8px 0}.od-more{font-size:13px;color:var(--ink-2);margin:6px 0}
+.od-box{border:1px solid #c9d6ea;background:#f5f8fc;border-radius:10px;padding:8px 10px;margin:4px 0 10px;display:flex;flex-direction:column;gap:6px}
+.od-box .f{margin:0}.od-box select,.od-box input{width:100%}.od-box label small{font-weight:400;color:var(--ink-3)}
+.od-dh{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}.od-dh small{color:var(--ink-3)}.od-tg{font-weight:600}
+.od-box .od-acts{max-width:none;justify-content:flex-start}
+.od-pv{font-size:12px;color:var(--ink-3)}
+.od-lk{font-weight:700;color:#3d5a80}.od-lk-rep_done,.od-lk-approve{color:#1d7a46}.od-lk-rep_issue,.od-lk-redo{color:#b42318}
+#dlg-ord .od-dt{margin:0 0 8px;display:flex;flex-direction:column}#dlg-ord .od-dt small{color:var(--ink-3)}
+#dlg-ord .seg{margin-bottom:8px}
+.od-chips{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0}
+.od-chip{border:1px solid var(--line);background:var(--surface,#fff);border-radius:10px;padding:5px 10px;font:inherit;font-size:13px;cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;text-align:left;color:var(--ink)}
+.od-chip small{font-size:11px;color:var(--ink-3)}
+.od-chip[aria-pressed=true]{border-color:#1f4f96;background:#e8f0fb;color:#1f4f96;font-weight:700}
+.od-chips.sm .od-chip{padding:3px 8px;font-size:12.5px}
+.od-to{font-size:13px;margin:8px 0}.od-to .bad{color:#c0261d}
+.od-l{display:flex;flex-direction:column;gap:4px;font-size:12.5px;color:var(--ink-2);margin-top:8px}
+.od-l textarea,.od-l input{font:inherit;font-size:14px;padding:6px 8px;border:1px solid var(--line);border-radius:7px;width:100%;box-sizing:border-box}
+.od-role{border:1px solid var(--line);border-radius:10px;padding:8px;margin-bottom:8px}
+.od-rh{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.od-rh input{font:inherit;font-weight:700;padding:4px 7px;border:1px solid var(--line);border-radius:7px;width:140px}
+.od-rh label{font-size:12.5px;color:var(--ink-2)}.od-rh select{font:inherit;font-size:13px}.od-rh .icon-btn{margin-left:auto}
+.ntf-pop .ic.t-ord{background:#1f4f96;color:#fff}.ntf-pop .ic.t-rep{background:#6b46a8;color:#fff}
+@media (max-width:760px){.od-tabs button{white-space:normal;height:auto;min-height:36px;line-height:1.25;padding:4px 6px}.od-row{flex-wrap:wrap}.od-acts{max-width:none;justify-content:flex-start;width:100%}.od-sum{gap:4px 10px}}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -2478,7 +2530,7 @@ function render(){
   if(S.view!=='report'){S.charts.forEach(c=>c.destroy());S.charts=[];}
   $('#tab-overview').hidden=!(S.canEdit||S.preview);
   if(S.view==='legal'){const ae=document.activeElement;if(ae&&ae.closest&&ae.closest('.lg-set')&&/^(INPUT|SELECT)$/.test(ae.tagName)&&ae.type!=='checkbox'){S.pendingLegal=true;fillWhoOptions();updateMeChip();return;}}
-  if(S.view==='my')renderMy(v);else if(S.view==='team')renderTeam(v);else if(S.view==='board')renderBoard(v);else if(S.view==='calendar')renderCalendar(v);else if(S.view==='list')renderList(v);else if(S.view==='report')renderReport(v);else if(S.view==='help')renderHelp(v);else if(S.view==='overview')renderOverview(v);else if(S.view==='photos')renderPhotos(v);else if(S.view==='upload')renderUpload(v);else if(S.view==='docs')renderDocs(v);else if(S.view==='legal')renderLegal(v);else if(S.view==='gw')renderGw(v);else if(S.view==='org')renderOrg(v);else if(S.view==='appr')renderAppr(v);else if(S.view==='formp'||S.view==='formd')renderForms(v);else if(S.view==='insp')renderInsp(v);else if(S.view==='guard')renderGuard(v);
+  if(S.view==='my')renderMy(v);else if(S.view==='team')renderTeam(v);else if(S.view==='board')renderBoard(v);else if(S.view==='calendar')renderCalendar(v);else if(S.view==='list')renderList(v);else if(S.view==='report')renderReport(v);else if(S.view==='help')renderHelp(v);else if(S.view==='overview')renderOverview(v);else if(S.view==='photos')renderPhotos(v);else if(S.view==='upload')renderUpload(v);else if(S.view==='docs')renderDocs(v);else if(S.view==='legal')renderLegal(v);else if(S.view==='gw')renderGw(v);else if(S.view==='org')renderOrg(v);else if(S.view==='appr')renderAppr(v);else if(S.view==='formp'||S.view==='formd')renderForms(v);else if(S.view==='insp')renderInsp(v);else if(S.view==='guard')renderGuard(v);else if(S.view==='ord')renderOrd(v);
   fillWhoOptions();updateMeChip();patchNames();}
 
 function rowHTML(t){const d=ddayInfo(t);const late=isLate(t);
@@ -2722,6 +2774,7 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>회사 실제 양식 (41차)</b><span>시설 일보의 <em>✨ 자동</em>은 메모에 회사 일지 낱말(역률·TR 유면·VCB / 소화기·수신기 / E/L·인승 / 콤프레샤·쿨링타워·저수조 / 집진·배출구)이 2개 이상이면 그 <em>🦺 안전관리 일지</em>로 만듭니다. 점검표 항목은 회사 「변전실 안전점검 일지」·「소방시설 안전점검 일지」·「E/L 일일 점검일지」·콤프레샤·쿨링타워·저수조 위생점검·「대기배출시설 운영기록부」(군포: 분쇄시설·여과집진)를 따르고, TR1~3 유면·전력량계 지침·호기별 토출 압력처럼 칸 여러 개로 적습니다. 일지 위 <em>회사 양식</em> 단추를 누르면 같은 회사서식(직접 작성)이 바로 열립니다. <em>작업 일보</em>는 「업체: 한빛전기 2명 — 분전반 교체」처럼 적으면 회사 업무 일지처럼 <em>외부 작업</em>(종별·업체명·인원)과 <em>자체 작업</em>으로 나누고, <em>점검 일지</em>는 변전실·발전실·경비실·저수조·펌프실 중 2곳 이상이나 '시설 순회'를 적으면 회사 「안전관리 일지」 항목으로 채웁니다. 회사서식은 원본 파일과 같은 이름의 <em>○○.화면.html</em>(회사 양식으로 다듬은 화면)을 함께 올리면 한 서식으로 묶어 바로 직접 작성으로 씁니다.</span></li>
       <li><b>그룹웨어 연결 표시 (관리자)</b><span>관리자 화면 위쪽 <em>+ 업무 등록</em> 왼쪽의 동그란 기호가 그룹웨어 자동 확인 상태입니다. <em>🔗 초록</em> = 연결됨, <em>🔑 빨강(깜박임)</em> = 로그인이 풀려 미연결, <em>주황</em> = 로그인 화면을 연 뒤 다음 자동 확인 대기 또는 확인 멈춤·오류, 회색 = 확인 기록 없음. 마우스를 올리면 마지막 확인 시각이 보입니다. 빨간 🔑를 누르면 그룹웨어 로그인 화면이 열립니다(Claude 앱 브라우저에서는 그 창에서 바로 — 로그인 뒤 ← 뒤로). 자동 확인은 관리자 컴퓨터 Claude 앱 브라우저의 로그인을 쓰므로 다른 브라우저에서는 안내 창이 먼저 뜹니다. 비밀번호는 저장·입력하지 않습니다.</span></li>
       <li><b>✅ 점검 일보 (공장별 정기 점검)</b><span>홈 빠른 기록 줄의 <em>✅ 점검 일보</em>(📋 시설 일보 왼쪽)를 누르면 사업장(안양·군포·화성)별로 회사 점검 일지 항목을 한 화면에서 적습니다. <em>매일</em>(평일: 시설 순회·수변전 09·13·17시·변전실·방화관리·E/L 호기별·콤프레샤·대기배출), <em>주간</em>(월요일부터: 쿨링타워·소방시설), <em>월간</em>(1일부터: 저수조 위생·전기계량기·축전지·비상발전기·전기차 충전·소방안전관리자 기록, 수도 검침 15일), <em>분기</em>(분전반 부하·누설전류·열화상). <em>오늘 할 점검</em>에 그날 할 구역과 밀린 구역(⏰)이 모입니다. 점검 칸은 양호·주의·불량·해당 없음, 호기별 칸은 누를 때마다 ○→△→X→/, 수치는 기준을 벗어나면 주황, 계량기는 전월 지침·배율로 사용량을 계산합니다. 적으면 바로 저장되고, <em>📋 업무일지에 기록</em>하면 업무와 「공장 통합 점검 일보」 서류(인쇄·전자결재)가 생기며 불량은 '할 예정' 후속 업무가 됩니다. <em>📈 수치 추이</em>로 역률·온도 등을 그래프로 봅니다. 관리자는 <em>⚙ 구역 설정</em>에서 사업장에 없는 구역을 끕니다.</span></li>
+      <li><b>📌 업무 지시 · 📨 보고</b><span>관리자는 업무를 <b>직원</b>이나 <b>직무</b>(재무·회계·인사·총무·시설·공무·안전·보건)에 지시합니다. 업무 등록 창의 <em>📌 업무 지시</em>에서 고르고 저장하거나, 업무 창의 <em>📌 업무 지시하기</em>, 또는 <em>📌 업무 지시</em> 화면의 <em>🗂 지시할 업무</em>에서 <em>⚡ 업무분장 담당자에게</em>·<em>🧩 직무에</em> 한 번에(여러 건 골라 한꺼번에도) 보냅니다. 받는 사람에게 알림(🔔·화면 아래·브라우저)이 가고, 직무 지시는 그 직무 담당 중 업무 사업장 근무자(없으면 전원)와 직무 책임자에게 갑니다 → 한 사람이 <em>🙋 내가 맡기</em>를 누르면 담당자가 됩니다. 직원은 <em>✓ 확인</em> → 일을 하고 <em>📨 보고</em>(중간·완료·문제·지연) → 관리자에게 알림 → 관리자가 <em>✅ 확인 완료</em> 또는 <em>↩ 보완 요청</em>. 내 업무 위쪽에 받은 지시·확인할 보고가 모이고, <em>📌 업무 지시</em> 화면에서 미확인·진행·지연·완료 현황을 봅니다. 직무별 담당 직원·책임자는 관리자가 <em>🧩 직무별 담당</em>에서 바꿉니다.</span></li>
       <li><b>🛡 경비 일지 (경비원 전용 화면)</b><span>홈 빠른 기록 줄의 <em>🛡 경비 일지</em>(✅ 점검 일보 왼쪽)에서 사업장·근무일(아침 9시 전이면 전날 밤 근무)별로 회사 경비 근무일지(근무자·인수자·교대 시각·날씨, 순찰 1·2차 시각·특이사항, 순찰 점검, 주차 현황, 기타 보고)와 <em>🚗 방문 차량</em>·직원 비등록 차량·우편물·택배 접수를 적습니다. 방문 차량은 위 칸에 차량번호 등을 적고 Enter(입차 시각 자동), 자주 오는 차량은 단추 한 번, 나갈 때 <em>출차 지금</em>. 관리자는 <em>👮 경비원 계정</em>에 경비원 이메일·사업장을 등록 → 경비원이 그 이메일로 가입·인증·로그인하면 <b>경비 일지 화면만</b> 보이고(업무·자료·직원 명단·검색·알림 없음) 어제·오늘 근무일만 적을 수 있습니다. 알림(종)의 접속 요청도 '경비원으로 허용'을 고를 수 있습니다. 항목은 관리자·자료 관리자가 <em>✏️ 항목 편집</em>(구역 추가·순서·순찰 장소·주차 칸·기록 목록 칸)에서 바꾸고, <em>🖨 인쇄·PDF</em>·<em>📤 이달 기록 엑셀</em>로 냅니다.</span></li>
       <li><b>✏️ 점검 항목 편집</b><span>점검 일보 위쪽 <em>✏️ 항목 편집</em>(관리자·자료 관리자)을 누르면 구역·묶음·항목을 바로 고칩니다. <em>⠿</em>를 끌거나 ▲▼로 순서를 바꾸고, 이름·점검 기준·종류(점검·수치·칸 수치·칸 점검·글·계량기·측정 목록)·단위·하한·상한·칸 이름(사업장마다 따로)·계량기 목록(이름*배율)·주기(평일·매일·매주 ○요일·매월 ○일·특정 달·분기·반기·매년)·사업장을 바꾸고 <em>＋ 구역 / ＋ 묶음 / ＋ 항목</em>으로 더하거나 ✕로 뺍니다. 많이 고칠 때는 <em>📤 엑셀로 내보내기</em> → 엑셀에서 고쳐 → <em>📥 엑셀에서 가져오기</em>. <em>💾 저장</em>하면 모든 사람의 점검 일보·인쇄·업무일지 기록에 바로 반영되고, 직전 것은 <em>↶ 직전 저장본</em>으로, 처음 것은 <em>↺ 기본 항목으로</em> 되돌립니다. 이름을 바꿔도 항목 ID가 같아 지난 기록·수치 추이는 이어집니다.</span></li>
       <li><b>설비 QR</b><span>시설 일보 창의 <em>🏷 설비 QR</em>에서 설비(소화전 펌프·콤프레샤·승강기 등)를 등록하고 <em>🖨 QR 라벨</em>을 인쇄해 붙여 두면, 휴대폰 기본 카메라로 찍기만 해도 업무일지가 열려 그 설비의 점검·작업 기록과 <em>📋 이 설비 일보 쓰기</em>가 나옵니다. 앱 안의 📷 QR 스캔이나 사진으로 QR 읽기도 됩니다. 설비를 고른 일보는 '대상 설비'가 서류에 들어가고 그 설비 기록에 쌓입니다.</span></li>
@@ -3243,7 +3296,7 @@ function showBanner(msg){const b=$('#banner');b.textContent=msg;b.hidden=!msg;}
 
 /* ───────── 이벤트 ───────── */
 function go(h){if(location.hash===h)route();else location.hash=h;}
-function route(){let h=(location.hash||'').slice(1);if(h==='home')h='team';S.view=['my','team','org','overview','board','calendar','list','report','upload','photos','docs','formp','formd','legal','gw','appr','insp','guard','help'].includes(h)?h:'my';if(S.view==='gw'&&GW.pv!=='gw')GW.seenNow='';GW.pv=S.view;const np=$('#ntf-pop');if(np)np.hidden=true;render();gwNav();mnavSync();}
+function route(){let h=(location.hash||'').slice(1);if(h==='home')h='team';S.view=['my','team','org','overview','board','calendar','list','report','upload','photos','docs','formp','formd','legal','gw','appr','insp','guard','ord','help'].includes(h)?h:'my';if(S.view==='gw'&&GW.pv!=='gw')GW.seenNow='';GW.pv=S.view;const np=$('#ntf-pop');if(np)np.hidden=true;render();gwNav();mnavSync();}
 window.addEventListener('hashchange',route);
 document.addEventListener('click',async e=>{
   const o=e.target.closest('[data-open]');if(o&&!e.target.closest('[data-lb]')){const t=findTask(o.dataset.open);if(t)openTask(t);return;}
@@ -9663,6 +9716,281 @@ document.addEventListener('click',e=>{if(!S.guard)return;const t=e.target;if(!t|
 /* 홈 빠른 기록 줄: ✅ 점검 일보 왼쪽 */
 {const _q=qaShell;qaShell=function(){const h=_q.apply(this,arguments);return h.replace('<button type="button" class="btn qa-insp" data-in-open','<button type="button" class="btn qa-guard" data-gd-open title="경비 근무일지 · 방문 차량 · 택배 접수 — 경비원 계정은 이 일지만 봅니다">🛡 경비 일지</button><button type="button" class="btn qa-insp" data-in-open');};}
 window.gdApi={get T(){return gdTpl();},base:GD_T0,norm:gdNormTpl,state:()=>({site:GD.site,date:GD.date,key:GD.key,day:GD.day&&gdClone(GD.day),freq:GD.freq&&gdClone(GD.freq),patch:gdClone(GD.patch),editing:GD.editing,ed:GD.ed&&gdClone({T:GD.ed}).T,dirty:GD.edDirty,guard:S.guard||null,accts:GD.accts}),flush:gdFlush,shift:gdShift,doc:(site,date,v)=>gdDocBody(site,date,v).html};
+/* ───────── 46차: 📌 업무 지시 · 📨 보고 ─────────
+   · 관리자(이기도)가 등록한 업무를 ① 특정 직원에게 ② 직무(재무·회계·인사·총무·시설·공무·안전·보건, 직접 추가 가능)에게 지시 → 받는 사람 알림(🔔·화면 아래 알림·브라우저 알림)
+   · 직무 지시: 직무 담당자(기본값 — 재무·회계·시설·공무는 조직도 파트원, 인사·총무·안전·보건은 업무분장 정·부 담당 / 관리자가 고침) 중 업무 사업장 근무자(없으면 전원) + 직무 책임자에게 알림 → 한 사람이 '내가 맡기' → 담당자
+   · 받은 사람: ✓ 확인 → 🙋 맡기(직무) → 📨 보고(중간·완료·문제·지연) → 관리자 알림 → ✅ 확인 완료 / ↩ 보완 요청 → 담당자 알림
+   · 저장: 업무(task).ord {v,mode:'staff'|'role'|'self',by,at,to:[직원],role,rn,memo,ack:{직원:시각},claim,cAt,ok,okBy,cx,seen} + 진행 기록(logs) kind order·ack·claim·rep_mid·rep_done·rep_issue·approve·redo·ocancel
+   · 직무 설정: wl/_sys/ordroles {roles:[{id,n,sids,head}],at,by} · 화면 #ord (관리자: 확인할 보고·지시 현황·지시할 업무 / 직원: 받은 지시·내 보고) */
+const ORD_KINDS=new Set(['order','ack','claim','rep_mid','rep_done','rep_issue','approve','redo','ocancel']);
+const REP_N={rep_mid:'중간 보고',rep_done:'완료 보고',rep_issue:'문제·지연 보고'};
+const ORD_SN={sent:'미확인',acked:'확인함',open:'맡을 사람 미정',doing:'진행 중',reported:'완료 보고 · 확인 대기',redo:'보완 요청',closed:'완료 확인',cancel:'지시 취소'};
+const ORD_ROLE0=[{id:'fin',n:'재무·회계',unit:'fin',head:'fin',specs:['fin']},
+  {id:'hr',n:'인사',unit:'',head:'hr',specs:['hr|채용·입퇴사','hr|인사관리','hr|근태·휴가','hr|급여·4대보험','hr|노무관리','hr|도급·용역 관리']},
+  {id:'ga',n:'총무',unit:'',head:'hr',specs:['hr|문서·사무행정','hr|비품·구매','hr|자산·보험','hr|행사·복리후생','hr|차량관리','hr|전산','hr|교육훈련']},
+  {id:'fac',n:'시설·공무',unit:'fac',head:'fac',specs:['fac']},
+  {id:'safe',n:'안전·보건',unit:'',head:'',specs:['safe']}];
+const OD={roles:null,rolesAt:'',rolesBy:'',rolesU:null,tab:'',sel:new Set(),who:'',dlg:null};
+const odAdmin=()=>!!S.canEdit;
+const odDoc=()=>S.fs.doc('wl/_sys/ordroles');
+const odStr=(x,n)=>String(x==null?'':x).replace(/[\u0000-\u001f]/g,' ').trim().slice(0,n);
+const odName=id=>id&&S.staff[id]?S.staff[id].name:nameOf(id);
+const odNames=a=>(a||[]).map(odName).join('·');
+
+/* ── 직무 */
+function ordRoleDefault(){let o=null;try{o=orgCur();}catch{}const act=new Set(staffList().map(s=>s.id));
+  return ORD_ROLE0.map(r=>{const ids=new Set();const add=id=>{if(id&&act.has(id))ids.add(id);};
+    if(o){if(r.unit)for(const [sid,p] of Object.entries(o.people||{}))if(p&&p.unit===r.unit)add(sid);
+      if(!r.unit)for(const d of o.duties||[]){let sp=[];try{sp=dutySpecs(d);}catch{}if(sp.some(([c,s])=>r.specs.some(x=>{const [rc,rs]=x.split('|');return rc===c&&(!rs||!s||s==='*'||rs===s);})))[d.main,...(d.subs||[])].forEach(add);}}
+    let head='';if(o&&r.head){const u=(o.units||[]).find(u=>u.id===r.head);if(u&&act.has(u.head))head=u.head;}
+    return {id:r.id,n:r.n,sids:staffList().map(s=>s.id).filter(id=>ids.has(id)),head};});}
+function odNormRoles(L){const ids=new Set();return (Array.isArray(L)?L:[]).slice(0,16).map(r=>{let id=String(r&&r.id||'').replace(/[^\w-]/g,'').slice(0,20)||('r'+rid().slice(0,6));while(ids.has(id))id='r'+rid().slice(0,6);ids.add(id);
+  return {id,n:odStr(r&&r.n,20)||'직무',sids:(Array.isArray(r&&r.sids)?r.sids:[]).filter(x=>typeof x==='string').slice(0,30),head:typeof (r&&r.head)==='string'?r.head:''};}).filter(r=>r.n);}
+const ordRoles=()=>OD.roles||ordRoleDefault();
+function ordRoleTo(r,site){if(!r)return [];const me=myId();const ok=id=>S.staff[id]&&working(S.staff[id])&&id!==me;let L=(r.sids||[]).filter(ok);
+  if(site&&site!=='전사'){const m=L.filter(id=>S.staff[id].site===site);if(m.length)L=m;}if(r.head&&ok(r.head)&&!L.includes(r.head))L=[...L,r.head];return L;}
+function ordRoleOf(t){const R=ordRoles();const has=id=>R.some(r=>r.id===id)?id:'';if(!t)return '';
+  if(t.cat==='fin')return has('fin');if(t.cat==='fac')return has('fac');if(t.cat==='safe')return has('safe');
+  if(t.cat==='hr'){const h=ORD_ROLE0.find(r=>r.id==='hr');return h.specs.includes('hr|'+t.sub)?has('hr'):has('ga');}return '';}
+function ordSuggest(t){try{const o=orgCur();const ds=(o.duties||[]).filter(d=>dutyHit(d,t));ds.sort((a,b)=>(!!b.site)-(!!a.site));const me=myId();
+    for(const d of ds)for(const id of [d.act&&S.staff[d.main]&&!working(S.staff[d.main])?d.act:'',d.main,...(d.subs||[])])if(id&&S.staff[id]&&working(S.staff[id])&&id!==me)return {sid:id,duty:d.name,main:id===d.main};}catch{}return null;}
+function odRolesSub(){if(OD.rolesU||!S.fs||S.mode!=='firebase')return;OD.rolesU=odDoc().onSnapshot(s=>{const d=s.exists?s.data():null;OD.roles=d&&Array.isArray(d.roles)&&d.roles.length?odNormRoles(d.roles):null;OD.rolesAt=d&&d.at||'';OD.rolesBy=d&&d.byName||'';if(S.view==='ord')scheduleRender();},()=>{});}
+
+/* ── 상태 */
+const ordOf=t=>t&&!t.priv&&t.ord&&typeof t.ord==='object'?t.ord:null;
+function ordLast(t,k){let x=null;for(const l of t.logs)if(l.kind===k&&(!x||l.at>x.at))x=l;return x;}
+function ordSt(t){const o=ordOf(t);if(!o)return '';if(o.cx)return 'cancel';if(o.ok)return 'closed';const rp=ordLast(t,'rep_done'),rd=ordLast(t,'redo');
+  if(rp&&(!rd||rp.at>rd.at))return 'reported';if(rd)return 'redo';if(o.mode==='role'&&!o.claim&&!t.assignees.length)return 'open';
+  if(t.status==='doing'||t.status==='done'||t.logs.some(l=>l.kind==='rep_mid'||l.kind==='rep_issue'))return 'doing';if(Object.keys(o.ack||{}).length)return 'acked';return 'sent';}
+const ordLive=t=>{const s=ordSt(t);return !!s&&s!=='closed'&&s!=='cancel';};
+function ordTo(t){const o=ordOf(t);if(!o)return [];return [...new Set([...(o.to||[]),...t.assignees])];}
+const ordForMe=t=>{const o=ordOf(t);const me=myId();return !!o&&o.mode!=='self'&&o.by!==me&&ordTo(t).includes(me);};
+function ordTarget(t){const o=ordOf(t);if(!o)return '';if(o.mode==='role')return `🧩 ${o.rn||'직무'}${o.claim?` → ${odName(o.claim)}`:''}`;if(o.mode==='self')return `📨 ${odName(t.assignees[0]||'')} 자체 보고`;return `👤 ${odNames(o.to)}`;}
+function ordRepPending(t){const o=ordOf(t);if(!o||o.cx||o.ok)return null;const L=t.logs.filter(l=>/^rep_/.test(l.kind)&&l.at>(o.seen||''));return L.length?L[L.length-1]:null;}
+const odPill=t=>{const s=ordSt(t);return s?`<span class="od-st od-${s}">${ORD_SN[s]}</span>`:'';};
+const odDD=t=>{if(!t.due||t.status==='done')return '';const n=diffDays(today(),t.due);return `<span class="od-dd${n<0?' late':n<=1?' soon':''}">${n<0?`지연 D+${-n}`:n===0?'오늘 마감':`D-${n}`} · ${fmtMD(t.due)}</span>`;};
+
+/* ── 쓰기 (업무 문서를 다시 읽어 바꿈) */
+async function ordWrite(t,fn){let cur=t;try{const s=await S.db.doc(t.path).get();if(s.exists)cur=normTask({...s.data(),id:t.id,year:t.year,path:t.path});}catch{}
+  const r=fn(cur,{...(cur.ord||{}),ack:{...((cur.ord||{}).ack||{})}});if(!r)return false;const patch={...(r.patch||{})};if(r.logs&&r.logs.length)patch.logs=[...cur.logs,...r.logs];
+  patch.updatedAt=nowISO();patch.updatedBy=myId();await dbUpdate(t.path,patch);return true;}
+function ordBuild(target,t,memo){const me=myId();const now=nowISO();let to=[],role=null;
+  if(target.mode==='staff'){to=[...new Set(target.sids||[])].filter(id=>S.staff[id]&&id!==me);if(!to.length)return null;}
+  else{role=ordRoles().find(r=>r.id===target.role);if(!role)return null;to=ordRoleTo(role,target.siteOnly===false?'':t.site);if(!to.length)return null;}
+  const ord={v:1,mode:target.mode,by:me,at:now,to,role:role?role.id:'',rn:role?role.n:'',memo:odStr(memo,500),ack:{},claim:'',cAt:'',ok:'',okBy:'',cx:'',seen:''};
+  const lbl=role?`🧩 ${role.n} 직무에 지시 (${odNames(to)})`:`👤 ${odNames(to)}에게 지시`;
+  return {ord,assignees:role?[]:to,log:{at:now,by:me,kind:'order',text:`${lbl}${ord.memo?' — '+ord.memo:''}`}};}
+async function ordSend(tasks,target,memo){let n=0,bad=0;setSync('saving');
+  try{for(const t of tasks){if(!t||t.priv){bad++;continue;}const b=ordBuild(target,t,memo);if(!b){bad++;continue;}
+      const patch={ord:b.ord,assignees:b.assignees};if(t.status==='done'){patch.status='plan';patch.doneAt='';patch.progress=Math.min(t.progress,90);}
+      await ordWrite(t,()=>({patch,logs:[b.log]}));n++;
+      if(S.dlg&&S.dlg.path===t.path){S.dlg.assignees=[...b.assignees];if(S.dlg.orig)S.dlg.orig.assignees=[...b.assignees];try{renderPicked();}catch{}}}}
+  catch(e){writeError(e&&e.userMsg?e:fbErr(e));}finally{setSync('ok');}return {n,bad};}
+async function ordAct(t,kind,text){const me=myId();const now=nowISO();if(!t||t.priv)return false;text=odStr(text,1000);
+  try{const ok=await ordWrite(t,(cur,o)=>{const has=!!(cur.ord&&typeof cur.ord==='object');
+      if(kind==='ack'){if(!has||o.ack[me])return null;o.ack[me]=now;return {patch:{ord:o},logs:[{at:now,by:me,kind:'ack',text:''}]};}
+      if(kind==='claim'){if(!has||o.mode!=='role')return null;if(o.claim&&o.claim!==me){toast(`${odName(o.claim)}님이 이미 맡았습니다.`,'err');return null;}
+        o.claim=me;o.cAt=now;o.ack[me]=o.ack[me]||now;const patch={ord:o,assignees:[me]};if(cur.status==='plan')patch.status='doing';return {patch,logs:[{at:now,by:me,kind:'claim',text:''}]};}
+      if(/^rep_/.test(kind)){const oo=has?o:{v:1,mode:'self',by:'',at:now,to:[me],role:'',rn:'',memo:'',ack:{},claim:'',cAt:'',ok:'',okBy:'',cx:'',seen:''};oo.ack[me]=oo.ack[me]||now;
+        const patch={ord:oo};if(oo.mode==='role'&&!oo.claim){oo.claim=me;oo.cAt=now;patch.assignees=[me];}else if(!cur.assignees.includes(me)&&oo.mode!=='staff')patch.assignees=[...cur.assignees,me].slice(0,10);
+        if(kind==='rep_done'){patch.status='done';patch.progress=100;patch.doneAt=cur.doneAt||today();oo.ok='';}else if(cur.status==='plan')patch.status='doing';
+        return {patch,logs:[{at:now,by:me,kind,text,issue:kind==='rep_issue'}]};}
+      if(!has)return null;
+      if(kind==='approve'){o.ok=now;o.okBy=me;o.seen=now;const patch={ord:o};if(cur.status!=='done'){patch.status='done';patch.progress=100;patch.doneAt=cur.doneAt||today();}return {patch,logs:[{at:now,by:me,kind:'approve',text}]};}
+      if(kind==='redo'){o.ok='';o.seen=now;const patch={ord:o};if(cur.status==='done'){patch.status='doing';patch.doneAt='';patch.progress=Math.min(cur.progress,90);}return {patch,logs:[{at:now,by:me,kind:'redo',text}]};}
+      if(kind==='seen'){o.seen=now;return {patch:{ord:o}};}
+      if(kind==='cancel'){o.cx=now;return {patch:{ord:o},logs:[{at:now,by:me,kind:'ocancel',text}]};}
+      return null;});return ok;}
+  catch(e){writeError(e&&e.userMsg?e:fbErr(e));return false;}}
+
+/* ── 알림 (🔔·화면 아래·브라우저) */
+function ordNtf(){const me=myId();if(!me)return [];const out=[];const since=new Date(Date.now()-14*864e5).toISOString();const admin=odAdmin();const td=today();let unack=0;
+  for(const t of S.tasks){const o=ordOf(t);if(!o)continue;const to=ordTo(t);const mineTo=to.includes(me);const st=ordSt(t);
+    if(o.mode!=='self'&&mineTo&&o.by!==me&&o.at>=since)out.push({k:`od|${t.path}|${o.at}`,at:o.at,type:'ord',t,text:o.mode==='role'?`${o.rn} 직무 업무 지시${o.claim?'':' — 맡을 사람을 정하세요'}${t.due?` · 마감 ${fmtMD(t.due)}`:''}`:`${odName(o.by)}님 업무 지시${t.due?` · 마감 ${fmtMD(t.due)}`:''}`,sub:o.memo});
+    for(const l of t.logs){if(!ORD_KINDS.has(l.kind)||l.by===me||l.at<since)continue;const nm=odName(l.by);
+      if(/^rep_/.test(l.kind)){if(admin||o.by===me)out.push({k:`orp|${t.path}|${l.at}|${l.by}`,at:l.at,type:'rep',t,by:l.by,text:`${nm}님 ${REP_N[l.kind]}`,sub:l.text});continue;}
+      if(l.kind==='claim'&&(mineTo||o.by===me))out.push({k:`ocl|${t.path}|${l.at}`,at:l.at,type:'ord',t,text:`${nm}님이 맡았습니다 (${o.rn||'직무'})`});
+      if((l.kind==='redo'||l.kind==='approve')&&(t.assignees.includes(me)||(o.claim===me)))out.push({k:`ox|${t.path}|${l.at}`,at:l.at,type:l.kind==='redo'?'ord':'rep',t,text:l.kind==='redo'?`${nm}님 보완 요청`:`${nm}님이 보고를 확인했습니다 (완료)`,sub:l.text});
+      if(l.kind==='ocancel'&&mineTo)out.push({k:`ocx|${t.path}|${l.at}`,at:l.at,type:'ord',t,text:`${nm}님이 지시를 취소했습니다`,sub:l.text});}
+    if(!ordLive(t))continue;
+    if(st==='open'&&t.due&&(mineTo||admin)&&diffDays(td,t.due)<=1)out.push({k:`oopen|${t.path}|${td}`,syn:1,at:td+'T00:00:05',type:'ord',t,text:`맡을 사람 미정 · ${o.rn} · ${diffDays(td,t.due)<0?'지연':'마감 '+fmtMD(t.due)}`});
+    if(admin&&st==='sent'&&Date.now()-Date.parse(o.at)>864e5)unack++;}
+  if(admin&&unack)out.push({k:`ounack|${td}|${unack}`,syn:1,at:td+'T00:00:06',type:'ord',title:'업무 지시',text:`하루 넘게 확인 안 한 지시 ${unack}건`});
+  return out;}
+{const _c=ntfCompute;ntfCompute=function(){const out=_c.apply(this,arguments).filter(it=>{if(!it.t)return true;if(it.type==='assign'&&ordOf(it.t))return false;
+    if(it.k&&it.k.startsWith('n|')){const L=it.t.logs.find(l=>`n|${it.t.path}|${l.at}|${l.by}`===it.k);if(L&&ORD_KINDS.has(L.kind))return false;}return true;});
+  try{out.push(...ordNtf());}catch(e){console.warn(e);}out.sort((a,b)=>b.at.localeCompare(a.at));return out.slice(0,80);};}
+NT_ICON.ord='지시';NT_ICON.rep='보고';
+{const _h=logActHTML,_t=logActText;const T={order:'📌 업무 지시',ack:'✓ 지시 확인',claim:'🙋 맡음',rep_mid:'📨 중간 보고',rep_done:'📨 완료 보고',rep_issue:'⚠ 문제·지연 보고',approve:'✅ 보고 확인 (완료)',redo:'↩ 보완 요청',ocancel:'지시 취소'};
+  logActHTML=function(l){return T[l.kind]?`<span class="od-lk od-lk-${l.kind}">${T[l.kind]}</span>`:_h.apply(this,arguments);};
+  logActText=function(l){return T[l.kind]?`${T[l.kind]}${l.text?' · '+l.text:''}`:_t.apply(this,arguments);};}
+
+/* ── 업무 한 줄 */
+function odRow(t,ctx){const o=ordOf(t);const me=myId();const p=esc(t.path);const st=ordSt(t);const btn=(a,l,c)=>`<button type="button" class="btn sm${c?' '+c:''}" data-od-${a}="${p}">${l}</button>`;let acts='';
+  if(ctx==='todo'){const sg=ordSuggest(t);const r=ordRoles().find(x=>x.id===ordRoleOf(t));
+    acts=`${sg?`<button type="button" class="btn sm primary" data-od-quick="${p}" data-to="s:${esc(sg.sid)}" title="업무분장 ${esc(sg.duty)} ${sg.main?'정':'부'} 담당">⚡ ${esc(odName(sg.sid))}에게</button>`:''}${r?`<button type="button" class="btn sm" data-od-quick="${p}" data-to="r:${esc(r.id)}">🧩 ${esc(r.n)} 직무에</button>`:''}${btn('order','📌 지시…')}`;}
+  else if(ctx==='staff'){if(o&&!(o.ack||{})[me]&&st!=='open')acts+=btn('ack','✓ 확인','primary');if(st==='open')acts+=btn('claim','🙋 내가 맡기','primary');if(ordLive(t))acts+=btn('rep','📨 보고');}
+  else if(ctx==='rep'){acts=st==='reported'?`${btn('ok','✅ 확인 완료','primary')}${btn('redo','↩ 보완 요청')}`:`${btn('seen','✓ 읽음','primary')}${btn('redo','↩ 보완 요청')}`;}
+  else if(ctx==='list'){if(ordLive(t)&&o&&(odAdmin()||o.by===me))acts=`${btn('order','↻ 다시 지시')}${btn('cancel','지시 취소','ghost')}`;}
+  const ack=o&&o.mode!=='self'?(o.to||[]).map(id=>`<span class="od-ack${(o.ack||{})[id]?' on':''}" title="${(o.ack||{})[id]?esc(hhmm(o.ack[id]))+' 확인':'아직 확인 안 함'}">${(o.ack||{})[id]?'✓':'·'} ${esc(odName(id))}</span>`).join(''):'';
+  const lr=ctx==='rep'?ordRepPending(t):[...t.logs].reverse().find(l=>/^rep_/.test(l.kind));
+  return `<div class="od-row${isLate(t)?' late':''}" data-od-r="${p}">${ctx==='todo'?`<input type="checkbox" class="od-ck" data-od-sel="${p}" ${OD.sel.has(t.path)?'checked':''} aria-label="선택">`:''}
+    <div class="od-main"><button type="button" class="od-t cat-${t.cat}" data-open="${p}">${esc(t.title)}</button>
+      <div class="od-meta">${o?`${odPill(t)}<span>${esc(ordTarget(t))}</span><span>${o.by?esc(odName(o.by))+' · ':''}${esc(hhmm(o.at))}</span>`:`<span class="od-cat">${esc(catText(t))}</span><span>${esc(t.site)}</span>`}${odDD(t)}</div>
+      ${o&&o.memo&&ctx!=='todo'?`<div class="od-memo">📝 ${esc(o.memo)}</div>`:''}${ack?`<div class="od-acks">${ack}</div>`:''}
+      ${lr?`<div class="od-rep k-${lr.kind}"><b>${esc(REP_N[lr.kind]||'')}</b> ${esc(odName(lr.by))} · ${esc(hhmm(lr.at))}${lr.text?`<p>${esc(lr.text)}</p>`:''}</div>`:''}</div>
+    <div class="od-acts">${acts}</div></div>`;}
+
+/* ── 화면 #ord */
+function odLists(){const me=myId();const L=S.tasks.filter(t=>!t.priv);
+  const mine=L.filter(t=>{const o=ordOf(t);return o&&ordForMe(t)&&ordLive(t)&&ordSt(t)!=='reported'&&!(o.mode==='role'&&o.claim&&o.claim!==me);}).sort((a,b)=>(ordSt(a)==='open'?0:1)-(ordSt(b)==='open'?0:1)||sortTasks(a,b));
+  const myRep=L.filter(t=>ordOf(t)&&t.logs.some(l=>/^rep_/.test(l.kind)&&l.by===me)).sort((a,b)=>String(b.updatedAt).localeCompare(String(a.updatedAt))).slice(0,60);
+  const sent=L.filter(t=>{const o=ordOf(t);return o&&o.mode!=='self'&&(o.by===me||odAdmin());}).sort((a,b)=>(ordLive(b)-ordLive(a))||String(ordOf(b).at).localeCompare(String(ordOf(a).at)));
+  const rep=odAdmin()?L.filter(t=>ordRepPending(t)).sort((a,b)=>(ordSt(a)==='reported'?0:1)-(ordSt(b)==='reported'?0:1)||ordRepPending(b).at.localeCompare(ordRepPending(a).at)):[];
+  const todo=odAdmin()?L.filter(t=>!ordOf(t)&&t.createdBy===me&&t.status!=='done'&&t.status!=='hold'&&(!t.assignees.length||(t.assignees.length===1&&t.assignees[0]===me))).sort(sortTasks):[];
+  return {mine,myRep,sent,rep,todo};}
+function renderOrd(v){if(!S.me||!S.me.id){v.innerHTML='<p class="empty">로그인한 뒤 쓸 수 있습니다.</p>';return;}odRolesSub();const A=odAdmin();const X=odLists();
+  const tabs=A?[['rep',`📨 확인할 보고`,X.rep.length],['sent','📌 지시 현황',X.sent.filter(ordLive).length],['todo','🗂 지시할 업무',X.todo.length],...(X.mine.length?[['mine','📥 받은 지시',X.mine.length]]:[])]:[['mine','📥 받은 지시',X.mine.length],['myrep','📨 내 보고',X.myRep.length]];
+  if(!tabs.some(x=>x[0]===OD.tab))OD.tab=A?(X.rep.length?'rep':X.todo.length&&!X.sent.length?'todo':'sent'):'mine';
+  const cnt=k=>X.sent.filter(t=>ordSt(t)===k).length;const late=X.sent.filter(t=>ordLive(t)&&isLate(t)).length;
+  const sum=A?`<div class="od-sum"><span>확인할 보고 <b>${X.rep.length}</b></span><span>미확인 <b>${cnt('sent')}</b></span><span>맡을 사람 미정 <b>${cnt('open')}</b></span><span>진행 중 <b>${cnt('acked')+cnt('doing')}</b></span><span>보완 요청 <b>${cnt('redo')}</b></span>${late?`<span class="late">지연 <b>${late}</b></span>`:''}<span>완료 확인 <b>${cnt('closed')}</b></span></div>`:'';
+  let body='';const T=OD.tab;
+  if(T==='rep')body=X.rep.length?X.rep.map(t=>odRow(t,'rep')).join(''):'<p class="empty">확인할 보고가 없습니다.</p>';
+  else if(T==='sent'){const f=OD.who;const L=X.sent.filter(t=>!f||(f==='live'?ordLive(t):f.startsWith('r:')?ordOf(t).role===f.slice(2):ordTo(t).includes(f)));
+    body=`<div class="od-filt"><label>보기 <select id="od-who"><option value="">전체 ${X.sent.length}</option><option value="live" ${f==='live'?'selected':''}>진행 중인 지시만</option><optgroup label="직무">${ordRoles().map(r=>`<option value="r:${esc(r.id)}" ${f==='r:'+r.id?'selected':''}>${esc(r.n)}</option>`).join('')}</optgroup><optgroup label="직원">${staffList().filter(s=>s.id!==myId()).map(s=>`<option value="${esc(s.id)}" ${f===s.id?'selected':''}>${esc(s.name)}</option>`).join('')}</optgroup></select></label></div>`+(L.length?L.slice(0,150).map(t=>odRow(t,'list')).join(''):'<p class="empty">지시한 업무가 없습니다. 🗂 지시할 업무에서 보내 보세요.</p>');}
+  else if(T==='todo'){OD.sel=new Set([...OD.sel].filter(p=>X.todo.some(t=>t.path===p)));
+    body=`<p class="od-help">내가 등록하고 아직 아무에게도 지시하지 않은 업무입니다. <b>⚡</b>는 업무분장의 정(부) 담당자, <b>🧩</b>는 업무 분류의 직무입니다.</p><div class="od-bulk"><label class="chk"><input type="checkbox" id="od-all" ${X.todo.length&&OD.sel.size===X.todo.length?'checked':''}> 모두 고르기</label><button type="button" class="btn sm primary" data-od-bulk ${OD.sel.size?'':'disabled'}>📌 고른 ${OD.sel.size}건 지시…</button></div>`+(X.todo.length?X.todo.slice(0,150).map(t=>odRow(t,'todo')).join(''):'<p class="empty">지시할 업무가 없습니다.</p>');}
+  else if(T==='mine')body=X.mine.length?X.mine.map(t=>odRow(t,'staff')).join(''):'<p class="empty">받은 업무 지시가 없습니다.</p>';
+  else if(T==='myrep')body=X.myRep.length?X.myRep.map(t=>odRow(t,'list')).join(''):'<p class="empty">보낸 보고가 없습니다.</p>';
+  v.innerHTML=`<div id="ord"><div class="home-head"><div><h1>📌 업무 지시 · 📨 보고</h1><p>${A?'업무를 직원 또는 직무(재무·회계·인사·총무·시설·공무·안전·보건)에 지시하면 받는 사람에게 알림이 가고, 직원이 보고하면 관리자에게 알림이 옵니다.':'관리자가 나 또는 내 직무에 지시한 업무입니다. 확인 → (직무 지시면) 내가 맡기 → 진행 → 📨 보고하면 관리자에게 알림이 갑니다.'}</p></div>
+    <div class="in-top">${A?'<button type="button" class="btn" data-od-roles>🧩 직무별 담당</button>':''}<a class="btn" href="#my">내 업무</a></div></div>${sum}
+    <div class="seg od-tabs" role="tablist">${tabs.map(([k,l,n])=>`<button type="button" role="tab" data-od-tab="${k}" aria-pressed="${OD.tab===k}">${l} <em>${n}</em></button>`).join('')}</div>
+    <div class="od-list">${body}</div></div>`;}
+
+/* ── 내 업무 카드 */
+function odCardHTML(){const A=odAdmin();const X=odLists();
+  if(A){if(!X.rep.length&&!X.todo.length&&!X.sent.filter(ordLive).length)return '';const late=X.sent.filter(t=>ordLive(t)&&isLate(t)).length;const un=X.sent.filter(t=>ordSt(t)==='sent').length;
+    return `<section class="panel od-card"><div class="panel-h"><h2>📌 업무 지시 · 📨 보고</h2><span class="sub">진행 중 ${X.sent.filter(ordLive).length}건${un?` · 미확인 ${un}`:''}${late?` · <span class="late">지연 ${late}</span>`:''}</span><a class="btn sm" href="#ord" style="margin-left:auto">전체 보기</a></div>
+      ${X.rep.slice(0,4).map(t=>odRow(t,'rep')).join('')}${X.rep.length>4?`<p class="od-more"><a href="#ord" data-od-tab-go="rep">보고 ${X.rep.length-4}건 더 보기</a></p>`:''}
+      ${X.todo.length?`<p class="od-more">🗂 아직 지시하지 않은 내 업무 <b>${X.todo.length}</b>건 — <a href="#ord" data-od-tab-go="todo">지시하러 가기</a></p>`:''}</section>`;}
+  if(!X.mine.length)return '';return `<section class="panel od-card"><div class="panel-h"><h2>📥 받은 업무 지시</h2><span class="sub">${X.mine.length}건 · 확인하고 끝나면 📨 보고</span><a class="btn sm" href="#ord" style="margin-left:auto">전체 보기</a></div>${X.mine.slice(0,5).map(t=>odRow(t,'staff')).join('')}</section>`;}
+{const _r=renderMy;renderMy=function(v){const r=_r.apply(this,arguments);try{const left=$('#my-left');if(left){const old=$('#od-card-box',left);if(old)old.remove();const h=odCardHTML();if(h)left.insertAdjacentHTML('afterbegin',`<div id="od-card-box">${h}</div>`);}
+    const hd=$('#view .home-head > div:last-child');if(hd&&!$('[data-od-go]',hd))hd.insertAdjacentHTML('afterbegin',`<a class="btn" href="#ord" data-od-go>📌 ${odAdmin()?'업무 지시':'받은 지시'}</a>`);}catch(e){console.warn(e);}return r;};}
+
+/* ── 업무 창(상세·등록)의 지시 칸 */
+function odTargetOptions(t){const me=myId();const sg=t?ordSuggest(t):null;const rr=t?ordRoleOf(t):'';const st=staffList().filter(s=>s.id!==me&&working(s));
+  return `<option value="">지시 안 함 (내가 할 일)</option><option value="pick">👤 위 담당자 칸의 직원에게</option><optgroup label="직원">${st.map(s=>`<option value="s:${esc(s.id)}">${sg&&sg.sid===s.id?'⚡ ':''}${esc(s.name)}${s.role?' · '+esc(s.role.split(/\s*-\s*/)[0]):''} (${esc(s.site)})</option>`).join('')}</optgroup><optgroup label="직무">${ordRoles().map(r=>`<option value="r:${esc(r.id)}">🧩 ${esc(r.n)}${r.id===rr?' ★':''}</option>`).join('')}</optgroup>`;}
+function odSelTarget(v,site){if(!v)return null;if(v==='pick')return {mode:'staff',sids:((S.dlg&&S.dlg.assignees)||[]).filter(id=>id!==myId())};if(v.startsWith('s:'))return {mode:'staff',sids:[v.slice(2)]};if(v.startsWith('r:'))return {mode:'role',role:v.slice(2),siteOnly:true};return null;}
+function odPreview(v,site){const tg=odSelTarget(v,site);if(!tg)return v?'':'';if(tg.mode==='staff')return tg.sids.length?`알림 받을 사람: ${odNames(tg.sids)}`:'위 담당자 칸에 직원을 먼저 고르세요.';const r=ordRoles().find(x=>x.id===tg.role);const to=ordRoleTo(r,site);return to.length?`알림 받을 사람: ${odNames(to)}${site&&site!=='전사'?` (${site} 근무자 우선 + 직무 책임자)`:''} — 한 사람이 맡으면 담당자가 됩니다`:'이 직무에 담당 직원이 없습니다. 🧩 직무별 담당에서 넣어 주세요.';}
+function odDlgRender(){const d=$('#dlg-task');if(!d||!S.dlg)return;let box=$('#t-ord');const anchor=$('#t-who-f');if(!anchor)return;if(!box){anchor.insertAdjacentHTML('beforebegin','<section class="od-box" id="t-ord" hidden></section>');box=$('#t-ord');}
+  const a=document.activeElement;if(a&&box.contains(a)&&a.matches('input,textarea,select'))return;
+  const t=S.dlg.path?findTask(S.dlg.path):null;const me=myId();const A=odAdmin();
+  if(S.dlg.priv||(t&&t.priv)){box.hidden=true;return;}
+  if(!t){if(!A||!S.canWrite){box.hidden=true;return;}const site=$('#t-site')?$('#t-site').value:'';const v=S.dlg.ordSel||'';
+    box.hidden=false;box.innerHTML=`<div class="f"><label for="t-ord-sel">📌 업무 지시 <small>저장하면 바로 알림</small></label><select id="t-ord-sel">${odTargetOptions({cat:$('#t-cat').value,sub:$('#t-sub').value,leaf:$('#t-leaf')?$('#t-leaf').value:'',site})}</select>
+      <input id="t-ord-memo" maxlength="500" placeholder="지시 메모 (선택) — 예) 금요일까지 견적 2곳 받아 보고" value="${esc(S.dlg.ordMemo||'')}" ${v?'':'hidden'}><small class="od-pv" id="t-ord-pv">${esc(odPreview(v,site))}</small></div>`;$('#t-ord-sel').value=v;return;}
+  const o=ordOf(t);const st=ordSt(t);const mineTo=ordTo(t).includes(me);const btn=(k,l,c)=>`<button type="button" class="btn sm${c?' '+c:''}" data-od-${k}="${esc(t.path)}">${l}</button>`;
+  if(!o){const can=A&&t.status!=='done'&&S.canWrite;const rep=!A&&t.assignees.includes(me);if(!can&&!rep){box.hidden=true;return;}
+    box.hidden=false;box.innerHTML=`<div class="od-dh"><b>📌 업무 지시 · 📨 보고</b>${can?btn('order','📌 업무 지시하기','primary'):''}${rep?btn('rep','📨 관리자에게 보고'):''}</div>${can?`<small class="od-pv">${(()=>{const sg=ordSuggest(t);const r=ordRoles().find(x=>x.id===ordRoleOf(t));return [sg?`업무분장: ${odName(sg.sid)}(${sg.main?'정':'부'})`:'',r?`직무: ${r.n}`:''].filter(Boolean).join(' · ');})()}</small>`:''}`;return;}
+  let acts='';if(mineTo&&o.by!==me){if(!(o.ack||{})[me]&&st!=='open')acts+=btn('ack','✓ 확인','primary');if(st==='open')acts+=btn('claim','🙋 내가 맡기','primary');if(ordLive(t))acts+=btn('rep','📨 보고');}
+  else if(!A&&t.assignees.includes(me)&&ordLive(t))acts+=btn('rep','📨 보고');
+  if(A||o.by===me){if(st==='reported')acts+=btn('ok','✅ 확인 완료','primary')+btn('redo','↩ 보완 요청');else if(ordRepPending(t))acts+=btn('seen','✓ 보고 읽음')+btn('redo','↩ 보완 요청');if(ordLive(t)&&o.mode!=='self')acts+=btn('order','↻ 다시 지시','ghost')+btn('cancel','지시 취소','ghost');}
+  box.hidden=false;box.innerHTML=`<div class="od-dh"><b>📌 ${o.mode==='self'?'보고':'업무 지시'}</b>${odPill(t)}<span class="od-tg">${esc(ordTarget(t))}</span>${o.by?`<small>${esc(odName(o.by))} · ${esc(hhmm(o.at))}</small>`:''}</div>${o.memo?`<div class="od-memo">📝 ${esc(o.memo)}</div>`:''}
+    ${o.mode!=='self'?`<div class="od-acks">${(o.to||[]).map(id=>`<span class="od-ack${(o.ack||{})[id]?' on':''}">${(o.ack||{})[id]?'✓':'·'} ${esc(odName(id))}${(o.ack||{})[id]?` <small>${esc(hhmm(o.ack[id]))}</small>`:''}</span>`).join('')}</div>`:''}${acts?`<div class="od-acts">${acts}</div>`:''}`;}
+{const _o=openTask;openTask=function(){const r=_o.apply(this,arguments);try{if(S.dlg){S.dlg.ordSel='';S.dlg.ordMemo='';}odDlgRender();}catch(e){console.warn(e);}return r;};}
+{const _f=refreshDialog;refreshDialog=function(){const r=_f.apply(this,arguments);try{odDlgRender();}catch(e){console.warn(e);}return r;};}
+{const _c=createTask;createTask=async function(d){let sent=null;try{const dlg=$('#dlg-task');if(S.dlg&&!S.dlg.path&&S.dlg.ordSel&&dlg&&dlg.open&&odAdmin()&&!d.priv){const tg=odSelTarget(S.dlg.ordSel,d.site);const b=tg?ordBuild(tg,d,($('#t-ord-memo')||{}).value||''):null;
+      if(b){d={...d,ord:b.ord,assignees:b.assignees,logs:[...(d.logs||[]),b.log]};sent=b;}else setTimeout(()=>toast('받을 사람이 없어 지시하지 않고 등록만 했습니다. 업무 창에서 📌 업무 지시하기를 누르세요.','err'),700);S.dlg.ordSel='';}}catch(e){console.warn(e);}
+  const r=await _c.call(this,d);if(sent)setTimeout(()=>toast(`📌 ${sent.ord.mode==='role'?sent.ord.rn+' 직무('+odNames(sent.ord.to)+')':odNames(sent.ord.to)}에게 지시했습니다. 알림이 갑니다.`),600);return r;};}
+document.addEventListener('change',e=>{const T=e.target;if(!T)return;if(T.id==='t-ord-sel'&&S.dlg){S.dlg.ordSel=T.value;const m=$('#t-ord-memo');if(m)m.hidden=!T.value;const pv=$('#t-ord-pv');if(pv)pv.textContent=odPreview(T.value,$('#t-site').value);
+    if(T.value==='pick'&&!((S.dlg.assignees||[]).filter(id=>id!==myId()).length))toast('위 담당자 칸에서 지시할 직원을 고르세요.');}
+  if((T.id==='t-site'||T.id==='t-cat')&&S.dlg&&!S.dlg.path){const pv=$('#t-ord-pv');if(pv&&S.dlg.ordSel)pv.textContent=odPreview(S.dlg.ordSel,$('#t-site').value);}});
+document.addEventListener('input',e=>{if(e.target&&e.target.id==='t-ord-memo'&&S.dlg)S.dlg.ordMemo=e.target.value;});
+
+/* ── 창: 지시 보내기 · 보고 · 보완 요청 · 직무 설정 */
+function odDlg(html){let d=$('#dlg-ord');if(!d){d=document.createElement('dialog');d.className='modal narrow';d.id='dlg-ord';document.body.appendChild(d);d.addEventListener('close',()=>{OD.dlg=null;});}d.innerHTML=html;if(!d.open)d.showModal();return d;}
+function odOrderDlg(paths){const ts=paths.map(findTask).filter(Boolean);if(!ts.length)return;const t0=ts[0];const one=ts.length===1;const sg=one?ordSuggest(t0):null;const rr=ordRoleOf(t0);const o=ordOf(t0);
+  const mode=OD.dlg&&OD.dlg.mode||(o&&o.mode==='role'?'role':o&&o.mode==='staff'?'staff':sg?'staff':rr?'role':'staff');
+  const sel=OD.dlg&&OD.dlg.sids?OD.dlg.sids:(o&&o.mode==='staff'?[...o.to]:sg?[sg.sid]:[]);const role=OD.dlg&&OD.dlg.role!=null?OD.dlg.role:(o&&o.role)||rr||'';
+  OD.dlg={k:'order',paths,mode,sids:sel,role,siteOnly:OD.dlg&&OD.dlg.siteOnly!=null?OD.dlg.siteOnly:true,memo:OD.dlg&&OD.dlg.memo!=null?OD.dlg.memo:(o&&o.memo)||'',due:OD.dlg&&OD.dlg.due!=null?OD.dlg.due:(one?t0.due:'')};const D=OD.dlg;
+  const me=myId();const st=staffList().filter(s=>s.id!==me&&working(s));const R=ordRoles();const rObj=R.find(r=>r.id===D.role);
+  const sites=[...new Set(ts.map(t=>t.site))];const to=D.mode==='role'&&rObj?(one?ordRoleTo(rObj,D.siteOnly?t0.site:''):ordRoleTo(rObj,'')):D.sids;
+  odDlg(`<form method="dialog" class="od-dlg"><header class="modal-h"><h2>📌 업무 지시${one?'':` — ${ts.length}건`}</h2><button type="button" class="icon-btn" data-od-x aria-label="닫기">✕</button></header><div class="modal-b one">
+    <p class="od-dt">${one?`<b>${esc(t0.title)}</b><small>${esc(catText(t0))} · ${esc(t0.site)}</small>`:ts.slice(0,5).map(t=>esc(t.title)).join(' · ')+(ts.length>5?` 외 ${ts.length-5}건`:'')}</p>
+    <div class="seg" role="group" aria-label="지시 방법"><button type="button" data-odd-mode="staff" aria-pressed="${D.mode==='staff'}">👤 직원에게</button><button type="button" data-odd-mode="role" aria-pressed="${D.mode==='role'}">🧩 직무에게</button></div>
+    ${D.mode==='staff'?`<div class="od-chips">${st.map(s=>`<button type="button" class="od-chip" data-odd-sid="${esc(s.id)}" aria-pressed="${D.sids.includes(s.id)}">${sg&&sg.sid===s.id?'⚡ ':''}${esc(s.name)}<small>${esc((s.role||'').split(/\s*-\s*/)[0])} · ${esc(s.site)}</small></button>`).join('')}</div>${sg?`<small class="od-pv">⚡ 업무분장 「${esc(sg.duty)}」 ${sg.main?'정':'부'} 담당</small>`:''}`
+      :`<div class="od-chips">${R.map(r=>`<button type="button" class="od-chip" data-odd-role="${esc(r.id)}" aria-pressed="${D.role===r.id}">🧩 ${esc(r.n)}${r.id===rr?' ★':''}<small>${esc(odNames((r.sids||[]).filter(id=>S.staff[id]&&working(S.staff[id]))))||'담당 없음'}</small></button>`).join('')}</div>
+        ${one&&t0.site&&t0.site!=='전사'?`<label class="chk"><input type="checkbox" id="odd-site" ${D.siteOnly?'checked':''}> ${esc(t0.site)} 근무자에게만 (직무 책임자는 늘 포함)</label>`:sites.length>1||!one?'<small class="od-pv">여러 건이면 업무마다 그 사업장 근무자에게 갑니다.</small>':''}`}
+    <p class="od-to">${to.length?`알림 받을 사람: <b>${esc(odNames(to))}</b>${D.mode==='role'?' — 이 중 한 사람이 「내가 맡기」로 담당':''}`:'<span class="bad">받을 사람을 고르세요.</span>'}</p>
+    <label class="od-l">지시 메모<textarea id="odd-memo" rows="3" maxlength="500" placeholder="요청 사항·기한·보고 방법 (선택)">${esc(D.memo)}</textarea></label>
+    ${one?`<label class="od-l">마감일 <input type="date" id="odd-due" value="${esc(D.due||'')}"></label>`:''}
+    </div><footer class="modal-f"><span class="spacer"></span><button type="button" class="btn" data-od-x>취소</button><button type="button" class="btn primary" data-odd-send ${to.length?'':'disabled'}>📌 지시 보내기</button></footer></form>`);}
+function odRepDlg(path){const t=findTask(path);if(!t)return;OD.dlg={k:'rep',path,kind:OD.dlg&&OD.dlg.k==='rep'&&OD.dlg.kind||'rep_done'};const o=ordOf(t);
+  odDlg(`<form method="dialog" class="od-dlg"><header class="modal-h"><h2>📨 보고하기</h2><button type="button" class="icon-btn" data-od-x aria-label="닫기">✕</button></header><div class="modal-b one">
+    <p class="od-dt"><b>${esc(t.title)}</b><small>${o&&o.by?`${esc(odName(o.by))}님 지시`:'관리자에게 보고'}${o&&o.memo?' — '+esc(o.memo):''}</small></p>
+    <div class="seg" role="group" aria-label="보고 종류">${Object.entries(REP_N).map(([k,l])=>`<button type="button" data-odd-kind="${k}" aria-pressed="${OD.dlg.kind===k}">${k==='rep_done'?'✅ ':k==='rep_issue'?'⚠ ':'⏳ '}${l}</button>`).join('')}</div>
+    <label class="od-l">보고 내용<textarea id="odd-text" rows="4" maxlength="1000" placeholder="${OD.dlg.kind==='rep_done'?'결과·처리 내용 (예: 견적 2곳 받아 A업체로 진행, 11.5 시공 완료)':OD.dlg.kind==='rep_issue'?'문제·지연 사유와 필요한 결정':'지금까지 진행 상황'}"></textarea></label>
+    <small class="od-pv">${OD.dlg.kind==='rep_done'?'완료 보고하면 업무가 완료로 바뀌고, 관리자가 확인하거나 보완을 요청합니다.':'보내면 관리자에게 바로 알림이 갑니다. 사진은 업무 창의 진행 기록에 붙일 수 있습니다.'}</small>
+    </div><footer class="modal-f"><span class="spacer"></span><button type="button" class="btn" data-od-x>취소</button><button type="button" class="btn primary" data-odd-rep>📨 보고 보내기</button></footer></form>`);setTimeout(()=>{const x=$('#odd-text');if(x)x.focus();},50);}
+function odNoteDlg(path,k){const t=findTask(path);if(!t)return;OD.dlg={k,path};const lr=ordRepPending(t)||[...t.logs].reverse().find(l=>/^rep_/.test(l.kind));
+  odDlg(`<form method="dialog" class="od-dlg"><header class="modal-h"><h2>${k==='redo'?'↩ 보완 요청':k==='cancel'?'지시 취소':'✅ 보고 확인 완료'}</h2><button type="button" class="icon-btn" data-od-x aria-label="닫기">✕</button></header><div class="modal-b one">
+    <p class="od-dt"><b>${esc(t.title)}</b><small>${esc(ordTarget(t))}</small></p>${lr&&k!=='cancel'?`<div class="od-rep k-${lr.kind}"><b>${esc(REP_N[lr.kind]||'')}</b> ${esc(odName(lr.by))} · ${esc(hhmm(lr.at))}${lr.text?`<p>${esc(lr.text)}</p>`:''}</div>`:''}
+    <label class="od-l">${k==='redo'?'보완할 내용 (필수)':'메모 (선택)'}<textarea id="odd-note" rows="3" maxlength="1000" placeholder="${k==='redo'?'예) 견적 1곳 더 받아 비교해 주세요':k==='cancel'?'취소 사유':'예) 수고했습니다'}"></textarea></label></div>
+    <footer class="modal-f"><span class="spacer"></span><button type="button" class="btn" data-od-x>닫기</button><button type="button" class="btn primary" data-odd-note>${k==='redo'?'↩ 보완 요청 보내기':k==='cancel'?'지시 취소':'✅ 확인 완료'}</button></footer></form>`);setTimeout(()=>{const x=$('#odd-note');if(x)x.focus();},50);}
+function odRolesDlg(){if(!odAdmin())return;if(!OD.dlg||OD.dlg.k!=='roles')OD.dlg={k:'roles',R:JSON.parse(JSON.stringify(ordRoles()))};const R=OD.dlg.R;const st=staffList();
+  odDlg(`<form method="dialog" class="od-dlg od-roles"><header class="modal-h"><h2>🧩 직무별 담당</h2><button type="button" class="icon-btn" data-od-x aria-label="닫기">✕</button></header><div class="modal-b one">
+    <p class="od-help">직무로 지시하면 그 직무 담당자 중 업무 사업장 근무자(없으면 전원)와 <b>책임자</b>에게 알림이 갑니다. ${OD.roles?`관리자가 고친 값 사용 중${OD.rolesAt?` · ${esc(hhmm(OD.rolesAt))} ${esc(OD.rolesBy)}`:''}`:'기본값: 재무·회계·시설·공무는 조직도 파트원, 인사·총무·안전·보건은 업무분장의 정·부 담당.'}</p>
+    ${R.map((r,i)=>`<div class="od-role"><div class="od-rh"><input data-odr-n="${i}" value="${esc(r.n)}" maxlength="20" aria-label="직무 이름"><label>책임자 <select data-odr-head="${i}"><option value="">없음</option>${st.map(s=>`<option value="${esc(s.id)}" ${r.head===s.id?'selected':''}>${esc(s.name)}</option>`).join('')}</select></label><button type="button" class="icon-btn" data-odr-del="${i}" aria-label="${esc(r.n)} 직무 빼기">✕</button></div>
+      <div class="od-chips sm">${st.map(s=>`<button type="button" class="od-chip" data-odr-sid="${i}" data-sid="${esc(s.id)}" aria-pressed="${r.sids.includes(s.id)}">${esc(s.name)}<small>${esc(s.site)}${working(s)?'':' · '+esc(s.state)}</small></button>`).join('')}</div></div>`).join('')}
+    <button type="button" class="btn sm" data-odr-add>＋ 직무 추가</button></div>
+    <footer class="modal-f"><button type="button" class="btn ghost" data-odr-base>↺ 기본값</button><span class="spacer"></span><button type="button" class="btn" data-od-x>닫기</button><button type="button" class="btn primary" data-odr-save>💾 저장</button></footer></form>`);}
+
+/* ── 이벤트 */
+document.addEventListener('click',async e=>{const T=e.target;if(!T||!T.closest)return;let b;
+  if((b=T.closest('[data-od-tab]'))){OD.tab=b.dataset.odTab;render();return;}
+  if((b=T.closest('[data-od-tab-go]'))){OD.tab=b.dataset.odTabGo;return;}
+  if(T.closest('[data-od-roles]')){OD.dlg=null;odRolesDlg();return;}
+  if((b=T.closest('[data-od-ack]'))){const t=findTask(b.dataset.odAck);if(t&&await ordAct(t,'ack'))toast('지시를 확인했습니다. 관리자 화면에 ✓ 표시됩니다.');return;}
+  if((b=T.closest('[data-od-claim]'))){const t=findTask(b.dataset.odClaim);if(t&&await ordAct(t,'claim'))toast('내가 맡았습니다. 담당자로 등록되고 같은 직무 동료·관리자에게 알림이 갑니다.');return;}
+  if((b=T.closest('[data-od-rep]'))){e.preventDefault();OD.dlg=null;odRepDlg(b.dataset.odRep);return;}
+  if((b=T.closest('[data-od-ok]'))){e.preventDefault();odNoteDlg(b.dataset.odOk,'approve');return;}
+  if((b=T.closest('[data-od-redo]'))){e.preventDefault();odNoteDlg(b.dataset.odRedo,'redo');return;}
+  if((b=T.closest('[data-od-cancel]'))){e.preventDefault();odNoteDlg(b.dataset.odCancel,'cancel');return;}
+  if((b=T.closest('[data-od-seen]'))){const t=findTask(b.dataset.odSeen);if(t&&await ordAct(t,'seen'))toast('보고를 읽음으로 표시했습니다.');return;}
+  if((b=T.closest('[data-od-order]'))){e.preventDefault();OD.dlg=null;odOrderDlg([b.dataset.odOrder]);return;}
+  if((b=T.closest('[data-od-bulk]'))){OD.dlg=null;odOrderDlg([...OD.sel]);return;}
+  if((b=T.closest('[data-od-quick]'))){const t=findTask(b.dataset.odQuick);if(!t)return;const v=b.dataset.to;const tg=v.startsWith('s:')?{mode:'staff',sids:[v.slice(2)]}:{mode:'role',role:v.slice(2),siteOnly:true};
+    const r=await ordSend([t],tg,'');if(r.n)toast(`📌 「${t.title.slice(0,30)}」 ${tg.mode==='role'?(ordRoles().find(x=>x.id===tg.role)||{}).n+' 직무':odNames(tg.sids)}에게 지시했습니다.`);else toast('받을 사람이 없습니다. 🧩 직무별 담당을 확인하세요.','err');return;}
+  if(!T.closest('#dlg-ord'))return;const D=OD.dlg;if(!D)return;
+  if(T.closest('[data-od-x]')){e.preventDefault();$('#dlg-ord').close();return;}
+  if(D.k==='order'){if((b=T.closest('[data-odd-mode]'))){D.mode=b.dataset.oddMode;D.memo=$('#odd-memo').value;if($('#odd-due'))D.due=$('#odd-due').value;odOrderDlg(D.paths);return;}
+    if((b=T.closest('[data-odd-sid]'))){const id=b.dataset.oddSid;D.sids=D.sids.includes(id)?D.sids.filter(x=>x!==id):[...D.sids,id];D.memo=$('#odd-memo').value;if($('#odd-due'))D.due=$('#odd-due').value;odOrderDlg(D.paths);return;}
+    if((b=T.closest('[data-odd-role]'))){D.role=b.dataset.oddRole;D.memo=$('#odd-memo').value;if($('#odd-due'))D.due=$('#odd-due').value;odOrderDlg(D.paths);return;}
+    if(T.closest('[data-odd-send]')){e.preventDefault();const memo=$('#odd-memo').value;const due=$('#odd-due')?$('#odd-due').value:null;let ts=D.paths.map(findTask).filter(Boolean);
+      if(ts.length===1&&due!=null&&due!==(ts[0].due||'')){try{const np=await updateTask(ts[0],{due});await sleep2(400);ts=[findTask(np)||{...ts[0],path:np,due}];}catch(err){writeError(err);return;}}
+      const tg=D.mode==='role'?{mode:'role',role:D.role,siteOnly:D.siteOnly}:{mode:'staff',sids:D.sids};const r=await ordSend(ts,tg,memo);$('#dlg-ord').close();OD.sel.clear();
+      toast(r.n?`📌 ${r.n}건 지시했습니다${r.bad?` (받을 사람 없는 ${r.bad}건 제외)`:''}. 받는 사람에게 알림이 갑니다.`:'지시하지 못했습니다. 받을 사람을 확인하세요.',r.n?'':'err');return;}}
+  if(D.k==='rep'){if((b=T.closest('[data-odd-kind]'))){D.kind=b.dataset.oddKind;const keep=$('#odd-text').value;odRepDlg(D.path);$('#odd-text').value=keep;return;}
+    if(T.closest('[data-odd-rep]')){e.preventDefault();const text=$('#odd-text').value.trim();if(D.kind!=='rep_done'&&!text){toast('보고 내용을 적어 주세요.','err');$('#odd-text').focus();return;}const t=findTask(D.path);
+      if(t&&await ordAct(t,D.kind,text)){$('#dlg-ord').close();toast(`📨 ${REP_N[D.kind]}를 보냈습니다. 관리자에게 알림이 갑니다.`);}return;}}
+  if(['redo','approve','cancel'].includes(D.k)&&T.closest('[data-odd-note]')){e.preventDefault();const note=$('#odd-note').value.trim();if(D.k==='redo'&&!note){toast('보완할 내용을 적어 주세요.','err');$('#odd-note').focus();return;}const t=findTask(D.path);
+    if(t&&await ordAct(t,D.k,note)){$('#dlg-ord').close();toast(D.k==='redo'?'↩ 보완 요청을 보냈습니다.':D.k==='cancel'?'지시를 취소했습니다.':'✅ 보고를 확인했습니다. 업무가 완료로 정리됩니다.');}return;}
+  if(D.k==='roles'){const R=D.R;
+    if((b=T.closest('[data-odr-sid]'))){const r=R[+b.dataset.odrSid];const id=b.dataset.sid;r.sids=r.sids.includes(id)?r.sids.filter(x=>x!==id):[...r.sids,id];b.setAttribute('aria-pressed',r.sids.includes(id));return;}
+    if((b=T.closest('[data-odr-del]'))){R.splice(+b.dataset.odrDel,1);odRolesDlg();return;}
+    if(T.closest('[data-odr-add]')){R.push({id:'r'+rid().slice(0,6),n:'새 직무',sids:[],head:''});odRolesDlg();setTimeout(()=>{const x=$$('#dlg-ord [data-odr-n]').pop();if(x){x.focus();x.select();}},50);return;}
+    if(T.closest('[data-odr-base]')){D.R=ordRoleDefault();odRolesDlg();return;}
+    if(T.closest('[data-odr-save]')){e.preventDefault();const L=odNormRoles(R);if(!L.length){toast('직무를 하나 이상 두세요.','err');return;}if(!S.fs||S.mode!=='firebase'){OD.roles=L;$('#dlg-ord').close();render();return;}
+      try{await fbWrite(odDoc().set({roles:L,at:nowISO(),by:myId(),byName:myName()}));OD.roles=L;$('#dlg-ord').close();toast('직무별 담당을 저장했습니다.');render();}catch(err){writeError(err&&err.userMsg?err:fbErr(err));}return;}}});
+const sleep2=ms=>new Promise(r=>setTimeout(r,ms));
+document.addEventListener('change',e=>{const T=e.target;if(!T)return;
+  if(T.id==='od-who'){OD.who=T.value;render();return;}
+  if(T.id==='od-all'){const X=odLists();OD.sel=T.checked?new Set(X.todo.map(t=>t.path)):new Set();render();return;}
+  if(T.dataset&&T.dataset.odSel){if(T.checked)OD.sel.add(T.dataset.odSel);else OD.sel.delete(T.dataset.odSel);const b=$('[data-od-bulk]');if(b){b.disabled=!OD.sel.size;b.textContent=`📌 고른 ${OD.sel.size}건 지시…`;}return;}
+  if(T.id==='odd-site'&&OD.dlg&&OD.dlg.k==='order'){OD.dlg.siteOnly=T.checked;OD.dlg.memo=$('#odd-memo').value;if($('#odd-due'))OD.dlg.due=$('#odd-due').value;odOrderDlg(OD.dlg.paths);return;}
+  if(OD.dlg&&OD.dlg.k==='roles'){if(T.dataset.odrHead!=null){OD.dlg.R[+T.dataset.odrHead].head=T.value;return;}}});
+document.addEventListener('input',e=>{const T=e.target;if(T&&T.dataset&&T.dataset.odrN!=null&&OD.dlg&&OD.dlg.k==='roles')OD.dlg.R[+T.dataset.odrN].n=T.value;});
+window.ordApi={roles:ordRoles,roleDefault:ordRoleDefault,roleTo:(id,site)=>ordRoleTo(ordRoles().find(r=>r.id===id),site),roleOf:ordRoleOf,suggest:ordSuggest,st:p=>ordSt(findTask(p)),lists:()=>{const X=odLists();return Object.fromEntries(Object.entries(X).map(([k,v])=>[k,v.map(t=>t.path)]));},send:(paths,tg,memo)=>ordSend(paths.map(findTask),tg,memo),act:(p,k,x)=>ordAct(findTask(p),k,x),ntf:()=>ordNtf()};
 
 /* ───────── 시작 ───────── */
 function boot(){
