@@ -1747,6 +1747,81 @@ input.ir{font:inherit;font-size:14.5px;font-weight:600;padding:4px 8px;border:2p
 .ie .sf-out{border-color:#e08a00!important;background:#fff7e8!important}
 .ie>.ie-secs>.ie-sec>.btn,.ie-sec>.btn{margin:0 10px 10px}
 @media (max-width:760px){.ie{padding:8px}.ie-row .ie-n,.ie-row .ie-c{flex-basis:100%}.ie-mv{margin-left:0}.ie-gh input{max-width:none}}
+/* 45차: 🛡 경비 일지 */
+.qa-guard{border-color:#3d5a80!important;color:#26405f}
+#gd .in-top{gap:6px}
+.gd-sec{scroll-margin-top:78px}
+.gd-jump{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}.gd-jump button{border:1px solid var(--line);background:var(--card,#fff);border-radius:999px;padding:4px 11px;font:inherit;font-size:13px;color:var(--ink-2);cursor:pointer}.gd-jump button:hover{border-color:#3d5a80;color:#26405f}
+#gd .gd-secs{display:flex;flex-direction:column;gap:12px}
+.gd-sec{border:1px solid var(--line);border-left:4px solid #3d5a80;border-radius:12px;background:var(--card,#fff);padding:10px 12px;min-width:0}
+.gd-sec>header{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-bottom:6px}
+.gd-sec>header h3{margin:0;font-size:16px}
+.gd-prog{font-size:12.5px;color:var(--ink-2);background:#eef2f7;border-radius:999px;padding:2px 9px}
+.gd-prog .bad,.in-sum .bad{color:#c0261d}.gd-prog .warn,.in-sum .warn{color:#8a5200}
+.gd-tools{margin-left:auto;display:flex;gap:6px}
+.gd-c{margin:0 0 8px;color:var(--ink-3);font-size:12.5px;line-height:1.5}
+.gd-st{font-size:12.5px;color:var(--ink-3)}.gd-st[data-s=err]{color:#c0261d;font-weight:700}.gd-st[data-s=dirty],.gd-st[data-s=saving]{color:#8a5200}
+.gd-f{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px 12px}
+.gd-fi{display:flex;flex-direction:column;gap:3px;font-size:12.5px;color:var(--ink-2);min-width:0}.gd-fi>input{width:100%}
+#gd input:not([type=checkbox]):not([type=radio]),#gd textarea,#gd select{font:inherit;font-size:14px;padding:6px 8px;border:1px solid var(--line);border-radius:7px;background:var(--surface,#fff);color:var(--ink);min-width:0;box-sizing:border-box}
+#gd input:disabled,#gd textarea:disabled{background:#f4f5f7;color:var(--ink-2)}
+.gd-tm{display:flex;gap:4px;align-items:center}.gd-tm input{flex:1 1 auto;min-width:92px}
+.gd-ct{width:100%;border-collapse:collapse}.gd-ct td{border-top:1px solid var(--line);padding:6px 4px;vertical-align:middle}
+.gd-ct td.n{width:28px;color:var(--ink-3);text-align:center}.gd-cn small{display:block;color:var(--ink-3);font-size:11.5px}
+.gd-cr{width:52%}.gd-ca{width:100%;margin-top:4px}
+.gd-ct tr.is-bad td{background:#fff6f5}.gd-ct tr.is-warn td{background:#fffaf0}
+.gd-seg button[aria-pressed=true][data-v="양호"]{background:#e7f6ee;border-color:#1d7a46;color:#1d7a46;font-weight:700}
+.gd-seg button[aria-pressed=true][data-v="주의"]{background:#fff4e0;border-color:#b26a00;color:#8a5200;font-weight:700}
+.gd-seg button[aria-pressed=true][data-v="불량"]{background:#fdeceb;border-color:#c0261d;color:#c0261d;font-weight:700}
+.gd-seg button[aria-pressed=true][data-v="해당 없음"]{background:#eef0f3;border-color:#8b96a5;color:#46597a;font-weight:700}
+.gd-tw{overflow-x:auto;max-width:100%}
+.gd-pt,.gd-gt,.gd-lt,.gd-at{width:100%;border-collapse:collapse;font-size:13.5px}
+.gd-pt th,.gd-pt td,.gd-gt th,.gd-gt td,.gd-lt th,.gd-lt td,.gd-at th,.gd-at td{border:1px solid var(--line);padding:4px 5px;vertical-align:middle}
+.gd-pt thead th,.gd-gt thead th,.gd-lt thead th,.gd-at thead th{background:#f3f5f8;font-weight:600;font-size:12.5px;white-space:nowrap}
+.gd-pt th[scope=row],.gd-gt th[scope=row]{text-align:left;white-space:nowrap;background:#fafbfc}
+.gd-pt td input,.gd-lt td input:not([type=checkbox]),.gd-gt td input{width:100%}
+.gd-gt td input{text-align:right;max-width:110px}.gd-gt .n,.gd-gt tfoot td{text-align:right;font-weight:600}
+.gd-gt tfoot th,.gd-gt tfoot td{background:#f3f5f8}.gd-u{color:var(--ink-3);font-size:12px}
+.gd-lt td.n{width:34px;text-align:center;color:var(--ink-3)}.gd-lt td.gd-yn{text-align:center;width:64px}.gd-lt td.gd-x{width:40px;text-align:center}
+.gd-lt .gd-empty td{text-align:center;color:var(--ink-3);padding:12px}
+.gd-add{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:flex-end;background:#f5f8fc;border:1px dashed #b9c7da;border-radius:10px;padding:8px;margin-bottom:8px}
+.gd-add label{display:flex;flex-direction:column;gap:2px;font-size:12px;color:var(--ink-2);flex:1 1 130px;min-width:0}
+.gd-add .btn{flex:0 0 auto;height:36px}.gd-addh{flex:1 1 100%;color:var(--ink-3);font-size:11.5px}
+.gd-chips{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:8px;font-size:12.5px;color:var(--ink-2)}
+.gd-chip{display:inline-flex;align-items:stretch;border:1px solid #9fb3cf;border-radius:999px;overflow:hidden;background:#eef4fb}
+.gd-chip>button{border:0;background:transparent;font:inherit;font-size:13px;font-weight:700;color:#1f4f96;padding:4px 11px;cursor:pointer;display:flex;gap:6px;align-items:center}
+.gd-chip>button small{font-weight:400;color:var(--ink-2)}.gd-chip>button:hover{background:#dde9f8}
+.gd-chip>.gd-chipx{font-weight:400;color:#8a94a6;padding:4px 8px;border-left:1px solid #c9d6ea}
+.gd-txt{width:100%;resize:vertical;min-height:90px}
+.gd-gbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin:2px 0 8px}
+.gd-gid{display:flex;flex-direction:column}.gd-gid b{font-size:18px}.gd-gid small{color:var(--ink-3)}
+.gd-acct{border:1px solid var(--line);border-radius:12px;background:var(--card,#fff);padding:10px 12px;margin:8px 0}
+.gd-acct h4{margin:0 0 8px}.gd-acct h4 small{font-weight:400;color:var(--ink-3)}
+.gd-aadd{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.gd-aadd input{flex:1 1 180px}
+.gd-jr{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;margin:6px 0;font-size:13px}
+.gd-warn{color:#8a5200;font-size:12.5px}.gd-eh{color:var(--ink-3);font-size:12px;line-height:1.55;margin:6px 0}
+.gd-ty{display:inline-block;padding:1px 7px;border-radius:999px;font-size:11.5px;font-weight:700;background:#e9eef6;color:#3d5a80}
+.ge-key{font-size:12px;display:inline-flex;gap:3px;align-items:center;color:var(--ink-2)}
+#gd .ie-sf .ge-c{flex:1 1 280px;white-space:nowrap}#gd .ie-sf .ge-c input{flex:1 1 auto;width:100%}
+/* 경비원 로그인: 경비 일지만 */
+body.gd-mode .tabs,body.gd-mode #fab,body.gd-mode #mnav,body.gd-mode #filters,body.gd-mode #banner,body.gd-mode .top-right>:not(#sync):not(#gd-out){display:none!important}
+body.gd-mode .top{justify-content:space-between}
+body.gd-mode #gd-out{height:34px}
+@media (max-width:760px){
+  .gd-cr{width:auto}.gd-ct tr{display:grid;grid-template-columns:28px 1fr}.gd-ct td.gd-cr{grid-column:1/-1;border-top:0;padding-top:0}
+  .gd-pt thead,.gd-lt thead{display:none}
+  .gd-pt,.gd-pt tbody,.gd-lt,.gd-lt tbody{display:block}
+  .gd-pt tr,.gd-lt tr{display:grid;grid-template-columns:1fr 1fr;gap:4px 8px;border:1px solid var(--line);border-radius:9px;padding:6px;margin-bottom:6px}
+  .gd-pt td,.gd-pt th,.gd-lt td{border:0;padding:0}
+  .gd-pt th[scope=row]{grid-column:1/-1;background:none;font-size:14px}
+  .gd-pt td::before,.gd-lt td::before{content:attr(data-l);display:block;font-size:11px;color:var(--ink-3)}
+  .gd-lt td.n{grid-column:1/-1;width:auto;text-align:left}.gd-lt td.n::before{display:none}
+  .gd-lt td.gd-yn,.gd-lt td.gd-x{width:auto;text-align:left}.gd-lt td.gd-x{grid-column:2;justify-self:end}
+  .gd-lt .gd-empty{display:block}.gd-lt .gd-empty td{display:block}.gd-lt .gd-empty td::before{display:none}
+  .gd-add label{flex-basis:45%}.gd-add .btn{flex:1 1 100%}
+  .gd-f{grid-template-columns:repeat(2,minmax(0,1fr))}.gd-tm input{min-width:0}.gd-gt td input{max-width:72px}
+  .gd-at thead{display:none}.gd-at tr{display:grid;grid-template-columns:1fr auto}.gd-at td{border:0}
+}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -2403,7 +2478,7 @@ function render(){
   if(S.view!=='report'){S.charts.forEach(c=>c.destroy());S.charts=[];}
   $('#tab-overview').hidden=!(S.canEdit||S.preview);
   if(S.view==='legal'){const ae=document.activeElement;if(ae&&ae.closest&&ae.closest('.lg-set')&&/^(INPUT|SELECT)$/.test(ae.tagName)&&ae.type!=='checkbox'){S.pendingLegal=true;fillWhoOptions();updateMeChip();return;}}
-  if(S.view==='my')renderMy(v);else if(S.view==='team')renderTeam(v);else if(S.view==='board')renderBoard(v);else if(S.view==='calendar')renderCalendar(v);else if(S.view==='list')renderList(v);else if(S.view==='report')renderReport(v);else if(S.view==='help')renderHelp(v);else if(S.view==='overview')renderOverview(v);else if(S.view==='photos')renderPhotos(v);else if(S.view==='upload')renderUpload(v);else if(S.view==='docs')renderDocs(v);else if(S.view==='legal')renderLegal(v);else if(S.view==='gw')renderGw(v);else if(S.view==='org')renderOrg(v);else if(S.view==='appr')renderAppr(v);else if(S.view==='formp'||S.view==='formd')renderForms(v);else if(S.view==='insp')renderInsp(v);
+  if(S.view==='my')renderMy(v);else if(S.view==='team')renderTeam(v);else if(S.view==='board')renderBoard(v);else if(S.view==='calendar')renderCalendar(v);else if(S.view==='list')renderList(v);else if(S.view==='report')renderReport(v);else if(S.view==='help')renderHelp(v);else if(S.view==='overview')renderOverview(v);else if(S.view==='photos')renderPhotos(v);else if(S.view==='upload')renderUpload(v);else if(S.view==='docs')renderDocs(v);else if(S.view==='legal')renderLegal(v);else if(S.view==='gw')renderGw(v);else if(S.view==='org')renderOrg(v);else if(S.view==='appr')renderAppr(v);else if(S.view==='formp'||S.view==='formd')renderForms(v);else if(S.view==='insp')renderInsp(v);else if(S.view==='guard')renderGuard(v);
   fillWhoOptions();updateMeChip();patchNames();}
 
 function rowHTML(t){const d=ddayInfo(t);const late=isLate(t);
@@ -2646,7 +2721,8 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>안전관리 일지 (11종)</b><span>시설 일보 창 <em>서류</em>에서 <em>🦺 안전관리 일지</em>를 누르면 산업안전·보건 · 전기 · 소방 · 유해화학물질 · 위험물옥내저장소 · 승강기 · 환경 · 폐기물(일반/지정) · 건축물관리자 · 기계설비 · 정보통신 일지 중 고를 수 있습니다. 항목마다 <em>양호·주의·불량·해당 없음</em>을 누르고(✓ 빈 칸 모두 양호), 측정값(역률·압력·온도 등)을 적으면 기준을 벗어난 값은 「주의」로 적힙니다. 사업장에 없는 공정 항목은 빠지고, 선임자는 조직도의 법정 선임 현황에서 가져옵니다. 불량 항목은 '할 예정' 후속 업무로 같이 등록할 수 있습니다. 위에 <em>작업일자·작업시간</em>을 적으면 서류의 시간 칸과 사진 아래 시각에 그대로 씁니다.</span></li>
       <li><b>회사 실제 양식 (41차)</b><span>시설 일보의 <em>✨ 자동</em>은 메모에 회사 일지 낱말(역률·TR 유면·VCB / 소화기·수신기 / E/L·인승 / 콤프레샤·쿨링타워·저수조 / 집진·배출구)이 2개 이상이면 그 <em>🦺 안전관리 일지</em>로 만듭니다. 점검표 항목은 회사 「변전실 안전점검 일지」·「소방시설 안전점검 일지」·「E/L 일일 점검일지」·콤프레샤·쿨링타워·저수조 위생점검·「대기배출시설 운영기록부」(군포: 분쇄시설·여과집진)를 따르고, TR1~3 유면·전력량계 지침·호기별 토출 압력처럼 칸 여러 개로 적습니다. 일지 위 <em>회사 양식</em> 단추를 누르면 같은 회사서식(직접 작성)이 바로 열립니다. <em>작업 일보</em>는 「업체: 한빛전기 2명 — 분전반 교체」처럼 적으면 회사 업무 일지처럼 <em>외부 작업</em>(종별·업체명·인원)과 <em>자체 작업</em>으로 나누고, <em>점검 일지</em>는 변전실·발전실·경비실·저수조·펌프실 중 2곳 이상이나 '시설 순회'를 적으면 회사 「안전관리 일지」 항목으로 채웁니다. 회사서식은 원본 파일과 같은 이름의 <em>○○.화면.html</em>(회사 양식으로 다듬은 화면)을 함께 올리면 한 서식으로 묶어 바로 직접 작성으로 씁니다.</span></li>
       <li><b>그룹웨어 연결 표시 (관리자)</b><span>관리자 화면 위쪽 <em>+ 업무 등록</em> 왼쪽의 동그란 기호가 그룹웨어 자동 확인 상태입니다. <em>🔗 초록</em> = 연결됨, <em>🔑 빨강(깜박임)</em> = 로그인이 풀려 미연결, <em>주황</em> = 로그인 화면을 연 뒤 다음 자동 확인 대기 또는 확인 멈춤·오류, 회색 = 확인 기록 없음. 마우스를 올리면 마지막 확인 시각이 보입니다. 빨간 🔑를 누르면 그룹웨어 로그인 화면이 열립니다(Claude 앱 브라우저에서는 그 창에서 바로 — 로그인 뒤 ← 뒤로). 자동 확인은 관리자 컴퓨터 Claude 앱 브라우저의 로그인을 쓰므로 다른 브라우저에서는 안내 창이 먼저 뜹니다. 비밀번호는 저장·입력하지 않습니다.</span></li>
-      <li><b>✅ 점검 일보 (공장별 정기 점검)</b><span>홈 빠른 기록 줄의 <em>✅ 점검 일보</em>(📋 시설 일보 왼쪽)를 누르면 사업장(안양·군포·화성)별로 회사 점검 일지 항목을 한 화면에서 적습니다. <em>매일</em>(평일: 시설 순회·수변전 09·13·17시·변전실·방화관리·E/L 호기별·콤프레샤·대기배출 / 매일: 경비 순찰), <em>주간</em>(월요일부터: 쿨링타워·소방시설), <em>월간</em>(1일부터: 저수조 위생·전기계량기·축전지·비상발전기·전기차 충전·소방안전관리자 기록, 수도 검침 15일), <em>분기</em>(분전반 부하·누설전류·열화상). <em>오늘 할 점검</em>에 그날 할 구역과 밀린 구역(⏰)이 모입니다. 점검 칸은 양호·주의·불량·해당 없음, 호기별 칸은 누를 때마다 ○→△→X→/, 수치는 기준을 벗어나면 주황, 계량기는 전월 지침·배율로 사용량을 계산합니다. 적으면 바로 저장되고, <em>📋 업무일지에 기록</em>하면 업무와 「공장 통합 점검 일보」 서류(인쇄·전자결재)가 생기며 불량은 '할 예정' 후속 업무가 됩니다. <em>📈 수치 추이</em>로 역률·온도 등을 그래프로 봅니다. 관리자는 <em>⚙ 구역 설정</em>에서 사업장에 없는 구역을 끕니다.</span></li>
+      <li><b>✅ 점검 일보 (공장별 정기 점검)</b><span>홈 빠른 기록 줄의 <em>✅ 점검 일보</em>(📋 시설 일보 왼쪽)를 누르면 사업장(안양·군포·화성)별로 회사 점검 일지 항목을 한 화면에서 적습니다. <em>매일</em>(평일: 시설 순회·수변전 09·13·17시·변전실·방화관리·E/L 호기별·콤프레샤·대기배출), <em>주간</em>(월요일부터: 쿨링타워·소방시설), <em>월간</em>(1일부터: 저수조 위생·전기계량기·축전지·비상발전기·전기차 충전·소방안전관리자 기록, 수도 검침 15일), <em>분기</em>(분전반 부하·누설전류·열화상). <em>오늘 할 점검</em>에 그날 할 구역과 밀린 구역(⏰)이 모입니다. 점검 칸은 양호·주의·불량·해당 없음, 호기별 칸은 누를 때마다 ○→△→X→/, 수치는 기준을 벗어나면 주황, 계량기는 전월 지침·배율로 사용량을 계산합니다. 적으면 바로 저장되고, <em>📋 업무일지에 기록</em>하면 업무와 「공장 통합 점검 일보」 서류(인쇄·전자결재)가 생기며 불량은 '할 예정' 후속 업무가 됩니다. <em>📈 수치 추이</em>로 역률·온도 등을 그래프로 봅니다. 관리자는 <em>⚙ 구역 설정</em>에서 사업장에 없는 구역을 끕니다.</span></li>
+      <li><b>🛡 경비 일지 (경비원 전용 화면)</b><span>홈 빠른 기록 줄의 <em>🛡 경비 일지</em>(✅ 점검 일보 왼쪽)에서 사업장·근무일(아침 9시 전이면 전날 밤 근무)별로 회사 경비 근무일지(근무자·인수자·교대 시각·날씨, 순찰 1·2차 시각·특이사항, 순찰 점검, 주차 현황, 기타 보고)와 <em>🚗 방문 차량</em>·직원 비등록 차량·우편물·택배 접수를 적습니다. 방문 차량은 위 칸에 차량번호 등을 적고 Enter(입차 시각 자동), 자주 오는 차량은 단추 한 번, 나갈 때 <em>출차 지금</em>. 관리자는 <em>👮 경비원 계정</em>에 경비원 이메일·사업장을 등록 → 경비원이 그 이메일로 가입·인증·로그인하면 <b>경비 일지 화면만</b> 보이고(업무·자료·직원 명단·검색·알림 없음) 어제·오늘 근무일만 적을 수 있습니다. 알림(종)의 접속 요청도 '경비원으로 허용'을 고를 수 있습니다. 항목은 관리자·자료 관리자가 <em>✏️ 항목 편집</em>(구역 추가·순서·순찰 장소·주차 칸·기록 목록 칸)에서 바꾸고, <em>🖨 인쇄·PDF</em>·<em>📤 이달 기록 엑셀</em>로 냅니다.</span></li>
       <li><b>✏️ 점검 항목 편집</b><span>점검 일보 위쪽 <em>✏️ 항목 편집</em>(관리자·자료 관리자)을 누르면 구역·묶음·항목을 바로 고칩니다. <em>⠿</em>를 끌거나 ▲▼로 순서를 바꾸고, 이름·점검 기준·종류(점검·수치·칸 수치·칸 점검·글·계량기·측정 목록)·단위·하한·상한·칸 이름(사업장마다 따로)·계량기 목록(이름*배율)·주기(평일·매일·매주 ○요일·매월 ○일·특정 달·분기·반기·매년)·사업장을 바꾸고 <em>＋ 구역 / ＋ 묶음 / ＋ 항목</em>으로 더하거나 ✕로 뺍니다. 많이 고칠 때는 <em>📤 엑셀로 내보내기</em> → 엑셀에서 고쳐 → <em>📥 엑셀에서 가져오기</em>. <em>💾 저장</em>하면 모든 사람의 점검 일보·인쇄·업무일지 기록에 바로 반영되고, 직전 것은 <em>↶ 직전 저장본</em>으로, 처음 것은 <em>↺ 기본 항목으로</em> 되돌립니다. 이름을 바꿔도 항목 ID가 같아 지난 기록·수치 추이는 이어집니다.</span></li>
       <li><b>설비 QR</b><span>시설 일보 창의 <em>🏷 설비 QR</em>에서 설비(소화전 펌프·콤프레샤·승강기 등)를 등록하고 <em>🖨 QR 라벨</em>을 인쇄해 붙여 두면, 휴대폰 기본 카메라로 찍기만 해도 업무일지가 열려 그 설비의 점검·작업 기록과 <em>📋 이 설비 일보 쓰기</em>가 나옵니다. 앱 안의 📷 QR 스캔이나 사진으로 QR 읽기도 됩니다. 설비를 고른 일보는 '대상 설비'가 서류에 들어가고 그 설비 기록에 쌓입니다.</span></li>
       <li><b>찾기 요령 · 사진 위치</b><span>전체 검색(🔍, Ctrl+K)은 초성으로도 찾습니다(ㅅㅎㄱ → 소화기). 한/영 전환을 깜빡해 영문으로 찍히면 한글 낱말로 찾기를 제안합니다. 관리자가 설정 › <em>사업장 위치</em>에 좌표를 넣어 두면, 시설 일보에 올린 사진의 촬영 위치로 사업장이 자동으로 정해집니다(위치값은 저장하지 않음).</span></li>
@@ -3167,7 +3243,7 @@ function showBanner(msg){const b=$('#banner');b.textContent=msg;b.hidden=!msg;}
 
 /* ───────── 이벤트 ───────── */
 function go(h){if(location.hash===h)route();else location.hash=h;}
-function route(){let h=(location.hash||'').slice(1);if(h==='home')h='team';S.view=['my','team','org','overview','board','calendar','list','report','upload','photos','docs','formp','formd','legal','gw','appr','insp','help'].includes(h)?h:'my';if(S.view==='gw'&&GW.pv!=='gw')GW.seenNow='';GW.pv=S.view;const np=$('#ntf-pop');if(np)np.hidden=true;render();gwNav();mnavSync();}
+function route(){let h=(location.hash||'').slice(1);if(h==='home')h='team';S.view=['my','team','org','overview','board','calendar','list','report','upload','photos','docs','formp','formd','legal','gw','appr','insp','guard','help'].includes(h)?h:'my';if(S.view==='gw'&&GW.pv!=='gw')GW.seenNow='';GW.pv=S.view;const np=$('#ntf-pop');if(np)np.hidden=true;render();gwNav();mnavSync();}
 window.addEventListener('hashchange',route);
 document.addEventListener('click',async e=>{
   const o=e.target.closest('[data-open]');if(o&&!e.target.closest('[data-lb]')){const t=findTask(o.dataset.open);if(t)openTask(t);return;}
@@ -8723,7 +8799,7 @@ window.sfApi={guess:sfGuess,types:()=>SF_T.map(t=>({id:t.id,n:t.n,t:t.t})),items
 document.addEventListener('change',e=>{const T=e.target;if(!T||T.id!=='il-site'||!IL.d||IL.d.kind!=='safe'||IL.step!=='in')return;setTimeout(()=>{if(IL.d&&$('#sf-box'))sfRefresh();},0);});
 /* ───────── 43차: ✅ 점검 일보 (공장별 통합 정기 점검) ─────────
    · 회사 실제 점검 일지 36종(2026-10-31 zip — 군포 수변전·변전실·안전관리(시설 순회)·방화관리·소방시설·E/L·콤프레샤·쿨링타워·저수조·계량기·축전지·
-     비상발전기·전기차 충전·대기배출 운영기록부·경비 근무일지 등)을 분석해 매일·주간·월간·분기 점검 구역으로 묶음. 사업장에 없는 구역은 빠짐(관리자가 끌 수도 있음)
+     비상발전기·전기차 충전·대기배출 운영기록부 등)을 분석해 매일·주간·월간·분기 점검 구역으로 묶음. 사업장에 없는 구역은 빠짐(관리자가 끌 수도 있음)
    · 주기 = iCalendar 반복 규칙(RFC 5545 RRULE) — rrule.js(github.com/jkbrzt/rrule, BSD-3-Clause)로 '이번 주기 시작일·다음 점검일' 계산, 못 불러오면 내장 계산
    · 기록 방식은 오픈소스 CMMS(Atlas CMMS github.com/grashjs/cmms)의 예방정비 체크리스트 구조를 참고(코드는 가져오지 않음):
      점검(양호·주의·불량·해당 없음) · 계량값(단위·기준 → 벗어나면 주의) · 칸 여러 개(시간별·호기별) · 계량기 지침(전월 지침·배율 → 사용량) · 글
@@ -8778,8 +8854,6 @@ const IN_T=[
    ['방지시설 (여과집진)',[iG('kw','전력 지침','kWh',null,null,'적산전력계 1일 지침',INC.out6),iC('bf','여과집진시설 차압·탈진','필터 파손·분진 누출 없음'),iC('ex','배출구 이상 배출','분진·악취 없음')]]]},
  {id:'env',n:'대기배출·방지시설 운영',fq:'D',rr:'FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR',s:'AH',fm:/대기배출/,g:[
    ['운영',[iN('eh','배출시설 가동시간','h',null,null,''),iN('ph','방지시설 가동시간','h',null,null,'배출시설 가동시간 이상'),iN('dp','방지시설 차압','mmAq',null,null,'평소 값과 비교'),iC('ac','흡착탑(활성탄)·필터','교체 주기 준수'),iC('ex','배출구 이상 배출','악취·연기 없음')]]]},
- {id:'guard',n:'경비 순찰 (경비 근무일지)',fq:'D',rr:'FREQ=DAILY',fm:/경비 근무일지|난방기구/,g:[
-   ['순찰',[iT('t1','1차 순찰 시각','예) 18:30'),iT('t2','2차 순찰 시각','예) 22:00'),iC('q1','소등 상태'),iC('q2','라인 가동 상태'),iC('q3','세콤 출입문 개폐·시건'),iC('q4','잔류 인원'),iC('q5','화재 예방(개인 난방기구 OFF)'),iC('q6','외부 침입 흔적'),iC('q7','시설물 상태'),iC('q8','주차 상태'),iC('q9','화재수신기 상태'),iC('q10','CCTV 녹화 상태')]]]},
  {id:'ct',n:'쿨링타워 (주간)',fq:'W',rr:'FREQ=WEEKLY;BYDAY=MO',s:'AG',fm:/쿨링타워/,g:[
    ['MCC 판넬',[iG('fs','냉각팬 설정 온도','℃',null,null,'','@'),iG('v','운전 전압','V',342,418,'380V ±10%','@'),iG('pa','순환모터 전류(최대 상)','A',null,null,'정격 대비','@'),iG('fa','냉각팬 전류(최대 상)','A',null,null,'정격 대비','@'),iCG('mc','차단기·MC 동작, 판넬 청결','','@')]],
    ['물탱크·순환',[iG('ps','흡입 압력','bar',null,null,'','@'),iG('pd','토출 압력','bar',null,null,'','@'),iG('wi','냉각수 입구 온도','℃',null,40,'40℃ 이하','@'),iG('wo','냉각수 출구 온도','℃',null,35,'35℃ 이하','@'),iCG('mo','모터 구동·진동','배관·모터·물탱크','@'),iCG('lk','누수·수위·부유물','','@')]],
@@ -8944,7 +9018,7 @@ function renderInsp(v){if(!S.me||!S.me.id){v.innerHTML='<p class="empty">로그�
 
   const cnt=k=>k==='today'?dueL.length:k==='all'?all.length:all.filter(T=>T.fq===k).length;
   const task=inTaskOf(IN.site,IN.date);
-  v.innerHTML=`<div id="insp"><div class="home-head"><div><h1>✅ 점검 일보</h1><p>공장별 매일·주간·월간·분기 정기 점검 — 회사 점검 일지(수변전·변전실·시설 순회·방화·소방·E/L·콤프레샤·쿨링타워·저수조·계량기·축전지·발전기·전기차 충전·대기배출·경비)를 한 화면에. 적으면 바로 저장됩니다.</p></div>
+  v.innerHTML=`<div id="insp"><div class="home-head"><div><h1>✅ 점검 일보</h1><p>공장별 매일·주간·월간·분기 정기 점검 — 회사 점검 일지(수변전·변전실·시설 순회·방화·소방·E/L·콤프레샤·쿨링타워·저수조·계량기·축전지·발전기·전기차 충전·대기배출)를 한 화면에. 적으면 바로 저장됩니다.</p></div>
     <div class="in-top">${ro?'':`<button type="button" class="btn primary" data-in-rec>📋 ${task?'업무일지 기록 고치기':'업무일지에 기록'}</button>`}<button type="button" class="btn" data-in-print>🖨 인쇄·PDF</button><button type="button" class="btn" data-in-trend>📈 수치 추이</button>${S.canEdit?'<button type="button" class="btn ghost" data-in-cfg>⚙ 구역 설정</button>':''}</div></div>
     <div class="in-bar"><div class="seg" role="group" aria-label="사업장">${sites.map(s=>`<button type="button" data-in-site="${esc(s)}" aria-pressed="${s===IN.site}">${esc(s)}</button>`).join('')}</div>
       <label class="in-date">점검일 <input type="date" id="in-date" value="${esc(IN.date)}" max="${today()}"></label>
@@ -8952,7 +9026,7 @@ function renderInsp(v){if(!S.me||!S.me.id){v.innerHTML='<p class="empty">로그�
     <p class="in-sum">${ready?inSumHTML():'불러오는 중…'}</p>
     ${IN.cfgOpen&&S.canEdit?inCfgHTML():''}${IN.trendOpen?'<div class="in-trend" id="in-trend"></div>':''}
     <div class="in-secs">${ready?(L.map(T=>inSecHTML(T,IN.site,ro)).join('')||'<p class="empty">이 주기에 할 점검이 없습니다. 위에서 다른 주기를 고르세요.</p>'):'<div class="vw-load"><i></i>점검 기록을 불러오는 중…</div>'}</div>
-    <p class="in-foot">주기 계산: ${IN_ENG==='rrule'?'rrule.js (iCalendar 반복 규칙)':'내장 계산'} · 매일 = 평일(경비 순찰은 매일), 주간 = 월요일부터, 월간 = 1일부터(수도 검침 15일), 분기 = 1·4·7·10월 · 사업장에 없는 구역은 ⚙ 구역 설정에서 끄고, 항목 이름·순서·기준·주기는 ✏️ 항목 편집에서 바꿉니다.${IN_CUR?' · 고친 점검표 사용 중':''}</p></div>`;
+    <p class="in-foot">주기 계산: ${IN_ENG==='rrule'?'rrule.js (iCalendar 반복 규칙)':'내장 계산'} · 매일 = 평일, 주간 = 월요일부터, 월간 = 1일부터(수도 검침 15일), 분기 = 1·4·7·10월 · 사업장에 없는 구역은 ⚙ 구역 설정에서 끄고, 항목 이름·순서·기준·주기는 ✏️ 항목 편집에서 바꿉니다.${IN_CUR?' · 고친 점검표 사용 중':''}</p></div>`;
   if(IN.trendOpen)inTrend();}
 function inDueList(){return inSecs(IN.site).filter(T=>{const D=inDue(T,IN.date);return D.st==='due'||D.st==='late'||inSec(T.id);});}
 function inSumHTML(){const dueL=inDueList();const tot={n:0,d:0,bad:0,warn:0,late:0,ok:0};for(const T of dueL){const c=inCount(T,IN.site);tot.n+=c.n;tot.d+=c.d;const st=inSecStat(T,IN.site);tot.bad+=st.bad;tot.warn+=st.warn;const D=inDue(T,IN.date);if(D.st==='late')tot.late++;if(D.st==='ok')tot.ok++;}
@@ -9102,7 +9176,7 @@ function inNormItem(it){const t=['c','n','g','cg','t','m','mv'].includes(it.t)?i
   if(t==='g'||t==='cg')o.cols=it.cols==='@'||it.cols==null?'@':inListN(it.cols)||'@';
   if(t==='m'||t==='mv'){o.rows=inRowsN(it.rows)||[{n:'계량기 1'}];o.meter=t==='m'&&it.meter!==false;}
   return o;}
-function inNormTpl(raw){const ids=new Set();return (raw||[]).slice(0,60).map(T=>{let id=String(T.id||inKey('u')).replace(/[^\w-]/g,'').slice(0,24)||inKey('u');while(ids.has(id))id=inKey('u');ids.add(id);
+function inNormTpl(raw){const ids=new Set();return (raw||[]).filter(T=>T&&T.id!=='guard').slice(0,60).map(T=>{let id=String(T.id||inKey('u')).replace(/[^\w-]/g,'').slice(0,24)||inKey('u');while(ids.has(id))id=inKey('u');ids.add(id);
   const rm=inRrMake(inRrParse(T.rr))||{rr:'FREQ=MONTHLY;BYMONTHDAY=1',fq:'M'};const ks=new Set();
   const g=(Array.isArray(T.g)?T.g:[]).slice(0,30).map(G=>[String(G[0]||'').slice(0,40)||'점검',(Array.isArray(G[1])?G[1]:[]).slice(0,80).map(inNormItem).map(it=>{while(ks.has(it.k))it.k=inKey('x');ks.add(it.k);return it;})]).filter(G=>G[1].length);
   const s=Array.isArray(T.s)?T.s.map(String).filter(Boolean):typeof T.s==='string'&&T.s?T.s.split(''):null;
@@ -9258,6 +9332,337 @@ document.addEventListener('toggle',e=>{const d=e.target;if(d&&d.matches&&d.match
 document.addEventListener('focusout',e=>{if(!IN.edPend||!e.target||!e.target.closest||!e.target.closest('#in-ed'))return;setTimeout(()=>{const a=document.activeElement;if(IN.edPend&&!(a&&a.closest&&a.closest('#in-ed')&&/^(INPUT|SELECT|TEXTAREA)$/.test(a.tagName))){const y=window.scrollY;render();window.scrollTo(0,y);}},250);});
 window.addEventListener('beforeunload',e=>{if(IN.editing&&IN.edDirty){e.preventDefault();e.returnValue='';}});
 window.inspEdApi={norm:inNormTpl,ser:inSerTpl,rrText:inRrText,rrFromText:inRrFromText,rrParse:inRrParse,listParse:inListParse,listTxt:inListTxt,state:()=>({editing:!!IN.editing,dirty:!!IN.edDirty,ed:IN.ed&&inSerTpl(IN.ed)}),xin:inXIn,xout:inXOut};
+/* ───────── 45차: 🛡 경비 일지 — 경비원 전용 화면 · 방문 차량 바로 추가 · 관리자 항목 편집 ─────────
+   · 홈 빠른 기록 줄 '🛡 경비 일지'(✅ 점검 일보 왼쪽) → #guard — 관리부: 사업장·날짜 고르기, 인쇄, 이달 기록 엑셀 / 관리자: ✏️ 항목 편집, 👮 경비원 계정
+   · 경비원 계정(guardacct/{로그인 이메일}, 관리자가 등록)으로 로그인 → 경비 일지 화면만 (다른 메뉴·업무·자료·검색·알림 없음), 자기 사업장 · 근무일(어제·오늘)만 입력
+   · 회사 서식(41차): 경비 근무일지(근무자·인수자·교대·순찰 1·2차·순찰 점검·주차 현황·기타 보고) + 방문자(차량) 기록일지 + 비등록차량(직원) 출입 기록부 + 우편물·택배 접수현황
+   · 기록 목록(방문 차량 등): 위 칸에 적고 Enter → 시각 자동, 자주 오는 차량 단추 한 번에 추가, '출차 지금' 한 번에
+   · 저장: wl/_sys/guard/{사업장코드}_{근무일} {site,date,upd,by,byName,v:{구역:값}} · {코드}_freq(자주 오는 목록) · _tpl(항목) · _tpl_prev
+   · 보안 규칙(45차): 경비원은 자기 사업장 경비 일지·항목만 읽고 쓰기, 다른 문서는 못 읽음 */
+const GD_TY={f:'정보 칸',c:'점검',p:'순찰 표',g:'수치 표',l:'기록 목록',t:'글'};
+const GD_FT={text:'글',time:'시각',num:'수치'};
+const GD_LT={tin:'시각(들어옴)',tout:'시각(나감)',text:'글',num:'수치',yn:'체크'};
+const GD_RES=['양호','주의','불량','해당 없음'];
+const GD_T0=[
+ {id:'info',t:'f',n:'근무',c:'',items:[{k:'wx',n:'날씨',t:'text',ph:'맑음'},{k:'who',n:'근무자',t:'text',ph:'이름'},{k:'nxt',n:'인수자',t:'text',ph:'이름'},{k:'chg',n:'교대 시각',t:'time',ph:''}]},
+ {id:'patrol',t:'p',n:'순찰 상황',c:'PH1층 ▶ 5층 ▶ 4층 ▶ 3층 ▶ 2층 ▶ 1층 ▶ 지하1층 ▶ 지하2층 ▶ 선큰 ▶ 외곽 · 각층 탈의실·사무실 난방기기 ON/OFF 확인',rows:['PH1층','5층','4층','3층','2층','1층','1층 (6-1)','B1층','B2층','B2층 (8-1)','선큰','외곽'],cols:['1차','2차']},
+ {id:'chk',t:'c',n:'순찰 점검',c:'',items:[{k:'q1',n:'소등 상태',c:''},{k:'q2',n:'라인 가동 상태',c:''},{k:'q3',n:'세콤 출입문 개폐·시건 상태',c:''},{k:'q4',n:'잔류 인원',c:''},{k:'q5',n:'화재 예방 (개인 난방기구 OFF)',c:''},{k:'q6',n:'외부 침입 흔적',c:''},{k:'q7',n:'시설물 상태',c:''},{k:'q8',n:'주차 상태',c:''},{k:'q9',n:'화재수신기 상태',c:''},{k:'q10',n:'CCTV 녹화 상태',c:''}]},
+ {id:'park',t:'g',n:'주차 현황',c:'',u:'대',rows:['1층','지하1층','지하2층'],cols:['법인','직원']},
+ {id:'car',t:'l',n:'방문 차량',c:'방문카드 대여 때 신분증을 받고 대여란에 체크',key:'no',cols:[{k:'tin',n:'입차',t:'tin'},{k:'no',n:'차량번호',t:'text'},{k:'co',n:'업체명',t:'text'},{k:'nm',n:'방문자',t:'text'},{k:'to',n:'방문 부서·직원',t:'text'},{k:'why',n:'용무',t:'text'},{k:'card',n:'방문카드',t:'yn'},{k:'tout',n:'출차',t:'tout'}]},
+ {id:'emp',t:'l',n:'직원 비등록 차량',c:'',key:'no',cols:[{k:'tin',n:'입차',t:'tin'},{k:'no',n:'차량번호',t:'text'},{k:'nm',n:'성명',t:'text'},{k:'why',n:'출입 목적',t:'text'},{k:'tout',n:'출차',t:'tout'}]},
+ {id:'mail',t:'l',n:'우편물·택배 접수',c:'',key:'',cols:[{k:'tin',n:'접수 시각',t:'tin'},{k:'kind',n:'종류',t:'text'},{k:'qty',n:'수량',t:'num'},{k:'to',n:'수취인',t:'text'},{k:'rcv',n:'인수자',t:'text'}]},
+ {id:'memo',t:'t',n:'기타 보고사항 · 인수인계',c:'예) 3층 회의실 에어컨 켜져 있어 끔 · 정문 센서등 고장'}];
+const GD={site:'',date:'',day:null,freq:null,key:'',unsub:[],tplU:null,patch:{},pk:null,t:0,savedAt:'',st:'',editing:false,ed:null,edDirty:false,edOpen:new Set(),sorts:[],acctOpen:false,accts:null,acctU:null,acctErr:''};
+let GD_CUR=null;
+const gdTpl=()=>GD_CUR||GD_T0;
+const gdDoc=k=>S.fs.doc('wl/_sys/guard/'+k);
+const gdPad=n=>String(n).padStart(2,'0');
+const gdYMD=d=>`${d.getFullYear()}-${gdPad(d.getMonth()+1)}-${gdPad(d.getDate())}`;
+const gdAddDay=(s,n)=>gdYMD(new Date(+s.slice(0,4),+s.slice(5,7)-1,+s.slice(8,10)+n));
+const gdShift=()=>{const d=new Date();if(d.getHours()<9)d.setDate(d.getDate()-1);return gdYMD(d);};
+const gdNow=()=>{const d=new Date();return `${gdPad(d.getHours())}:${gdPad(d.getMinutes())}`;};
+const gdMD=s=>isDate(s)?`${+s.slice(5,7)}.${+s.slice(8,10)}(${WD[dow(s)]})`:'';
+const gdKey=p=>p+rid().slice(0,7);
+const gdStr=(x,n)=>String(x==null?'':x).replace(/[\u0000-\u001f]/g,' ').trim().slice(0,n);
+const gdClone=x=>JSON.parse(JSON.stringify(x||{}));
+const gdDeep=(a,b)=>{for(const k of Object.keys(b||{})){const v=b[k];if(v&&typeof v==='object'&&!Array.isArray(v)&&a[k]&&typeof a[k]==='object'&&!Array.isArray(a[k]))gdDeep(a[k],v);else a[k]=v&&typeof v==='object'?gdClone(v):v;}return a;};
+const gdPut=(o,path,val)=>{for(let i=0;i<path.length-1;i++){if(!o[path[i]]||typeof o[path[i]]!=='object'||Array.isArray(o[path[i]]))o[path[i]]={};o=o[path[i]];}o[path[path.length-1]]=val;};
+const gdFk=s=>String(s||'').replace(/\s+/g,'').replace(/[.\/\[\]*`~#$]/g,'').toUpperCase().slice(0,30);
+const gdPriv=n=>/성명|이름|방문자|연락|전화|휴대|주민|신분/.test(n||'');
+const gdWho=()=>S.guard?{id:S.me.id,name:S.guard.name||S.guard.email.split('@')[0]}:{id:myId(),name:myName()};
+const gdCanEd=()=>!S.guard&&!!(S.canEdit||(typeof canDoc==='function'&&canDoc()));
+const gdDates=()=>{const t=today();return [gdAddDay(t,-1),t];};
+const gdCanInput=()=>S.guard?gdDates().includes(GD.date):!!S.canWrite;
+
+/* ── 항목(점검표) 정리 */
+const gdArr=v=>Array.isArray(v)?v.map(x=>gdStr(x,40)).filter(Boolean).slice(0,60):[];
+function gdRowsN(v){if(Array.isArray(v)){const a=gdArr(v);return a.length?a:null;}if(v&&typeof v==='object'){const o={};for(const k of Object.keys(v).slice(0,10)){const a=gdArr(v[k]);if(a.length)o[k]=a;}const ks=Object.keys(o);if(!ks.length)return null;return ks.length===1&&o._?o._:o;}return null;}
+function gdNormTpl(raw){const ids=new Set();return (Array.isArray(raw)?raw:[]).slice(0,40).map(T=>{if(!T||!GD_TY[T.t])return null;let id=String(T.id||'').replace(/[^\w-]/g,'').slice(0,24)||gdKey('s');while(ids.has(id))id=gdKey('s');ids.add(id);
+  const o={id,t:T.t,n:gdStr(T.n,60)||GD_TY[T.t],c:gdStr(T.c,200)};const s=Array.isArray(T.s)?T.s.map(x=>gdStr(x,20)).filter(Boolean):[];if(s.length)o.s=s;
+  const ks=new Set();const uk=(k,p)=>{k=String(k||'').replace(/[^\w]/g,'').slice(0,20)||gdKey(p);while(ks.has(k))k=gdKey(p);ks.add(k);return k;};
+  if(T.t==='f')o.items=(Array.isArray(T.items)?T.items:[]).slice(0,30).map(it=>({k:uk(it&&it.k,'f'),n:gdStr(it&&it.n,40)||'(이름 없음)',t:GD_FT[it&&it.t]?it.t:'text',ph:gdStr(it&&it.ph,40)}));
+  if(T.t==='c')o.items=(Array.isArray(T.items)?T.items:[]).slice(0,60).map(it=>({k:uk(it&&it.k,'q'),n:gdStr(it&&it.n,60)||'(이름 없음)',c:gdStr(it&&it.c,120)}));
+  if(T.t==='p'||T.t==='g'){o.rows=gdRowsN(T.rows)||['1'];o.cols=gdArr(T.cols).slice(0,8);if(!o.cols.length)o.cols=T.t==='p'?['1차']:['수'];if(T.t==='g')o.u=gdStr(T.u,8);}
+  if(T.t==='l'){o.cols=(Array.isArray(T.cols)?T.cols:[]).slice(0,12).map(c=>({k:uk(c&&c.k,'c'),n:gdStr(c&&c.n,20)||'칸',t:GD_LT[c&&c.t]?c.t:'text'}));if(!o.cols.length)o.cols=[{k:'tin',n:'시각',t:'tin'},{k:'txt',n:'내용',t:'text'}];o.key=o.cols.some(c=>c.k===T.key&&c.t==='text')?T.key:'';}
+  return o;}).filter(Boolean);}
+const gdSecs=site=>gdTpl().filter(T=>!T.s||!T.s.length||T.s.includes(inCode(site)));
+function gdRows(T,site){const r=T.rows;if(Array.isArray(r))return r;return r[inCode(site)]||r._||[];}
+const gdV=sid=>{const v=((GD.day||{}).v||{})[sid];return v&&typeof v==='object'?v:{};};
+const gdLRows=(T,V)=>{const tin=(T.cols.find(c=>c.t==='tin')||{}).k;return Object.entries((V||{}).rows||{}).filter(([,r])=>r&&typeof r==='object'&&!r.x).sort(([,a],[,b])=>String(tin&&a[tin]||'').localeCompare(String(tin&&b[tin]||''))||String(a.o||'').localeCompare(String(b.o||'')));};
+
+/* ── 읽기·쓰기 (바뀐 칸만 0.7초 뒤 한꺼번에, 같은 문서를 경비원·관리자가 같이 써도 칸끼리 합쳐짐) */
+function gdUnsub(){for(const u of GD.unsub)try{u();}catch{}GD.unsub=[];}
+function gdSub(){if(!S.fs||S.mode!=='firebase'){GD.day=GD.day||{v:{}};GD.freq=GD.freq||{};return;}
+  if(!GD.tplU)GD.tplU=gdDoc('_tpl').onSnapshot(s=>{const d=s.exists?s.data():null;try{GD_CUR=d&&Array.isArray(d.T)&&d.T.length?gdNormTpl(d.T):null;}catch(e){console.warn(e);GD_CUR=null;}GD.tplAt=d&&d.at||'';GD.tplBy=d&&d.byName||'';gdSoft();},()=>{});
+  const c=inCode(GD.site);const key=c+'_'+GD.date;if(GD.key===key)return;gdFlush();gdUnsub();GD.key=key;GD.day=null;GD.freq=null;GD.denied=false;
+  GD.unsub.push(gdDoc(key).onSnapshot(s=>{if(GD.key!==key)return;const d=s.exists?s.data():{};GD.day={...d,v:gdDeep(gdClone(d.v),GD.pk&&inCode(GD.pk.site)+'_'+GD.pk.date===key?gdClone(GD.patch):{})};gdSoft();},e=>{if(GD.key!==key)return;GD.day={v:{}};GD.denied=true;gdSoft();}));
+  GD.unsub.push(gdDoc(c+'_freq').onSnapshot(s=>{if(GD.key!==key)return;GD.freq=s.exists?s.data():{};gdSoft();},()=>{GD.freq={};}));}
+function gdSet(path,val){if(!GD.day)return false;if(!gdCanInput()){toast(S.guard?'어제·오늘 근무일만 적을 수 있습니다.':'입력할 권한이 없습니다.','err');return false;}
+  if(!GD.pk)GD.pk={site:GD.site,date:GD.date};gdPut(GD.day.v=GD.day.v||{},path,val);gdPut(GD.patch,path,val);clearTimeout(GD.t);GD.t=setTimeout(gdFlush,700);gdState('dirty');return true;}
+async function gdFlush(){clearTimeout(GD.t);const patch=GD.patch,pk=GD.pk;if(!pk||!Object.keys(patch).length)return;GD.patch={};GD.pk=null;
+  if(!S.fs||S.mode!=='firebase')return;const w=gdWho();setSync('saving');gdState('saving');
+  try{await fbWrite(gdDoc(`${inCode(pk.site)}_${pk.date}`).set({site:pk.site,date:pk.date,upd:nowISO(),by:w.id,byName:w.name,v:patch},{merge:true}));GD.savedAt=nowISO();setSync('ok');gdState('ok');}
+  catch(e){if(!GD.pk||(GD.pk.site===pk.site&&GD.pk.date===pk.date)){GD.patch=gdDeep(patch,GD.patch);GD.pk=pk;}gdState('err');writeError(e&&e.userMsg?e:fbErr(e));}}
+function gdState(st){GD.st=st;const el=$('#gd-st');if(!el)return;el.dataset.s=st;el.textContent=st==='dirty'?'저장 대기…':st==='saving'?'저장 중…':st==='err'?'저장 못 함 — 인터넷 연결 확인':GD.savedAt?`저장됨 ${hhmm(GD.savedAt).split(' ')[1]}`:'적으면 바로 저장됩니다';}
+function gdSoft(){if(S.view!=='guard')return;const a=document.activeElement;if(a&&a.closest&&a.closest('#gd')&&a.matches('input:not([type=checkbox]),textarea,select')){clearTimeout(GD.rt);GD.rt=setTimeout(gdSoft,1500);return;}const y=window.scrollY;render();window.scrollTo(0,y);}
+window.addEventListener('beforeunload',()=>{try{gdFlush();}catch{}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden)try{gdFlush();}catch{}});
+
+/* ── 기록 화면 */
+const gdIco=T=>/차량/.test(T.n)?'🚗':/택배|우편/.test(T.n)?'📦':{f:'👤',c:'✅',p:'🚶',g:'🅿',l:'📒',t:'📝'}[T.t];
+function gdProg(T,site,V){if(T.t==='f'){const n=T.items.length,d=T.items.filter(it=>V[it.k]).length;return {n,d,txt:`${d}/${n}`};}
+  if(T.t==='c'){const r=V.r||{};const d=T.items.filter(it=>r[it.k]).length;const bad=T.items.filter(it=>r[it.k]==='불량').length,warn=T.items.filter(it=>r[it.k]==='주의').length;return {n:T.items.length,d,bad,warn,txt:`${d}/${T.items.length}${bad?` · <b class="bad">불량 ${bad}</b>`:''}${warn?` · <b class="warn">주의 ${warn}</b>`:''}`};}
+  if(T.t==='p'){const rows=gdRows(T,site);const t=V.t||{};let d=0;for(const r of rows)for(const c of T.cols)if((t[r]||{})[c])d++;return {n:rows.length*T.cols.length,d,txt:`${d}/${rows.length*T.cols.length}칸`};}
+  if(T.t==='g'){let s=0;for(const r of gdRows(T,site))for(const c of T.cols)s+=parseFloat((V[r]||{})[c])||0;return {n:1,d:s?1:0,txt:s?`계 ${s}${T.u||''}`:''};}
+  if(T.t==='l'){const L=gdLRows(T,V);const out=T.cols.find(c=>c.t==='tout');const o=out?L.filter(([,r])=>r[out.k]).length:0;const u=/차량/.test(T.n)?'대':'건';return {n:L.length,d:L.length,txt:`${L.length}${u}${out&&L.length?` · ${esc(out.n)} ${o}`:''}`};}
+  if(T.t==='t')return {n:1,d:V.x?1:0,txt:''};return {n:0,d:0,txt:''};}
+function gdSecHTML(T,site,ro){const V=gdV(T.id);const P=gdProg(T,site,V);const dis=ro?' disabled':'';const sid=T.id;let body='',tools='';
+  if(T.t==='f')body=`<div class="gd-f">${T.items.map(it=>{const val=V[it.k]||'';const a=`data-gd-f="${sid}" data-k="${it.k}" aria-label="${esc(it.n)}"`;
+      const inp=it.t==='time'?`<span class="gd-tm"><input type="time" ${a} value="${esc(val)}"${dis}>${ro?'':`<button type="button" class="btn sm ghost" data-gd-now="f" data-s="${sid}" data-k="${it.k}">지금</button>`}</span>`:`<input ${a} value="${esc(val)}" maxlength="60" placeholder="${esc(it.ph||(S.guard&&/근무자/.test(it.n)?S.guard.name||'':''))}"${it.t==='num'?' inputmode="decimal"':''}${dis}>`;
+      return `<div class="gd-fi"><span>${esc(it.n)}</span>${inp}</div>`;}).join('')}</div>`;
+  else if(T.t==='c'){const r=V.r||{},a=V.a||{};tools=ro?'':`<button type="button" class="btn sm ghost" data-gd-allok="${sid}">✓ 빈 칸 양호</button>`;
+    body=`<table class="gd-ct"><tbody>${T.items.map((it,i)=>{const x=r[it.k]||'';return `<tr class="${x==='불량'?'is-bad':x==='주의'?'is-warn':''}"><td class="n">${i+1}</td><td class="gd-cn">${esc(it.n)}${it.c?`<small>${esc(it.c)}</small>`:''}</td><td class="gd-cr"><span class="sf-seg gd-seg">${GD_RES.map(o=>`<button type="button" data-gd-c="${sid}" data-k="${it.k}" data-v="${o}" aria-pressed="${x===o}"${dis}>${o}</button>`).join('')}</span>${x==='불량'||x==='주의'||a[it.k]?`<input class="gd-ca" data-gd-ca="${sid}" data-k="${it.k}" value="${esc(a[it.k]||'')}" placeholder="조치·내용" maxlength="120"${dis}>`:''}</td></tr>`;}).join('')}</tbody></table>`;}
+  else if(T.t==='p'){const rows=gdRows(T,site),t=V.t||{},nn=V.n||{};
+    body=rows.length?`<div class="gd-tw"><table class="gd-pt"><thead><tr><th>장소</th>${T.cols.map(c=>`<th>${esc(c)} 순찰 시각</th><th>${esc(c)} 특이사항</th>`).join('')}</tr></thead><tbody>${rows.map(rw=>`<tr><th scope="row">${esc(rw)}</th>${T.cols.map(c=>{const tv=(t[rw]||{})[c]||'',nv=(nn[rw]||{})[c]||'';const a=`data-s="${sid}" data-r="${esc(rw)}" data-c="${esc(c)}"`;
+        return `<td data-l="${esc(c)} 시각"><span class="gd-tm"><input type="time" data-gd-pt ${a} value="${esc(tv)}" aria-label="${esc(rw+' '+c+' 시각')}"${dis}>${ro||tv?'':`<button type="button" class="btn sm ghost" data-gd-now="p" ${a}>지금</button>`}</span></td><td data-l="${esc(c)} 특이사항"><input data-gd-pn ${a} value="${esc(nv)}" maxlength="80" placeholder="특이사항" aria-label="${esc(rw+' '+c+' 특이사항')}"${dis}></td>`;}).join('')}</tr>`).join('')}</tbody></table></div>`:'<p class="empty">이 사업장 순찰 장소가 없습니다. 관리자가 ✏️ 항목 편집에서 넣습니다.</p>';}
+  else if(T.t==='g'){const rows=gdRows(T,site);const cs=T.cols.map(c=>rows.reduce((s,r)=>s+(parseFloat((V[r]||{})[c])||0),0));
+    body=rows.length?`<div class="gd-tw"><table class="gd-gt" data-gd-gt="${sid}"><thead><tr><th></th>${T.cols.map(c=>`<th>${esc(c)}</th>`).join('')}<th>계</th></tr></thead><tbody>${rows.map(rw=>{const rv=V[rw]||{};const sm=T.cols.reduce((a,c)=>a+(parseFloat(rv[c])||0),0);
+        return `<tr><th scope="row">${esc(rw)}</th>${T.cols.map(c=>`<td><input inputmode="numeric" data-gd-g="${sid}" data-r="${esc(rw)}" data-c="${esc(c)}" value="${esc(rv[c]||'')}" maxlength="8" aria-label="${esc(rw+' '+c)}"${dis}></td>`).join('')}<td class="n gd-gs">${sm||''}</td></tr>`;}).join('')}</tbody><tfoot><tr><th>계</th>${cs.map(x=>`<td class="n">${x||''}</td>`).join('')}<td class="n">${cs.reduce((a,b)=>a+b,0)||''}</td></tr></tfoot></table>${T.u?`<small class="gd-u">단위: ${esc(T.u)}</small>`:''}</div>`:'<p class="empty">이 사업장 칸 이름이 없습니다.</p>';}
+  else if(T.t==='l')body=gdListHTML(T,V,ro);
+  else if(T.t==='t')body=`<textarea class="gd-txt" data-gd-t="${sid}" rows="4" maxlength="3000" placeholder="${esc(T.c||'')}" aria-label="${esc(T.n)}"${dis}>${esc(V.x||'')}</textarea>`;
+  return `<section class="gd-sec gd-t-${T.t}" id="gd-${sid}" data-gd-sec="${sid}"><header><h3>${gdIco(T)} ${esc(T.n)}</h3>${P.txt?`<span class="gd-prog">${P.txt}</span>`:''}<span class="gd-tools">${tools}</span></header>${T.c&&T.t!=='t'?`<p class="gd-c">${esc(T.c)}</p>`:''}${body}</section>`;}
+function gdFreqL(T){return Object.entries(((GD.freq||{})[T.id])||{}).filter(([,f])=>f&&!f.h).sort(([,a],[,b])=>(b.n||0)-(a.n||0)||String(b.last||'').localeCompare(String(a.last||'')));}
+function gdListHTML(T,V,ro){const sid=T.id;const L=gdLRows(T,V);const qc=T.cols.filter(c=>c.t==='text'||c.t==='num');const kc=T.cols.find(c=>c.k===T.key);const fq=T.key?gdFreqL(T):[];
+  const sub=f=>T.cols.filter(c=>c.k!==T.key&&c.t==='text'&&f.v&&f.v[c.k]).map(c=>f.v[c.k]).slice(0,2).join(' · ');
+  const chips=fq.length&&!ro?`<div class="gd-chips"><span>자주 오는 ${esc(kc?kc.n:'')} — 누르면 바로 추가:</span>${fq.slice(0,12).map(([k,f])=>`<span class="gd-chip"><button type="button" data-gd-chip="${sid}" data-key="${esc(k)}">${esc(f.no||k)}${sub(f)?`<small>${esc(sub(f))}</small>`:''}</button>${gdCanEd()?`<button type="button" class="gd-chipx" data-gd-chipx="${sid}" data-key="${esc(k)}" aria-label="${esc((f.no||k)+' 자주 오는 목록에서 빼기')}" title="자주 오는 목록에서 빼기">✕</button>`:''}</span>`).join('')}</div>`:'';
+  const add=ro?'':`<div class="gd-add" data-gd-addf="${sid}">${qc.map(c=>`<label><span>${esc(c.n)}</span><input data-gd-q="${sid}" data-k="${c.k}" maxlength="${c.t==='num'?8:60}"${c.t==='num'?' inputmode="numeric"':''}${c.k===T.key?` list="gd-dl-${sid}" class="gd-qk"`:''} placeholder="${esc(c.n)}" enterkeyhint="done"></label>`).join('')}<button type="button" class="btn primary" data-gd-addb="${sid}">＋ ${esc(T.n.replace(/\s*\(.*\)\s*$/,''))} 추가</button>${T.key?`<datalist id="gd-dl-${sid}">${fq.slice(0,200).map(([k,f])=>`<option value="${esc(f.no||k)}">`).join('')}</datalist>`:''}<small class="gd-addh">적고 Enter — ${esc((T.cols.find(c=>c.t==='tin')||{n:'시각'}).n)} 시각은 지금으로 자동</small></div>`;
+  const cell=(c,r,id)=>{const val=r[c.k]==null?'':String(r[c.k]);const a=`data-gd-l="${sid}" data-r="${id}" data-k="${c.k}" aria-label="${esc(c.n)}"`;const dis=ro?' disabled':'';
+    if(c.t==='yn')return `<td data-l="${esc(c.n)}" class="gd-yn"><input type="checkbox" ${a} ${val?'checked':''}${dis}></td>`;
+    if(c.t==='tout'&&!val&&!ro)return `<td data-l="${esc(c.n)}"><button type="button" class="btn sm" data-gd-out="${sid}" data-r="${id}" data-k="${c.k}">${esc(c.n)} 지금</button></td>`;
+    if(c.t==='tin'||c.t==='tout')return `<td data-l="${esc(c.n)}"><input type="time" ${a} value="${esc(val)}"${dis}></td>`;
+    return `<td data-l="${esc(c.n)}"><input ${a} value="${esc(val)}" maxlength="${c.t==='num'?8:60}"${c.t==='num'?' inputmode="numeric"':''}${dis}></td>`;};
+  return `${chips}${add}<div class="gd-tw"><table class="gd-lt"><thead><tr><th class="n">No</th>${T.cols.map(c=>`<th>${esc(c.n)}</th>`).join('')}<th></th></tr></thead><tbody>${L.length?L.map(([id,r],i)=>`<tr data-gd-r="${id}"><td class="n" data-l="No">${i+1}</td>${T.cols.map(c=>cell(c,r,id)).join('')}<td class="gd-x">${ro?'':`<button type="button" class="icon-btn" data-gd-ldel="${sid}" data-r="${id}" aria-label="${i+1}번 줄 지우기" title="이 줄 지우기">✕</button>`}</td></tr>`).join(''):`<tr class="gd-empty"><td colspan="${T.cols.length+2}">아직 기록이 없습니다.${ro?'':' 위 칸에 적고 Enter 또는 ＋ 추가'}</td></tr>`}</tbody></table></div>`;}
+function gdSumHTML(site){const secs=gdSecs(site);const out=[];for(const T of secs){const P=gdProg(T,site,gdV(T.id));if(T.t==='p')out.push(`순찰 ${P.d}/${P.n}칸`);if(T.t==='c'){out.push(`점검 ${P.d}/${P.n}`);if(P.bad)out.push(`<span class="bad">불량 ${P.bad}</span>`);if(P.warn)out.push(`<span class="warn">주의 ${P.warn}</span>`);}if(T.t==='l'&&P.n)out.push(`${esc(T.n)} ${P.n}${/차량/.test(T.n)?'대':'건'}`);}
+  const d=GD.day||{};return `${esc(site)} ${esc(gdMD(GD.date))} 근무 — ${out.join(' · ')||'아직 기록 없음'}${d.upd?` · 마지막 ${esc(hhmm(d.upd))}${d.byName?' '+esc(d.byName):''}`:''}`;}
+function gdSecUpd(sid){const T=gdSecs(GD.site).find(x=>x.id===sid);const el=$('#gd-'+sid);if(!T||!el)return;el.outerHTML=gdSecHTML(T,GD.site,!gdCanInput());const sm=$('#gd-sum');if(sm)sm.innerHTML=gdSumHTML(GD.site);}
+function gdSecsHTML(){if(!GD.day)return '<div class="vw-load"><i></i>경비 일지를 불러오는 중…</div>';if(GD.denied)return '<p class="empty">경비 일지를 읽을 권한이 없습니다. 관리자에게 문의하세요.</p>';
+  const ro=!gdCanInput();const L=gdSecs(GD.site);return `<nav class="gd-jump" aria-label="구역 바로 가기">${L.map(T=>`<button type="button" data-gd-jump="${T.id}">${gdIco(T)} ${esc(T.n.replace(/\s*\(.*\)\s*$/,''))}</button>`).join('')}</nav><div class="gd-secs">${L.map(T=>gdSecHTML(T,GD.site,ro)).join('')}</div>`;}
+
+/* 관리부 화면 */
+function renderGuard(v){if(S.guard)return gdGuardRender();if(!S.me||!S.me.id){v.innerHTML='<p class="empty">로그인한 뒤 쓸 수 있습니다.</p>';return;}
+  const sites=inSites();if(!GD.site||!sites.includes(GD.site)){const me=S.staff[S.myStaff];let ls='';try{ls=localStorage.getItem('wl.gd.site')||'';}catch{}GD.site=sites.includes(ls)?ls:me&&sites.includes(me.site)?me.site:sites[0]||'';}
+  if(!isDate(GD.date))GD.date=gdShift();gdSub();if(GD.acctOpen&&S.canEdit)gdAcctSub();
+  v.innerHTML=`<div id="gd"><div class="home-head"><div><h1>🛡 경비 일지</h1><p>회사 경비 근무일지·방문자(차량) 기록일지·비등록차량 출입 기록부·우편물 택배 접수현황을 한 화면에. 경비원 계정으로 로그인하면 이 일지만 보이고 적을 수 있습니다. 근무일은 아침 9시 전이면 전날 밤 근무입니다.</p></div>
+    <div class="in-top"><button type="button" class="btn" data-gd-print>🖨 인쇄·PDF</button><button type="button" class="btn" data-gd-xls title="이 사업장 이달 방문 차량·출입·택배 기록을 엑셀로">📤 이달 기록 엑셀</button>${gdCanEd()?`<button type="button" class="btn${GD.editing?' primary':''}" data-gd-edit aria-pressed="${!!GD.editing}">✏️ 항목 편집</button>`:''}${S.canEdit?`<button type="button" class="btn${GD.acctOpen?' primary':''}" data-gd-acct aria-pressed="${!!GD.acctOpen}">👮 경비원 계정</button>`:''}</div></div>
+    <div class="in-bar"><div class="seg" role="group" aria-label="사업장">${sites.map(s=>`<button type="button" data-gd-site="${esc(s)}" aria-pressed="${s===GD.site}">${esc(s)}</button>`).join('')}</div>
+      <label class="in-date">근무일 <input type="date" id="gd-date" value="${esc(GD.date)}" max="${today()}"></label><span class="gd-st" id="gd-st"></span></div>
+    <p class="in-sum" id="gd-sum">${GD.day?gdSumHTML(GD.site):'불러오는 중…'}</p>
+    ${GD.acctOpen&&S.canEdit?gdAcctHTML():''}
+    ${GD.editing&&GD.ed?gdEdHTML():gdSecsHTML()}
+    <p class="in-foot">${GD_CUR?'관리자가 고친 항목 사용 중':'기본 항목(회사 경비 근무일지·방문자 기록일지 기준)'} · 적으면 0.7초 뒤 저장 · 경비원은 자기 사업장의 어제·오늘 근무일만 적을 수 있고, 다른 메뉴는 보이지 않습니다.</p></div>`;
+  gdState(GD.st||'ok');if(GD.editing&&GD.ed)gdEdSort();}
+
+/* 경비원 화면: 경비 일지만 */
+function gdGuardRender(){const v=$('#view');if(!v)return;S.view='guard';const g=S.guard;GD.site=g.site;const ds=gdDates();if(!ds.includes(GD.date))GD.date=ds.includes(gdShift())?gdShift():today();gdSub();
+  v.innerHTML=`<div id="gd" class="gd-guard"><div class="gd-gbar"><div class="gd-gid"><b>🛡 ${esc(g.site)} 경비 일지</b><small>${esc(g.name||g.email)}</small></div>
+    <div class="seg" role="group" aria-label="근무일">${ds.map(d=>`<button type="button" data-gd-day="${d}" aria-pressed="${d===GD.date}">${d===today()?'오늘':'어제'} ${esc(gdMD(d))}</button>`).join('')}</div><span class="gd-st" id="gd-st"></span></div>
+    <p class="in-sum" id="gd-sum">${GD.day?gdSumHTML(GD.site):'불러오는 중…'}</p>${gdSecsHTML()}
+    <p class="in-foot">적으면 바로 저장됩니다 · 근무일은 아침 9시 전이면 전날 밤 근무 · 항목은 관리자가 정합니다.</p></div>`;gdState(GD.st||'ok');}
+
+/* ── 기록 목록에 한 줄 더하기 (자주 오는 단추 · 위 칸) */
+function gdAdd(sid,fr){const T=gdSecs(GD.site).find(x=>x.id===sid);if(!T||T.t!=='l')return;if(!gdCanInput()){toast(S.guard?'어제·오늘 근무일만 적을 수 있습니다.':'입력할 권한이 없습니다.','err');return;}const box=$(`[data-gd-addf="${sid}"]`);const q={};
+  if(fr){for(const c of T.cols)if(c.t==='text'&&fr.v&&fr.v[c.k])q[c.k]=fr.v[c.k];if(T.key)q[T.key]=fr.no||'';}
+  else if(box){for(const i of $$('[data-gd-q]',box)){const x=gdStr(i.value,60);if(x)q[i.dataset.k]=x;}}
+  const kc=T.cols.find(c=>c.k===T.key);if(!Object.keys(q).length){toast(`${kc?kc.n:'내용'}을(를) 먼저 적으세요.`,'err');const f=box&&$('[data-gd-q]',box);if(f)f.focus();return;}
+  const id='r'+Date.now().toString(36)+rid().slice(0,4);const row={o:nowISO(),by:gdWho().name,...q};const tin=T.cols.find(c=>c.t==='tin');if(tin&&!row[tin.k])row[tin.k]=gdNow();
+  if(!gdSet([sid,'rows',id],row))return;gdFreqAdd(T,row);gdSecUpd(sid);const nb=$(`[data-gd-addf="${sid}"] [data-gd-q]`);if(nb&&!fr)nb.focus();
+  toast(`${T.n}: ${q[T.key]||Object.values(q)[0]}${tin?` · ${row[tin.k]}`:''} 기록`);}
+function gdFreqAdd(T,row){if(!T.key||!row[T.key]||!S.fs||S.mode!=='firebase')return;const key=gdFk(row[T.key]);if(!key)return;const cur=((GD.freq||{})[T.id]||{})[key]||{};const v={};
+  for(const c of T.cols)if(c.t==='text'&&c.k!==T.key&&!gdPriv(c.n)&&row[c.k])v[c.k]=gdStr(row[c.k],60);
+  const ent={no:gdStr(row[T.key],30),n:(cur.n||0)+1,last:GD.date,v:{...(cur.v||{}),...v},h:false};GD.freq=GD.freq||{};GD.freq[T.id]={...(GD.freq[T.id]||{}),[key]:ent};
+  fbWrite(gdDoc(`${inCode(GD.site)}_freq`).set({site:GD.site,[T.id]:{[key]:ent}},{merge:true})).catch(()=>{});}
+
+/* ── 인쇄·엑셀 */
+function gdDocBody(site,date,V0){const V=sid=>{const v=(V0||{})[sid];return v&&typeof v==='object'?v:{};};const td=(x,c)=>`<td${c?` class="${c}"`:''}>${esc(x==null?'':x)}</td>`;let body='';let who='';
+  for(const T of gdSecs(site)){const v=V(T.id);let h='';
+    if(T.t==='f'){const it=T.items;if(!who){const w=it.find(x=>/근무자/.test(x.n));if(w)who=v[w.k]||'';}const cells=it.map(x=>`<th>${esc(x.n)}</th><td>${esc(v[x.k]||'')}</td>`);const rows=[];for(let i=0;i<cells.length;i+=2)rows.push(`<tr>${cells[i]}${cells[i+1]||'<th></th><td></td>'}</tr>`);h=`<table class="ap-il-info"><tbody>${rows.join('')}</tbody></table>`;}
+    else if(T.t==='c'){const r=v.r||{},a=v.a||{};h=`<table class="ap-il-items"><thead><tr><th style="width:6%">No</th><th>점검 항목</th><th style="width:12%">결과</th><th style="width:34%">조치·내용</th></tr></thead><tbody>${T.items.map((it,i)=>`<tr>${td(i+1,'ap-il-no')}${td(it.n,'ap-il-it')}<td class="ap-il-res ${ilResC(r[it.k]||'')}">${esc(r[it.k]||'')}</td>${td(a[it.k]||'','ap-il-act')}</tr>`).join('')}</tbody></table>`;}
+    else if(T.t==='p'){const rows=gdRows(T,site),t=v.t||{},n=v.n||{};h=`<table class="ap-il-items"><thead><tr><th>장소</th>${T.cols.map(c=>`<th>${esc(c)} 시각</th><th>${esc(c)} 특이사항</th>`).join('')}</tr></thead><tbody>${rows.map(rw=>`<tr>${td(rw,'ap-il-it')}${T.cols.map(c=>td((t[rw]||{})[c]||'','ap-il-no')+td((n[rw]||{})[c]||'')).join('')}</tr>`).join('')}</tbody></table>`;}
+    else if(T.t==='g'){const rows=gdRows(T,site);h=`<table class="ap-il-items"><thead><tr><th></th>${T.cols.map(c=>`<th>${esc(c)}</th>`).join('')}<th>계</th></tr></thead><tbody>${rows.map(rw=>{const rv=v[rw]||{};return `<tr>${td(rw,'ap-il-it')}${T.cols.map(c=>td(rv[c]||'','ap-il-no')).join('')}${td(T.cols.reduce((a,c)=>a+(parseFloat(rv[c])||0),0)||'','ap-il-no')}</tr>`;}).join('')}</tbody></table>`;}
+    else if(T.t==='l'){const L=gdLRows(T,v);h=`<table class="ap-il-items"><thead><tr><th style="width:5%">No</th>${T.cols.map(c=>`<th>${esc(c.n)}</th>`).join('')}</tr></thead><tbody>${L.length?L.map(([,r],i)=>`<tr>${td(i+1,'ap-il-no')}${T.cols.map(c=>td(c.t==='yn'?(r[c.k]?'○':''):r[c.k]||'',c.t==='text'?'':'ap-il-no')).join('')}</tr>`).join(''):`<tr><td class="ap-il-no">-</td><td colspan="${T.cols.length}">기록 없음</td></tr>`}</tbody></table>`;}
+    else if(T.t==='t')h=v.x?`<p class="ap-il-sum" style="white-space:pre-wrap">${esc(v.x)}</p>`:'<p class="ap-il-none">없음</p>';
+    body+=`<h2 class="ap-il-h">${esc(T.n)}</h2>${h}`;}
+  const head=`<table class="ap-il-info"><tbody><tr><th>근무일</th><td>${esc(ilDate(date))}</td><th>사업장</th><td>${esc(site)}</td></tr></tbody></table>`;return {html:head+body,who};}
+async function gdPrint(){await gdFlush();const B=gdDocBody(GD.site,GD.date,(GD.day||{}).v);let h=ilDocHTML({gk:'chk',docTitle:'경비 근무일지',body:B.html,date:GD.date,site:GD.site,ph:[],photos:[]},'print',{});h=h.replace(' · 시설·공무 · ',' · 경비·보안 · ');await fmDoPrint(`<div class="ilx">${h}</div>`,IL_PAGE);}
+async function gdXls(){await gdFlush();const site=GD.site,ym=GD.date.slice(0,7);const L=gdSecs(site).filter(T=>T.t==='l');if(!L.length){toast('기록 목록 구역이 없습니다.','err');return;}
+  try{await wlLib('xlsx');if(!window.XLSX)throw 0;}catch{toast('엑셀 도구를 불러오지 못했습니다. 인터넷 연결을 확인하세요.','err');return;}
+  const last=new Date(+ym.slice(0,4),+ym.slice(5,7),0).getDate();const ds=[];for(let d=1;d<=last;d++){const x=`${ym}-${gdPad(d)}`;if(x<=today())ds.push(x);}
+  setSync('saving');let docs=[];try{docs=await Promise.all(ds.map(d=>gdDoc(`${inCode(site)}_${d}`).get().then(s=>[d,s.exists?s.data():null]).catch(()=>[d,null])));}finally{setSync('ok');}
+  const wb=XLSX.utils.book_new();let n=0;for(const T of L){const rows=[['근무일',...T.cols.map(c=>c.n)]];for(const [d,doc] of docs){if(!doc)continue;for(const [,r] of gdLRows(T,((doc.v||{})[T.id])||{})){rows.push([d,...T.cols.map(c=>c.t==='yn'?(r[c.k]?'○':''):c.t==='num'&&r[c.k]!==''&&!isNaN(+r[c.k])?+r[c.k]:(r[c.k]||''))]);n++;}}
+    const ws=XLSX.utils.aoa_to_sheet(rows);ws['!cols']=[{wch:11},...T.cols.map(c=>({wch:c.t==='text'?16:8}))];XLSX.utils.book_append_sheet(wb,ws,T.n.replace(/[\\\/?*\[\]:]/g,' ').slice(0,30));}
+  const buf=XLSX.write(wb,{bookType:'xlsx',type:'array'});saveBlob(new Blob([buf],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}),`경비 일지 기록_${site}_${ym}.xlsx`);toast(`${site} ${+ym.slice(5)}월 기록 ${n}줄을 엑셀로 내보냈습니다.`);}
+
+/* ── 이벤트 (기록) */
+document.addEventListener('click',async e=>{const T=e.target;if(!T||!T.closest)return;
+  if(T.closest('[data-gd-open]')){e.preventDefault();go('#guard');return;}
+  if(T.closest('#gd-out')){e.preventDefault();await gdFlush();fbLogout();return;}
+  if(!T.closest('#gd'))return;let b;
+  if((b=T.closest('[data-gd-jump]'))){const el=$('#gd-'+b.dataset.gdJump);if(el){el.scrollIntoView({behavior:'smooth',block:'start'});const f=el.querySelector('[data-gd-q],input:not([type=checkbox]):not([disabled]),textarea');if(f&&b.dataset.gdJump&&f.matches('[data-gd-q]'))setTimeout(()=>f.focus({preventScroll:true}),350);}return;}
+  if((b=T.closest('[data-gd-site]'))){await gdFlush();GD.site=b.dataset.gdSite;try{localStorage.setItem('wl.gd.site',GD.site);}catch{}render();return;}
+  if((b=T.closest('[data-gd-day]'))){await gdFlush();GD.date=b.dataset.gdDay;render();return;}
+  if((b=T.closest('[data-gd-now]'))){const sid=b.dataset.s;const now=gdNow();if(b.dataset.gdNow==='f'?gdSet([sid,b.dataset.k],now):gdSet([sid,'t',b.dataset.r,b.dataset.c],now))gdSecUpd(sid);return;}
+  if((b=T.closest('[data-gd-c]'))){const sid=b.dataset.gdC,k=b.dataset.k;const cur=(gdV(sid).r||{})[k]||'';if(gdSet([sid,'r',k],cur===b.dataset.v?'':b.dataset.v))gdSecUpd(sid);return;}
+  if((b=T.closest('[data-gd-allok]'))){const sid=b.dataset.gdAllok;const Tt=gdSecs(GD.site).find(x=>x.id===sid);if(!Tt)return;const r=gdV(sid).r||{};let n=0;for(const it of Tt.items)if(!r[it.k]){if(!gdSet([sid,'r',it.k],'양호'))return;n++;}gdSecUpd(sid);toast(n?`빈 칸 ${n}개를 양호로 적었습니다.`:'빈 칸이 없습니다.');return;}
+  if((b=T.closest('[data-gd-addb]'))){gdAdd(b.dataset.gdAddb);return;}
+  if((b=T.closest('[data-gd-chip]'))){const sid=b.dataset.gdChip;const f=(((GD.freq||{})[sid])||{})[b.dataset.key];if(f)gdAdd(sid,f);return;}
+  if((b=T.closest('[data-gd-chipx]'))){if(!gdCanEd())return;const sid=b.dataset.gdChipx,k=b.dataset.key;const f=(((GD.freq||{})[sid])||{})[k];if(!f)return;
+    if(!await confirmDlg('자주 오는 목록에서 빼기',`「${f.no||k}」을(를) 자주 오는 단추에서 뺍니다. (지난 기록은 그대로)`,'빼기'))return;f.h=true;try{await fbWrite(gdDoc(`${inCode(GD.site)}_freq`).set({site:GD.site,[sid]:{[k]:{h:true}}},{merge:true}));}catch(err){writeError(err);}gdSecUpd(sid);return;}
+  if((b=T.closest('[data-gd-out]'))){const sid=b.dataset.gdOut;if(gdSet([sid,'rows',b.dataset.r,b.dataset.k],gdNow()))gdSecUpd(sid);return;}
+  if((b=T.closest('[data-gd-ldel]'))){const sid=b.dataset.gdLdel,id=b.dataset.r;const Tt=gdSecs(GD.site).find(x=>x.id===sid);const r=((gdV(sid).rows||{})[id])||{};
+    const label=Tt?Tt.cols.filter(c=>c.t!=='yn'&&r[c.k]).map(c=>r[c.k]).slice(0,3).join(' · '):'';if(!await confirmDlg('기록 지우기',`${label||'이 줄'}\n이 줄을 지울까요?`,'지우기'))return;if(gdSet([sid,'rows',id,'x'],true))gdSecUpd(sid);return;}
+  if(T.closest('[data-gd-print]')){gdPrint();return;}
+  if(T.closest('[data-gd-xls]')){gdXls();return;}
+  if(T.closest('[data-gd-edit]')){if(GD.editing)return;gdEdOpen();return;}
+  if(T.closest('[data-gd-acct]')){GD.acctOpen=!GD.acctOpen;render();return;}});
+document.addEventListener('input',e=>{const T=e.target;if(!T||!T.closest||!T.closest('#gd')||T.closest('#gd-ed'))return;const d=T.dataset;
+  if(d.gdF){gdSet([d.gdF,d.k],T.value.slice(0,60));return;}
+  if(d.gdCa){gdSet([d.gdCa,'a',d.k],T.value.slice(0,120));return;}
+  if('gdPt' in d){gdSet([d.s,'t',d.r,d.c],T.value);return;}
+  if('gdPn' in d){gdSet([d.s,'n',d.r,d.c],T.value.slice(0,80));return;}
+  if(d.gdG){if(!gdSet([d.gdG,d.r,d.c],T.value.replace(/[^\d.]/g,'').slice(0,8)))return;const tb=T.closest('table');if(tb){const tr=T.closest('tr');const c=tr.querySelector('.gd-gs');if(c){const s=[...tr.querySelectorAll('[data-gd-g]')].reduce((a,x)=>a+(parseFloat(x.value)||0),0);c.textContent=s||'';}
+      const ft=tb.querySelectorAll('tfoot td');const ins=[...tb.querySelectorAll('tbody tr')].map(r=>[...r.querySelectorAll('[data-gd-g]')]);const cs=ins.length?ins[0].map((_,j)=>ins.reduce((a,r)=>a+(parseFloat(r[j]&&r[j].value)||0),0)):[];cs.forEach((x,j)=>{if(ft[j])ft[j].textContent=x||'';});if(ft[cs.length])ft[cs.length].textContent=cs.reduce((a,b)=>a+b,0)||'';}return;}
+  if(d.gdL&&T.type!=='checkbox'){gdSet([d.gdL,'rows',d.r,d.k],T.value.slice(0,60));return;}
+  if(d.gdT){gdSet([d.gdT,'x'],T.value.slice(0,3000));return;}});
+document.addEventListener('change',async e=>{const T=e.target;if(!T||!T.closest||!T.closest('#gd')||T.closest('#gd-ed'))return;const d=T.dataset;
+  if(T.id==='gd-date'){if(!isDate(T.value)||T.value>today()){T.value=GD.date;return;}await gdFlush();GD.date=T.value;render();return;}
+  if(d.gdL&&T.type==='checkbox'){if(!gdSet([d.gdL,'rows',d.r,d.k],T.checked))T.checked=!T.checked;return;}
+  if(d.gdQ&&T.classList.contains('gd-qk')){const Tt=gdSecs(GD.site).find(x=>x.id===d.gdQ);const f=Tt&&(((GD.freq||{})[Tt.id])||{})[gdFk(T.value)];if(!f||f.h)return;const box=T.closest('[data-gd-addf]');for(const i of $$('[data-gd-q]',box))if(i!==T&&!i.value&&f.v&&f.v[i.dataset.k])i.value=f.v[i.dataset.k];return;}
+  if('gdPt' in d){const sid=d.s;setTimeout(()=>{const a=document.activeElement;if(!(a&&a.closest&&a.closest('#gd-'+sid)))gdSecUpd(sid);},0);}});
+document.addEventListener('keydown',e=>{const T=e.target;if(e.key!=='Enter'||e.isComposing||e.keyCode===229||!T||!T.dataset||!T.dataset.gdQ)return;e.preventDefault();const box=T.closest('[data-gd-addf]');if(T.classList.contains('gd-qk')){const f=(((GD.freq||{})[T.dataset.gdQ])||{})[gdFk(T.value)];if(f&&!f.h)for(const i of $$('[data-gd-q]',box))if(i!==T&&!i.value&&f.v&&f.v[i.dataset.k])i.value=f.v[i.dataset.k];}gdAdd(T.dataset.gdQ);});
+
+/* ── ✏️ 항목 편집 (관리자·자료 관리자) — 구역·칸 이름, 순서(끌기·▲▼), 종류, 사업장, 순찰 장소·주차 칸(사업장별), 기록 목록 칸 */
+function gdEdOpen(){if(!gdCanEd()){toast('항목은 관리자·자료 관리자가 고칩니다.','err');return;}GD.ed=gdNormTpl(gdClone({T:gdTpl()}).T);GD.edDirty=false;GD.edOpen=new Set();GD.editing=true;GD.acctOpen=false;
+  try{gdDoc('_tpl_prev').get().then(s=>{GD.hasPrev=!!(s.exists&&s.data().T);if(GD.editing&&GD.hasPrev)gdEdRender();}).catch(()=>{});}catch{}render();}
+function gdEdRender(){const box=$('#gd-ed');if(!box)return render();for(const d of $$('#ge-secs details'))if(d.open)GD.edOpen.add(d.dataset.id);else GD.edOpen.delete(d.dataset.id);const y=window.scrollY;box.outerHTML=gdEdHTML();window.scrollTo(0,y);gdEdSort();}
+function gdEdChanged(re){GD.edDirty=true;if(re)gdEdRender();else{const b=$('[data-ge-save]');if(b){b.disabled=false;b.textContent='💾 저장 (바뀜)';}}}
+function gdEdLists(path,v){const o=Array.isArray(v)?{_:v}:{...(v||{})};const keys=['_',...new Set(inSites().map(inCode))];
+  return `<div class="ie-lists">${keys.map(k=>`<label><span>${k==='_'?'기본':esc(inSites().find(s=>inCode(s)===k)||k)}</span><textarea data-ge-list="${path}" data-site="${k}" rows="${Math.min(6,Math.max(2,(o[k]||[]).length))}" placeholder="${k==='_'?'한 줄에 하나':'비우면 기본'}">${esc((o[k]||[]).join('\n'))}</textarea></label>`).join('')}</div>`;}
+function gdEdItem(T,si,ii,it){const p=`${si}.${ii}`;const mv=`<span class="ie-mv"><button type="button" class="icon-btn" data-ge-up="${p}" aria-label="위로">▲</button><button type="button" class="icon-btn" data-ge-dn="${p}" aria-label="아래로">▼</button><button type="button" class="icon-btn" data-ge-del="${p}" aria-label="빼기">✕</button></span>`;
+  let f='';if(T.t==='f')f=`<select data-ge-f="t" data-p="${p}" aria-label="종류">${Object.entries(GD_FT).map(([k,l])=>`<option value="${k}" ${it.t===k?'selected':''}>${l}</option>`).join('')}</select><input class="ie-c" data-ge-f="ph" data-p="${p}" value="${esc(it.ph||'')}" maxlength="40" placeholder="예시 글" aria-label="예시 글">`;
+  else if(T.t==='c')f=`<input class="ie-c" data-ge-f="c" data-p="${p}" value="${esc(it.c||'')}" maxlength="120" placeholder="점검 기준·설명" aria-label="기준">`;
+  else if(T.t==='l')f=`<select data-ge-f="t" data-p="${p}" aria-label="종류">${Object.entries(GD_LT).map(([k,l])=>`<option value="${k}" ${it.t===k?'selected':''}>${l}</option>`).join('')}</select>${it.t==='text'?`<label class="ge-key"><input type="radio" name="ge-key-${si}" data-ge-key="${p}" ${T.key===it.k?'checked':''}> 자주 오는 목록 기준</label>`:''}`;
+  return `<div class="ie-it" data-ge-k="${esc(it.k)}" data-p="${p}"><span class="in-hdl ge-hi" title="끌어서 순서 바꾸기" aria-hidden="true">⠿</span><div class="ie-itf"><div class="ie-row"><input class="ie-n" data-ge-f="n" data-p="${p}" value="${esc(it.n)}" maxlength="${T.t==='l'?20:60}" aria-label="이름" placeholder="이름">${f}${mv}</div></div></div>`;}
+function gdEdSec(T,si){const open=GD.edOpen.has(T.id);const sites=inSites();const L=T.t==='l'?T.cols:T.items;
+  const det=T.t==='f'||T.t==='c'?`칸 ${T.items.length}개`:T.t==='l'?`칸 ${T.cols.length}개`:T.t==='p'||T.t==='g'?`${(Array.isArray(T.rows)?T.rows:T.rows._||[]).length}줄 × ${T.cols.length}칸`:'';
+  let body='';if(L)body=`<div class="ie-its ge-its" data-si="${si}">${L.map((it,ii)=>gdEdItem(T,si,ii,it)).join('')}</div><button type="button" class="btn sm ghost" data-ge-iadd="${si}">＋ ${T.t==='c'?'항목':'칸'}</button>${T.t==='l'?'<p class="gd-eh">시각(들어옴)은 줄을 더할 때 지금 시각이 들어가고, 시각(나감)은 줄마다 「○○ 지금」 단추가 생깁니다. 「자주 오는 목록 기준」 칸(예: 차량번호)으로 자주 오는 단추를 만듭니다(이름·연락처 칸은 단추에 넣지 않음).</p>':''}`;
+  else if(T.t==='p'||T.t==='g')body=`<div class="ie-sf"><label>${T.t==='p'?'순찰 회차':'칸'} <input data-ge-sf="cols" data-si="${si}" value="${esc(T.cols.join(', '))}" maxlength="120" placeholder="쉼표로 나눔 — 예) 1차, 2차"></label>${T.t==='g'?`<label>단위 <input data-ge-sf="u" data-si="${si}" value="${esc(T.u||'')}" size="5" maxlength="8"></label>`:''}</div><div class="ie-scols"><span>${T.t==='p'?'순찰 장소':'줄 이름'} — 사업장마다 따로 적을 수 있습니다</span>${gdEdLists(si+'.rows',T.rows)}</div>`;
+  return `<details class="ie-sec" data-ge-s="${si}" data-id="${esc(T.id)}" ${open?'open':''}><summary><span class="in-hdl ge-hs" title="끌어서 순서 바꾸기" aria-hidden="true">⠿</span><span class="gd-ty">${GD_TY[T.t]}</span><b>${gdIco(T)} ${esc(T.n)}</b><small>${det}${T.s&&T.s.length?' · '+esc(T.s.map(c=>sites.find(s=>inCode(s)===c)||c).join('·')):''}</small>
+      <span class="ie-mv"><button type="button" class="icon-btn" data-ge-sup="${si}" aria-label="구역 위로">▲</button><button type="button" class="icon-btn" data-ge-sdn="${si}" aria-label="구역 아래로">▼</button></span></summary>
+    <div class="ie-sf"><label>구역 이름 <input data-ge-sf="n" data-si="${si}" value="${esc(T.n)}" maxlength="60"></label>
+      <span class="ie-sites">사업장 ${sites.map(s=>{const c=inCode(s);return `<label><input type="checkbox" data-ge-site="${esc(c)}" data-si="${si}" ${!T.s||!T.s.length||T.s.includes(c)?'checked':''}> ${esc(s)}</label>`;}).join('')}</span>
+      <label class="ge-c">${T.t==='t'?'예시 글':'안내 글'} <input data-ge-sf="c" data-si="${si}" value="${esc(T.c||'')}" maxlength="200"></label>
+      <button type="button" class="btn sm ghost danger" data-ge-sdel="${si}">🗑 구역 삭제</button></div>${body}</details>`;}
+function gdEdHTML(){const L=GD.ed||[];return `<div class="ie" id="gd-ed"><div class="ie-bar"><b>✏️ 경비 일지 항목 편집</b><small>${GD_CUR?`고친 항목 사용 중${GD.tplAt?` · ${esc(hhmm(GD.tplAt))}${GD.tplBy?' '+esc(GD.tplBy):''} 저장`:''}`:'기본 항목 사용 중'} · 끌어서(⠿) 또는 ▲▼로 순서, 칸을 눌러 바로 고치고 💾 저장하면 경비원 화면에 바로 반영됩니다.</small>
+    <span class="ie-acts"><select id="ge-ty" aria-label="새 구역 종류">${Object.entries(GD_TY).map(([k,l])=>`<option value="${k}" ${k==='l'?'selected':''}>${l}</option>`).join('')}</select><button type="button" class="btn sm" data-ge-sadd>＋ 구역</button>
+      <button type="button" class="btn sm ghost" data-ge-base>↺ 기본 항목으로</button>${GD.hasPrev?'<button type="button" class="btn sm ghost" data-ge-prev>↶ 직전 저장본</button>':''}<button type="button" class="btn sm ghost" data-ge-cancel>닫기</button><button type="button" class="btn sm primary" data-ge-save ${GD.edDirty?'':'disabled'}>💾 저장${GD.edDirty?' (바뀜)':''}</button></span></div>
+    <p class="gd-eh">종류: 정보 칸(근무자·날씨·교대 시각) · 점검(양호·주의·불량·해당 없음) · 순찰 표(장소 × 회차 시각·특이사항) · 수치 표(주차 대수 등) · 기록 목록(방문 차량·택배처럼 줄을 계속 더함) · 글(보고사항). 칸 이름을 바꿔도 같은 칸이면 지난 기록이 이어집니다(순찰 장소·수치 표 줄 이름은 이름으로 기록).</p>
+    <div class="ie-secs" id="ge-secs">${L.map((T,si)=>gdEdSec(T,si)).join('')}</div></div>`;}
+function gdEdSort(){(GD.sorts||[]).forEach(x=>{try{x.destroy();}catch{}});GD.sorts=[];const go=()=>{if(!window.Sortable||!$('#ge-secs'))return;const o={animation:150,delay:120,delayOnTouchOnly:true};
+    GD.sorts.push(Sortable.create($('#ge-secs'),{...o,handle:'.ge-hs',draggable:'.ie-sec',onEnd:()=>{const ord=$$('#ge-secs > .ie-sec').map(d=>+d.dataset.geS);GD.ed=ord.map(i=>GD.ed[i]);gdEdChanged(true);}}));
+    for(const L of $$('#ge-secs .ge-its'))GD.sorts.push(Sortable.create(L,{...o,handle:'.ge-hi',draggable:'.ie-it',onEnd:()=>{const T=GD.ed[+L.dataset.si];const arr=T.t==='l'?T.cols:T.items;const by=Object.fromEntries(arr.map(it=>[it.k,it]));const nw=$$(':scope > .ie-it',L).map(e=>by[e.dataset.geK]).filter(Boolean);if(T.t==='l')T.cols=nw;else T.items=nw;gdEdChanged(true);}}));};
+  if(window.Sortable)go();else wlLib('sortable').then(go).catch(()=>{});}
+const gdEdAt=p=>{const [si,ii]=p.split('.').map(Number);const T=GD.ed[si];const arr=T&&(T.t==='l'?T.cols:T.items);return {T,arr,it:arr&&arr[ii],si,ii};};
+const GD_NEW={f:()=>({items:[{k:gdKey('f'),n:'새 칸',t:'text',ph:''}]}),c:()=>({items:[{k:gdKey('q'),n:'새 항목',c:''}]}),p:()=>({rows:['1층','2층'],cols:['1차','2차']}),g:()=>({rows:['1층'],cols:['법인','직원'],u:'대'}),l:()=>({key:'',cols:[{k:'tin',n:'시각',t:'tin'},{k:gdKey('c'),n:'내용',t:'text'}]}),t:()=>({})};
+function gdEdValidate(L){const err=[];if(!L.length)err.push('구역이 하나도 없습니다.');
+  for(const T of L){if(!String(T.n||'').trim())err.push('이름 없는 구역이 있습니다.');
+    if((T.t==='f'||T.t==='c')&&!T.items.length)err.push(`「${T.n}」에 칸이 없습니다.`);if(T.t==='l'&&!T.cols.length)err.push(`「${T.n}」에 칸이 없습니다.`);
+    if((T.t==='f'||T.t==='c'||T.t==='l')&&(T.t==='l'?T.cols:T.items).some(it=>!String(it.n||'').trim()||it.n==='(이름 없음)'))err.push(`「${T.n}」에 이름 없는 칸이 있습니다.`);
+    if((T.t==='p'||T.t==='g')&&(!T.cols.length||!(Array.isArray(T.rows)?T.rows.length:Object.values(T.rows||{}).some(a=>a&&a.length))))err.push(`「${T.n}」 줄·칸 이름을 적어 주세요.`);}
+  return [...new Set(err)].slice(0,6);}
+async function gdEdSave(){if(!S.fs||S.mode!=='firebase'){toast('회사 서버에 연결된 상태에서만 저장됩니다.','err');return;}if(!gdCanEd())return;const err=gdEdValidate(GD.ed);if(err.length){toast(err.join(' '),'err');return;}
+  const L=gdNormTpl(gdClone({T:GD.ed}).T);if(!await confirmDlg('경비 일지 항목 저장',`구역 ${L.length}개로 저장합니다. 모든 사업장 경비원 화면에 바로 반영됩니다. (지금 것은 '직전 저장본'으로 보관)`,'저장'))return;
+  setSync('saving');try{const cur=await gdDoc('_tpl').get();const T0=cur.exists&&cur.data().T?cur.data().T:GD_T0;await fbWrite(gdDoc('_tpl_prev').set({T:T0,at:nowISO(),by:myId(),byName:myName()}));
+    await fbWrite(gdDoc('_tpl').set({T:gdClone({T:L}).T,v:1,at:nowISO(),by:myId(),byName:myName()}));GD_CUR=L;GD.ed=gdNormTpl(gdClone({T:L}).T);GD.edDirty=false;GD.hasPrev=true;toast('경비 일지 항목을 저장했습니다.');gdEdRender();}
+  catch(e){writeError(e&&e.userMsg?e:fbErr(e));}finally{setSync('ok');}}
+function gdEdList(path,site,val){const [si,kind]=path.split('.');const T=GD.ed[+si];if(!T||kind!=='rows')return;const o=Array.isArray(T.rows)?{_:[...T.rows]}:{...(T.rows||{})};const a=String(val).split(/\n/).map(x=>gdStr(x,40)).filter(Boolean).slice(0,60);if(a.length)o[site]=a;else delete o[site];const ks=Object.keys(o);T.rows=!ks.length?[]:ks.length===1&&ks[0]==='_'?o._:o;}
+document.addEventListener('click',async e=>{const T=e.target;if(!T||!T.closest||!T.closest('#gd-ed'))return;const d=T.closest('[data-ge-sup],[data-ge-sdn],[data-ge-up],[data-ge-dn],[data-ge-del],[data-ge-sdel],[data-ge-iadd],[data-ge-sadd],[data-ge-save],[data-ge-cancel],[data-ge-base],[data-ge-prev]');if(!d)return;
+  if(d.matches('[data-ge-sup],[data-ge-sdn]')){e.preventDefault();const i=+(d.dataset.geSup??d.dataset.geSdn);const j=d.matches('[data-ge-sup]')?i-1:i+1;if(j<0||j>=GD.ed.length)return;[GD.ed[i],GD.ed[j]]=[GD.ed[j],GD.ed[i]];gdEdChanged(true);return;}
+  if(d.matches('[data-ge-up],[data-ge-dn]')){const a=gdEdAt(d.dataset.geUp||d.dataset.geDn);const j=d.matches('[data-ge-up]')?a.ii-1:a.ii+1;if(j<0||j>=a.arr.length)return;[a.arr[a.ii],a.arr[j]]=[a.arr[j],a.arr[a.ii]];gdEdChanged(true);return;}
+  if(d.matches('[data-ge-del]')){const a=gdEdAt(d.dataset.geDel);a.arr.splice(a.ii,1);if(a.T.t==='l'&&a.T.key===a.it.k)a.T.key='';gdEdChanged(true);return;}
+  if(d.matches('[data-ge-sdel]')){const si=+d.dataset.geSdel;if(!await confirmDlg('구역 삭제',`「${GD.ed[si].n}」 구역을 뺍니다. 지난 기록은 남지만 화면에는 안 나옵니다. (💾 저장해야 반영)`,'삭제'))return;GD.ed.splice(si,1);gdEdChanged(true);return;}
+  if(d.matches('[data-ge-iadd]')){const si=+d.dataset.geIadd;const T0=GD.ed[si];const it=T0.t==='f'?{k:gdKey('f'),n:'새 칸',t:'text',ph:''}:T0.t==='c'?{k:gdKey('q'),n:'새 항목',c:''}:{k:gdKey('c'),n:'새 칸',t:'text'};(T0.t==='l'?T0.cols:T0.items).push(it);GD.edOpen.add(T0.id);gdEdChanged(true);
+    setTimeout(()=>{const x=$(`#ge-secs .ie-it[data-ge-k="${it.k}"] .ie-n`);if(x){x.focus();x.select();}},50);return;}
+  if(d.matches('[data-ge-sadd]')){const ty=($('#ge-ty')||{}).value||'l';const id=gdKey('u');GD.ed.push({id,t:ty,n:ty==='l'?'새 기록 목록':'새 '+GD_TY[ty],c:'',...GD_NEW[ty]()});GD.edOpen.add(id);gdEdChanged(true);setTimeout(()=>{const x=$(`#ge-secs details[data-id="${id}"]`);if(x){x.scrollIntoView({block:'center'});const n=x.querySelector('[data-ge-sf="n"]');if(n){n.focus();n.select();}}},60);return;}
+  if(d.matches('[data-ge-save]')){gdEdSave();return;}
+  if(d.matches('[data-ge-base]')){if(!await confirmDlg('기본 항목으로',`처음 만든 기본 항목(구역 ${GD_T0.length}개)을 불러옵니다. 💾 저장해야 반영됩니다.`,'불러오기'))return;GD.ed=gdNormTpl(gdClone({T:GD_T0}).T);gdEdChanged(true);return;}
+  if(d.matches('[data-ge-prev]')){try{const s=await gdDoc('_tpl_prev').get();if(!s.exists||!s.data().T){toast('직전 저장본이 없습니다.','err');return;}GD.ed=gdNormTpl(s.data().T);gdEdChanged(true);toast('직전 저장본을 불러왔습니다. 💾 저장해야 반영됩니다.');}catch(err){writeError(err);}return;}
+  if(d.matches('[data-ge-cancel]')){if(GD.edDirty&&!await confirmDlg('편집 닫기','저장하지 않은 변경이 있습니다. 버리고 닫을까요?','버리기'))return;GD.editing=false;GD.ed=null;GD.edDirty=false;(GD.sorts||[]).forEach(x=>{try{x.destroy();}catch{}});GD.sorts=[];render();return;}});
+document.addEventListener('input',e=>{const T=e.target;if(!T||!T.closest||!T.closest('#gd-ed'))return;const d=T.dataset;
+  if(d.geF&&d.geF!=='t'){const a=gdEdAt(d.p);if(!a.it)return;a.it[d.geF]=T.value;gdEdChanged(false);return;}
+  if(d.geSf){const t=GD.ed[+d.si];if(!t)return;if(d.geSf==='cols')t.cols=T.value.split(/[,，]/).map(x=>gdStr(x,40)).filter(Boolean).slice(0,8);else if(d.geSf==='n'){t.n=T.value;const b=T.closest('details').querySelector('summary b');if(b)b.textContent=gdIco(t)+' '+T.value;}else t[d.geSf]=T.value;gdEdChanged(false);return;}
+  if(d.geList){gdEdList(d.geList,d.site,T.value);gdEdChanged(false);return;}});
+document.addEventListener('change',e=>{const T=e.target;if(!T||!T.closest||!T.closest('#gd-ed'))return;const d=T.dataset;
+  if(d.geF==='t'){const a=gdEdAt(d.p);if(!a.it)return;a.it.t=T.value;if(a.T.t==='l'&&a.T.key===a.it.k&&T.value!=='text')a.T.key='';gdEdChanged(true);return;}
+  if(d.geKey){const a=gdEdAt(d.geKey);if(a.it)a.T.key=a.it.k;gdEdChanged(false);return;}
+  if(d.geSite){const t=GD.ed[+d.si];const all=[...new Set(inSites().map(inCode))];let s=t.s&&t.s.length?[...t.s]:[...all];if(T.checked)s.push(d.geSite);else s=s.filter(x=>x!==d.geSite);s=[...new Set(s)];
+    if(!s.length){T.checked=true;toast('사업장을 하나 이상 고르세요.','err');return;}t.s=all.every(c=>s.includes(c))?[]:s;gdEdChanged(false);return;}});
+document.addEventListener('toggle',e=>{const d=e.target;if(d&&d.matches&&d.matches('#ge-secs details')){if(d.open)GD.edOpen.add(d.dataset.id);else GD.edOpen.delete(d.dataset.id);}},true);
+
+/* ── 👮 경비원 계정 (관리자) — guardacct/{로그인 이메일} {email,name,site,code,on,at,by} */
+function gdAcctSub(){if(GD.acctU||!S.canEdit||!S.fs||S.mode!=='firebase')return;GD.acctErr='';
+  GD.acctU=S.fs.collection('guardacct').onSnapshot(qs=>{GD.accts=qs.docs.map(d=>({id:d.id,...(d.data()||{})})).sort((a,b)=>String(a.site).localeCompare(String(b.site))||String(a.name).localeCompare(String(b.name)));GD.acctErr='';gdSoft();},
+    e=>{GD.accts=[];GD.acctErr=e&&/denied/.test(e.code||'')?'perm':'err';try{GD.acctU&&GD.acctU();}catch{}GD.acctU=null;gdSoft();});}
+function gdAcctHTML(){const sites=inSites();const A=GD.accts;const mem=S.members||{};const isMem=em=>(mem.emails||[]).includes(em)||(mem.admins||[]).includes(em);
+  const jr=(S.joinreqs||[]);
+  return `<div class="gd-acct" id="gd-acct"><h4>👮 경비원 계정 <small>여기 등록한 이메일로 로그인하면 그 사업장 경비 일지만 보이고 적을 수 있습니다 (관리자)</small></h4>
+    ${GD.acctErr==='perm'?'<p class="gd-warn">⚠ 보안 규칙(45차)이 아직 게시되지 않아 경비원 계정을 읽고 쓸 수 없습니다. Firebase 콘솔에 새 규칙을 게시한 뒤 다시 여세요.</p>':GD.acctErr?'<p class="gd-warn">계정 목록을 불러오지 못했습니다.</p>':''}
+    ${A==null?'<div class="vw-load"><i></i>불러오는 중…</div>':A.length?`<table class="gd-at"><thead><tr><th>이름</th><th>로그인 이메일</th><th>사업장</th><th>사용</th><th></th></tr></thead><tbody>${A.map(a=>`<tr><td>${esc(a.name||'')}</td><td>${esc(a.email||a.id)}${isMem(a.id)?' <small class="gd-warn">직원으로도 등록됨 — 직원 화면이 열림</small>':''}</td>
+      <td><select data-ga-site="${esc(a.id)}" aria-label="사업장">${sites.map(s=>`<option ${s===a.site?'selected':''}>${esc(s)}</option>`).join('')}${sites.includes(a.site)?'':`<option selected>${esc(a.site||'')}</option>`}</select></td>
+      <td><label class="chk"><input type="checkbox" data-ga-on="${esc(a.id)}" ${a.on!==false?'checked':''}> 사용</label></td><td><button type="button" class="icon-btn" data-ga-del="${esc(a.id)}" aria-label="${esc((a.name||a.id)+' 계정 지우기')}">✕</button></td></tr>`).join('')}</tbody></table>`:'<p class="empty">등록한 경비원이 없습니다.</p>'}
+    <div class="gd-aadd"><input id="ga-name" maxlength="20" placeholder="이름 (예: 홍길동 반장)" aria-label="이름"><input id="ga-email" type="email" maxlength="80" placeholder="로그인 이메일" aria-label="로그인 이메일"><select id="ga-site" aria-label="사업장">${sites.map(s=>`<option ${s===GD.site?'selected':''}>${esc(s)}</option>`).join('')}</select><button type="button" class="btn primary" data-ga-add>＋ 경비원 등록</button></div>
+    ${jr.length?`<div class="gd-jr"><b>접속 요청</b>${jr.map(r=>`<span>${esc(r.name?r.name+' · ':'')}${esc(r.email)} <button type="button" class="btn sm" data-ga-jr="${esc(r.id)}">🛡 경비원으로 등록</button></span>`).join('')}</div>`:''}
+    <p class="gd-eh">사용 방법: ① 경비원 이름·이메일·사업장 등록 ② 경비원이 업무일지 주소에서 그 이메일로 <b>가입</b>(이메일·비밀번호, 또는 구글 계정) → 받은 메일의 인증 링크 누르기 → 로그인 ③ 경비 일지 화면만 열립니다(업무·자료·직원 명단은 볼 수 없음). 그만두면 <b>사용</b>을 끄거나 지우세요. 비밀번호는 경비원 본인이 정하고, 관리자·업무일지는 알지 못합니다.</p></div>`;}
+async function gdAcctSave(email,o){if(!S.canEdit)return false;try{await fbWrite(S.fs.doc('guardacct/'+email).set({email,...o,at:nowISO(),by:myId()},{merge:true}));return true;}catch(e){writeError(e&&e.userMsg?e:fbErr(e));return false;}}
+document.addEventListener('click',async e=>{const T=e.target;if(!T||!T.closest||!T.closest('#gd-acct'))return;let b;
+  if(T.closest('[data-ga-add]')){const name=gdStr(($('#ga-name')||{}).value,20),email=gdStr(($('#ga-email')||{}).value,80).toLowerCase(),site=($('#ga-site')||{}).value||'';
+    if(!/^[^\s@\/]+@[^\s@\/]+\.[^\s@\/]+$/.test(email)){toast('로그인 이메일을 바르게 적어 주세요.','err');($('#ga-email')||{focus(){}}).focus();return;}if(!site){toast('사업장을 고르세요.','err');return;}
+    const mem=S.members||{};if(((mem.emails||[]).includes(email)||(mem.admins||[]).includes(email))&&!await confirmDlg('직원 이메일','이 이메일은 직원(접속 허용)으로 등록돼 있어 로그인하면 직원 화면이 열립니다. 그래도 경비원으로 등록할까요?','등록'))return;
+    if(await gdAcctSave(email,{name,site,code:inCode(site),on:true})){toast(`${name||email} 경비원(${site})을 등록했습니다.`);$('#ga-name').value='';$('#ga-email').value='';}return;}
+  if((b=T.closest('[data-ga-del]'))){const id=b.dataset.gaDel;const a=(GD.accts||[]).find(x=>x.id===id)||{};if(!await confirmDlg('경비원 계정 지우기',`${a.name||''} ${id}\n이 계정은 더 이상 경비 일지를 열 수 없습니다. (적은 기록은 그대로)`,'지우기'))return;try{await fbWrite(S.fs.doc('guardacct/'+id).delete());toast('경비원 계정을 지웠습니다.');}catch(err){writeError(err&&err.userMsg?err:fbErr(err));}return;}
+  if((b=T.closest('[data-ga-jr]'))){const r=(S.joinreqs||[]).find(x=>x.id===b.dataset.gaJr);if(!r)return;const site=($('#ga-site')||{}).value||GD.site;
+    if(!await confirmDlg('경비원으로 등록',`${r.name?r.name+' · ':''}${r.email}\n${site} 경비원으로 등록합니다. 로그인하면 ${site} 경비 일지만 보입니다.`,'등록'))return;
+    if(await gdAcctSave(r.email.toLowerCase(),{name:gdStr(r.name,20),site,code:inCode(site),on:true})){await S.fs.doc('joinreq/'+r.id).delete().catch(()=>{});toast(`${r.name||r.email}님을 ${site} 경비원으로 등록했습니다.`);}return;}});
+document.addEventListener('change',async e=>{const T=e.target;if(!T||!T.closest||!T.closest('#gd-acct'))return;
+  if(T.dataset.gaOn){if(!await gdAcctSave(T.dataset.gaOn,{on:T.checked}))T.checked=!T.checked;else toast(T.checked?'다시 쓸 수 있게 했습니다.':'이 계정은 이제 경비 일지를 열 수 없습니다.');return;}
+  if(T.dataset.gaSite){const site=T.value;await gdAcctSave(T.dataset.gaSite,{site,code:inCode(site)});return;}});
+/* 알림(종)의 접속 요청 → 직원으로 / 경비원으로 고르기 */
+{const _j=jrApprove;jrApprove=async function(id){const r=(S.joinreqs||[]).find(x=>x.id===id);if(!r||!S.canEdit)return _j.apply(this,arguments);
+  const ch=await gdChoose(r);if(ch==='staff'){const cd=confirmDlg;confirmDlg=async()=>true;try{return await _j.call(this,id);}finally{confirmDlg=cd;}}
+  if(ch&&ch.site){if(await gdAcctSave(r.email.toLowerCase(),{name:gdStr(r.name,20),site:ch.site,code:inCode(ch.site),on:true})){await S.fs.doc('joinreq/'+r.id).delete().catch(()=>{});toast(`${r.name||r.email}님을 ${ch.site} 경비원으로 등록했습니다.`);}}};}
+function gdChoose(r){return new Promise(res=>{let d=$('#dlg-gdch');if(!d){d=document.createElement('dialog');d.className='modal narrow';d.id='dlg-gdch';document.body.appendChild(d);}const sites=inSites();
+  d.innerHTML=`<form method="dialog"><header class="modal-h"><h2>접속 요청</h2></header><div class="modal-b one"><p><b>${esc(r.name||'')}</b> ${esc(r.email)}</p><p>어떻게 허용할까요? 모르는 사람이면 취소하세요.</p>
+    <p><b>직원</b>: 업무일지 전체(업무·자료·전자결재 등)를 씁니다.<br><b>🛡 경비원</b>: 고른 사업장 경비 일지만 보고 적습니다.</p><label>경비원 사업장 <select id="gdch-site">${sites.map(s=>`<option>${esc(s)}</option>`).join('')}</select></label></div>
+    <footer class="modal-f"><span class="spacer"></span><button type="button" class="btn" data-gdch="">취소</button><button type="button" class="btn" data-gdch="guard">🛡 경비원으로 허용</button><button type="button" class="btn primary" data-gdch="staff">직원으로 허용</button></footer></form>`;
+  const done=v=>{d.close();res(v);};d.onclick=ev=>{const b=ev.target.closest('[data-gdch]');if(!b)return;ev.preventDefault();const v=b.dataset.gdch;done(v==='guard'?{site:$('#gdch-site').value}:v||null);};d.oncancel=()=>res(null);d.showModal();});}
+
+/* ── 경비원 로그인: 접속 허용 목록에 없을 때 guardacct/{이메일} 이 있으면 경비 일지만 */
+async function gdCheck(u){try{const email=(u.email||'').toLowerCase();if(!email)return false;const s=await S.fs.doc('guardacct/'+email).get();const a=s.exists?s.data():null;if(!a||a.on===false||!a.site)return false;gdEnter(u,email,a);return true;}catch{return false;}}
+{const _g=gate;gate=function(state,o){o=o||{};if(state==='denied'&&!o._gd&&S.fs&&S.auth&&S.auth.currentUser&&!S.fbEntered){const u=S.auth.currentUser;_g.call(this,'loading',{msg:'접속 권한을 확인하는 중…'});gdCheck(u).then(ok=>{if(!ok&&!S.fbEntered)_g.call(this,'denied',{...o,_gd:true});});return;}return _g.apply(this,arguments);};}
+function gdEnter(u,email,a){S.fbEntered=true;$('#gate').hidden=true;S.gate=null;S.email=email;S.me={id:u.uid,name:a.name||email.split('@')[0]};S.canEdit=false;S.canWrite=false;S.members=normMembers(null);
+  S.guard={email,name:gdStr(a.name,20),site:a.site,code:a.code||inCode(a.site)};S.db=new FirebaseDB(S.fs);try{showBanner('');}catch{}document.body.classList.add('gd-mode');
+  $('#app-title').textContent='경비 일지';$('#today-label').textContent=`${a.site} · ${fmtLong(today())}`;const tr=$('.top-right');if(tr&&!$('#gd-out'))tr.insertAdjacentHTML('beforeend','<button type="button" class="btn ghost sm" id="gd-out">로그아웃</button>');
+  for(const d of $$('dialog[open]'))try{d.close();}catch{}GD.site=a.site;GD.date=gdShift();S.view='guard';try{history.replaceState(null,'','#guard');}catch{}setSync('ok');S.ready=false;
+  window.addEventListener('online',()=>setSync('ok'));window.addEventListener('offline',()=>setSync('offline'));
+  GD.meU=S.fs.doc('guardacct/'+email).onSnapshot(s=>{const d=s.exists?s.data():null;if(!d||d.on===false){toast('경비원 계정이 해제되어 로그아웃합니다.','err');setTimeout(()=>fbLogout(),1500);return;}
+      if(d.site&&d.site!==S.guard.site){gdFlush();S.guard.site=d.site;S.guard.code=d.code||inCode(d.site);GD.key='';render();}},()=>{});
+  render();}
+{const _r=render;render=function(){if(S.guard){S.view='guard';gdGuardRender();return;}if(S.view!=='guard'&&GD.editing&&!GD.edDirty){GD.editing=false;GD.ed=null;}if(S.view!=='guard'){try{gdFlush();}catch{}}return _r.apply(this,arguments);};}
+window.addEventListener('keydown',e=>{if(!S.guard)return;const t=(e.target&&e.target.tagName)||'';if(((e.ctrlKey||e.metaKey)&&/^[kKpP]$/.test(e.key))||e.key==='F2'||(e.key==='/'&&!/^(INPUT|TEXTAREA|SELECT)$/.test(t))){e.stopImmediatePropagation();e.preventDefault();}},true);
+document.addEventListener('click',e=>{if(!S.guard)return;const t=e.target;if(!t||!t.closest)return;if(t.closest('#gd,#gd-out,#gate,dialog,#toasts,.notyf'))return;if(t.closest('a[href],button,[data-open],[role=button]')){e.stopImmediatePropagation();e.preventDefault();}},true);
+
+/* 홈 빠른 기록 줄: ✅ 점검 일보 왼쪽 */
+{const _q=qaShell;qaShell=function(){const h=_q.apply(this,arguments);return h.replace('<button type="button" class="btn qa-insp" data-in-open','<button type="button" class="btn qa-guard" data-gd-open title="경비 근무일지 · 방문 차량 · 택배 접수 — 경비원 계정은 이 일지만 봅니다">🛡 경비 일지</button><button type="button" class="btn qa-insp" data-in-open');};}
+window.gdApi={get T(){return gdTpl();},base:GD_T0,norm:gdNormTpl,state:()=>({site:GD.site,date:GD.date,key:GD.key,day:GD.day&&gdClone(GD.day),freq:GD.freq&&gdClone(GD.freq),patch:gdClone(GD.patch),editing:GD.editing,ed:GD.ed&&gdClone({T:GD.ed}).T,dirty:GD.edDirty,guard:S.guard||null,accts:GD.accts}),flush:gdFlush,shift:gdShift,doc:(site,date,v)=>gdDocBody(site,date,v).html};
 
 /* ───────── 시작 ───────── */
 function boot(){
