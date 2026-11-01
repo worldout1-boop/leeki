@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="wl-build" content="5159175e1185">
+<meta name="wl-build" content="14407dfab641">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="manifest" href="manifest.webmanifest"><script>if(/[?&]memo=1(&|$)/.test(location.search)){document.querySelector('link[rel=manifest]').href='memo.webmanifest';document.documentElement.classList.add('memo-mode');}</script>
 <meta name="theme-color" content="#1f3a5f">
@@ -1237,6 +1237,18 @@ table.lst td.wd-td{white-space:nowrap}
 .fmx.serif,.fmx .fm-serif{font-family:"Batang","바탕","Noto Serif KR","AppleMyungjo","Nanum Myeongjo",serif}
 .fmx .fm-sans{font-family:"Malgun Gothic","맑은 고딕","Apple SD Gothic Neo","Noto Sans KR",sans-serif}
 .fmx p{margin:0;white-space:pre-wrap;tab-size:4}
+/* 59차: 한글 줄 간격 맞춤 — 한글은 줄과 줄 사이에만 줄 간격이 들어가고 칸의 첫 줄 위·마지막 줄 아래에는 없음.
+   웹은 줄 높이를 위아래로 반씩 나눠 주므로 표 칸이 원본보다 커져 쪽이 넘어감 → 칸의 첫·끝 문단에서 그 반쪽 여백을 걷어 냄
+   (문단 위·아래 여백(인라인 margin)과는 여백 겹침으로 합쳐짐) */
+.fmx .hw-t td>p:first-child::before,.fmx .hw-t td>p:last-child::after{content:"";display:block;height:0}
+.fmx .hw-t td>p:first-child::before{margin-top:calc((1 - var(--lh,1.6)) * .5em)}
+.fmx .hw-t td>p:last-child::after{margin-bottom:calc((1 - var(--lh,1.6)) * .5em)}
+.fmx.fm-pol{--lh:1.55}
+/* 59차: 한 줄에 나란히 놓인 표(글자처럼 취급) */
+.fmx .hw-tl{white-space:pre-wrap;line-height:1.2}
+.fmx table.hw-it{display:inline-table;vertical-align:bottom;margin-left:0;margin-right:0;white-space:normal;text-indent:0}
+/* 59차: 인쇄할 때 쪽 끝의 빈 줄(보이지 않는 빈 문단)은 빼서 다음 쪽으로 밀려 넘치지 않게 */
+#print-sheet .fmx .fm-tail{display:none!important}
 .fmx table{border-collapse:collapse;table-layout:fixed;margin:0;text-align:justify}
 .fmx td,.fmx th{overflow-wrap:anywhere;word-break:keep-all}
 .fmx .hw-mc{margin-left:auto;margin-right:auto}.fmx .hw-mr{margin-left:auto}
@@ -2256,6 +2268,15 @@ dialog.modal.gu-dlg[open]{display:flex}
 @media (min-width:761px){header.top.fit0:not(.fit0b):not(.fit1) .tabs a{padding-left:9px!important;padding-right:9px!important}header.top.fit0b:not(.fit1) .tabs a{padding-left:6px!important;padding-right:6px!important}}
 /* 58차: 더 좁은 창(반쪽 화면 등)에서도 넘치면 마지막 단계 — 왼쪽 위 이름 글자를 숨기고 「관」 기호만(마우스 올리면 이름) */
 @media (min-width:761px){header.top.fit4 .brand strong,header.top.fit4 .brand small{display:none!important}header.top.fit4 .brand{gap:0}}
+/* 59차: 회사서식 인쇄 전에 쪽마다 높이를 재는 화면 밖 자리 — 인쇄할 때와 같은 규칙(@media print 의 #print-sheet .fmx …)을 그대로 */
+#print-sheet.fm-meas{display:block!important;position:absolute!important;left:-30000px!important;top:0!important;visibility:hidden!important;width:auto}
+#print-sheet.fm-meas .fmx{font-size:10pt;padding:0}
+#print-sheet.fm-meas .fmx table{width:auto}#print-sheet.fm-meas .fmx .fm-grid{width:100%}
+#print-sheet.fm-meas .fmx td,#print-sheet.fm-meas .fmx th{border:0;padding:0;vertical-align:top;text-align:inherit;background:none}
+#print-sheet.fm-meas .fmx .fm-grid td,#print-sheet.fm-meas .fmx .fm-grid th{border:1px solid #333;padding:4px 6px;vertical-align:middle}
+#print-sheet.fm-meas .fmx .fm-pb{border:0;margin:0}#print-sheet.fm-meas .fmx .fm-pb::after{display:none}
+#print-sheet.fm-meas .fmx .fm-date{border-bottom:0}#print-sheet.fm-meas .fmx .fm-hd{display:flex}
+#print-sheet .fmx .fm-pg{display:flow-root}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -6928,7 +6949,7 @@ function fmImgURL(u8,ext){const t=imgMagic(u8)||({jpg:'image/jpeg',jpeg:'image/j
 
 /* ── HTML 정리 (허용 태그·속성·스타일만) ── */
 const FM_TAGS=new Set(['P','BR','B','STRONG','I','EM','U','S','SPAN','DIV','H1','H2','H3','H4','H5','H6','UL','OL','LI','TABLE','THEAD','TBODY','TFOOT','TR','TH','TD','COLGROUP','COL','CAPTION','HR','SUP','SUB','BLOCKQUOTE','IMG']);
-const FM_CSS=/^(writing-mode|background-image|text-align|vertical-align|width|height|min-height|font-weight|font-style|font-size|text-decoration|background-color|color|border(-(top|right|bottom|left))?|padding(-(top|right|bottom|left))?|margin-(top|bottom|left)|text-indent|line-height|letter-spacing|white-space)$/;
+const FM_CSS=/^(--lh|writing-mode|background-image|text-align|vertical-align|width|height|min-height|font-weight|font-style|font-size|text-decoration|background-color|color|border(-(top|right|bottom|left))?|padding(-(top|right|bottom|left))?|margin-(top|bottom|left)|text-indent|line-height|letter-spacing|white-space)$/;
 function fmClean(html){const doc=new DOMParser().parseFromString(`<div>${html||''}</div>`,'text/html');const root=doc.body.firstChild;
   const walk=n=>{for(const c of [...n.childNodes]){if(c.nodeType===3)continue;if(c.nodeType!==1){c.remove();continue;}
     if(!FM_TAGS.has(c.tagName)){if(['SCRIPT','STYLE','IFRAME','OBJECT','EMBED','LINK','META','TITLE','SVG','MATH','FORM','INPUT','BUTTON','TEXTAREA','SELECT','TEMPLATE','NOSCRIPT'].includes(c.tagName)){c.remove();continue;}walk(c);c.replaceWith(...c.childNodes);continue;}
@@ -6987,11 +7008,23 @@ async function fmHwp(buf){if(!window.XLSX)await wlLib('xlsx').catch(()=>{});if(!
   let html='',page=null;
   for(let n=0;n<200;n++){const d=await rd('/BodyText/Section'+n);if(!d)break;const tree=hwpTree(hwpRecs(d));
     if(!page){const sec=fmFindSecd(tree);if(sec)page=sec;}
+    try{hwpMarkPages(tree,fmFindSecd(tree)||page);}catch(e){console.warn('hwpMarkPages',e);}
     html+=(n?'<div class="fm-pb"></div>':'')+hwpParas(tree.c,C);}
   if(!fmHasTextLite(html)){let t='';try{t=await hwpText(buf);}catch{}if(!t.trim())throw {userMsg:'한글 본문을 찾지 못했습니다.'};html=t.split('\n').map(l=>l.trim()?`<p>${esc(l)}</p>`:'<p><br></p>').join('');}
   return {html,page:page||fmA4(),serif:C.serif};}
+/* 59차: 원본 쪽 나눔 — 한글이 자동으로 넘긴 쪽(쪽 나누기 표시 없음)은 문단 줄 정보(PARA_LINE_SEG, 36바이트씩 · 4번째 바이트부터 줄의 세로 위치)의
+   세로 위치가 앞 문단의 마지막 줄보다 작아지면(쪽 맨 위로 돌아가면) 새 쪽 → 그 문단 앞에 쪽 나눔(fm-pb).
+   앞 문단이 표·그림 때문에 쪽 아래를 넘었으면(표가 다음 쪽으로 이어진 것) 나누지 않음. 다단(단 2개 이상) 구역은 건드리지 않음 */
+function hwpMarkPages(tree,page){let cols=1;for(const p of tree.c){if(p.tag!==66)continue;for(const ct of p.c)if(ct.tag===71&&hwpCtrlId(ct)==='cold'&&ct.d.length>=6)cols=Math.max(cols,(fmDV(ct.d).getUint16(4,true)>>2)&0xff);}
+  if(cols>1)return 0;const HU=7200/25.4;const avail=page?(page.h-page.mt-page.mb)*HU:(297-35)*HU;let prev=null,n=0;
+  for(const p of tree.c){if(p.tag!==66)continue;const ls=p.c.find(k=>k.tag===69);if(!ls||ls.d.length<36){prev=null;continue;}const dv=fmDV(ls.d);const k=Math.floor(ls.d.length/36);
+    const v0=dv.getInt32(4,true),vl=dv.getInt32((k-1)*36+4,true),hl=dv.getInt32((k-1)*36+8,true);
+    let bottom=vl+Math.max(0,hl);for(const ct of p.c){if(ct.tag!==71)continue;const id=hwpCtrlId(ct);if((id==='tbl '||id==='gso ')&&ct.d.length>=24){const cd=fmDV(ct.d);bottom=Math.max(bottom,v0+Math.max(0,cd.getInt32(8,true))+cd.getUint32(20,true));}}
+    if(prev&&v0+60<prev.vl&&prev.bottom<=avail+400){p._pg=1;n++;}
+    prev={vl,bottom};}
+  return n;}
 function fmA4(){return {w:210,h:297,ml:20,mr:20,mt:20,mb:15,land:false};}
-function fmPage(w,h,l,r,t,b,hd,ft,land){const P={w:fmMM(w),h:fmMM(h),ml:fmMM(l),mr:fmMM(r),mt:fmMM(t+hd),mb:fmMM(b+ft),land:!!land};
+function fmPage(w,h,l,r,t,b,hd,ft,land){const P={w:fmMM(w),h:fmMM(h),ml:fmMM(l),mr:fmMM(r),mt:fmMM(t+hd),mb:fmMM(b+ft),land:!!land};if(ft>0)P.ft=Math.min(30,fmMM(ft));
   if(P.land&&P.w<P.h){const x=P.w;P.w=P.h;P.h=x;}if(!(P.w>50&&P.w<1300)||!(P.h>50))return fmA4();
   const cl=v=>Math.min(45,Math.max(4,v||0));P.ml=cl(P.ml);P.mr=cl(P.mr);P.mt=cl(P.mt);P.mb=cl(P.mb);return P;}
 function fmFindSecd(tree){const walk=(n,dep)=>{if(dep>3)return null;for(const k of n.c){if(k.tag===71&&hwpCtrlId(k)==='secd'){const pd=k.c.find(x=>x.tag===73);
@@ -7002,10 +7035,10 @@ const FM_AL=['justify','left','right','center','justify','justify'];
 function hwpPStyle(ps,C){if(!ps)return '';const a=[];const al=FM_AL[ps.al]||'';if(al&&al!=='justify')a.push('text-align:'+al);
   {const ml=(ps.ml>0?ps.ml:0)+(ps.ind<0?-ps.ind:0);if(ml>0)a.push(`margin-left:${fmMM(ml)}mm`);}if(ps.ind)a.push(`text-indent:${fmMM(ps.ind)}mm`);/* 50차: 내어쓰기(음수)는 둘째 줄부터 들어가므로 왼쪽 여백에 더함 — 첫 줄이 칸 밖으로 나가던 문제 */
   if(ps.mt>0)a.push(`margin-top:${fmPT(ps.mt)}pt`);if(ps.mb>0)a.push(`margin-bottom:${fmPT(ps.mb)}pt`);
-  if(ps.lt===0&&ps.ls>=50&&ps.ls<=400&&ps.ls!==160)a.push(`line-height:${(ps.ls/100).toFixed(2)}`);
+  if(ps.lt===0&&ps.ls>=50&&ps.ls<=400&&ps.ls!==160){const lh=(ps.ls/100).toFixed(2);a.push(`line-height:${lh}`,`--lh:${lh}`);}
   return a.length?` style="${a.join(';')}"`:'';}
-function hwpSpan(txt,cs,C){const t=esc(txt);const s=C.cs[cs];if(!s)return t;const a=[];
-  if(s.sz&&Math.abs(s.sz-10)>0.05)a.push(`font-size:${Math.round(s.sz*10)/10}pt`);if(s.at&2)a.push('font-weight:700');if(s.at&1)a.push('font-style:italic');
+function hwpSpan(txt,cs,C){const t=esc(txt);const s=C.cs[cs];if(!s)return t;const a=[];const base=C._pfs||10;
+  if(s.sz&&Math.abs(s.sz-base)>0.05)a.push(`font-size:${Math.round(s.sz*10)/10}pt`);if(s.at&2)a.push('font-weight:700');if(s.at&1)a.push('font-style:italic');
   const ul=(s.at>>2)&3;if(ul===1||ul===3)a.push('text-decoration:underline');else if(ul===2)a.push('text-decoration:line-through');
   const col=s.col&0xFFFFFF;if(col)a.push('color:'+fmHex(col));if(s.sp&&s.sp>=-50&&s.sp<=50)a.push(`letter-spacing:${(s.sp/100).toFixed(2)}em`);
   const serif=FM_SERIF.test(C.faces[s.face]||'');const cls=serif!==C.serif?` class="${serif?'fm-serif':'fm-sans'}"`:'';
@@ -7014,17 +7047,23 @@ function hwpPara(p,C){const d=p.d,dv=fmDV(d);const psId=d.length>=10?dv.getUint1
   const txt=p.c.find(k=>k.tag===67),csr=p.c.find(k=>k.tag===68),ctrls=p.c.filter(k=>k.tag===71);
   const runs=[];if(csr){const cd=fmDV(csr.d);for(let o=0;o+8<=csr.d.length;o+=8)runs.push([cd.getUint32(o,true),cd.getUint32(o+4,true)]);}if(!runs.length)runs.push([0,0]);
   const csAt=i=>{let id=runs[0][1];for(const [pos,cid] of runs){if(pos<=i)id=cid;else break;}return id;};
-  const pst=hwpPStyle(C.ps[psId],C);const mc=(C.ps[psId]||{}).al;let out=brk&4?'<div class="fm-pb"></div>':'';let cur='',seg='',segCs=-1,blocks=false;
+  /* 59차: 글자만 있는 문단은 문단 글자 크기를 가장 작은 글자 크기로 — 한글처럼 줄 높이가 실제 글자 크기를 따름(작은 글씨 칸이 원본보다 커지지 않게) */
+  const prevPfs=C._pfs;let pfs=10;if(!ctrls.length){const zs=runs.map(r=>(C.cs[r[1]]||{}).sz).filter(z=>z>=4&&z<=72);if(zs.length){const mn=Math.min(...zs);if(Math.abs(mn-10)>0.05)pfs=mn;}}C._pfs=pfs;
+  /* 59차: 표 칸 안 짧은 제목 글(원본에서 한 줄) — 웹 글꼴이 조금 넓어도 두 줄로 접히지 않게(접히면 칸·쪽이 커짐) */
+  let one=false;if(C._cell&&!ctrls.length&&txt){const ls=p.c.find(k=>k.tag===69);if(ls&&ls.d.length>=36&&ls.d.length<72){const td1=fmDV(txt.d);let n1=0,br=false;for(let i=0;i<txt.d.length>>1;i++){const c=td1.getUint16(i*2,true);if(c===10)br=true;else if(c>32&&c!==0x3000&&c!==0xa0)n1++;}one=!br&&n1>0&&n1<=12;}}
+  let pst=hwpPStyle(C.ps[psId],C);if(one)pst=pst?pst.replace(/"$/,';white-space:pre"'):' style="white-space:pre"';if(pfs!==10){const fs0=`font-size:${Math.round(pfs*10)/10}pt`;pst=pst?pst.replace(/"$/,';'+fs0+'"'):` style="${fs0}"`;}const mc=(C.ps[psId]||{}).al;let out=(brk&4||p._pg)?'<div class="fm-pb"></div>':'';let cur='',seg='',segCs=-1,blocks=false;
   const flushSeg=()=>{if(seg){cur+=hwpSpan(seg,segCs,C);seg='';}};
   const add=(ch,i)=>{const cs=csAt(i);if(cs!==segCs){flushSeg();segCs=cs;}seg+=ch;};
-  const flushP=()=>{flushSeg();if(cur.replace(/<br>/g,'').length)out+=`<p${pst}>${cur}</p>`;cur='';};
+  const flushP=()=>{flushSeg();if(cur.replace(/<br>/g,'').length)out+=tl&&/<table/.test(cur)?`<div class="hw-tl"${pst}>${cur}</div>`:`<p${pst}>${cur}</p>`;cur='';};
   /* 56차: 이 문단에 글자가 있는지(표의 세로 오프셋을 위 여백으로 살릴지) */
+  /* 59차: 한 문단에 「글자처럼 취급」한 표가 둘 이상(승인 여부 + 결재란 등) — 한글처럼 한 줄에 나란히 */
+  const tl=ctrls.filter(ct=>hwpCtrlId(ct)==='tbl '&&ct.d.length>=8&&(fmDV(ct.d).getUint32(4,true)&1)).length>=2;let tlN=0;
   let hasTxt=false;if(txt){const td0=fmDV(txt.d);for(let i=0,n0=txt.d.length>>1;i<n0;){const c=td0.getUint16(i*2,true);if(c<32){i+=HWP_EXT.has(c)||HWP_INL.has(c)?8:1;continue;}if(c!==32&&c!==0x3000&&c!==0xa0){hasTxt=true;break;}i++;}}
   if(txt){const td=fmDV(txt.d);const n=txt.d.length>>1;let ci=0;
     for(let i=0;i<n;){const c=td.getUint16(i*2,true);
       if(c<32){
         if(HWP_EXT.has(c)){const ct=ctrls[ci++];const id=hwpCtrlId(ct);
-          if(id==='tbl '){flushP();out+=hwpTable(ct,C,mc,hasTxt);blocks=true;}
+          if(id==='tbl '){if(tl){flushSeg();cur+=hwpTable(ct,C,mc,hasTxt).replace('<table class="hw-t','<table class="hw-t hw-it');tlN++;}else{flushP();out+=hwpTable(ct,C,mc,hasTxt);}blocks=true;}
           else if(id==='gso '){const g=hwpGso(ct,C);if(g){if(g.inline){flushSeg();cur+=g.html;}else{flushP();out+=g.html;blocks=true;}}}
           i+=8;continue;}
         if(HWP_INL.has(c)){if(c===9)add('\t',i);i+=8;continue;}
@@ -7032,10 +7071,10 @@ function hwpPara(p,C){const d=p.d,dv=fmDV(d);const psId=d.length>=10?dv.getUint1
         if(c===24)add('-',i);else if(c===30||c===31)add('\u00a0',i);
         i++;continue;}
       add(String.fromCharCode(c),i);i++;}}
-  flushSeg();if(cur&&cur.replace(/<br>/g,'').length)out+=`<p${pst}>${cur}</p>`;
-  else if(!blocks){const cs=C.cs[runs[0][1]];const fs=cs&&cs.sz&&Math.abs(cs.sz-10)>0.05?`font-size:${Math.round(cs.sz*10)/10}pt`:'';
+  flushSeg();if(cur&&cur.replace(/<br>/g,'').length)out+=tl&&/<table/.test(cur)?`<div class="hw-tl"${pst}>${cur}</div>`:`<p${pst}>${cur}</p>`;
+  else if(!blocks){const cs=C.cs[runs[0][1]];const fs=pfs===10&&cs&&cs.sz&&Math.abs(cs.sz-10)>0.05?`font-size:${Math.round(cs.sz*10)/10}pt`:'';
     out+=`<p${pst?pst.replace(/"$/,fs?';'+fs+'"':'"'):fs?` style="${fs}"`:''}><br></p>`;}
-  return out;}
+  C._pfs=prevPfs;return out;}
 const FM_DP=[510,510,141,141];function fmPadOk(p,dp){dp=(dp||FM_DP).map((x,i)=>x>2835?FM_DP[i]:x);return (p||dp).map((x,i)=>x>2835?dp[i]:x);}
 function hwpBorders(bf){if(!bf)return '';const s=x=>fmLine(x.t,x.w,x.c);return `border-left:${s(bf.l)};border-right:${s(bf.r)};border-top:${s(bf.t)};border-bottom:${s(bf.b)}`+(bf.bg?`;background-color:${bf.bg}`:'')+(bf.grad?`;background-image:${bf.grad}`:'');}
 function hwpTBorder(bf){if(!bf)return '';const s=x=>fmLine(x.t,x.w,x.c);const a=[['left',bf.l],['right',bf.r],['top',bf.t],['bottom',bf.b]].filter(([,x])=>x&&x.t&&x.t!=='none').map(([k,x])=>`border-${k}:${s(x)}`);return a.length?';'+a.join(';'):'';}
@@ -7059,13 +7098,20 @@ function hwpTable(ct,C,mc,hasTxt){const kids=ct.c;const ti=kids.findIndex(k=>k.t
   for(let r=0;r<nr;r++){const L=(by[r]||[]).sort((a,b)=>a.col-b.col);h+='<tr>';
     for(const c of L){const va=['top','middle','bottom'][(c.fl>>5)&3]||'top';const p=fmPadOk(c.pad.some(x=>x)?c.pad:dp,dp);
       const st=[hwpBorders(C.bf[c.bf-1]),`vertical-align:${va}`,(c.fl&7)===1?'writing-mode:vertical-rl':'',`padding:${fmMM(p[2])}mm ${fmMM(p[1])}mm ${fmMM(p[3])}mm ${fmMM(p[0])}mm`];if(c.rs===1&&c.h>0)st.push(`height:${fmMM(c.h)}mm`);
-      h+=`<td${c.cs>1?` colspan="${c.cs}"`:''}${c.rs>1?` rowspan="${c.rs}"`:''} style="${st.filter(Boolean).join(';')}">${hwpParas(c.ps,C)||'<p><br></p>'}</td>`;}
+      h+=`<td${c.cs>1?` colspan="${c.cs}"`:''}${c.rs>1?` rowspan="${c.rs}"`:''} style="${st.filter(Boolean).join(';')}">${(()=>{C._cell=(C._cell||0)+1;try{return hwpParas(c.ps,C);}finally{C._cell--;}})()||'<p><br></p>'}</td>`;}
     h+='</tr>';}
   h+='</table>';
   const capH=cap&&cap.ps.length?`<div class="hw-cap">${hwpParas(cap.ps,C)}</div>`:'';
   return capH+h;}
 /* 칸 너비 풀기: 한 칸짜리 너비를 먼저, 합친 칸은 남은 너비를 나눠서 */
-function fmColW(nc,cells){const w=new Array(nc).fill(0);const known=new Array(nc).fill(false);
+/* 59차: 한글 표의 칸 주소는 표 안 모든 세로 경계로 만든 잔 격자 — 칸마다 「시작 경계 + 칸 너비 = 끝 경계」로 경계 위치를 풀면 원본과 같은 열 너비
+   (예전 방식은 한 칸짜리를 먼저 채워 합친 칸이 좁아짐 → 인사기록카드 「휴대전화번호」·「기 간」 칸 글자가 두 줄로 접혀 쪽이 넘침) */
+function fmColW(nc,cells){const E=new Array(nc+1).fill(null);E[0]=0;
+  for(let it=0;it<nc+3;it++){let ch=false;for(const c of cells){if(!(c.w>0)||c.c<0||c.s<1||c.c+c.s>nc)continue;const a=c.c,b=c.c+c.s;
+      if(E[a]!==null&&E[b]===null){E[b]=E[a]+c.w;ch=true;}else if(E[b]!==null&&E[a]===null&&E[b]-c.w>=-1){E[a]=Math.max(0,E[b]-c.w);ch=true;}}if(!ch)break;}
+  if(E.every(x=>x!==null)){const w=[];for(let k=0;k<nc;k++)w.push(E[k+1]-E[k]);if(w.every(x=>x>0))return w;}
+  return fmColWOld(nc,cells);}
+function fmColWOld(nc,cells){const w=new Array(nc).fill(0);const known=new Array(nc).fill(false);
   for(const c of cells)if(c.s===1&&c.w>0&&c.c<nc&&!known[c.c]){w[c.c]=c.w;known[c.c]=true;}
   for(let it=0;it<4;it++)for(const c of cells){if(c.s<2||c.w<=0)continue;const idx=[];let sum=0;for(let k=c.c;k<Math.min(nc,c.c+c.s);k++){if(known[k])sum+=w[k];else idx.push(k);}
     if(idx.length&&c.w>sum){const each=(c.w-sum)/idx.length;for(const k of idx){w[k]=each;known[k]=true;}}}
@@ -7582,7 +7628,24 @@ document.addEventListener('focusout',e=>{const t=e.target.closest&&e.target.clos
 function fmPageCss(p,full){let st=$('#fm-page-css');if(!st){st=document.createElement('style');st.id='fm-page-css';document.head.append(st);}
   st.textContent=`@media print{@page{size:${p.land?'A4 landscape':'A4'};margin:${full?'6mm':`${p.mt}mm ${p.mr}mm ${p.mb}mm ${p.ml}mm`}}}`;
   const off=()=>{st.textContent='';window.removeEventListener('afterprint',off);};window.addEventListener('afterprint',off);}
-async function fmDoPrint(html,p,full){const s=prSheet();s.innerHTML=html;fmPageCss(p,full);prSet('pr-sheet');
+/* 59차: 회사서식 인쇄 — 원본 한 쪽(쪽 나눔 fm-pb 사이)은 종이 한 장에. 화면 글꼴·칸 여백 차이로 원본보다 조금 길어져 다음 장으로 넘치면
+   그 쪽만 줄여(zoom, 62%까지) 한 장에 맞춤. 원본도 여러 쪽에 걸친 긴 구간(쪽 정보 없는 서식)은 그대로 흐르게 둠 */
+function fmFitPages(s,p){const boxes=[...s.querySelectorAll('.fmx.fm-print')];if(!boxes.length||!p||!(p.h>0))return [];
+  for(const box of boxes){let seg=null;for(const k of [...box.childNodes]){if(k.nodeType===1&&k.classList.contains('fm-pb')){seg=null;continue;}if(k.nodeType===3&&!k.nodeValue.trim()&&!seg)continue;
+    if(!seg){seg=document.createElement('div');seg.className='fm-pg';box.insertBefore(seg,k);}seg.appendChild(k);}}
+  /* 쪽 끝 빈 문단(글·그림·칸 없음)은 인쇄에서 뺌 — 원본에서는 표 옆·아래 빈자리에 들어가 쪽을 늘리지 않음 */
+  for(const g of s.querySelectorAll('.fmx.fm-print .fm-pg')){let k=g.lastElementChild;while(k&&k.tagName==='P'&&!k.querySelector('img,svg,table,.fm-in,[data-fm]')&&!k.textContent.replace(/[\s\u00a0\u3000]/g,'')){k.classList.add('fm-tail');k=k.previousElementSibling;}}
+  let avail=Math.max(40,(+p.h)-(+p.mt||0)-(+p.mb||0)-2);const pxmm=96/25.4;const out=[];
+  /* 꼬리말 자리(원본의 꼬리말 여백 — 이 프로그램은 꼬리말을 찍지 않아 비어 있음): 원본처럼 본문이 그 자리까지 내려가는 쪽이 있으면 아래 여백을 그만큼 줄여 씀 */
+  const ext=Math.max(0,Math.min(+p.ft||0,(+p.mb||0)-5));delete s.dataset.mbx;
+  s.classList.add('fm-meas');
+  try{if(ext>0){const hs=[...s.querySelectorAll('.fmx.fm-print .fm-pg')].map(g=>{g.style.zoom='';return g.getBoundingClientRect().height/pxmm;});if(hs.some(h=>h>avail)){avail+=ext;s.dataset.mbx=ext.toFixed(1);}}
+    for(const g of s.querySelectorAll('.fmx.fm-print .fm-pg')){g.style.zoom='';let h=g.getBoundingClientRect().height/pxmm;const r={h:Math.round(h*10)/10,z:1};
+      if(h>avail){let z=avail/h;if(z>=0.62){g.style.zoom=z.toFixed(4);for(let i=0;i<2;i++){const h2=g.getBoundingClientRect().height/pxmm;if(h2<=avail)break;z=Math.max(0.6,z*avail/h2*0.995);g.style.zoom=z.toFixed(4);}r.z=Math.round(z*1000)/1000;g.dataset.fit=r.z;}else r.flow=1;}
+      out.push(r);}}
+  finally{s.classList.remove('fm-meas');}
+  s.dataset.fit=JSON.stringify(out);return out;}
+async function fmDoPrint(html,p,full){const s=prSheet();s.innerHTML=html;fmPageCss(p,full);try{if(!full){fmFitPages(s,p);if(+s.dataset.mbx>0)fmPageCss({...p,mb:(+p.mb)-(+s.dataset.mbx)},full);}}catch(e){console.warn('fmFitPages',e);}prSet('pr-sheet');
   await Promise.race([Promise.all([...s.querySelectorAll('img')].map(im=>im.complete?0:new Promise(r=>{im.onload=im.onerror=r;}))),new Promise(r=>setTimeout(r,5000))]);
   await new Promise(r=>setTimeout(r,150));window.print();}
 async function fmPrintFill(){const c=FM.cur;if(!c){toast('서식을 여는 중입니다.');return;}fmFlushDraft();
@@ -11443,7 +11506,7 @@ window.quickApi={parse:qkParse,draft:qkDraft,open:qkOpen,dates:qkDates,times:qkT
 const MEMO={list:[],u:null,loaded:false,local:false,err:'',q:'',undo:null,timers:{},inst:null,pip:null};
 const MEMO_COLORS=['y','g','b','p','w'];const MEMO_CN={y:'노랑',g:'초록',b:'파랑',p:'분홍',w:'흰색'};
 const memoMode=()=>document.documentElement.classList.contains('memo-mode');
-function memoNorm(id,d){if(!d)return null;const s=(v,n)=>typeof v==='string'?v.slice(0,n):'';return {id,text:s(d.text,4000),color:MEMO_COLORS.includes(d.color)?d.color:'y',pin:!!d.pin,at:s(d.at,40),upd:s(d.upd,40)||s(d.at,40),task:s(d.task,120),taskTitle:s(d.taskTitle,120)};}
+function memoNorm(id,d){if(!d)return null;const s=(v,n)=>typeof v==='string'?v.slice(0,n):'';return {id,text:s(d.text,4000),color:MEMO_COLORS.includes(d.color)?d.color:'y',pin:!!d.pin,at:s(d.at,40),upd:s(d.upd,40)||s(d.at,40),task:s(d.task,120),taskTitle:s(d.taskTitle,120),ntc:s(d.ntc,40),ntcTitle:s(d.ntcTitle,120)};}
 const memoFb=()=>S.mode==='firebase'&&S.fs&&S.me&&S.me.id;
 const memoCol=()=>S.fs.collection(`priv/${S.me.id}/memo`);
 function memoLocalLoad(){try{MEMO.list=(JSON.parse(localStorage.getItem('wl.memo.local')||'[]')||[]).map(x=>memoNorm(x.id,x)).filter(Boolean);}catch{MEMO.list=[];}}
@@ -11460,7 +11523,7 @@ async function memoPut(id,patch){const m=MEMO.list.find(x=>x.id===id);const now=
 async function memoDel(id){const m=MEMO.list.find(x=>x.id===id);if(!m)return;MEMO.list=MEMO.list.filter(x=>x.id!==id);MEMO.undo={m:{...m},t:Date.now()};memoRender();
   if(!memoFb()){memoLocalSave();}else{try{await fbWrite(memoCol().doc(id).delete());}catch(e){writeError(e);}}
   setTimeout(()=>{if(MEMO.undo&&Date.now()-MEMO.undo.t>=5900){MEMO.undo=null;memoRender();}},6000);}
-async function memoUndo(){const u=MEMO.undo;if(!u)return;MEMO.undo=null;const {id,...rest}=u.m;await memoPut(id,{text:rest.text,color:rest.color,pin:rest.pin,task:rest.task,taskTitle:rest.taskTitle,at:rest.at});memoRender();}
+async function memoUndo(){const u=MEMO.undo;if(!u)return;MEMO.undo=null;const {id,...rest}=u.m;await memoPut(id,{text:rest.text,color:rest.color,pin:rest.pin,task:rest.task,taskTitle:rest.taskTitle,ntc:rest.ntc||'',ntcTitle:rest.ntcTitle||'',at:rest.at});memoRender();}
 async function memoAdd(text){text=String(text||'').trim();if(!text)return;if(!S.canWrite&&!S.preview){toast('보기 전용 권한이라 메모를 쓸 수 없습니다.','err');return;}const id=rid().slice(0,16);await memoPut(id,{text:text.slice(0,4000),color:'y',pin:false,task:'',taskTitle:''});}
 async function memoToTask(id){const m=MEMO.list.find(x=>x.id===id);if(!m||!m.text.trim())return;
   if(MEMO.pip){try{window.focus();}catch{}}
@@ -11478,6 +11541,8 @@ function memoPadEl(){let p=document.getElementById('memo-pad');if(p)return p;p=d
     if(a==='pin'){const m=MEMO.list.find(x=>x.id===id);if(m)memoPut(id,{pin:!m.pin}).then(memoRender);return;}
     if(a==='color'){const m=MEMO.list.find(x=>x.id===id);if(m){const c=MEMO_COLORS[(MEMO_COLORS.indexOf(m.color)+1)%MEMO_COLORS.length];memoPut(id,{color:c}).then(memoRender);}return;}
     if(a==='task'){memoToTask(id);return;}
+    if(a==='ntc'){if(typeof memoToNtc==='function')memoToNtc(id);return;}
+    if(a==='ntcgo'){if(MEMO.pip)try{window.focus();}catch{}if(memoMode()){window.open('./#ntc','_blank');return;}memoClose();if(typeof NTC!=='undefined')NTC.tab='sent';go('#ntc');return;}
     if(a==='open'){const m=MEMO.list.find(x=>x.id===id);const t=m&&findTask(m.task);if(t){if(MEMO.pip)try{window.focus();}catch{}if(memoMode()){window.open('./#list','_blank');return;}memoClose();openTask(t);}else toast('업무를 찾을 수 없습니다 (지워졌거나 아직 불러오는 중).','err');return;}
     if(a==='del'){memoDel(id);return;}
     if(a==='undo'){memoUndo();return;}
@@ -11495,8 +11560,8 @@ function memoPadEl(){let p=document.getElementById('memo-pad');if(p)return p;p=d
 function memoGrow(t){if(!t||!t.style)return;const inp=t.classList.contains('mp-in');t.style.height='auto';const pad=t.closest('.memo-pad');
   const max=inp?Math.max(140,Math.round((pad?pad.clientHeight:600)*0.5)):100000;const h=t.scrollHeight+2;t.style.height=Math.min(max,h)+'px';t.style.overflowY=h>max?'auto':'hidden';}
 function memoCardHTML(m){return `<article class="mp-card c-${m.color}${m.pin?' pin':''}${m.task?' done':''}" data-mid="${esc(m.id)}"><textarea class="mp-tx" rows="2" maxlength="4000" aria-label="메모">${esc(m.text)}</textarea>
-  <div class="mp-meta"><span class="mp-st">${esc(m.upd?fmtMD(localDate(m.upd))+' '+hhmm(m.upd):'')}</span>${m.task?`<button type="button" class="mp-lnk" data-mp="open" title="등록한 업무 열기">✓ 업무 등록됨${m.taskTitle?' · '+esc(m.taskTitle.slice(0,24)):''}</button>`:''}<span class="mp-sp"></span>
-  <button type="button" data-mp="pin" title="${m.pin?'고정 풀기':'맨 위에 고정'}" aria-pressed="${m.pin}">📌</button><button type="button" data-mp="color" title="색 바꾸기 (${MEMO_CN[m.color]})">🎨</button>${m.task?'':`<button type="button" data-mp="task" title="간편 등록 확인 창을 거쳐 업무로 등록">➜ 업무로</button>`}<button type="button" data-mp="del" title="지우기 (6초 안에 되돌리기)">🗑</button></div></article>`;}
+  <div class="mp-meta"><span class="mp-st">${esc(m.upd?fmtMD(localDate(m.upd))+' '+hhmm(m.upd):'')}</span>${m.task?`<button type="button" class="mp-lnk" data-mp="open" title="등록한 업무 열기">✓ 업무 등록됨${m.taskTitle?' · '+esc(m.taskTitle.slice(0,24)):''}</button>`:''}${m.ntc?`<button type="button" class="mp-lnk" data-mp="ntcgo" title="보낸 📢 업무 공지 보기">📢 공지 보냄${m.ntcTitle?' · '+esc(m.ntcTitle.slice(0,24)):''}</button>`:''}<span class="mp-sp"></span>
+  <button type="button" data-mp="pin" title="${m.pin?'고정 풀기':'맨 위에 고정'}" aria-pressed="${m.pin}">📌</button><button type="button" data-mp="color" title="색 바꾸기 (${MEMO_CN[m.color]})">🎨</button>${m.task?'':`<button type="button" data-mp="task" title="간편 등록 확인 창을 거쳐 업무로 등록">➜ 업무로</button>`}<button type="button" data-mp="ntc" title="이 메모로 📢 업무 공지 쓰기 — 받는 사람·참조 확인을 고른 뒤 보냄 (59차)">📢 공지로</button><button type="button" data-mp="del" title="지우기 (6초 안에 되돌리기)">🗑</button></div></article>`;}
 function memoRender(){const p=document.getElementById('memo-pad');memoBadge();if(!p)return;const L=memoSorted();
   p.querySelector('.mp-n').textContent=MEMO.loaded?`${MEMO.list.length}개${MEMO.local?' · 이 기기에만':' · 자동 저장·동기화'}`:'불러오는 중…';
   const inMode=memoMode();p.querySelector('.mp-acts').innerHTML=(inMode?`${'documentPictureInPicture' in window&&!MEMO.pip?'<button type="button" class="btn sm" data-mp="pip" title="다른 프로그램 위에 항상 떠 있는 작은 메모장">📌 항상 위에 띄우기</button>':''}${MEMO.inst?'<button type="button" class="btn sm primary" data-mp="install">🖥 바탕 화면 앱으로 설치</button>':''}`
@@ -11653,10 +11718,10 @@ const GU_LV={1:{k:'기초',d:'꼭 알아야 할 기능만 간단히'},2:{k:'성�
 const GU_QA='내일 오후 2시 군포공장 3층 기계실에서 공조기 필터 교체';
 const GU_QA3='다음 주 화요일 10시~12시 군포공장 3층 회의실에서 강민서 과장과 소방 점검 결과 회의';
 const GU=[
- {id:'login',sec:'시작하기',t:'접속하고 로그인하기',
-  lv:{1:'관리자에게 받은 주소를 크롬·엣지·사파리로 열고 <b>Google 계정으로 로그인</b>을 누릅니다. 처음 한 번은 명단에서 <b>내 이름</b>을 누르면 끝입니다.',
-      2:'관리자에게 받은 주소를 크롬·엣지·사파리로 열고 <b>Google 계정으로 로그인</b>을 누릅니다. 구글이 아닌 회사 메일은 <b>이메일로 가입</b> → 메일함의 인증 링크 → 로그인. 카카오톡 안에서 열었다면 메뉴의 <b>다른 브라우저로 열기</b>를 누르세요(카카오톡 안에서는 구글 로그인이 막힙니다). "접속 허용 전"이 나오면 화면의 이메일을 관리자에게 알려 주고, 허용되면 <b>다시 확인</b>. 처음 한 번은 명단에서 내 이름을 누르고, 다른 기기에서 처음 열 때도 이름을 한 번 더 누릅니다.'},
-  shot:{who:'',clip:['#gate-card'],hi:['#gate-card button|Google']},show:{}},
+ {id:'login',sec:'시작하기',t:'접속하고 로그인하기 (회사 메일)',
+  lv:{1:'관리자에게 받은 주소를 크롬·엣지로 엽니다. 관리부 직원은 <b>회사 메일</b>로 씁니다 — 처음 한 번은 회사 메일과 새 비밀번호(6자 이상)를 적고 <b>이메일로 가입</b> → 회사 메일함에 온 <b>인증 메일의 링크</b>를 누른 뒤, 같은 메일·비밀번호로 <b>로그인</b>합니다. 처음 들어가면 명단에서 <b>내 이름</b>을 누르면 끝입니다.',
+      2:'관리자에게 받은 주소를 크롬·엣지(휴대폰은 크롬·사파리)로 엽니다. 관리부 직원은 <b>회사 메일</b>로 가입·인증·로그인합니다. ① 처음 한 번: 회사 메일과 새 비밀번호(6자 이상)를 적고 <b>이메일로 가입</b> ② 회사 메일함에 온 <b>인증 메일</b>의 링크를 누름(안 보이면 스팸함 확인) ③ 업무시스템으로 돌아와 같은 메일·비밀번호로 <b>로그인</b> ④ 명단에서 <b>내 이름</b>을 누름. 다음부터는 메일·비밀번호로 <b>로그인</b>만 하면 되고, 휴대폰·다른 PC도 같은 계정입니다(다른 기기에서 처음 열 때 이름을 한 번 더 누름). 비밀번호를 잊으면 <b>비밀번호 재설정</b> → 회사 메일로 온 링크에서 새 비밀번호. 「접속 허용 전」이 나오면 화면의 이메일을 관리자에게 알려 주고, 허용되면 <b>다시 확인</b>. 카카오톡 안에서 열었다면 메뉴의 <b>다른 브라우저로 열기</b>. (관리자는 Google 계정으로 로그인합니다.)'},
+  shot:{who:'',clip:['#gate-card'],hi:['#g-email','#gate-card [data-g="signup"]']},show:{}},
  {id:'home',sec:'시작하기',t:'내 업무 화면 한눈에',
   lv:{1:'로그인하면 <b>내 업무</b>가 열립니다. 맨 위 <b>간편 등록</b> 칸, 받은 업무 요청, <b>진행 중·오늘 할 일</b>, 다가오는 일정, 오늘 한 일이 차례로 모여 있습니다. 위쪽 탭으로 팀 현황·달력·전자결재 등으로 옮겨 갑니다.',
       2:'로그인하면 <b>내 업무</b>가 열립니다. 맨 위 <b>간편 등록</b> 칸, 오늘의 브리핑·정기 일정, 받은 <b>📢 업무 공지</b>·<b>📌 업무 요청</b>, <b>진행 중·오늘 할 일</b>, 다가오는 일정, 🔒 비공개 업무, 오늘 한 일, 오늘 특이사항·건의가 차례로 모여 있습니다. 위쪽 탭으로 팀 현황·칸반·달력·목록·보고서·각종서류·법정 업무·전자결재·그룹웨어로 옮기고, 오른쪽 위 기호는 왼쪽부터 <b>?</b> 활용방법 안내 · <b>☑🔓</b> 비공개 업무 잠금 · ⚙ 설정 · 🖨 인쇄 · 🔍 전체 검색 · 📝 메모장 · 🔔 알림 · 내 이름(내 정보)입니다.'},
@@ -11687,7 +11752,7 @@ const GU=[
   shot:{go:'#my',open:[['fn','ntf']],clip:['#ntf-pop','#btn-ntf'],hi:['#btn-ntf']},show:{go:'#my',hi:['#btn-ntf']}},
  {id:'memo',sec:'함께 일하기',t:'📝 메모장',
   lv:{1:'위쪽 <b>📝</b>(단축키 Alt+M)를 누르면 오른쪽에 메모장이 열립니다. 전화 내용·할 일을 적어 두면 저절로 저장되고, 나만 봅니다.',
-      2:'위쪽 <b>📝</b>(휴대폰은 더보기, 단축키 Alt+M)를 누르면 오른쪽에 메모장이 열립니다. 쓰는 대로 자동 저장되고 나만 봅니다(관리자도 못 봄). 글이 길어지면 칸도 함께 길어집니다. 메모마다 📌 고정, 🎨 색, <b>➜ 업무로</b>(간편 등록 확인 창을 거쳐 업무로 등록), 🗑 삭제(6초 안에 되돌리기). <b>🖥 바탕 화면 메모장</b>으로 작은 창을 띄우거나 바탕 화면 앱으로 설치할 수 있고, 휴대폰·PC·바탕 화면 어디서 고쳐도 같은 내용입니다.'},
+      2:'위쪽 <b>📝</b>(휴대폰은 더보기, 단축키 Alt+M)를 누르면 오른쪽에 메모장이 열립니다. 쓰는 대로 자동 저장되고 나만 봅니다(관리자도 못 봄). 글이 길어지면 칸도 함께 길어집니다. 메모마다 📌 고정, 🎨 색, <b>➜ 업무로</b>(간편 등록 확인 창을 거쳐 업무로 등록), <b>📢 공지로</b>(그 메모로 업무 공지 쓰기), 🗑 삭제(6초 안에 되돌리기). <b>🖥 바탕 화면 메모장</b>으로 작은 창을 띄우거나 바탕 화면 앱으로 설치할 수 있고, 휴대폰·PC·바탕 화면 어디서 고쳐도 같은 내용입니다.'},
   shot:{go:'#my',open:[['fn','memo']],clip:['#memo-drawer .md-in'],hi:['#memo-drawer [data-mp="add"]']},show:{go:'#my',hi:['#btn-memo']},need:()=>!!window.memoApi},
  {id:'mobile',sec:'시작하기',t:'📱 휴대폰에서 쓰기',
   lv:{1:'휴대폰에서는 아래쪽 탭(내 업무·팀 현황·달력·그룹웨어·더보기)으로 옮겨 다니고, 오른쪽 아래 <b>＋</b>로 업무를 등록합니다. 브라우저 메뉴의 <b>홈 화면에 추가</b>를 해 두면 앱처럼 열립니다.',
@@ -11741,7 +11806,7 @@ const GU=[
   lv:{2:'회사 기본 서류·인증서·확인서·사업장별 서류를 최신본으로 보관합니다. 다시 올리면 새 버전으로 쌓이고, 유효기간이 있는 서류는 만료 전에 알려 줍니다. 🔒 서류는 허용된 사람만 엽니다. 파일 보기 창 양옆 <b>‹ ›</b>로 이전·다음 서류로 넘깁니다.'},
   shot:{go:'#docs',clip:'screen'},show:{go:'#docs'}},
  {id:'forms',sec:'서류·결재',t:'📝 회사서식',
-  lv:{2:'<b>회사서식(작성 가능)</b>은 서식을 열어 파란 칸을 눌러 바로 적고(PDF·스캔 서식은 적을 곳을 눌러 글상자) 인쇄하거나 전자결재로 올립니다. <b>회사서식(작성 불가)</b>은 인쇄해서 손으로 적는 서식입니다. 적던 내용은 이 기기에 자동 보관되고, 양옆 <b>‹ ›</b>로 이전·다음 서식을 엽니다. 한글 서식의 흐름도·도형(타원·화살표·그림)과 따로 놓인 결재란도 원본 자리대로 보입니다.'},
+  lv:{2:'<b>회사서식(작성 가능)</b>은 서식을 열어 파란 칸을 눌러 바로 적고(PDF·스캔 서식은 적을 곳을 눌러 글상자) 인쇄하거나 전자결재로 올립니다. <b>회사서식(작성 불가)</b>은 인쇄해서 손으로 적는 서식입니다. 적던 내용은 이 기기에 자동 보관되고, 양옆 <b>‹ ›</b>로 이전·다음 서식을 엽니다. 한글 서식의 흐름도·도형(타원·화살표·그림)과 따로 놓인 결재란도 원본 자리대로 보입니다. <b>인쇄</b>하면 원본 한글의 쪽 나눔(점선 「쪽 나눔」) 그대로 한 쪽이 종이 한 장에 나오고, 줄 간격·칸 높이도 원본에 맞춥니다 — 화면 글꼴 차이로 조금 넘치는 쪽만 그 쪽을 살짝 줄여 한 장에 넣습니다.'},
   shot:{go:'#formd',clip:'screen'},show:{go:'#formd'}},
  {id:'appr',sec:'서류·결재',t:'✍ 전자결재',
   lv:{2:'<b>＋ 새 기안</b>에서 서식에 직접 적거나(기안서·품의서·지출결의서·휴가 신청서 등) 스캔·파일을 올려 결재를 올립니다. 결재선은 직무별 팀원 → 직무별 총괄 → 전체 총괄로 자동으로 정해지고, 필요할 때만 바꿉니다. 결재할 차례가 되면 알림이 오고 문서에서 승인·반려(사유)를 누릅니다. 아무도 결재하기 전이면 회수, 반려되면 고쳐서 다시 올립니다. 연차·휴일근무는 최종 승인되면 달력에 표시됩니다.'},
@@ -11780,9 +11845,9 @@ const GU=[
  {id:'xqa',sec:'빠르게 쓰기',t:'간편 등록 문장 요령',
   lv:{3:'한 문장에 <b>날짜 · 시각 · 장소 · 사람 · 할 일</b>을 넣으면 칸이 모두 채워집니다. 예) <i>"'+GU_QA3+'"</i> → 날짜·시각 범위·장소·사업장·담당이 한 번에 들어갑니다. 날짜는 오늘·내일·모레·다음 주 ○요일·11월 5일·11/5·"○일까지", 시각은 오전·오후 ○시·14:00·10시~12시, 장소는 "○○에서"나 회의실·현장·○층·○호로 씁니다. 확인 창에서 <b>수정</b>을 누르면 칸별로 고칠 수 있고, 위 칸에서 직접 고른 값이 문장보다 먼저입니다.'},
   shot:{go:'#my',fill:[['type','#qa-text',GU_QA3],['click','#qa-go'],['wait',900]],clip:['#dlg-cfm3']},show:{go:'#my',hi:['#qa-text']}},
- {id:'xmemo',sec:'빠르게 쓰기',t:'메모 → 업무로',
-  lv:{3:'통화하면서 📝 메모장에 대충 적어 두고, 정리할 때 메모의 <b>➜ 업무로</b>를 누르면 그 문장을 간편 등록처럼 읽어 확인 창을 띄웁니다. 업무로 옮긴 메모는 표시가 남아 두 번 등록하지 않고, 📌 고정한 메모는 맨 위에 남습니다. 여러 줄 메모는 첫 줄이 업무명, 나머지는 내용이 됩니다.'},
-  shot:{go:'#my',open:[['fn','memo']],clip:['#memo-drawer .md-in'],hi:['#memo-drawer [data-mp="task"]']},show:{go:'#my',hi:['#btn-memo']},need:()=>!!window.memoApi},
+ {id:'xmemo',sec:'빠르게 쓰기',t:'메모 → 업무로 · 공지로',
+  lv:{3:'통화하면서 📝 메모장에 대충 적어 두고, 정리할 때 메모의 <b>➜ 업무로</b>를 누르면 그 문장을 간편 등록처럼 읽어 확인 창을 띄웁니다. 업무로 옮긴 메모는 표시가 남아 두 번 등록하지 않고, 📌 고정한 메모는 맨 위에 남습니다. 여러 줄 메모는 첫 줄이 업무명, 나머지는 내용이 됩니다. 관리부에 알릴 일이면 <b>📢 공지로</b>를 누르세요 — 첫 줄은 공지 제목, 나머지는 내용으로 공지 쓰기 창이 열리고, 받는 사람(관리부 전체·직원·직무·공장)과 ⚠ 참조 확인 요청을 고른 뒤 보냅니다.'},
+  shot:{go:'#my',open:[['fn','memo']],clip:['#memo-drawer .md-in'],hi:['#memo-drawer [data-mp="task"]','#memo-drawer [data-mp="ntc"]']},show:{go:'#my',hi:['#btn-memo']},need:()=>!!window.memoApi},
  {id:'xdesk',sec:'빠르게 쓰기',t:'🖥 바탕 화면 메모장 · 항상 위에',
   lv:{3:'메모장의 <b>🖥 바탕 화면 메모장</b>을 누르면 작은 메모장 창이 열립니다. 그 창의 <b>🖥 바탕 화면 앱 설치</b>로 윈도우 바탕 화면·작업 표시줄 아이콘을 만들고(브라우저가 설치 창을 바로 주지 않으면 안내대로 <b>↗ 새 탭에서 열기</b> → 주소창 ⊕ 「앱 설치」), <b>📌 항상 위에 띄우기</b>로 다른 프로그램 위에 띄워 둡니다. 업무 시스템·휴대폰과 같은 메모가 이어집니다.'},
   shot:{url:'./?memo=1',vp:[440,640],go:'',clip:'screen',hi:['[data-mp="pip"]']},show:{go:'#my',hi:['#btn-memo']},need:()=>!!window.memoApi},
@@ -11825,8 +11890,8 @@ function guText(it,lv){return it.lv[lv]||it.lv[2]||it.lv[1]||'';}
 function guMan(){if(GU_ST.man)return Promise.resolve(GU_ST.man);if(GU_ST.manP)return GU_ST.manP;
   const b=(typeof WL_BUILD==='string'&&WL_BUILD)||'';
   GU_ST.manP=fetch('guide/manifest.json?b='+encodeURIComponent(b),{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null).then(j=>{GU_ST.man=j&&typeof j==='object'&&j.items?j:{items:{},log:[]};GU_ST.manP=null;return GU_ST.man;});return GU_ST.manP;}
-function guNew(id){const m=GU_ST.man;if(!m||!m.items||!m.items[id])return false;const u=m.items[id].upd||'';const last=(m.log&&m.log[0]&&m.log[0].at)||'';if(!u||!last)return false;
-  const d=(new Date(last.slice(0,10)+'T00:00:00')-new Date(u.slice(0,10)+'T00:00:00'))/864e5;return d<=14&&m.log.length>1;}
+function guNew(id){const m=GU_ST.man;if(!m||!Array.isArray(m.log)||!m.log.length)return false;const last=Date.parse(m.log[0].at||'');if(!last)return false;/* 59차: 처음 만든 기록(first)은 빼고, 최근 14일 기록에서 새 기능·바뀜에 든 항목만 🆕 (예전엔 첫 기록 날짜 때문에 모든 항목에 🆕 바뀜) */
+  return m.log.some(g=>g&&!g.first&&Date.parse(g.at||'')>=last-14*864e5&&([...(g.add||[]),...(g.chg||[])].includes(id)));}
 function guFig(it){const m=GU_ST.man;const s=m&&m.items&&m.items[it.img||it.id];
   if(!s)return `<div class="gu-noimg">🖼 화면 사진 준비 중 — 다음 배포 때 자동으로 들어갑니다.</div>`;
   const src=`guide/${esc(s.f||((it.img||it.id)+'.webp'))}?v=${esc(s.h||'')}`;
@@ -12101,7 +12166,7 @@ function ntcCardHTML(){if(!NTC.ready||!myId())return '';const since=new Date(Dat
     const hd=$('#view .home-head > div:last-child');if(hd&&myId()){const todo=NTC.ready?ntcLists().todo.length:0;const html=`<a class="btn ntc-go" href="#ntc" data-ntc-go title="업무 공지 보내기 · 받은 공지 · 참조 확인">📢 업무 공지${todo?` <em class="ntc-n">${todo}</em>`:''}</a>`;
       const old=$('[data-ntc-go]',hd);if(old){if(old.outerHTML!==html)old.outerHTML=html;}else{const od=$('[data-od-go]',hd);if(od)od.insertAdjacentHTML('afterend',html);else hd.insertAdjacentHTML('afterbegin',html);}}}catch(e){console.warn(e);}return r;};}
 /* ── 화면 #ntc */
-function renderNtc(v){if(!S.me||!S.me.id||!myId()){v.innerHTML='<p class="empty">로그인하고 본인을 등록한 뒤 쓸 수 있습니다.</p>';return;}if(!Object.keys(NTC.u).length)ntcSub();try{odRolesSub();}catch{}const X=ntcLists();const A=!!S.canEdit;
+function renderNtc(v){if(!S.me||!S.me.id||!myId()){v.innerHTML='<p class="empty">로그인하고 본인을 등록한 뒤 쓸 수 있습니다.</p>';return;}ntcTakeHand();if(!Object.keys(NTC.u).length)ntcSub();try{odRolesSub();}catch{}const X=ntcLists();const A=!!S.canEdit;
   const tabs=[['in','📥 받은 공지',X.inbox.length,X.todo.length],['sent','📤 보낸 공지',X.sent.length,0],...(A?[['all','📋 전체 공지',X.all.length,0]]:[])];
   if(!tabs.some(t=>t[0]===NTC.tab))NTC.tab='in';
   const L=NTC.tab==='in'?X.inbox:NTC.tab==='sent'?X.sent:X.all;const mons=ntcMonths();const last=mons[mons.length-1];
@@ -12145,6 +12210,7 @@ async function ntcSend(o){o=o||{};const D=NTC.dlg;if(!D)return;const tg={m:D.m,s
   if(r!=='ok'){const d=$('#dlg-ntc');if(d&&d.open)d.close();else{NTC.draft=NTC.dlg;NTC.dlg=null;}toast('보내지 않았습니다. 「＋ 공지 쓰기」를 다시 누르면 쓰던 내용이 남아 있습니다.');return;}
   const at=nowISO();const id='n'+rid().slice(0,12);const data={by:myId(),uid:S.me.id||'',at,title,body,need:!!D.need,due:D.need&&D.due?D.due:'',tg,tl:ntcTgLabel(tg),to,ack:{}};
   try{await ntcPut(ntcMon(at),id,data);}catch{return;}
+  if(D.memo&&typeof memoPut==='function'){memoPut(D.memo,{ntc:id,ntcTitle:title}).catch(()=>{});}
   NTC.dlg=null;const d=$('#dlg-ntc');if(d&&d.open)d.close();if(S.view==='ntc')NTC.tab='sent';toast(`📢 공지를 보냈습니다 — ${to.length}명에게 알림${D.need?' · 참조 확인하면 알려 드립니다':''}.`);render();}
 /* ── 창: 공지 보기 */
 function ntcViewDlg(id){const n=ntcFind(id);if(!n){toast('공지를 찾을 수 없습니다(취소되었거나 3달보다 오래된 공지).','err');return;}NTC.view=id;const pend=ntcPend(n);const adm=ntcCanAdmin(n);
@@ -12210,6 +12276,20 @@ document.addEventListener('click',async e=>{const T=e.target;if(!T||!T.closest)r
 document.addEventListener('input',e=>{const T=e.target;const D=NTC.dlg;if(!D||!T)return;if(T.id==='ntd-title')D.title=T.value;else if(T.id==='ntd-body'){D.body=T.value;ntcGrow(T);}else if(T.id==='ntd-due')D.due=T.value;});
 document.addEventListener('change',e=>{const T=e.target;const D=NTC.dlg;if(!D||!T)return;if(T.id==='ntd-need'){D.need=T.checked;if(!D.need)D.due='';ntcNewDlg();}else if(T.id==='ntd-due')D.due=T.value;});
 document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target&&e.target.id==='ntd-title'&&!e.isComposing&&e.keyCode!==229){e.preventDefault();const b=$('#ntd-body');if(b)b.focus();}});
+/* 59차: 📝 메모 → 📢 공지로 — 첫 줄은 제목, 나머지는 내용으로 공지 쓰기 창(받는 사람·참조 확인은 고른 뒤 확인 창을 거쳐 보냄) */
+function memoToNtc(id){const m=(typeof MEMO!=='undefined'?MEMO.list:[]).find(x=>x.id===id);if(!m||!m.text.trim())return;
+  if(!S.canWrite){toast('보기 전용 권한이라 공지를 보낼 수 없습니다.','err');return;}if(!myId()){toast('본인을 등록한 뒤 공지를 보낼 수 있습니다.','err');return;}
+  const L=m.text.trim().split('\n');let title=L[0].trim(),body=L.slice(1).join('\n').trim();
+  if(title.length>60&&!body){body=title;title=title.slice(0,40).trim()+'…';}
+  const d=$('#dlg-ntc');if(d&&d.open)d.close();NTC.draft=null;
+  const D0={title:title.slice(0,120),body:body.slice(0,3000),m:'all',sids:[],roles:[],sites:[],need:false,due:'',memo:id};
+  /* 바탕 화면 메모장(?memo=1)은 공지 창이 없음 → 업무시스템 새 창에서 이어 씀 */
+  if(typeof memoMode==='function'&&memoMode()){try{localStorage.setItem('wl.ntcHand',JSON.stringify({...D0,at:Date.now()}));}catch{}window.open('./#ntc','_blank');return;}
+  if(typeof MEMO!=='undefined'&&MEMO.pip){try{window.focus();}catch{}}
+  NTC.dlg=D0;ntcNewDlg();}
+function ntcTakeHand(){let h=null;try{h=JSON.parse(localStorage.getItem('wl.ntcHand')||'null');localStorage.removeItem('wl.ntcHand');}catch{}
+  if(!h||typeof h!=='object'||!(Date.now()-(+h.at||0)<5*60e3)||!S.canWrite||!myId())return;
+  NTC.dlg={title:String(h.title||'').slice(0,120),body:String(h.body||'').slice(0,3000),m:'all',sids:[],roles:[],sites:[],need:false,due:'',memo:String(h.memo||'').slice(0,40)};setTimeout(ntcNewDlg,50);}
 window.ntcApi={all:ntcAll,lists:ntcLists,to:ntcTo,sub:ntcSub,find:ntcFind,
   /* 시험·시연 자료용: 확인 창 없이 */
   send:async o=>{NTC.dlg={title:o.title||'',body:o.body||'',m:o.m||'all',sids:o.sids||[],roles:o.roles||[],sites:o.sites||[],need:!!o.need,due:o.due||''};await ntcSend({quiet:true});},
