@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="wl-build" content="df2e6c675b03">
+<meta name="wl-build" content="3219a4979084">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="manifest" href="manifest.webmanifest"><script>if(/[?&]memo=1(&|$)/.test(location.search)){document.querySelector('link[rel=manifest]').href='memo.webmanifest';document.documentElement.classList.add('memo-mode');}</script>
 <meta name="theme-color" content="#1f3a5f">
@@ -2299,7 +2299,7 @@ html.ez .ez-more[aria-expanded="true"]{background:#fff;color:#475569;border-colo
 html.ez .ez-sec{margin:10px 0 0}
 html.ez .ez-dlg{margin:2px 0 10px}html.ez #t-adv{display:none!important}
 /* ① 흐리고 작은 설명·예시 글 숨김 (안내서·설정·관리 화면은 그대로) */
-html.ez :is(#view,#dlg-task,#memo-drawer,#dlg-print,#dlg-view,#dlg-doc,#dlg-ntc) :is(.qa-hint,.priv-note,.il-tip,.mp-help,.fm-tree-tip,.fmr-hint,.vw-note,.hint:not([id]),.help:not([id]):not(.warn),#t-photo-opt):not(.help-wrap *),
+html.ez :is(#view,#dlg-task,#memo-drawer,#dlg-print,#dlg-view,#dlg-doc,#dlg-ntc) :is(.ap-hint,.qa-hint,.priv-note,.il-tip,.mp-help,.fm-tree-tip,.fmr-hint,.vw-note,.hint:not([id]),.help:not([id]):not(.warn),#t-photo-opt):not(.help-wrap *),
 html.ez #view .od-card .od-more,html.ez #view .ez-x,html.ez #memo-drawer .ez-x,html.ez #dlg-ntc .od-help{display:none!important}
 html.ez .ez-short{display:inline}html:not(.ez) .ez-short{display:none}html.ez .ez-full{display:none}
 /* ② 카드·줄 2~3줄 — 세부는 「▾ 자세히」 */
@@ -2316,6 +2316,94 @@ html.ez #qa:not(.ez-open) .qa-opts{display:none!important}
 /* ④ 업무 창 — 꼭 필요한 칸만 (「▾ 자세히」로 나머지) */
 html.ez #dlg-task:not(.ez-open) :is(#t-priv-row,.form>.r3:not(.r3-dt),#t-auto,.t-place-f,#t-stime,#t-dtime,.r3-dt>.f:nth-child(3),#t-wd-hint,#t-ord,#t-who-f,.f:has(>#t-assignee-text),#t-ph-tools,#t-pii-row,.pii-help){display:none!important}
 @media (min-width:761px){html.ez #dlg-task:not(.ez-open) .r3.r3-dt{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* 61차: 📦 재고관리 · 🏷 자산관리 */
+.iv-go{white-space:nowrap}
+.iv-h h1{margin-right:4px}.iv-lv{font-size:12px;color:var(--ink-3);background:var(--line-2);border-radius:999px;padding:3px 9px;white-space:nowrap}
+.iv-tabs{display:flex;flex-wrap:wrap;align-items:flex-end;gap:2px;border-bottom:1px solid var(--line);margin:4px 0 10px}
+.iv-tab{display:flex;align-items:center;border:1.5px solid transparent;border-bottom:none;border-radius:10px 10px 0 0;margin-bottom:-1px}
+.iv-tab.on{background:var(--surface);border-color:var(--line);border-bottom:1px solid var(--surface)}
+.iv-tbt{all:unset;cursor:pointer;display:flex;align-items:center;gap:6px;padding:9px 12px;font-size:15px;font-weight:600;color:var(--ink-2)}
+.iv-tab.on .iv-tbt{color:var(--accent);font-weight:800}.iv-tbt:hover{color:var(--ink)}.iv-tbt:focus-visible{outline:2px solid var(--focus);border-radius:8px}
+.iv-tbt em{font-style:normal;font-size:12px;color:var(--ink-3);font-weight:600}
+.iv-tab[draggable="true"]{cursor:grab}.iv-tab.dragging{opacity:.45}.iv-tab.dd-over{border-color:var(--accent);background:var(--accent-soft)}
+.iv-tmenu{opacity:.8;margin-right:4px}
+.iv-tadd{all:unset;cursor:pointer;padding:8px 12px;font-size:14px;color:var(--accent);font-weight:700;border-radius:8px}.iv-tadd:hover{background:var(--accent-soft)}
+.iv-modes{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 12px}.iv-modes .sp{flex:1}
+.iv-modes [role=tab]{all:unset;cursor:pointer;padding:7px 13px;border:1px solid var(--line);border-radius:999px;font-size:14px;background:var(--surface);color:var(--ink-2)}
+.iv-modes [role=tab][aria-selected=true]{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+.iv-wrap{grid-template-columns:240px minmax(0,1fr)}
+.iv-tools{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:10px}.iv-tools input[type=search]{flex:1 1 220px;max-width:360px;height:38px;border:1px solid var(--line);border-radius:9px;padding:0 11px;background:var(--surface);color:var(--ink);font:inherit}
+.iv-cnt{font-size:13px;color:var(--ink-3)}.iv-selbar{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-left:auto;font-size:13px}
+.iv-grp{margin:0 0 12px}.iv-gh{margin:4px 2px 6px;font-size:13.5px;color:var(--ink-2);font-weight:700}.iv-gh small{color:var(--ink-3);font-weight:500}
+.iv-row{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1.5px solid var(--line);border-radius:11px;background:var(--surface);margin-bottom:6px}
+.iv-row[draggable="true"]{cursor:grab}.iv-row.dragging{opacity:.45}.iv-row.dd-over{border-color:var(--accent);box-shadow:0 -3px 0 var(--accent)}
+.iv-row.low{border-color:color-mix(in srgb,var(--late) 45%,var(--line))}.iv-row.sel{background:var(--accent-soft)}
+.iv-ck{flex:none;display:flex}.iv-ck input{width:18px;height:18px}
+.iv-main{flex:1;min-width:0}.iv-nmw{display:flex;align-items:center;gap:4px;min-width:0}.iv-nm{font-size:15px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.iv-row:hover .fm-ren{opacity:1}
+.iv-meta{display:flex;flex-wrap:wrap;gap:4px 10px;font-size:12.5px;color:var(--ink-3);margin-top:2px}.iv-memo{color:var(--ink-2)}
+.iv-szs{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.iv-sz{display:inline-flex;align-items:center;gap:3px;font-size:12px;padding:1px 7px;border-radius:999px;background:var(--line-2);color:var(--ink-2)}.iv-sz b{color:var(--ink)}.iv-sz.zero{opacity:.55}.iv-sz.old{border:1px dashed var(--line)}
+.iv-qty{flex:none;min-width:64px;text-align:right}.iv-qty b{font-size:22px;font-weight:800;color:var(--ink)}.iv-qty small{margin-left:3px;color:var(--ink-3);font-size:12px}.iv-qty.zero b{color:var(--ink-3)}
+.iv-acts{flex:none;display:flex;align-items:center;gap:4px}
+.iv-lowt{color:var(--late);font-size:12px;font-weight:700;margin-left:6px;white-space:nowrap}
+.iv-empty{margin:4px 0}
+.iv-showdel{display:block;margin:8px 6px 2px;font-size:12.5px}
+.iv-del{border:1.5px dashed var(--line);border-radius:11px;padding:10px 12px;margin:0 0 12px}.iv-del h3{margin:0 0 6px;font-size:14px}.iv-del h3 small{font-weight:500;color:var(--ink-3);font-size:12px}
+.iv-delrow{display:flex;align-items:center;gap:10px;padding:4px 0}.iv-delrow span{flex:1}.iv-delrow small{color:var(--ink-3)}
+.iv-filt{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 10px}.iv-filt .sp{flex:1}
+.iv-filt select,.iv-filt input{height:36px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font:inherit;font-size:14px;padding:0 8px}.iv-filt input[type=search]{min-width:180px}
+.iv-sum{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px;margin:0 0 8px;color:var(--ink-2)}.iv-sum b{color:var(--ink)}.iv-sumn{color:var(--ink-3)}
+.iv-log td{vertical-align:top}.iv-log .num{text-align:right;white-space:nowrap}.iv-log .nw{white-space:nowrap}.iv-log small{color:var(--ink-3)}
+.iv-tt{display:inline-block;padding:1px 8px;border-radius:999px;font-size:12px;font-weight:700}.iv-tt.in{background:#dcfce7;color:#166534}.iv-tt.out{background:#fee2e2;color:#991b1b}.iv-tt.adj{background:#e0e7ff;color:#3730a3}
+.iv-cls{display:inline-block;padding:0 6px;border-radius:6px;font-size:11.5px;background:var(--line-2);color:var(--ink-2);white-space:nowrap}.iv-cls.pay{background:#fef3c7;color:#92400e}.iv-cls.wel{background:#dcfce7;color:#166534}
+.iv-rule{font-size:13.5px;color:var(--ink-2);margin:0 0 8px}
+.iv-soon{border:1.5px dashed var(--line);border-radius:14px;padding:28px 20px;text-align:center;color:var(--ink-2);background:var(--surface)}.iv-soon b{font-size:18px}.iv-soon p{margin:8px 0 0;line-height:1.6}
+dialog.modal.iv-dlg{width:min(720px,96vw)}
+#dlg-iv .modal-b{gap:12px}#dlg-iv .f{display:flex;flex-direction:column;gap:4px;margin:0}#dlg-iv .lbl{font-size:13px;font-weight:600;color:var(--ink-2)}#dlg-iv .lbl small{font-weight:500;color:var(--ink-3)}
+.iv-form .r2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.iv-form .r3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.iv-form input:not([type=checkbox]),.iv-form select,.iv-form textarea{width:100%;box-sizing:border-box;min-height:38px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font:inherit;font-size:14.5px;padding:6px 9px}
+.iv-szrow{display:grid;grid-template-columns:minmax(0,220px) 1fr;gap:8px}
+.iv-init{display:flex;flex-wrap:wrap;gap:6px}.iv-ini{display:flex;align-items:center;gap:4px}.iv-ini span{font-size:13px;color:var(--ink-2);min-width:24px}.iv-ini input{width:76px!important}
+.iv-seg{display:flex;gap:6px;margin:0 0 12px}.iv-seg button{all:unset;cursor:pointer;flex:1;text-align:center;padding:10px;border:1.5px solid var(--line);border-radius:10px;font-weight:700;font-size:15px;color:var(--ink-2)}
+.iv-seg button[aria-checked=true]{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.iv-knote{font-size:13px;color:var(--ink-2);background:var(--line-2);border-radius:8px;padding:6px 10px;margin:-2px 0 10px}
+.iv-lines{display:flex;flex-direction:column;gap:6px;margin:6px 0 8px}
+.iv-line{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:8px;border:1px solid var(--line);border-radius:10px}
+.iv-line select[data-ivl-it]{flex:1 1 220px;width:auto!important}.iv-line select[data-ivl-sz]{flex:0 0 96px;width:96px!important}
+.iv-lq,.iv-lp{display:flex;align-items:center;gap:3px}.iv-lq input{width:84px!important}.iv-lp input{width:104px!important}.iv-lq small,.iv-lp small{color:var(--ink-3);font-size:12px}
+.iv-onh{font-size:12.5px;color:var(--ink-2)}.iv-warn{flex-basis:100%;color:var(--late);font-size:12.5px;font-weight:600}
+.iv-judge{border-radius:10px;padding:9px 12px;font-size:14px;margin:6px 0}.iv-judge.wel{background:#dcfce7;color:#14532d}.iv-judge.pay{background:#fef3c7;color:#78350f}
+.iv-tot{text-align:right;font-size:14.5px;margin:4px 0 8px}
+.iv-ks{display:flex;flex-direction:column;gap:6px;margin:8px 0}.iv-krow{display:grid;grid-template-columns:minmax(0,1fr) 150px auto auto auto;gap:6px;align-items:center}.iv-krow small{grid-column:1/-1;color:var(--ink-3);font-size:12px;margin:-2px 0 4px}
+.iv-gl{margin-top:12px}.iv-glr{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:14px}.iv-glr input{width:140px!important}
+@media (max-width:900px){.iv-wrap{grid-template-columns:1fr}}
+@media (max-width:640px){.iv-h{flex-wrap:wrap}.iv-h .iv-lv{order:3}.iv-row{flex-wrap:wrap}.iv-main{flex-basis:calc(100% - 110px)}.iv-acts{flex-basis:100%;justify-content:flex-end}
+  .iv-form .r2,.iv-form .r3,.iv-szrow{grid-template-columns:1fr}.iv-krow{grid-template-columns:1fr 1fr}.iv-tbt{padding:8px 9px;font-size:14px}.iv-log{font-size:13px}}
+/* 61차: 👥 권한 설정 */
+dialog.modal.pm-dlg{width:min(1280px,97vw)}.pm-tools .sp{flex:1}
+.pm-b{max-height:calc(100vh - 170px);overflow:auto}
+.pm-help{margin:0 0 10px}.pm-own-s{background:#fef3c7;padding:0 5px;border-radius:4px}
+.pm-wrap{overflow:auto;margin-bottom:12px}
+.pm-tbl{min-width:1040px;font-size:13px;table-layout:fixed;width:100%}.pm-tbl th,.pm-tbl td{padding:6px 6px;vertical-align:middle}
+.pm-tbl thead th{font-size:12px;line-height:1.3;text-align:center;white-space:normal;min-width:96px}.pm-tbl thead th .ic{display:block;font-size:16px}
+.pm-who{text-align:left!important;min-width:150px;white-space:nowrap}.pm-who b{font-size:14px}.pm-who small{display:block;color:var(--ink-3);font-weight:500;font-size:11.5px;max-width:170px;overflow:hidden;text-overflow:ellipsis}
+.pm-tier{display:inline-flex;align-items:center;gap:3px;font-size:11.5px;font-weight:600;color:var(--ink-3);margin-top:2px}.pm-tier.ad{color:#92400e}.pm-tier.pm{color:var(--accent)}.pm-tier.own{background:#fef3c7;border-radius:4px;padding:0 4px}
+.pm-sel{width:100%;min-width:0;height:32px;border:1px solid var(--line);border-radius:7px;background:var(--surface);color:var(--ink);font:inherit;font-size:12px;padding:0 2px}
+.pm-sel.own{background:#fef3c7;border-color:#e8a200;font-weight:700}.pm-sel.on{font-weight:700;color:var(--accent)}.pm-sel.off{color:var(--ink-3)}
+.pm-fix{display:inline-block;font-size:12px;color:var(--ink-3);padding:4px 6px}
+.pm-role th{background:var(--line-2);white-space:nowrap}.pm-role th small{font-weight:500;color:var(--ink-3)}
+.pm-g th{background:var(--accent-soft);color:var(--accent);text-align:left!important;font-size:13.5px}.pm-g th small{color:var(--ink-2);font-weight:500}
+.pm-tools{display:flex;align-items:center;gap:10px;margin:4px 0 8px}.pm-tools input{height:36px;border:1px solid var(--line);border-radius:8px;padding:0 10px;background:var(--surface);color:var(--ink);font:inherit;width:220px}.pm-tools small{color:var(--ink-3)}
+.pm-what{font-size:13px;color:var(--ink-2)}.pm-what li{margin:3px 0}
+.pm-st{font-size:12.5px;color:var(--ink-3)}
+.pm-mine{list-style:none;margin:6px 0;padding:0;display:grid;grid-template-columns:1fr;gap:3px}.pm-mine li{display:flex;justify-content:space-between;gap:8px;font-size:13.5px;padding:4px 8px;border-radius:7px;background:var(--line-2)}.pm-mine b.hi{color:var(--accent)}.pm-mine b.off{color:var(--ink-3)}
+#dlg-iv .modal-b>*,#dlg-iv .iv-form .r2>*,#dlg-iv .iv-form .r3>*,#dlg-iv .iv-line>*{min-width:0;max-width:100%}
+#dlg-iv form{min-width:0;display:flex;flex-direction:column;max-height:94vh}#dlg-iv .modal-b{min-height:0}
+.iv-seg button{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media (max-width:640px){.iv-seg button{padding:9px 4px;font-size:14px}.iv-line select[data-ivl-it]{flex-basis:100%}#dlg-iv .modal-b{padding:12px}}
+
+.iv-bprev{max-height:38vh;overflow:auto}.iv-bprev table{font-size:13px}#ivb-t{font-family:ui-monospace,Consolas,monospace;font-size:13px}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -3240,7 +3328,7 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>찾기 요령 · 사진 위치</b><span>전체 검색(🔍, Ctrl+K)은 초성으로도 찾습니다(ㅅㅎㄱ → 소화기). 한/영 전환을 깜빡해 영문으로 찍히면 한글 낱말로 찾기를 제안합니다. 관리자가 설정 › <em>사업장 위치</em>에 좌표를 넣어 두면, 시설 일보에 올린 사진의 촬영 위치로 사업장이 자동으로 정해집니다(위치값은 저장하지 않음).</span></li>
       <li><b>시설 일보 (자동 완성)</b><span>홈의 <em>📋 시설 일보</em>(또는 사진첩, 시설·공무 업무 상세의 📋 단추)에서 현장 사진을 찍어 올리고 메모를 한 줄에 한 가지씩 적은 뒤 <em>✨ 자동 완성</em>을 누르면, 회사 로고·결재란이 있는 <em>작업 일보 · 점검 일지 · 사진 대지</em>가 만들어집니다. 메모의 '위치 — 내용', 09:00~11:30, 자재:, 작업자:, ※ 특이사항, 다음: 후속 조치, 이상 없음·주의·불량을 알아서 칸에 나눠 넣습니다. 서류의 글자는 눌러서 바로 고치고, <em>💾 업무일지에 저장</em>(완료 업무 + 사진), <em>🖨 인쇄·PDF</em>, <em>📝 전자결재로 올리기</em>를 고릅니다. 후속 조치는 '할 예정' 업무로 같이 등록할 수 있고, 작성 중인 일보는 이 기기에 임시 저장됩니다. 휴대폰 홈 화면에는 주소 끝에 <em>#ilbo</em>를 붙인 바로가기를 두면 바로 열립니다.</span></li>
       <li><b>자료실 분류·폴더</b><span>자료실은 <em>분류</em>(회사 기본·인증서·확인서·사업장별·기타) 아래에 서류와 <em>폴더</em>가 있습니다. 자료 관리자는 분류 이름 옆 ✏️로 이름을 바꾸고, 🗑로 지우고(안의 서류·폴더는 고른 분류로 옮김), 위쪽 <em>🗂＋ 분류</em>로 새 분류를 만듭니다. 폴더는 분류의 <em>📁＋ 폴더</em>로 그 분류 아래에 만들고, 폴더 ✏️로 이름을 바꾸거나 <em>옮기기</em>로 다른 분류로 보냅니다.</span></li>
-      <li><b>그룹웨어 근태계</b><span>평일 매시간 그룹웨어 게시판을 확인할 때 <em>결재문서함</em>의 근태계도 함께 읽어, 관리부 직원의 연차·반차·휴가·휴일근무·출장·외출을 달력에 표시합니다. 최종 결재된 것은 <b>굵게</b>, 결재 중인 것은 흐리게 '(결재 중)'으로 보이고, 반려·회수되면 빠집니다. 이름·종류·기간만 보이고 사유는 저장하지 않습니다.</span></li>
+      <li><b>그룹웨어 근태계</b><span>매일(주말·공휴일 포함) 매시간 그룹웨어 게시판을 확인할 때 <em>결재문서함</em>의 근태계도 함께 읽어, 관리부 직원의 연차·반차·휴가·휴일근무·출장·외출을 달력에 표시합니다. 최종 결재된 것은 <b>굵게</b>, 결재 중인 것은 흐리게 '(결재 중)'으로 보이고, 반려·회수되면 빠집니다. 이름·종류·기간만 보이고 사유는 저장하지 않습니다.</span></li>
       <li><b>자금 결제</b><span>💰 자금 결제 문서가 최종 승인되면 자금 담당(기본 박혜진)에게 <em>결제 예정일 입력</em> 요청이 갑니다(알림·내 업무·결재함 '💰 자금 결제' 탭). 문서의 <em>💰 자금 결제</em> 칸에 예정일·메모를 저장하면 결재선(담당·결재자)과 관리자에게 알림이 가고 달력에 '💰 결제 예정'으로 보입니다. 지급이 끝나면 <em>✅ 지급 완료</em>를 누릅니다.</span></li>
       <li><b>화면 아래 알림</b><span>새 알림은 화면 오른쪽 아래에 카드로 떠서 <em>✕(확인)</em>을 누르거나 카드를 눌러 열 때까지 사라지지 않습니다. 확인하지 않으면 다시 열어도 또 보입니다. 3건이 넘으면 '알림 n건 더'로 묶입니다.</span></li>
       <li><b>자료 관리 권한</b><span>각종서류 올리기(자료실·회사서식)에 서류를 올리고, 지우고, 이름·폴더를 바꾸는 일은 <em>자료 관리자</em>(기본: 이기도·박혜진·윤종국·윤민진·이은주)만 합니다. 다른 직원은 보기·내려받기·인쇄만 합니다. 올리기·삭제 기록은 관리부 모두에게 알림(🔔)으로 가고, 각종서류 올리기 화면 아래 <em>📜 올리기·삭제 기록</em>에서도 볼 수 있습니다. 관리자는 <em>설정 › 자료 관리 권한</em>에서 바꿉니다.</span></li>
@@ -3250,7 +3338,7 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>인쇄</b><span>모든 화면 위쪽의 파란 테두리 <em>🖨</em>(인쇄) 아이콘(휴대폰은 더보기 › 이 화면 인쇄도 가능)를 누르면 지금 화면을 A4로 인쇄합니다. 업무가 나오는 화면(내 업무·팀 현황·총괄·칸반·달력·목록·보고서·조직도)에서는 인쇄 방식을 고르는 창이 먼저 뜹니다. 기본은 <em>현재 양식 그대로(구분하여 표기)</em>이고, <em>업무 목록만(구분 없이)</em>을 고르면 칸·절·대분류 구분 없이 지금 화면의 업무 전체를 날짜순 한 표(업무명·분류·사업장·담당·상태·일정·진척, 조직도는 업무·세부 내용·주기·정·대행·부)로 인쇄합니다. 인쇄 창에서 'PDF로 저장'을 고르면 파일로도 남길 수 있습니다. 업무 상세 창의 <em>🖨 인쇄</em>는 그 업무 한 장(정보·내용·진행 기록·사진), 보고서 화면은 보고서 용지만 인쇄합니다. <em>👤 내 업무 보고서</em>(보고서 화면 · 개인별 보고서 옆)는 내가 담당했거나 진행 기록을 남긴 업무와 일자별 진행 기록으로 개인 보고서를 만들고, 보고서의 <em>업무 범위 › 🔒 내 비공개 업무만</em>으로 비공개 업무만 출력할 수 있습니다.</span></li>
       <li><b>개인정보 자료</b><span>이력서·급여·주민등록번호 13자리·신분증·진단서 같은 개인정보가 든 사진·파일은 올리는 순간 자동으로 검사해 <em>총괄 관리자에게만</em> 전달됩니다. 다른 직원과 올린 분에게는 '관리자 전용' 그림만 보이고, 보고서·사진첩에도 나오지 않습니다. 생년월일만 있는 자료는 그대로 올라갑니다. 업무 창에서 <em>🔐 개인정보 사진</em>을 켜고 올리면 검사 없이 바로 전달됩니다. 업무 내용에 주민등록번호 13자리를 적으면 저장할 때 뒷자리가 가려집니다.</span></li>
       <li><b>정기 일정</b><span>월례조회(매월 첫째 월요일 08:30 군포공장 5층 식당, 3·6·9·12월 법정 의무교육)와 관리부 업무회의(매주 목요일 16:00 안양본사 6층 대회의실, 공휴일·월례조회 주간과 전 주는 쉬고 조회 후 진행)가 달력과 내 업무 화면에 표시되고 전날·당일 알림이 옵니다. 공휴일이면 날짜가 자동으로 옮겨지고, 그룹웨어 공지가 오면 그 날짜로 확정됩니다. 관리자는 달력의 <em>정기 일정</em>에서 날짜를 바꾸거나 쉼으로 지정할 수 있습니다.</span></li>
-      <li><b>그룹웨어 소식</b><span>회사 그룹웨어(업무연락·공지사항·경조사 등) 새 글을 Claude가 평일 08~19시 매시간 확인해 요약합니다. 상단 <a href="#gw">그룹웨어</a>에서 요약·일정·관리부 할 일을 보고, 필요한 글은 <em>업무로 등록</em>을 누르면 내용이 채워진 등록 창이 열립니다. 새 글은 알림(종)에도 표시됩니다.</span></li>
+      <li><b>그룹웨어 소식</b><span>회사 그룹웨어(업무연락·공지사항·경조사 등) 새 글을 Claude가 매일(주말·공휴일 포함) 08~19시 매시간 확인해 요약합니다. 상단 <a href="#gw">그룹웨어</a>에서 요약·일정·관리부 할 일을 보고, 필요한 글은 <em>업무로 등록</em>을 누르면 내용이 채워진 등록 창이 열립니다. 새 글은 알림(종)에도 표시됩니다.</span></li>
       <li><b>🔒 비공개 업무</b><span>내 업무 입력란의 <em>🔒 나만 보기</em>를 켜고 등록하면 나만 보는 업무가 됩니다. 관리자·다른 직원에게는 보이지 않고 팀 현황·총괄에도 들어가지 않습니다. 칸반·달력·목록에는 <em>나에게만</em> 🔒 비공개 표시로 함께 나오고(필터 막대의 '🔒 내 비공개 업무'로 켜고 끔), 보고서 화면·인쇄·엑셀·텍스트 복사에도 일반 업무와 똑같이 넣을 수 있습니다(보고서의 '업무 범위': 공개+내 비공개 / 공개만 / 🔒 내 비공개만). 업무 상세에서 <em>팀에 공개하기</em>로 언제든 공개할 수 있습니다.</span></li>
       <li><b>사진·서류 삭제 요청</b><span>사진과 서류는 누구나 올릴 수 있지만 삭제는 관리자만 합니다. 잘못 올렸으면 사진의 ✕ 또는 서류의 <em>삭제 요청</em>을 눌러 이유를 적어 보내세요. 관리자 알림함에 표시되고, 처리 결과가 알림으로 옵니다.</span></li>
     </ol></section>
@@ -5574,7 +5662,7 @@ document.addEventListener('click',e=>{const T=e.target;
   const mo=T.closest('[data-gs-more]');if(mo){const k=mo.dataset.gsMore;if(GS.scope==='all'){GS.scope=k;GS.more={};}else GS.more[k]=(GS.more[k]||60)+60;gsRender();return;}
   const it=T.closest('#gs-res [data-gs-task],#gs-res [data-gs-file],#gs-res [data-gs-legal],#gs-res [data-gs-gw]');if(it){gsGo(it);return;}});
 /* ───────── 그룹웨어 소식 (14차) ─────────
-   회사 그룹웨어(KT 비즈오피스) 게시판의 새 글을, 관리자 컴퓨터의 Claude가 평일 08~19시 매시간 확인해 요약을 gw 컬렉션에 적습니다.
+   회사 그룹웨어(KT 비즈오피스) 게시판의 새 글을, 관리자 컴퓨터의 Claude가 매일(주말·공휴일 포함) 08~19시 매시간 확인해 요약을 gw 컬렉션에 적습니다.
    이 화면은 그 요약을 보여 주고(목록·알림·검색), 필요한 글은 '업무로 등록'으로 할 일을 만듭니다.
    원문은 그룹웨어에 그대로 두고 여기에는 요약·일정·첨부 파일명만 저장합니다. 전화번호·계좌번호·주민번호 형태는 저장 전에 지웁니다.
    쓰기(gw/*, app/gw)는 관리자만 — 자동 확인은 관리자 계정으로 로그인된 화면에서 window.gwApi 로 기록합니다. */
@@ -5633,7 +5721,7 @@ function gwWarn(){const st=S.gwStat;if(!st||!st.lastRun)return null;const now=ne
   if(st.status==='login')return {k:'login|'+(st.badAt||st.lastRun).slice(0,13),bad:true,text:`그룹웨어 로그인이 풀려 ${hhmm(st.badAt||st.lastRun)}부터 새 글을 가져오지 못했습니다. 관리자 컴퓨터의 Claude 앱 브라우저에서 그룹웨어에 다시 로그인해 주세요.`};
   if(st.status==='error')return {k:'err|'+st.lastRun.slice(0,13),bad:true,text:`그룹웨어 확인 중 문제가 있었습니다 (${hhmm(st.lastRun)})${st.msg?': '+st.msg:''}`};
   const h=now.getHours(),wd=now.getDay();const gap=(Date.now()-Date.parse(st.lastRun))/36e5;
-  if(wd>=1&&wd<=5&&h>=10&&h<=19&&gap>2.5)return {k:'stale|'+today(),bad:true,text:`그룹웨어 자동 확인이 ${hhmm(st.lastRun)} 이후 멈춰 있습니다. 관리자 컴퓨터가 켜져 있고 Claude 앱이 열려 있는지 확인해 주세요.`};
+  if(h>=10&&h<=19&&gap>2.5)return {k:'stale|'+today(),bad:true,text:`그룹웨어 자동 확인이 ${hhmm(st.lastRun)} 이후 멈춰 있습니다. 관리자 컴퓨터가 켜져 있고 Claude 앱이 열려 있는지 확인해 주세요.`};
   return null;}
 function gwStatHTML(){const st=S.gwStat;if(S.gwDenied)return `<div class="banner" style="margin:0 0 12px">그룹웨어 소식을 불러올 권한이 없습니다. 관리자는 Firebase 콘솔 › Firestore › 규칙에 새 firestore.rules를 게시하세요.</div>`;
   const w=gwWarn();const last=st&&st.lastRun?`마지막 확인 ${hhmm(st.lastRun)} (${timeAgo(st.lastRun)})`:'아직 자동 확인 기록이 없습니다';
@@ -5655,7 +5743,7 @@ function renderGw(v){const L=S.gw||[];const terms=gsTerms(GW.q);const seen=GW.se
   const cnt={};for(const g of L)cnt[g.board]=(cnt[g.board]||0)+1;const boards=Object.keys(cnt).sort((a,b)=>gwRank(a)-gwRank(b)||a.localeCompare(b,'ko'));
   const list=L.filter(g=>(!GW.b||g.board===GW.b)&&(!GW.due||g.due||g.act)&&gwMatch(g,terms));const shown=list.slice(0,GW.lim);
   let lastM='';const rows=shown.map(g=>{const m=g.date.slice(0,7);const h=m!==lastM?`<h3 class="gw-mon">${+m.slice(0,4)}년 ${+m.slice(5,7)}월</h3>`:'';lastM=m;return h+gwItemHTML(g,seen,terms);}).join('');
-  v.innerHTML=`<div class="home-head"><div><h1>그룹웨어 소식</h1><p>회사 그룹웨어 게시판(${GW_BOARDS.join('·')})의 새 글을 요약해 보여 줍니다 · 평일 08~19시 매시간 자동 확인</p></div><div class="gw-sts">${gwStatHTML()}</div></div>
+  v.innerHTML=`<div class="home-head"><div><h1>그룹웨어 소식</h1><p>회사 그룹웨어 게시판(${GW_BOARDS.join('·')})의 새 글을 요약해 보여 줍니다 · 매일 08~19시(주말·공휴일 포함) 매시간 자동 확인</p></div><div class="gw-sts">${gwStatHTML()}</div></div>
   <section class="filters" style="padding:0 0 12px"><div class="seg" role="group" aria-label="게시판"><button type="button" data-gw-b="" aria-pressed="${!GW.b}">전체 ${L.length}</button>${boards.map(b=>`<button type="button" data-gw-b="${esc(b)}" aria-pressed="${GW.b===b}">${esc(gwShort(b))} ${cnt[b]}</button>`).join('')}</div>
     <label class="chk"><input type="checkbox" id="gw-due" ${GW.due?'checked':''}> 일정·할 일 있는 글만</label><input type="search" id="gw-q" placeholder="제목·요약 검색" value="${esc(GW.q)}" aria-label="그룹웨어 소식 검색"></section>
   <div class="gw-list">${rows||`<section class="panel"><div class="empty">${L.length?'조건에 맞는 글이 없습니다.':S.gwReady?'아직 가져온 글이 없습니다. 자동 확인이 돌면 이곳에 쌓입니다.':'불러오는 중…'}</div></section>`}
@@ -8427,7 +8515,7 @@ if(!AP_TABS.some(([k])=>k==='pay'))AP_TABS.splice(Math.max(0,AP_TABS.findIndex((
   out.push({id:'pay:'+d.id,title:`${p.st==='paid'?'✅':'💰'} ${d.title}${d.amount?' · '+d.amount:''}${p.st==='paid'?' (지급 완료)':' 결제 예정'}`,start:p.date,allDay:true,editable:false,classNames:['ev-pay',p.st==='paid'?'ev-pay-done':''].filter(Boolean),prio:5});}}catch(e){}return out;};}
 
 /* ───────── 그룹웨어 근태계 → 달력 (33차) ─────────
-   평일 매시간 그룹웨어 게시판을 확인할 때 결재문서함도 함께 확인해, 근태계(연차·반차·휴가·휴일근무·출장·외출 등)를
+   매일(주말·공휴일 포함) 매시간 그룹웨어 게시판을 확인할 때 결재문서함도 함께 확인해, 근태계(연차·반차·휴가·휴일근무·출장·외출 등)를
    leave/gw_{문서ID} 로 기록합니다(관리자 화면의 window.gwApi.att). 달력에는 이름·종류·기간만 — 사유·본문은 저장하지 않습니다.
    관리부 직원(직원 명단 이름)만 표시하고, 다른 부서 직원이나 근태가 아닌 문서는 '건너뜀' 표시만 남겨 다시 읽지 않습니다. */
 Object.assign(LV_K,{trip:'출장',out:'외출·조퇴'});Object.assign(LV_IC,{trip:'🚗',out:'🚶'});
@@ -9776,7 +9864,7 @@ const IN_TYPES=[['c','점검'],['n','수치'],['g','칸 수치'],['cg','칸 점�
 const IN_TN=Object.fromEntries(IN_TYPES);
 const IN_WD=[['MO','월'],['TU','화'],['WE','수'],['TH','목'],['FR','금'],['SA','토'],['SU','일']];
 const IN_PRE=[['D5','매일(평일)'],['D7','매일(주말 포함)'],['W','매주 ○요일'],['M','매월 ○일'],['MS','특정 달 ○일'],['Q','분기(1·4·7·10월 1일)'],['H','반기(1·7월 1일)'],['Y','매년 ○월 ○일'],['R','직접 입력(RRULE)']];
-const inCanEd=()=>!!(S.canEdit||(typeof canDoc==='function'&&canDoc()));
+const inCanEd=()=>!!(S.canEdit||(typeof permLv==='function'?permLv('insp')>=3:(typeof canDoc==='function'&&canDoc())));/* 61차: 권한 설정의 「점검·경비 일지 항목 편집」 */
 const inKey=p=>p+(typeof rid==='function'?rid():Math.random().toString(36)).replace(/[^a-z0-9]/gi,'').slice(0,7);
 const inEsc=w=>w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 const inFmRe=s=>{const w=String(s||'').split(/[|,]/).map(x=>x.trim()).filter(Boolean).slice(0,12);return w.length?new RegExp(w.map(inEsc).join('|')):null;};
@@ -10015,7 +10103,7 @@ const gdPut=(o,path,val)=>{for(let i=0;i<path.length-1;i++){if(!o[path[i]]||type
 const gdFk=s=>String(s||'').replace(/\s+/g,'').replace(/[.\/\[\]*`~#$]/g,'').toUpperCase().slice(0,30);
 const gdPriv=n=>/성명|이름|방문자|연락|전화|휴대|주민|신분/.test(n||'');
 const gdWho=()=>S.guard?{id:S.me.id,name:S.guard.name||S.guard.email.split('@')[0]}:{id:myId(),name:myName()};
-const gdCanEd=()=>!S.guard&&!!(S.canEdit||(typeof canDoc==='function'&&canDoc()));
+const gdCanEd=()=>!S.guard&&!!(S.canEdit||(typeof permLv==='function'?permLv('insp')>=3:(typeof canDoc==='function'&&canDoc())));
 const gdDates=()=>{const t=today();return [gdAddDay(t,-1),t];};
 const gdCanInput=()=>S.guard?gdDates().includes(GD.date):!!S.canWrite;
 
@@ -10323,7 +10411,7 @@ const ORD_ROLE0=[{id:'fin',n:'재무·회계',unit:'fin',head:'fin',specs:['fin'
   {id:'fac',n:'시설·공무',unit:'fac',head:'fac',specs:['fac']},
   {id:'safe',n:'안전·보건',unit:'',head:'',specs:['safe']}];
 const OD={roles:null,rolesAt:'',rolesBy:'',rolesU:null,tab:'',sel:new Set(),who:'',dlg:null};
-const odAdmin=()=>!!S.canEdit;
+const odAdmin=()=>!!S.canEdit||(!S.guard&&typeof permLv==='function'&&permLv('ord')>=3);/* 61차: 권한 설정의 「업무 요청하기·보고 확인」 */
 const odDoc=()=>S.fs.doc('wl/_sys/cfg/ordroles');/* 50차: 문서 경로는 짝수 칸이어야 함(wl/_sys/ordroles 는 실제 Firebase 에서 오류 → #ord 화면이 안 열리던 원인) */
 const odStr=(x,n)=>String(x==null?'':x).replace(/[\u0000-\u001f]/g,' ').trim().slice(0,n);
 const odRank=s=>{const r=String((s&&s.role)||'').split(/\s*[-·(]\s*/)[0].trim();return r&&r.length<=6?r:'';};
@@ -11855,11 +11943,17 @@ const GU=[
  {id:'appr',sec:'서류·결재',t:'✍ 전자결재',
   lv:{2:'<b>＋ 새 기안</b>에서 서식에 직접 적거나(기안서·품의서·지출결의서·휴가 신청서 등) 스캔·파일을 올려 결재를 올립니다. 결재선은 직무별 팀원 → 직무별 총괄 → 전체 총괄로 자동으로 정해지고, 필요할 때만 바꿉니다. 결재할 차례가 되면 알림이 오고 문서에서 승인·반려(사유)를 누릅니다. 아무도 결재하기 전이면 회수, 반려되면 고쳐서 다시 올립니다. 연차·휴일근무는 최종 승인되면 달력에 표시됩니다.'},
   shot:{go:'#appr',clip:'screen',hi:['[data-ap-new]']},show:{go:'#appr',hi:['[data-ap-new]']}},
+ {id:'inv',sec:'서류·결재',t:'📦 재고관리 · 🏷 자산관리',
+  lv:{2:'전자결재 위쪽 <b>📦 재고관리</b>를 누르면 화장품·피복·사무용품·청소용품·식용품 탭이 나옵니다. <b>＋ 입고</b>·<b>－ 출고</b>로 적으면 현재고(피복·안전화는 사이즈별)가 바로 바뀌고, <b>📒 입출고 대장</b>에서 기간·구분·처리 구분으로 찾아 📥 엑셀로 내려받습니다. 적정 재고 아래로 떨어지면 ⚠ 부족이 표시됩니다. 탭·폴더·품목은 ＋로 만들고(품목이 많으면 엑셀에서 복사해 <b>📋 여러 개 붙여넣기</b>) ✏️로 이름을 바꾸며, 끌어다 놓거나 ⋯ 메뉴(옮기기·위로·아래로·지우기)로 정리합니다 — 지운 것은 🗑 지운 항목에서 되살립니다(관리 권한). <b>🏷 자산관리</b>는 지금은 자산 분류 탭만 있고 세부 기능은 다음에 만듭니다.'},
+  shot:{who:'s01',go:'#appr',open:[['fn','inv']],clip:'screen',hi:['#iv .iv-h [data-iv-ent="in"]','#iv .iv-h [data-iv-ent="out"]']},show:{go:'#appr',hi:['[data-ap-panel="inv"]']}},
+ {id:'xinv',sec:'서류·결재',t:'🎁 화장품 출고 — 복리후생·급여·협찬·기부',
+  lv:{3:'출고할 때 <b>처리 구분</b>을 고릅니다. <b>무상 지급(내부)</b>은 받는 사람을 쉼표로 여러 명 적으면 사람마다 따로 기록되고, 1인당 <b>회사 구입가</b> 합계가 소액 기준(⚙ 처리 구분에서 정함) 이하면 <b>복리후생비</b>, 넘으면 <b>급여(과세) 신고 대상</b>으로 바로 표시됩니다. <b>유상 판매</b>는 내부(임직원)면 회사 구입가, 외부(거래처)면 소비자가가 기본 단가입니다. <b>기관 무상 협찬</b>은 기부영수증을 받을 수 없고, <b>기부</b>는 영수증을 받았는지 체크합니다. <b>🎁 무상 지급 집계</b>에서 사람별 복리후생·급여 신고 금액을 보고 엑셀로 급여 담당에게 넘깁니다. 처리 구분 이름·순서는 탭마다 ⚙ 처리 구분에서 바꿉니다.'},
+  shot:{who:'s01',go:'#appr',open:[['fn','invout']],clip:['#dlg-iv form'],hi:['#dlg-iv .iv-judge','#dlg-iv #ivd-k']},show:{go:'#appr',hi:['[data-ap-panel="inv"]']}},
  {id:'legal',sec:'서류·결재',t:'⚖ 법정 업무',
   lv:{2:'세무·4대보험·노무·교육·안전보건·소방·전기 설비·환경 일정을 달별로 봅니다. 켜 둔 항목은 마감 전에 담당자 할 일로 자동 등록되고, <b>지금 등록</b>으로 바로 업무를 만들 수도 있습니다. 아래 항목 설정에서 우리 회사에 해당하는 항목을 켜고 끕니다.'},
   shot:{go:'#legal',clip:'screen'},show:{go:'#legal'}},
  {id:'gw',sec:'서류·결재',t:'🌐 그룹웨어 소식',
-  lv:{2:'회사 그룹웨어 새 글(공지사항·업무연락·경조사 등)을 평일 근무 시간에 자동으로 확인해 요약·일정·관리부 할 일로 보여 줍니다. 필요한 글은 <b>업무로 등록</b>을 누르면 내용이 채워진 등록 창이 열립니다. 그룹웨어 근태계의 연차·출장 등은 달력에 표시됩니다.'},
+  lv:{2:'회사 그룹웨어 새 글(공지사항·업무연락·경조사 등)을 매일(주말·공휴일 포함) 08~19시 매시간 자동으로 확인해 요약·일정·관리부 할 일로 보여 줍니다. 필요한 글은 <b>업무로 등록</b>을 누르면 내용이 채워진 등록 창이 열립니다. 그룹웨어 근태계의 연차·출장 등은 달력에 표시됩니다.'},
   shot:{go:'#gw',clip:'screen'},show:{go:'#gw'}},
  {id:'insp',sec:'현장 업무',t:'✅ 점검 일보',
   lv:{2:'간편 등록 줄의 <b>✅ 점검 일보</b>에서 사업장별 매일·주간·월간·분기 점검 항목을 한 화면에 적습니다. 오늘 할 점검과 밀린 구역(⏰)이 위에 모이고, 기준을 벗어난 수치는 주황으로 표시되며, 계량기는 전월 지침으로 사용량을 계산합니다. 적으면 바로 저장되고, <b>📋 업무일지에 기록</b>하면 업무와 점검 일보 서류(인쇄·전자결재)가 생기며 불량은 할 예정 후속 업무가 됩니다. 📈 수치 추이로 그래프를 봅니다.'},
@@ -11883,8 +11977,11 @@ const GU=[
   lv:{2:'직원별 기록·지연·이슈를 한눈에 보고, 단톡방 양식 <b>주간업무일지</b>와 <b>일일 현황</b> 텍스트를 바로 복사합니다.'},
   shot:{who:'s01',go:'#overview',clip:'screen'},show:{go:'#overview'}},
  {id:'set',sec:'관리자',t:'⚙ 설정',adm:1,
-  lv:{2:'직원 명단(「이름, 근무 건물, 담당」을 붙여 넣으면 한 번에 등록), 접속 허용 이메일(여기서 지우면 바로 차단), 부서·사업장, 결재 단계, 자료 관리 권한, 사업장 위치를 정합니다. 저장 전에 확인 창이 뜹니다.'},
+  lv:{2:'직원 명단(「이름, 근무 건물, 담당」을 붙여 넣으면 한 번에 등록), 접속 허용 이메일(여기서 지우면 바로 차단), 부서·사업장, 결재 단계, 자료 관리 권한, 사업장 위치를 정하고 👥 권한 설정을 엽니다. 저장 전에 확인 창이 뜹니다.'},
   shot:{who:'s01',go:'#my',open:[['click','#btn-settings']],clip:['#dlg-settings']},show:{go:'#my',hi:['#btn-settings']}},
+ {id:'perm',sec:'관리자',t:'👥 권한 설정 — 파트 관리자·개인별',adm:1,
+  lv:{2:'⚙ 설정 › <b>👥 권한 설정 열기</b>. 관리부 직원 모두(총괄 관리자 포함)가 파트별로 나옵니다. 위쪽 <b>역할 기본값</b>(파트 관리자·직원)을 정하면 그 역할 모두에게 적용되고, 아래 <b>직원별</b> 칸에서 그 사람만 따로 줍니다(따로 준 칸은 노란색, ↺ 기본으로 되돌리기). 항목: 재고관리·자산관리·자료실 올리기·점검 항목 편집·다른 직원 업무 고치기(본인/우리 파트/모든 업무)·업무 요청하기·공지 보내기. 바꾸면 바로 저장되고 그 사람 화면에 바로 반영됩니다. 파트 관리자는 결재선 설정의 파트 총괄을 따르며 체크로 바꿀 수 있습니다. 직원은 ⚙ 설정에서 <b>👥 내 권한</b>을 봅니다.'},
+  shot:{who:'s01',go:'#my',open:[['fn','perm']],clip:['#dlg-perm']},show:{go:'#my',hi:['#btn-settings']}},
  /* ── 전문: 응용 ── */
  {id:'xqa',sec:'빠르게 쓰기',t:'간편 등록 문장 요령',
   lv:{3:'한 문장에 <b>날짜 · 시각 · 장소 · 사람 · 할 일</b>을 넣으면 칸이 모두 채워집니다. 예) <i>"'+GU_QA3+'"</i> → 날짜·시각 범위·장소·사업장·담당이 한 번에 들어갑니다. 날짜는 오늘·내일·모레·다음 주 ○요일·11월 5일·11/5·"○일까지", 시각은 오전·오후 ○시·14:00·10시~12시, 장소는 "○○에서"나 회의실·현장·○층·○호로 씁니다. 확인 창에서 <b>수정</b>을 누르면 칸별로 고칠 수 있고, 위 칸에서 직접 고른 값이 문장보다 먼저입니다.'},
@@ -11984,6 +12081,10 @@ function guQ(s,all){/* "선택자|들어 있는 글자|그 안의 선택자" */
   const v=els.filter(guVis);return all?v:(v[0]||null);}
 const GU_FN={
   easyon:()=>{if(window.easyApi&&!easyApi.on())easyApi.set(true);},
+  inv:()=>{if(typeof AP==='undefined')return;for(const d of $$('dialog[open]'))d.close();AP.edit=null;AP.open=null;AP.panel='inv';if(typeof INV!=='undefined'){INV.tab='cos';INV.mode='stock';INV.dir='';INV.q='';}if(S.view==='appr')render();else go('#appr');},
+  invout:async()=>{GU_FN.inv();await guSleep(900);if(typeof ivEntDlg!=='function')return;const k=(ivC().tb.cos||{ks:[]}).ks.find(x=>x.f==='gift');const its=Object.values(ivC().it).filter(i=>!i.del&&i.tb==='cos');const it=its.find(i=>/세트/.test(i.n))||its[0];
+    ivEntDlg('out',{});const D=INV.dlg;if(!D)return;if(k)D.kk=k.id;D.to=staffList().slice(0,3).map(s=>s.name).join(', ');if(it)D.lines=[{it:it.id,sz:'',q:'1',p:''}];D.memo='명절 선물';ivDlgRender();},
+  perm:()=>{for(const d of $$('dialog[open]'))d.close();if(typeof pmOpen==='function')pmOpen();},
   ntf:()=>{const p=$('#ntf-pop');if(p&&p.hidden&&typeof ntfOpen==='function')ntfOpen();},
   memo:()=>{const d=$('#memo-drawer');if((!d||d.hidden)&&typeof memoOpen==='function')memoOpen();},
   search:()=>{if(typeof gsOpen==='function')gsOpen('');},
@@ -12001,6 +12102,7 @@ function guReset(){try{if(window.driverObj&&driverObj.destroy)driverObj.destroy(
   for(const d of $$('dialog[open]'))try{const c=d.querySelector('[data-c3="cancel"]');if(c)c.click();else d.close();}catch{}
   const p=$('#ntf-pop');if(p)p.hidden=true;const sh=$('#mnav-sheet');if(sh)sh.hidden=true;
   const md=$('#memo-drawer');if(md&&!md.hidden&&typeof memoClose==='function')memoClose();
+  try{if(typeof AP!=='undefined'&&!AP.edit&&(AP.panel||AP.open)){AP.panel='';AP.open=null;if(S.view==='appr')render();}}catch{}/* 61차: 재고관리·자산관리 화면에서 전자결재 목록으로 */
   try{window.scrollTo(0,0);}catch{}const q=$('#qa-text');if(q&&q.value){q.value='';q.dispatchEvent(new Event('input',{bubbles:true}));}}
 async function guGo(h){if(h==null||h==='')return;if(location.hash!==h){go(h);await guSleep(1100);}else await guSleep(200);}
 /* 사진 찍기용(테스트·배포 도구만 씀): 화면을 준비하고 자를 영역·강조할 영역을 돌려줌 */
@@ -12430,6 +12532,604 @@ document.addEventListener('click',e=>{if(e.target&&e.target.closest&&e.target.cl
 {const bn=document.getElementById('btn-new');if(bn&&bn.textContent.trim()==='+ 상세업무 등록')bn.innerHTML='+ <span class="bn-x">상세업무 </span>등록';}
 ezBtn();setTimeout(()=>{ezBtn();ezApply();},400);
 window.easyApi={on:ezOn,set:(v)=>ezSet(!!v,{quiet:true}),apply:ezApply,open:EZ.open,sec:EZ.sec};
+/* ───────── 61차: 전자결재 › 📦 재고관리(입출고 대장) · 🏷 자산관리(탭만) ─────────
+   · 전자결재 위쪽 단추 「📦 재고관리」「🏷 자산관리」(📄 서식 관리 왼쪽). 권한 설정(ext63)의 재고관리·자산관리 단계에 따라 보임.
+   · 재고관리: 탭(품목 묶음 — 화장품·피복·사무용품·청소용품·식용품) › 폴더(하위 폴더 가능) › 품목.
+     탭·폴더·품목 모두 ＋ 추가 · ✏️ 이름 바꾸기 · ⋯ 메뉴(옮기기·위/아래·지우기) · 끌어다 놓기(순서 바꾸기·폴더로 넣기·다른 탭으로) · 🗑 지운 항목 되살리기.
+     입고·출고·재고 조정을 적으면 현재고(사이즈별)가 자동 계산되고, 입출고 대장(기간·구분·처리·검색 거르기, 엑셀 내려받기)에 남음.
+     출고 처리 구분(탭마다 편집): 유상 판매(내부·외부) · 무상 지급(내부 — 1인 회사 구입가 합계가 소액 기준 이하면 복리후생비, 넘으면 급여(과세) 신고)
+     · 기관 무상 협찬(기부영수증 발급 불가) · 기부(기부영수증 발급 가능) · 사내 사용·지급 · 폐기·파손 · 기타.
+   · 자산관리: 탭만(전산·IT 장비 · 사무 가구 · 차량 · 설비·기계 · 기타) — 탭 추가·이름·순서·지우기만, 세부 기능은 다음 차수.
+   · 저장(규칙 변경 없음 — wl 아래): wl/_sys/inv/cfg {tb:{id:{n,ic,o,ks,del}}, dr:{id:{tb,n,par,o,del}}, it:{id:{tb,dr,n,unit,sz,cost,retail,min,memo,o,del}}, gl, at, by}
+     wl/_sys/inv/asset {tb:{…}} · wl/_sys/inv/L{YYYY-MM} {e:{id:{d,t,tb,it,sz,q,p,k,to,rc,cls,memo,g,by,bn,at,del}}}
+   · 오픈소스 확인: inventree/InvenTree(품목 분류 나무·재고 이동 기록·재고 조정), snipe-it(자산 분류), Sortable.js 식 끌어다 놓기 → 우리 회사 규모에 맞게 한 화면 대장으로 단순화 */
+const IV_KF=[['sale_in','유상 판매 (내부 · 임직원 등)'],['sale_ex','유상 판매 (외부 · 거래처 등)'],['gift','무상 지급 (내부 · 명절·기념일)'],['spon','기관 무상 협찬 (기부영수증 발급 불가)'],['don','기부 (기부영수증 발급 가능)'],['use','사내 사용·직원 지급'],['loss','폐기·파손·분실'],['etc','기타']];
+const IV_KNOTE={sale_in:'임직원 등 내부에 돈을 받고 판매 — 단가는 회사 구입가가 기본',sale_ex:'거래처 등 외부에 판매 — 단가는 소비자가가 기본',gift:'1인당 회사 구입가 합계가 소액 기준 이하면 구입금액 전액 복리후생비, 넘으면 회사 구입가 기준으로 급여(과세) 신고',
+  spon:'기관에 무상 협찬 — 기부영수증을 받을 수 없음',don:'기부 — 기부영수증 발급 가능(받았는지 표시)',use:'회사 안에서 쓰거나 직원에게 지급',loss:'폐기·파손·분실·유통기한 경과',etc:''};
+const ivK=(f,n)=>({id:f,n:n||(IV_KF.find(x=>x[0]===f)||[])[1]||f,f,note:''});
+const IV_TB0=[{id:'cos',n:'화장품',ic:'💄',ks:['sale_in','sale_ex','gift','spon','don','use','loss']},{id:'clo',n:'피복',ic:'👕',ks:[['use','직원 지급'],'sale_in','loss','etc']},
+  {id:'off',n:'사무용품',ic:'📎',ks:[['use','사내 사용'],'loss','etc']},{id:'cln',n:'청소용품',ic:'🧹',ks:[['use','사내 사용'],'loss','etc']},{id:'food',n:'식용품',ic:'🍪',ks:[['use','사내 사용·간식'],['gift','무상 지급 (명절·행사)'],'loss','etc']}];
+const IV_AS0=[{id:'it',n:'전산·IT 장비',ic:'🖥'},{id:'fur',n:'사무 가구',ic:'🪑'},{id:'car',n:'차량',ic:'🚗'},{id:'mach',n:'설비·기계',ic:'🏭'},{id:'etc',n:'기타 자산',ic:'📦'}];
+const IV_SZ=[['','사이즈 없음'],['S,M,L,XL,2XL,3XL','의류 (S·M·L·XL·2XL·3XL)'],['90,95,100,105,110,115','의류 호칭 (90~115)'],['26,28,30,32,34,36,38','바지 허리 (26~38)'],['230,235,240,245,250,255,260,265,270,275,280,285,290','신발 (230~290)'],['FREE','프리 사이즈']];
+const IV_UNITS=['개','병','통','박스','세트','벌','켤레','장','권','롤','봉','팩','kg','L'];
+const IV_GL0=100000;
+const INV={u:null,cfg0:null,as0:null,ex:false,exA:false,E:{},ready:false,tab:'',atab:'',dir:'',mode:'stock',q:'',sel:new Set(),open:{},showDel:false,
+  f:{per:'month',from:'',to:'',t:'',k:'',q:''},dlg:null,pop:null};
+const ivS=(v,n)=>typeof v==='string'?v.replace(/[\u0000-\u001f]/g,' ').trim().slice(0,n):'';
+const ivN=v=>{const n=+v;return isFinite(n)?Math.round(n*100)/100:0;};
+const ivWon=n=>`${Math.round(+n||0).toLocaleString('ko-KR')}원`;
+const ivQ=n=>(Math.round((+n||0)*100)/100).toLocaleString('ko-KR');
+/* ── 정리(읽어 온 값 검사) */
+function ivNormKs(a){const out=[];for(const k of (Array.isArray(a)?a:[]).slice(0,20)){if(!k||typeof k!=='object')continue;const f=IV_KF.some(x=>x[0]===k.f)?k.f:'etc';const id=ivS(k.id,30)||rid();if(out.some(x=>x.id===id))continue;out.push({id,n:ivS(k.n,40)||ivK(f).n,f,note:ivS(k.note,120)});}return out;}
+function ivNormCfg(d,asset){d=d&&typeof d==='object'?d:{};const tb={},dr={},it={};
+  for(const [id,t] of Object.entries(d.tb&&typeof d.tb==='object'?d.tb:{})){if(!t||typeof t!=='object'||!/^[\w-]{1,40}$/.test(id))continue;tb[id]={id,n:ivS(t.n,30)||'탭',ic:ivS(t.ic,4)||'📦',o:+t.o||0,ks:ivNormKs(t.ks),del:ivS(t.del,40)};}
+  if(!asset){for(const [id,x] of Object.entries(d.dr&&typeof d.dr==='object'?d.dr:{})){if(!x||typeof x!=='object'||!/^[\w-]{1,40}$/.test(id))continue;dr[id]={id,tb:ivS(x.tb,40),n:ivS(x.n,40)||'폴더',par:ivS(x.par,40),o:+x.o||0,del:ivS(x.del,40)};}
+    for(const [id,x] of Object.entries(d.it&&typeof d.it==='object'?d.it:{})){if(!x||typeof x!=='object'||!/^[\w-]{1,40}$/.test(id))continue;
+      it[id]={id,tb:ivS(x.tb,40),dr:ivS(x.dr,40),n:ivS(x.n,60)||'품목',unit:ivS(x.unit,8)||'개',sz:(Array.isArray(x.sz)?x.sz:[]).map(s=>ivS(s,12)).filter(Boolean).slice(0,30),cost:Math.max(0,ivN(x.cost)),retail:Math.max(0,ivN(x.retail)),min:Math.max(0,ivN(x.min)),memo:ivS(x.memo,200),o:+x.o||0,del:ivS(x.del,40)};}}
+  return {tb,dr,it,gl:d.gl===undefined?IV_GL0:Math.max(0,ivN(d.gl))};}
+function ivDefCfg(asset){const tb={};(asset?IV_AS0:IV_TB0).forEach((t,i)=>{tb[t.id]={n:t.n,ic:t.ic,o:(i+1)*10,ks:asset?[]:t.ks.map(k=>Array.isArray(k)?ivK(k[0],k[1]):ivK(k))};});return asset?{tb}:{tb,dr:{},it:{},gl:IV_GL0};}
+const ivCfg=()=>ivNormCfg(INV.ex?INV.cfg0:ivDefCfg(false),false);
+const ivAs=()=>ivNormCfg(INV.exA?INV.as0:ivDefCfg(true),true);
+let IVC=null,IVA=null;
+function ivEntNorm(id,x,mon){if(!x||typeof x!=='object'||!['in','out','adj'].includes(x.t)||!/^\d{4}-\d{2}-\d{2}$/.test(x.d||''))return null;
+  return {id,mon,d:x.d,t:x.t,tb:ivS(x.tb,40),it:ivS(x.it,40),sz:ivS(x.sz,12),q:ivN(x.q),p:Math.max(0,ivN(x.p)),k:ivS(x.k,30),kn:ivS(x.kn,40),kf:ivS(x.kf,10),to:ivS(x.to,80),rc:!!x.rc,cls:x.cls==='pay'?'pay':x.cls==='wel'?'wel':'',
+    memo:ivS(x.memo,200),g:ivS(x.g,40),by:ivS(x.by,60),bn:ivS(x.bn,30),at:ivS(x.at,40),del:ivS(x.del,40),cnt:x.cnt===undefined?null:ivN(x.cnt),itn:ivS(x.itn,60)};}
+/* ── 구독: wl/_sys/inv 모음 하나 (설정 + 달별 대장) */
+function ivSub(){if(INV.u||S.mode!=='firebase'||!S.fs)return;
+  INV.u=S.fs.collection('wl/_sys/inv').onSnapshot(qs=>{const E={};INV.ex=false;INV.exA=false;
+    for(const d of qs.docs){const x=d.data()||{};if(d.id==='cfg'){INV.cfg0=x;INV.ex=true;}else if(d.id==='asset'){INV.as0=x;INV.exA=true;}
+      else if(/^L\d{4}-\d{2}$/.test(d.id)&&x.e&&typeof x.e==='object')for(const [id,e] of Object.entries(x.e)){const n=ivEntNorm(id,e,d.id.slice(1));if(n)E[id]=n;}}
+    INV.E=E;IVC=null;IVA=null;INV.ready=true;ivChanged();},e=>{console.warn('inv',e);INV.ready=true;INV.err=String(e&&e.code||e);ivChanged();});}
+function ivUnsub(){try{INV.u&&INV.u();}catch{}INV.u=null;INV.ready=false;INV.E={};INV.ex=false;INV.exA=false;IVC=null;IVA=null;}
+{const _es=extSubs;extSubs=function(){_es.apply(this,arguments);try{ivUnsub();S.unsubs.push(ivUnsub);}catch(e){console.warn(e);}};}
+let _ivT=0;function ivChanged(){clearTimeout(_ivT);_ivT=setTimeout(()=>{if(S.view==='appr'&&typeof AP!=='undefined'&&['inv','asset'].includes(AP.panel))scheduleRender();const d=$('#dlg-iv');if(d&&d.open&&INV.dlg&&INV.dlg.live){const a=document.activeElement;if(a&&d.contains(a)&&a.matches('input:not([type=checkbox]),textarea'))ivDlgSoft();else ivDlgRender();}},50);}
+const ivC=()=>IVC||(IVC=ivCfg());const ivCA=()=>IVA||(IVA=ivAs());
+/* ── 권한 (ext63 permLv) */
+const ivLv=()=>typeof permLv==='function'?permLv('inv'):(S.canEdit?3:S.canWrite?2:1);
+const asLv=()=>typeof permLv==='function'?permLv('asset'):(S.canEdit?3:1);
+const ivCanW=()=>S.canWrite&&ivLv()>=2;const ivCanM=()=>S.canWrite&&ivLv()>=3;
+/* ── 나무 */
+const ivSort=(a,b)=>(a.o-b.o)||a.n.localeCompare(b.n,'ko',{numeric:true});
+const ivTabs=(c)=>Object.values((c||ivC()).tb).filter(t=>!t.del).sort(ivSort);
+const ivDirs=(tb,par)=>Object.values(ivC().dr).filter(d=>!d.del&&d.tb===tb&&(par===undefined||d.par===par)).sort(ivSort);
+const ivDirOk=id=>{const d=ivC().dr[id];return d&&!d.del?d:null;};
+const ivItems=(tb,dir)=>Object.values(ivC().it).filter(i=>!i.del&&i.tb===tb&&(dir===undefined||(ivDirOk(i.dr)?i.dr:'')===dir)).sort(ivSort);
+function ivDesc(id){const out=[];const walk=p=>{for(const d of Object.values(ivC().dr))if(!d.del&&d.par===p){out.push(d.id);walk(d.id);}};walk(id);return out;}
+function ivPath(id){const L=[];let d=ivDirOk(id),g=0;while(d&&g++<20){L.unshift(d.n);d=ivDirOk(d.par);}return L.join(' › ');}
+const ivTab=id=>{const t=ivC().tb[id];return t&&!t.del?t:null;};
+/* 방금 만든 탭은 저장 알림이 오기 전에도 그 탭에 머묾(5초) */
+const ivPend=id=>!!(INV._pend&&INV._pend.id===id&&Date.now()-INV._pend.at<5000);
+function ivCurTab(){const T=ivTabs();if(!T.some(t=>t.id===INV.tab)){if(ivPend(INV.tab))return T[0]||null;INV.tab=(T[0]||{}).id||'';}return ivTab(INV.tab);}
+/* ── 재고 계산 */
+function ivStock(){if(INV._st&&INV._stE===INV.E)return INV._st;const st={};
+  for(const e of Object.values(INV.E)){if(e.del||!e.it)continue;const s=st[e.it]||(st[e.it]={tot:0,sz:{},last:null,n:0});const dq=e.t==='out'?-e.q:e.q;s.tot+=dq;if(e.sz)s.sz[e.sz]=(s.sz[e.sz]||0)+dq;s.n++;
+    if(!s.last||(e.d+e.at)>(s.last.d+s.last.at))s.last=e;}
+  INV._st=st;INV._stE=INV.E;return st;}
+const ivOn=(it,sz)=>{const s=ivStock()[it];if(!s)return 0;return sz?(s.sz[sz]||0):s.tot;};
+const ivLow=i=>i.min>0&&ivOn(i.id)<=i.min;
+/* ── 저장 */
+const ivDoc=k=>S.fs.doc('wl/_sys/inv/'+k);
+async function ivPut(patch,asset){if(!S.fs){toast('실사용 업무일지(Firebase)에서만 저장됩니다.','err');return false;}
+  const ex=asset?INV.exA:INV.ex;let body=patch;if(!ex){body=ivDeep(ivDefCfg(asset),patch);}
+  body.at=nowISO();body.by=myId()||'';
+  try{await fbWrite(ivDoc(asset?'asset':'cfg').set(body,{merge:true}));return true;}catch(e){writeError(e);return false;}}
+function ivDeep(a,b){const o=JSON.parse(JSON.stringify(a));const m=(x,y)=>{for(const k of Object.keys(y)){const v=y[k];if(v&&typeof v==='object'&&!Array.isArray(v)&&x[k]&&typeof x[k]==='object'&&!Array.isArray(x[k]))m(x[k],v);else x[k]=v;}};m(o,b);return o;}
+const ivSer=t=>{const o={...t};delete o.id;return o;};
+async function ivPutEnt(list){if(!S.fs||!list.length)return false;const by={};for(const e of list){const m='L'+e.d.slice(0,7);(by[m]=by[m]||{})[e.id]=ivEntSer(e);}
+  try{for(const [m,ents] of Object.entries(by))await fbWrite(ivDoc(m).set({e:ents},{merge:true}));return true;}catch(e){writeError(e);return false;}}
+function ivEntSer(e){const o={d:e.d,t:e.t,tb:e.tb,it:e.it,itn:e.itn||'',sz:e.sz||'',q:e.q,p:e.p||0,k:e.k||'',kn:e.kn||'',kf:e.kf||'',to:e.to||'',rc:!!e.rc,cls:e.cls||'',memo:e.memo||'',g:e.g||'',by:e.by||'',bn:e.bn||'',at:e.at||nowISO(),del:e.del||''};if(e.cnt!==null&&e.cnt!==undefined)o.cnt=e.cnt;return o;}
+/* ── 순서 다시 매기기 */
+function ivReorder(list,movedId,beforeId){const L=list.filter(x=>x.id!==movedId);const m=list.find(x=>x.id===movedId)||{id:movedId};let i=beforeId?L.findIndex(x=>x.id===beforeId):-1;if(i<0)i=L.length;L.splice(i,0,m);const o={};L.forEach((x,k)=>{o[x.id]=(k+1)*10;});return o;}
+async function ivSetOrders(kind,ords,extra,asset){const p={};p[kind]={};for(const [id,o] of Object.entries(ords))p[kind][id]={o,...((extra||{})[id]||{})};return ivPut(p,asset);}
+
+/* ── 화면 */
+function ivTabBarHTML(asset){const c=asset?ivCA():ivC();const T=ivTabs(c);const cur=asset?INV.atab:INV.tab;const M=asset?(S.canWrite&&asLv()>=3):ivCanM();
+  return `<div class="iv-tabs" role="tablist" data-iv-sp="${asset?'as':'iv'}">${T.map(t=>`<div class="iv-tab${t.id===cur?' on':''}" data-iv-tab="${esc(t.id)}" ${M?'draggable="true"':''}><button type="button" role="tab" class="iv-tbt" data-iv-tgo="${esc(t.id)}" aria-selected="${t.id===cur}"><span class="ic">${esc(t.ic)}</span><span class="nm">${esc(t.n)}</span>${asset?'':`<em>${ivItems(t.id).length}</em>`}</button>${M&&t.id===cur?`<button type="button" class="fm-dmenu iv-tmenu" data-iv-menu="tb:${esc(t.id)}" aria-label="${esc(t.n)} 탭 메뉴" title="탭 메뉴 (이름·순서·처리 구분·지우기)">⋯</button>`:''}</div>`).join('')}
+    ${M?`<button type="button" class="iv-tadd" data-iv-tadd="${asset?'as':'iv'}" title="새 탭(품목 묶음) 만들기">＋ 탭</button>`:''}</div>`;}
+function ivHeadHTML(title,asset){const lv=asset?asLv():ivLv();const lvN=['','보기','입출고 기록','관리'][lv]||'';
+  return `<div class="list-h ap-h iv-h"><button type="button" class="btn sm ghost" data-ap-back>← 전자결재</button><h1>${title}</h1><span class="iv-lv" title="권한 설정에서 정한 내 권한">내 권한: ${esc(lvN)}</span><span class="sp"></span>
+    ${!asset&&ivCanW()?`<button type="button" class="btn" data-iv-ent="out">－ 출고</button><button type="button" class="btn primary" data-iv-ent="in">＋ 입고</button>`:''}</div>`;}
+function renderInv(v){ivSub();if(ivLv()<1){v.innerHTML=`${ivHeadHTML('📦 재고관리')}<div class="banner">재고관리를 볼 권한이 없습니다. 총괄 관리자에게 권한을 요청하세요.</div>`;return;}
+  if(!INV.ready){v.innerHTML=`${ivHeadHTML('📦 재고관리')}<p class="empty">재고 정보를 불러오는 중…</p>`;return;}
+  const t=ivCurTab();const M=ivCanM();
+  const modes=[['stock','📋 재고 현황'],['log','📒 입출고 대장']];if(t&&t.ks.some(k=>k.f==='gift'))modes.push(['gift','🎁 무상 지급 집계']);if(!modes.some(m=>m[0]===INV.mode))INV.mode='stock';
+  v.innerHTML=`<div id="iv" class="iv">${ivHeadHTML('📦 재고관리')}${INV.err?`<div class="banner">재고 정보를 불러오지 못했습니다 (${esc(INV.err)}).</div>`:''}${ivTabBarHTML(false)}
+    ${t?`<div class="iv-modes" role="tablist">${modes.map(([k,n])=>`<button type="button" role="tab" data-iv-mode="${k}" aria-selected="${INV.mode===k}">${n}</button>`).join('')}<span class="sp"></span>${INV.mode==='stock'&&M?`<button type="button" class="btn sm" data-iv-item-new>＋ 품목</button><button type="button" class="btn sm ghost" data-iv-bulk title="엑셀에서 여러 줄을 복사해 붙여 넣어 한꺼번에 추가">📋 여러 개 붙여넣기</button>`:''}${M?`<button type="button" class="btn sm ghost" data-iv-kinds="${esc(t.id)}" title="이 탭 출고 처리 구분·무상 지급 소액 기준">⚙ 처리 구분</button>`:''}</div>
+    ${INV.mode==='log'?ivLogHTML(t):INV.mode==='gift'?ivGiftHTML(t):ivStockHTML(t)}`:`<p class="empty">탭이 없습니다.${M?' 「＋ 탭」으로 품목 묶음을 만드세요.':''}</p>`}</div>`;
+  const q=$('#iv-q');if(q&&INV._qf){q.focus();q.setSelectionRange(q.value.length,q.value.length);INV._qf=false;}}
+/* 재고 현황: 왼쪽 폴더 나무 + 오른쪽 품목 */
+function ivTreeHTML(t){const M=ivCanM();const cnt=id=>{const ids=new Set([id,...ivDesc(id)]);return Object.values(ivC().it).filter(i=>!i.del&&i.tb===t.id&&ids.has(i.dr)).length;};
+  const row=(d,dep)=>{const kids=ivDirs(t.id,d.id);const open=INV.open[d.id]!==false;
+    return `<div class="fm-dirrow" style="--d:${dep}"><button type="button" class="fm-fold${kids.length?'':' sp0'}" ${kids.length?`data-iv-fold="${esc(d.id)}" aria-label="${open?'접기':'펼치기'}"`:'tabindex="-1" aria-hidden="true"'}>${kids.length?(open?'▾':'▸'):''}</button>
+      <button type="button" class="fm-dir${INV.dir===d.id?' on':''}${cnt(d.id)?'':' zero'}" data-iv-dir="${esc(d.id)}" ${M?'draggable="true"':''}><span class="ic">📁</span><span class="nm">${esc(d.n)}</span><small>${cnt(d.id)}</small></button>${M?`<button type="button" class="fm-dmenu" data-iv-menu="dr:${esc(d.id)}" aria-label="${esc(d.n)} 폴더 메뉴">⋯</button>`:''}</div>${open?kids.map(k=>row(k,dep+1)).join(''):''}`;};
+  const noDir=ivItems(t.id,'').length;
+  return `<aside class="fm-tree iv-tree"><div class="fm-tree-h"><b>📁 폴더</b>${M?`<button type="button" class="btn sm" data-iv-dnew="">＋ 새 폴더</button>`:''}</div><div class="fm-dirs">
+    <div class="fm-dirrow"><span class="fm-fold sp0"></span><button type="button" class="fm-dir${INV.dir===''?' on':''}" data-iv-dir=""><span class="ic">🗂</span><span class="nm">전체</span><small>${ivItems(t.id).length}</small></button></div>
+    ${ivDirs(t.id,'').map(d=>row(d,0)).join('')}
+    ${ivDirs(t.id,'').length&&noDir?`<div class="fm-dirrow"><span class="fm-fold sp0"></span><button type="button" class="fm-dir${INV.dir==='-'?' on':''}" data-iv-dir="-"><span class="ic">📄</span><span class="nm">폴더 밖 품목</span><small>${noDir}</small></button></div>`:''}</div>
+    ${M?`<p class="fm-tree-tip">품목·폴더를 끌어다 폴더(또는 위쪽 다른 탭)에 놓으면 옮겨지고, 품목 줄 위에 놓으면 순서가 바뀝니다. 휴대폰은 ⋯ 메뉴의 옮기기·위로·아래로.</p>${ivDelCount(t)?`<button type="button" class="linkish iv-showdel" data-iv-showdel>🗑 지운 항목 ${ivDelCount(t)}개 ${INV.showDel?'숨기기':'보기·되살리기'}</button>`:''}`:''}</aside>`;}
+function ivDelCount(t){return Object.values(ivC().tb).filter(x=>x.del).length+Object.values(ivC().dr).filter(d=>d.del&&d.tb===t.id).length+Object.values(ivC().it).filter(i=>i.del&&i.tb===t.id).length;}
+function ivRowHTML(i,M,W){const s=ivStock()[i.id]||{tot:0,sz:{}};const low=ivLow(i);const sel=INV.sel.has(i.id);
+  const szs=i.sz.length?`<div class="iv-szs">${i.sz.map(z=>{const n=s.sz[z]||0;return `<span class="iv-sz${n<=0?' zero':''}" title="${esc(z)} 사이즈 재고">${esc(z)} <b>${ivQ(n)}</b></span>`;}).join('')}${Object.keys(s.sz).filter(z=>!i.sz.includes(z)&&s.sz[z]).map(z=>`<span class="iv-sz old" title="지금 사이즈 목록에 없는 사이즈">${esc(z)} <b>${ivQ(s.sz[z])}</b></span>`).join('')}</div>`:'';
+  const last=s.last?`${fmtMD(s.last.d)} ${s.last.t==='in'?'입고':s.last.t==='out'?'출고':'조정'} ${ivQ(Math.abs(s.last.q))}`:'기록 없음';
+  return `<div class="iv-row${low?' low':''}${sel?' sel':''}" data-iv-row="${esc(i.id)}" ${M?'draggable="true"':''}>
+    ${M?`<label class="iv-ck"><input type="checkbox" data-iv-sel="${esc(i.id)}" ${sel?'checked':''} aria-label="${esc(i.n)} 고르기"></label>`:''}
+    <div class="iv-main"><div class="iv-nmw"><b class="iv-nm" data-iv-nm="${esc(i.id)}">${esc(i.n)}</b>${M?`<button type="button" class="fm-ren" data-iv-ren="it:${esc(i.id)}" aria-label="이름 바꾸기" title="이름 바꾸기">✏️</button>`:''}${low?'<span class="iv-lowt" title="적정 재고 이하">⚠ 부족</span>':''}</div>
+      <div class="iv-meta">${INV.dir===''&&ivDirOk(i.dr)?`<span>📁 ${esc(ivPath(i.dr))}</span>`:''}${i.cost?`<span>구입가 ${ivWon(i.cost)}</span>`:''}${i.retail?`<span>소비자가 ${ivWon(i.retail)}</span>`:''}${i.min?`<span>적정 ${ivQ(i.min)}${esc(i.unit)}</span>`:''}<span class="iv-last">최근: ${esc(last)}</span>${i.memo?`<span class="iv-memo">${esc(i.memo)}</span>`:''}</div>${szs}</div>
+    <div class="iv-qty${s.tot<=0?' zero':''}"><b>${ivQ(s.tot)}</b><small>${esc(i.unit)}</small></div>
+    <div class="iv-acts">${W?`<button type="button" class="btn sm" data-iv-ent="in" data-iv-it="${esc(i.id)}">＋ 입고</button><button type="button" class="btn sm" data-iv-ent="out" data-iv-it="${esc(i.id)}">－ 출고</button>`:''}<button type="button" class="fm-dmenu iv-imenu" data-iv-menu="it:${esc(i.id)}" aria-label="${esc(i.n)} 메뉴">⋯</button></div></div>`;}
+function ivStockHTML(t){const M=ivCanM(),W=ivCanW();const q=INV.q.trim();const terms=q?q.toLowerCase().split(/\s+/):[];
+  if(INV.dir&&INV.dir!=='-'&&ivC().dr[INV.dir]&&ivC().dr[INV.dir].del)INV.dir='';const dirOn=INV.dir==='-'||ivDirOk(INV.dir)?INV.dir:'';
+  const hit=i=>!terms.length||(typeof gsHit==='function'?gsHit([i.n,i.memo,ivPath(i.dr),i.sz.join(' ')].join(' '),terms):[i.n,i.memo].join(' ').toLowerCase().includes(q.toLowerCase()));
+  let groups=[];
+  if(dirOn==='-')groups=[{id:'',name:'폴더 밖 품목',items:ivItems(t.id,'')}];
+  else{const ids=dirOn?[dirOn,...ivDesc(dirOn)]:[''];
+    if(!dirOn){groups.push({id:'',name:ivDirs(t.id,'').length?'폴더 밖 품목':'',items:ivItems(t.id,'')});const walk=p=>{for(const d of ivDirs(t.id,p)){groups.push({id:d.id,name:ivPath(d.id),items:ivItems(t.id,d.id)});walk(d.id);}};walk('');}
+    else for(const id of ids)groups.push({id,name:ivPath(id),items:ivItems(t.id,id)});}
+  groups=groups.map(g=>({...g,items:g.items.filter(hit)}));const n=groups.reduce((a,g)=>a+g.items.length,0);const low=groups.reduce((a,g)=>a+g.items.filter(ivLow).length,0);
+  const delSec=M&&INV.showDel?ivDelHTML(t):'';
+  return `<div class="fm-wrap iv-wrap">${ivTreeHTML(t)}<main class="iv-list">
+    <div class="iv-tools"><input type="search" id="iv-q" placeholder="품목 이름 찾기 (초성도 됨)" value="${esc(INV.q)}" aria-label="품목 찾기"><span class="iv-cnt">${n}개${low?` · <b class="iv-lowt">⚠ 부족 ${low}</b>`:''}</span>${M&&INV.sel.size?`<span class="iv-selbar"><b>${INV.sel.size}개 고름</b><button type="button" class="btn sm" data-iv-selmove>📁 옮기기</button><button type="button" class="btn sm ghost" data-iv-seldel>🗑 지우기</button><button type="button" class="btn sm ghost" data-iv-selnone>고르기 취소</button></span>`:''}</div>
+    ${delSec}
+    ${n?groups.filter(g=>g.items.length).map(g=>`<section class="iv-grp" data-iv-gdir="${esc(g.id)}">${g.name?`<h3 class="iv-gh">📁 ${esc(g.name)} <small>${g.items.length}</small></h3>`:''}${g.items.map(i=>ivRowHTML(i,M,W)).join('')}</section>`).join('')
+      :`<div class="dd-empty iv-empty">${terms.length?'찾는 품목이 없습니다.':`이 ${dirOn?'폴더':'탭'}에 품목이 없습니다.${M?' 위의 「＋ 품목」으로 추가하세요.':''}`}</div>`}</main></div>`;}
+function ivDelHTML(t){const D=Object.values(ivC().dr).filter(d=>d.del&&d.tb===t.id),I=Object.values(ivC().it).filter(i=>i.del&&i.tb===t.id),TB=Object.values(ivC().tb).filter(x=>x.del);
+  return `<section class="iv-del"><h3>🗑 지운 항목 <small>되살리면 원래 자리(폴더가 없으면 탭 첫 칸)로 돌아갑니다</small></h3>${[...TB.map(x=>['tb',x,'🗂 탭']),...D.map(d=>['dr',d,'📁']),...I.map(i=>['it',i,'📦'])].sort((a,b)=>b[1].del.localeCompare(a[1].del)).map(([k,x,ic])=>`<div class="iv-delrow"><span>${ic} ${esc(x.n)}</span><small>${esc(fmtMD(localDate(x.del)))} 지움</small><button type="button" class="btn sm" data-iv-undel="${k}:${esc(x.id)}">↶ 되살리기</button></div>`).join('')}</section>`;}
+/* 입출고 대장 */
+function ivRange(){const f=INV.f;const td=today();const y=td.slice(0,4),m=td.slice(0,7);
+  if(f.per==='month')return [m+'-01',m+'-31'];if(f.per==='prev'){const d=new Date(+y,+td.slice(5,7)-2,1);const pm=`${d.getFullYear()}-${pad(d.getMonth()+1)}`;return [pm+'-01',pm+'-31'];}
+  if(f.per==='year')return [y+'-01-01',y+'-12-31'];if(f.per==='range')return [isDate(f.from)?f.from:'0000-00-00',isDate(f.to)?f.to:'9999-12-31'];return ['0000-00-00','9999-12-31'];}
+function ivLogRows(t){const [a,b]=ivRange();const f=INV.f;const q=f.q.trim().toLowerCase();
+  return Object.values(INV.E).filter(e=>!e.del&&e.tb===t.id&&e.d>=a&&e.d<=b&&(!f.t||e.t===f.t)&&(!f.k||e.k===f.k)&&(!q||[ivItName(e),e.to,e.memo,e.kn,e.bn,e.sz].join(' ').toLowerCase().includes(q)))
+    .sort((x,y)=>y.d.localeCompare(x.d)||y.at.localeCompare(x.at));}
+const ivItName=e=>{const i=ivC().it[e.it];return i?i.n:(e.itn||'(지운 품목)');};
+const ivTN={in:'입고',out:'출고',adj:'조정'};
+function ivLogHTML(t){const L=ivLogRows(t);const f=INV.f;const sum={in:[0,0],out:[0,0],adj:[0,0]};for(const e of L){sum[e.t][0]+=e.q;sum[e.t][1]+=e.q*e.p;}
+  const me=myId();const M=ivCanM();
+  return `<div class="iv-filt"><select id="iv-per" aria-label="기간">${[['month','이번 달'],['prev','지난 달'],['year','올해'],['all','전체'],['range','기간 직접']].map(([k,n])=>`<option value="${k}" ${f.per===k?'selected':''}>${n}</option>`).join('')}</select>
+    ${f.per==='range'?`<input type="date" id="iv-from" value="${esc(f.from)}" aria-label="시작일"><span>~</span><input type="date" id="iv-to" value="${esc(f.to)}" aria-label="끝일">`:''}
+    <select id="iv-ft" aria-label="구분"><option value="">입고·출고·조정</option>${['in','out','adj'].map(k=>`<option value="${k}" ${f.t===k?'selected':''}>${ivTN[k]}만</option>`).join('')}</select>
+    <select id="iv-fk" aria-label="처리 구분"><option value="">모든 처리 구분</option>${t.ks.map(k=>`<option value="${esc(k.id)}" ${f.k===k.id?'selected':''}>${esc(k.n)}</option>`).join('')}</select>
+    <input type="search" id="iv-fq" placeholder="품목·받는 곳·메모 찾기" value="${esc(f.q)}"><span class="sp"></span><button type="button" class="btn sm" data-iv-xls>📥 엑셀</button></div>
+    <div class="iv-sum"><span>입고 <b>${ivQ(sum.in[0])}</b>${sum.in[1]?` · ${ivWon(sum.in[1])}`:''}</span><span>출고 <b>${ivQ(sum.out[0])}</b>${sum.out[1]?` · ${ivWon(sum.out[1])}`:''}</span>${sum.adj[0]?`<span>조정 <b>${sum.adj[0]>0?'+':''}${ivQ(sum.adj[0])}</b></span>`:''}<span class="iv-sumn">${L.length}줄</span></div>
+    <div class="tbl-wrap"><table class="lst iv-log"><thead><tr><th>날짜</th><th>구분</th><th>품목</th><th>수량</th><th>단가·금액</th><th>처리 구분</th><th>받는 곳·구입처</th><th>기록</th><th></th></tr></thead><tbody>
+    ${L.length?L.map(e=>{const own=e.by===me;const can=M||(own&&ivCanW());return `<tr class="t-${e.t}"><td class="nw">${esc(fmtMD(e.d))}</td><td><span class="iv-tt ${e.t}">${ivTN[e.t]}</span></td><td class="tt">${esc(ivItName(e))}${e.sz?` <span class="iv-sz">${esc(e.sz)}</span>`:''}</td>
+      <td class="num">${e.t==='out'?'－':e.q>0&&e.t==='adj'?'+':''}${ivQ(e.t==='out'?e.q:e.q)}${e.t==='adj'&&e.cnt!==null?`<small> (실사 ${ivQ(e.cnt)})</small>`:''}</td><td class="num">${e.p?`${ivWon(e.p)}<br><small>${ivWon(e.p*Math.abs(e.q))}</small>`:''}</td>
+      <td>${esc(e.kn||'')}${e.cls?` <span class="iv-cls ${e.cls}">${e.cls==='pay'?'급여 신고':'복리후생'}</span>`:''}${e.kf==='don'?` <span class="iv-cls ${e.rc?'wel':'pay'}">${e.rc?'영수증 받음':'영수증 미수령'}</span>`:''}${e.kf==='spon'?' <span class="iv-cls">영수증 불가</span>':''}</td>
+      <td>${esc(e.to)}${e.memo?`<br><small>${esc(e.memo)}</small>`:''}</td><td class="nw"><small>${esc(e.bn)}</small></td><td class="nw">${can?`<button type="button" class="btn sm ghost" data-iv-eed="${esc(e.id)}" title="고치기">✏️</button><button type="button" class="btn sm ghost" data-iv-edel="${esc(e.id)}" title="지우기">🗑</button>`:''}</td></tr>`;}).join('')
+      :`<tr><td colspan="9" class="empty">이 기간 기록이 없습니다.${ivCanW()?' 위의 「＋ 입고」「－ 출고」로 적으세요.':''}</td></tr>`}</tbody></table></div>`;}
+/* 무상 지급 집계 (복리후생 / 급여 신고) */
+function ivGiftHTML(t){const [a,b]=ivRange();const gl=ivC().gl;const P={};
+  for(const e of Object.values(INV.E)){if(e.del||e.tb!==t.id||e.t!=='out'||e.kf!=='gift'||e.d<a||e.d>b)continue;const k=e.to||'(받는 사람 없음)';const p=P[k]||(P[k]={n:0,wel:0,pay:0,q:0,lines:[]});const amt=e.p*e.q;p.q+=e.q;p.n++;p[e.cls==='pay'?'pay':'wel']+=amt;p.lines.push(e);}
+  const L=Object.entries(P).sort((x,y)=>(y[1].pay-x[1].pay)||x[0].localeCompare(y[0],'ko'));const tw=L.reduce((s,[,p])=>s+p.wel,0),tp=L.reduce((s,[,p])=>s+p.pay,0);
+  return `<div class="iv-filt"><select id="iv-per" aria-label="기간">${[['month','이번 달'],['prev','지난 달'],['year','올해'],['all','전체'],['range','기간 직접']].map(([k,n])=>`<option value="${k}" ${INV.f.per===k?'selected':''}>${n}</option>`).join('')}</select>
+    ${INV.f.per==='range'?`<input type="date" id="iv-from" value="${esc(INV.f.from)}" aria-label="시작일"><span>~</span><input type="date" id="iv-to" value="${esc(INV.f.to)}" aria-label="끝일">`:''}<span class="sp"></span><button type="button" class="btn sm" data-iv-gxls>📥 엑셀</button></div>
+    <p class="iv-rule">소액 기준 <b>${ivWon(gl)}</b> (1인 1회 지급, 회사 구입가 합계) — 이하: 구입금액 전액 <b>복리후생비</b> · 초과: 회사 구입가 기준 <b>급여(과세) 신고</b>${ivCanM()?` <button type="button" class="linkish" data-iv-kinds="${esc(t.id)}">기준 바꾸기</button>`:''}</p>
+    <div class="iv-sum"><span>복리후생 <b>${ivWon(tw)}</b></span><span>급여 신고 대상 <b>${ivWon(tp)}</b></span><span class="iv-sumn">${L.length}명</span></div>
+    <div class="tbl-wrap"><table class="lst iv-log"><thead><tr><th>받는 사람</th><th>지급 건수</th><th>수량</th><th>복리후생(구입가)</th><th>급여 신고(구입가)</th><th>지급 내역</th></tr></thead><tbody>
+    ${L.length?L.map(([k,p])=>`<tr><td class="tt">${esc(k)}</td><td class="num">${p.n}</td><td class="num">${ivQ(p.q)}</td><td class="num">${p.wel?ivWon(p.wel):''}</td><td class="num">${p.pay?`<b>${ivWon(p.pay)}</b>`:''}</td><td><small>${p.lines.slice(0,4).map(e=>`${fmtMD(e.d)} ${esc(ivItName(e))} ${ivQ(e.q)}`).join(' · ')}${p.lines.length>4?` 외 ${p.lines.length-4}건`:''}</small></td></tr>`).join('')
+      :'<tr><td colspan="6" class="empty">이 기간 무상 지급 기록이 없습니다.</td></tr>'}</tbody></table></div>`;}
+/* 자산관리 (탭만) */
+function renderAsset(v){ivSub();if(asLv()<1){v.innerHTML=`${ivHeadHTML('🏷 자산관리',true)}<div class="banner">자산관리를 볼 권한이 없습니다. 총괄 관리자에게 권한을 요청하세요.</div>`;return;}
+  if(!INV.ready){v.innerHTML=`${ivHeadHTML('🏷 자산관리',true)}<p class="empty">불러오는 중…</p>`;return;}
+  const T=ivTabs(ivCA());if(!T.some(t=>t.id===INV.atab)&&!ivPend(INV.atab))INV.atab=(T[0]||{}).id||'';const t=T.find(x=>x.id===INV.atab)||T[0];
+  v.innerHTML=`<div id="iv" class="iv iv-as">${ivHeadHTML('🏷 자산관리',true)}${ivTabBarHTML(true)}
+    <div class="iv-soon"><b>${t?`${esc(t.ic)} ${esc(t.n)}`:'자산관리'}</b><p>자산 목록·위치·담당자·구입일·감가상각 등 세부 기능은 다음에 만들 예정입니다.<br>지금은 탭(자산 분류)만 정리해 둘 수 있습니다${S.canWrite&&asLv()>=3?' — 「＋ 탭」, ⋯ 메뉴(이름·순서·지우기), 끌어다 놓기로 순서 바꾸기':''}.</p></div></div>`;}
+
+/* ── 전자결재에 끼우기 */
+{const _ra=renderAppr;renderAppr=function(v){if(apOK()&&!AP.edit&&AP.panel==='inv')return renderInv(v);if(apOK()&&!AP.edit&&AP.panel==='asset')return renderAsset(v);
+  const r=_ra.apply(this,arguments);try{if(!AP.edit&&!AP.panel&&!AP.open&&apOK()){const h=$('.ap-h',v);if(h&&!$('[data-ap-panel="inv"]',h)){const at=$('[data-ap-panel="tpl"]',h)||$('[data-ap-new]',h);
+    const b=[ivLv()>=1?'<button type="button" class="btn sm iv-go" data-ap-panel="inv">📦 재고관리</button>':'',asLv()>=1?'<button type="button" class="btn sm iv-go" data-ap-panel="asset">🏷 자산관리</button>':''].join('');if(at&&b)at.insertAdjacentHTML('beforebegin',b);}}}catch(e){console.warn(e);}return r;};}
+
+/* ── ⋯ 메뉴 */
+function ivPopClose(){const m=$('#iv-pop');if(m)m.remove();INV.pop=null;}
+function ivMenu(btn,key){ivPopClose();const [k,id]=key.split(/:(.*)/s);let items=[];const asset=k==='tb'&&btn.closest('[data-iv-sp="as"]');
+  if(k==='tb')items=[['ren','✏️ 이름 바꾸기'],['icon','🙂 아이콘 바꾸기'],['left','◀ 왼쪽으로'],['right','▶ 오른쪽으로'],...(asset?[]:[['kinds','⚙ 출고 처리 구분']]),['del','🗑 탭 지우기']];
+  else if(k==='dr')items=[['sub','＋ 하위 폴더 만들기'],['ren','✏️ 이름 바꾸기'],['up','▲ 위로'],['down','▼ 아래로'],['move','📁 옮기기 (다른 폴더·탭)'],['del','🗑 폴더 지우기']];
+  else if(k==='it'){items=[['log','📒 이 품목 기록 보기']];if(ivCanW())items.unshift(['in','＋ 입고'],['out','－ 출고']);if(ivCanM())items.push(['adj','🔢 재고 조정 (실사)'],['edit','📝 정보 고치기 (단위·사이즈·단가)'],['ren','✏️ 이름 바꾸기'],['up','▲ 위로'],['down','▼ 아래로'],['move','📁 옮기기 (다른 폴더·탭)'],['del','🗑 품목 지우기']);}
+  const m=document.createElement('div');m.id='iv-pop';m.className='fm-dmpop';m.setAttribute('role','menu');m.innerHTML=items.map(([a,n])=>`<button type="button" role="menuitem" data-iv-act="${a}" class="${a==='del'?'danger':''}">${n}</button>`).join('');
+  m.dataset.k=k;m.dataset.id=id;m.dataset.sp=asset?'as':'iv';document.body.appendChild(m);const r=btn.getBoundingClientRect();const w=m.offsetWidth,h=m.offsetHeight;
+  m.style.left=Math.max(8,Math.min(innerWidth-w-8,r.right-w+scrollX))+'px';m.style.top=(r.bottom+h+8>innerHeight?Math.max(8,r.top-h-4):r.bottom+4)+scrollY+'px';INV.pop=key;const f=m.querySelector('button');if(f)f.focus();}
+async function ivAct(k,id,a,sp){const asset=sp==='as';const c=asset?ivCA():ivC();
+  if(k==='tb'){const t=c.tb[id];if(!t)return;
+    if(a==='ren'){const host=$(`[data-iv-sp="${sp}"] [data-iv-tgo="${CSS.escape(id)}"] .nm`);if(host)inlineRename(host,t.n,async v=>{await ivPut({tb:{[id]:{n:v.slice(0,30)}}},asset);},{max:30});return;}
+    if(a==='icon'){const v=prompt('탭 아이콘(이모지 1개) — 예: 💄 👕 📎 🧹 🍪 🖥 🚗',t.ic);if(v&&v.trim())await ivPut({tb:{[id]:{ic:[...v.trim()].slice(0,2).join('')}}},asset);return;}
+    if(a==='left'||a==='right'){const T=ivTabs(c);const i=T.findIndex(x=>x.id===id);const j=a==='left'?i-1:i+1;if(j<0||j>=T.length)return;const before=a==='left'?T[j].id:(T[j+1]||{}).id;await ivSetOrders('tb',ivReorder(T,id,before),null,asset);return;}
+    if(a==='kinds'){ivKindsDlg(id);return;}
+    if(a==='del'){const n=asset?0:ivItems(id).length;if(ivTabs(c).length<=1){toast('탭은 하나 이상 있어야 합니다.','err');return;}
+      if(!confirm(`「${t.n}」 탭을 지울까요?${n?`\n탭 안의 품목 ${n}개·폴더도 함께 지워집니다(입출고 기록은 남고, 관리자가 다시 되살릴 수 있습니다).`:''}`))return;
+      const del=nowISO();const p={tb:{[id]:{del}}};if(!asset){p.dr={};p.it={};for(const d of Object.values(ivC().dr))if(d.tb===id&&!d.del)p.dr[d.id]={del};for(const i of Object.values(ivC().it))if(i.tb===id&&!i.del)p.it[i.id]={del};}
+      if(await ivPut(p,asset)){if(asset)INV.atab='';else INV.tab='';toast(`「${t.n}」 탭을 지웠습니다.`);}return;}}
+  if(k==='dr'){const d=ivC().dr[id];if(!d)return;
+    if(a==='sub'){await ivDirNew(d.tb,d.id);return;}
+    if(a==='ren'){const host=$(`[data-iv-dir="${CSS.escape(id)}"] .nm`);if(host)inlineRename(host,d.n,async v=>{await ivPut({dr:{[id]:{n:dirClean(v).slice(0,40)}}});},{max:40});return;}
+    if(a==='up'||a==='down'){const sib=ivDirs(d.tb,d.par);const i=sib.findIndex(x=>x.id===id);const j=a==='up'?i-1:i+1;if(j<0||j>=sib.length)return;await ivSetOrders('dr',ivReorder(sib,id,a==='up'?sib[j].id:(sib[j+1]||{}).id));return;}
+    if(a==='move'){ivPickDest(`「${d.n}」 폴더 옮기기`,{dir:id},async dest=>{await ivMoveDir(id,dest.tb,dest.dir);});return;}
+    if(a==='del'){const kids=ivDirs(d.tb,id),its=ivItems(d.tb,id);if((kids.length||its.length)&&!confirm(`「${d.n}」 폴더를 지울까요?\n안에 있는 ${[its.length?`품목 ${its.length}개`:'',kids.length?`폴더 ${kids.length}개`:''].filter(Boolean).join('·')}는 바로 위 ${d.par&&ivDirOk(d.par)?'폴더':'탭'}로 옮겨집니다.`))return;
+      const p={dr:{[id]:{del:nowISO()}},it:{}};for(const x of kids)p.dr[x.id]={par:d.par};for(const x of its)p.it[x.id]={dr:d.par};if(await ivPut(p)){if(INV.dir===id)INV.dir=d.par;toast(`「${d.n}」 폴더를 지웠습니다.`);}return;}}
+  if(k==='it'){const i=ivC().it[id];if(!i)return;
+    if(a==='in'||a==='out'||a==='adj'){ivEntDlg(a,{it:id});return;}
+    if(a==='log'){INV.mode='log';INV.f={...INV.f,q:i.n,per:'all',t:'',k:''};render();return;}
+    if(a==='edit'){ivItemDlg(id);return;}
+    if(a==='ren'){const host=$(`[data-iv-nm="${CSS.escape(id)}"]`);if(host)inlineRename(host,i.n,async v=>{await ivPut({it:{[id]:{n:v.slice(0,60)}}});},{max:60});return;}
+    if(a==='up'||a==='down'){const sib=ivItems(i.tb,ivDirOk(i.dr)?i.dr:'');const x=sib.findIndex(y=>y.id===id);const j=a==='up'?x-1:x+1;if(j<0||j>=sib.length)return;await ivSetOrders('it',ivReorder(sib,id,a==='up'?sib[j].id:(sib[j+1]||{}).id));return;}
+    if(a==='move'){ivPickDest(`「${i.n}」 옮기기`,{it:id},async dest=>{await ivMoveItems([id],dest.tb,dest.dir);});return;}
+    if(a==='del'){const on=ivOn(id);if(!confirm(`「${i.n}」 품목을 지울까요?${on?`\n지금 재고 ${ivQ(on)}${i.unit}이 남아 있습니다.`:''}\n입출고 기록은 그대로 남고, 🗑 지운 항목에서 되살릴 수 있습니다.`))return;if(await ivPut({it:{[id]:{del:nowISO()}}})){INV.sel.delete(id);toast(`「${i.n}」을(를) 지웠습니다.`);}return;}}}
+/* 옮길 곳 고르기 (탭 › 폴더) */
+function ivPickDest(title,src,cb){const groups=[];const bad=new Set(src.dir?[src.dir,...ivDesc(src.dir)]:[]);const cur=src.it?ivC().it[src.it]:src.dir?ivC().dr[src.dir]:null;
+  for(const t of ivTabs()){const items=[{key:`${t.id}|`,label:`「${t.n}」 탭 첫 칸 (폴더 밖)`,icon:t.ic,cur:!!cur&&cur.tb===t.id&&(src.it?!ivDirOk(cur.dr):!cur.par)}];
+    const walk=(p,dep)=>{for(const d of ivDirs(t.id,p)){if(bad.has(d.id))continue;items.push({key:`${t.id}|${d.id}`,label:d.n,icon:'📁',depth:dep,cur:!!cur&&(src.it?cur.dr===d.id:cur.par===d.id)});walk(d.id,dep+1);}};walk('',1);
+    groups.push({label:`${t.ic} ${t.n}`,items});}
+  dirPick(title,groups,key=>{const [tb,dir]=key.split('|');cb({tb,dir:dir||''});});}
+async function ivMoveItems(ids,tb,dir){const sib=ivItems(tb,dir);let o=(sib.length?sib[sib.length-1].o:0)+10;const p={it:{}};for(const id of ids){p.it[id]={tb,dr:dir,o};o+=10;}
+  if(await ivPut(p)){toast(`${ids.length>1?`품목 ${ids.length}개를`:`「${(ivC().it[ids[0]]||{}).n||'품목'}」을(를)`} ${dir?`「${ivPath(dir)}」`:`「${(ivTab(tb)||{}).n||''}」 탭`}으로 옮겼습니다.`);return true;}return false;}
+async function ivMoveDir(id,tb,par){if(par===id||ivDesc(id).includes(par)){toast('폴더를 자기 안으로 옮길 수 없습니다.','err');return false;}const d=ivC().dr[id];const sib=ivDirs(tb,par).filter(x=>x.id!==id);
+  const p={dr:{[id]:{tb,par,o:(sib.length?sib[sib.length-1].o:0)+10}}};if(d.tb!==tb){p.it={};for(const x of ivDesc(id))p.dr[x]={tb};const all=new Set([id,...ivDesc(id)]);for(const i of Object.values(ivC().it))if(!i.del&&all.has(i.dr))p.it[i.id]={tb};}
+  if(await ivPut(p)){toast(`「${d.n}」 폴더를 옮겼습니다.`);return true;}return false;}
+async function ivDirNew(tb,par){if(!ivCanM())return;const sib=ivDirs(tb,par);const id='d'+rid().slice(0,10);let n='새 폴더',k=2;while(sib.some(x=>x.n===n))n=`새 폴더 ${k++}`;
+  if(!await ivPut({dr:{[id]:{tb,n,par:par||'',o:(sib.length?sib[sib.length-1].o:0)+10}}}))return;if(par)INV.open[par]=true;INV.dir=id;render();
+  setTimeout(()=>{const host=$(`[data-iv-dir="${CSS.escape(id)}"] .nm`);if(host)inlineRename(host,n,async v=>{await ivPut({dr:{[id]:{n:dirClean(v).slice(0,40)}}});},{max:40});},120);}
+async function ivTabNew(asset){const c=asset?ivCA():ivC();const T=ivTabs(c);const id='t'+rid().slice(0,8);let n=asset?'새 자산 분류':'새 품목 묶음',k=2;while(T.some(x=>x.n===n))n=`${asset?'새 자산 분류':'새 품목 묶음'} ${k++}`;
+  const p={tb:{[id]:{n,ic:asset?'📦':'📦',o:(T.length?T[T.length-1].o:0)+10,ks:asset?[]:[ivK('use','사내 사용·지급'),ivK('loss'),ivK('etc')]}}};if(!await ivPut(p,asset))return;INV._pend={id,at:Date.now()};if(asset)INV.atab=id;else{INV.tab=id;INV.dir='';}render();
+  setTimeout(()=>{const host=$(`[data-iv-sp="${asset?'as':'iv'}"] [data-iv-tgo="${CSS.escape(id)}"] .nm`);if(host)inlineRename(host,n,async v=>{await ivPut({tb:{[id]:{n:v.slice(0,30)}}},asset);},{max:30});},120);}
+
+/* ── 대화상자 공용 */
+function ivDlgEl(){let d=$('#dlg-iv');if(!d){d=document.createElement('dialog');d.className='modal iv-dlg';d.id='dlg-iv';d.setAttribute('aria-labelledby','iv-dh');document.body.appendChild(d);d.addEventListener('close',()=>{INV.dlg=null;});}return d;}
+function ivDlgShow(html){const d=ivDlgEl();d.innerHTML=html;if(!d.open)d.showModal();return d;}
+const ivHead=t=>`<header class="modal-h"><h2 id="iv-dh">${t}</h2><button type="button" class="icon-btn" data-iv-x aria-label="닫기">✕</button></header>`;
+/* 품목 추가·고치기 */
+function ivItemDlg(id){const t=ivCurTab();if(!t)return;const i=id?ivC().it[id]:null;const dirOpts=[['','(폴더 밖)']];const walk=(p,dep)=>{for(const d of ivDirs(i?i.tb:t.id,p)){dirOpts.push([d.id,'　'.repeat(dep)+'📁 '+d.n]);walk(d.id,dep+1);}};walk('',0);
+  const curDir=i?(ivDirOk(i.dr)?i.dr:''):(INV.dir&&INV.dir!=='-'?INV.dir:'');const sz=i?i.sz.join(','):(t.id==='clo'?'S,M,L,XL,2XL,3XL':'');
+  INV.dlg={k:'item',id:id||null};
+  ivDlgShow(`<form method="dialog" class="iv-form" id="iv-itf">${ivHead(i?`📝 품목 정보 — ${esc(i.n)}`:`＋ 품목 추가 — ${esc(t.ic)} ${esc(t.n)}`)}<div class="modal-b one">
+    <label class="f"><span class="lbl">품목 이름</span><input id="ivi-n" required maxlength="60" value="${esc(i?i.n:'')}" placeholder="${t.id==='cos'?'예: 닥터지 레드 블레미쉬 크림 70ml':t.id==='clo'?'예: 동절기 근무복 상의':'예: A4 복사용지'}"></label>
+    <div class="r2"><label class="f"><span class="lbl">폴더</span><select id="ivi-dr">${dirOpts.map(([v,n])=>`<option value="${esc(v)}" ${v===curDir?'selected':''}>${esc(n)}</option>`).join('')}</select></label>
+      <label class="f"><span class="lbl">단위</span><input id="ivi-unit" list="ivi-units" maxlength="8" value="${esc(i?i.unit:t.id==='clo'?'벌':'개')}"><datalist id="ivi-units">${IV_UNITS.map(u=>`<option value="${u}">`).join('')}</datalist></label></div>
+    <label class="f"><span class="lbl">사이즈 <small>(종류마다 다르면 품목마다 정함 · 쉼표로 구분)</small></span><div class="iv-szrow"><select id="ivi-szp" aria-label="사이즈 고르기">${IV_SZ.map(([v,n])=>`<option value="${esc(v)}" ${v===sz?'selected':''}>${esc(n)}</option>`).join('')}${IV_SZ.some(x=>x[0]===sz)?'':`<option value="${esc(sz)}" selected>직접 입력</option>`}</select><input id="ivi-sz" value="${esc(sz)}" placeholder="예: S,M,L 또는 230,240,250 (없으면 비움)"></div></label>
+    <div class="r3"><label class="f"><span class="lbl">회사 구입가 (1${esc(i?i.unit:'개')})</span><input id="ivi-cost" type="number" min="0" step="1" inputmode="numeric" value="${i&&i.cost?i.cost:''}" placeholder="원"></label>
+      <label class="f"><span class="lbl">소비자가</span><input id="ivi-retail" type="number" min="0" step="1" inputmode="numeric" value="${i&&i.retail?i.retail:''}" placeholder="원"></label>
+      <label class="f"><span class="lbl">적정 재고 <small>(이하면 ⚠)</small></span><input id="ivi-min" type="number" min="0" step="1" inputmode="numeric" value="${i&&i.min?i.min:''}" placeholder="0"></label></div>
+    ${i?'':`<label class="f"><span class="lbl">처음 재고 <small>(지금 있는 수량 — 사이즈가 있으면 사이즈별로)</small></span><div id="ivi-init" class="iv-init"></div></label>`}
+    <label class="f"><span class="lbl">메모</span><input id="ivi-memo" maxlength="200" value="${esc(i?i.memo:'')}" placeholder="보관 위치·유통기한·거래처 등"></label>
+  </div><footer class="modal-f"><span class="spacer"></span><button type="button" class="btn ghost" data-iv-x>취소</button><button type="submit" class="btn primary">${i?'저장':'추가'}</button></footer></form>`);
+  ivInitRows();setTimeout(()=>{const n=$('#ivi-n');if(n&&!i)n.focus();},30);}
+function ivInitRows(){const box=$('#ivi-init');if(!box)return;const sz=($('#ivi-sz').value||'').split(',').map(s=>s.trim()).filter(Boolean);const old={};for(const x of $$('[data-ivi-init]',box))old[x.dataset.iviInit]=x.value;
+  box.innerHTML=(sz.length?sz:['']).map(z=>`<label class="iv-ini">${z?`<span>${esc(z)}</span>`:''}<input type="number" min="0" step="1" inputmode="numeric" data-ivi-init="${esc(z)}" value="${esc(old[z]||'')}" placeholder="0"></label>`).join('');}
+async function ivItemSave(){const D=INV.dlg;if(!D)return;const t=ivCurTab();const n=($('#ivi-n').value||'').replace(/\s+/g,' ').trim().slice(0,60);if(!n){toast('품목 이름을 적으세요.','err');$('#ivi-n').focus();return;}
+  const sz=[...new Set(($('#ivi-sz').value||'').split(',').map(s=>s.trim().slice(0,12)).filter(Boolean))].slice(0,30);const dr=$('#ivi-dr').value;
+  const o={n,dr,unit:($('#ivi-unit').value||'개').trim().slice(0,8)||'개',sz,cost:Math.max(0,ivN($('#ivi-cost').value)),retail:Math.max(0,ivN($('#ivi-retail').value)),min:Math.max(0,ivN($('#ivi-min').value)),memo:($('#ivi-memo').value||'').trim().slice(0,200)};
+  if(D.id){if(!await ivPut({it:{[D.id]:o}}))return;ivDlgEl().close();toast(`「${n}」 정보를 저장했습니다.`);return;}
+  const id='i'+rid().slice(0,10);const sib=ivItems(t.id,dr);o.tb=t.id;o.o=(sib.length?sib[sib.length-1].o:0)+10;
+  const init=[];for(const x of $$('[data-ivi-init]')){const q=ivN(x.value);if(q>0)init.push({sz:x.dataset.iviInit,q});}
+  if(!await ivPut({it:{[id]:o}}))return;
+  if(init.length){const g=rid().slice(0,10);await ivPutEnt(init.map(x=>({id:'e'+rid().slice(0,12),d:today(),t:'adj',tb:t.id,it:id,itn:n,sz:x.sz,q:x.q,p:o.cost,k:'',kn:'처음 재고',kf:'',to:'',memo:'처음 재고',g,by:myId()||'',bn:nameOf(myId())||'',at:nowISO(),cnt:null})));}
+  ivDlgEl().close();toast(`「${n}」을(를) 추가했습니다.${init.length?` 처음 재고 ${init.reduce((a,x)=>a+x.q,0)}${o.unit}`:''}`);}
+/* 여러 품목 한꺼번에 (엑셀 칸 복사 → 붙여넣기) — 한 줄에 한 품목: 이름 · 회사 구입가 · 소비자가 · 처음 재고 · 단위 · 사이즈 · 적정 재고 · 메모
+   칸은 탭(엑셀 복사) 또는 쉼표로 나눔. 사이즈는 「S;M;L」 또는 사이즈별 처음 재고 「M:5;L:3」 */
+const ivNum=v=>{const t=String(v||'').replace(/[,\s원]/g,'');return t===''?0:(isFinite(+t)?+t:NaN);};
+function ivBulkParse(txt){const out=[],bad=[];const lines=String(txt||'').split(/\r?\n/).map(l=>l.replace(/\s+$/,'')).filter(l=>l.trim());
+  lines.forEach((l,ix)=>{const c=(l.includes('\t')?l.split('\t'):l.split(',')).map(x=>x.trim());const n=(c[0]||'').replace(/\s+/g,' ').slice(0,60);if(!n)return;
+    if(ix===0&&/^(품목|이름|품명|제품)/.test(n)&&isNaN(ivNum(c[1])))return;
+    const cost=ivNum(c[1]),retail=ivNum(c[2]),min=ivNum(c[6]);let init=ivNum(c[3]);const unit=(c[4]||'').slice(0,8);const szr=(c[5]||'').trim();
+    if([cost,retail,min].some(x=>isNaN(x))||isNaN(init)){bad.push(`${ix+1}째 줄 「${n}」: 숫자 칸을 확인하세요`);return;}
+    const sz=[],szq={};if(szr)for(const p of szr.split(/[;/|]/)){const m=p.trim().match(/^([^:=]+)(?:[:=]\s*(\d+(?:\.\d+)?))?$/);if(!m)continue;const z=m[1].trim().slice(0,12);if(!z||sz.includes(z))continue;sz.push(z);if(m[2])szq[z]=+m[2];}
+    out.push({n,cost:Math.max(0,cost),retail:Math.max(0,retail),init:sz.length?0:Math.max(0,init),szq,sz,unit,min:Math.max(0,min),memo:(c[7]||'').slice(0,200)});});
+  return {rows:out,bad};}
+function ivBulkDlg(){const t=ivCurTab();if(!t||!ivCanM())return;const dirOpts=[['','(폴더 밖)']];const walk=(p,dep)=>{for(const d of ivDirs(t.id,p)){dirOpts.push([d.id,'　'.repeat(dep)+'📁 '+d.n]);walk(d.id,dep+1);}};walk('',0);
+  const cur=INV.dir&&INV.dir!=='-'?INV.dir:'';INV.dlg={k:'bulk'};
+  ivDlgShow(`<form method="dialog" class="iv-form" id="iv-bk">${ivHead(`📋 여러 품목 붙여넣기 — ${esc(t.ic)} ${esc(t.n)}`)}<div class="modal-b one">
+    <p class="help">엑셀에서 칸을 복사해 붙여 넣거나 쉼표로 적으세요. <b>한 줄에 한 품목</b> — 칸 순서: <b>이름 · 회사 구입가 · 소비자가 · 처음 재고</b> · 단위 · 사이즈 · 적정 재고 · 메모 (뒤쪽 칸은 비워도 됨). 사이즈는 <code>S;M;L</code>, 사이즈별 처음 재고는 <code>M:5;L:3</code>. 첫 줄이 제목 줄이면 건너뜁니다.</p>
+    <label class="f"><span class="lbl">넣을 폴더</span><select id="ivb-dr">${dirOpts.map(([v,n])=>`<option value="${esc(v)}" ${v===cur?'selected':''}>${esc(n)}</option>`).join('')}</select></label>
+    <textarea id="ivb-t" rows="8" placeholder="${t.id==='clo'?'동절기 근무복 상의\t35000\t\t\t벌\tS;M:5;L:8;XL:3':'수분 크림 70ml\t12000\t33000\t40\n선크림 50ml\t6800\t19000\t60'}" aria-label="붙여 넣을 품목"></textarea>
+    <div id="ivb-prev" class="iv-bprev"></div>
+  </div><footer class="modal-f"><span class="spacer"></span><button type="button" class="btn ghost" data-iv-x>취소</button><button type="submit" class="btn primary" id="ivb-go" disabled>추가</button></footer></form>`);setTimeout(()=>{const x=$('#ivb-t');if(x)x.focus();},30);}
+function ivBulkPrev(){const box=$('#ivb-prev');if(!box)return;const {rows,bad}=ivBulkParse($('#ivb-t').value);const t=ivCurTab();const have=new Set(ivItems(t.id).map(i=>i.n));
+  box.innerHTML=(rows.length?`<table class="lst iv-log"><thead><tr><th>이름</th><th>구입가</th><th>소비자가</th><th>처음 재고</th><th>단위</th><th>사이즈</th></tr></thead><tbody>${rows.slice(0,200).map(r=>`<tr><td class="tt">${esc(r.n)}${have.has(r.n)?' <span class="iv-cls pay">같은 이름 있음</span>':''}</td><td class="num">${r.cost?ivWon(r.cost):''}</td><td class="num">${r.retail?ivWon(r.retail):''}</td><td class="num">${r.sz.length?Object.entries(r.szq).map(([z,q])=>`${esc(z)} ${q}`).join(' · '):r.init||''}</td><td>${esc(r.unit||'개')}</td><td>${esc(r.sz.join(','))}</td></tr>`).join('')}</tbody></table>`:'')
+    +(bad.length?`<p class="iv-warn">${bad.slice(0,5).map(esc).join('<br>')}</p>`:'');
+  const go=$('#ivb-go');if(go){go.disabled=!rows.length||!!bad.length;go.textContent=rows.length?`${rows.length}개 추가`:'추가';}}
+async function ivBulkSave(){const t=ivCurTab();if(!t||!ivCanM())return;const {rows,bad}=ivBulkParse($('#ivb-t').value);if(!rows.length||bad.length){ivBulkPrev();return;}
+  const dr=$('#ivb-dr').value;const sib=ivItems(t.id,dr);let o=(sib.length?sib[sib.length-1].o:0)+10;const p={it:{}},E=[];const g=rid().slice(0,10);
+  for(const r of rows){const id='i'+rid().slice(0,10);p.it[id]={tb:t.id,dr,n:r.n,unit:r.unit||(t.id==='clo'?'벌':'개'),sz:r.sz,cost:r.cost,retail:r.retail,min:r.min,memo:r.memo,o};o+=10;
+    const ini=r.sz.length?Object.entries(r.szq).filter(([,q])=>q>0):(r.init>0?[['',r.init]]:[]);for(const [z,q] of ini)E.push({id:'e'+rid().slice(0,12),d:today(),t:'adj',tb:t.id,it:id,itn:r.n,sz:z,q,p:r.cost,k:'',kn:'처음 재고',kf:'',to:'',memo:'처음 재고',g,by:myId()||'',bn:nameOf(myId())||'',at:nowISO(),cnt:null});}
+  if(!await ivPut(p))return;if(E.length)await ivPutEnt(E);ivDlgEl().close();toast(`품목 ${rows.length}개를 추가했습니다.${E.length?` (처음 재고 ${E.length}줄)`:''}`);}
+/* 처리 구분 편집 + 소액 기준 */
+function ivKindsDlg(tbId){const t=ivC().tb[tbId];if(!t)return;INV.dlg={k:'kinds',tb:tbId,ks:t.ks.map(x=>({...x})),gl:ivC().gl};ivKindsRender();}
+function ivKindsRender(){const D=INV.dlg;if(!D||D.k!=='kinds')return;const t=ivC().tb[D.tb];const hasGift=D.ks.some(k=>k.f==='gift');
+  ivDlgShow(`<form method="dialog" class="iv-form" id="iv-kf">${ivHead(`⚙ 출고 처리 구분 — ${esc(t.ic)} ${esc(t.n)}`)}<div class="modal-b one"><p class="help">출고할 때 고르는 처리 구분입니다. 이름은 자유롭게 바꾸고, <b>종류</b>에 따라 단가·복리후생/급여 판정·기부영수증 칸이 정해집니다.</p>
+    <div class="iv-ks">${D.ks.map((k,i)=>`<div class="iv-krow"><input data-ivk-n="${i}" value="${esc(k.n)}" maxlength="40" aria-label="이름"><select data-ivk-f="${i}" aria-label="종류">${IV_KF.map(([f,n])=>`<option value="${f}" ${k.f===f?'selected':''}>${esc(n.split(' (')[0])}</option>`).join('')}</select>
+      <button type="button" class="btn sm ghost" data-ivk-up="${i}" ${i?'':'disabled'} aria-label="위로">▲</button><button type="button" class="btn sm ghost" data-ivk-dn="${i}" ${i<D.ks.length-1?'':'disabled'} aria-label="아래로">▼</button><button type="button" class="btn sm ghost" data-ivk-del="${i}" aria-label="빼기">✕</button><small>${esc(IV_KNOTE[k.f]||'')}</small></div>`).join('')}</div>
+    <button type="button" class="btn sm" data-ivk-add>＋ 처리 구분 추가</button>
+    ${hasGift?`<label class="f iv-gl"><span class="lbl">🎁 무상 지급 소액 기준 (1인 1회, 회사 구입가 합계)</span><span class="iv-glr"><input id="ivk-gl" type="number" min="0" step="1000" inputmode="numeric" value="${D.gl}"> 원 이하 → 복리후생비 · 넘으면 급여(과세) 신고</span><small class="help">회사 기준 금액으로 바꿔 쓰세요(모든 탭 공통). 세무 판단은 회계 담당과 확인하세요.</small></label>`:''}
+  </div><footer class="modal-f"><span class="spacer"></span><button type="button" class="btn ghost" data-iv-x>취소</button><button type="submit" class="btn primary">저장</button></footer></form>`);}
+function ivKindsPull(){const D=INV.dlg;if(!D||D.k!=='kinds')return;for(const x of $$('[data-ivk-n]'))D.ks[+x.dataset.ivkN].n=x.value;for(const x of $$('[data-ivk-f]'))D.ks[+x.dataset.ivkF].f=x.value;const g=$('#ivk-gl');if(g)D.gl=ivN(g.value);}
+async function ivKindsSave(){ivKindsPull();const D=INV.dlg;const ks=D.ks.map(k=>({id:k.id||rid().slice(0,8),n:(k.n||'').trim().slice(0,40)||ivK(k.f).n,f:k.f,note:k.note||''}));if(!ks.length){toast('처리 구분은 하나 이상 있어야 합니다.','err');return;}
+  const p={tb:{[D.tb]:{ks}}};if($('#ivk-gl'))p.gl=Math.max(0,D.gl||0);if(await ivPut(p)){ivDlgEl().close();toast('처리 구분을 저장했습니다.');}}
+/* 입고·출고·조정 */
+function ivEntDlg(t,pre){const tab=ivCurTab();if(!tab)return;pre=pre||{};let lines;
+  if(pre.e){const e=pre.e;lines=[{it:e.it,sz:e.sz,q:e.t==='adj'&&e.cnt!==null?e.cnt:Math.abs(e.q),p:e.p}];INV.dlg={k:'ent',t:e.t,edit:e.id,g:e.g,d:e.d,kk:e.k,to:e.to,rc:e.rc,memo:e.memo,lines,live:true};}
+  else{const it=pre.it?ivC().it[pre.it]:null;lines=[{it:it?it.id:'',sz:'',q:'',p:''}];const k0=(tab.ks[0]||{}).id||'';INV.dlg={k:'ent',t,d:today(),kk:k0,to:'',rc:false,memo:'',lines,live:true};}
+  ivDlgRender();}
+function ivKOf(D){const tab=ivCurTab();return tab&&tab.ks.find(k=>k.id===D.kk)||null;}
+function ivDefPrice(D,it){const i=ivC().it[it];if(!i)return '';const k=ivKOf(D);if(D.t==='out'&&k&&k.f==='sale_ex')return i.retail||i.cost||'';return i.cost||'';}
+function ivDlgRender(){const D=INV.dlg;if(!D||D.k!=='ent')return;const tab=ivCurTab();if(!tab)return;const d=$('#dlg-iv');const a=document.activeElement;const keep=d&&d.open&&a&&d.contains(a)&&a.matches('input,textarea,select')?{id:a.id,ds:Object.assign({},a.dataset),s:a.selectionStart}:null;
+  const k=ivKOf(D);const f=k?k.f:'';const ITS=ivItems(tab.id);const people=f==='gift'||f==='sale_in';const M=ivCanM();
+  const opts=sel=>{const out=[`<option value="">품목 고르기</option>`];const grp={};for(const i of ITS){const p=ivDirOk(i.dr)?ivPath(i.dr):'';(grp[p]=grp[p]||[]).push(i);}
+    for(const [p,L] of Object.entries(grp))out.push(p?`<optgroup label="📁 ${esc(p)}">${L.map(i=>`<option value="${esc(i.id)}" ${i.id===sel?'selected':''}>${esc(i.n)} (재고 ${ivQ(ivOn(i.id))})</option>`).join('')}</optgroup>`:L.map(i=>`<option value="${esc(i.id)}" ${i.id===sel?'selected':''}>${esc(i.n)} (재고 ${ivQ(ivOn(i.id))})</option>`).join(''));
+    if(sel&&!ITS.some(i=>i.id===sel)){const i=ivC().it[sel];out.push(`<option value="${esc(sel)}" selected>${esc(i?i.n:'(지운 품목)')}</option>`);}return out.join('');};
+  const nP=ivNP(D);
+  let tot=0;const rows=D.lines.map((L,ix)=>{const i=ivC().it[L.it];const q=ivN(L.q),p=ivN(L.p===''?ivDefPrice(D,L.it):L.p);tot+=q*p;const on=i?ivOn(i.id,L.sz||''):0;const dy=ivDynLine(D,L,nP);
+    return `<div class="iv-line"><select data-ivl-it="${ix}" aria-label="품목">${opts(L.it)}</select>${i&&i.sz.length?`<select data-ivl-sz="${ix}" aria-label="사이즈"><option value="">사이즈</option>${i.sz.map(z=>`<option ${z===L.sz?'selected':''}>${esc(z)}</option>`).join('')}</select>`:''}
+      <label class="iv-lq"><input type="number" min="0" step="1" inputmode="numeric" data-ivl-q="${ix}" value="${esc(L.q)}" placeholder="${D.t==='adj'?'실제 수량':'수량'}" aria-label="${D.t==='adj'?'실제 수량':'수량'}"><small>${esc(i?i.unit:'')}</small></label>
+      ${D.t==='adj'?`<small class="iv-onh" data-ivl-onh="${ix}">${dy.onh}</small>`:`<label class="iv-lp"><input type="number" min="0" step="1" inputmode="numeric" data-ivl-p="${ix}" value="${esc(L.p===''?ivDefPrice(D,L.it):L.p)}" placeholder="단가" aria-label="단가"><small>원</small></label>`}
+      ${D.lines.length>1&&!D.edit?`<button type="button" class="btn sm ghost" data-ivl-del="${ix}" aria-label="이 줄 빼기">✕</button>`:''}<small class="iv-warn" data-ivl-warn="${ix}"${dy.warn?'':' hidden'}>${dy.warn}</small></div>`;}).join('');
+  const sum=ivDynSum(D,nP);
+  const title=D.edit?'✏️ 기록 고치기':D.t==='in'?'＋ 입고':D.t==='out'?'－ 출고':'🔢 재고 조정 (실사)';
+  ivDlgShow(`<form method="dialog" class="iv-form" id="iv-ef">${ivHead(`${title} — ${esc(tab.ic)} ${esc(tab.n)}`)}<div class="modal-b one">
+    ${D.edit?'':`<div class="iv-seg" role="radiogroup" aria-label="구분">${[['in','＋ 입고'],['out','－ 출고'],...(M?[['adj','🔢 재고 조정']]:[])].map(([v,n])=>`<button type="button" role="radio" aria-checked="${D.t===v}" data-ivd-t="${v}">${n}</button>`).join('')}</div>`}
+    <div class="r2"><label class="f"><span class="lbl">날짜</span><input type="date" id="ivd-d" value="${esc(D.d)}" max="${esc(today())}"></label>
+    ${D.t==='out'?`<label class="f"><span class="lbl">처리 구분</span><select id="ivd-k">${tab.ks.map(x=>`<option value="${esc(x.id)}" ${x.id===D.kk?'selected':''}>${esc(x.n)}</option>`).join('')}</select></label>`:D.t==='in'?`<label class="f"><span class="lbl">구입처 <small>(선택)</small></span><input id="ivd-to" maxlength="80" value="${esc(D.to)}" placeholder="예: ○○상사"></label>`:'<span></span>'}</div>
+    ${D.t==='out'&&k?`<p class="iv-knote">${esc(k.note||IV_KNOTE[f]||'')}</p>`:''}
+    ${D.t==='out'?`<label class="f"><span class="lbl">${f==='sale_ex'?'판매처 (거래처)':f==='spon'?'협찬 기관':f==='don'?'기부처':f==='loss'?'사유 (선택)':people?'받는 사람':'받는 곳·사람'}${people&&!D.edit?' <small>(여러 명이면 쉼표나 줄바꿈으로 — 사람마다 따로 기록)</small>':''}</span>
+      ${people&&!D.edit?`<textarea id="ivd-to" rows="2" maxlength="3000" placeholder="예: 홍길동, 김영희" list="ivd-names">${esc(D.to)}</textarea>`:`<input id="ivd-to" maxlength="80" value="${esc(D.to)}" list="ivd-names">`}<datalist id="ivd-names">${staffList().map(s=>`<option value="${esc(s.name)}">`).join('')}</datalist></label>`:''}
+    ${D.t==='out'&&f==='don'?`<label class="chk"><input type="checkbox" id="ivd-rc" ${D.rc?'checked':''}> 기부영수증 받음</label>`:''}
+    <div class="iv-lines">${rows}</div>${D.edit?'':`<button type="button" class="btn sm" data-ivl-add>＋ 품목 더하기</button>`}
+    <div id="ivd-sum">${sum}</div>
+    <label class="f"><span class="lbl">메모 <small>(선택)</small></span><input id="ivd-memo" maxlength="200" value="${esc(D.memo)}" placeholder="${D.t==='adj'?'예: 11월 실사':'예: 추석 선물, 행사 협찬'}"></label>
+  </div><footer class="modal-f"><span class="spacer"></span><button type="button" class="btn ghost" data-iv-x>취소</button><button type="submit" class="btn primary">${D.edit?'저장':'기록하기'}</button></footer></form>`);
+  if(keep){let el=keep.id?$('#'+keep.id):null;if(!el){const k2=Object.keys(keep.ds).find(x=>/^ivl/.test(x));if(k2)el=$(`[data-${k2.replace(/[A-Z]/g,m=>'-'+m.toLowerCase())}="${keep.ds[k2]}"]`);}if(el){el.focus();try{if(keep.s!=null&&el.setSelectionRange&&el.type!=='number')el.setSelectionRange(keep.s,keep.s);}catch{}}}}
+/* 수량·단가·받는 사람을 적는 동안에는 창 전체를 다시 그리지 않고 합계·판정·경고만 고침(한글 조합·단추 누름이 끊기지 않게) */
+function ivNP(D){const k=ivKOf(D);const people=k&&(k.f==='gift'||k.f==='sale_in');const names=String(D.to||'').split(/[,\n]/).map(s=>s.trim()).filter(Boolean);return people&&!D.edit?Math.max(1,new Set(names).size):1;}
+function ivDynLine(D,L,nP){const i=ivC().it[L.it];const on=i?ivOn(i.id,L.sz||''):0;const q=ivN(L.q);
+  const onh=`지금 ${ivQ(on)} → ${L.q===''?'?':`${q-on>=0?'+':''}${ivQ(q-on)}`}`;const short=D.t==='out'&&i&&q*nP>on+(D.edit&&ivEditOld(D,L)?ivEditOld(D,L):0);
+  return {onh,warn:short?`재고(${ivQ(on)})보다 많습니다${nP>1?` (${nP}명 × ${ivQ(q)})`:''}`:''};}
+function ivDynSum(D,nP){const k=ivKOf(D);const f=k?k.f:'';let tot=0;for(const L of D.lines)tot+=ivN(L.q)*ivN(L.p===''?ivDefPrice(D,L.it):L.p);let judge='';
+  if(D.t==='out'&&f==='gift'){const gl=ivC().gl;const per=D.lines.reduce((a,L)=>{const i=ivC().it[L.it];return a+ivN(L.q)*(i?i.cost:0);},0);
+    judge=`<div class="iv-judge ${per>gl?'pay':'wel'}">1인당 회사 구입가 합계 <b>${ivWon(per)}</b> — 소액 기준 ${ivWon(gl)} ${per>gl?'초과 → <b>급여(과세) 신고 대상</b> (회사 구입가 기준)':'이하 → <b>복리후생비</b> (구입금액 전액)'}${nP>1?` · ${nP}명 각각 기록`:''}</div>`;}
+  return judge+(D.t!=='adj'?`<p class="iv-tot">합계 ${tot?ivWon(tot):'—'}${nP>1&&tot?` × ${nP}명 = <b>${ivWon(tot*nP)}</b>`:''}</p>`:'');}/* 높이가 바뀌지 않게 합계 줄은 늘 둠(창이 가운데 정렬이라 높이가 바뀌면 누르려던 곳이 움직임) */
+function ivDlgSoft(){const D=INV.dlg;if(!D||D.k!=='ent')return;ivEntPull();const nP=ivNP(D);
+  D.lines.forEach((L,ix)=>{const dy=ivDynLine(D,L,nP);const o=$(`[data-ivl-onh="${ix}"]`);if(o)o.textContent=dy.onh;const w=$(`[data-ivl-warn="${ix}"]`);if(w){w.textContent=dy.warn;w.hidden=!dy.warn;}});
+  const sm=$('#ivd-sum');if(sm)sm.innerHTML=ivDynSum(D,nP);}
+function ivEditOld(D,L){const e=INV.E[D.edit];return e&&e.it===L.it&&(e.sz||'')===(L.sz||'')&&e.t==='out'?e.q:0;}
+function ivEntPull(){const D=INV.dlg;if(!D||D.k!=='ent')return;const g=id=>$('#'+id);if(g('ivd-d'))D.d=g('ivd-d').value;if(g('ivd-k'))D.kk=g('ivd-k').value;if(g('ivd-to'))D.to=g('ivd-to').value;if(g('ivd-rc'))D.rc=g('ivd-rc').checked;if(g('ivd-memo'))D.memo=g('ivd-memo').value;
+  for(const x of $$('[data-ivl-q]'))D.lines[+x.dataset.ivlQ].q=x.value;for(const x of $$('[data-ivl-p]'))D.lines[+x.dataset.ivlP].p=x.value;for(const x of $$('[data-ivl-sz]'))D.lines[+x.dataset.ivlSz].sz=x.value;}
+async function ivEntSave(){ivEntPull();const D=INV.dlg;const tab=ivCurTab();if(!D||!tab)return;if(!ivCanW()){toast('입출고를 기록할 권한이 없습니다.','err');return;}
+  if(!isDate(D.d)){toast('날짜를 고르세요.','err');return;}if(D.d>today()){toast('앞으로의 날짜는 적을 수 없습니다.','err');return;}
+  const L=D.lines.filter(x=>x.it);if(!L.length){toast('품목을 고르세요.','err');return;}
+  for(const x of L){const i=ivC().it[x.it];if(i&&i.sz.length&&!x.sz){toast(`「${i.n}」 사이즈를 고르세요.`,'err');return;}if(x.q===''||(D.t!=='adj'&&!(ivN(x.q)>0))||(D.t==='adj'&&ivN(x.q)<0)){toast(`「${i?i.n:'품목'}」 수량을 적으세요.`,'err');return;}}
+  const k=D.t==='out'?ivKOf(D):null;if(D.t==='out'&&!k){toast('처리 구분을 고르세요.','err');return;}
+  const people=k&&(k.f==='gift'||k.f==='sale_in');let names=D.t==='out'?String(D.to||'').split(people&&!D.edit?/[,\n]/:/\n/).map(s=>s.replace(/\s+/g,' ').trim().slice(0,80)).filter(Boolean):[String(D.to||'').trim().slice(0,80)];
+  if(D.t==='out'&&['gift','sale_in','sale_ex','spon','don'].includes(k.f)&&!names.length){toast(k.f==='gift'||k.f==='sale_in'?'받는 사람을 적으세요.':'받는 곳(거래처·기관)을 적으세요.','err');$('#ivd-to').focus();return;}
+  if(!names.length)names=[''];names=[...new Set(names)].slice(0,300);
+  const nP=names.length;if(D.t==='out'&&!D.edit){const over=L.filter(x=>ivN(x.q)*nP>ivOn(x.it,x.sz||''));if(over.length&&!confirm(`${over.map(x=>`「${(ivC().it[x.it]||{}).n}」${x.sz?` ${x.sz}`:''}`).join(', ')} — 지금 재고보다 많이 출고합니다. 그래도 기록할까요?`))return;}
+  let cls='';if(D.t==='out'&&k.f==='gift'){const per=L.reduce((a,x)=>a+ivN(x.q)*((ivC().it[x.it]||{}).cost||0),0);cls=per>ivC().gl?'pay':'wel';}
+  const base={d:D.d,t:D.t,tb:tab.id,k:k?k.id:'',kn:D.t==='out'?k.n:D.t==='adj'?'재고 조정':'입고',kf:k?k.f:'',rc:!!(k&&k.f==='don'&&D.rc),cls,memo:String(D.memo||'').trim().slice(0,200),by:myId()||'',bn:nameOf(myId())||'',at:nowISO()};
+  const out=[];
+  if(D.edit){const e0=INV.E[D.edit];if(!e0)return;const x=L[0];const i=ivC().it[x.it];let q=ivN(x.q),cnt=null;if(D.t==='adj'){cnt=q;const on=ivOn(x.it,x.sz||'')-(e0.it===x.it&&(e0.sz||'')===(x.sz||'')?e0.q:0);q=Math.round((cnt-on)*100)/100;}
+    const e={...e0,...base,id:e0.id,g:e0.g,by:e0.by,bn:e0.bn,at:e0.at,upd:nowISO(),it:x.it,itn:i?i.n:'',sz:x.sz||'',q,cnt,p:D.t==='adj'?(i?i.cost:0):ivN(x.p===''?ivDefPrice(D,x.it):x.p),to:names[0]||''};
+    if(e.d.slice(0,7)!==e0.d.slice(0,7)){if(!await ivPutEnt([{...e0,del:nowISO()},{...e,id:'e'+rid().slice(0,12)}]))return;}else if(!await ivPutEnt([e]))return;ivDlgEl().close();toast('기록을 고쳤습니다.');return;}
+  const g=rid().slice(0,10);
+  for(const nm of names)for(const x of L){const i=ivC().it[x.it];let q=ivN(x.q),cnt=null;if(D.t==='adj'){cnt=q;q=Math.round((cnt-ivOn(x.it,x.sz||''))*100)/100;if(!q)continue;}
+    out.push({...base,id:'e'+rid().slice(0,12),g,it:x.it,itn:i?i.n:'',sz:x.sz||'',q,cnt,p:D.t==='adj'?(i?i.cost:0):ivN(x.p===''?ivDefPrice(D,x.it):x.p),to:nm});}
+  if(!out.length){toast(D.t==='adj'?'지금 재고와 같아 조정할 것이 없습니다.':'기록할 것이 없습니다.');ivDlgEl().close();return;}
+  if(!await ivPutEnt(out))return;ivDlgEl().close();
+  toast(`${ivTN[D.t]} ${out.length}건을 기록했습니다.${cls==='pay'?' (급여 신고 대상)':cls==='wel'?' (복리후생)':''}`);}
+async function ivEntDel(id){const e=INV.E[id];if(!e)return;if(!(ivCanM()||(e.by===myId()&&ivCanW()))){toast('본인이 적은 기록과 관리 권한이 있는 사람만 지울 수 있습니다.','err');return;}
+  if(!confirm(`${fmtMD(e.d)} ${ivItName(e)} ${ivTN[e.t]} ${ivQ(Math.abs(e.q))} 기록을 지울까요?`))return;if(await ivPutEnt([{...e,del:nowISO()}]))toast('기록을 지웠습니다.');}
+/* 엑셀 */
+async function ivXls(gift){const t=ivCurTab();if(!t)return;try{await wlLib('xlsx');if(!window.XLSX)throw 0;}catch{toast('엑셀 도구를 불러오지 못했습니다. 인터넷 연결을 확인하세요.','err');return;}
+  const wb=XLSX.utils.book_new();const [a,b]=ivRange();const per=a==='0000-00-00'?'전체':`${a}~${b>today()?today():b}`;
+  if(!gift){const rows=[['날짜','구분','품목','폴더','사이즈','수량','단위','단가','금액','처리 구분','복리후생/급여','받는 곳·구입처','기부영수증','메모','기록한 사람']];
+    for(const e of ivLogRows(t).slice().reverse()){const i=ivC().it[e.it];rows.push([e.d,ivTN[e.t],ivItName(e),i&&ivDirOk(i.dr)?ivPath(i.dr):'',e.sz,e.t==='out'?-e.q:e.q,i?i.unit:'',e.p||'',e.p?Math.round(e.p*Math.abs(e.q)):'',e.kn,e.cls==='pay'?'급여 신고':e.cls==='wel'?'복리후생':'',e.to,e.kf==='don'?(e.rc?'받음':'미수령'):e.kf==='spon'?'발급 불가':'',e.memo,e.bn]);}
+    const ws=XLSX.utils.aoa_to_sheet(rows);ws['!cols']=[{wch:11},{wch:6},{wch:26},{wch:16},{wch:7},{wch:7},{wch:5},{wch:9},{wch:10},{wch:18},{wch:10},{wch:16},{wch:9},{wch:20},{wch:8}];XLSX.utils.book_append_sheet(wb,ws,'입출고 대장');
+    const st=[['폴더','품목','사이즈','현재고','단위','회사 구입가','소비자가','재고 금액(구입가)','적정 재고','메모']];for(const i of ivItems(t.id)){const s=ivStock()[i.id]||{tot:0,sz:{}};
+      if(i.sz.length)for(const z of i.sz)st.push([ivPath(i.dr),i.n,z,s.sz[z]||0,i.unit,i.cost||'',i.retail||'',i.cost?Math.round(i.cost*(s.sz[z]||0)):'',i.min||'',i.memo]);else st.push([ivPath(i.dr),i.n,'',s.tot,i.unit,i.cost||'',i.retail||'',i.cost?Math.round(i.cost*s.tot):'',i.min||'',i.memo]);}
+    const w2=XLSX.utils.aoa_to_sheet(st);w2['!cols']=[{wch:16},{wch:26},{wch:7},{wch:7},{wch:5},{wch:10},{wch:10},{wch:12},{wch:8},{wch:20}];XLSX.utils.book_append_sheet(wb,w2,'현재고');}
+  else{const rows=[['날짜','받는 사람','품목','사이즈','수량','회사 구입가','금액(구입가)','판정','처리 구분','메모']];
+    for(const e of Object.values(INV.E).filter(e=>!e.del&&e.tb===t.id&&e.t==='out'&&e.kf==='gift'&&e.d>=a&&e.d<=b).sort((x,y)=>x.to.localeCompare(y.to,'ko')||x.d.localeCompare(y.d)))rows.push([e.d,e.to,ivItName(e),e.sz,e.q,e.p,Math.round(e.p*e.q),e.cls==='pay'?'급여(과세) 신고':'복리후생비',e.kn,e.memo]);
+    const ws=XLSX.utils.aoa_to_sheet(rows);ws['!cols']=[{wch:11},{wch:10},{wch:26},{wch:7},{wch:6},{wch:10},{wch:11},{wch:14},{wch:18},{wch:20}];XLSX.utils.book_append_sheet(wb,ws,'무상 지급');}
+  const buf=XLSX.write(wb,{bookType:'xlsx',type:'array'});saveBlob(new Blob([buf],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}),`재고관리_${t.n}_${gift?'무상지급_':''}${per}.xlsx`);toast('엑셀로 내보냈습니다.');}
+
+/* ── 이벤트 */
+document.addEventListener('click',async e=>{const T=e.target;if(!T||!T.closest)return;let b;
+  if(INV.pop&&!T.closest('#iv-pop')&&!T.closest('[data-iv-menu]'))ivPopClose();
+  if((b=T.closest('#iv-pop [data-iv-act]'))){const m=$('#iv-pop');const k=m.dataset.k,id=m.dataset.id,sp=m.dataset.sp;ivPopClose();e.preventDefault();await ivAct(k,id,b.dataset.ivAct,sp);return;}
+  if((b=T.closest('[data-iv-menu]'))){e.preventDefault();e.stopPropagation();if(INV.pop===b.dataset.ivMenu){ivPopClose();return;}ivMenu(b,b.dataset.ivMenu);return;}
+  if(T.closest('#dlg-iv [data-iv-x]')){e.preventDefault();ivDlgEl().close();return;}
+  const inIv=T.closest('#iv');const inDlg=T.closest('#dlg-iv');if(!inIv&&!inDlg)return;
+  if(inIv){
+    if((b=T.closest('[data-iv-tgo]'))){const sp=b.closest('[data-iv-sp]').dataset.ivSp;if(sp==='as')INV.atab=b.dataset.ivTgo;else{if(INV.tab!==b.dataset.ivTgo){INV.tab=b.dataset.ivTgo;INV.dir='';INV.sel.clear();INV.f.k='';}}render();return;}
+    if((b=T.closest('[data-iv-tadd]'))){await ivTabNew(b.dataset.ivTadd==='as');return;}
+    if((b=T.closest('[data-iv-mode]'))){INV.mode=b.dataset.ivMode;render();return;}
+    if((b=T.closest('[data-iv-fold]'))){const id=b.dataset.ivFold;INV.open[id]=INV.open[id]===false;render();return;}
+    if((b=T.closest('[data-iv-dir]'))&&!T.closest('input.ir')){INV.dir=b.dataset.ivDir;render();return;}
+    if((b=T.closest('[data-iv-dnew]'))){const t=ivCurTab();if(t)await ivDirNew(t.id,INV.dir&&INV.dir!=='-'?INV.dir:'');return;}
+    if(T.closest('[data-iv-item-new]')){ivItemDlg(null);return;}
+    if(T.closest('[data-iv-bulk]')){ivBulkDlg();return;}
+    if((b=T.closest('[data-iv-kinds]'))){ivKindsDlg(b.dataset.ivKinds);return;}
+    if((b=T.closest('[data-iv-ren]'))){const [k,id]=b.dataset.ivRen.split(':');await ivAct(k,id,'ren','iv');return;}
+    if((b=T.closest('[data-iv-ent]'))){if(!ivCanW()){toast('입출고를 기록할 권한이 없습니다.','err');return;}ivEntDlg(b.dataset.ivEnt,{it:b.dataset.ivIt||''});return;}
+    if((b=T.closest('[data-iv-eed]'))){const x=INV.E[b.dataset.ivEed];if(x)ivEntDlg(x.t,{e:x});return;}
+    if((b=T.closest('[data-iv-edel]'))){await ivEntDel(b.dataset.ivEdel);return;}
+    if(T.closest('[data-iv-xls]')){await ivXls(false);return;}if(T.closest('[data-iv-gxls]')){await ivXls(true);return;}
+    if(T.closest('[data-iv-showdel]')){INV.showDel=!INV.showDel;render();return;}
+    if((b=T.closest('[data-iv-undel]'))){const [k,id]=b.dataset.ivUndel.split(':');const x=ivC()[k][id];if(!x)return;const p={[k]:{[id]:{del:''}}};
+      if(k==='it'&&x.dr&&!ivDirOk(x.dr))p.it[id].dr='';if(k==='dr'&&x.par&&!ivDirOk(x.par))p.dr[id].par='';if(k==='tb'){p.dr={};p.it={};for(const d of Object.values(ivC().dr))if(d.tb===id&&d.del===x.del)p.dr[d.id]={del:''};for(const i of Object.values(ivC().it))if(i.tb===id&&i.del===x.del)p.it[i.id]={del:''};}else if(!ivTab(x.tb)){const t0=ivTabs()[0];if(t0)p[k][id].tb=t0.id;}
+      if(await ivPut(p))toast(`「${x.n}」을(를) 되살렸습니다.`);return;}
+    if(T.closest('[data-iv-selnone]')){INV.sel.clear();render();return;}
+    if(T.closest('[data-iv-selmove]')){const ids=[...INV.sel].filter(id=>ivC().it[id]);if(!ids.length)return;ivPickDest(`품목 ${ids.length}개 옮기기`,{},async d=>{if(await ivMoveItems(ids,d.tb,d.dir)){INV.sel.clear();render();}});return;}
+    if(T.closest('[data-iv-seldel]')){const ids=[...INV.sel].filter(id=>ivC().it[id]);if(!ids.length||!confirm(`고른 품목 ${ids.length}개를 지울까요? (입출고 기록은 남고 되살릴 수 있습니다)`))return;const del=nowISO();const p={it:{}};for(const id of ids)p.it[id]={del};if(await ivPut(p)){INV.sel.clear();toast(`품목 ${ids.length}개를 지웠습니다.`);}return;}
+    return;}
+  if(inDlg){const D=INV.dlg;if(!D)return;
+    if(D.k==='ent'){ivEntPull();
+      if((b=T.closest('[data-ivd-t]'))){D.t=b.dataset.ivdT;for(const L of D.lines)L.p='';ivDlgRender();return;}
+      if(T.closest('[data-ivl-add]')){D.lines.push({it:'',sz:'',q:'',p:''});ivDlgRender();setTimeout(()=>{const s=$$('[data-ivl-it]');if(s.length)s[s.length-1].focus();},30);return;}
+      if((b=T.closest('[data-ivl-del]'))){D.lines.splice(+b.dataset.ivlDel,1);ivDlgRender();return;}}
+    if(D.k==='kinds'){ivKindsPull();let i;
+      if(T.closest('[data-ivk-add]')){D.ks.push({id:rid().slice(0,8),n:'',f:'etc',note:''});ivKindsRender();const x=$$('[data-ivk-n]');if(x.length)x[x.length-1].focus();return;}
+      if((b=T.closest('[data-ivk-del]'))){D.ks.splice(+b.dataset.ivkDel,1);ivKindsRender();return;}
+      if((b=T.closest('[data-ivk-up]'))&&(i=+b.dataset.ivkUp)>0){[D.ks[i-1],D.ks[i]]=[D.ks[i],D.ks[i-1]];ivKindsRender();return;}
+      if((b=T.closest('[data-ivk-dn]'))&&(i=+b.dataset.ivkDn)<D.ks.length-1){[D.ks[i+1],D.ks[i]]=[D.ks[i],D.ks[i+1]];ivKindsRender();return;}}}});
+document.addEventListener('submit',async e=>{const f=e.target;if(!f||!f.closest||!f.closest('#dlg-iv'))return;e.preventDefault();
+  if(f.id==='iv-bk')await ivBulkSave();else if(f.id==='iv-itf')await ivItemSave();else if(f.id==='iv-kf')await ivKindsSave();else if(f.id==='iv-ef')await ivEntSave();});
+document.addEventListener('change',e=>{const T=e.target;if(!T||!T.closest)return;
+  if(T.closest('#dlg-iv')){const D=INV.dlg;if(!D)return;
+    if(D.k==='ent'){ivEntPull();if(T.dataset.ivlIt!==undefined){const L=D.lines[+T.dataset.ivlIt];L.it=T.value;L.sz='';L.p='';ivDlgRender();return;}if(T.id==='ivd-k'){for(const L of D.lines)L.p='';ivDlgRender();return;}if(T.dataset.ivlSz!==undefined||T.id==='ivd-rc')ivDlgRender();else if(T.id==='ivd-to')ivDlgSoft();return;}
+    if(D.k==='kinds'&&T.dataset.ivkF!==undefined){ivKindsPull();ivKindsRender();return;}
+    if(D.k==='item'){if(T.id==='ivi-szp'){$('#ivi-sz').value=T.value;ivInitRows();}else if(T.id==='ivi-sz')ivInitRows();}return;}
+  if(!T.closest('#iv'))return;
+  if(T.dataset.ivSel!==undefined){if(T.checked)INV.sel.add(T.dataset.ivSel);else INV.sel.delete(T.dataset.ivSel);render();return;}
+  if(T.id==='iv-per'){INV.f.per=T.value;render();return;}if(T.id==='iv-from'){INV.f.from=T.value;render();return;}if(T.id==='iv-to'){INV.f.to=T.value;render();return;}
+  if(T.id==='iv-ft'){INV.f.t=T.value;render();return;}if(T.id==='iv-fk'){INV.f.k=T.value;render();return;}});
+/* 한글 입력(조합) 중에는 다시 그리지 않음 — 조합이 끝나면(compositionend) 반영 */
+function ivSearchIn(T,comp){if(T.id==='iv-q'){INV.q=T.value;if(comp)return;clearTimeout(INV._qT);INV._qT=setTimeout(()=>{INV._qf=true;render();},250);return true;}
+  if(T.id==='iv-fq'){INV.f.q=T.value;if(comp)return;clearTimeout(INV._fqT);INV._fqT=setTimeout(()=>{render();const q=$('#iv-fq');if(q){q.focus();q.setSelectionRange(q.value.length,q.value.length);}},250);return true;}}
+document.addEventListener('input',e=>{const T=e.target;if(!T)return;if(ivSearchIn(T,e.isComposing))return;
+  if(T.closest&&T.closest('#dlg-iv')&&INV.dlg&&INV.dlg.k==='ent'&&(T.dataset.ivlQ!==undefined||T.dataset.ivlP!==undefined||T.id==='ivd-to')){if(e.isComposing)return;clearTimeout(INV._dT);INV._dT=setTimeout(ivDlgSoft,150);}});
+document.addEventListener('input',e=>{if(e.target&&e.target.id==='ivb-t'){clearTimeout(INV._bT);INV._bT=setTimeout(ivBulkPrev,300);}});
+document.addEventListener('compositionend',e=>{const T=e.target;if(!T)return;if(T.id==='iv-q'||T.id==='iv-fq')ivSearchIn(T,false);else if(T.id==='ivd-to')ivDlgSoft();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&INV.pop){ivPopClose();e.stopPropagation();}},true);
+/* ── 끌어다 놓기 */
+let IVG=null;
+document.addEventListener('dragstart',e=>{const T=e.target;if(!T||!T.closest)return;const sp=T.closest('[data-iv-sp]');
+  const r=T.closest('#iv [data-iv-row][draggable="true"]'),d=T.closest('#iv .fm-dir[data-iv-dir][draggable="true"]'),t=T.closest('#iv [data-iv-tab][draggable="true"]');
+  if(r)IVG={k:'it',id:r.dataset.ivRow,ids:INV.sel.has(r.dataset.ivRow)&&INV.sel.size>1?[...INV.sel]:[r.dataset.ivRow]};else if(d&&d.dataset.ivDir)IVG={k:'dr',id:d.dataset.ivDir};else if(t)IVG={k:'tb',id:t.dataset.ivTab,sp:sp&&sp.dataset.ivSp};else return;
+  S.dragging=true;(r||d||t).classList.add('dragging');try{e.dataTransfer.setData('text/plain',IVG.k);e.dataTransfer.effectAllowed='move';}catch{}});
+function ivDropT(t){if(!IVG||!t||!t.closest)return null;if(IVG.k==='tb'){const x=t.closest('#iv [data-iv-tab]');return x&&x.dataset.ivTab!==IVG.id&&x.closest('[data-iv-sp]').dataset.ivSp===IVG.sp?x:null;}
+  const tb=t.closest('#iv [data-iv-sp="iv"] [data-iv-tab]');if(tb)return tb;const d=t.closest('#iv .fm-dir[data-iv-dir]');if(d&&d.dataset.ivDir!=='-'){if(IVG.k==='dr'&&(d.dataset.ivDir===IVG.id||ivDesc(IVG.id).includes(d.dataset.ivDir)))return null;return d;}
+  if(IVG.k==='it'){const r=t.closest('#iv [data-iv-row]');if(r&&!IVG.ids.includes(r.dataset.ivRow))return r;}return null;}
+document.addEventListener('dragover',e=>{if(!IVG)return;const t=ivDropT(e.target);for(const x of $$('#iv .dd-over'))if(x!==t)x.classList.remove('dd-over');if(!t)return;e.preventDefault();try{e.dataTransfer.dropEffect='move';}catch{}t.classList.add('dd-over');});
+document.addEventListener('drop',async e=>{if(!IVG)return;const t=ivDropT(e.target);const G=IVG;ivDragEnd();if(!t)return;e.preventDefault();
+  if(G.k==='tb'){const c=G.sp==='as'?ivCA():ivC();await ivSetOrders('tb',ivReorder(ivTabs(c),G.id,t.dataset.ivTab),null,G.sp==='as');return;}
+  if(t.dataset.ivTab){const tb=t.dataset.ivTab;if(G.k==='it')await ivMoveItems(G.ids,tb,'');else await ivMoveDir(G.id,tb,'');return;}
+  if(t.dataset.ivDir!==undefined){const tab=ivCurTab();if(G.k==='it')await ivMoveItems(G.ids,tab.id,t.dataset.ivDir);else await ivMoveDir(G.id,tab.id,t.dataset.ivDir);INV.sel.clear();return;}
+  if(t.dataset.ivRow){const tgt=ivC().it[t.dataset.ivRow];if(!tgt)return;const dir=ivDirOk(tgt.dr)?tgt.dr:'';const sib=ivItems(tgt.tb,dir);let L=sib;const extra={};
+    for(const id of G.ids){const i=ivC().it[id];if(!i)continue;if(i.tb!==tgt.tb||(ivDirOk(i.dr)?i.dr:'')!==dir){extra[id]={tb:tgt.tb,dr:dir};L=[...L,i];}}
+    let ords={};let cur=L;for(const id of G.ids){ords=ivReorder(cur,id,tgt.id);cur=[...cur].sort((a,b)=>(ords[a.id]||0)-(ords[b.id]||0));}
+    await ivSetOrders('it',ords,extra);INV.sel.clear();}});
+function ivDragEnd(){IVG=null;for(const x of $$('#iv .dd-over,#iv .dragging'))x.classList.remove('dd-over','dragging');S.dragging=false;if(S.pendingRender){S.pendingRender=false;scheduleRender();}}
+document.addEventListener('dragend',()=>{if(IVG)ivDragEnd();});
+window.invApi={C:()=>ivC(),CA:()=>ivCA(),E:()=>INV.E,stock:(it,sz)=>ivOn(it,sz),state:INV,put:ivPut,ent:ivPutEnt,lv:()=>ivLv()};
+/* ───────── 61차: 👥 권한 설정 — 총괄 관리자가 파트 관리자·개인별로 권한을 줌 ─────────
+   · 설정 › 👥 권한 설정 (관리자만 바꿈). 관리부 직원 모두(총괄 관리자 이기도 포함)를 파트(결재선 설정의 직무 — 재무·회계·인사·총무·시설·공무)별로 보여 줌.
+   · 역할: 총괄 관리자(접속 허용 목록의 관리자 — 모든 권한) · 파트 관리자(결재선 설정의 파트 총괄, 여기서 바꿀 수 있음) · 직원.
+   · 역할 기본값(파트 관리자·직원) + 사람별 따로 주기(기본값보다 우선). 바꾸면 바로 저장되고 그 사람 화면에 바로 반영됨.
+   · 항목: 📦 재고관리 · 🏷 자산관리 · 📂 자료실·회사서식 올리기·정리(=자료 관리자, 보안 규칙 목록과 자동 동기화) · ✅ 점검·경비 일지 항목 편집
+           · 👥 다른 직원 업무 고치기(본인/우리 파트/모든 업무) · 📌 업무 요청하기·보고 확인 · 📢 공지 보내기
+   · 저장: wl/_sys/cfg/perm {R:{pm:{…},st:{…}}, U:{직원id:{항목:단계}}, PM:{직원id:true|false}, at, by}
+     (자료 관리 권한만 서버 보안 규칙으로도 막고, 나머지는 화면에서 막음 — 서버 규칙 강화는 관리자 승인 뒤 별도 게시)
+   · 오픈소스 확인: casl(역할+개인 규칙 합치기), accesscontrol(역할 기본값 → 개인 덮어쓰기), Odoo·ERPNext 권한 표(역할×기능 표) */
+const PM_F=[
+  {k:'inv',ic:'📦',n:'재고관리',lv:[[0,'안 보임'],[1,'보기'],[2,'입출고 기록'],[3,'관리']],def:{pm:3,st:2},tip:'관리 = 탭·폴더·품목 편집, 다른 사람 기록 고치기·지우기, 재고 조정'},
+  {k:'asset',ic:'🏷',n:'자산관리',lv:[[0,'안 보임'],[1,'보기'],[3,'관리']],def:{pm:1,st:1},tip:'관리 = 자산 분류 탭 편집 (세부 기능은 준비 중)'},
+  {k:'doc',ic:'📂',n:'자료실·회사서식 올리기·정리',lv:[[1,'보기·내려받기'],[3,'올리기·정리']],def:null,tip:'= 자료 관리자. 서버 보안 규칙 목록과 자동으로 맞춤'},
+  {k:'insp',ic:'✅',n:'점검·경비 일지 항목 편집',lv:[[1,'기록만'],[3,'항목 편집']],def:null,tip:'기본: 자료 관리자면 항목 편집'},
+  {k:'task',ic:'👥',n:'다른 직원 업무 고치기',lv:[[1,'본인 업무만'],[2,'우리 파트 업무'],[3,'모든 업무']],def:{pm:1,st:1},lock:true,tip:'우리 파트 = 결재선 설정에서 내가 총괄인 파트 직원의 업무'},
+  {k:'ord',ic:'📌',n:'업무 요청하기·보고 확인',lv:[[2,'받기·보고만'],[3,'요청하기·보고 확인']],def:{pm:2,st:2},lock:true,tip:'요청하기 = 📌 업무 요청 화면에서 직원·직무에 업무를 요청하고 보고를 확인'},
+  {k:'ntc',ic:'📢',n:'공지 보내기',lv:[[1,'받기만'],[3,'공지 보내기']],def:{pm:3,st:3},tip:'받기만이면 「＋ 공지 쓰기」·메모 「📢 공지로」가 안 보임'}];
+const PM_TIER={ad:'👑 총괄 관리자',pm:'🧭 파트 관리자',st:'👤 직원'};
+const PMS={raw:null,u:null,loaded:false,busy:false,q:''};
+const pmF=k=>PM_F.find(f=>f.k===k);
+const pmMax=f=>Math.max(...f.lv.map(x=>x[0]));
+const pmLvName=(f,v)=>((f.lv.find(x=>x[0]===v)||[])[1])||'';
+function pmNorm(d){d=d&&typeof d==='object'?d:{};const lvOk=(f,v)=>f&&f.lv.some(x=>x[0]===v);const R={pm:{},st:{}},U={},PM={};
+  for(const t of ['pm','st']){const r=d.R&&d.R[t]&&typeof d.R[t]==='object'?d.R[t]:{};for(const f of PM_F)if(f.def&&lvOk(f,r[f.k]))R[t][f.k]=r[f.k];}
+  for(const [sid,o] of Object.entries(d.U&&typeof d.U==='object'?d.U:{})){if(!o||typeof o!=='object'||!/^[\w-]{1,60}$/.test(sid))continue;const x={};for(const f of PM_F)if(f.k!=='doc'&&lvOk(f,o[f.k]))x[f.k]=o[f.k];if(Object.keys(x).length)U[sid]=x;}
+  for(const [sid,v] of Object.entries(d.PM&&typeof d.PM==='object'?d.PM:{}))if(/^[\w-]{1,60}$/.test(sid)&&typeof v==='boolean')PM[sid]=v;return {R,U,PM};}
+let PMC=null;const pmCfg=()=>PMC||(PMC=pmNorm(PMS.raw));
+function pmSub(){if(PMS.u||S.mode!=='firebase'||!S.fs||S.guard)return;
+  PMS.u=S.fs.doc('wl/_sys/cfg/perm').onSnapshot(s=>{PMS.raw=s.exists?s.data():null;PMC=null;PMS.loaded=true;pmChanged();},e=>{console.warn('perm',e);PMS.loaded=true;});}
+function pmUnsub(){try{PMS.u&&PMS.u();}catch{}PMS.u=null;PMS.raw=null;PMC=null;PMS.loaded=false;}
+{const _es=extSubs;extSubs=function(){_es.apply(this,arguments);try{pmUnsub();pmSub();S.unsubs.push(pmUnsub);}catch(e){console.warn(e);}};}
+let _pmT=0;function pmChanged(){clearTimeout(_pmT);_pmT=setTimeout(()=>{scheduleRender();const d=$('#dlg-perm');if(d&&d.open)pmRender();},40);}
+/* ── 역할 */
+const pmEmail=s=>String(s&&s.email||'').trim().toLowerCase();
+function pmIsAdminSid(sid){const s=S.staff&&S.staff[sid];if(!s)return false;const m=S.members||{};if(pmEmail(s)&&(m.admins||[]).includes(pmEmail(s)))return true;return !!(S.canEdit&&S.me&&s.uid&&s.uid===S.me.id);}
+function pmParts(){try{return apCfg().parts||[];}catch{return [];}}
+function pmIsPm(sid){const o=pmCfg().PM[sid];if(typeof o==='boolean')return o;return pmParts().some(p=>p.head===sid);}
+const pmTier=sid=>pmIsAdminSid(sid)?'ad':pmIsPm(sid)?'pm':'st';
+function pmRoleDef(t,k){const f=pmF(k);if(t==='ad')return pmMax(f);const r=pmCfg().R[t]||{};return r[k]!==undefined?r[k]:f.def?f.def[t]:1;}
+function permLvOf(sid,k){const f=pmF(k);if(!f||!sid)return 0;const t=pmTier(sid);
+  if(k==='doc'){if(t==='ad')return 3;try{return docMgrSids().includes(sid)?3:1;}catch{return 1;}}
+  const u=(pmCfg().U[sid]||{})[k];if(t==='ad'&&f.lock)return pmMax(f);if(u!==undefined)return u;
+  if(k==='insp')return t==='ad'||permLvOf(sid,'doc')>=3?3:1;return pmRoleDef(t,k);}
+function permLv(k){const f=pmF(k);if(!f)return 0;if(S.guard)return 0;if(S.preview)return pmMax(f);
+  if(S.mode!=='firebase')return S.canEdit||S.canWrite?pmMax(f):Math.min(1,pmMax(f));/* 혼자 쓰는 기기 저장 모드: 역할 없음 */
+  const me=myId();let v=me&&S.staff&&S.staff[me]?permLvOf(me,k):(S.canEdit?pmMax(f):k==='inv'?1:k==='ord'?2:1);if(!S.canWrite)v=Math.min(v,k==='ord'?2:1);return v;}
+/* 우리 파트: 내가 총괄(head)인 파트 직원 */
+function pmMyPartSids(){const me=myId();const out=new Set();if(!me)return out;for(const p of pmParts())if(p.head===me){out.add(me);for(const m of p.members||[])if(m.sid)out.add(m.sid);}return out;}
+/* ── 저장 */
+async function pmSave(patch,msg){if(!(S.canEdit&&S.fs)){toast('권한은 총괄 관리자만 바꿀 수 있습니다.','err');return false;}PMS.busy=true;
+  try{await fbWrite(S.fs.doc('wl/_sys/cfg/perm').set({...patch,at:nowISO(),by:myId()||''},{merge:true}));if(msg)toast(msg);return true;}catch(e){writeError(e);return false;}finally{PMS.busy=false;}}
+async function pmSetDoc(sid,on){const set=new Set(docMgrSids());if(on)set.add(sid);else set.delete(sid);S.members=S.members||{};S.members.docmgrS=[...set];
+  const ok=await docMgrSync(true);toast(ok?'자료 관리 권한을 바꿨습니다.':'저장하지 못했습니다. 다시 시도해 주세요.',ok?'':'err');return ok;}
+/* ── 권한 설정 창 */
+function pmOpen(){if(!(S.canEdit||S.preview)){toast('권한 설정은 총괄 관리자만 열 수 있습니다.','err');return;}pmSub();
+  let d=$('#dlg-perm');if(!d){d=document.createElement('dialog');d.className='modal pm-dlg';d.id='dlg-perm';d.setAttribute('aria-labelledby','pm-h');document.body.appendChild(d);}
+  pmRender();if(!d.open)d.showModal();}
+function pmCellSel(sid,f,t){const own=(pmCfg().U[sid]||{})[f.k];const lockAd=t==='ad'&&f.lock;const eff=permLvOf(sid,f.k);
+  if(f.k==='doc'){if(t==='ad')return `<span class="pm-fix" title="총괄 관리자는 항상 모든 권한">${esc(pmLvName(f,3))}</span>`;
+    return `<select class="pm-sel${eff===3?' on':''}" data-pm-doc="${esc(sid)}" aria-label="${esc(nameOf(sid))} ${esc(f.n)}">${f.lv.map(([v,n])=>`<option value="${v}" ${eff===v?'selected':''}>${esc(n)}</option>`).join('')}</select>`;}
+  if(lockAd)return `<span class="pm-fix" title="총괄 관리자는 항상 모든 권한">${esc(pmLvName(f,pmMax(f)))}</span>`;
+  const defV=f.k==='insp'?(t==='ad'||permLvOf(sid,'doc')>=3?3:1):pmRoleDef(t,f.k);
+  return `<select class="pm-sel${own!==undefined?' own':''}${eff===0?' off':''}" data-pm-u="${esc(sid)}" data-pm-k="${f.k}" aria-label="${esc(nameOf(sid))} ${esc(f.n)}"><option value="" ${own===undefined?'selected':''}>기본 (${esc(pmLvName(f,defV))})</option>${f.lv.map(([v,n])=>`<option value="${v}" ${own===v?'selected':''}>${esc(n)}</option>`).join('')}</select>`;}
+function pmRender(){const d=$('#dlg-perm');if(!d)return;const a=document.activeElement;const keep=a&&d.contains(a)&&a.dataset?Object.assign({},a.dataset):null;const c=pmCfg();const L=staffList();const E=S.canEdit||S.preview;
+  const parts=pmParts();const seen=new Set();const groups=[];
+  const ad=L.filter(s=>pmIsAdminSid(s.id));if(ad.length){groups.push({n:'👑 총괄',head:'',L:ad});ad.forEach(s=>seen.add(s.id));}
+  for(const p of parts){const ids=[p.head,...(p.members||[]).map(m=>m.sid)].filter(id=>id&&S.staff&&S.staff[id]&&S.staff[id].active!==false&&!seen.has(id));const uniq=[...new Set(ids)];if(!uniq.length)continue;uniq.forEach(id=>seen.add(id));
+    groups.push({n:p.name,head:p.head,L:uniq.map(id=>S.staff[id]).sort((x,y)=>(y.id===p.head)-(x.id===p.head)||(x.order||999)-(y.order||999))});}
+  const rest=L.filter(s=>!seen.has(s.id));if(rest.length)groups.push({n:'파트 없음 (결재선 설정에 없는 직원)',head:'',L:rest});
+  const q=PMS.q.trim();const hit=s=>!q||(typeof gsHit==='function'?gsHit([s.name,s.role,s.site].join(' '),q.toLowerCase().split(/\s+/)):[s.name,s.role].join(' ').includes(q));
+  const roleRow=t=>`<tr class="pm-role"><th>${PM_TIER[t]} <small>기본값</small></th>${PM_F.map(f=>{if(t==='ad')return `<td><span class="pm-fix">${esc(pmLvName(f,pmMax(f)))}</span></td>`;
+    if(!f.def)return `<td><span class="pm-fix" title="${esc(f.tip)}">사람별</span></td>`;const v=pmRoleDef(t,f.k);return `<td><select class="pm-sel${v===0?' off':''}" data-pm-r="${t}" data-pm-k="${f.k}" ${E?'':'disabled'} aria-label="${esc(PM_TIER[t])} ${esc(f.n)} 기본값">${f.lv.map(([x,n])=>`<option value="${x}" ${v===x?'selected':''}>${esc(n)}</option>`).join('')}</select></td>`;}).join('')}<td></td></tr>`;
+  const cg=`<colgroup><col style="width:164px">${PM_F.map(()=>'<col>').join('')}<col style="width:78px"></colgroup>`;
+  const head=`<tr><th class="pm-who">이름</th>${PM_F.map(f=>`<th title="${esc(f.tip)}"><span class="ic">${f.ic}</span>${esc(f.n)}</th>`).join('')}<th></th></tr>`;
+  const prow=s=>{const t=pmTier(s.id);const o=c.U[s.id];const hasO=!!(o&&Object.keys(o).length);const ovPm=typeof c.PM[s.id]==='boolean';
+    return `<tr data-pm-row="${esc(s.id)}"${hit(s)?'':' hidden'}><th class="pm-who"><b>${esc(s.name)}</b><small>${esc(s.role||'')}</small>${t==='ad'?`<span class="pm-tier ad">${PM_TIER.ad}</span>`:`<label class="pm-tier ${t}${ovPm?' own':''}" title="파트 관리자로 정하면 「파트 관리자 기본값」을 따릅니다"><input type="checkbox" data-pm-pm="${esc(s.id)}" ${t==='pm'?'checked':''} ${E?'':'disabled'}> 파트 관리자</label>`}</th>
+      ${PM_F.map(f=>`<td>${pmCellSel(s.id,f,t)}</td>`).join('')}<td>${hasO||ovPm?`<button type="button" class="btn sm ghost" data-pm-reset="${esc(s.id)}" title="이 사람에게 따로 준 권한을 모두 지우고 역할 기본값으로">↺ 기본으로</button>`:''}</td></tr>`;};
+  d.innerHTML=`<header class="modal-h"><h2 id="pm-h">👥 권한 설정 <small>관리부 ${L.length}명 · 파트 관리자·개인별</small></h2><button type="button" class="icon-btn" data-pm-x aria-label="닫기">✕</button></header>
+  <div class="modal-b one pm-b"><p class="help pm-help">① 위쪽 <b>역할 기본값</b>을 정하면 그 역할 전원에게 적용되고, ② 아래 <b>직원별</b> 칸에서 그 사람만 따로 줄 수 있습니다(따로 준 칸은 <span class="pm-own-s">노란색</span>). 바꾸면 바로 저장되고 그 사람 화면에 바로 반영됩니다.
+    파트 관리자 표시는 ⚙ 결재선 설정의 파트 총괄을 따르고, 여기서 체크로 바꿀 수 있습니다. 총괄 관리자(접속 허용 목록의 관리자)는 항상 모든 권한을 가집니다.</p>
+    ${E?'':'<div class="banner">총괄 관리자만 바꿀 수 있습니다.</div>'}
+    <div class="tbl-wrap pm-wrap"><table class="lst pm-tbl">${cg}<thead>${head}</thead><tbody>${['ad','pm','st'].map(roleRow).join('')}</tbody></table></div>
+    <div class="pm-tools"><input type="search" id="pm-q" placeholder="이름·직책 찾기" value="${esc(PMS.q)}" aria-label="직원 찾기"><span class="sp"></span><small>항목 이름에 마우스를 올리면 설명이 나옵니다.</small></div>
+    <div class="tbl-wrap pm-wrap"><table class="lst pm-tbl">${cg}<thead>${head}</thead>${groups.map(g=>`<tbody><tr class="pm-g"><th colspan="${PM_F.length+2}">${esc(g.n)}${g.head&&S.staff[g.head]?` <small>· 파트 총괄(결재선): ${esc(S.staff[g.head].name)}</small>`:''}</th></tr>${g.L.map(prow).join('')}</tbody>`).join('')}</table></div>
+    <details class="pm-what"><summary>항목별 단계 설명</summary><ul>${PM_F.map(f=>`<li><b>${f.ic} ${esc(f.n)}</b> — ${f.lv.map(x=>esc(x[1])).join(' / ')}. ${esc(f.tip)}</li>`).join('')}<li>결재 서식·결재선 설정·직원 명단·접속 허용·조직도·이 권한 설정은 보안 규칙상 <b>총괄 관리자 전용</b>입니다.</li></ul></details>
+  </div><footer class="modal-f"><span class="pm-st">${PMS.loaded||S.preview?(c&&PMS.raw&&PMS.raw.at?`마지막 저장 ${esc(hhmm(PMS.raw.at))}`:'아직 바꾼 적 없음 — 모두 기본값'):'불러오는 중…'}</span><span class="spacer"></span><button type="button" class="btn primary" data-pm-x>닫기</button></footer>`;
+  if(keep){const k=Object.keys(keep).find(x=>/^pm/.test(x)&&x!=='pmK');if(k){const sel=`[data-${k.replace(/[A-Z]/g,m=>'-'+m.toLowerCase())}="${CSS.escape(keep[k])}"]${keep.pmK?`[data-pm-k="${keep.pmK}"]`:''}`;const el=d.querySelector(sel);if(el)el.focus();}else if(keep&&a&&a.id==='pm-q'){const q2=$('#pm-q');if(q2){q2.focus();q2.setSelectionRange(q2.value.length,q2.value.length);}}}}
+document.addEventListener('change',async e=>{const T=e.target;if(!T||!T.closest||!T.closest('#dlg-perm'))return;if(!(S.canEdit||S.preview)){pmRender();return;}const c=pmCfg();let ok=false;
+  if(T.dataset.pmR){const t=T.dataset.pmR,k=T.dataset.pmK;const v=+T.value;ok=await pmSave({R:{[t]:{[k]:v}}},`${PM_TIER[t].slice(2)} 기본값 — ${pmF(k).n}: ${pmLvName(pmF(k),v)}`);}
+  else if(T.dataset.pmU){const sid=T.dataset.pmU,k=T.dataset.pmK;const cur={...(c.U[sid]||{})};if(T.value==='')delete cur[k];else cur[k]=+T.value;
+    ok=await pmSave({U:{[sid]:cur}},`${nameOf(sid)} — ${pmF(k).n}: ${T.value===''?'기본값으로':pmLvName(pmF(k),+T.value)}`);
+    if(ok&&S.mode==='firebase'){/* merge 로는 칸 지우기가 안 되므로 그 사람 칸을 통째로 다시 씀 */try{await fbWrite(S.fs.doc('wl/_sys/cfg/perm').update({['U.'+sid]:cur}));}catch(err){console.warn(err);}}}
+  else if(T.dataset.pmPm){const sid=T.dataset.pmPm;const def=pmParts().some(p=>p.head===sid);const PM={};PM[sid]=T.checked;ok=await pmSave({PM},`${nameOf(sid)} — ${T.checked?'파트 관리자로 정함':'직원으로 정함'}`);
+    if(ok&&T.checked===def&&S.mode==='firebase'){try{await fbWrite(S.fs.doc('wl/_sys/cfg/perm').update({['PM.'+sid]:firebase.firestore.FieldValue.delete()}));}catch(err){console.warn(err);}}}
+  else if(T.dataset.pmDoc){ok=await pmSetDoc(T.dataset.pmDoc,+T.value===3);}
+  if(!ok)pmRender();});
+document.addEventListener('click',async e=>{const T=e.target;if(!T||!T.closest)return;let b;
+  if(T.closest('#dlg-perm [data-pm-x]')){e.preventDefault();$('#dlg-perm').close();return;}
+  if((b=T.closest('#dlg-perm [data-pm-reset]'))){const sid=b.dataset.pmReset;if(!confirm(`${nameOf(sid)}님에게 따로 준 권한을 지우고 역할 기본값으로 되돌릴까요?`))return;
+    if(S.mode==='firebase'&&S.canEdit&&S.fs){try{await fbWrite(S.fs.doc('wl/_sys/cfg/perm').set({at:nowISO(),by:myId()||''},{merge:true}));await fbWrite(S.fs.doc('wl/_sys/cfg/perm').update({['U.'+sid]:firebase.firestore.FieldValue.delete(),['PM.'+sid]:firebase.firestore.FieldValue.delete()}));toast(`${nameOf(sid)} — 기본값으로 되돌렸습니다.`);}catch(err){writeError(err);}}return;}
+  if(T.closest('[data-pm-open]')){e.preventDefault();pmOpen();return;}});
+document.addEventListener('input',e=>{if(e.target&&e.target.id==='pm-q'){PMS.q=e.target.value;const d=$('#dlg-perm');const q=PMS.q.trim();
+  for(const r of $$('#dlg-perm [data-pm-row]')){const s=S.staff[r.dataset.pmRow];if(!s)continue;r.hidden=!!q&&!(typeof gsHit==='function'?gsHit([s.name,s.role,s.site].join(' '),q.toLowerCase().split(/\s+/)):[s.name,s.role].join(' ').includes(q));}}});
+/* 설정 창: 관리자 → 권한 설정 열기 / 직원 → 내 권한 보기 */
+function pmMineHTML(){const me=myId();if(!me||!S.staff||!S.staff[me])return '';const t=pmTier(me);
+  return `<span class="lbl" style="font-size:12px;font-weight:600;color:var(--ink-2)">👥 내 권한 <small>(${PM_TIER[t]})</small></span><ul class="pm-mine">${PM_F.map(f=>{const v=permLv(f.k);return `<li><span>${f.ic} ${esc(f.n)}</span><b class="${v===pmMax(f)?'hi':v===0?'off':''}">${esc(pmLvName(f,v)||'-')}</b></li>`;}).join('')}</ul><p class="help">권한을 바꾸려면 총괄 관리자에게 요청하세요.</p>`;}
+{const _os=openSettings;openSettings=async function(){const r=await _os.apply(this,arguments);try{let w=$('#s-perm-wrap');
+  if(!w){const a=$('#s-docmgr-wrap')||$('#s-members-wrap');if(a){w=document.createElement('div');w.className='f';w.id='s-perm-wrap';a.before(w);}}
+  if(w){const adm=(S.mode==='firebase'&&S.canEdit)||S.preview;const mine=S.mode==='firebase'&&!S.canEdit&&!S.guard;w.hidden=!(adm||mine);
+    w.innerHTML=adm?`<span class="lbl" style="font-size:12px;font-weight:600;color:var(--ink-2)">👥 권한 설정 (파트 관리자·개인별)</span><p class="help">재고관리·자산관리·자료 관리·점검 항목 편집·다른 직원 업무 고치기·업무 요청·공지 보내기 권한을 역할(파트 관리자·직원)과 사람별로 줍니다. 관리부 ${staffList().length}명 모두(총괄 관리자 포함).</p><button type="button" class="btn" data-pm-open>👥 권한 설정 열기</button>`:mine?pmMineHTML():'';}}catch(e){console.warn(e);}return r;};}
+
+/* ── 적용: 다른 직원 업무 고치기 */
+{const _tl=taskLevel;taskLevel=function(t){const r=_tl.apply(this,arguments);if(r==='own'||!t||t.priv||!S.canWrite||S.guard)return r;
+  const lv=permLv('task');if(lv>=3)return 'own';if(lv===2){const P=pmMyPartSids();const o=taskOwnerSid(t);if((o&&P.has(o))||(t.assignees||[]).some(x=>P.has(x)))return 'own';}return r;};}
+/* ── 적용: 공지 보내기 */
+{const _n=ntcNewDlg;ntcNewDlg=function(){if(permLv('ntc')<3){toast('공지를 보낼 권한이 없습니다. 총괄 관리자에게 요청하세요.','err');return;}return _n.apply(this,arguments);};}
+function pmApplyDom(root){try{if(permLv('ntc')<3)for(const b of (root||document).querySelectorAll('[data-ntc-new],[data-mp="ntc"]'))b.remove();}catch{}}
+{const _r=render;render=function(){const x=_r.apply(this,arguments);pmApplyDom();return x;};}
+if(typeof memoRender==='function'){const _m=memoRender;memoRender=function(){const x=_m.apply(this,arguments);try{pmApplyDom(document);if(typeof MEMO!=='undefined'&&MEMO.pip&&MEMO.pip.document)pmApplyDom(MEMO.pip.document);}catch{}return x;};}
+if(typeof memoToNtc==='function'){const _t=memoToNtc;memoToNtc=function(){if(permLv('ntc')<3){toast('공지를 보낼 권한이 없습니다. 총괄 관리자에게 요청하세요.','err');return;}return _t.apply(this,arguments);};}
+window.permApi={lv:permLv,of:permLvOf,tier:pmTier,cfg:()=>pmCfg(),open:pmOpen,F:PM_F};
 
 /* ───────── 시작 ───────── */
 function boot(){
