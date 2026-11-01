@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="wl-build" content="632917ae8f00">
+<meta name="wl-build" content="90851b87df31">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="manifest" href="manifest.webmanifest"><script>if(/[?&]memo=1(&|$)/.test(location.search)){document.querySelector('link[rel=manifest]').href='memo.webmanifest';document.documentElement.classList.add('memo-mode');}</script>
 <meta name="theme-color" content="#1f3a5f">
@@ -2182,6 +2182,19 @@ dialog.modal.gu-dlg[open]{display:flex}
   header.top.fit1 .tabs{gap:0}header.top.fit1 .tabs a{padding-left:4px!important;padding-right:4px!important}
   header.top.fit2{gap:6px!important}header.top.fit2 .me-chip .nm{display:none}header.top.fit2 .me-chip{padding:0 3px!important;gap:0}header.top.fit2 .top-right{gap:2px!important}header.top.fit2 #btn-new{padding-left:9px!important;padding-right:9px!important}
   header.top.fit3 .tabs a{font-size:13px!important;padding-left:3px!important;padding-right:3px!important}header.top.fit3 .tabs a .nav-n{min-width:15px;height:15px;font-size:9.5px;padding:0 3px}}
+/* 56차: 한글 그리기 개체(묶음·타원·화살표·곡선 등) — 도형은 SVG 그림, 글은 그 위 글상자(% 자리) */
+.fmx .hw-drw{position:relative;display:inline-block;vertical-align:middle;max-width:100%;text-indent:0;line-height:1.25}
+.fmx .hw-dsvg{display:block;width:100%;height:auto;max-width:none}
+.fmx .hw-dt{position:absolute;left:0;top:0;box-sizing:border-box;display:flex;flex-direction:column;justify-content:flex-start;overflow:visible;text-indent:0}
+.fmx .hw-dt.hw-va1{justify-content:center}.fmx .hw-dt.hw-va2{justify-content:flex-end}
+.fmx .hw-dt p{margin:0;word-break:keep-all}
+.fmx .hw-drw-b{text-align:center}
+
+/* 56차: 메모장 글 상자 — 글이 늘어나는 만큼 길어짐 */
+.mp-new textarea.mp-in{resize:none;overflow-y:hidden;min-height:46px;line-height:1.5}
+.mp-tx{overflow-y:hidden}
+.mp-app{font-size:12.5px;color:#166534;font-weight:700;align-self:center}.mp-help{margin:0 0 8px;padding-left:20px;line-height:1.7}.mp-help li{margin:4px 0}
+.mp-new{align-items:flex-start}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -4492,7 +4505,7 @@ function ntfCompute(){const me=myId();if(!me||!S.ready)return [];const out=[];co
   if(admin){const w=gwWarn();if(w)out.push({k:'gwst|'+w.k,syn:1,at:td+'T00:00:04',type:'gw',gw:'',title:'그룹웨어 자동 확인',text:w.text});}
   if(admin||canViewRestricted())for(const f of Object.values(S.files)){if(!f.expiry)continue;const n=diffDays(td,f.expiry);if(n<=60&&n>=-30)out.push({k:`doc|${f.id}|${f.expiry}|${n<=7?'w':n<=30?'m':'q'}`,syn:1,at:td+'T00:00:03',type:'doc',f,text:`서류 유효기간 ${expiryTxt(f.expiry)} · ${fmtYMD(f.expiry)}`});}
   if(admin&&hr>=17&&dow(td)%6!==0){const idle=staffList().filter(s=>working(s)&&!S.tasks.some(t=>t.logs.some(l=>l.by===s.id&&localDate(l.at)===td)));if(idle.length)out.push({k:`idle|${td}`,syn:1,at:td+'T17:00:00',type:'idle',text:`오늘 기록 없는 근무자 ${idle.length}명`,sub:idle.map(s=>s.name).join(', ')});}
-  out.sort((a,b)=>b.at.localeCompare(a.at)||String(a.k||"").localeCompare(String(b.k||"")));return out.slice(0,80);}
+  out.sort((a,b)=>b.at.localeCompare(a.at)||String((a.t&&a.t.title)||a.title||"").localeCompare(String((b.t&&b.t.title)||b.title||""))||String(a.k||"").localeCompare(String(b.k||"")));return out.slice(0,80);}
 const ntfUnread=(it,st)=>it.syn?!st.syn[it.k]:(it.at>st.seen&&!(st.rd&&st.rd[it.k]));
 function ntfTick(){clearTimeout(NT.t);NT.t=setTimeout(ntfRun,400);}
 function ntfRun(){adminNameSync();const st=ntfState();NT.items=ntfCompute();const un=NT.items.filter(it=>ntfUnread(it,st));
@@ -6854,7 +6867,7 @@ function fmClean(html){const doc=new DOMParser().parseFromString(`<div>${html||'
       if(k==='colspan'||k==='rowspan'){c.setAttribute(k,Math.min(200,Math.max(1,parseInt(a.value)||1)));continue;}
       if(k==='class'){const v=a.value.split(/\s+/).filter(x=>/^(fm-[a-z0-9-]+|hw-[a-z0-9-]+|lb|big)$/.test(x)).join(' ');if(v)c.setAttribute('class',v);else c.removeAttribute('class');continue;}
       if(k==='style'){const v=a.value.split(';').map(x=>x.trim()).filter(x=>{const i=x.indexOf(':');if(i<1)return false;const p=x.slice(0,i).trim().toLowerCase(),r=x.slice(i+1);return FM_CSS.test(p)&&!/url\(|expression|javascript|@import|\\/i.test(r)&&(p!=='background-image'||/^\s*linear-gradient\(\s*-?\d+deg(\s*,\s*#[0-9a-f]{6}){2,4}\s*\)\s*$/i.test(r));}).map(x=>/^padding/i.test(x)?x.replace(/([\d.]+)mm/g,(m,n)=>+n>10?'1mm':m):x).join(';');if(v)c.setAttribute('style',v);else c.removeAttribute('style');continue;}
-      if(k==='src'&&c.tagName==='IMG'&&/^data:image\/(png|jpe?g|gif|webp|bmp);base64,[A-Za-z0-9+/=]+$/.test(a.value))continue;
+      if(k==='src'&&c.tagName==='IMG'&&/^data:image\/(png|jpe?g|gif|webp|bmp|svg\+xml);base64,[A-Za-z0-9+/=]+$/.test(a.value))continue;
       if(k==='alt'&&c.tagName==='IMG')continue;
       c.removeAttribute(a.name);}
     if(c.tagName==='IMG'&&!c.getAttribute('src')){c.remove();continue;}
@@ -6936,11 +6949,13 @@ function hwpPara(p,C){const d=p.d,dv=fmDV(d);const psId=d.length>=10?dv.getUint1
   const flushSeg=()=>{if(seg){cur+=hwpSpan(seg,segCs,C);seg='';}};
   const add=(ch,i)=>{const cs=csAt(i);if(cs!==segCs){flushSeg();segCs=cs;}seg+=ch;};
   const flushP=()=>{flushSeg();if(cur.replace(/<br>/g,'').length)out+=`<p${pst}>${cur}</p>`;cur='';};
+  /* 56차: 이 문단에 글자가 있는지(표의 세로 오프셋을 위 여백으로 살릴지) */
+  let hasTxt=false;if(txt){const td0=fmDV(txt.d);for(let i=0,n0=txt.d.length>>1;i<n0;){const c=td0.getUint16(i*2,true);if(c<32){i+=HWP_EXT.has(c)||HWP_INL.has(c)?8:1;continue;}if(c!==32&&c!==0x3000&&c!==0xa0){hasTxt=true;break;}i++;}}
   if(txt){const td=fmDV(txt.d);const n=txt.d.length>>1;let ci=0;
     for(let i=0;i<n;){const c=td.getUint16(i*2,true);
       if(c<32){
         if(HWP_EXT.has(c)){const ct=ctrls[ci++];const id=hwpCtrlId(ct);
-          if(id==='tbl '){flushP();out+=hwpTable(ct,C,mc);blocks=true;}
+          if(id==='tbl '){flushP();out+=hwpTable(ct,C,mc,hasTxt);blocks=true;}
           else if(id==='gso '){const g=hwpGso(ct,C);if(g){if(g.inline){flushSeg();cur+=g.html;}else{flushP();out+=g.html;blocks=true;}}}
           i+=8;continue;}
         if(HWP_INL.has(c)){if(c===9)add('\t',i);i+=8;continue;}
@@ -6955,7 +6970,7 @@ function hwpPara(p,C){const d=p.d,dv=fmDV(d);const psId=d.length>=10?dv.getUint1
 const FM_DP=[510,510,141,141];function fmPadOk(p,dp){dp=(dp||FM_DP).map((x,i)=>x>2835?FM_DP[i]:x);return (p||dp).map((x,i)=>x>2835?dp[i]:x);}
 function hwpBorders(bf){if(!bf)return '';const s=x=>fmLine(x.t,x.w,x.c);return `border-left:${s(bf.l)};border-right:${s(bf.r)};border-top:${s(bf.t)};border-bottom:${s(bf.b)}`+(bf.bg?`;background-color:${bf.bg}`:'')+(bf.grad?`;background-image:${bf.grad}`:'');}
 function hwpTBorder(bf){if(!bf)return '';const s=x=>fmLine(x.t,x.w,x.c);const a=[['left',bf.l],['right',bf.r],['top',bf.t],['bottom',bf.b]].filter(([,x])=>x&&x.t&&x.t!=='none').map(([k,x])=>`border-${k}:${s(x)}`);return a.length?';'+a.join(';'):'';}
-function hwpTable(ct,C,mc){const kids=ct.c;const ti=kids.findIndex(k=>k.tag===77);if(ti<0)return '';const tb=kids[ti],td=fmDV(tb.d);
+function hwpTable(ct,C,mc,hasTxt){const kids=ct.c;const ti=kids.findIndex(k=>k.tag===77);if(ti<0)return '';const tb=kids[ti],td=fmDV(tb.d);
   const rows=td.getUint16(4,true),cols=td.getUint16(6,true);const tbf=tb.d.length>=20+2*rows?td.getUint16(18+2*rows,true):0;const dp=tb.d.length>=18?[td.getUint16(10,true),td.getUint16(12,true),td.getUint16(14,true),td.getUint16(16,true)]:[510,510,141,141];
   let cap='';const cells=[];let cur=null;
   kids.forEach((k,i)=>{if(k.tag===72){if(i<ti){cur={cap:true,ps:[]};}else{cur={h:k,ps:[]};cells.push(cur);}if(i<ti)cap=cur;}else if(k.tag===66&&cur)cur.ps.push(k);});
@@ -6966,7 +6981,12 @@ function hwpTable(ct,C,mc){const kids=ct.c;const ti=kids.findIndex(k=>k.tag===77
   const nc=Math.max(cols,...ok.map(c=>c.col+c.cs)),nr=Math.max(rows,...ok.map(c=>c.row+c.rs));
   const cw=fmColW(nc,ok.map(c=>({c:c.col,s:c.cs,w:c.w})));const tw=cw.reduce((a,b)=>a+b,0);
   const by=[];for(const c of ok)(by[c.row]=by[c.row]||[]).push(c);
-  let h=`<table class="hw-t${mc===3?' hw-mc':mc===2?' hw-mr':''}" style="width:${fmMM(tw)}mm${hwpTBorder(C.bf[tbf-1])}"><colgroup>${cw.map(w=>`<col style="width:${fmMM(w)}mm">`).join('')}</colgroup>`;
+  /* 56차: 글자처럼 취급하지 않은 표 — 원본의 가로 위치(오른쪽 정렬·가로 오프셋)를 살림 */
+  let tcl=mc===3?' hw-mc':mc===2?' hw-mr':'',tpos='';
+  if(ct.d.length>=16){const cdv=fmDV(ct.d),ca=cdv.getUint32(4,true);if(!(ca&1)){const hal=(ca>>10)&7,hrel=(ca>>8)&3,vrel=(ca>>3)&3,hoff=cdv.getInt32(12,true),voff=cdv.getInt32(8,true);
+    if(hal===2)tcl=' hw-mr';else if(hal===1)tcl=' hw-mc';else if(hrel>=2&&hoff>1000){tcl='';tpos=`;margin-left:${fmMM(hoff)}mm`;}
+    if(vrel===2&&!hasTxt&&voff>500&&voff<4300)tpos+=`;margin-top:${fmMM(voff)}mm`;}}
+  let h=`<table class="hw-t${tcl}" style="width:${fmMM(tw)}mm${tpos}${hwpTBorder(C.bf[tbf-1])}"><colgroup>${cw.map(w=>`<col style="width:${fmMM(w)}mm">`).join('')}</colgroup>`;
   for(let r=0;r<nr;r++){const L=(by[r]||[]).sort((a,b)=>a.col-b.col);h+='<tr>';
     for(const c of L){const va=['top','middle','bottom'][(c.fl>>5)&3]||'top';const p=fmPadOk(c.pad.some(x=>x)?c.pad:dp,dp);
       const st=[hwpBorders(C.bf[c.bf-1]),`vertical-align:${va}`,(c.fl&7)===1?'writing-mode:vertical-rl':'',`padding:${fmMM(p[2])}mm ${fmMM(p[1])}mm ${fmMM(p[3])}mm ${fmMM(p[0])}mm`];if(c.rs===1&&c.h>0)st.push(`height:${fmMM(c.h)}mm`);
@@ -6982,6 +7002,7 @@ function fmColW(nc,cells){const w=new Array(nc).fill(0);const known=new Array(nc
     if(idx.length&&c.w>sum){const each=(c.w-sum)/idx.length;for(const k of idx){w[k]=each;known[k]=true;}}}
   const kw=w.filter((x,i)=>known[i]);const avg=kw.length?kw.reduce((a,b)=>a+b,0)/kw.length:5000;for(let k=0;k<nc;k++)if(!known[k]||w[k]<=0)w[k]=avg;return w;}
 function hwpGso(ct,C){const d=ct.d,dv=fmDV(d);if(d.length<24)return null;const attr=dv.getUint32(4,true);const inline=!!(attr&1);const W=dv.getUint32(16,true),H=dv.getUint32(20,true);
+  if(hwpIsDrawing(ct)){try{const g=hwpDraw(ct,C);if(g)return g;}catch(e){console.warn('hwpDraw',e);}}
   const parts=[];let pics=0;
   const walk=(node,dep)=>{if(dep>8)return;const kids=node.c;for(let i=0;i<kids.length;i++){const k=kids[i];
       if(k.tag===85&&k.d.length>=73){const bid=fmDV(k.d).getUint16(71,true);const url=C.img[bid];if(url){pics++;parts.push({img:url});}}
@@ -6990,6 +7011,70 @@ function hwpGso(ct,C){const d=ct.d,dv=fmDV(d);if(d.length<24)return null;const a
   walk(ct,0);if(!parts.length)return null;
   const one=parts.length===1&&parts[0].img;const sz=W>0&&H>0?`width:${fmMM(W)}mm;height:${fmMM(H)}mm`:'';
   return fmObjHTML(parts.map(x=>x.img?{img:x.img,sz:one?sz:''}:{box:x.box,w:W}));}
+/* ═════════ 56차: 그리기 개체(묶음·타원·다각형·곡선·선·사각형·호·그림) → SVG + 글상자 ═════════
+   개체 요소(SHAPE_COMPONENT 76): 컨트롤 ID(맨 위는 두 번) · 묶음 안 X·Y · 묶음 단계 · 버전 · 처음/지금 폭·높이 · 속성 · 회전 · 회전 중심 ·
+   변환 행렬(이동 1개 + (크기·회전) 쌍 n개) → 최종 행렬 = 이동 · 회전1·크기1 · 회전2·크기2 …(맨 위 개체 기준 좌표, 원본 묶음 크기와 꼭 맞음을 실제 서식으로 확인)
+   그다음 선 정보(색·굵기·속성 13바이트)·채우기(종류 + 단색 배경색)… 모양별 기록: 79 사각형 · 80 타원 · 81 호 · 82 다각형 · 83 곡선 · 78 선 · 85 그림.
+   글이 든 모양은 LIST_HEADER(72) 뒤 문단 → 모양의 바깥 상자 위치에 글상자(위·가운데·아래 맞춤). (참고: HWP 5.0 공개 문서 구조, neolord0/hwplib Apache-2.0 의 개체 요소 순서) */
+const HWP_SHP_ID=new Set(['$con','$rec','$ell','$arc','$pol','$cur','$lin','$pic','$ole']);
+const hwpShpId=d=>d.length>=4?String.fromCharCode(d[3],d[2],d[1],d[0]):'';
+function hwpIsDrawing(ct){const top=ct.c.find(k=>k.tag===76);if(!top)return false;const id=hwpShpId(top.d);
+  if(id==='$con')return true;if(/^\$(ell|arc|pol|cur|lin)$/.test(id))return true;return false;}
+const hwpMul=(A,B)=>[A[0]*B[0]+A[1]*B[3],A[0]*B[1]+A[1]*B[4],A[0]*B[2]+A[1]*B[5]+A[2],A[3]*B[0]+A[4]*B[3],A[3]*B[1]+A[4]*B[4],A[3]*B[2]+A[4]*B[5]+A[5]];
+const hwpAp=(M,x,y)=>[M[0]*x+M[1]*y+M[2],M[3]*x+M[4]*y+M[5]];
+function hwpShpHdr(k,top){const d=k.d;if(d.length<46)return null;const dv=fmDV(d);const id=hwpShpId(d);if(!HWP_SHP_ID.has(id))return null;
+  let o=top||(d.length>=8&&hwpShpId(d.subarray(4))===id)?8:4;o+=8;o+=4;const iw=dv.getUint32(o,true),ih=dv.getUint32(o+4,true);o+=16;o+=4;o+=2;o+=8;
+  if(o+2>d.length)return null;const cnt=dv.getUint16(o,true);o+=2;if(cnt>16||o+48+cnt*96>d.length)return null;
+  const rd=()=>{const m=[];for(let i=0;i<6;i++){m.push(dv.getFloat64(o,true));o+=8;}return m;};let M=rd();
+  for(let i=0;i<cnt;i++){const S=rd(),R=rd();M=hwpMul(M,hwpMul(R,S));}
+  if(M.some(v=>!isFinite(v)))return null;return {id,iw,ih,M,o,dv,d};}
+/* 선·채우기: 선 종류 0 = 없음, 굵기 HWPUNIT(0 이면 가장 가는 선) · 채우기 종류 1 = 단색 */
+function hwpShpStyle(h){const {dv,d}=h;let o=h.o;const st={stroke:'none',sw:0,fill:'none',dash:'',sa:0,ea:0};
+  if(o+13<=d.length){const col=dv.getUint32(o,true),w=dv.getInt32(o+4,true),la=dv.getUint32(o+8,true);const t=la&63;
+    if(t){st.stroke=fmHex(col);st.sw=Math.max(0.1,fmMM(Math.max(0,w)));st.dash=t===2||t===3||t===7?'1 2':t>=4&&t<=6?'4 2':'';st.sa=(la>>10)&63;st.ea=(la>>16)&63;}o+=13;}
+  if(o+4<=d.length){const ft=dv.getUint32(o,true);if((ft&1)&&o+8<=d.length){const bg=dv.getUint32(o+4,true);if(bg!==0xffffffff)st.fill=fmHex(bg);}}
+  return st;}
+function hwpPts(gd,n,o){const dv=fmDV(gd);const p=[];for(let i=0;i<n&&o+8<=gd.length;i++,o+=8)p.push([dv.getInt32(o,true),dv.getInt32(o+4,true)]);return p;}
+function hwpDraw(ct,C){const cd=fmDV(ct.d);const W=cd.getUint32(16,true),H=cd.getUint32(20,true);if(!(W>0&&H>0))return null;
+  const top=ct.c.find(k=>k.tag===76);if(!top)return null;const inline=!!(cd.getUint32(4,true)&1);
+  const svg=[],txt=[];let mk=0,n=0;const f2=v=>Math.round(v*100)/100;
+  const walk=(k,isTop,dep)=>{if(dep>12||n>2000)return;const h=hwpShpHdr(k,isTop);if(!h)return;n++;
+    if(h.id==='$con'){for(const c of k.c)if(c.tag===76)walk(c,false,dep+1);return;}
+    const st=hwpShpStyle(h);const M=h.M;const tf=`matrix(${[M[0],M[3],M[1],M[4],M[2],M[5]].map(v=>+v.toFixed(5)).join(' ')})`;
+    const sw=st.stroke==='none'?'':` stroke="${st.stroke}" stroke-width="${f2(Math.max(0.5,st.sw*3.78))}" vector-effect="non-scaling-stroke"${st.dash?` stroke-dasharray="${st.dash}"`:''}`;
+    const paint=`fill="${st.fill}"${sw||' stroke="none"'}`;
+    const arrows=(st.sa||st.ea)&&st.stroke!=='none'?((st.sa?` marker-start="url(#hwa${mk})"`:'')+(st.ea?` marker-end="url(#hwa${mk})"`:'')):'';
+    if(arrows){svg.push(`<defs><marker id="hwa${mk}" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="${st.stroke}"/></marker></defs>`);mk++;}
+    const geo=k.c.find(x=>x.tag>=78&&x.tag<=85);
+    if(geo){const gd=geo.d,gv=fmDV(gd);
+      if(geo.tag===80&&gd.length>=28){const cx=gv.getInt32(4,true),cy=gv.getInt32(8,true),a1x=gv.getInt32(12,true),a1y=gv.getInt32(16,true),a2x=gv.getInt32(20,true),a2y=gv.getInt32(24,true);
+        const rx=Math.hypot(a1x-cx,a1y-cy),ry=Math.hypot(a2x-cx,a2y-cy);svg.push(`<ellipse cx="${cx}" cy="${cy}" rx="${f2(rx)}" ry="${f2(ry)}" transform="${tf}" ${paint}/>`);}
+      else if(geo.tag===79&&gd.length>=33){const p=hwpPts(gd.subarray(1),4,0);const r=Math.min(h.iw,h.ih)*Math.min(50,gd[0])/100;
+        const xs=p.map(q=>q[0]),ys=p.map(q=>q[1]);const x0=Math.min(...xs),y0=Math.min(...ys);svg.push(`<rect x="${x0}" y="${y0}" width="${Math.max(...xs)-x0}" height="${Math.max(...ys)-y0}"${r?` rx="${f2(r)}"`:''} transform="${tf}" ${paint}/>`);}
+      else if(geo.tag===82&&gd.length>=4){const cnt=Math.min(gv.getInt32(0,true),4000);const p=hwpPts(gd,cnt,4);if(p.length>1){const closed=p.length>2&&p[0][0]===p[p.length-1][0]&&p[0][1]===p[p.length-1][1]||st.fill!=='none';
+        svg.push(`<${closed?'polygon':'polyline'} points="${p.map(q=>q.join(',')).join(' ')}" transform="${tf}" ${closed?paint:`fill="none"${sw}`}${arrows}/>`);}}
+      else if(geo.tag===83&&gd.length>=4){const cnt=Math.min(gv.getInt32(0,true),4000);const p=hwpPts(gd,cnt,4);const ty=gd.subarray(4+cnt*8,4+cnt*8+Math.max(0,cnt-1));
+        if(p.length>1){let path=`M${p[0][0]} ${p[0][1]}`;for(let i=0;i<p.length-1;){if(ty[i]===1&&i+3<p.length){path+=`C${p[i+1].join(' ')} ${p[i+2].join(' ')} ${p[i+3].join(' ')}`;i+=3;}else{path+=`L${p[i+1].join(' ')}`;i+=1;}}
+          const closed=p[0][0]===p[p.length-1][0]&&p[0][1]===p[p.length-1][1];svg.push(`<path d="${path}${closed?'Z':''}" transform="${tf}" ${closed||st.fill!=='none'?paint:`fill="none"${sw}`}${arrows}/>`);}}
+      else if(geo.tag===78&&gd.length>=16){svg.push(`<line x1="${gv.getInt32(0,true)}" y1="${gv.getInt32(4,true)}" x2="${gv.getInt32(8,true)}" y2="${gv.getInt32(12,true)}" transform="${tf}" fill="none"${sw||' stroke="#000" stroke-width="0.6" vector-effect="non-scaling-stroke"'}${arrows}/>`);}
+      else if(geo.tag===81&&gd.length>=25){const o=1;const cx=gv.getInt32(o,true),cy=gv.getInt32(o+4,true),ax=gv.getInt32(o+8,true),ay=gv.getInt32(o+12,true),bx=gv.getInt32(o+16,true),by=gv.getInt32(o+20,true);
+        const rx=Math.max(Math.abs(ax-cx),Math.abs(bx-cx))||Math.hypot(ax-cx,ay-cy),ry=Math.max(Math.abs(ay-cy),Math.abs(by-cy))||rx;svg.push(`<path d="M${ax} ${ay}A${f2(rx)} ${f2(ry)} 0 0 1 ${bx} ${by}${gd[0]===1?`L${cx} ${cy}Z`:gd[0]===2?'Z':''}" transform="${tf}" ${gd[0]?paint:`fill="none"${sw}`}${arrows}/>`);}
+      else if(geo.tag===85&&gd.length>=73){const url=C.img[fmDV(gd).getUint16(71,true)];if(url)svg.push(`<image href="${url}" x="0" y="0" width="${h.iw}" height="${h.ih}" preserveAspectRatio="none" transform="${tf}"/>`);}}
+    else if(h.id==='$rec'){svg.push(`<rect x="0" y="0" width="${h.iw}" height="${h.ih}" transform="${tf}" ${paint}/>`);}
+    /* 글상자: 모양의 바깥 상자(변환 뒤) 안에 글 */
+    const li=k.c.findIndex(x=>x.tag===72);
+    if(li>=0){const ps=[];for(let j=li+1;j<k.c.length&&k.c[j].tag===66;j++)ps.push(k.c[j]);const inner=hwpParas(ps,C).replace(/(<p[^>]*><br><\/p>)+$/,'');
+      if(fmHasTextLite(inner)){const lh=k.c[li].d,lv=fmDV(lh);const va=lh.length>=8?(lv.getUint32(4,true)>>5)&3:1;const mg=lh.length>=16?[lv.getInt16(8,true),lv.getInt16(10,true),lv.getInt16(12,true),lv.getInt16(14,true)].map(v=>Math.max(0,v)):[283,283,283,283];
+        const cs=[[0,0],[h.iw,0],[0,h.ih],[h.iw,h.ih]].map(q=>hwpAp(M,q[0],q[1]));const x0=Math.min(...cs.map(q=>q[0])),x1=Math.max(...cs.map(q=>q[0])),y0=Math.min(...cs.map(q=>q[1])),y1=Math.max(...cs.map(q=>q[1]));
+        /* 회사서식 정화(fmClean)는 position·left·top 을 지우므로: 자리는 바깥 상자 기준 % 여백(위 여백도 % 는 폭 기준)으로, 맞춤은 hw-va 칸 이름으로 */
+        const pw=v=>f2(v/W*100)+'%';
+        txt.push(`<div class="hw-dt hw-va${va}" style="margin-left:${pw(x0)};margin-top:${pw(y0)};width:${pw(x1-x0)};height:${f2((y1-y0)/H*100)}%;padding:${fmMM(mg[2])}mm ${fmMM(mg[1])}mm ${fmMM(mg[3])}mm ${fmMM(mg[0])}mm">${inner}</div>`);}}};
+  walk(top,true,0);if(!svg.length&&!txt.length)return null;
+  /* 도형은 SVG 그림(img, data URL)으로 — 그림 속 SVG 는 스크립트·외부 불러오기가 막혀 안전하고 정화를 거쳐도 남음 */
+  const doc=`<svg xmlns="http://www.w3.org/2000/svg" width="${fmMM(W)}mm" height="${fmMM(H)}mm" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">${svg.join('')}</svg>`;
+  const src='data:image/svg+xml;base64,'+fmB64(new TextEncoder().encode(doc));
+  const html=`<div class="hw-drw" style="width:${fmMM(W)}mm"><img class="hw-dsvg" src="${src}" alt="">${txt.join('')}</div>`;
+  return inline?{inline:true,html}:{inline:false,html:`<div class="hw-obj hw-drw-b">${html}</div>`};}
 /* 그림·글상자 → 문단 안 인라인(글상자 문단은 줄 단위 span) — 표가 든 글상자만 블록 */
 function fmObjHTML(parts){const block=parts.some(x=>x.box&&/<table/.test(x.box));
   const html=parts.map(x=>x.img?`<img src="${x.img}" alt=""${x.sz?` style="${x.sz}"`:''}>`:block?`<div class="hw-box"${x.w>0?` style="width:${fmMM(x.w)}mm"`:''}>${x.box}</div>`:`<span class="hw-box"${x.w>0?` style="width:${fmMM(x.w)}mm"`:''}>${x.box.replace(/<p(\s[^>]*)?>/g,(m,a)=>`<span class="hw-bp"${a||''}>`).replace(/<\/p>/g,'</span>')}</span>`).join('');
@@ -7755,7 +7840,7 @@ function fmPolish(html,page){const d=document.createElement('div');d.innerHTML=h
   if(best&&bestPt>=15){best.classList.add('fm-title');}
   /* 4. 표: 결재란 · 항목 칸 · 구역 머리 */
   for(const tb of d.querySelectorAll('table')){const rows=[...tb.rows];if(!rows.length)continue;
-    const tdAll=[...tb.querySelectorAll(':scope > tbody > tr > td, :scope > tr > td')];const roleHits=(fmpTxt(tb).match(FMP_ROLE)||[]).length;
+    const tdAll=[...tb.querySelectorAll(':scope > tbody > tr > td, :scope > tr > td')];const roleHits=(fmpTxt(tb).replace(/ /g,'').match(FMP_ROLE)||[]).length;
     const stamp=rows.length<=4&&roleHits>=3&&tdAll.length<=40&&tdAll.every(td=>fmpTxt(td).length<=30);if(stamp)tb.classList.add('fm-stamp');
     /* 50차: 따로 있는 좁은 결재란은 오른쪽으로 */
     if(stamp&&page&&!(tb.parentElement&&tb.parentElement.closest('table'))){const W=(+page.w||210)-(+page.ml||0)-(+page.mr||0);const tw=fmpMM(tb.getAttribute('style'),'width');if(tw&&tw<W*0.8){tb.classList.remove('hw-mc');tb.classList.add('hw-mr');}}
@@ -7826,9 +7911,11 @@ function fmpFit(d,page){const W=Math.round(((+page.w||210)-(+page.ml||0)-(+page.
   const setW=(el,k)=>{const st=el.getAttribute('style')||'';const w=fmpMM(st,'width');if(w)el.setAttribute('style',st.replace(/((?:^|;)\s*width:\s*)([\d.]+)mm/,(m,a)=>a+r2(w*k)+'mm'));};
   for(const tb of d.querySelectorAll('table')){if(tb.parentElement&&tb.parentElement.closest('table'))continue;
     const tw=fmpMM(tb.getAttribute('style'),'width');if(!tw)continue;let k=1;
+    /* 56차: 원본 가로 위치(margin-left)가 있는 표 — 본문 폭을 넘지 않게 */
+    {const ml=fmpMM(tb.getAttribute('style'),'margin-left');if(ml&&tw+ml>W+0.3){const st=tb.getAttribute('style');tb.setAttribute('style',tw<=W?st.replace(/margin-left:\s*[\d.]+mm/,'margin-left:'+r2(W-tw)+'mm'):st.replace(/;?\s*margin-left:\s*[\d.]+mm/,''));}}
     const T=r2(W-0.3);/* 바깥 선 굵기만큼 덜어 양쪽 끝을 본문 가장자리에 딱 맞춤 */
     if(tw>T+0.05)k=T/tw;else if(tw>=W*0.85&&tw<T-0.05)k=T/tw;if(k===1)continue;
-    setW(tb,k);for(const el of tb.querySelectorAll('col,td,th,table'))setW(el,k);
+    setW(tb,k);for(const el of tb.querySelectorAll('col,td,th,table'))setW(el,k);tb.setAttribute('style',(tb.getAttribute('style')||'').replace(/;?\s*margin-left:\s*[\d.]+mm/,''));
     tb.classList.remove('hw-mr');tb.classList.add('hw-mc');}
   for(const el of d.querySelectorAll(':scope > div[style*="width"], :scope > p[style*="width"]')){const w=fmpMM(el.getAttribute('style'),'width');if(w>W+0.3)setW(el,W/w);}}
 function fmpDate(){const t=today();return `${t.slice(0,4)}년 ${+t.slice(5,7)}월 ${+t.slice(8,10)}일`;}
@@ -10154,7 +10241,7 @@ function ordNtf(){const me=myId();if(!me)return [];const out=[];const since=new 
   return out;}
 {const _c=ntfCompute;ntfCompute=function(){const out=_c.apply(this,arguments).filter(it=>{if(!it.t)return true;if(it.type==='assign'&&ordOf(it.t))return false;
     if(it.k&&it.k.startsWith('n|')){const L=it.t.logs.find(l=>`n|${it.t.path}|${l.at}|${l.by}`===it.k);if(L&&ORD_KINDS.has(L.kind))return false;}return true;});
-  try{out.push(...ordNtf());}catch(e){console.warn(e);}out.sort((a,b)=>b.at.localeCompare(a.at)||String(a.k||"").localeCompare(String(b.k||"")));return out.slice(0,80);};}
+  try{out.push(...ordNtf());}catch(e){console.warn(e);}out.sort((a,b)=>b.at.localeCompare(a.at)||String((a.t&&a.t.title)||a.title||"").localeCompare(String((b.t&&b.t.title)||b.title||""))||String(a.k||"").localeCompare(String(b.k||"")));return out.slice(0,80);};}
 NT_ICON.ord='요청';NT_ICON.rep='보고';
 {const _h=logActHTML,_t=logActText;const T={order:'📌 업무 요청',ack:'✓ 요청 확인',claim:'🙋 맡음',rep_mid:'📨 중간 보고',rep_done:'📨 완료 보고',rep_issue:'⚠ 문제·지연 보고',approve:'✅ 보고 확인 (완료)',redo:'↩ 보완 요청',ocancel:'요청 취소'};
   logActHTML=function(l){return T[l.kind]?`<span class="od-lk od-lk-${l.kind}">${T[l.kind]}</span>`:_h.apply(this,arguments);};
@@ -10752,7 +10839,7 @@ const fmFixPua=html=>html&&FM_PUA_RE.test(html)?(FM_PUA_RE.lastIndex=0,html.repl
 function fmStampRight(html,page){if(!html||html.indexOf('<table')<0)return html;const d=document.createElement('div');d.innerHTML=html;let n=0;
   const W=(+(page&&page.w)||210)-(+(page&&page.ml)||0)-(+(page&&page.mr)||0);
   for(const tb of d.querySelectorAll('table')){if(tb.parentElement&&tb.parentElement.closest('table'))continue;const rows=[...tb.rows];if(!rows.length||rows.length>4)continue;
-    const tdAll=[...tb.querySelectorAll(':scope > tbody > tr > td, :scope > tr > td')];const roles=(fmpTxt(tb).match(FMP_ROLE)||[]).length;
+    const tdAll=[...tb.querySelectorAll(':scope > tbody > tr > td, :scope > tr > td')];const roles=(fmpTxt(tb).replace(/ /g,'').match(FMP_ROLE)||[]).length;
     if(roles<3||tdAll.length>40||!tdAll.every(td=>fmpTxt(td).length<=30))continue;const tw=fmpMM(tb.getAttribute('style'),'width');if(!tw||tw>=W*0.8||tb.classList.contains('hw-mr'))continue;
     tb.classList.remove('hw-mc');tb.classList.add('hw-mr');n++;}
   return n?d.innerHTML:html;}
@@ -11318,7 +11405,7 @@ function memoPadEl(){let p=document.getElementById('memo-pad');if(p)return p;p=d
     <div class="mp-undo" hidden></div><div class="mp-list"></div><p class="mp-foot"></p>`;
   const tget=e=>e.target;
   p.addEventListener('click',e=>{const T=tget(e);const b=T.closest&&T.closest('[data-mp]');if(!b)return;const id=b.closest('[data-mid]')?b.closest('[data-mid]').dataset.mid:'';const a=b.dataset.mp;
-    if(a==='add'){const ta=p.querySelector('.mp-in');memoAdd(ta.value);ta.value='';ta.focus();return;}
+    if(a==='add'){const ta=p.querySelector('.mp-in');memoAdd(ta.value);ta.value='';memoGrow(ta);ta.focus();return;}
     if(a==='pin'){const m=MEMO.list.find(x=>x.id===id);if(m)memoPut(id,{pin:!m.pin}).then(memoRender);return;}
     if(a==='color'){const m=MEMO.list.find(x=>x.id===id);if(m){const c=MEMO_COLORS[(MEMO_COLORS.indexOf(m.color)+1)%MEMO_COLORS.length];memoPut(id,{color:c}).then(memoRender);}return;}
     if(a==='task'){memoToTask(id);return;}
@@ -11329,13 +11416,15 @@ function memoPadEl(){let p=document.getElementById('memo-pad');if(p)return p;p=d
     if(a==='desk'){memoDesk();return;}
     if(a==='pip'){memoPip();return;}
     if(a==='install'){memoInstall();return;}});
-  p.addEventListener('keydown',e=>{const T=tget(e);if(T.classList&&T.classList.contains('mp-in')&&e.key==='Enter'&&(e.ctrlKey||e.metaKey)&&!e.isComposing){e.preventDefault();memoAdd(T.value);T.value='';}
+  p.addEventListener('keydown',e=>{const T=tget(e);if(T.classList&&T.classList.contains('mp-in')&&e.key==='Enter'&&(e.ctrlKey||e.metaKey)&&!e.isComposing){e.preventDefault();memoAdd(T.value);T.value='';memoGrow(T);}
     if(e.key==='Escape'&&!memoMode()&&!MEMO.pip){memoClose();}});
-  p.addEventListener('input',e=>{const T=tget(e);if(T.classList&&T.classList.contains('mp-q')){MEMO.q=T.value;memoRender();return;}
+  p.addEventListener('input',e=>{const T=tget(e);if(T.classList&&T.classList.contains('mp-in')){memoGrow(T);return;}if(T.classList&&T.classList.contains('mp-q')){MEMO.q=T.value;memoRender();return;}
     if(T.classList&&T.classList.contains('mp-tx')){const id=T.closest('[data-mid]').dataset.mid;memoGrow(T);clearTimeout(MEMO.timers[id]);const v=T.value;const st=T.closest('.mp-card').querySelector('.mp-st');if(st)st.textContent='저장 중…';
       MEMO.timers[id]=setTimeout(async()=>{if(!v.trim()){return;}await memoPut(id,{text:v.slice(0,4000)});if(st)st.textContent='저장됨 '+hhmm(nowISO());},700);}});
   return p;}
-function memoGrow(t){t.style.height='auto';t.style.height=Math.min(320,t.scrollHeight+2)+'px';}
+/* 56차: 글이 늘어나는 만큼 칸도 길어짐(메모 카드는 끝까지, 새 메모 칸은 메모장 높이의 절반까지 — 넘으면 그 안에서 스크롤) */
+function memoGrow(t){if(!t||!t.style)return;const inp=t.classList.contains('mp-in');t.style.height='auto';const pad=t.closest('.memo-pad');
+  const max=inp?Math.max(140,Math.round((pad?pad.clientHeight:600)*0.5)):100000;const h=t.scrollHeight+2;t.style.height=Math.min(max,h)+'px';t.style.overflowY=h>max?'auto':'hidden';}
 function memoCardHTML(m){return `<article class="mp-card c-${m.color}${m.pin?' pin':''}${m.task?' done':''}" data-mid="${esc(m.id)}"><textarea class="mp-tx" rows="2" maxlength="4000" aria-label="메모">${esc(m.text)}</textarea>
   <div class="mp-meta"><span class="mp-st">${esc(m.upd?fmtMD(localDate(m.upd))+' '+hhmm(m.upd):'')}</span>${m.task?`<button type="button" class="mp-lnk" data-mp="open" title="등록한 업무 열기">✓ 업무 등록됨${m.taskTitle?' · '+esc(m.taskTitle.slice(0,24)):''}</button>`:''}<span class="mp-sp"></span>
   <button type="button" data-mp="pin" title="${m.pin?'고정 풀기':'맨 위에 고정'}" aria-pressed="${m.pin}">📌</button><button type="button" data-mp="color" title="색 바꾸기 (${MEMO_CN[m.color]})">🎨</button>${m.task?'':`<button type="button" data-mp="task" title="간편 등록 확인 창을 거쳐 업무로 등록">➜ 업무로</button>`}<button type="button" data-mp="del" title="지우기 (6초 안에 되돌리기)">🗑</button></div></article>`;}
@@ -11467,7 +11556,7 @@ function chgNtf(){const out=[];const since=new Date(Date.now()-21*864e5).toISOSt
       if(chgIsMe(c.by)&&(c.st==='ok'||c.st==='no')&&c.dAt>=since)out.push({k:`chgr|${t.path}|${c.id}|${c.st}`,at:c.dAt,type:'chg',t,text:c.st==='ok'?`✅ 변경 요청이 승인되어 반영되었습니다 · ${chgSummary(c)}`:`⛔ 변경 승인 불가 · ${chgSummary(c)}`,sub:c.st==='no'?c.rmemo:''});}}
   return out;}
 {const _c=ntfCompute;ntfCompute=function(){const out=_c.apply(this,arguments).filter(it=>{if(!it.t||!it.k||!it.k.startsWith('n|'))return true;const L=it.t.logs.find(l=>`n|${it.t.path}|${l.at}|${l.by}`===it.k);return !(L&&CHG_LK.has(L.kind));});
-  try{out.push(...chgNtf());}catch(e){console.warn(e);}out.sort((a,b)=>b.at.localeCompare(a.at)||String(a.k||"").localeCompare(String(b.k||"")));return out.slice(0,80);};}
+  try{out.push(...chgNtf());}catch(e){console.warn(e);}out.sort((a,b)=>b.at.localeCompare(a.at)||String((a.t&&a.t.title)||a.title||"").localeCompare(String((b.t&&b.t.title)||b.title||""))||String(a.k||"").localeCompare(String(b.k||"")));return out.slice(0,80);};}
 /* ── 기록 이름 */
 const CHG_T={chgreq:'✉ 변경 요청',chgok:'✅ 변경 승인',chgno:'⛔ 변경 승인 불가',chgx:'변경 요청 취소'};
 function logKindLabel(l){if(CHG_T[l.kind])return CHG_T[l.kind];if(typeof ORD_KINDS!=='undefined'&&ORD_KINDS.has&&ORD_KINDS.has(l.kind)){const T={order:'📌 업무 요청',ack:'✓ 요청 확인',claim:'🙋 맡음',rep_mid:'📨 중간 보고',rep_done:'📨 완료 보고',rep_issue:'⚠ 문제·지연 보고',approve:'✅ 보고 확인',redo:'↩ 보완 요청',ocancel:'요청 취소'};return T[l.kind]||'';}return '';}
@@ -11529,7 +11618,7 @@ const GU=[
   shot:{go:'#my',open:[['fn','ntf']],clip:['#ntf-pop','#btn-ntf'],hi:['#btn-ntf']},show:{go:'#my',hi:['#btn-ntf']}},
  {id:'memo',sec:'함께 일하기',t:'📝 메모장',
   lv:{1:'위쪽 <b>📝</b>(단축키 Alt+M)를 누르면 오른쪽에 메모장이 열립니다. 전화 내용·할 일을 적어 두면 저절로 저장되고, 나만 봅니다.',
-      2:'위쪽 <b>📝</b>(휴대폰은 더보기, 단축키 Alt+M)를 누르면 오른쪽에 메모장이 열립니다. 쓰는 대로 자동 저장되고 나만 봅니다(관리자도 못 봄). 메모마다 📌 고정, 🎨 색, <b>➜ 업무로</b>(간편 등록 확인 창을 거쳐 업무로 등록), 🗑 삭제(6초 안에 되돌리기). <b>🖥 바탕 화면 메모장</b>으로 작은 창을 띄우거나 바탕 화면 앱으로 설치할 수 있고, 휴대폰·PC·바탕 화면 어디서 고쳐도 같은 내용입니다.'},
+      2:'위쪽 <b>📝</b>(휴대폰은 더보기, 단축키 Alt+M)를 누르면 오른쪽에 메모장이 열립니다. 쓰는 대로 자동 저장되고 나만 봅니다(관리자도 못 봄). 글이 길어지면 칸도 함께 길어집니다. 메모마다 📌 고정, 🎨 색, <b>➜ 업무로</b>(간편 등록 확인 창을 거쳐 업무로 등록), 🗑 삭제(6초 안에 되돌리기). <b>🖥 바탕 화면 메모장</b>으로 작은 창을 띄우거나 바탕 화면 앱으로 설치할 수 있고, 휴대폰·PC·바탕 화면 어디서 고쳐도 같은 내용입니다.'},
   shot:{go:'#my',open:[['fn','memo']],clip:['#memo-drawer .md-in'],hi:['#memo-drawer [data-mp="add"]']},show:{go:'#my',hi:['#btn-memo']},need:()=>!!window.memoApi},
  {id:'mobile',sec:'시작하기',t:'📱 휴대폰에서 쓰기',
   lv:{1:'휴대폰에서는 아래쪽 탭(내 업무·팀 현황·달력·그룹웨어·더보기)으로 옮겨 다니고, 오른쪽 아래 <b>＋</b>로 업무를 등록합니다. 브라우저 메뉴의 <b>홈 화면에 추가</b>를 해 두면 앱처럼 열립니다.',
@@ -11576,7 +11665,7 @@ const GU=[
   lv:{2:'회사 기본 서류·인증서·확인서·사업장별 서류를 최신본으로 보관합니다. 다시 올리면 새 버전으로 쌓이고, 유효기간이 있는 서류는 만료 전에 알려 줍니다. 🔒 서류는 허용된 사람만 엽니다. 파일 보기 창 양옆 <b>‹ ›</b>로 이전·다음 서류로 넘깁니다.'},
   shot:{go:'#docs',clip:'screen'},show:{go:'#docs'}},
  {id:'forms',sec:'서류·결재',t:'📝 회사서식',
-  lv:{2:'<b>회사서식(작성 가능)</b>은 서식을 열어 파란 칸을 눌러 바로 적고(PDF·스캔 서식은 적을 곳을 눌러 글상자) 인쇄하거나 전자결재로 올립니다. <b>회사서식(작성 불가)</b>은 인쇄해서 손으로 적는 서식입니다. 적던 내용은 이 기기에 자동 보관되고, 양옆 <b>‹ ›</b>로 이전·다음 서식을 엽니다.'},
+  lv:{2:'<b>회사서식(작성 가능)</b>은 서식을 열어 파란 칸을 눌러 바로 적고(PDF·스캔 서식은 적을 곳을 눌러 글상자) 인쇄하거나 전자결재로 올립니다. <b>회사서식(작성 불가)</b>은 인쇄해서 손으로 적는 서식입니다. 적던 내용은 이 기기에 자동 보관되고, 양옆 <b>‹ ›</b>로 이전·다음 서식을 엽니다. 한글 서식의 흐름도·도형(타원·화살표·그림)과 따로 놓인 결재란도 원본 자리대로 보입니다.'},
   shot:{go:'#formd',clip:'screen'},show:{go:'#formd'}},
  {id:'appr',sec:'서류·결재',t:'✍ 전자결재',
   lv:{2:'<b>＋ 새 기안</b>에서 서식에 직접 적거나(기안서·품의서·지출결의서·휴가 신청서 등) 스캔·파일을 올려 결재를 올립니다. 결재선은 직무별 팀원 → 직무별 총괄 → 전체 총괄로 자동으로 정해지고, 필요할 때만 바꿉니다. 결재할 차례가 되면 알림이 오고 문서에서 승인·반려(사유)를 누릅니다. 아무도 결재하기 전이면 회수, 반려되면 고쳐서 다시 올립니다. 연차·휴일근무는 최종 승인되면 달력에 표시됩니다.'},
@@ -11619,7 +11708,7 @@ const GU=[
   lv:{3:'통화하면서 📝 메모장에 대충 적어 두고, 정리할 때 메모의 <b>➜ 업무로</b>를 누르면 그 문장을 간편 등록처럼 읽어 확인 창을 띄웁니다. 업무로 옮긴 메모는 표시가 남아 두 번 등록하지 않고, 📌 고정한 메모는 맨 위에 남습니다. 여러 줄 메모는 첫 줄이 업무명, 나머지는 내용이 됩니다.'},
   shot:{go:'#my',open:[['fn','memo']],clip:['#memo-drawer .md-in'],hi:['#memo-drawer [data-mp="task"]']},show:{go:'#my',hi:['#btn-memo']},need:()=>!!window.memoApi},
  {id:'xdesk',sec:'빠르게 쓰기',t:'🖥 바탕 화면 메모장 · 항상 위에',
-  lv:{3:'메모장의 <b>🖥 바탕 화면 메모장</b>을 누르면 작은 메모장 창이 열립니다. 그 창의 <b>바탕 화면 앱으로 설치</b>(크롬·엣지 주소창 ⊕도 같음)로 윈도우 바탕 화면·작업 표시줄 아이콘을 만들고, <b>📌 항상 위에 띄우기</b>로 다른 프로그램 위에 띄워 둡니다. 업무 시스템·휴대폰과 같은 메모가 이어집니다.'},
+  lv:{3:'메모장의 <b>🖥 바탕 화면 메모장</b>을 누르면 작은 메모장 창이 열립니다. 그 창의 <b>🖥 바탕 화면 앱 설치</b>로 윈도우 바탕 화면·작업 표시줄 아이콘을 만들고(브라우저가 설치 창을 바로 주지 않으면 안내대로 <b>↗ 새 탭에서 열기</b> → 주소창 ⊕ 「앱 설치」), <b>📌 항상 위에 띄우기</b>로 다른 프로그램 위에 띄워 둡니다. 업무 시스템·휴대폰과 같은 메모가 이어집니다.'},
   shot:{url:'./?memo=1',vp:[440,640],go:'',clip:'screen',hi:['[data-mp="pip"]']},show:{go:'#my',hi:['#btn-memo']},need:()=>!!window.memoApi},
  {id:'xord',sec:'함께 일하기',t:'공장별 · 직무별로 한꺼번에 요청',adm:1,
   lv:{3:'상세업무 등록 창의 <b>📌 업무 요청</b>에서 👤 직원(여러 명), 🏭 공장 전체 넣기, 🏭 공장별(그 공장 근무 직원 모두), 🧩 직무를 고르고 요청 메모를 적으면 저장과 함께 요청이 갑니다. 이미 있는 업무는 📌 업무 요청 화면의 🗂 요청할 업무에서 여러 건을 골라 ⚡ 업무분장 담당자에게 한 번에 보냅니다. 받은 사람의 확인·보고는 📌 요청 현황에서 추적합니다.'},
@@ -11640,7 +11729,7 @@ const GU=[
   lv:{3:'현장에서는 휴대폰 홈 화면 아이콘으로 열어 <b>📷 현장 사진 기록</b>으로 사진부터 찍고 한 줄 메모 → 간편 등록. 시설 일보는 주소 끝에 <b>#ilbo</b>를 붙인 바로가기를 홈 화면에 두면 바로 열리고, 설비 QR은 기본 카메라로 찍기만 하면 그 설비 기록이 열립니다. 바탕 화면 앱(설치)에서는 아이콘을 오른쪽 클릭하면 📝 메모장 바로가기가 있습니다.'},
   shot:{dev:'m',go:'#my',clip:'screen',hi:['#qa-cam-btn']},show:{go:'#my',hi:['#qa-cam-btn']}},
  {id:'xadm',sec:'관리자',t:'관리자 — 결재선 · 서식 · 탭 · 항목 편집',adm:1,
-  lv:{3:'전자결재 <b>⚙ 결재선 설정</b>·<b>📄 서식 관리</b>, 자료실·회사서식 <b>⚙ 탭 편집</b>(탭 이름·순서·새 탭), 회사서식 <b>✏️ 서식 수정</b>(모든 직원에게 반영), 조직도 <b>🧩 파트 편집</b>·업무분장 담당 고치기, 점검 일보·경비 일지 <b>✏️ 항목 편집</b>을 씁니다. 바꾼 내용은 바로 모든 직원 화면에 반영되고, 서식·항목은 직전 저장본으로 되돌릴 수 있습니다.'},
+  lv:{3:'전자결재 <b>⚙ 결재선 설정</b>·<b>📄 서식 관리</b>, 자료실·회사서식 <b>⚙ 탭 편집</b>(탭 이름·순서·새 탭), 회사서식 <b>✏️ 서식 수정</b>(모든 직원에게 반영, 로고 없는 서식은 <b>🏷 로고 넣기</b>), 조직도 <b>🧩 파트 편집</b>·업무분장 담당 고치기, 점검 일보·경비 일지 <b>✏️ 항목 편집</b>을 씁니다. 바꾼 내용은 바로 모든 직원 화면에 반영되고, 서식·항목은 직전 저장본으로 되돌릴 수 있습니다.'},
   shot:{who:'s01',go:'#appr',clip:'screen',hi:['[data-ap-panel="line"]','[data-ap-panel="tpl"]']},show:{go:'#appr',hi:['[data-ap-panel="line"]']}}
 ];
 /* 기초에서 보여 줄 순서 */
@@ -11768,6 +11857,40 @@ addEventListener('resize',topFitSoon);try{document.fonts&&document.fonts.ready.t
 {const _r=render;render=function(){const r=_r.apply(this,arguments);topFitSoon();return r;};}
 try{const n=document.querySelector('nav.tabs'),tr=document.querySelector('.top-right');const mo=new MutationObserver(topFitSoon);if(n)mo.observe(n,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['hidden','class']});if(tr)mo.observe(tr,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['hidden']});}catch{}
 setTimeout(topFit,300);window.topFit=topFit;
+
+/* ───────── 56차: 회사서식 로고 넣기(서식별) · 메모장 글 상자 · 최종 점검 보완 ─────────
+   · 서식 파일에 로고가 없는 회사서식(예: 13. 재고자산에 대한 관리기준&폐기절차)은 자료 관리자가 ✏️ 서식 수정 › 「🏷 로고 넣기」로
+     그 서식에만 TAESUNG 로고를 머리 왼쪽에 넣음(forms/{id}.logo = true, 「🏷 로고 빼기」로 되돌림).
+     서식 파일·변환 결과는 그대로 두고 보여 줄 때만 붙이므로, 변환기가 좋아지면 그대로 따라감. (47차에 「모든 서식 자동 표시」는 사용자 요청으로 뺐음 — 서식별로만)
+   · 로고 크기는 다른 회사서식 로고와 같게(58mm × 12mm). */
+const FM_LOGO_W=58,FM_LOGO_H=11.93;
+const fmHasLogoHtml=h=>{const re=/<img\b[^>]*style="([^"]*)"/g;let m;while((m=re.exec(h||''))){const w=+(m[1].match(/width:\s*([\d.]+)mm/)||[])[1]||0,ht=+(m[1].match(/height:\s*([\d.]+)mm/)||[])[1]||0;if(w>=25&&ht>0&&w/ht>=2.5)return true;}return false;};
+{const _n=fmNorm;fmNorm=function(id,v){const r=_n.apply(this,arguments);if(r)r.logo=!!(v&&v.logo===true);return r;};}
+{const _g=fmGetConv;fmGetConv=async function(f){const r=await _g.apply(this,arguments);
+  try{if(r&&f&&f.logo&&typeof r.html==='string'&&typeof IL_LOGO==='string'&&!fmHasLogoHtml(r.html))return {...r,html:`<p><img src="${IL_LOGO}" alt="" style="width:${FM_LOGO_W}mm;height:${FM_LOGO_H}mm"></p>`+r.html};}catch(e){console.warn(e);}return r;};}
+{const _b=fmeBarHTML;fmeBarHTML=function(){const h=_b.apply(this,arguments);try{const f=fmGet(FM.open);if(!f||!canDoc())return h;
+    const own=FM.cur&&typeof FM.cur.html==='string'&&!f.logo&&fmHasLogoHtml(FM.cur.html);if(own)return h;
+    return h.replace(/<\/div>$/,`<i></i><button type="button" data-fme-logo="${f.logo?'off':'on'}" title="${f.logo?'이 서식 머리의 회사 로고를 뺍니다':'이 서식 머리 왼쪽에 회사 로고(TAESUNG)를 넣습니다 — 이 서식에만'}">🏷 ${f.logo?'로고 빼기':'로고 넣기'}</button></div>`);}catch(e){return h;}};}
+document.addEventListener('click',async e=>{const b=e.target.closest&&e.target.closest('[data-fme-logo]');if(!b)return;e.preventDefault();e.stopPropagation();
+  const f=fmGet(FM.open);if(!f||!canDoc()){toast(typeof DOCMGR_MSG==='string'?DOCMGR_MSG:'자료 관리자만 할 수 있습니다.','err');return;}const on=b.dataset.fmeLogo==='on';
+  if(typeof FME==='object'&&FME.hist&&FME.hist.length){toast('고친 내용을 먼저 💾 서식 수정 저장하거나 취소한 뒤 로고를 넣고 빼세요.','err');return;}
+  const r=await cfm3({title:on?'회사 로고 넣기':'회사 로고 빼기',rows:[['서식',f.name],['바뀌는 것',on?'머리 왼쪽에 TAESUNG 로고(58×12mm) — 화면·인쇄·전자결재 모두':'넣었던 로고를 뺌']],note:'서식 파일은 그대로이고, 이 서식에만 적용됩니다.',ok:on?'로고 넣기':'로고 빼기',edit:false});
+  if(r!=='ok')return;if(await fmUpdate([f.id],{logo:on},on?'🏷 로고를 넣었습니다.':'로고를 뺐습니다.')){f.logo=on;FM.base=false;FM.k='';render();}},true);
+/* 56차: 바탕 화면 메모장 설치 — 브라우저가 설치 창(beforeinstallprompt)을 바로 주지 않는 경우가 많아(새 창·처음 연 페이지·팝업 창은 주소창 ⊕ 없음)
+   설치 단추가 안 보이던 것 → 언제나 「🖥 바탕 화면 앱 설치」: 설치 창을 받을 수 있으면 바로, 아니면 새 탭에서 열어 주소창 ⊕로 설치하는 방법 안내.
+   이미 바탕 화면 앱(설치한 창)으로 열려 있으면 「✓ 바탕 화면 앱」 표시. */
+const memoStandalone=()=>{try{return matchMedia('(display-mode: standalone)').matches||matchMedia('(display-mode: window-controls-overlay)').matches||navigator.standalone===true;}catch{return false;}};
+{const _r=memoRender;memoRender=function(){const r=_r.apply(this,arguments);try{if(!memoMode())return r;const p=document.getElementById('memo-pad');const a=p&&p.querySelector('.mp-acts');if(!a)return r;
+    if(memoStandalone()){if(!a.querySelector('.mp-app'))a.insertAdjacentHTML('beforeend','<span class="mp-app" title="바탕 화면·작업 표시줄 아이콘으로 연 메모장입니다">✓ 바탕 화면 앱</span>');a.querySelectorAll('[data-mp="install"]').forEach(x=>x.remove());}
+    else if(!a.querySelector('[data-mp="install"]')&&!a.querySelector('[data-mp-help]'))a.insertAdjacentHTML('beforeend','<button type="button" class="btn sm primary" data-mp-help title="윈도우 바탕 화면·작업 표시줄에 메모장 아이콘을 만듭니다">🖥 바탕 화면 앱 설치</button>');}catch(e){console.warn(e);}return r;};}
+document.addEventListener('click',async e=>{const b=e.target.closest&&e.target.closest('[data-mp-help]');if(!b)return;e.preventDefault();
+  if(typeof MEMO==='object'&&MEMO.inst){memoInstall();return;}
+  const edge=/Edg\//.test(navigator.userAgent);const popup=!!window.opener||(window.toolbar&&window.toolbar.visible===false);
+  const r=await cfm3({title:'🖥 바탕 화면 메모장 설치',html:`<ol class="mp-help"><li>${popup?'이 작은 창은 주소창이 없어 설치 단추가 보이지 않습니다. 아래 <b>↗ 새 탭에서 열기</b>를 누르세요.':'아래 <b>↗ 새 탭에서 열기</b>로 메모장을 크롬·엣지 탭에서 엽니다.'}</li>
+    <li>${edge?'주소창 오른쪽 <b>앱 설치</b> 기호(⊕) 또는 메뉴 <b>…</b> › <b>앱</b> › <b>이 사이트를 앱으로 설치</b>':'주소창 오른쪽 <b>⊕ (앱 설치)</b> 기호 또는 메뉴 <b>⋮</b> › <b>전송, 저장, 공유</b> › <b>페이지를 앱으로 설치</b>'}를 누르고 <b>설치</b>.</li>
+    <li>바탕 화면·작업 표시줄의 <b>「관리부 메모장」</b> 아이콘으로 열면 됩니다. (작업 표시줄 아이콘을 오른쪽 클릭 › 작업 표시줄에 고정)</li></ol>
+    <p class="c3-note">새 탭에서 처음 열면 브라우저가 설치 창을 바로 띄우기도 합니다(그때는 「설치」만 누르면 됨). 휴대폰은 홈 화면에 추가.</p>`,ok:'↗ 새 탭에서 열기',cancel:'닫기',edit:false});
+  if(r==='ok'){const w=window.open('./?memo=1','_blank');if(!w)toast('팝업이 막혔습니다. 주소창에 이 주소 끝 ?memo=1 을 붙여 새 탭에서 여세요.','err');}},true);
 
 /* ───────── 시작 ───────── */
 function boot(){
