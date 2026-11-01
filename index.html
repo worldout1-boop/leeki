@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="wl-build" content="2df951d0cba0">
+<meta name="wl-build" content="5159175e1185">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="manifest" href="manifest.webmanifest"><script>if(/[?&]memo=1(&|$)/.test(location.search)){document.querySelector('link[rel=manifest]').href='memo.webmanifest';document.documentElement.classList.add('memo-mode');}</script>
 <meta name="theme-color" content="#1f3a5f">
@@ -2254,6 +2254,8 @@ dialog.modal.gu-dlg[open]{display:flex}
 .bcol-h .pill{height:30px;padding:0 13px;border-radius:15px;font-size:15px;font-weight:800;gap:6px;color:color-mix(in srgb,var(--sc) 78%,#0f172a);background:color-mix(in srgb,var(--sc) 20%,transparent)}
 .bcol-h .n{font-size:16px;font-weight:800;color:var(--ink)}
 @media (min-width:761px){header.top.fit0:not(.fit0b):not(.fit1) .tabs a{padding-left:9px!important;padding-right:9px!important}header.top.fit0b:not(.fit1) .tabs a{padding-left:6px!important;padding-right:6px!important}}
+/* 58차: 더 좁은 창(반쪽 화면 등)에서도 넘치면 마지막 단계 — 왼쪽 위 이름 글자를 숨기고 「관」 기호만(마우스 올리면 이름) */
+@media (min-width:761px){header.top.fit4 .brand strong,header.top.fit4 .brand small{display:none!important}header.top.fit4 .brand{gap:0}}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -11928,7 +11930,7 @@ document.addEventListener('click',e=>{const T=e.target;if(!T.closest)return;cons
 window.guideApi={items:()=>GU.map(x=>({id:x.id,t:x.t,sec:x.sec,adm:!!x.adm,lv:{...x.lv},img:x.img||'',shot:x.shot?{...x.shot}:null})),order1:GU_ORDER1.slice(),list:lv=>guList(lv).map(x=>x.id),open:guOpen,show:guShow,prep:guPrep,measure:guMeasure,reset:guReset,manifest:guMan,
   _setMan:m=>{GU_ST.man=m;}};
 /* 55차: 위쪽 줄 맞춤 — 탭 줄이 넘치면(알림 숫자·이름 길이·관리자 탭 등) 단계별로 좁혀 모든 탭이 한 줄에 보이게 */
-function topFit(){const top=document.querySelector('header.top'),n=document.querySelector('nav.tabs');if(!top||!n)return;const L=['fit0','fit0b','fit1','fit2','fit3'];/* 58차: 굵은 탭 글자 — 넘치면 탭 여백을 9px → 6px → 4px 차례로 */
+function topFit(){const top=document.querySelector('header.top'),n=document.querySelector('nav.tabs');if(!top||!n)return;const L=['fit0','fit0b','fit1','fit2','fit3','fit4'];/* 58차: 굵은 탭 글자 — 넘치면 탭 여백을 9px → 6px → 4px 차례로 */
   top.classList.remove(...L);if(innerWidth<=760)return;for(const c of L){if(n.scrollWidth-n.clientWidth<=1)break;top.classList.add(c);}}
 let _tfT=0;const topFitSoon=()=>{clearTimeout(_tfT);_tfT=setTimeout(topFit,60);};
 addEventListener('resize',topFitSoon);try{document.fonts&&document.fonts.ready.then(topFitSoon);}catch{}
