@@ -2,16 +2,16 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="wl-build" content="5c9c7226a4e5">
+<meta name="wl-build" content="dc2c17bdacfd">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<link rel="manifest" href="manifest.webmanifest">
+<link rel="manifest" href="manifest.webmanifest"><script>if(/[?&]memo=1(&|$)/.test(location.search)){document.querySelector('link[rel=manifest]').href='memo.webmanifest';document.documentElement.classList.add('memo-mode');}</script>
 <meta name="theme-color" content="#1f3a5f">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="업무일지">
-<title>관리부 통합 업무일지</title>
+<title>관리부 통합 업무시스템</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Nanum+Myeongjo:wght@700;800&display=swap" rel="stylesheet">
@@ -2049,6 +2049,84 @@ table.lst td{word-break:keep-all;overflow-wrap:break-word}
 }
 @media (max-width:420px){html.big .top-right .icon-btn{width:34px;min-width:34px}html.big .me-chip{padding-right:8px}}
 @media (max-width:420px){html.big .top-right a.icon-btn[href="#help"],html.big .top-right #btn-print{display:none}html.big .top-right > .me-chip{min-width:40px}}
+/* ── 54차 ① 확인 · 수정 · 취소 */
+dialog.c3{width:min(620px,96vw)}
+.c3-lead{margin:0 0 10px;font-size:14px;color:var(--ink)}
+.c3-note{margin:10px 0 0;font-size:12.5px;color:var(--ink-3)}
+.c3-msg{margin:0;white-space:normal;line-height:1.6}
+.c3-t{width:100%;border-collapse:collapse;font-size:13.5px}
+.c3-t th,.c3-t td{border-bottom:1px solid var(--line-2);padding:7px 8px;text-align:left;vertical-align:top}
+.c3-t tbody th{width:7.5em;color:var(--ink-2);font-weight:600;white-space:nowrap;background:var(--surface-2)}
+.c3-t td{word-break:keep-all;overflow-wrap:anywhere}
+.c3-d thead th{background:var(--surface-2);font-size:12px;color:var(--ink-3)}
+.c3-d .c3-old{color:var(--ink-3);text-decoration:line-through;text-decoration-color:rgba(180,40,40,.45)}
+.c3-d .c3-new{color:#0f5132;font-weight:600;background:#f0faf3}
+.c3-list{margin:0;padding-left:20px;font-size:13.5px;line-height:1.6;max-height:46vh;overflow:auto}
+.c3-list small{color:var(--ink-3)}
+dialog.c3 .modal-f .btn{min-width:88px}
+dialog.c3 .modal-f [data-c3="ok"]{font-weight:700}
+@media (max-width:640px){dialog.c3 .modal-f .btn{flex:1 1 auto;min-width:0}dialog.c3 .modal-f .spacer{display:none}}
+/* ── 54차 ② 간편 등록 고치기 */
+.qk-b{display:grid;gap:10px}
+.qk-l{display:flex;flex-direction:column;gap:4px;font-size:12.5px;font-weight:600;color:var(--ink-2);min-width:0}
+.qk-l input,.qk-l select,.qk-l textarea{font:inherit;font-size:14px;font-weight:400;padding:7px 9px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);min-width:0;width:100%;box-sizing:border-box}
+.qk-r{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.qk-r .w2{grid-column:span 2}
+.qk-who{display:flex;flex-wrap:wrap;gap:4px 12px;font-weight:400;font-size:13.5px;color:var(--ink)}
+@media (max-width:640px){.qk-r{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.plc{color:var(--ink-2);font-size:12.5px}.card .plc{margin:2px 0 4px}
+.t-place-f{margin-top:-2px}
+/* ── 54차 ③ 메모장 */
+.memo-btn{position:relative}.memo-btn .memo-n{position:absolute;top:-4px;right:-4px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:#b45309;color:#fff;font-size:10px;font-style:normal;font-weight:700;line-height:16px;text-align:center}
+.memo-btn .memo-n[hidden]{display:none}
+.memo-drawer{position:fixed;inset:0;z-index:70}.memo-drawer[hidden]{display:none}
+.memo-drawer .md-bg{position:absolute;inset:0;background:rgba(15,23,42,.28)}
+.memo-drawer .md-in{position:absolute;top:0;right:0;bottom:0;width:min(440px,100vw);background:var(--bg);box-shadow:-10px 0 30px rgba(0,0,0,.18);display:flex;flex-direction:column}
+.memo-pad{display:flex;flex-direction:column;gap:8px;height:100%;padding:12px 12px 10px;box-sizing:border-box;min-height:0;font-family:var(--font);color:var(--ink)}
+.mp-h{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.mp-h b{font-size:16px}.mp-n{color:var(--ink-3);font-size:12px}.mp-sp{flex:1}.mp-acts{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.mp-new{display:flex;gap:6px;align-items:stretch}
+.mp-new textarea,.mp-q{flex:1;font:inherit;font-size:14px;padding:8px 10px;border:1px solid var(--line);border-radius:9px;background:var(--surface);color:var(--ink);resize:vertical;min-width:0}
+.mp-add{white-space:nowrap}
+.mp-q{flex:none;width:100%;box-sizing:border-box;font-size:13px;padding:6px 10px}
+.mp-undo{font-size:13px;background:#fff7e6;border:1px solid #f5d9a8;border-radius:8px;padding:6px 10px;display:flex;align-items:center;gap:8px}.mp-undo[hidden]{display:none}
+.mp-list{flex:1;overflow:auto;display:flex;flex-direction:column;gap:8px;min-height:0;padding:2px}
+.mp-empty{color:var(--ink-3);font-size:13px;text-align:center;padding:24px 8px}
+.mp-card{border-radius:10px;border:1px solid rgba(0,0,0,.08);padding:6px 8px 4px;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+.mp-card.c-y{background:#fff8d6}.mp-card.c-g{background:#e7f6e9}.mp-card.c-b{background:#e6f0fb}.mp-card.c-p{background:#fbe8ef}.mp-card.c-w{background:var(--surface)}
+.mp-card.pin{outline:2px solid rgba(180,83,9,.35)}.mp-card.done .mp-tx{color:var(--ink-3)}
+.mp-tx{width:100%;box-sizing:border-box;border:0;background:transparent;font:inherit;font-size:14px;line-height:1.5;resize:none;color:var(--ink);padding:2px;min-height:40px;outline:none}
+.mp-meta{display:flex;align-items:center;gap:4px;font-size:11.5px;color:var(--ink-3);flex-wrap:wrap}
+.mp-meta button{border:0;background:transparent;cursor:pointer;font:inherit;font-size:12.5px;padding:3px 5px;border-radius:6px;color:var(--ink-2)}
+.mp-meta button:hover{background:rgba(0,0,0,.06)}.mp-meta [aria-pressed="true"]{background:rgba(180,83,9,.15)}
+.mp-lnk{color:#0f766e!important;font-weight:600}
+.mp-foot{margin:0;font-size:11.5px;color:var(--ink-3)}
+html.memo-mode body>*:not(#memo-host):not(#gate):not(dialog):not(#toasts):not(.notyf):not(script):not(style){display:none!important}
+html.memo-mode body{background:var(--bg)}
+html.memo-mode #memo-host{position:fixed;inset:0;display:block}
+body.memo-pip{margin:0;background:var(--bg)}body.memo-pip .memo-pad{height:100vh}
+@media (max-width:760px){.top-right a.icon-btn[href="#help"]{display:none}}
+@media print{.memo-drawer,#btn-memo{display:none!important}}
+/* ── 54차 ④ 변경 요청 */
+.chg-box{grid-column:1/-1;border:1.5px solid #c7d7f2;background:#f4f8ff;border-radius:10px;padding:10px 12px;margin:0 0 6px}
+.chg-box[hidden]{display:none}
+.chg-h{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;margin-bottom:6px}.chg-h small{color:var(--ink-3)}
+.chg-it{border-top:1px dashed #c7d7f2;padding-top:8px;margin-top:8px}.chg-it:first-of-type{border-top:0;margin-top:0;padding-top:0}
+.chg-who{font-size:13px;margin-bottom:6px;color:var(--ink-2)}
+.chg-a{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.chg-moved{color:#b45309;font-weight:700;text-decoration:none}
+.chg-memo{display:flex;flex-direction:column;gap:4px;margin-top:10px;font-size:12.5px;font-weight:600;color:var(--ink-2)}
+.chg-memo textarea{font:inherit;font-size:14px;font-weight:400;padding:7px 9px;border:1px solid var(--line);border-radius:8px}
+.chg-card .chg-m{color:var(--ink-2);font-style:italic}
+.chg-lk{font-weight:700;color:#1d4ed8}.chg-lk-chgno{color:#b42318}.chg-lk-chgok{color:#0f766e}
+/* 54차: 위쪽 줄에 📝 메모장 단추가 늘어 탭이 넘치지 않게 (1281~1680px) */
+@media (max-width:1680px) and (min-width:761px){.top-right{gap:3px}.top-right>.icon-btn{width:32px;min-width:32px;height:32px}.top-right>.icon-btn svg{width:18px;height:18px}.top-right>#btn-print,.top-right>#btn-search,.top-right>#btn-ntf{width:34px;min-width:34px;height:34px}}
+@media (max-width:1680px) and (min-width:1561px){.tabs a{padding:0 8px}}
+@media (max-width:1560px) and (min-width:1401px){.tabs a{padding:0 6px}}
+@media (max-width:1400px) and (min-width:761px){.brand strong{font-size:13.5px}.tabs a{padding:0 4px}}
+@media (max-width:1300px) and (min-width:761px){.tabs a{padding:0 3px;font-size:13px}#btn-new{font-size:13px}}
+.qk-who label.chk{white-space:nowrap;display:inline-flex;align-items:center;gap:4px}.qk-l .qk-who input[type=checkbox]{width:auto;padding:0}
+html.memo-mode #memo-host{background:var(--bg);height:100vh;max-width:none;width:auto;padding:0;margin:0;overflow:hidden}
+html.memo-mode #memo-host .memo-pad{height:100vh}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -2108,7 +2186,7 @@ table.lst td{word-break:keep-all;overflow-wrap:break-word}
 </head>
 <body>
 <header class="top">
-  <div class="brand"><span class="brand-mark" aria-hidden="true">관</span><div><strong id="app-title">관리부 통합 업무일지</strong><small id="today-label"></small></div></div>
+  <div class="brand"><span class="brand-mark" aria-hidden="true">관</span><div><strong id="app-title">관리부 통합 업무시스템</strong><small id="today-label"></small></div></div>
   <nav class="tabs" aria-label="화면">
     <a href="#my" data-view="my">내 업무</a>
     <a href="#team" data-view="team">팀 현황</a>
@@ -2169,6 +2247,7 @@ table.lst td{word-break:keep-all;overflow-wrap:break-word}
           <div class="f"><label for="t-scope">업무 구분</label><select id="t-scope"></select></div>
           <div class="f"><label for="t-prio">중요도</label><select id="t-prio"></select></div>
         </div>
+        <div class="f t-place-f"><label for="t-place">장소</label><input type="text" id="t-place" maxlength="60" placeholder="예: 군포공장 6층 대회의실 (선택)"></div>
         <div class="r3 r3-dt">
           <div class="f"><label for="t-start">시작일 · 시각</label><div class="dt2"><input type="date" id="t-start"><input type="time" id="t-stime" aria-label="시작 시각" title="시각 (선택)"></div></div>
           <div class="f"><label for="t-due">마감일 · 시각</label><div class="dt2"><input type="date" id="t-due"><input type="time" id="t-dtime" aria-label="마감 시각" title="시각 (선택)"></div></div>
@@ -2532,7 +2611,7 @@ function nextAnchor(kind,s){switch(kind){case 'day':return nextWorkday(s);case '
 function shiftAnchor(kind,s,n){switch(kind){case 'day':return addDays(s,n);case 'week':return addDays(s,7*n);case 'month':return addMonths(s,n);case 'year':return addMonths(s,12*n);}}
 function weekLabel(s){const a=weekStart(s);const thu=addDays(a,3);return `${+thu.slice(5,7)}월 ${Math.ceil(+thu.slice(8,10)/7)}주차`;}
 function periodLabel(kind,s){const [a,b]=periodRange(kind,s);if(kind==='day')return fmtLong(s);if(kind==='week')return `${a.slice(0,4)}년 ${weekLabel(s)} (${fmtMD(a)} ~ ${fmtMD(b)})`;if(kind==='month')return `${a.slice(0,4)}년 ${+a.slice(5,7)}월`;return `${a.slice(0,4)}년`;}
-function ddayInfo(t){if(!t.due||t.status==='done')return null;const n=diffDays(today(),t.due);if(n<0)return {txt:`D+${-n}`,cls:'late'};if(n===0)return {txt:'D-Day',cls:'soon'};return {txt:`D-${n}`,cls:n<=3?'soon':''};}
+function ddayInfo(t){if(!t.due||t.status==='done'||t.progress>=100)return null;const n=diffDays(today(),t.due);if(n<0)return {txt:`D+${-n}`,cls:'late'};if(n===0)return {txt:'D-Day',cls:'soon'};return {txt:`D-${n}`,cls:n<=3?'soon':''};}
 function shiftRepeat(s,r,dir=1){if(!isDate(s))return s;switch(r){case 'weekly':return addDays(s,7*dir);case 'monthly':return addMonths(s,1*dir);case 'quarterly':return addMonths(s,3*dir);case 'half':return addMonths(s,6*dir);case 'yearly':return addMonths(s,12*dir);default:return s;}}
 function nextTitle(title,r){let t=title;if(r==='monthly')t=t.replace(/(\d{1,2})월분/,(m,n)=>((+n)%12+1)+'월분');if(r==='quarterly')t=t.replace(/([1-4])분기/,(m,n)=>((+n)%4+1)+'분기');if(r==='half')t=t.includes('상반기')?t.replace('상반기','하반기'):t.replace('하반기','상반기');if(r==='yearly'||(r==='half'&&title.includes('하반기')))t=t.replace(/(20\d\d)년/,(m,n)=>(+n+1)+'년');return t;}
 
@@ -2620,7 +2699,7 @@ function normTask(r){const t={...r};
   t.legal=r.legal&&typeof r.legal==='object'&&typeof r.legal.id==='string'?{id:r.legal.id.slice(0,40),key:typeof r.legal.key==='string'?r.legal.key.slice(0,60):'',due:isDate(r.legal.due)?r.legal.due:''}:null;
   t.sample=!!r.sample;return t;}
 const yearOf=t=>(t.start||t.due||(t.createdAt?localDate(t.createdAt):'')||today()).slice(0,4);
-const isLate=t=>t.status!=='done'&&t.status!=='hold'&&!!t.due&&t.due<today();
+const isLate=t=>t.status!=='done'&&t.status!=='hold'&&!(t.progress>=100)&&!!t.due&&t.due<today();
 const s0=t=>t.start||t.due, e0=t=>t.due||t.start;
 const overlaps=(t,a,b)=>{const s=s0(t),e=e0(t);return !!s&&s<=b&&e>=a;};
 function inPeriod(t,a,b){if(!s0(t))return t.status!=='done';if(t.status==='done')return t.doneAt?(t.doneAt>=a&&t.doneAt<=b):overlaps(t,a,b);return overlaps(t,a,b)||(isLate(t)&&e0(t)<a&&a<=today());}
@@ -2817,11 +2896,11 @@ const GUESS=[
 function guessSite(text){const all=[...S.config.sites].sort((a,b)=>b.length-a.length);for(const st of all){if(st==='전사')continue;if(text.includes(st)||text.includes(st.replace(/공장|본사/,'')+(st.endsWith('공장')?'공장':'')))return st;}return null;}
 function guessCat(text){return classify(text);}
 function qaShell(){return `<section class="qa" id="qa" aria-label="빠른 업무 기록">
-  <div class="qa-top"><label class="sr" for="qa-text">업무 내용</label><textarea id="qa-text" rows="2" maxlength="600" placeholder="오늘 한 일이나 할 일을 적고 「등록」을 누르세요 (Enter 는 줄바꿈)&#10;예: 군포공장 소화기 42대 압력 점검, 2대 교체 요청"></textarea><button type="button" class="btn primary qa-go" id="qa-go">등록</button></div>
+  <div class="qa-top"><label class="sr" for="qa-text">업무 내용</label><textarea id="qa-text" rows="2" maxlength="600" placeholder="오늘 한 일이나 할 일을 문장으로 적고 「간편 등록」을 누르세요 (Enter 는 줄바꿈)&#10;예: 군포공장 소화기 42대 압력 점검, 2대 교체 요청"></textarea><button type="button" class="btn primary qa-go" id="qa-go">간편 등록</button></div>
   <div class="qa-opts"><div class="seg" id="qa-status" role="group" aria-label="진행 상태"><button type="button" class="s-done" data-v="done">완료</button><button type="button" class="s-doing" data-v="doing">진행 중</button><button type="button" class="s-plan" data-v="plan">할 예정</button></div><button type="button" class="btn qa-priv" id="qa-priv" aria-pressed="false" hidden title="켜면 나만 보는 비공개 업무로 등록됩니다 (관리자·다른 직원에게 보이지 않음)">🔒 나만 보기</button>
     <input type="date" id="qa-date" aria-label="날짜"><input type="time" id="qa-time" aria-label="시각" title="시각 (선택)"><select id="qa-cat" aria-label="대분류"></select><select id="qa-sub" aria-label="중분류"></select><select id="qa-leaf" aria-label="소분류"></select><span class="qa-auto" id="qa-auto" hidden></span><select id="qa-site" aria-label="사업장"></select>
     <label class="btn file-btn cam-only" id="qa-cam-btn">${ICON.cam} 현장 사진 기록<input type="file" id="qa-cam" accept="image/*" capture="environment"></label><button type="button" class="btn" id="qa-import">${ICON.dl} 파일·사진으로 올리기</button></div>
-  <div class="qa-more"><p class="qa-hint">Enter 는 줄바꿈이고, 다 적은 뒤 <b>등록</b>(또는 Ctrl+Enter)을 누르면 등록됩니다. 첫 줄은 업무명, 다음 줄부터는 내용이 됩니다. 분야는 내용을 보고 자동으로 고르니, 다르면 바꿔 주세요. 종이 업무일지 사진이나 엑셀·한글·워드·PDF 파일은 끌어다 놓아도 됩니다.</p><button type="button" class="qa-multi" id="qa-multi" hidden></button></div></section>`;}
+  <div class="qa-more"><p class="qa-hint">Enter 는 줄바꿈이고, 다 적은 뒤 <b>간편 등록</b>(또는 Ctrl+Enter)을 누르면 날짜·시각·장소·사업장·담당을 문장에서 찾아 <b>확인 창</b>에 보여 줍니다(확인 · 수정 · 취소). 첫 줄은 업무명, 다음 줄부터는 내용이 됩니다. 분야는 내용을 보고 자동으로 고르니, 다르면 바꿔 주세요. 종이 업무일지 사진이나 엑셀·한글·워드·PDF 파일은 끌어다 놓아도 됩니다.</p><button type="button" class="qa-multi" id="qa-multi" hidden></button></div></section>`;}
 function qaSubs(){const auto=!S.qa.cat;$('#qa-sub').hidden=auto;$('#qa-leaf').hidden=auto;qaAutoPreview();if(auto)return;const sel=$('#qa-sub');const subs=subsOf(S.qa.cat);if(!subs.includes(S.qa.sub))S.qa.sub=subs[0];fillSelect(sel,subs.map(s=>[s,s]),S.qa.sub);qaLeaves();}
 function syncQA(){const q=S.qa;if(!$('#qa'))return;const td=today();if(!q.dateTouched)q.date=td;
   const me=S.staff[S.myStaff];const sites=[...S.config.sites];if(!q.siteTouched||!q.site)q.site=(me&&me.site)||sites[0];if(q.site&&!sites.includes(q.site))sites.push(q.site);
@@ -2854,14 +2933,14 @@ async function submitQA(){const q=S.qa;const raw=$('#qa-text').value.trim();if(!
     await createTask({priv:qaPriv(),title,...qaCatFields(raw),site:q.site||S.config.sites[0],scope:'day',priority:'normal',repeat:'none',start:date,startTime:qaTm,due:(q.status==='doing'&&!q.dateTouched)?'':date,status:q.status,progress:q.status==='done'?100:0,doneAt:q.status==='done'?date:'',assignees:S.myStaff?[S.myStaff]:[],assigneeText:'',desc,photos:ups,logs:ups.length?[{at:nowISO(),by:myId(),kind:'photo',text:'',photos:ups.map(u=>u.id)}]:[]});
     q.text='';q.files=[];q.catTouched=false;q.cat='';q.sub='';q.leaf='';q.dateTouched=false;q.date=today();if(!q.siteTouched)q.site='';{const qt=$('#qa-time');if(qt)qt.value='';}syncQA();const ta=$('#qa-text');if(ta){ta.value='';ta.focus();}const pi=$('#qa-photo');if(pi)pi.value='';const qf=$('#qa-files');if(qf)qf.textContent='';
     toast((qaPriv()?'🔒 비공개 업무로 등록했습니다':q.status==='done'?'한 일을 기록했습니다':'업무를 등록했습니다')+(S.lastAuto?` · 자동 분류: ${catText(S.lastAuto)}`:'')+'.');}
-  catch{}finally{S.qaBusy=false;const b=$('#qa-go');if(b){b.disabled=!S.canWrite;b.textContent='등록';}}}
+  catch{}finally{S.qaBusy=false;const b=$('#qa-go');if(b){b.disabled=!S.canWrite;b.textContent=(typeof qaPriv==='function'&&qaPriv())?'🔒 간편 등록':'간편 등록';}}}
 function myRow(t){const d=ddayInfo(t);const late=isLate(t);const p=esc(t.path);
   return `<div class="mrow cat-${t.cat}"><span class="stripe"></span><button type="button" class="main" data-open="${p}"><span class="tt">${t.priv?'<span class="lock-i" title="비공개 업무 (나만 보기)">🔒</span>':''}${esc(t.title)}</span><span class="mt"><span class="pill s-${late?'late':t.status}">${late?'지연':ST[t.status].name}</span><span class="catchip">${esc(CAT[t.cat].name)}${t.sub?' · '+esc(t.sub):''}</span><span>${esc(t.site)}</span><span>${wdHTML(t)}</span>${d?`<span class="dday ${d.cls}">${d.txt}</span>`:''}${t.progress&&t.status!=='done'?`<span>${t.progress}%</span>`:''}</span></button>${S.canWrite?`<span class="acts">${t.status==='plan'?`<button type="button" class="btn sm" data-act="doing" data-path="${p}">시작</button>`:''}<button type="button" class="btn sm" data-act="log" data-path="${p}">기록</button><button type="button" class="btn sm primary" data-act="done" data-path="${p}">완료</button></span>`:''}</div>`;}
 /* ───────── 사용 안내 ───────── */
 const APP_URL_CLAUDE='https://claude.ai/artifact/EtAAUqpwCvTQM862ghJNFm';
 const appUrl=()=>S.mode==='firebase'?(location.origin+location.pathname).replace(/index\.html$/,''):APP_URL_CLAUDE;
 function inviteText(){const d=S.config.dept;
-  if(S.mode==='firebase')return `[${d} 통합 업무일지 사용 안내]
+  if(S.mode==='firebase')return `[${d} 통합 업무시스템 사용 안내]
 ${d} 업무를 웹에서 함께 기록·공유하려고 합니다. 아래 순서대로 접속해 주세요.
 
 1) 아래 주소를 크롬·사파리·엣지 같은 브라우저로 여세요.
@@ -2873,7 +2952,7 @@ ${d} 업무를 웹에서 함께 기록·공유하려고 합니다. 아래 순서
 5) 휴대폰은 '홈 화면에 추가'해 두면 앱처럼 쓸 수 있습니다.
 
 주소: ${appUrl()}`;
-  return `[${d} 통합 업무일지 사용 안내]
+  return `[${d} 통합 업무시스템 사용 안내]
 ${d} 업무를 웹에서 함께 기록·공유하려고 합니다. 아래 순서대로 접속해 주세요.
 
 1) Claude에서 영어로 된 초대 메일이 옵니다. 메일의 'View invitation'을 누르세요.
@@ -2964,6 +3043,10 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>📄 파일 1개 = 업무 1건 (원본 첨부)</b><span><em>파일·사진으로 올리기</em>에 한 가지 업무에 관한 문서(워드·한글·PDF·글)를 올리면 줄마다 나누지 않고 <em>📄 업무 1건으로 정리</em> 카드를 만듭니다 — 제목, 날짜·시각(문서의 일정), 주요 내용(일정·인원·연락처 같은 줄)이 채워지니 고친 뒤 <em>등록</em>을 누르면 확인 창이 한 번 더 뜨고, 원본 파일이 업무에 첨부됩니다(업무 창 <em>📎 첨부 원본</em>에서 미리보기·내려받기). 업무일지처럼 날짜별 줄이 많은 파일은 지금처럼 여러 건으로 나뉘고, 파일 줄의 <em>📄 업무 1건 / ☰ 줄마다 여러 건</em>으로 바꿀 수 있습니다.</span></li>
       <li><b>◀ ▶ 서식·자료 넘기기</b><span>회사서식(작성 가능) 작성 화면 양옆, 회사서식 미리보기 창과 자료실 파일 보기 창 양옆의 <em>‹ ›</em>를 누르면 목록 순서대로 위(이전)·아래(다음) 서식·파일이 열립니다. 적던 내용은 이 기기에 자동 보관됩니다.</span></li>
       <li><b>📌 여러 명·공장별 지시</b><span>업무 등록 창의 <em>📌 업무 지시</em>에서 <em>👤 직원 (여러 명)</em>을 골라 여러 명을 누르거나 <em>🏭 공장 전체 넣기</em>, <em>🏭 공장별</em>(그 공장 근무 직원 모두), <em>🧩 직무</em>로 지시합니다. 업무 창의 지시 창에도 공장 전체 넣기·빼기가 있습니다. 지시·보고 기록과 알림에는 이름 옆에 직급이 나옵니다.</span></li>
+      <li><b>⚡ 간편 등록 (문장으로)</b><span>내 업무 입력칸에 <em>"내일 오후 2시 군포공장 6층 대회의실에서 안전교육"</em>처럼 문장으로 적고 <em>간편 등록</em>을 누르면 날짜(오늘·내일·모레·다음 주 ○요일·11월 5일·11/5·~까지)·시각(오전·오후 ○시, 14:00, 10시~12시)·장소(○○에서, 회의실·현장 등)·사업장·담당(문장에 나온 직원)을 찾아 <em>확인 창</em>에 보여 줍니다 — <em>확인</em>(등록) · <em>수정</em>(칸별로 고치기) · <em>취소</em>. 위 칸에서 직접 고른 날짜·시각·사업장·상태가 있으면 그 값이 먼저입니다.</span></li>
+      <li><b>✅ 확인 · 수정 · 취소</b><span>업무 등록·수정, 진행 기록, 완료·시작 단추, 특이사항, 업무 지시·보고, 파일·사진으로 올리기, 각종서류 올리기(자료실 저장), 회사서식 올리기, 전자결재 올리기, 설정 저장은 저장하기 전에 내용을 보여 줍니다. 수정 저장은 바뀌는 항목만(지금 → 바꿀 내용) 보입니다. 칸마다 바로 저장되는 점검 일보·경비 일지 기록표와 끌어서 옮기기는 묻지 않습니다.</span></li>
+      <li><b>📝 메모장 · 바탕 화면 메모장</b><span>위쪽 📝(휴대폰은 더보기, 단축키 Alt+M)를 누르면 오른쪽에 메모장 — 아직 업무로 정리하기 전의 전화 내용·할 일을 적어 두면 쓰는 대로 자동 저장되고, 📌 고정·🎨 색·<em>➜ 업무로</em>(간편 등록 확인 창을 거쳐 업무 등록)·🗑(6초 안에 되돌리기). <em>🖥 바탕 화면 메모장</em>을 누르면 작은 메모장 창이 열리고, 그 창의 <em>🖥 바탕 화면 앱으로 설치</em>(크롬·엣지 주소창 ⊕도 같음)로 윈도우 바탕 화면·작업 표시줄 아이콘을 만들 수 있습니다. <em>📌 항상 위에 띄우기</em>는 다른 프로그램 위에 떠 있는 메모장입니다(크롬·엣지). 앱·휴대폰·바탕 화면 어디서 고쳐도 같은 내용이고, 나만 봅니다(관리자도 못 봄).</span></li>
+      <li><b>✉ 변경 요청</b><span>다른 직원이 등록한 업무는 바로 고쳐지지 않습니다. 업무 창에서 업무명·일정·시각·장소·담당·내용을 고치고 <em>✉ 변경 요청 보내기</em>(담당자는 <em>저장 · 변경 요청</em>)를 누르면 고칠 이유 메모와 함께 등록한 직원에게 알림이 갑니다. 등록한 직원은 알림·내 업무 위 <em>✉ 변경 요청</em> 카드·업무 창에서 바뀔 내용(지금 → 바꿀 내용)을 보고 <em>✅ 변경 승인</em>(바로 반영, 요청한 직원에게 승인 알림) 또는 <em>⛔ 변경 승인 불가</em>(이유를 적으면 요청한 직원에게 이유와 함께 알림)를 누릅니다. 담당자의 진행 상태·진척률·진행 기록·사진은 지금처럼 바로 저장, 관리자는 바로 고칠 수 있습니다.</span></li>
       <li><b>설비 QR</b><span>시설 일보 창의 <em>🏷 설비 QR</em>에서 설비(소화전 펌프·콤프레샤·승강기 등)를 등록하고 <em>🖨 QR 라벨</em>을 인쇄해 붙여 두면, 휴대폰 기본 카메라로 찍기만 해도 업무일지가 열려 그 설비의 점검·작업 기록과 <em>📋 이 설비 일보 쓰기</em>가 나옵니다. 앱 안의 📷 QR 스캔이나 사진으로 QR 읽기도 됩니다. 설비를 고른 일보는 '대상 설비'가 서류에 들어가고 그 설비 기록에 쌓입니다.</span></li>
       <li><b>찾기 요령 · 사진 위치</b><span>전체 검색(🔍, Ctrl+K)은 초성으로도 찾습니다(ㅅㅎㄱ → 소화기). 한/영 전환을 깜빡해 영문으로 찍히면 한글 낱말로 찾기를 제안합니다. 관리자가 설정 › <em>사업장 위치</em>에 좌표를 넣어 두면, 시설 일보에 올린 사진의 촬영 위치로 사업장이 자동으로 정해집니다(위치값은 저장하지 않음).</span></li>
       <li><b>시설 일보 (자동 완성)</b><span>홈의 <em>📋 시설 일보</em>(또는 사진첩, 시설·공무 업무 상세의 📋 단추)에서 현장 사진을 찍어 올리고 메모를 한 줄에 한 가지씩 적은 뒤 <em>✨ 자동 완성</em>을 누르면, 회사 로고·결재란이 있는 <em>작업 일보 · 점검 일지 · 사진 대지</em>가 만들어집니다. 메모의 '위치 — 내용', 09:00~11:30, 자재:, 작업자:, ※ 특이사항, 다음: 후속 조치, 이상 없음·주의·불량을 알아서 칸에 나눠 넣습니다. 서류의 글자는 눌러서 바로 고치고, <em>💾 업무일지에 저장</em>(완료 업무 + 사진), <em>🖨 인쇄·PDF</em>, <em>📝 전자결재로 올리기</em>를 고릅니다. 후속 조치는 '할 예정' 업무로 같이 등록할 수 있고, 작성 중인 일보는 이 기기에 임시 저장됩니다. 휴대폰 홈 화면에는 주소 끝에 <em>#ilbo</em>를 붙인 바로가기를 두면 바로 열립니다.</span></li>
@@ -3268,7 +3351,7 @@ function paperHTML(R){
     <table class="approve"><tr><th rowspan="2" class="v">결<br>재</th>${c.approvals.map(a=>`<th>${esc(a)}</th>`).join('')}</tr><tr>${c.approvals.map(()=>'<td></td>').join('')}</tr></table></header>
     <dl class="meta"><div><dt>보고 기간</dt><dd>${fmtYMD(R.ps)}${R.ps!==R.pe?' ~ '+fmtYMD(R.pe):''}</dd></div><div><dt>작성일</dt><dd>${fmtYMD(today())}</dd></div><div><dt>작성자</dt><dd><span data-uid="${esc(myId()||'')}">${esc(nameOf(myId()))}</span></dd></div><div><dt>분류 기준</dt><dd>${esc(GROUPS[R.p.group])}별</dd></div></dl>
     ${sec.join('')}
-    <div class="foot"><span>${esc(c.dept)} 통합 업무일지에서 자동 생성</span><span>생성 ${hhmm(nowISO())}</span></div></article>`;
+    <div class="foot"><span>${esc(c.dept)} 통합 업무시스템에서 자동 생성</span><span>생성 ${hhmm(nowISO())}</span></div></article>`;
 }
 const GROUPS={cat:'대분류',sub:'중분류',site:'사업장',who:'담당자',scope:'업무 구분'};
 function renderReport(v){
@@ -3382,7 +3465,7 @@ function openTask(t,defaults={}){
   fillSelect($('#t-scope'),SCOPES.map(s=>[s.id,s.name+' 업무']),src.scope||defaults.scope||guessScope(st,du||st));
   fillSelect($('#t-prio'),PRIOS.map(p=>[p.id,p.name]),src.priority||'normal');
   fillSelect($('#t-repeat'),REPEATS.map(r=>[r.id,r.name]),src.repeat||'none');
-  $('#t-start').value=isNew?st:(src.start||'');$('#t-due').value=isNew?du:(src.due||'');$('#t-stime').value=isNew?(defaults.startTime||''):(src.startTime||'');$('#t-dtime').value=isNew?(defaults.dueTime||''):(src.dueTime||'');S.dlg.dueTouched=false;
+  $('#t-start').value=isNew?st:(src.start||'');$('#t-due').value=isNew?du:(src.due||'');$('#t-stime').value=isNew?(defaults.startTime||''):(src.startTime||'');{const tp=$('#t-place');if(tp)tp.value=isNew?(defaults.place||''):(src.place||'');}$('#t-dtime').value=isNew?(defaults.dueTime||''):(src.dueTime||'');S.dlg.dueTouched=false;
   $('#t-status').innerHTML=STATUSES.map(s=>`<button type="button" class="s-${s.id}" data-v="${s.id}" aria-pressed="${s.id===S.dlg.status}">${s.name}</button>`).join('');
   $('#t-progress').value=src.progress||0;$('#t-progress-out').textContent=(src.progress||0)+'%';
   $('#t-assignee-text').value=src.assigneeText||'';$('#t-desc').value=src.desc||'';$('#t-assignee-q').value='';$('#t-pick-menu').hidden=true;
@@ -3408,7 +3491,7 @@ function refreshDialog(force){
   $('#t-gallery').innerHTML=photos.length?photos.map(ph=>`<figure>${thumbImg(ph,'data-dlg-photo')}<button type="button" class="ptag ${ph.tag?'t-'+ph.tag:''}" data-ptag="${esc(ph.id)}" ${S.canWrite?'':'disabled'} title="눌러서 작업 전·중·후 바꾸기">${ph.tag?PH_TAGS[ph.tag]:'구분'}</button>${S.canWrite?rmBtnHTML(ph):''}</figure>`).join(''):'<div class="up">사진 없음</div>';
   if(t){const logs=[...t.logs].reverse();$('#t-log-n').textContent=logs.filter(l=>l.kind==='note').length?logs.filter(l=>l.kind==='note').length+'건':'';
     $('#t-timeline').innerHTML=logs.map((l,ri)=>{const idx=t.logs.length-1-ri;const sc=l.kind==='status'?`s-${l.to}`:l.issue?'s-late':'';
-      const what=l.kind==='status'?`상태 변경 <span class="pill s-${l.from}">${ST[l.from]?ST[l.from].name:''}</span> → <span class="pill s-${l.to}">${ST[l.to]?ST[l.to].name:''}</span>`:l.kind==='create'?'업무 등록':l.kind==='record'?'완료 기록':l.kind==='photo'?'사진 첨부':l.kind==='progress'?`진척률 ${l.p0??0}% → ${l.p1??0}%`:'진행 기록';
+      const what=l.kind==='status'?`상태 변경 <span class="pill s-${l.from}">${ST[l.from]?ST[l.from].name:''}</span> → <span class="pill s-${l.to}">${ST[l.to]?ST[l.to].name:''}</span>`:l.kind==='create'?'업무 등록':l.kind==='record'?'완료 기록':l.kind==='photo'?'사진 첨부':l.kind==='progress'?`진척률 ${l.p0??0}% → ${l.p1??0}%`:((typeof logKindLabel==='function'&&logKindLabel(l))||'진행 기록');
       return `<li class="${sc}"><div class="h"><b data-uid="${esc(l.by||'')}">${esc(l.by?nameOf(l.by):'구성원')}</b><span>${what}</span><time datetime="${esc(l.at)}">${hhmm(l.at)}</time>${l.kind==='note'&&S.canWrite&&(l.by===myId()||S.canEdit)?`<button type="button" class="del" data-del-log="${idx}">삭제</button>`:''}</div>${l.issue?'<div class="issue">이슈</div>':''}${l.text?`<p>${esc(l.text)}</p>`:''}${l.photos.length?`<div class="thumbs">${l.photos.map(id=>thumbImg(phMeta(t,id),'data-dlg-photo')).join('')}</div>`:''}</li>`;}).join('');}
   privDlgLock();patchNames($('#dlg-task'));
 }
@@ -3416,7 +3499,7 @@ async function submitTask(e){e.preventDefault();if(!S.canWrite)return;
   const title=$('#t-title').value.trim();if(!title){$('#t-title').focus();toast('업무명을 입력하세요.','err');return;}
   const start=$('#t-start').value;let due=$('#t-due').value;if(start&&(!due||(!S.dlg.dueTouched&&due<start))){due=start;$('#t-due').value=start;}if(start&&due&&due<start){toast('마감일이 시작일보다 빠릅니다.','err');$('#t-due').focus();return;}
   const status=S.dlg.status;let progress=+$('#t-progress').value;if(status==='done')progress=100;
-  const data={title,...dlgCatFields(title,$('#t-desc').value),site:$('#t-site').value,scope:$('#t-scope').value,priority:$('#t-prio').value,repeat:$('#t-repeat').value,start,due,startTime:$('#t-stime').value||'',dueTime:$('#t-dtime').value||'',status,progress,assignees:S.dlg.assignees,assigneeText:$('#t-assignee-text').value.trim(),desc:$('#t-desc').value};
+  const data={title,...dlgCatFields(title,$('#t-desc').value),site:$('#t-site').value,scope:$('#t-scope').value,priority:$('#t-prio').value,repeat:$('#t-repeat').value,start,due,startTime:$('#t-stime').value||'',dueTime:$('#t-dtime').value||'',status,progress,assignees:S.dlg.assignees,assigneeText:$('#t-assignee-text').value.trim(),desc:$('#t-desc').value,place:(($('#t-place')||{}).value||'').trim().slice(0,60)};
   const btn=$('#t-save');btn.disabled=true;
   try{
     if(!S.dlg.path){if(S.dlg.priv&&privOK())data.priv=true;data.doneAt=status==='done'?today():'';data.photos=S.dlg.pending;const logs=[];if(S.dlg.pending.length)logs.push({at:nowISO(),by:myId(),kind:'photo',text:'',photos:S.dlg.pending.map(p=>p.id)});data.logs=logs;
@@ -3751,7 +3834,7 @@ function authMsg(e){const c=e&&e.code||'';const h=location.hostname;return ({
   'auth/api-key-not-valid.-please-pass-a-valid-api-key.':'firebase-config.js의 apiKey가 올바르지 않습니다. Firebase 콘솔에서 다시 복사해 붙여 넣으세요.'
 })[c]||`로그인하지 못했습니다. (${c||'알 수 없는 오류'})`;}
 function gate(state,o={}){const g=$('#gate'),card=$('#gate-card');g.hidden=false;S.gate={state,...o};const dept=esc(S.config.dept);const em=esc(o.email||'');
-  const head=`<div class="brand"><span class="brand-mark" aria-hidden="true">관</span><div><h1 id="gate-h">${dept} 통합 업무일지</h1></div></div>`;
+  const head=`<div class="brand"><span class="brand-mark" aria-hidden="true">관</span><div><h1 id="gate-h">${dept} 통합 업무시스템</h1></div></div>`;
   const msg=o.msg?`<div class="msg ${o.kind||''}" role="status">${esc(o.msg)}</div>`:'<div class="msg" role="status" id="g-msg" hidden></div>';
   let body='';
   if(state==='loading')body=`<p>${esc(o.msg||'연결 중…')}</p>`;
@@ -3825,7 +3908,7 @@ async function fbClaim(){const u=S.auth.currentUser;if(!u)return;const email=(u.
   try{await S.fs.doc('app/members').set({admins:[email],emails:[email],names:{},updatedAt:nowISO(),updatedBy:email});}
   catch(e){gate('claim',{email,msg:e&&e.code==='permission-denied'?'관리자로 지정하지 못했습니다. 이미 다른 사람이 관리자로 지정했거나 Firestore 규칙이 게시되지 않았습니다.':'관리자로 지정하지 못했습니다. 다시 시도하세요.',kind:'err'});return;}
   S.afterClaim=true;await fbCheckUser(u);}
-function onConfig(s){S.config=normConfig(s.exists?s.data():null);$('#app-title').textContent=`${S.config.dept} 통합 업무일지`;$('#today-label').textContent=`${S.config.dept} · ${fmtLong(today())}`;fillFilterSelects();if(S.view==='report')renderReport($('#view'));else scheduleRender();}
+function onConfig(s){S.config=normConfig(s.exists?s.data():null);$('#app-title').textContent=`${S.config.dept} 통합 업무시스템`;$('#today-label').textContent=`${S.config.dept} · ${fmtLong(today())}`;fillFilterSelects();if(S.view==='report')renderReport($('#view'));else scheduleRender();}
 function fbEnter(u,email,m){S.fbEntered=true;$('#gate').hidden=true;S.gate=null;
   S.email=email;S.members=m;S.me={id:u.uid,name:u.displayName||email.split('@')[0]};S.canEdit=m.admins.includes(email);S.canWrite=true;
   S.db=new FirebaseDB(S.fs);S.assets=fbAssets;S.downloads=localDownloads;S.user=null;S.sample=null;showBanner('');
@@ -4871,7 +4954,7 @@ function privPanelHTML(){if(!privOK())return '';const open=S.privTasks.filter(t=
     ${done.length?`<details class="priv-done" ${S.privDoneOpen?'open':''}><summary>완료한 비공개 업무 ${done.length}건</summary>${done.slice(0,60).map(myRow).join('')}</details>`:''}</section>`;}
 function qaPrivSync(){const b=$('#qa-priv');if(!b)return;const ta=$('#qa-text');if(ta&&ta.dataset.ph0==null)ta.dataset.ph0=ta.placeholder;
   b.hidden=!privOK();const on=qaPriv();b.setAttribute('aria-pressed',String(on));$('#qa').classList.toggle('is-priv',on);
-  if(ta)ta.placeholder=on?'🔒 나만 보는 비공개 업무를 적고 「🔒 등록」을 누르세요 (Enter 는 줄바꿈) — 관리자·다른 직원에게 보이지 않습니다':ta.dataset.ph0;$('#qa-go').textContent=S.qaBusy?'등록 중…':on?'🔒 등록':'등록';}
+  if(ta)ta.placeholder=on?'🔒 나만 보는 비공개 업무를 적고 「🔒 간편 등록」을 누르세요 (Enter 는 줄바꿈) — 관리자·다른 직원에게 보이지 않습니다':ta.dataset.ph0;$('#qa-go').textContent=S.qaBusy?'등록 중…':on?'🔒 간편 등록':'간편 등록';}
 /* 업무 상세 창: 비공개 표시·전환 */
 const canMakePriv=t=>!!(t&&privOK()&&S.canWrite&&!t.priv&&!t.legal&&!t.sample&&t.createdBy===myId()&&t.assignees.every(a=>a===myId())&&!t.photos.length&&t.logs.every(l=>!l.by||l.by===myId()));
 const canDelSaved=t=>!!(t&&(t.priv||S.canEdit));
@@ -5849,7 +5932,7 @@ function prFilterTxt(){const a=[];if(['board','list','calendar'].includes(S.view
   if(S.view==='calendar'&&S.cal){try{a.unshift(S.cal.view.title);}catch{}}
   return a.filter(Boolean).join(' · ');}
 function prHead(title,sub){let h=$('#print-head');if(!h){h=document.createElement('div');h.id='print-head';document.body.prepend(h);}
-  const me=S.staff[S.myStaff];h.innerHTML=`<div class="ph-t"><b>${esc(S.config.dept)} 통합 업무일지</b> · ${esc(title)}</div><div class="ph-sub">${sub?esc(sub)+' · ':''}출력 ${esc(fmtYMD(today()))} ${esc(hhmm(nowISO()).slice(-5))}${me&&me.name?' · '+esc(me.name):''}</div>`;}
+  const me=S.staff[S.myStaff];h.innerHTML=`<div class="ph-t"><b>${esc(S.config.dept)} 통합 업무시스템</b> · ${esc(title)}</div><div class="ph-sub">${sub?esc(sub)+' · ':''}출력 ${esc(fmtYMD(today()))} ${esc(hhmm(nowISO()).slice(-5))}${me&&me.name?' · '+esc(me.name):''}</div>`;}
 /* 화면에 아직 안 나온(지연 로딩) 사진을 인쇄 전에 불러옴 */
 async function prLoadImgs(root,max=240){if(!root)return;const imgs=$$('img[data-pid]',root).slice(0,max);let i=0;
   const work=async()=>{while(i<imgs.length){const img=imgs[i++];try{img.removeAttribute('data-lz');img.loading='eager';await lzLoad(img);}catch{}}};
@@ -5886,7 +5969,7 @@ function prListTasks(){const v=S.view;let L=[],label='';const td=today();const m
   else if(v==='team'||v==='overview'){L=S.tasks.filter(t=>!t.sample).filter(recent);label='전체 직원 · 진행 중·예정 업무 + 이번 달 완료';}
   const key=t=>(t.start||t.due||t.doneAt||'9999-99-99');L=L.slice().sort((a,b)=>key(a).localeCompare(key(b))||(a.due||'9999').localeCompare(b.due||'9999')||a.title.localeCompare(b.title,'ko'));return {L,label};}
 async function printList(){const {L,label,org}=prListTasks();const s=prSheet();const me=S.staff[S.myStaff];const st=t=>isLate(t)?'지연':ST[t.status].name;
-  const head=`<div class="ps-head"><span>${esc(S.config.dept)} 통합 업무일지 · ${esc(PR_VIEW[S.view]||'')} · ${org?'업무분장 목록':'업무 목록'}</span><span>출력 ${esc(fmtYMD(today()))} ${esc(hhmm(nowISO()).slice(-5))}${me&&me.name?' · '+esc(me.name):''}</span></div>
+  const head=`<div class="ps-head"><span>${esc(S.config.dept)} 통합 업무시스템 · ${esc(PR_VIEW[S.view]||'')} · ${org?'업무분장 목록':'업무 목록'}</span><span>출력 ${esc(fmtYMD(today()))} ${esc(hhmm(nowISO()).slice(-5))}${me&&me.name?' · '+esc(me.name):''}</span></div>
     <h1>${org?'업무분장 목록':'업무 목록'} <small>${L.length}${org?'개':'건'}</small></h1>${label?`<p class="ps-sub">${esc(label)}</p>`:''}`;
   if(org){const nm=id=>id&&S.staff[id]?S.staff[id].name:'';
     s.innerHTML=head+`<table class="ps-list"><colgroup><col style="width:5%"><col style="width:20%"><col><col style="width:9%"><col style="width:9%"><col style="width:8%"><col style="width:14%"></colgroup><tr><th>No</th><th>업무</th><th>세부 내용</th><th>주기</th><th>정</th><th>대행</th><th>부</th></tr>${L.map((d,i)=>`<tr><td class="c">${i+1}</td><td><b>${esc(d.name)}</b>${d.site&&!d.name.includes(d.site.replace(/(본사|공장)$/,''))?` (${esc(d.site.replace(/(본사|공장)$/,''))})`:''}</td><td>${esc(d.detail)}</td><td class="cw">${esc(d.cycle)}</td><td>${esc(nm(d.main)||(d.prev?'확인 필요':'-'))}</td><td>${esc(nm(d.act))}</td><td>${esc([...d.subs,...d.auto].map(nm).filter(Boolean).join(', '))}</td></tr>`).join('')}</table>`;}
@@ -5897,7 +5980,7 @@ async function printTask(t){const s=prSheet();const me=S.staff[S.myStaff];
   const rows=[['상태',isLate(t)?`지연 (${ST[t.status].name})`:ST[t.status].name],['분류',[CAT[t.cat].name,t.sub,t.leaf].filter(Boolean).join(' › ')],['사업장',t.site||'-'],['업무 구분',SC[t.scope]?SC[t.scope].name:'-'],['중요도',PR[t.priority]?PR[t.priority].name:'-'],['담당',whoText(t)||'담당 미지정'],
     ['진행 날짜',wdTxt(t,{long:1})],['완료일',fmtYMD(t.doneAt)||'-'],['진척률',`${t.progress}%`],['반복',RP[t.repeat]?RP[t.repeat].name:'-'],['등록',[t.createdAt?fmtYMD(localDate(t.createdAt))+' '+hhmm(t.createdAt).slice(-5):'',t.createdBy?nameOf(t.createdBy):''].filter(Boolean).join(' · ')||'-']];
   const logs=t.logs.slice().sort((a,b)=>a.at.localeCompare(b.at));const photos=t.photos.slice(0,24);
-  s.innerHTML=`<div class="ps-head"><span>${esc(S.config.dept)} 통합 업무일지 · 업무 상세</span><span>출력 ${esc(fmtYMD(today()))} ${esc(hhmm(nowISO()).slice(-5))}${me&&me.name?' · '+esc(me.name):''}</span></div>
+  s.innerHTML=`<div class="ps-head"><span>${esc(S.config.dept)} 통합 업무시스템 · 업무 상세</span><span>출력 ${esc(fmtYMD(today()))} ${esc(hhmm(nowISO()).slice(-5))}${me&&me.name?' · '+esc(me.name):''}</span></div>
     <h1>${t.priv?'<span class="ps-priv">🔒 비공개</span> ':''}${esc(t.title)}</h1>
     <table class="ps-info">${rows.reduce((a,r,i)=>a+(i%2?'':'<tr>')+`<th>${r[0]}</th><td>${esc(r[1])}</td>`+(i%2?'</tr>':''),'')}${rows.length%2?'<th></th><td></td></tr>':''}</table>
     <h2>업무 내용</h2><div class="ps-desc">${t.desc?esc(t.desc):'<span class="none">내용 없음</span>'}</div>
@@ -8623,7 +8706,7 @@ window.libApi={sri:()=>window.WL_SRI,
 const TOUR_V='1';
 const tourKey=()=>`wl.tour${TOUR_V}.${(S.me&&S.me.id)||'x'}`;
 const TOUR_STEPS=[
-  {el:null,t:'👋 환영합니다',d:'관리부 통합 업무일지를 1분 동안 둘러봅니다. 언제든 <b>사용 안내</b>에서 다시 볼 수 있습니다.'},
+  {el:null,t:'👋 환영합니다',d:'관리부 통합 업무시스템를 1분 동안 둘러봅니다. 언제든 <b>사용 안내</b>에서 다시 볼 수 있습니다.'},
   {el:['nav.tabs','#mnav'],t:'화면 메뉴',d:'내 업무·팀 현황·칸반·달력·목록·보고서, 각종서류 올리기·법정 업무·전자결재·그룹웨어로 옮겨 갑니다. 휴대폰은 아래 탭바와 <b>더보기</b>.'},
   {el:['#qa-text'],t:'빠른 기록',d:'오늘 한 일이나 할 일을 적고 <b>등록</b>(Enter 는 줄바꿈, Ctrl+Enter 도 등록). 분류(대·중·소)는 내용을 보고 자동으로 고르고, 날짜·상태·사진도 이 줄에서 바로 붙입니다.'},
   {el:['#qa [data-il-open-new]'],t:'📋 시설 일보',d:'현장 사진 몇 장 + 간단한 메모 → <b>✨ 자동 완성</b>으로 작업 일보·점검 일지·사진 대지를 만들고, 업무일지 저장·인쇄·전자결재까지 한 번에.'},
@@ -10913,6 +10996,433 @@ function calEvMount(info){const vt=(info.view&&info.view.type)||'';if(!vt.starts
   if(txt){tc.dataset.lt=txt;tc.classList.add('lt-x');tc.setAttribute('aria-label',txt);}}
 
 window.polish53Api={navFmPos,calEvMount};
+/* ───────── 54차: 확인 · 수정 · 취소 — 업무시스템에 올리거나 등록·요청하는 일은 저장 전에 내용을 보여 주고 고르게 ─────────
+   · cfm3({title,rows|html,ok,edit,cancel}) → 'ok' | 'edit' | 'cancel'
+   · 업무 등록·수정(업무 창), 진행 기록, 상태 단추(완료·시작), 특이사항, 업무 지시·보고·지시 확인·맡기·보고 확인, 파일·사진으로 올리기,
+     각종서류 올리기(자료실 저장)·서류 창 저장, 회사서식 올리기, 전자결재 올리기, 설정 저장
+   · 칸마다 바로 저장되는 점검 일보·경비 일지 기록표, 끌어서 옮기기(칸반·달력)는 제외
+   · 시험(test)에서는 window.WL_AUTOCFM 이 있으면 묻지 않고 그 값('ok' 기본)으로 진행하고 window.__CFM 에 남김 */
+const CFM={pass:0};
+const cfmEsc=v=>esc(v==null?'':String(v));
+function cfmRowsHTML(rows){return `<table class="c3-t"><tbody>${rows.filter(r=>r&&r[1]!==undefined&&r[1]!==null&&r[1]!=='').map(r=>`<tr><th>${cfmEsc(r[0])}</th><td>${r[2]?r[1]:cfmEsc(r[1]).replace(/\n/g,'<br>')}</td></tr>`).join('')}</tbody></table>`;}
+function cfmDiffHTML(rows){return `<table class="c3-t c3-d"><thead><tr><th>항목</th><th>지금</th><th>바꿀 내용</th></tr></thead><tbody>${rows.map(r=>`<tr><th>${cfmEsc(r[0])}</th><td class="c3-old">${cfmEsc(r[1]||'—').replace(/\n/g,'<br>')}</td><td class="c3-new">${cfmEsc(r[2]||'(비움)').replace(/\n/g,'<br>')}</td></tr>`).join('')}</tbody></table>`;}
+function cfm3(o){o=o||{};
+  if(window.WL_AUTOCFM){(window.__CFM=window.__CFM||[]).push({title:o.title,text:(o.rows||[]).map(r=>r&&r[0]+': '+String(r[1]==null?'':r[1]).replace(/<[^>]+>/g,'')).join(' | ')||String(o.html||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').slice(0,400)});
+    const v=window.WL_AUTOCFM;return Promise.resolve(v==='edit'||v==='cancel'?v:'ok');}
+  return new Promise(res=>{let d=$('#dlg-cfm3');if(!d){d=document.createElement('dialog');d.id='dlg-cfm3';d.className='modal narrow c3';document.body.appendChild(d);}
+    const body=o.html||cfmRowsHTML(o.rows||[]);
+    d.innerHTML=`<form method="dialog" class="c3-f"><header class="modal-h"><h2>${cfmEsc(o.title||'확인')}</h2><button type="button" class="icon-btn" data-c3="cancel" aria-label="닫기">✕</button></header>
+      <div class="modal-b one">${o.lead?`<p class="c3-lead">${o.lead}</p>`:''}${body}${o.note?`<p class="c3-note">${o.note}</p>`:''}</div>
+      <footer class="modal-f"><span class="spacer"></span><button type="button" class="btn" data-c3="cancel">${cfmEsc(o.cancel||'취소')}</button>${o.edit===false?'':`<button type="button" class="btn" data-c3="edit">✏️ ${cfmEsc(o.edit||'수정')}</button>`}<button type="submit" class="btn primary" data-c3="ok">✅ ${cfmEsc(o.ok||'확인')}</button></footer></form>`;
+    let done=false;const fin=v=>{if(done)return;done=true;try{d.close();}catch{}res(v);};
+    d.onclick=e=>{const b=e.target.closest&&e.target.closest('[data-c3]');if(!b)return;e.preventDefault();fin(b.dataset.c3);};
+    d.querySelector('form').onsubmit=e=>{e.preventDefault();fin('ok');};d.oncancel=e=>{e.preventDefault();fin('cancel');};
+    d.showModal();setTimeout(()=>{const b=d.querySelector('[data-c3="ok"]');if(b)b.focus();},30);});}
+/* 클릭을 가로채 확인 뒤 다시 누름 */
+function cfmClick(sel,build){document.addEventListener('click',async e=>{const el=e.target&&e.target.closest&&e.target.closest(sel);if(!el)return;
+  if(el.__c3){el.__c3=false;return;}let o=null;try{o=build(el);}catch(err){console.warn(err);}if(!o)return;
+  e.preventDefault();e.stopImmediatePropagation();const r=await cfm3(o);
+  if(r==='ok'){if(o.beforeOk)try{o.beforeOk(el);}catch{}/* 같은 눌림(click·submit) 처리 중에는 다시 누를 수 없어 다음 차례에 */setTimeout(()=>{el.__c3=true;el.click();},0);}else if(r==='edit'&&o.onEdit){try{o.onEdit(el);}catch{}}},true);}
+/* 폼 제출을 가로채 확인 뒤 다시 제출 */
+function cfmSubmit(id,build,after){document.addEventListener('submit',async e=>{const f=e.target;if(!f||f.id!==id)return;if(f.__c3){f.__c3=false;return;}
+  let o=null;try{o=build(f,e);}catch(err){console.warn(err);}if(o===false){e.preventDefault();e.stopImmediatePropagation();return;}if(!o)return;
+  e.preventDefault();e.stopImmediatePropagation();const r=await cfm3(o);if(after)after(r,f);
+  if(r==='ok'){setTimeout(()=>{f.__c3=true;if(f.requestSubmit)f.requestSubmit();else f.dispatchEvent(new Event('submit',{cancelable:true}));},0);}
+  else if(r==='edit'&&o.onEdit){try{o.onEdit(f);}catch{}}},true);}
+/* 이미 확인 창(확인·취소)을 쓰는 곳 — 등록·올리기 성격이면 「수정」까지 */
+const CFM_UP=new Set(['업무 등록 확인','결재 올리기','결재 완료(전결)','다음 회차 등록','팀에 공개하기','비공개로 바꾸기','접속 허용']);
+{const _c=confirmDlg;confirmDlg=async function(title,msg,yes,textToCopy){if(CFM.pass>0){CFM.pass--;return true;}
+  if(!textToCopy&&CFM_UP.has(title)&&!window.WL_AUTOCFM){const r=await cfm3({title,html:`<p class="c3-msg">${cfmEsc(msg).replace(/\n/g,'<br>')}</p>`,ok:yes||'확인',edit:'수정',note:'「수정」을 누르면 저장하지 않고 돌아가 고칠 수 있습니다.'});return r==='ok';}
+  return _c.apply(this,arguments);};}
+
+/* ── 값 글자로 */
+function cfmWho(ids){return (ids||[]).map(id=>typeof odName==='function'?odName(id):nameOf(id)).join(', ');}
+function cfmWhen(o){if(!o.start&&!o.due)return '[미정] (날짜 없음)';const a=o.start?fmtMD(o.start)+(o.startTime?' '+o.startTime:''):'';const b=o.due&&o.due!==o.start?fmtMD(o.due)+(o.dueTime?' '+o.dueTime:''):(o.dueTime&&o.dueTime!==o.startTime?o.dueTime:'');return a&&b?`${a} ~ ${b}`:a||('~ '+b);}
+const CFM_LBL={title:'업무명',cat:'분류',site:'사업장',place:'장소',scope:'구분',priority:'중요도',repeat:'반복',when:'일정',status:'진행 상태',progress:'진척률',assignees:'담당',assigneeText:'담당(직접 적은)',desc:'내용'};
+function cfmVal(k,v,o){switch(k){case 'cat':return catText(o);case 'scope':return SC[v]?SC[v].lv||SC[v].name:v;case 'priority':return PR[v]?PR[v].name:v;case 'repeat':{const r=REPEATS.find(x=>x.id===v);return r?r.name:v;}
+  case 'status':return ST[v]?ST[v].name:v;case 'progress':return (v||0)+'%';case 'assignees':return cfmWho(v)||'(없음)';case 'desc':return String(v||'').slice(0,300)+(String(v||'').length>300?'…':'');default:return v==null?'':String(v);}}
+
+/* ── 업무 창 저장 */
+function tfData(){const title=$('#t-title').value.trim();const start=$('#t-start').value;let due=$('#t-due').value;if(start&&(!due||(!S.dlg.dueTouched&&due<start)))due=start;
+  const status=S.dlg.status;let progress=+$('#t-progress').value;if(status==='done')progress=100;
+  let c={cat:'',sub:'',leaf:''};try{const cc=$('#t-cat').value;c=cc?{cat:cc,sub:$('#t-sub').value,leaf:$('#t-leaf').value}:{...autoCat(`${title} ${String($('#t-desc').value||'').slice(0,300)}`),auto:1};}catch{}
+  return {title,...c,site:$('#t-site').value,place:(($('#t-place')||{}).value||'').trim(),scope:$('#t-scope').value,priority:$('#t-prio').value,repeat:$('#t-repeat').value,start,due,startTime:$('#t-stime').value||'',dueTime:$('#t-dtime').value||'',status,progress,assignees:[...(S.dlg.assignees||[])],assigneeText:$('#t-assignee-text').value.trim(),desc:$('#t-desc').value};}
+function tfDiff(base,d,keys){const rows=[];const K=keys||['title','cat','site','place','scope','priority','repeat','when','status','progress','assignees','assigneeText','desc'];
+  for(const k of K){if(k==='when'){const a=cfmWhen(base),b=cfmWhen(d);if(a!==b)rows.push([CFM_LBL.when,a,b]);continue;}
+    if(k==='cat'){if(d.auto)continue;if((base.cat||'')!==d.cat||(base.sub||'')!==(d.sub||'')||(base.leaf||'')!==(d.leaf||''))rows.push([CFM_LBL.cat,catText(base),catText(d)]);continue;}
+    const a=JSON.stringify(base[k]??''),b=JSON.stringify(d[k]??'');if(a!==b&&!(k==='progress'&&d.status==='done'))rows.push([CFM_LBL[k],cfmVal(k,base[k],base),cfmVal(k,d[k],d)]);}
+  return rows;}
+function taskCfm(){if(!S.dlg)return null;const d=tfData();if(!d.title)return null;const t=S.dlg.path?findTask(S.dlg.path):null;
+  if(!t){const ord=typeof odNewSel==='function'&&S.dlg.od&&S.dlg.od.mode?(odPreview(odNewSel(),d.site)||'받을 사람 없음'):'';
+    return {title:S.dlg.priv?'🔒 비공개 업무 등록 확인':'업무 등록 확인',lead:'아래 내용으로 등록할까요?',rows:[['업무명',d.title],['분류',d.auto?catText(d)+' (자동)':catText(d)],['사업장',d.site],['장소',d.place],['일정',cfmWhen(d)],['진행 상태',ST[d.status]?ST[d.status].name:''],
+      ['담당',cfmWho(d.assignees)+(d.assigneeText?' · '+d.assigneeText:'')],['중요도',d.priority!=='normal'?PR[d.priority].name:''],['반복',d.repeat!=='none'?cfmVal('repeat',d.repeat):''],['내용',cfmVal('desc',d.desc)],['사진',(S.dlg.pending||[]).length?(S.dlg.pending.length+'장'):''],['📌 업무 지시',ord]],
+      ok:'등록',edit:'수정',onEdit:()=>{const x=$('#t-title');if(x)x.focus();}};}
+  const base=S.dlg.orig||t;const rows=tfDiff(base,d);if(!rows.length)return null;
+  return {title:'업무 수정 확인',lead:`「${cfmEsc(t.title)}」을(를) 아래처럼 바꿀까요?`,html:cfmDiffHTML(rows),ok:'저장',edit:'수정',onEdit:()=>{const x=$('#t-title');if(x)x.focus();}};}
+let CFM_TASK_HOOK=null; /* 변경 요청(ext56)이 먼저 가로챔 */
+document.addEventListener('submit',async e=>{const f=e.target;if(!f||f.id!=='task-form'||!S.dlg)return;if(f.__c3){f.__c3=false;return;}
+  if(CFM_TASK_HOOK){let h=false;try{h=CFM_TASK_HOOK(e,f);}catch(err){console.warn(err);}if(h)return;}
+  let o=null;try{o=taskCfm();}catch(err){console.warn(err);}if(!o)return;
+  e.preventDefault();e.stopImmediatePropagation();const r=await cfm3(o);
+  if(r==='ok'){setTimeout(()=>{f.__c3=true;f.requestSubmit();},0);}else if(r==='edit'){o.onEdit&&o.onEdit();}else{closeTask(false);toast('등록·저장하지 않고 닫았습니다.');}},true);
+
+/* ── 진행 기록 */
+cfmClick('#l-add',()=>{const t=S.dlg&&S.dlg.path&&findTask(S.dlg.path);if(!t)return null;const tx=$('#l-text').value.trim();const n=(S.dlg.logPhotos||[]).length;if(!tx&&!n)return null;
+  return {title:'진행 기록 추가 확인',rows:[['업무',t.title],['기록',tx],['이슈',$('#l-issue')&&$('#l-issue').checked?'⚠ 이슈로 표시':''],['사진',n?n+'장':'']],ok:'기록 추가',onEdit:()=>$('#l-text').focus()};});
+/* ── 상태 단추(내 업무·칸반 카드 등) */
+cfmClick('[data-act="done"],[data-act="doing"]',el=>{const t=findTask(el.dataset.path);if(!t)return null;const to=el.dataset.act;
+  return {title:to==='done'?'완료 처리 확인':'진행 시작 확인',rows:[['업무',t.title],['진행 상태',`${ST[t.status]?ST[t.status].name:''} → ${ST[to].name}`],['일정',cfmWhen(t)]],ok:to==='done'?'완료':'시작',edit:false};});
+/* ── 특이사항 */
+cfmClick('#memo-save',()=>{const tx=($('#memo-text')||{}).value||'';if(!tx.trim())return null;return {title:'특이사항·건의 저장 확인',rows:[['날짜',fmtLong(today())],['내용',tx.trim()]],ok:'저장',onEdit:()=>$('#memo-text').focus()};});
+/* ── 업무 지시·보고 */
+cfmClick('[data-odd-send]',el=>{if(el.disabled)return null;const to=($('.od-dlg .od-to')||{}).textContent||'';const ts=(OD.dlg&&OD.dlg.paths||[]).map(findTask).filter(Boolean);
+  return {title:'📌 업무 지시 확인',rows:[['업무',ts.map(t=>t.title).join('\n')],['받는 사람',to.replace(/^알림 받을 사람:\s*/,'')],['지시 메모',($('#odd-memo')||{}).value||''],['마감일',($('#odd-due')||{}).value?fmtMD($('#odd-due').value):'']],ok:'지시 보내기',onEdit:()=>{const m=$('#odd-memo');if(m)m.focus();}};});
+cfmClick('[data-odd-rep]',()=>{const t=OD.dlg&&findTask(OD.dlg.path);if(!t)return null;const k=OD.dlg.kind;
+  return {title:'📨 보고 확인',rows:[['업무',t.title],['보고 종류',(typeof REP_N!=='undefined'&&REP_N[k])||k],['보고 내용',($('#odd-text')||{}).value||'']],ok:'보고 보내기',onEdit:()=>{const m=$('#odd-text');if(m)m.focus();}};});
+cfmClick('[data-od-ack],[data-od-claim],[data-od-ok]',el=>{const k=el.dataset.odAck?'ack':el.dataset.odClaim?'claim':'ok';const t=findTask(el.dataset.odAck||el.dataset.odClaim||el.dataset.odOk);if(!t)return null;
+  const L={ack:['✓ 지시 확인','지시를 확인했다고 알립니다'],claim:['🙋 내가 맡기','이 업무를 내가 맡아 담당자로 들어갑니다'],ok:['✅ 보고 확인','보고를 확인하고 업무를 완료로 닫습니다']}[k];
+  return {title:L[0],rows:[['업무',t.title],['하는 일',L[1]]],ok:L[0].replace(/^\S+\s/,''),edit:false};});
+/* ── 파일·사진으로 올리기(여러 건) */
+cfmSubmit('imp-form',()=>{const I=S.imp;if(!I||!I.rows)return null;const on=I.rows.filter(r=>r.on&&String(r.text||'').trim());if(!on.length)return null;
+  return {title:'업무 등록 확인',lead:`아래 ${on.length}건을 업무로 등록할까요?`,html:`<ol class="c3-list">${on.slice(0,30).map(r=>`<li><b>${cfmEsc(r.date?fmtMD(r.date):'')}${r.time?' '+cfmEsc(r.time):''}</b> ${cfmEsc(String(r.text).slice(0,80))} <small>${cfmEsc([ST[r.status]?ST[r.status].name:'',r.site,r.who?nameOf(r.who):''].filter(Boolean).join(' · '))}</small></li>`).join('')}</ol>${on.length>30?`<p class="c3-note">외 ${on.length-30}건</p>`:''}`,ok:`${on.length}건 등록`,onEdit:()=>{}};});
+/* ── 각종서류 올리기: 실제 사용에서는 모두 확인 뒤 저장(자동 저장 끔) */
+try{if(S.up&&!window.WL_AUTOCFM)S.up.auto=false;}catch{}
+function upCfmRows(it){const g=it.guess||{};const st=(typeof SLOT!=='undefined'&&SLOT[g.slot])||{};return [['파일',it.name],['자료실 위치',[st.g&&typeof DOC_GROUPS!=='undefined'&&(DOC_GROUPS.find(x=>x.id===st.g)||{}).name,g.title||st.name].filter(Boolean).join(' › ')],['사업장',g.site||''],['발급일',g.issued?fmtYMD(g.issued):''],['유효기간',g.expiry?fmtYMD(g.expiry):''],['열람 제한',g.restricted?'🔒 관리자·열람 허용자만':'']];}
+{const _s=upSave;upSave=async function(it){if(CFM.up||window.WL_AUTOCFM)return _s.apply(this,arguments);
+  const r=await cfm3({title:'자료실 저장 확인',rows:upCfmRows(it),ok:'자료실에 저장',edit:'분류 고치기',note:'「분류 고치기」를 누르면 저장하지 않고 이 서류의 분류·날짜를 고칠 수 있습니다.'});
+  if(r==='ok')return _s.apply(this,arguments);if(r==='edit'){const b=document.querySelector(`[data-up-edit="${it.id}"]`);if(b)b.click();}};}
+cfmClick('#up-all',()=>{const L=(S.up&&S.up.items||[]).filter(i=>i.status==='ready');if(!L.length)return null;
+  return {title:'자료실 저장 확인',lead:`아래 ${L.length}개 서류를 자료실에 저장할까요?`,html:`<ol class="c3-list">${L.map(it=>{const R=upCfmRows(it);return `<li><b>${cfmEsc(it.name)}</b> → ${cfmEsc(R[1][1])}${R[2][1]?' · '+cfmEsc(R[2][1]):''}${R[4][1]?' · 유효 '+cfmEsc(R[4][1]):''}</li>`;}).join('')}</ol>`,ok:'모두 저장',edit:'분류 고치기',beforeOk:()=>{CFM.up=true;setTimeout(()=>{CFM.up=false;},120000);}};});
+/* 모두 저장이 끝나면 다시 하나씩 묻기 */
+{const _p=upSummary;upSummary=function(){const r=_p.apply(this,arguments);try{if(CFM.up&&!(S.up.items||[]).some(i=>i.status==='saving'||i.status==='conv'||i.status==='ready'))CFM.up=false;}catch{}return r;};}
+/* ── 자료실 서류 창 저장 */
+cfmSubmit('doc-form',()=>{const D=S.docDlg;if(!D||!canDoc())return null;const f=S.files[D.id]||D.base||{};const nm=(($('#doc-title')||{}).value||f.title||'').trim();
+  return {title:'자료실 저장 확인',rows:[['서류',nm],['새 파일',D.file?D.file.name:''],['발급일',($('#doc-issued')||{}).value||''],['유효기간',($('#doc-expiry')||{}).value||''],['메모',($('#doc-note')||{}).value||'']],ok:'저장',onEdit:()=>{}};});
+/* ── 회사서식 올리기 */
+{const _u=fmUpload;fmUpload=async function(list){const L=Array.from(list||[]).filter(f=>f&&f.size);if(!L.length||window.WL_AUTOCFM||CFM.fm)return _u.apply(this,arguments);
+  const r=await cfm3({title:'회사서식 올리기 확인',lead:`아래 ${L.length}개 파일을 회사서식으로 올릴까요? 올린 뒤 하나씩 보며 작성 가능·작성 불가를 고릅니다.`,html:`<ol class="c3-list">${L.slice(0,40).map(f=>`<li>${cfmEsc(f.name)} <small>${fmtMB?fmtMB(f.size):''}</small></li>`).join('')}</ol>${L.length>40?`<p class="c3-note">외 ${L.length-40}개</p>`:''}`,ok:'올리기',edit:'다시 고르기',onEdit:()=>{try{fmPickInputs();$('#fm-files').click();}catch{}}});
+  if(r==='ok')return _u.apply(this,arguments);};}
+/* ── 설정 저장 */
+cfmClick('#s-save',()=>{if(!(S.canEdit||S.preview))return null;const n=$$('#s-roster .rr').length;return {title:'설정 저장 확인',rows:[['부서 이름',($('#s-dept')||{}).value||''],['사업장',(($('#s-sites')||{}).value||'').split('\n').filter(Boolean).join(', ')],['직원 명단',n+'명'],['결재란',($('#s-appr')||{}).value||'']],ok:'설정 저장'};});
+
+window.cfmApi={cfm3,taskCfm,tfData,tfDiff};
+/* ───────── 54차: 간편 등록 — 문장으로 적으면 날짜·시각·장소·사업장·담당을 찾아 확인 창(확인 · 수정 · 취소) ─────────
+   예) "내일 오후 2시 군포공장 6층 대회의실에서 전 직원 안전교육" → 업무명 '전 직원 안전교육', 11.2 14:00, 장소 '군포공장 6층 대회의실', 사업장 군포공장, 진행 예정
+   · 날짜: 오늘·내일·모레·글피·어제, (이번 주·다음 주) ○요일, 11월 5일, 11/5, 11.5, 2026-11-05, 5일, 다음 달 3일, 월말, ~부터 ~까지, ~까지(마감)
+   · 시각: 오전·오후 ○시 (○분·반), 14:00, 10시~12시
+   · 장소: 회의실·강당·식당·사무실·현장·창고·기계실·전기실·주차장·정문 … 또는 '○○에서'
+   · 담당: 문장에 나온 직원 이름(나 포함), 사업장: 안양·군포·화성
+   · 위 칸(날짜·시각·사업장·상태·분류)을 직접 고른 값이 있으면 그 값이 먼저 */
+const QK={statusTouched:false};
+document.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('#qa-status button'))QK.statusTouched=true;},true);
+const qkPad=n=>String(n).padStart(2,'0');
+const qkYMD=d=>`${d.getFullYear()}-${qkPad(d.getMonth()+1)}-${qkPad(d.getDate())}`;
+const qkDate=s=>new Date(s+'T12:00:00');
+const qkAdd=(s,n)=>{const d=qkDate(s);d.setDate(d.getDate()+n);return qkYMD(d);};
+const QK_WD={'일':0,'월':1,'화':2,'수':3,'목':4,'금':5,'토':6};
+function qkValid(y,m,d){if(m<1||m>12||d<1||d>31)return '';const x=new Date(y,m-1,d,12);return x.getMonth()===m-1?qkYMD(x):'';}
+function qkMD(m,d,td){const y=+td.slice(0,4);let s=qkValid(y,m,d);if(!s)return '';if(diffDays(td,s)< -60)s=qkValid(y+1,m,d)||s;return s;}
+function qkWeekday(td,wd,shift){const d=qkDate(td);const cur=d.getDay();const mon=qkAdd(td,-((cur+6)%7));const off=(wd+6)%7;return qkAdd(mon,off+7*shift);}
+/* 날짜 찾기 → [{i,len,date}] */
+function qkDates(s,td){const T=[];const add=(m,date)=>{if(date)T.push({i:m.index,len:m[0].length,date});};let m;
+  for(m of s.matchAll(/(20\d\d)\s*[-./년]\s*(\d{1,2})\s*[-./월]\s*(\d{1,2})\s*일?/g))add(m,qkValid(+m[1],+m[2],+m[3]));
+  for(m of s.matchAll(/(?:(다음|이번|담)\s*달|다음\s*월|이달|익월)\s*(\d{1,2})\s*일/g)){const d0=qkDate(td);const nx=/이번|이달/.test(m[0])?0:1;const x=new Date(d0.getFullYear(),d0.getMonth()+nx,+m[2],12);add(m,qkYMD(x));}
+  for(m of s.matchAll(/(\d{1,2})\s*월\s*(\d{1,2})\s*일/g))add(m,qkMD(+m[1],+m[2],td));
+  for(m of s.matchAll(/(?<![\d.\/])(\d{1,2})[./](\d{1,2})(?![\d.\/]|\s*(?:톤|t\b|kg|㎏|m|㎡|%|개|대|명|원|건|시간|분|세|층|호|차|kw|KW|V|A\b))(?:\s*\(\s*[월화수목금토일]\s*\))?/g))add(m,qkMD(+m[1],+m[2],td));
+  for(m of s.matchAll(/(오늘|금일|내일|명일|모레|글피|어제|그제|그저께)/g)){const n={오늘:0,금일:0,내일:1,명일:1,모레:2,글피:3,어제:-1,그제:-2,그저께:-2}[m[1]];add(m,qkAdd(td,n));}
+  for(m of s.matchAll(/(이번\s*주|금주|다음\s*주|차주|담주|다다음\s*주|지난\s*주)\s*([월화수목금토일])(?:요일)?/g)){const k=m[1].replace(/\s/g,'');const sh=k==='이번주'||k==='금주'?0:k==='다다음주'?2:k==='지난주'?-1:1;add(m,qkWeekday(td,QK_WD[m[2]],sh));}
+  for(m of s.matchAll(/(?<![가-힣])([월화수목금토일])요일/g)){const wd=QK_WD[m[1]];const cur=qkDate(td).getDay();add(m,qkAdd(td,(wd-cur+7)%7));}
+  for(m of s.matchAll(/(?:이번\s*달\s*말|월말)/g)){const d0=qkDate(td);add(m,qkYMD(new Date(d0.getFullYear(),d0.getMonth()+1,0,12)));}
+  for(m of s.matchAll(/(?<![\d월./])(\d{1,2})\s*일(?![간동째치자])/g)){const d0=qkDate(td);let x=qkValid(d0.getFullYear(),d0.getMonth()+1,+m[1]);if(x&&diffDays(td,x)<-7){const n=new Date(d0.getFullYear(),d0.getMonth()+1,+m[1],12);x=n.getDate()===+m[1]?qkYMD(n):x;}add(m,x);}
+  T.sort((a,b)=>a.i-b.i||b.len-a.len);const out=[];for(const t of T){if(out.some(o=>t.i<o.i+o.len&&o.i<t.i+t.len))continue;out.push(t);}return out;}
+/* 시각 찾기 → [{i,len,hm}] */
+function qkTimes(s){const out=[];for(const m of s.matchAll(/(오전|오후|AM|PM|am|pm)?\s*(\d{1,2})\s*(?::\s*(\d{2})(?!\d)|시(?!간|경)(?:\s*(\d{1,2})\s*분|\s*(반))?)/g)){const hm=tmFromText(m[0]);if(!hm)continue;let i=m.index,len=m[0].length;const lead=m[0].match(/^\s*/)[0].length;out.push({i:i+lead,len:len-lead,hm});}return out;}
+const QK_ROOM='대회의실|소회의실|회의실|강당|대강당|식당|구내식당|사무실|휴게실|교육장|교육실|접견실|응접실|현장|창고|자재창고|기계실|전기실|변전실|수변전실|보일러실|옥상|주차장|정문|후문|경비실|로비|라인|생산라인|공정|실험실|연구소|본관|별관|탈의실|화장실|세미나실|상황실|방재실';
+function qkPlace(s){for(const m of s.matchAll(new RegExp(`((?:[가-힣A-Za-z0-9·]+\\s*){0,2}?(?:\\d+\\s*층\\s*)?[가-힣A-Za-z0-9·]*(?:${QK_ROOM}))(\\s*(?:에서|에|으로|로)(?![가-힣]))?`,'g'))){
+    /* '사무실 정리'처럼 장소 낱말이 일의 대상이면 장소로 보지 않음 — '…에서/에' 가 붙거나 '6층' 같은 층·호가 있을 때만 */
+    if(m[2]||/\d+\s*(층|호)/.test(m[1]))return {i:m.index,len:m[0].length,place:m[1].replace(/\s+/g,' ').trim()};}
+  let m;
+  m=s.match(/([가-힣A-Za-z0-9·]{2,12}(?:\s[가-힣A-Za-z0-9·]{1,10})?)\s?에서(?![가-힣])/);if(m&&!/^(회사|여기|거기|저기|집|내|우리|오늘|내일|사무)$/.test(m[1]))return {i:m.index,len:m[0].length,place:m[1].trim()};return null;}
+function qkSite(s){const L=[...S.config.sites].filter(x=>x!=='전사').sort((a,b)=>b.length-a.length);for(const st of L){const base=st.replace(/공장|본사|사업장/g,'');if(s.includes(st)||(base.length>=2&&s.includes(base)))return st;}return '';}
+function qkPeople(s){const out=[];for(const st of staffList()){if(!st.name||st.name.length<2)continue;if(s.includes(st.name)&&!out.includes(st.id))out.push(st.id);}return out;}
+function qkParse(raw,o={}){const td=o.today||today();const text=String(raw||'').trim();const lines=text.split('\n');const first=lines[0].trim();const rest=lines.slice(1).join('\n').trim();
+  const D=qkDates(text,td),Tm=qkTimes(text);let mk=first;for(const t of [...D,...Tm])if(t.i<first.length)mk=mk.slice(0,t.i)+' '.repeat(Math.min(t.len,first.length-t.i))+mk.slice(t.i+t.len);const P=qkPlace(mk);const cut=[];
+  let start='',due='',deadline=false;
+  if(D.length){start=D[0].date;const a=D[0],b=D[1];
+    if(b){const mid=text.slice(a.i+a.len,b.i);if(/^\s*(~|-|–|부터|에서|부터\s*~)\s*$/.test(mid)){due=b.date;}}
+    const after=text.slice((due?D[1]:a).i+(due?D[1]:a).len,(due?D[1]:a).i+(due?D[1]:a).len+4);if(!due&&/^\s*(까지)/.test(after)){deadline=true;due=start;start='';}
+    if(due&&due<start&&start){const x=start;start=due;due=x;}}
+  let st='',dt='';if(Tm.length){st=Tm[0].hm;const b=Tm[1];if(b){const mid=text.slice(Tm[0].i+Tm[0].len,b.i);if(/^\s*(~|-|–|부터)\s*$/.test(mid))dt=b.hm;}}
+  if(deadline&&st&&!dt){dt=st;st='';}
+  for(const t of D)if(t.i<first.length)cut.push([t.i,t.i+t.len]);for(const t of Tm)if(t.i<first.length)cut.push([t.i,t.i+t.len]);if(P)cut.push([P.i,P.i+P.len]);
+  let title=first;if(cut.length){cut.sort((a,b)=>b[0]-a[0]);for(const [a,b] of cut){let e=b;const tail=title.slice(e).match(/^\s*(에서|에|부터|까지|~|-|–|,|·)+/);if(tail)e+=tail[0].length;title=title.slice(0,a)+' '+title.slice(e);}
+    title=title.replace(/\s+/g,' ').replace(/^[\s,·~\-–에]+|[\s,·~\-–]+$/g,'').trim();}
+  if(title.length<2)title=first;
+  const site=qkSite(text);let place=P?P.place:'';if(place&&place===site)place='';
+  const people=qkPeople(text);
+  return {title:title.slice(0,120),first,rest,start,due,startTime:st,dueTime:dt,deadline,place:place.slice(0,60),site,people,changed:title!==first};}
+/* 간편 등록 초안 (위 칸 값 반영) */
+function qkDraft(raw,o={}){const q=S.qa||{};const P=qkParse(raw);const td=today();const me=S.myStaff;const fromQa=!!o.fromQa;
+  const qaTm=fromQa?(($('#qa-time')||{}).value||''):'';let status=fromQa?q.status:'plan';
+  let start=P.start,due=P.due;if(fromQa&&q.dateTouched&&q.date){start=q.date;if(!P.due||P.due<start)due='';}
+  const startTime=qaTm||P.startTime,dueTime=P.dueTime;
+  if(!(fromQa&&QK.statusTouched)){const s0=start||due;if(s0&&s0>td)status=P.deadline?'doing':'plan';else if(s0===td&&startTime&&startTime>new Date().toTimeString().slice(0,5))status='plan';else if(P.deadline)status='doing';else if(!fromQa)status=s0&&s0<td?'done':'plan';}
+  if(!start&&!due){if(fromQa)start=q.dateTouched?(q.date||''):(status==='plan'&&!startTime?'':td);}
+  if(!due)due=(status==='doing'&&!(fromQa&&q.dateTouched)&&!P.due)?'':start;if(!start&&due&&!P.deadline)start=due;
+  const site=(fromQa&&q.siteTouched&&q.site)?q.site:(P.site||(fromQa&&q.site)||(S.staff[me]&&S.staff[me].site)||S.config.sites[0]);
+  const ass=[...new Set([...(me?[me]:[]),...P.people])];
+  let desc=P.first.length>120?String(raw||'').trim():P.rest;if(P.changed&&P.first.length<=120)desc=(desc?desc+'\n\n':'')+'📝 원문: '+P.first;
+  return {title:P.title,desc,start,due,startTime,dueTime,place:P.place,site,status,assignees:ass,priv:fromQa&&typeof qaPriv==='function'&&qaPriv(),raw:String(raw||'').trim(),parsed:P};}
+function qkRows(d){return [['업무명',d.title],['일정',cfmWhen(d)],['장소',d.place],['사업장',d.site],['진행 상태',ST[d.status]?ST[d.status].name:''],['담당',cfmWho(d.assignees)],['분류',d.cat?catText(d):'자동 분류 (저장할 때 내용을 보고 정함)'],['내용',cfmVal('desc',d.desc)],['사진',d.nPh?d.nPh+'장':''],['🔒 비공개',d.priv?'나만 보기':'']];}
+/* 고치기 창 */
+function qkEdit(d){return new Promise(res=>{let g=$('#dlg-qk');if(!g){g=document.createElement('dialog');g.id='dlg-qk';g.className='modal narrow c3 qk';document.body.appendChild(g);}
+  const sites=[...new Set([...S.config.sites,d.site].filter(Boolean))];const st=[...staffList().filter(s=>s.id===S.myStaff),...staffList().filter(s=>s.id!==S.myStaff&&working(s))];
+  g.innerHTML=`<form method="dialog" class="qk-f"><header class="modal-h"><h2>✏️ 간편 등록 — 고치기</h2><button type="button" class="icon-btn" data-qk="cancel" aria-label="닫기">✕</button></header><div class="modal-b one qk-b">
+    <label class="qk-l w">업무명<input id="qk-title" maxlength="120" value="${esc(d.title)}" required></label>
+    <div class="qk-r"><label class="qk-l">시작일<input type="date" id="qk-start" value="${esc(d.start)}"></label><label class="qk-l">시각<input type="time" id="qk-st" value="${esc(d.startTime)}"></label><label class="qk-l">마감일<input type="date" id="qk-due" value="${esc(d.due)}"></label><label class="qk-l">시각<input type="time" id="qk-dt" value="${esc(d.dueTime)}"></label></div>
+    <div class="qk-r"><label class="qk-l w2">장소<input id="qk-place" maxlength="60" value="${esc(d.place)}" placeholder="예: 6층 대회의실"></label><label class="qk-l">사업장<select id="qk-site">${sites.map(x=>`<option ${x===d.site?'selected':''}>${esc(x)}</option>`).join('')}</select></label>
+      <label class="qk-l">진행 상태<select id="qk-status">${STATUSES.map(s=>`<option value="${s.id}" ${s.id===d.status?'selected':''}>${s.name}</option>`).join('')}</select></label></div>
+    <label class="qk-l w">분류<select id="qk-cat"><option value="">자동 분류</option>${CATS.map(c=>`<option value="${c.id}" ${c.id===d.cat?'selected':''}>${esc(c.name)}</option>`).join('')}</select></label>
+    <div class="qk-l w"><span>담당</span><div class="qk-who">${st.map(s=>`<label class="chk"><input type="checkbox" value="${esc(s.id)}" ${d.assignees.includes(s.id)?'checked':''}> ${esc(s.name)}${s.id===S.myStaff?' (나)':''}</label>`).join('')}</div></div>
+    <label class="qk-l w">내용<textarea id="qk-desc" rows="4" maxlength="4000">${esc(d.desc)}</textarea></label>
+  </div><footer class="modal-f"><span class="spacer"></span><button type="button" class="btn" data-qk="cancel">취소</button><button type="submit" class="btn primary" data-qk="ok">✅ 확인 (등록)</button></footer></form>`;
+  let done=false;const fin=v=>{if(done)return;done=true;try{g.close();}catch{}res(v);};
+  g.onclick=e=>{const b=e.target.closest&&e.target.closest('[data-qk="cancel"]');if(b){e.preventDefault();fin(null);}};g.oncancel=e=>{e.preventDefault();fin(null);};
+  g.querySelector('form').onsubmit=e=>{e.preventDefault();const v=id=>($('#'+id,g)||{}).value||'';const title=v('qk-title').trim();if(!title){toast('업무명을 적어 주세요.','err');return;}
+    let start=v('qk-start'),due=v('qk-due');if(start&&due&&due<start){toast('마감일이 시작일보다 빠릅니다.','err');return;}if(start&&!due)due=start;
+    const cat=v('qk-cat');fin({...d,title,start,due,startTime:v('qk-st'),dueTime:v('qk-dt'),place:v('qk-place').trim(),site:v('qk-site'),status:v('qk-status'),cat,sub:cat&&cat===d.cat?d.sub:(cat?subsOf(cat)[0]||'':''),leaf:cat&&cat===d.cat?d.leaf:'',
+      assignees:[...g.querySelectorAll('.qk-who input:checked')].map(x=>x.value),desc:v('qk-desc')});};
+  g.showModal();setTimeout(()=>{const x=$('#qk-title',g);if(x)x.focus();},30);});}
+/* 확인 → (수정) → 등록 */
+async function qkConfirm(d){for(let i=0;i<6;i++){const r=await cfm3({title:d.priv?'🔒 간편 등록 확인 (비공개)':'간편 등록 확인',lead:'문장에서 찾은 내용입니다. 맞으면 「확인」, 고칠 것이 있으면 「수정」을 누르세요.',rows:qkRows(d),ok:'확인 (등록)',edit:'수정'});
+    if(r==='ok')return d;if(r!=='edit')return null;const e=await qkEdit(d);if(e)return e;}return null;}
+async function qkCreate(d,o={}){const q=S.qa||{};const files=o.fromQa?(q.files||[]):[];
+  const ups=files.length?await uploadImages(files,{priv:!!d.priv,stamp:stampPref()?stampFor(d.site,d.title):null}):[];
+  S.lastAuto=null;const cf=d.cat?{cat:d.cat,sub:d.sub||subsOf(d.cat)[0]||'',leaf:d.leaf||'',tx:TXV}:(o.fromQa&&q.cat?qaCatFields(d.raw):(()=>{const m=autoCat(`${d.title} ${String(d.desc||'').slice(0,300)}`);S.lastAuto=m;return {cat:m.cat,sub:m.sub,leaf:m.leaf,tx:TXV,ca:1};})());
+  await createTask({priv:!!d.priv,title:d.title,...cf,site:d.site,place:d.place||'',scope:guessScope(d.start,d.due||d.start),priority:'normal',repeat:'none',start:d.start,startTime:d.startTime||'',due:d.due,dueTime:d.dueTime||'',status:d.status,progress:d.status==='done'?100:0,doneAt:d.status==='done'?(d.start||today()):'',
+    assignees:d.assignees.length?d.assignees:(S.myStaff?[S.myStaff]:[]),assigneeText:'',desc:d.desc||'',photos:ups,logs:ups.length?[{at:nowISO(),by:myId(),kind:'photo',text:'',photos:ups.map(u=>u.id)}]:[]});
+  return true;}
+function qkResetQa(){const q=S.qa;q.text='';q.files=[];q.catTouched=false;q.cat='';q.sub='';q.leaf='';q.dateTouched=false;q.date=today();if(!q.siteTouched)q.site='';QK.statusTouched=false;
+  {const qt=$('#qa-time');if(qt)qt.value='';}try{syncQA();}catch{}const ta=$('#qa-text');if(ta){ta.value='';ta.focus();}const pi=$('#qa-photo');if(pi)pi.value='';const qf=$('#qa-files');if(qf)qf.textContent='';try{if(typeof qaGrow==='function')qaGrow();}catch{}}
+async function qkSubmitQa(){const raw=(($('#qa-text')||{}).value||'').trim();if(!raw){const t=$('#qa-text');if(t)t.focus();return;}if(!S.canWrite){toast('보기 전용 권한이라 등록할 수 없습니다.','err');return;}if(S.qaBusy)return;
+  const q=S.qa;let d=qkDraft(raw,{fromQa:true});if(q.cat){d.cat=q.cat;d.sub=q.sub;d.leaf=q.leaf||'';}d.nPh=(q.files||[]).length;
+  S.qaBusy=true;const btn=$('#qa-go');try{d=await qkConfirm(d);if(!d){toast('등록하지 않았습니다. 적은 글은 그대로 있습니다.');return;}
+    if(btn){btn.disabled=true;btn.textContent='등록 중…';}await qkCreate(d,{fromQa:true});const pv=!!d.priv;qkResetQa();
+    toast((pv?'🔒 비공개 업무로 등록했습니다':d.status==='done'?'한 일을 기록했습니다':'업무를 등록했습니다')+` · ${cfmWhen(d)}${d.place?' · '+d.place:''}`+(S.lastAuto?` · 자동 분류: ${catText(S.lastAuto)}`:'')+'.');}
+  catch(e){console.warn(e);}finally{S.qaBusy=false;const b=$('#qa-go');if(b){b.disabled=!S.canWrite;b.textContent=(typeof qaPriv==='function'&&qaPriv())?'🔒 간편 등록':'간편 등록';}}}
+/* 메모장 등 다른 곳에서: 글 → 확인 → 등록 */
+async function qkOpen(raw,o={}){if(!S.canWrite){toast('보기 전용 권한이라 등록할 수 없습니다.','err');return false;}let d=qkDraft(raw,{fromQa:false});d=await qkConfirm(d);if(!d)return false;
+  await qkCreate(d,{});toast(`업무를 등록했습니다 · ${cfmWhen(d)}${d.place?' · '+d.place:''}.`);return true;}
+submitQA=qkSubmitQa;
+document.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('#qa-go')){e.preventDefault();e.stopImmediatePropagation();qkSubmitQa();}},true);
+/* 장소: 내 업무 줄·칸반 카드에 📍 */
+{const _n=normTask;normTask=function(r){const t=_n.apply(this,arguments);try{t.place=typeof(r&&r.place)==='string'?r.place.slice(0,60):'';}catch{}return t;};}
+{const _m=myRow;myRow=function(t){const h=_m.apply(this,arguments);if(!t||!t.place)return h;return h.replace(`<span>${esc(t.site)}</span>`,`<span>${esc(t.site)}</span><span class="plc">📍 ${esc(t.place)}</span>`);};}
+{const _c=cardHTML;cardHTML=function(t){const h=_c.apply(this,arguments);if(!t||!t.place)return h;return h.replace('</h3>',`</h3><div class="plc">📍 ${esc(t.place)}</div>`);};}
+window.quickApi={parse:qkParse,draft:qkDraft,open:qkOpen,dates:qkDates,times:qkTimes};
+/* ───────── 54차: 📝 메모장 — 아직 업무로 정리하기 전의 메모. 앱 위쪽 📝(휴대폰은 더보기)와 윈도우 바탕 화면 메모장이 자동으로 같은 내용 ─────────
+   · 저장: priv/{로그인 uid}/memo/{id} {text,color,pin,at,upd,task} — 본인만 읽고 씀(관리자도 못 봄, 보안 규칙 priv 그대로 · 규칙 변경 없음)
+   · 바탕 화면 메모장: 주소 ?memo=1 → 메모장만 보이는 작은 창. 크롬·엣지에서 「앱 설치」하면 바탕 화면·작업 표시줄 아이콘(별도 manifest memo.webmanifest)
+     「📌 항상 위에 띄우기」= Document Picture-in-Picture(크롬·엣지 116+) — 다른 프로그램 위에 떠 있는 메모장
+   · 메모 → 「업무로 등록」은 간편 등록 확인 창(날짜·시각·장소 분석)을 거쳐 등록, 메모에 '업무 등록됨' 표시
+   · 글은 쓰는 대로 0.7초 뒤 자동 저장, 지우면 6초 동안 되돌리기 */
+const MEMO={list:[],u:null,loaded:false,local:false,err:'',q:'',undo:null,timers:{},inst:null,pip:null};
+const MEMO_COLORS=['y','g','b','p','w'];const MEMO_CN={y:'노랑',g:'초록',b:'파랑',p:'분홍',w:'흰색'};
+const memoMode=()=>document.documentElement.classList.contains('memo-mode');
+function memoNorm(id,d){if(!d)return null;const s=(v,n)=>typeof v==='string'?v.slice(0,n):'';return {id,text:s(d.text,4000),color:MEMO_COLORS.includes(d.color)?d.color:'y',pin:!!d.pin,at:s(d.at,40),upd:s(d.upd,40)||s(d.at,40),task:s(d.task,120),taskTitle:s(d.taskTitle,120)};}
+const memoFb=()=>S.mode==='firebase'&&S.fs&&S.me&&S.me.id;
+const memoCol=()=>S.fs.collection(`priv/${S.me.id}/memo`);
+function memoLocalLoad(){try{MEMO.list=(JSON.parse(localStorage.getItem('wl.memo.local')||'[]')||[]).map(x=>memoNorm(x.id,x)).filter(Boolean);}catch{MEMO.list=[];}}
+function memoLocalSave(){try{localStorage.setItem('wl.memo.local',JSON.stringify(MEMO.list));}catch{}}
+function memoSub(){try{MEMO.u&&MEMO.u();}catch{}MEMO.u=null;MEMO.loaded=false;MEMO.err='';
+  if(!memoFb()){MEMO.local=true;memoLocalLoad();MEMO.loaded=true;memoRender();return;}MEMO.local=false;
+  MEMO.u=memoCol().onSnapshot(s=>{MEMO.list=s.docs.map(d=>memoNorm(d.id,d.data())).filter(Boolean);MEMO.loaded=true;MEMO.err='';memoRender();},e=>{MEMO.loaded=true;MEMO.err='메모를 불러오지 못했습니다. 로그인 상태를 확인하세요.';console.warn(e);memoRender();});}
+{const _es=extSubs;extSubs=function(){_es.apply(this,arguments);try{memoSub();S.unsubs.push(()=>{try{MEMO.u&&MEMO.u();}catch{}MEMO.u=null;MEMO.list=[];MEMO.loaded=false;});}catch(e){console.warn(e);}};}
+function memoSorted(){const q=MEMO.q.trim().toLowerCase();return MEMO.list.filter(m=>!q||m.text.toLowerCase().includes(q)).sort((a,b)=>(b.pin-a.pin)||String(b.upd).localeCompare(String(a.upd)));}
+async function memoPut(id,patch){const m=MEMO.list.find(x=>x.id===id);const now=nowISO();
+  if(!memoFb()){if(m)Object.assign(m,patch,{upd:now});else MEMO.list.push(memoNorm(id,{...patch,at:now,upd:now}));memoLocalSave();memoRender();return;}
+  const doc={...patch,upd:now};if(!m)doc.at=now;if(m)Object.assign(m,doc);else MEMO.list.push(memoNorm(id,doc));
+  try{await fbWrite(memoCol().doc(id).set(doc,{merge:true}));}catch(e){writeError(e);}}
+async function memoDel(id){const m=MEMO.list.find(x=>x.id===id);if(!m)return;MEMO.list=MEMO.list.filter(x=>x.id!==id);MEMO.undo={m:{...m},t:Date.now()};memoRender();
+  if(!memoFb()){memoLocalSave();}else{try{await fbWrite(memoCol().doc(id).delete());}catch(e){writeError(e);}}
+  setTimeout(()=>{if(MEMO.undo&&Date.now()-MEMO.undo.t>=5900){MEMO.undo=null;memoRender();}},6000);}
+async function memoUndo(){const u=MEMO.undo;if(!u)return;MEMO.undo=null;const {id,...rest}=u.m;await memoPut(id,{text:rest.text,color:rest.color,pin:rest.pin,task:rest.task,taskTitle:rest.taskTitle,at:rest.at});memoRender();}
+async function memoAdd(text){text=String(text||'').trim();if(!text)return;if(!S.canWrite&&!S.preview){toast('보기 전용 권한이라 메모를 쓸 수 없습니다.','err');return;}const id=rid().slice(0,16);await memoPut(id,{text:text.slice(0,4000),color:'y',pin:false,task:'',taskTitle:''});}
+async function memoToTask(id){const m=MEMO.list.find(x=>x.id===id);if(!m||!m.text.trim())return;
+  if(MEMO.pip){try{window.focus();}catch{}}
+  const before=new Set(S.tasks.map(t=>t.path));const ok=await qkOpen(m.text);if(!ok)return;
+  setTimeout(()=>{const nt=S.tasks.find(t=>!before.has(t.path)&&t.createdBy===myId());memoPut(id,{task:nt?nt.path:'?',taskTitle:nt?nt.title:''});},900);}
+/* ── 메모장 화면 (한 덩어리, 자체 이벤트 — 항상 위 창으로 옮겨도 동작) */
+function memoPadEl(){let p=document.getElementById('memo-pad');if(p)return p;p=document.createElement('section');p.id='memo-pad';p.className='memo-pad';p.setAttribute('aria-label','메모장');
+  p.innerHTML=`<header class="mp-h"><b>📝 메모장</b><small class="mp-n"></small><span class="mp-sp"></span><span class="mp-acts"></span></header>
+    <div class="mp-new"><textarea class="mp-in" rows="2" maxlength="4000" placeholder="떠오른 일·전화 내용·할 일을 바로 적으세요 (Ctrl+Enter 또는 ＋)"></textarea><button type="button" class="btn primary sm mp-add" data-mp="add">＋ 메모</button></div>
+    <input type="search" class="mp-q" placeholder="메모 찾기" aria-label="메모 찾기">
+    <div class="mp-undo" hidden></div><div class="mp-list"></div><p class="mp-foot"></p>`;
+  const tget=e=>e.target;
+  p.addEventListener('click',e=>{const T=tget(e);const b=T.closest&&T.closest('[data-mp]');if(!b)return;const id=b.closest('[data-mid]')?b.closest('[data-mid]').dataset.mid:'';const a=b.dataset.mp;
+    if(a==='add'){const ta=p.querySelector('.mp-in');memoAdd(ta.value);ta.value='';ta.focus();return;}
+    if(a==='pin'){const m=MEMO.list.find(x=>x.id===id);if(m)memoPut(id,{pin:!m.pin}).then(memoRender);return;}
+    if(a==='color'){const m=MEMO.list.find(x=>x.id===id);if(m){const c=MEMO_COLORS[(MEMO_COLORS.indexOf(m.color)+1)%MEMO_COLORS.length];memoPut(id,{color:c}).then(memoRender);}return;}
+    if(a==='task'){memoToTask(id);return;}
+    if(a==='open'){const m=MEMO.list.find(x=>x.id===id);const t=m&&findTask(m.task);if(t){if(MEMO.pip)try{window.focus();}catch{}if(memoMode()){window.open('./#list','_blank');return;}memoClose();openTask(t);}else toast('업무를 찾을 수 없습니다 (지워졌거나 아직 불러오는 중).','err');return;}
+    if(a==='del'){memoDel(id);return;}
+    if(a==='undo'){memoUndo();return;}
+    if(a==='close'){memoClose();return;}
+    if(a==='desk'){memoDesk();return;}
+    if(a==='pip'){memoPip();return;}
+    if(a==='install'){memoInstall();return;}});
+  p.addEventListener('keydown',e=>{const T=tget(e);if(T.classList&&T.classList.contains('mp-in')&&e.key==='Enter'&&(e.ctrlKey||e.metaKey)&&!e.isComposing){e.preventDefault();memoAdd(T.value);T.value='';}
+    if(e.key==='Escape'&&!memoMode()&&!MEMO.pip){memoClose();}});
+  p.addEventListener('input',e=>{const T=tget(e);if(T.classList&&T.classList.contains('mp-q')){MEMO.q=T.value;memoRender();return;}
+    if(T.classList&&T.classList.contains('mp-tx')){const id=T.closest('[data-mid]').dataset.mid;memoGrow(T);clearTimeout(MEMO.timers[id]);const v=T.value;const st=T.closest('.mp-card').querySelector('.mp-st');if(st)st.textContent='저장 중…';
+      MEMO.timers[id]=setTimeout(async()=>{if(!v.trim()){return;}await memoPut(id,{text:v.slice(0,4000)});if(st)st.textContent='저장됨 '+hhmm(nowISO());},700);}});
+  return p;}
+function memoGrow(t){t.style.height='auto';t.style.height=Math.min(320,t.scrollHeight+2)+'px';}
+function memoCardHTML(m){return `<article class="mp-card c-${m.color}${m.pin?' pin':''}${m.task?' done':''}" data-mid="${esc(m.id)}"><textarea class="mp-tx" rows="2" maxlength="4000" aria-label="메모">${esc(m.text)}</textarea>
+  <div class="mp-meta"><span class="mp-st">${esc(m.upd?fmtMD(localDate(m.upd))+' '+hhmm(m.upd):'')}</span>${m.task?`<button type="button" class="mp-lnk" data-mp="open" title="등록한 업무 열기">✓ 업무 등록됨${m.taskTitle?' · '+esc(m.taskTitle.slice(0,24)):''}</button>`:''}<span class="mp-sp"></span>
+  <button type="button" data-mp="pin" title="${m.pin?'고정 풀기':'맨 위에 고정'}" aria-pressed="${m.pin}">📌</button><button type="button" data-mp="color" title="색 바꾸기 (${MEMO_CN[m.color]})">🎨</button>${m.task?'':`<button type="button" data-mp="task" title="간편 등록 확인 창을 거쳐 업무로 등록">➜ 업무로</button>`}<button type="button" data-mp="del" title="지우기 (6초 안에 되돌리기)">🗑</button></div></article>`;}
+function memoRender(){const p=document.getElementById('memo-pad');memoBadge();if(!p)return;const L=memoSorted();
+  p.querySelector('.mp-n').textContent=MEMO.loaded?`${MEMO.list.length}개${MEMO.local?' · 이 기기에만':' · 자동 저장·동기화'}`:'불러오는 중…';
+  const inMode=memoMode();p.querySelector('.mp-acts').innerHTML=(inMode?`${'documentPictureInPicture' in window&&!MEMO.pip?'<button type="button" class="btn sm" data-mp="pip" title="다른 프로그램 위에 항상 떠 있는 작은 메모장">📌 항상 위에 띄우기</button>':''}${MEMO.inst?'<button type="button" class="btn sm primary" data-mp="install">🖥 바탕 화면 앱으로 설치</button>':''}`
+    :`<button type="button" class="btn sm" data-mp="desk" title="윈도우 바탕 화면에 띄우는 작은 메모장 창 (같은 메모 자동 연동)">🖥 바탕 화면 메모장</button>`)+(inMode||MEMO.pip?'':'<button type="button" class="icon-btn" data-mp="close" aria-label="닫기">✕</button>');
+  const box=p.querySelector('.mp-list');const act=p.ownerDocument.activeElement;const keep=act&&act.classList&&act.classList.contains('mp-tx')?act.closest('[data-mid]').dataset.mid:'';
+  const have=new Map([...box.querySelectorAll('[data-mid]')].map(e=>[e.dataset.mid,e]));
+  if(!L.length){box.innerHTML=`<p class="mp-empty">${MEMO.err?esc(MEMO.err):MEMO.q?'찾는 메모가 없습니다.':'아직 메모가 없습니다. 위 칸에 적어 보세요.'}</p>`;}
+  else{const frag=[];for(const m of L){const old=have.get(m.id);if(old&&m.id===keep){frag.push(old);continue;}const d=p.ownerDocument.createElement('div');d.innerHTML=memoCardHTML(m);frag.push(d.firstElementChild);}
+    box.replaceChildren(...frag);box.querySelectorAll('.mp-tx').forEach(memoGrow);}
+  const u=p.querySelector('.mp-undo');if(MEMO.undo){u.hidden=false;u.innerHTML=`메모를 지웠습니다. <button type="button" class="btn sm" data-mp="undo">↶ 되돌리기</button>`;}else{u.hidden=true;u.innerHTML='';}
+  p.querySelector('.mp-foot').textContent=MEMO.local?'Firebase에 로그인하지 않은 상태라 이 기기에만 저장됩니다.':'🔒 나만 보는 메모 — 관리자·다른 직원은 볼 수 없습니다. 앱·휴대폰·바탕 화면 메모장 어디서 고쳐도 같은 내용입니다.';}
+/* ── 앱 안: 오른쪽 서랍 */
+function memoOpen(){let d=document.getElementById('memo-drawer');if(!d){d=document.createElement('div');d.id='memo-drawer';d.className='memo-drawer';d.innerHTML='<div class="md-bg" data-md-bg></div><div class="md-in"></div>';document.body.appendChild(d);
+    d.addEventListener('click',e=>{if(e.target.closest('[data-md-bg]'))memoClose();});}
+  const pad=memoPadEl();if(!MEMO.pip)d.querySelector('.md-in').appendChild(pad);d.hidden=false;document.body.classList.add('memo-on');memoRender();
+  if(!MEMO.pip)setTimeout(()=>{const t=pad.querySelector('.mp-in');if(t)t.focus();},40);}
+function memoClose(){const d=document.getElementById('memo-drawer');if(d)d.hidden=true;document.body.classList.remove('memo-on');}
+function memoBadge(){const b=document.getElementById('btn-memo');if(b){const n=MEMO.list.filter(m=>!m.task).length;const e=b.querySelector('.memo-n');if(e){e.hidden=!n;e.textContent=n>99?'99+':n;}}}
+/* ── 바탕 화면 메모장 */
+function memoDesk(){const w=window.open('./?memo=1','wlmemo','popup=yes,width=400,height=640');if(!w){toast('팝업이 막혔습니다. 주소창 오른쪽 팝업 차단 아이콘에서 허용하거나, 새 탭에서 주소 끝에 ?memo=1 을 붙여 여세요.','err');return;}
+  toast('바탕 화면 메모장 창을 열었습니다. 그 창의 「🖥 바탕 화면 앱으로 설치」(또는 주소창 ⊕)를 누르면 바탕 화면·작업 표시줄에 아이콘이 생깁니다.');}
+async function memoInstall(){const e=MEMO.inst;if(!e)return;MEMO.inst=null;try{e.prompt();await e.userChoice;}catch{}memoRender();}
+async function memoPip(){if(!('documentPictureInPicture' in window)){toast('이 브라우저는 「항상 위에 띄우기」를 지원하지 않습니다 (크롬·엣지 최신 버전).','err');return;}
+  try{const w=await documentPictureInPicture.requestWindow({width:380,height:560});MEMO.pip=w;
+    for(const st of document.querySelectorAll('style,link[rel="stylesheet"]'))w.document.head.appendChild(st.cloneNode(true));
+    w.document.documentElement.className=document.documentElement.className;w.document.body.className='memo-pip';w.document.title='📝 메모장';
+    const pad=memoPadEl();w.document.body.appendChild(pad);memoRender();
+    w.addEventListener('pagehide',()=>{MEMO.pip=null;const host=memoMode()?document.getElementById('memo-host'):document.querySelector('#memo-drawer .md-in');if(host)host.appendChild(pad);memoRender();});}
+  catch(e){console.warn(e);toast('항상 위 창을 열지 못했습니다. 메모장 창 안의 단추를 직접 눌러 주세요.','err');}}
+if(memoMode()){window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();MEMO.inst=e;memoRender();});
+  window.addEventListener('appinstalled',()=>{MEMO.inst=null;memoRender();toast('바탕 화면 메모장을 설치했습니다.');});
+  const mount=()=>{let h=document.getElementById('memo-host');if(!h){h=document.createElement('main');h.id='memo-host';document.body.prepend(h);}if(!MEMO.pip)h.appendChild(memoPadEl());memoRender();document.title='📝 관리부 메모장';};
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mount);else mount();}
+/* ── 위쪽 📝 단추 · 휴대폰 더보기 */
+(function(){const bar=document.querySelector('.top-right');const s=document.getElementById('btn-search');if(!bar||!s||document.getElementById('btn-memo'))return;
+  s.insertAdjacentHTML('beforebegin','<button type="button" class="icon-btn memo-btn" id="btn-memo" aria-label="메모장" title="📝 메모장 — 업무로 정리하기 전 메모 (바탕 화면 메모장과 자동 연동)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M5 3h10l4 4v14H5z"/><path d="M15 3v4h4M8 11h8M8 15h8M8 19h5"/></svg><em class="memo-n" hidden></em></button>');})();
+document.addEventListener('click',e=>{const T=e.target;if(!T.closest)return;if(T.closest('#btn-memo')||T.closest('[data-memo-open]')){const sh=document.getElementById('mnav-sheet');if(sh)sh.hidden=true;const d=document.getElementById('memo-drawer');if(d&&!d.hidden)memoClose();else memoOpen();}});
+{const _m=mnavMore;mnavMore=function(){const r=_m.apply(this,arguments);try{const sh=document.getElementById('mnav-sheet');const ms=sh&&sh.querySelector('.ms-in');if(ms&&!ms.querySelector('[data-memo-open]'))ms.insertAdjacentHTML('afterbegin','<button type="button" data-memo-open>📝 메모장</button>');}catch{}return r;};}
+document.addEventListener('keydown',e=>{if(e.altKey&&!e.ctrlKey&&(e.key==='m'||e.key==='M'||e.key==='ㅡ')&&!memoMode()&&S.ready){e.preventDefault();const d=document.getElementById('memo-drawer');if(d&&!d.hidden)memoClose();else memoOpen();}});
+window.memoApi={open:memoOpen,close:memoClose,add:memoAdd,put:memoPut,del:memoDel,undo:memoUndo,toTask:memoToTask,list:()=>MEMO.list.map(m=>({...m})),state:()=>({loaded:MEMO.loaded,local:MEMO.local,n:MEMO.list.length,pip:!!MEMO.pip}),sub:memoSub};
+/* 바탕 화면 메모장 창에서는 앱이 스스로 여는 안내 창·처음 둘러보기를 띄우지 않음 (메모장을 가리지 않게) */
+if(memoMode()){const _sm=HTMLDialogElement.prototype.showModal;HTMLDialogElement.prototype.showModal=function(){if(!['dlg-cfm3','dlg-qk','dlg-confirm'].includes(this.id))return;return _sm.apply(this,arguments);};
+  try{const _t=tourAuto;tourAuto=function(){};}catch{}}
+/* ───────── 54차: ✉ 변경 요청 — 남이 등록한 업무는 바로 고치지 않고 등록한 직원에게 요청 → 「변경 승인」하면 반영 / 「변경 승인 불가」는 메모와 함께 알림 ─────────
+   · 등록한 사람(본인)·관리자: 지금처럼 바로 고침. 담당자: 진행 상태·진척률·진행 기록·사진은 바로, 업무명·분류·사업장·장소·일정·시각·담당·내용은 변경 요청
+     그 밖의 직원: 업무 창에서 고친 뒤 「✉ 변경 요청 보내기」(고칠 이유 메모)
+   · 저장: 업무.chg=[{id,by,at,memo,from,to,st:'wait'|'ok'|'no'|'x',dAt,dBy,rmemo}] + 기록 kind chgreq·chgok·chgno·chgx (wl 업무 문서 — 규칙 변경 없음)
+   · 알림: 요청 → 등록한 사람(등록자가 없거나 법정 업무면 관리자), 승인·불가 → 요청한 사람. 내 업무 위 「✉ 변경 요청」 카드
+   · 승인할 때 그 사이 업무가 바뀐 항목은 확인 창에 「요청 뒤 바뀜」 표시 */
+['startTime','dueTime','place'].forEach(k=>{if(!TASK_OWN_KEYS.includes(k))TASK_OWN_KEYS.push(k);});
+const CHG_KEYS=['title','cat','sub','leaf','site','place','scope','priority','repeat','start','due','startTime','dueTime','assignees','assigneeText','desc'];
+const CHG={bypass:0};
+{const _l=taskLevel;taskLevel=function(t){if(CHG.bypass>0)return 'own';return _l.apply(this,arguments);};}
+function chgNorm(a){if(!Array.isArray(a))return [];const s=(v,n)=>typeof v==='string'?v.slice(0,n):'';const vals=o=>{const r={};if(o&&typeof o==='object')for(const k of CHG_KEYS)if(k in o){const v=o[k];r[k]=Array.isArray(v)?v.filter(x=>typeof x==='string').slice(0,30):typeof v==='string'?v.slice(0,4000):typeof v==='number'?v:'';}return r;};
+  return a.slice(-40).filter(x=>x&&typeof x==='object'&&x.id).map(x=>({id:s(x.id,40),by:s(x.by,80),at:s(x.at,40),memo:s(x.memo,1000),from:vals(x.from),to:vals(x.to),st:['wait','ok','no','x'].includes(x.st)?x.st:'wait',dAt:s(x.dAt,40),dBy:s(x.dBy,80),rmemo:s(x.rmemo,1000)}));}
+{const _n=normTask;normTask=function(r){const t=_n.apply(this,arguments);try{t.chg=chgNorm(r&&r.chg);}catch{t.chg=[];}return t;};}
+const chgOwner=t=>taskOwnerSid(t)||'';
+const chgIsMe=id=>!!id&&(id===myId()||(S.me&&id===S.me.id));
+function chgCanDecide(t){const o=chgOwner(t);return chgIsMe(o)||(!!S.canEdit);}
+const chgPending=t=>(t.chg||[]).filter(c=>c.st==='wait');
+function chgRows(c,t){const rows=[];const base={...c.from};const nw={...c.from,...c.to};
+  const label={title:'업무명',site:'사업장',place:'장소',scope:'구분',priority:'중요도',repeat:'반복',assignees:'담당',assigneeText:'담당(직접 적은)',desc:'내용'};
+  const isW=k=>['start','due','startTime','dueTime'].includes(k);const isC=k=>['cat','sub','leaf'].includes(k);
+  if(Object.keys(c.to).some(isW))rows.push(['일정',cfmWhen({...(t||{}),...base}),cfmWhen({...(t||{}),...nw}),t?cfmWhen(t)!==cfmWhen({...t,...base}):false]);
+  if(Object.keys(c.to).some(isC))rows.push(['분류',catText({...(t||{}),...base}),catText({...(t||{}),...nw}),t?catText(t)!==catText({...t,...base}):false]);
+  for(const k of Object.keys(c.to)){if(isW(k)||isC(k))continue;rows.push([label[k]||k,cfmVal(k,c.from[k],base),cfmVal(k,c.to[k],nw),t?JSON.stringify(t[k]??'')!==JSON.stringify(c.from[k]??''):false]);}
+  return rows;}
+function chgDiffHTML(c,t){const R=chgRows(c,t);return `<table class="c3-t c3-d"><thead><tr><th>항목</th><th>지금</th><th>바꿀 내용</th></tr></thead><tbody>${R.map(r=>`<tr><th>${esc(r[0])}</th><td class="c3-old">${esc(r[1]||'—').replace(/\n/g,'<br>')}${r[3]?'<br><small class="chg-moved">⚠ 요청 뒤 바뀜</small>':''}</td><td class="c3-new">${esc(r[2]||'(비움)').replace(/\n/g,'<br>')}</td></tr>`).join('')}</tbody></table>`;}
+function chgSummary(c){return Object.keys(c.to).map(k=>({title:'업무명',start:'시작일',due:'마감일',startTime:'시작 시각',dueTime:'마감 시각',site:'사업장',place:'장소',assignees:'담당',desc:'내용',cat:'분류',sub:'분류',leaf:'분류',priority:'중요도',repeat:'반복',scope:'구분',assigneeText:'담당'}[k]||k)).filter((v,i,a)=>a.indexOf(v)===i).join('·');}
+async function chgWrite(t,log,patch){CHG.bypass++;try{const ny=yearOf({...t,...patch});if(ny!==t.year){await updateTask(t,{...patch,logs:[...t.logs,log]});}else await appendLog(t,log,{patch});}finally{CHG.bypass--;}}
+
+/* ── 업무 창: 남의 업무도 칸을 열어 두고, 고치면 변경 요청 */
+function chgDlgApply(){const d=$('#dlg-task');if(!d||!S.dlg||!S.dlg.path)return;const t=findTask(S.dlg.path);if(!t)return;const lv=d.dataset.lv;
+  let box=$('#t-chg');if(!box){const b=$('#t-body');if(!b)return;b.insertAdjacentHTML('afterbegin','<section class="chg-box" id="t-chg" hidden></section>');box=$('#t-chg');}
+  const pend=chgPending(t);const mine=pend.filter(c=>chgIsMe(c.by));const can=chgCanDecide(t);
+  const items=can?pend:mine;
+  if(items.length){box.hidden=false;box.innerHTML=`<div class="chg-h"><b>✉ 변경 요청 ${items.length}건</b><small>${can?'등록하신 업무에 들어온 요청입니다. 확인 후 승인하면 바로 반영됩니다.':'등록한 사람이 확인하면 알림이 갑니다.'}</small></div>${items.map(c=>`<div class="chg-it" data-cid="${esc(c.id)}"><div class="chg-who">${esc(typeof odName==='function'?odName(c.by):nameOf(c.by))} · ${esc(fmtMD(localDate(c.at)))} ${esc(hhmm(c.at))}${c.memo?` — <i>${esc(c.memo)}</i>`:''}</div>${chgDiffHTML(c,t)}
+      <div class="chg-a">${can?`<button type="button" class="btn sm primary" data-chg-ok="${esc(c.id)}">✅ 변경 승인</button><button type="button" class="btn sm" data-chg-no="${esc(c.id)}">⛔ 변경 승인 불가</button>`:''}${chgIsMe(c.by)?`<button type="button" class="btn sm ghost" data-chg-x="${esc(c.id)}">요청 취소</button>`:''}</div></div>`).join('')}`;}
+  else{box.hidden=true;box.innerHTML='';}
+  if(lv!=='work'&&lv!=='view')return;if(!S.canWrite)return;
+  for(const id of ['t-title','t-cat','t-sub','t-leaf','t-site','t-scope','t-prio','t-repeat','t-start','t-due','t-stime','t-dtime','t-place','t-assignee-q','t-assignee-text','t-desc']){const el=$('#'+id);if(el)el.disabled=false;}
+  try{renderPicked();}catch{}const sv=$('#t-save');if(sv){sv.hidden=false;sv.textContent=lv==='view'?'✉ 변경 요청 보내기':'저장 · 변경 요청';}
+  const note=$('#t-own-note');if(note){const on=esc(taskOwnerName(t));note.hidden=false;note.innerHTML=`🔒 <b>${on}</b>님이 등록한 업무입니다. ${lv==='work'?'진행 상태·진척률·진행 기록·사진은 바로 저장되고, ':''}<b>업무명·일정·시각·장소·담당·내용</b>을 고치면 바로 바뀌지 않고 <b>${on}</b>님에게 <b>✉ 변경 요청</b>이 갑니다 — ${on}님이 「변경 승인」하면 반영됩니다.`;}}
+{const _a=taskLockApply;taskLockApply=function(){const r=_a.apply(this,arguments);try{chgDlgApply();}catch(e){console.warn(e);}return r;};}
+/* 저장을 가로채 변경 요청으로 */
+CFM_TASK_HOOK=function(e,f){if(!S.dlg||!S.dlg.path)return false;const t=findTask(S.dlg.path);if(!t)return false;const lv=taskLevel(t);if(lv==='own')return false;
+  const d=tfData();if(!d.title)return false;const base=S.dlg.orig||t;const to={},from={};
+  for(const k of CHG_KEYS){if(['cat','sub','leaf'].includes(k)){if(d.auto)continue;}const a=JSON.stringify(base[k]??''),b=JSON.stringify(d[k]??'');if(a!==b){to[k]=d[k];from[k]=base[k]??'';}}
+  if(!Object.keys(to).length){if(lv==='view'){e.preventDefault();e.stopImmediatePropagation();toast('바뀐 내용이 없습니다.');}return false;}
+  e.preventDefault();e.stopImmediatePropagation();chgSend(t,from,to,lv);return true;};
+async function chgSend(t,from,to,lv){const c0={id:'',by:myId(),at:nowISO(),memo:'',from,to,st:'wait'};const own=esc(taskOwnerName(t));
+  const r=await cfm3({title:'✉ 변경 요청 확인',lead:`「${esc(t.title)}」은(는) <b>${own}</b>님이 등록한 업무라 바로 바뀌지 않습니다. 아래 내용으로 ${own}님에게 변경을 요청할까요?`,html:chgDiffHTML(c0,null)+`<label class="chg-memo">고칠 이유·메모 (선택)<textarea id="chg-memo" rows="2" maxlength="1000" placeholder="예: 바이어 일정이 17일 → 18일로 바뀜"></textarea></label>`,ok:'요청 보내기',edit:'수정'});
+  if(r==='edit'){const x=$('#t-title');if(x)x.focus();return;}if(r!=='ok')return;
+  const memo=(($('#chg-memo')||{}).value||'').trim();const c={...c0,id:rid().slice(0,12),memo};
+  try{const cur=findTask(t.path)||t;await chgWrite(cur,{at:c.at,by:myId(),kind:'chgreq',text:`${chgSummary(c)} 변경 요청${memo?' — '+memo:''}`,cid:c.id},{chg:[...(cur.chg||[]),c]});
+    /* 담당자의 진행 상태·진척률은 바로 저장 */
+    if(lv==='work'){const st=S.dlg&&S.dlg.status;const pg=+(($('#t-progress')||{}).value||0);const t2=findTask(t.path)||cur;if(st&&(st!==t2.status||(pg!==t2.progress&&st!=='done'))){const patch={};if(st!==t2.status){patch.status=st;patch.doneAt=st==='done'?today():'';if(st==='done')patch.progress=100;}else patch.progress=pg;
+      await appendLog(t2,st!==t2.status?{at:nowISO(),by:myId(),kind:'status',from:t2.status,to:st,text:''}:{at:nowISO(),by:myId(),kind:'progress',p0:t2.progress,p1:pg,text:''},{patch});}}
+    toast(`${taskOwnerName(t)}님에게 변경 요청을 보냈습니다. 승인하면 반영되고 알림이 옵니다.`);closeTask(true);}
+  catch(e){console.warn(e);toast('변경 요청을 보내지 못했습니다.','err');}}
+async function chgDecide(path,cid,ok){const t=findTask(path);if(!t)return;const c=(t.chg||[]).find(x=>x.id===cid);if(!c||c.st!=='wait'){toast('이미 처리된 요청입니다.');return;}if(!chgCanDecide(t)){toast('등록한 사람과 관리자만 처리할 수 있습니다.','err');return;}
+  const who=typeof odName==='function'?odName(c.by):nameOf(c.by);
+  if(ok){const r=await cfm3({title:'✅ 변경 승인',lead:`${esc(who)}님의 요청대로 「${esc(t.title)}」을(를) 바꿀까요?${c.memo?`<br><small>요청 메모: ${esc(c.memo)}</small>`:''}`,html:chgDiffHTML(c,t),ok:'변경 승인',edit:false});if(r!=='ok')return;
+    const patch={...c.to};if('cat' in patch||'sub' in patch||'leaf' in patch){patch.cat=c.to.cat??t.cat;patch.sub=c.to.sub??t.sub;patch.leaf=c.to.leaf??t.leaf;patch.tx=TXV;}
+    const chg=(t.chg||[]).map(x=>x.id===cid?{...x,st:'ok',dAt:nowISO(),dBy:myId()}:x);
+    try{await chgWrite(t,{at:nowISO(),by:myId(),kind:'chgok',text:`${who}님 변경 요청 승인 · ${chgSummary(c)}`,cid,to:c.by},{...patch,chg});toast(`변경을 반영했습니다. ${who}님에게 승인 알림이 갑니다.`);}catch(e){console.warn(e);toast('반영하지 못했습니다.','err');}}
+  else{const r=await cfm3({title:'⛔ 변경 승인 불가',lead:`${esc(who)}님의 변경 요청을 받아들이지 않습니다. 이유를 적으면 ${esc(who)}님에게 함께 알림이 갑니다.`,html:chgDiffHTML(c,t)+`<label class="chg-memo">승인 불가 이유 (필수)<textarea id="chg-rmemo" rows="3" maxlength="1000" placeholder="예: 일정은 그대로 진행 — 바이어 쪽 확인 완료"></textarea></label>`,ok:'승인 불가 보내기',edit:false});if(r!=='ok')return;
+    const rm=(($('#chg-rmemo')||{}).value||'').trim()||(window.WL_AUTOCFM&&window.__CHG_RMEMO)||'';if(!rm){toast('승인 불가 이유를 적어 주세요.','err');return chgDecide(path,cid,false);}
+    const chg=(t.chg||[]).map(x=>x.id===cid?{...x,st:'no',dAt:nowISO(),dBy:myId(),rmemo:rm}:x);
+    try{await chgWrite(t,{at:nowISO(),by:myId(),kind:'chgno',text:`${who}님 변경 요청 승인 불가 — ${rm}`,cid,to:c.by},{chg});toast(`${who}님에게 승인 불가와 이유를 알렸습니다.`);}catch(e){console.warn(e);toast('보내지 못했습니다.','err');}}
+  try{refreshDialog(true);}catch{}}
+async function chgCancel(path,cid){const t=findTask(path);const c=t&&(t.chg||[]).find(x=>x.id===cid);if(!c||c.st!=='wait'||!chgIsMe(c.by))return;
+  const r=await cfm3({title:'변경 요청 취소',rows:[['업무',t.title],['요청',chgSummary(c)]],ok:'요청 취소',edit:false,cancel:'닫기'});if(r!=='ok')return;
+  const chg=(t.chg||[]).map(x=>x.id===cid?{...x,st:'x',dAt:nowISO(),dBy:myId()}:x);try{await chgWrite(t,{at:nowISO(),by:myId(),kind:'chgx',text:`변경 요청 취소 · ${chgSummary(c)}`,cid},{chg});toast('변경 요청을 취소했습니다.');}catch{}try{refreshDialog(true);}catch{}}
+document.addEventListener('click',e=>{const T=e.target;if(!T.closest)return;let b;
+  if((b=T.closest('[data-chg-ok]'))){const p=b.closest('[data-chg-path]');chgDecide(p?p.dataset.chgPath:S.dlg&&S.dlg.path,b.dataset.chgOk,true);return;}
+  if((b=T.closest('[data-chg-no]'))){const p=b.closest('[data-chg-path]');chgDecide(p?p.dataset.chgPath:S.dlg&&S.dlg.path,b.dataset.chgNo,false);return;}
+  if((b=T.closest('[data-chg-x]'))){const p=b.closest('[data-chg-path]');chgCancel(p?p.dataset.chgPath:S.dlg&&S.dlg.path,b.dataset.chgX);return;}
+  if((b=T.closest('[data-chg-open]'))){const t=findTask(b.dataset.chgOpen);if(t)openTask(t);return;}});
+/* ── 알림 */
+NT_ICON.chg='변경';
+const CHG_LK=new Set(['chgreq','chgok','chgno','chgx']);
+function chgNtf(){const out=[];const since=new Date(Date.now()-21*864e5).toISOString();
+  for(const t of S.tasks){for(const c of t.chg||[]){const who=typeof odName==='function'?odName(c.by):nameOf(c.by);
+      if(c.st==='wait'&&!chgIsMe(c.by)&&(chgIsMe(chgOwner(t))||(!chgOwner(t)&&S.canEdit)))out.push({k:`chg|${t.path}|${c.id}`,at:c.at,type:'chg',t,text:`✉ ${who}님이 변경을 요청했습니다 · ${chgSummary(c)}`,sub:c.memo});
+      if(chgIsMe(c.by)&&(c.st==='ok'||c.st==='no')&&c.dAt>=since)out.push({k:`chgr|${t.path}|${c.id}|${c.st}`,at:c.dAt,type:'chg',t,text:c.st==='ok'?`✅ 변경 요청이 승인되어 반영되었습니다 · ${chgSummary(c)}`:`⛔ 변경 승인 불가 · ${chgSummary(c)}`,sub:c.st==='no'?c.rmemo:''});}}
+  return out;}
+{const _c=ntfCompute;ntfCompute=function(){const out=_c.apply(this,arguments).filter(it=>{if(!it.t||!it.k||!it.k.startsWith('n|'))return true;const L=it.t.logs.find(l=>`n|${it.t.path}|${l.at}|${l.by}`===it.k);return !(L&&CHG_LK.has(L.kind));});
+  try{out.push(...chgNtf());}catch(e){console.warn(e);}out.sort((a,b)=>b.at.localeCompare(a.at));return out.slice(0,80);};}
+/* ── 기록 이름 */
+const CHG_T={chgreq:'✉ 변경 요청',chgok:'✅ 변경 승인',chgno:'⛔ 변경 승인 불가',chgx:'변경 요청 취소'};
+function logKindLabel(l){if(CHG_T[l.kind])return CHG_T[l.kind];if(typeof ORD_KINDS!=='undefined'&&ORD_KINDS.has&&ORD_KINDS.has(l.kind)){const T={order:'📌 업무 지시',ack:'✓ 지시 확인',claim:'🙋 맡음',rep_mid:'📨 중간 보고',rep_done:'📨 완료 보고',rep_issue:'⚠ 문제·지연 보고',approve:'✅ 보고 확인',redo:'↩ 보완 요청',ocancel:'지시 취소'};return T[l.kind]||'';}return '';}
+{const _h=logActHTML,_t=logActText;logActHTML=function(l){return CHG_T[l.kind]?`<span class="chg-lk chg-lk-${l.kind}">${CHG_T[l.kind]}</span>`:_h.apply(this,arguments);};
+  logActText=function(l){return CHG_T[l.kind]?`${CHG_T[l.kind]}${l.text?' · '+l.text:''}`:_t.apply(this,arguments);};}
+/* ── 내 업무 카드: 내가 처리할 변경 요청 · 내가 보낸 요청 */
+function chgCardHTML(){const me=myId();const todo=[],sent=[];for(const t of S.tasks){for(const c of chgPending(t)){if(!chgIsMe(c.by)&&(chgIsMe(chgOwner(t))||(!chgOwner(t)&&S.canEdit)))todo.push([t,c]);else if(chgIsMe(c.by))sent.push([t,c]);}}
+  if(!todo.length&&!sent.length)return '';const row=([t,c],mine)=>`<div class="od-row chg-row" data-chg-path="${esc(t.path)}"><div class="od-main"><button type="button" class="od-t" data-chg-open="${esc(t.path)}">${esc(t.title)}</button>
+    <div class="od-meta"><span>${mine?'내가 보낸 요청':'✉ '+esc(typeof odName==='function'?odName(c.by):nameOf(c.by))+'님 요청'}</span><span>${esc(chgSummary(c))}</span><span>${esc(fmtMD(localDate(c.at)))} ${esc(hhmm(c.at))}</span>${c.memo?`<span class="chg-m">“${esc(c.memo)}”</span>`:''}</div></div>
+    <div class="od-acts">${mine?`<button type="button" class="btn sm ghost" data-chg-x="${esc(c.id)}">요청 취소</button>`:`<button type="button" class="btn sm" data-chg-open="${esc(t.path)}">내용 보기</button><button type="button" class="btn sm primary" data-chg-ok="${esc(c.id)}">✅ 승인</button><button type="button" class="btn sm" data-chg-no="${esc(c.id)}">⛔ 불가</button>`}</div></div>`;
+  return `<section class="panel od-card chg-card"><div class="panel-h"><h2>✉ 변경 요청</h2><span class="sub">${todo.length?`처리할 요청 ${todo.length}건`:''}${todo.length&&sent.length?' · ':''}${sent.length?`보낸 요청 대기 ${sent.length}건`:''}</span></div>${todo.map(x=>row(x,false)).join('')}${sent.map(x=>row(x,true)).join('')}</section>`;}
+{const _r=renderMy;renderMy=function(v){const r=_r.apply(this,arguments);try{const left=$('#my-left');if(left){const old=$('#chg-card-box',left);if(old)old.remove();const h=chgCardHTML();if(h)left.insertAdjacentHTML('afterbegin',`<div id="chg-card-box">${h}</div>`);}}catch(e){console.warn(e);}return r;};}
+window.chgApi={pending:p=>chgPending(findTask(p)||{chg:[]}),decide:chgDecide,cancel:chgCancel,send:(p,to,memo)=>{const t=findTask(p);const from={};for(const k of Object.keys(to))from[k]=t[k]??'';const c={id:rid().slice(0,12),by:myId(),at:nowISO(),memo:memo||'',from,to,st:'wait'};return chgWrite(t,{at:c.at,by:myId(),kind:'chgreq',text:`${chgSummary(c)} 변경 요청`,cid:c.id},{chg:[...(t.chg||[]),c]});},keys:CHG_KEYS};
 
 /* ───────── 시작 ───────── */
 function boot(){
