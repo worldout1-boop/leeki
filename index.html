@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="wl-build" content="dc2c17bdacfd">
+<meta name="wl-build" content="632917ae8f00">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="manifest" href="manifest.webmanifest"><script>if(/[?&]memo=1(&|$)/.test(location.search)){document.querySelector('link[rel=manifest]').href='memo.webmanifest';document.documentElement.classList.add('memo-mode');}</script>
 <meta name="theme-color" content="#1f3a5f">
@@ -1027,9 +1027,9 @@ img[data-pii]{outline:2px dashed #b85a6e;outline-offset:-2px}
 /* 19차: 인쇄 */
 #btn-new{flex:none;white-space:nowrap}
 /* 22차: 인쇄·검색·알림 — 글자 없이 기호만 크게, 파란 테두리 */
-#btn-ntf,#btn-print,#btn-search{display:inline-grid;place-items:center;flex:none;width:38px!important;height:36px!important;padding:0!important;border:2px solid var(--accent)!important;border-radius:9px!important;color:var(--accent)!important;background:var(--surface)!important}
-#btn-ntf svg,#btn-print svg,#btn-search svg{width:21px!important;height:21px!important;stroke-width:2.2}
-#btn-ntf:hover,#btn-print:hover,#btn-search:hover,#btn-ntf:focus-visible,#btn-print:focus-visible,#btn-search:focus-visible{background:var(--accent)!important;color:var(--accent-ink)!important}
+#btn-ntf,#btn-print,#btn-search,#btn-memo{display:inline-grid;place-items:center;flex:none;width:38px!important;height:36px!important;padding:0!important;border:2px solid var(--accent)!important;border-radius:9px!important;color:var(--accent)!important;background:var(--surface)!important}
+#btn-ntf svg,#btn-print svg,#btn-search svg,#btn-memo svg{width:21px!important;height:21px!important;stroke-width:2.2}
+#btn-ntf:hover,#btn-print:hover,#btn-search:hover,#btn-memo:hover,#btn-ntf:focus-visible,#btn-print:focus-visible,#btn-search:focus-visible,#btn-memo:focus-visible{background:var(--accent)!important;color:var(--accent-ink)!important}
 #btn-ntf{position:relative}#btn-ntf .badge{top:-7px!important;right:-8px!important}
 @media (max-width:1480px){.me-chip small{display:none}}
 @media (max-width:1780px) and (min-width:761px){.me-chip small{display:none}.top .sync span{display:none}}
@@ -1824,7 +1824,7 @@ body.gd-mode #gd-out{height:34px}
   .gd-f{grid-template-columns:repeat(2,minmax(0,1fr))}.gd-tm input{min-width:0}.gd-gt td input{max-width:72px}
   .gd-at thead{display:none}.gd-at tr{display:grid;grid-template-columns:1fr auto}.gd-at td{border:0}
 }
-/* 46차: 📌 업무 지시 · 📨 보고 */
+/* 46차: 📌 업무 요청 · 📨 보고 */
 .od-st{display:inline-block;padding:1px 8px;border-radius:999px;font-size:11.5px;font-weight:700;background:#eef0f3;color:#46597a;white-space:nowrap}
 .od-st.od-sent{background:#fdeceb;color:#b42318}.od-st.od-acked{background:#e8f0fb;color:#1f4f96}.od-st.od-open{background:#fff4e0;color:#8a5200}
 .od-st.od-doing{background:#e8f0fb;color:#1f4f96}.od-st.od-reported{background:#f3ecfb;color:#5b3a8a}.od-st.od-redo{background:#fff4e0;color:#8a5200}
@@ -1998,7 +1998,7 @@ input[type=time]{height:34px;padding:0 8px;border:1px solid var(--line);border-r
 @media (max-width:1560px) and (min-width:761px){.tabs a{font-size:14.5px}}
 @media (max-width:1400px) and (min-width:761px){.tabs a{font-size:14px}}
 @media (max-width:1300px) and (min-width:761px){.tabs a{font-size:13.5px}}
-/* 53차 ③ 내 업무 지시 카드: 줄도 머리·안내 줄과 같은 여백 */
+/* 53차 ③ 내 업무 요청 카드: 줄도 머리·안내 줄과 같은 여백 */
 .od-card .od-row{padding:10px 14px}
 .od-card .od-more{padding:0 14px;margin:8px 0}
 .od-card .od-row:last-child{border-bottom-left-radius:var(--r);border-bottom-right-radius:var(--r)}
@@ -2034,9 +2034,9 @@ dialog.modal.narrow#dlg-settings{width:min(940px,96vw)}
 @media (max-width:760px){.roster .rr{grid-template-columns:repeat(2,minmax(0,1fr))}}
 /* 53차 점검: 업무 목록 표에서 「안양본사」「안전보건교육」이 글자 단위로 끊겨 두 줄이 되던 것 — 낱말 단위로 줄바꿈 */
 table.lst td{word-break:keep-all;overflow-wrap:break-word}
-/* 업무 제목은 낱말 단위로 줄바꿈 (칸반 카드·내 업무 줄·지시 카드·달력 목록) — 띄어쓰기 없는 긴 글은 넘치지 않게 필요할 때만 끊음 */
+/* 업무 제목은 낱말 단위로 줄바꿈 (칸반 카드·내 업무 줄·요청 카드·달력 목록) — 띄어쓰기 없는 긴 글은 넘치지 않게 필요할 때만 끊음 */
 .card h3,.mrow .tt,.od-row .od-t,.od-row b,.fc-list-event-title,.tm-card .nm,.up-row .tt{word-break:keep-all;overflow-wrap:anywhere}
-/* 53차 점검: 휴대폰에서 창 내용이 길면 글자 단추 줄(.seg 등, overflow:hidden)이 2px 로 눌려 안 보이던 것 — 업무 지시 창의 「👤 직원에게 / 🧩 직무에게」 */
+/* 53차 점검: 휴대폰에서 창 내용이 길면 글자 단추 줄(.seg 등, overflow:hidden)이 2px 로 눌려 안 보이던 것 — 업무 요청 창의 「👤 직원에게 / 🧩 직무에게」 */
 .modal-b > .seg,.modal-b .seg,.modal-b > .od-chips,.modal-b .od-tabs{min-height:max-content;flex-shrink:0}
 .modal-b.one{grid-auto-rows:max-content}
 /* 53차 점검: 휴대폰 + 「글자 크게」에서 위쪽 아이콘 줄이 화면보다 4~40px 넓어 내 이름 칸이 잘리고 화면이 옆으로 밀리던 것 */
@@ -2077,7 +2077,7 @@ dialog.c3 .modal-f [data-c3="ok"]{font-weight:700}
 .plc{color:var(--ink-2);font-size:12.5px}.card .plc{margin:2px 0 4px}
 .t-place-f{margin-top:-2px}
 /* ── 54차 ③ 메모장 */
-.memo-btn{position:relative}.memo-btn .memo-n{position:absolute;top:-4px;right:-4px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:#b45309;color:#fff;font-size:10px;font-style:normal;font-weight:700;line-height:16px;text-align:center}
+.memo-btn{position:relative}.memo-btn .memo-n{position:absolute;top:-7px;right:-8px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:#b45309;color:#fff;font-size:10px;font-style:normal;font-weight:700;line-height:16px;text-align:center}
 .memo-btn .memo-n[hidden]{display:none}
 .memo-drawer{position:fixed;inset:0;z-index:70}.memo-drawer[hidden]{display:none}
 .memo-drawer .md-bg{position:absolute;inset:0;background:rgba(15,23,42,.28)}
@@ -2119,7 +2119,7 @@ body.memo-pip{margin:0;background:var(--bg)}body.memo-pip .memo-pad{height:100vh
 .chg-card .chg-m{color:var(--ink-2);font-style:italic}
 .chg-lk{font-weight:700;color:#1d4ed8}.chg-lk-chgno{color:#b42318}.chg-lk-chgok{color:#0f766e}
 /* 54차: 위쪽 줄에 📝 메모장 단추가 늘어 탭이 넘치지 않게 (1281~1680px) */
-@media (max-width:1680px) and (min-width:761px){.top-right{gap:3px}.top-right>.icon-btn{width:32px;min-width:32px;height:32px}.top-right>.icon-btn svg{width:18px;height:18px}.top-right>#btn-print,.top-right>#btn-search,.top-right>#btn-ntf{width:34px;min-width:34px;height:34px}}
+@media (max-width:1680px) and (min-width:761px){.top-right{gap:3px}.top-right>.icon-btn{width:32px;min-width:32px;height:32px}.top-right>.icon-btn svg{width:18px;height:18px}.top-right>#btn-print,.top-right>#btn-search,.top-right>#btn-ntf,.top-right>#btn-memo{width:34px;min-width:34px;height:34px}}
 @media (max-width:1680px) and (min-width:1561px){.tabs a{padding:0 8px}}
 @media (max-width:1560px) and (min-width:1401px){.tabs a{padding:0 6px}}
 @media (max-width:1400px) and (min-width:761px){.brand strong{font-size:13.5px}.tabs a{padding:0 4px}}
@@ -2127,6 +2127,61 @@ body.memo-pip{margin:0;background:var(--bg)}body.memo-pip .memo-pad{height:100vh
 .qk-who label.chk{white-space:nowrap;display:inline-flex;align-items:center;gap:4px}.qk-l .qk-who input[type=checkbox]{width:auto;padding:0}
 html.memo-mode #memo-host{background:var(--bg);height:100vh;max-width:none;width:auto;padding:0;margin:0;overflow:hidden}
 html.memo-mode #memo-host .memo-pad{height:100vh}
+/* 55차: 메모장 기호도 테두리 기호로 · 「+ 상세업무 등록」 길어진 만큼 좁은 화면 여백 조정 */
+/* 55차: 📖 활용방법 안내 */
+.gu-open-btn{white-space:nowrap;border-color:var(--accent)!important;color:var(--accent)!important;font-weight:700}
+dialog.modal.gu-dlg{width:min(1180px,96vw);height:92vh;max-height:92vh;display:none;flex-direction:column;overflow:hidden}
+dialog.modal.gu-dlg[open]{display:flex}
+.gu-top{display:flex;align-items:center;gap:14px;padding:12px 16px;border-bottom:1px solid var(--line);flex:none;background:var(--surface)}
+.gu-top h2{margin:0;font-size:19px;white-space:nowrap}
+.gu-lvs{display:flex;gap:6px;flex:1;min-width:0}
+.gu-lvs button{flex:1;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:1px;padding:7px 12px;border:2px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);cursor:pointer;text-align:left}
+.gu-lvs button b{font-size:15px}.gu-lvs button small{font-size:12px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.gu-lvs button.on{border-color:var(--accent);background:var(--accent);color:var(--accent-ink)}.gu-lvs button.on small{color:inherit;opacity:.85}
+.gu-x{flex:none;font-size:18px}
+.gu-main{display:grid;grid-template-columns:250px 1fr;flex:1;min-height:0}
+.gu-idx{border-right:1px solid var(--line);overflow:auto;padding:10px 8px;background:var(--surface-2,#f6f8fb)}
+.gu-idx ol{list-style:none;margin:0;padding:0}
+.gu-idx li button{display:flex;align-items:center;gap:7px;width:100%;padding:6px 8px;border:0;border-radius:7px;background:none;color:var(--ink);font-size:13.5px;text-align:left;cursor:pointer;line-height:1.35}
+.gu-idx li button:hover{background:var(--accent-soft,#e8eef8)}
+.gu-idx li button span{flex:none;display:inline-grid;place-items:center;min-width:22px;height:22px;border-radius:11px;background:var(--accent);color:var(--accent-ink);font-size:11.5px;font-weight:700}
+.gu-idx .gu-ih{margin:10px 6px 3px;font-size:12px;font-weight:700;color:var(--ink-3)}
+.gu-help{display:block;margin:14px 8px 4px;font-size:13px}.gu-tour{margin:2px 8px;font-size:13px}
+.gu-body{overflow:auto;padding:16px 22px 28px;scroll-padding-top:10px}
+.gu-lead{margin:0 0 12px;color:var(--ink-2)}
+.gu-dlg .linklike{border:0;background:none;padding:0;color:var(--accent);font:inherit;cursor:pointer;text-decoration:underline}
+.gu-news{border:2px solid #f59e0b;background:#fff8eb;border-radius:10px;padding:10px 14px;margin:0 0 14px}
+.gu-news ul{margin:6px 0 0;padding-left:20px}.gu-news li{margin:2px 0}.gu-news small{color:var(--ink-3)}.gu-news .gu-del{color:var(--ink-3)}
+.gu-sh{margin:18px 0 8px;font-size:15px;color:var(--ink-3);border-bottom:1px solid var(--line);padding-bottom:4px}
+.gu-card{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:0 0 14px;background:var(--surface);transition:box-shadow .3s}
+.gu-card.gu-flash{box-shadow:0 0 0 3px var(--accent)}
+.gu-card header{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.gu-card h4{margin:0;font-size:17px}
+.gu-n{display:inline-block;padding:2px 9px;border-radius:12px;background:var(--accent);color:var(--accent-ink);font-size:12px;font-weight:800;letter-spacing:.02em}
+.gu-new{font-style:normal;font-size:11.5px;font-weight:700;color:#b45309;background:#fef3c7;border-radius:9px;padding:1px 7px;white-space:nowrap}
+.gu-adm{font-style:normal;font-size:11.5px;color:#5b3f86;background:#efe8fb;border-radius:9px;padding:1px 7px}
+.gu-card p{margin:8px 0 10px;line-height:1.7;font-size:14.5px}
+.gu-fig{margin:0}
+.gu-zoom{display:block;padding:0;border:1px solid var(--line-2,#cbd5e1);border-radius:9px;overflow:hidden;background:#fff;cursor:zoom-in;max-width:100%;box-shadow:0 2px 10px rgba(15,23,42,.08)}
+.gu-zoom img{display:block;max-width:100%;height:auto;max-height:520px;object-fit:contain}
+.gu-fig figcaption{font-size:12px;color:var(--ink-3);margin-top:4px}
+.gu-noimg{padding:18px;border:1px dashed var(--line-2,#cbd5e1);border-radius:9px;color:var(--ink-3);font-size:13px;text-align:center}
+.gu-acts{margin-top:8px}
+.gu-foot{margin-top:18px;font-size:12px;color:var(--ink-3)}
+.gu-lb{position:absolute;inset:0;z-index:5;background:rgba(15,23,42,.86);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;padding:14px;cursor:zoom-out}
+.gu-lb[hidden]{display:none}.gu-lb img{max-width:100%;max-height:calc(100% - 56px);border-radius:8px;background:#fff}
+.gu-pulse{outline:3px solid #f97316!important;outline-offset:3px;animation:gup 1s ease-in-out 3}
+@keyframes gup{50%{outline-color:transparent}}
+.gu-pop .driver-popover-next-btn{font-weight:700}
+@media (max-width:760px){dialog.modal.gu-dlg{width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;border-radius:0;margin:0}
+  .gu-top{flex-wrap:wrap;gap:8px;padding:10px 12px}.gu-top h2{font-size:17px;flex:1}.gu-lvs{order:3;flex-basis:100%}.gu-lvs button{padding:6px 8px}.gu-lvs button small{display:none}
+  .gu-main{grid-template-columns:1fr}.gu-idx{display:none}.gu-body{padding:12px 12px 24px}.gu-card{padding:12px}.gu-zoom img{max-height:none}}
+@media print{.gu-dlg{display:none!important}}
+/* 55차: 위쪽 줄 맞춤(넘칠 때만 단계별로) */
+@media (min-width:761px){
+  header.top.fit1 .tabs{gap:0}header.top.fit1 .tabs a{padding-left:4px!important;padding-right:4px!important}
+  header.top.fit2{gap:6px!important}header.top.fit2 .me-chip .nm{display:none}header.top.fit2 .me-chip{padding:0 3px!important;gap:0}header.top.fit2 .top-right{gap:2px!important}header.top.fit2 #btn-new{padding-left:9px!important;padding-right:9px!important}
+  header.top.fit3 .tabs a{font-size:13px!important;padding-left:3px!important;padding-right:3px!important}header.top.fit3 .tabs a .nav-n{min-width:15px;height:15px;font-size:9.5px;padding:0 3px}}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -2202,7 +2257,7 @@ html.memo-mode #memo-host .memo-pad{height:100vh}
   </nav>
   <div class="top-right">
     <span class="sync" id="sync" data-s="wait"><i></i><span>연결 중</span></span>
-    <button class="btn primary" id="btn-new" type="button">+ 업무 등록</button>
+    <button class="btn primary" id="btn-new" type="button" title="담당자·기간·시각·장소·반복·사진·업무 요청까지 자세히 입력해 업무 등록">+ 상세업무 등록</button>
     <a class="icon-btn" href="#help" aria-label="사용 안내" title="사용 안내"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.3a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2.2-2.4 3.6"/><circle cx="12" cy="17" r=".6" fill="currentColor"/></svg></a>
     <button class="icon-btn" id="btn-settings" type="button" aria-label="설정"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.03 1.56V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.11-1.56 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.56-1.03H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.6 8.9a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34H9a1.7 1.7 0 0 0 1.03-1.56V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87V9c.26.6.85 1 1.51 1.03H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.51 1Z"/></svg></button>
     <button type="button" class="icon-btn print-btn" id="btn-print" aria-label="이 화면 인쇄" title="이 화면 인쇄 — 업무 상세 창이 열려 있으면 그 업무, 보고서 화면이면 보고서 용지만 인쇄 (PDF 저장 가능)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M7 9V3.5h10V9"/><rect x="3.5" y="9" width="17" height="8" rx="2"/><path d="M7 14h10v6.5H7z"/><circle cx="17" cy="12" r=".9" fill="currentColor"/></svg></button>
@@ -3028,23 +3083,23 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
       <li><b>연차·휴일근무 달력</b><span>전자결재 기안 오른쪽 <em>📅 달력 표기</em>에서 연차·반차·휴일근무·연차 사용 계획을 고르고 날짜를 적으면, 최종 승인된 뒤 달력에 <b>굵은 글자</b>(🌴 연차, 🛠 휴일근무)로 표시됩니다. 연차 사용 촉진에 따라 정한 예정일은 달력 위 <em>🗓 연차 사용 계획(촉진)</em>에서 적으면 <i>연차(예정)</i>으로 보입니다. 사유는 달력에 나오지 않습니다.</span></li>
       <li><b>안전관리 일지 (11종)</b><span>시설 일보 창 <em>서류</em>에서 <em>🦺 안전관리 일지</em>를 누르면 산업안전·보건 · 전기 · 소방 · 유해화학물질 · 위험물옥내저장소 · 승강기 · 환경 · 폐기물(일반/지정) · 건축물관리자 · 기계설비 · 정보통신 일지 중 고를 수 있습니다. 항목마다 <em>양호·주의·불량·해당 없음</em>을 누르고(✓ 빈 칸 모두 양호), 측정값(역률·압력·온도 등)을 적으면 기준을 벗어난 값은 「주의」로 적힙니다. 사업장에 없는 공정 항목은 빠지고, 선임자는 조직도의 법정 선임 현황에서 가져옵니다. 불량 항목은 '할 예정' 후속 업무로 같이 등록할 수 있습니다. 위에 <em>작업일자·작업시간</em>을 적으면 서류의 시간 칸과 사진 아래 시각에 그대로 씁니다.</span></li>
       <li><b>회사 실제 양식 (41차)</b><span>시설 일보의 <em>✨ 자동</em>은 메모에 회사 일지 낱말(역률·TR 유면·VCB / 소화기·수신기 / E/L·인승 / 콤프레샤·쿨링타워·저수조 / 집진·배출구)이 2개 이상이면 그 <em>🦺 안전관리 일지</em>로 만듭니다. 점검표 항목은 회사 「변전실 안전점검 일지」·「소방시설 안전점검 일지」·「E/L 일일 점검일지」·콤프레샤·쿨링타워·저수조 위생점검·「대기배출시설 운영기록부」(군포: 분쇄시설·여과집진)를 따르고, TR1~3 유면·전력량계 지침·호기별 토출 압력처럼 칸 여러 개로 적습니다. 일지 위 <em>회사 양식</em> 단추를 누르면 같은 회사서식(작성 가능)이 바로 열립니다. <em>작업 일보</em>는 「업체: 한빛전기 2명 — 분전반 교체」처럼 적으면 회사 업무 일지처럼 <em>외부 작업</em>(종별·업체명·인원)과 <em>자체 작업</em>으로 나누고, <em>점검 일지</em>는 변전실·발전실·경비실·저수조·펌프실 중 2곳 이상이나 '시설 순회'를 적으면 회사 「안전관리 일지」 항목으로 채웁니다. 회사서식은 원본 파일과 같은 이름의 <em>○○.화면.html</em>(회사 양식으로 다듬은 화면)을 함께 올리면 한 서식으로 묶어 바로 직접 작성으로 씁니다.</span></li>
-      <li><b>그룹웨어 연결 표시 (관리자)</b><span>관리자 화면 위쪽 <em>+ 업무 등록</em> 왼쪽의 동그란 기호가 그룹웨어 자동 확인 상태입니다. <em>🔗 초록</em> = 연결됨, <em>🔑 빨강(깜박임)</em> = 로그인이 풀려 미연결, <em>주황</em> = 로그인 화면을 연 뒤 다음 자동 확인 대기 또는 확인 멈춤·오류, 회색 = 확인 기록 없음. 마우스를 올리면 마지막 확인 시각이 보입니다. 빨간 🔑를 누르면 그룹웨어 로그인 화면이 열립니다(Claude 앱 브라우저에서는 그 창에서 바로 — 로그인 뒤 ← 뒤로). 자동 확인은 관리자 컴퓨터 Claude 앱 브라우저의 로그인을 쓰므로 다른 브라우저에서는 안내 창이 먼저 뜹니다. 비밀번호는 저장·입력하지 않습니다.</span></li>
+      <li><b>그룹웨어 연결 표시 (관리자)</b><span>관리자 화면 위쪽 <em>+ 상세업무 등록</em> 왼쪽의 동그란 기호가 그룹웨어 자동 확인 상태입니다. <em>🔗 초록</em> = 연결됨, <em>🔑 빨강(깜박임)</em> = 로그인이 풀려 미연결, <em>주황</em> = 로그인 화면을 연 뒤 다음 자동 확인 대기 또는 확인 멈춤·오류, 회색 = 확인 기록 없음. 마우스를 올리면 마지막 확인 시각이 보입니다. 빨간 🔑를 누르면 그룹웨어 로그인 화면이 열립니다(Claude 앱 브라우저에서는 그 창에서 바로 — 로그인 뒤 ← 뒤로). 자동 확인은 관리자 컴퓨터 Claude 앱 브라우저의 로그인을 쓰므로 다른 브라우저에서는 안내 창이 먼저 뜹니다. 비밀번호는 저장·입력하지 않습니다.</span></li>
       <li><b>✅ 점검 일보 (공장별 정기 점검)</b><span>홈 빠른 기록 줄의 <em>✅ 점검 일보</em>(📋 시설 일보 왼쪽)를 누르면 사업장(안양·군포·화성)별로 회사 점검 일지 항목을 한 화면에서 적습니다. <em>매일</em>(평일: 시설 순회·수변전 09·13·17시·변전실·방화관리·E/L 호기별·콤프레샤·대기배출), <em>주간</em>(월요일부터: 쿨링타워·소방시설), <em>월간</em>(1일부터: 저수조 위생·전기계량기·축전지·비상발전기·전기차 충전·소방안전관리자 기록, 수도 검침 15일), <em>분기</em>(분전반 부하·누설전류·열화상). <em>오늘 할 점검</em>에 그날 할 구역과 밀린 구역(⏰)이 모입니다. 점검 칸은 양호·주의·불량·해당 없음, 호기별 칸은 누를 때마다 ○→△→X→/, 수치는 기준을 벗어나면 주황, 계량기는 전월 지침·배율로 사용량을 계산합니다. 적으면 바로 저장되고, <em>📋 업무일지에 기록</em>하면 업무와 「공장 통합 점검 일보」 서류(인쇄·전자결재)가 생기며 불량은 '할 예정' 후속 업무가 됩니다. <em>📈 수치 추이</em>로 역률·온도 등을 그래프로 봅니다. 관리자는 <em>⚙ 구역 설정</em>에서 사업장에 없는 구역을 끕니다.</span></li>
       <li><b>← 뒤로 · ← 목록</b><span>회사서식 작성·고치기, 전자결재 문서·새 기안·서식 관리·결재선 설정, 점검 일보·경비 일지 항목 편집처럼 화면 안에서 한 단계 들어간 곳에서는 브라우저 왼쪽 위 <em>←</em>(휴대폰 뒤로 단추)를 누르면 화면의 <em>← 목록</em>을 누른 것과 똑같이 전 단계로 돌아갑니다. 열린 창은 닫힙니다. 저장하지 않은 내용이 있으면 확인 창이 뜹니다. <em>← 목록</em> 다음 브라우저 ←를 누르면 그 전 페이지로 갑니다.</span></li>
       <li><b>✏️ 회사서식 고치기 (자료 관리자)</b><span>회사서식 목록이나 미리보기 창, 작성 화면 위쪽의 <em>✏️ 서식 수정</em>을 누르면 모든 직원에게 보이는 서식 자체를 고칩니다. 한글·워드·엑셀 서식은 글을 바로 고치고, 지울 곳은 끌어서 고른 뒤 <em>Delete</em>(그림은 눌러 고른 뒤 Delete), 위 도구줄로 <em>🧹 이 줄 지우기</em>·표 <em>＋ 위/아래에 줄</em>·<em>－ 줄 지우기</em>·<em>＋ 오른쪽 칸</em>·<em>－ 칸 지우기</em>·<em>표 지우기</em>·<em>↶ 되돌리기</em>를 씁니다. PDF·스캔 서식은 <em>⬜ 가리기(흰 상자)</em>로 지우고 <em>✏️ 글 넣기</em>로 글을 얹습니다. <em>💾 서식 수정 저장</em>을 누르면 작성·인쇄·미리보기·전자결재에 모두 반영되고, <em>원래 파일 모양으로</em> 되돌릴 수 있습니다. 한글·워드에서 직접 고친 파일은 <em>📤 파일 바꾸기</em>로 올리면 이름·폴더는 그대로 두고 파일만 바뀝니다. 직원이 작성 화면에서 고친 것은 그 기기에만 보관됩니다.</span></li>
-      <li><b>📌 업무 지시 · 📨 보고</b><span>관리자는 업무를 <b>직원</b>이나 <b>직무</b>(재무·회계·인사·총무·시설·공무·안전·보건)에 지시합니다. 업무 등록 창의 <em>📌 업무 지시</em>에서 고르고 저장하거나, 업무 창의 <em>📌 업무 지시하기</em>, 또는 <em>📌 업무 지시</em> 화면의 <em>🗂 지시할 업무</em>에서 <em>⚡ 업무분장 담당자에게</em>·<em>🧩 직무에</em> 한 번에(여러 건 골라 한꺼번에도) 보냅니다. 받는 사람에게 알림(🔔·화면 아래·브라우저)이 가고, 직무 지시는 그 직무 담당 중 업무 사업장 근무자(없으면 전원)와 직무 책임자에게 갑니다 → 한 사람이 <em>🙋 내가 맡기</em>를 누르면 담당자가 됩니다. 직원은 <em>✓ 확인</em> → 일을 하고 <em>📨 보고</em>(중간·완료·문제·지연) → 관리자에게 알림 → 관리자가 <em>✅ 확인 완료</em> 또는 <em>↩ 보완 요청</em>. 내 업무 위쪽에 받은 지시·확인할 보고가 모이고, <em>📌 업무 지시</em> 화면에서 미확인·진행·지연·완료 현황을 봅니다. 직무별 담당 직원·책임자는 관리자가 <em>🧩 직무별 담당</em>에서 바꿉니다.</span></li>
+      <li><b>📌 업무 요청 · 📨 보고</b><span>관리자는 업무를 <b>직원</b>이나 <b>직무</b>(재무·회계·인사·총무·시설·공무·안전·보건)에 요청합니다. 업무 등록 창의 <em>📌 업무 요청</em>에서 고르고 저장하거나, 업무 창의 <em>📌 업무 요청하기</em>, 또는 <em>📌 업무 요청</em> 화면의 <em>🗂 요청할 업무</em>에서 <em>⚡ 업무분장 담당자에게</em>·<em>🧩 직무에</em> 한 번에(여러 건 골라 한꺼번에도) 보냅니다. 받는 사람에게 알림(🔔·화면 아래·브라우저)이 가고, 직무 요청은 그 직무 담당 중 업무 사업장 근무자(없으면 전원)와 직무 책임자에게 갑니다 → 한 사람이 <em>🙋 내가 맡기</em>를 누르면 담당자가 됩니다. 직원은 <em>✓ 확인</em> → 일을 하고 <em>📨 보고</em>(중간·완료·문제·지연) → 관리자에게 알림 → 관리자가 <em>✅ 확인 완료</em> 또는 <em>↩ 보완 요청</em>. 내 업무 위쪽에 받은 요청·확인할 보고가 모이고, <em>📌 업무 요청</em> 화면에서 미확인·진행·지연·완료 현황을 봅니다. 직무별 담당 직원·책임자는 관리자가 <em>🧩 직무별 담당</em>에서 바꿉니다.</span></li>
       <li><b>🛡 경비 일지 (경비원 전용 화면)</b><span>홈 빠른 기록 줄의 <em>🛡 경비 일지</em>(✅ 점검 일보 왼쪽)에서 사업장·근무일(아침 9시 전이면 전날 밤 근무)별로 회사 경비 근무일지(근무자·인수자·교대 시각·날씨, 순찰 1·2차 시각·특이사항, 순찰 점검, 주차 현황, 기타 보고)와 <em>🚗 방문 차량</em>·직원 비등록 차량·우편물·택배 접수를 적습니다. 방문 차량은 위 칸에 차량번호 등을 적고 Enter(입차 시각 자동), 자주 오는 차량은 단추 한 번, 나갈 때 <em>출차 지금</em>. 관리자는 <em>👮 경비원 계정</em>에 경비원 이메일·사업장을 등록 → 경비원이 그 이메일로 가입·인증·로그인하면 <b>경비 일지 화면만</b> 보이고(업무·자료·직원 명단·검색·알림 없음) 어제·오늘 근무일만 적을 수 있습니다. 알림(종)의 접속 요청도 '경비원으로 허용'을 고를 수 있습니다. 항목은 관리자·자료 관리자가 <em>✏️ 항목 편집</em>(구역 추가·순서·순찰 장소·주차 칸·기록 목록 칸)에서 바꾸고, <em>🖨 인쇄·PDF</em>·<em>📤 이달 기록 엑셀</em>로 냅니다.</span></li>
       <li><b>✏️ 점검 항목 편집</b><span>점검 일보 위쪽 <em>✏️ 항목 편집</em>(관리자·자료 관리자)을 누르면 구역·묶음·항목을 바로 고칩니다. <em>⠿</em>를 끌거나 ▲▼로 순서를 바꾸고, 이름·점검 기준·종류(점검·수치·칸 수치·칸 점검·글·계량기·측정 목록)·단위·하한·상한·칸 이름(사업장마다 따로)·계량기 목록(이름*배율)·주기(평일·매일·매주 ○요일·매월 ○일·특정 달·분기·반기·매년)·사업장을 바꾸고 <em>＋ 구역 / ＋ 묶음 / ＋ 항목</em>으로 더하거나 ✕로 뺍니다. 많이 고칠 때는 <em>📤 엑셀로 내보내기</em> → 엑셀에서 고쳐 → <em>📥 엑셀에서 가져오기</em>. <em>💾 저장</em>하면 모든 사람의 점검 일보·인쇄·업무일지 기록에 바로 반영되고, 직전 것은 <em>↶ 직전 저장본</em>으로, 처음 것은 <em>↺ 기본 항목으로</em> 되돌립니다. 이름을 바꿔도 항목 ID가 같아 지난 기록·수치 추이는 이어집니다.</span></li>
-      <li><b>🔒 관리자 업무 · 지시 전</b><span>총괄 관리자가 등록한 업무(담당이 관리자 본인뿐인 업무)는 <em>🔒 지시 전</em> 표시가 붙고 관리자만 봅니다. 업무 창의 <em>📌 업무 지시하기</em>로 직원·직무(파트)에 지시해야 받은 사람에게 알림이 가고 관리부에 공유됩니다. 지시 받을 사람 명단 맨 앞의 <em>(나)</em>를 고르면 자기에게도 지시할 수 있습니다.</span></li>
-      <li><b>↕ 정렬 (모든 업무 화면)</b><span>내 업무·팀 현황·총괄·칸반·달력·목록·보고서·업무 지시 화면 위쪽(칸반·달력·목록은 거르기 줄, 보고서는 왼쪽 조건)의 <em>↕ 정렬</em>에서 기준(진행 날짜·등록일·최근 진행·마감일·중요도·상태·업무명·담당자·사업장·분야 등)과 방향(<em>↓ 최근 날짜 먼저 / ↑ 이른 날짜 먼저</em>)을 고릅니다. 처음에는 진행 날짜가 최근인 업무가 맨 위이고, <em>🔒 비공개 업무</em>는 공개 업무 아래에 따로 같은 기준으로 모입니다(<em>🔒 비공개는 아래로</em>를 끄면 섞어서 정렬). 화면마다 이 기기에 기억되고, 인쇄(업무 목록만)·엑셀 내려받기도 화면 정렬대로 나옵니다. 달력은 하루 칸 안의 순서가 바뀝니다.</span></li>
+      <li><b>🔒 관리자 업무 · 요청 전</b><span>총괄 관리자가 등록한 업무(담당이 관리자 본인뿐인 업무)는 <em>🔒 요청 전</em> 표시가 붙고 관리자만 봅니다. 업무 창의 <em>📌 업무 요청하기</em>로 직원·직무(파트)에 요청해야 받은 사람에게 알림이 가고 관리부에 공유됩니다. 요청 받을 사람 명단 맨 앞의 <em>(나)</em>를 고르면 자기에게도 요청할 수 있습니다.</span></li>
+      <li><b>↕ 정렬 (모든 업무 화면)</b><span>내 업무·팀 현황·총괄·칸반·달력·목록·보고서·업무 요청 화면 위쪽(칸반·달력·목록은 거르기 줄, 보고서는 왼쪽 조건)의 <em>↕ 정렬</em>에서 기준(진행 날짜·등록일·최근 진행·마감일·중요도·상태·업무명·담당자·사업장·분야 등)과 방향(<em>↓ 최근 날짜 먼저 / ↑ 이른 날짜 먼저</em>)을 고릅니다. 처음에는 진행 날짜가 최근인 업무가 맨 위이고, <em>🔒 비공개 업무</em>는 공개 업무 아래에 따로 같은 기준으로 모입니다(<em>🔒 비공개는 아래로</em>를 끄면 섞어서 정렬). 화면마다 이 기기에 기억되고, 인쇄(업무 목록만)·엑셀 내려받기도 화면 정렬대로 나옵니다. 달력은 하루 칸 안의 순서가 바뀝니다.</span></li>
       <li><b>⚙ 탭 편집 (자료 관리자)</b><span>각종서류 올리기·자료실·회사서식 화면 위 탭 줄 끝의 <em>⚙ 탭 편집</em>에서 탭 이름·아이콘·순서를 바꾸고, 기본 탭은 보이기를 끄고, <em>＋ 탭 추가</em>로 자료실·회사서식(작성 불가)·회사서식(작성 가능) 종류의 탭을 만들거나(기존 폴더 연결 또는 새 폴더) 지웁니다. 비어 있는 서류 칸(예: 법인 인감증명서)은 칸의 <em>🗑</em>로 지우고, 아래 <em>지운 빈 칸 다시 보이기</em>로 되살립니다.</span></li>
       <li><b>🧩 조직도 파트 편집 (관리자)</b><span>조직도 위 <em>🧩 파트 편집</em>에서 칸(파트) 이름·색·순서(▲▼, 위가 왼쪽)를 바꾸고 <em>＋ 칸 추가</em>·<em>지우기</em>를 합니다. '파트' 글자를 끄면 '브리티카페'처럼 이름만 보입니다. 사람을 칸에 넣으려면 그 사람의 <em>소속·약식 고치기</em>에서 소속 파트를 고르고, <em>이름 옆 표시</em>에 '겸직' 같은 짧은 표시를 적을 수 있습니다.</span></li>
       <li><b>⏰ 시각 · 마감일 자동</b><span>업무 창의 시작일·마감일 옆, 빠른 기록 줄 날짜 옆, 파일 올리기 표의 날짜 옆에 <em>시각</em>을 넣을 수 있습니다(선택). 넣은 시각은 모든 화면의 날짜 옆과 달력 막대 앞에 나옵니다. 시작일만 넣으면 마감일이 시작일과 같게 들어갑니다(마감일을 직접 고친 경우는 그대로).</span></li>
       <li><b>📄 파일 1개 = 업무 1건 (원본 첨부)</b><span><em>파일·사진으로 올리기</em>에 한 가지 업무에 관한 문서(워드·한글·PDF·글)를 올리면 줄마다 나누지 않고 <em>📄 업무 1건으로 정리</em> 카드를 만듭니다 — 제목, 날짜·시각(문서의 일정), 주요 내용(일정·인원·연락처 같은 줄)이 채워지니 고친 뒤 <em>등록</em>을 누르면 확인 창이 한 번 더 뜨고, 원본 파일이 업무에 첨부됩니다(업무 창 <em>📎 첨부 원본</em>에서 미리보기·내려받기). 업무일지처럼 날짜별 줄이 많은 파일은 지금처럼 여러 건으로 나뉘고, 파일 줄의 <em>📄 업무 1건 / ☰ 줄마다 여러 건</em>으로 바꿀 수 있습니다.</span></li>
       <li><b>◀ ▶ 서식·자료 넘기기</b><span>회사서식(작성 가능) 작성 화면 양옆, 회사서식 미리보기 창과 자료실 파일 보기 창 양옆의 <em>‹ ›</em>를 누르면 목록 순서대로 위(이전)·아래(다음) 서식·파일이 열립니다. 적던 내용은 이 기기에 자동 보관됩니다.</span></li>
-      <li><b>📌 여러 명·공장별 지시</b><span>업무 등록 창의 <em>📌 업무 지시</em>에서 <em>👤 직원 (여러 명)</em>을 골라 여러 명을 누르거나 <em>🏭 공장 전체 넣기</em>, <em>🏭 공장별</em>(그 공장 근무 직원 모두), <em>🧩 직무</em>로 지시합니다. 업무 창의 지시 창에도 공장 전체 넣기·빼기가 있습니다. 지시·보고 기록과 알림에는 이름 옆에 직급이 나옵니다.</span></li>
+      <li><b>📌 여러 명·공장별 요청</b><span>업무 등록 창의 <em>📌 업무 요청</em>에서 <em>👤 직원 (여러 명)</em>을 골라 여러 명을 누르거나 <em>🏭 공장 전체 넣기</em>, <em>🏭 공장별</em>(그 공장 근무 직원 모두), <em>🧩 직무</em>로 요청합니다. 업무 창의 요청 창에도 공장 전체 넣기·빼기가 있습니다. 요청·보고 기록과 알림에는 이름 옆에 직급이 나옵니다.</span></li>
       <li><b>⚡ 간편 등록 (문장으로)</b><span>내 업무 입력칸에 <em>"내일 오후 2시 군포공장 6층 대회의실에서 안전교육"</em>처럼 문장으로 적고 <em>간편 등록</em>을 누르면 날짜(오늘·내일·모레·다음 주 ○요일·11월 5일·11/5·~까지)·시각(오전·오후 ○시, 14:00, 10시~12시)·장소(○○에서, 회의실·현장 등)·사업장·담당(문장에 나온 직원)을 찾아 <em>확인 창</em>에 보여 줍니다 — <em>확인</em>(등록) · <em>수정</em>(칸별로 고치기) · <em>취소</em>. 위 칸에서 직접 고른 날짜·시각·사업장·상태가 있으면 그 값이 먼저입니다.</span></li>
-      <li><b>✅ 확인 · 수정 · 취소</b><span>업무 등록·수정, 진행 기록, 완료·시작 단추, 특이사항, 업무 지시·보고, 파일·사진으로 올리기, 각종서류 올리기(자료실 저장), 회사서식 올리기, 전자결재 올리기, 설정 저장은 저장하기 전에 내용을 보여 줍니다. 수정 저장은 바뀌는 항목만(지금 → 바꿀 내용) 보입니다. 칸마다 바로 저장되는 점검 일보·경비 일지 기록표와 끌어서 옮기기는 묻지 않습니다.</span></li>
+      <li><b>✅ 확인 · 수정 · 취소</b><span>업무 등록·수정, 진행 기록, 완료·시작 단추, 특이사항, 업무 요청·보고, 파일·사진으로 올리기, 각종서류 올리기(자료실 저장), 회사서식 올리기, 전자결재 올리기, 설정 저장은 저장하기 전에 내용을 보여 줍니다. 수정 저장은 바뀌는 항목만(지금 → 바꿀 내용) 보입니다. 칸마다 바로 저장되는 점검 일보·경비 일지 기록표와 끌어서 옮기기는 묻지 않습니다.</span></li>
       <li><b>📝 메모장 · 바탕 화면 메모장</b><span>위쪽 📝(휴대폰은 더보기, 단축키 Alt+M)를 누르면 오른쪽에 메모장 — 아직 업무로 정리하기 전의 전화 내용·할 일을 적어 두면 쓰는 대로 자동 저장되고, 📌 고정·🎨 색·<em>➜ 업무로</em>(간편 등록 확인 창을 거쳐 업무 등록)·🗑(6초 안에 되돌리기). <em>🖥 바탕 화면 메모장</em>을 누르면 작은 메모장 창이 열리고, 그 창의 <em>🖥 바탕 화면 앱으로 설치</em>(크롬·엣지 주소창 ⊕도 같음)로 윈도우 바탕 화면·작업 표시줄 아이콘을 만들 수 있습니다. <em>📌 항상 위에 띄우기</em>는 다른 프로그램 위에 떠 있는 메모장입니다(크롬·엣지). 앱·휴대폰·바탕 화면 어디서 고쳐도 같은 내용이고, 나만 봅니다(관리자도 못 봄).</span></li>
       <li><b>✉ 변경 요청</b><span>다른 직원이 등록한 업무는 바로 고쳐지지 않습니다. 업무 창에서 업무명·일정·시각·장소·담당·내용을 고치고 <em>✉ 변경 요청 보내기</em>(담당자는 <em>저장 · 변경 요청</em>)를 누르면 고칠 이유 메모와 함께 등록한 직원에게 알림이 갑니다. 등록한 직원은 알림·내 업무 위 <em>✉ 변경 요청</em> 카드·업무 창에서 바뀔 내용(지금 → 바꿀 내용)을 보고 <em>✅ 변경 승인</em>(바로 반영, 요청한 직원에게 승인 알림) 또는 <em>⛔ 변경 승인 불가</em>(이유를 적으면 요청한 직원에게 이유와 함께 알림)를 누릅니다. 담당자의 진행 상태·진척률·진행 기록·사진은 지금처럼 바로 저장, 관리자는 바로 고칠 수 있습니다.</span></li>
       <li><b>설비 QR</b><span>시설 일보 창의 <em>🏷 설비 QR</em>에서 설비(소화전 펌프·콤프레샤·승강기 등)를 등록하고 <em>🖨 QR 라벨</em>을 인쇄해 붙여 두면, 휴대폰 기본 카메라로 찍기만 해도 업무일지가 열려 그 설비의 점검·작업 기록과 <em>📋 이 설비 일보 쓰기</em>가 나옵니다. 앱 안의 📷 QR 스캔이나 사진으로 QR 읽기도 됩니다. 설비를 고른 일보는 '대상 설비'가 서류에 들어가고 그 설비 기록에 쌓입니다.</span></li>
@@ -3073,7 +3128,7 @@ function renderHelp(v){const c=S.config;const roster=staffList();const joined=ro
   </div></div>`;}
 
 function renderMy(v){
-  if(!$('#qa',v)){v.innerHTML=`<div class="home-head"><div><h1>내 업무</h1><p id="my-sub"></p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="btn primary my-new" data-new title="담당자·기간·시각·반복·첨부·업무 지시까지 자세히 입력해 업무 등록">＋ 상세업무 등록</button></div></div>
+  if(!$('#qa',v)){v.innerHTML=`<div class="home-head"><div><h1>내 업무</h1><p id="my-sub"></p></div><div style="display:flex;gap:8px;flex-wrap:wrap"></div></div>
     <div class="brief" id="my-brief" hidden></div>
     <div class="sch-strip" id="sch-strip" hidden></div>
     ${qaShell()}
@@ -4437,7 +4492,7 @@ function ntfCompute(){const me=myId();if(!me||!S.ready)return [];const out=[];co
   if(admin){const w=gwWarn();if(w)out.push({k:'gwst|'+w.k,syn:1,at:td+'T00:00:04',type:'gw',gw:'',title:'그룹웨어 자동 확인',text:w.text});}
   if(admin||canViewRestricted())for(const f of Object.values(S.files)){if(!f.expiry)continue;const n=diffDays(td,f.expiry);if(n<=60&&n>=-30)out.push({k:`doc|${f.id}|${f.expiry}|${n<=7?'w':n<=30?'m':'q'}`,syn:1,at:td+'T00:00:03',type:'doc',f,text:`서류 유효기간 ${expiryTxt(f.expiry)} · ${fmtYMD(f.expiry)}`});}
   if(admin&&hr>=17&&dow(td)%6!==0){const idle=staffList().filter(s=>working(s)&&!S.tasks.some(t=>t.logs.some(l=>l.by===s.id&&localDate(l.at)===td)));if(idle.length)out.push({k:`idle|${td}`,syn:1,at:td+'T17:00:00',type:'idle',text:`오늘 기록 없는 근무자 ${idle.length}명`,sub:idle.map(s=>s.name).join(', ')});}
-  out.sort((a,b)=>b.at.localeCompare(a.at));return out.slice(0,80);}
+  out.sort((a,b)=>b.at.localeCompare(a.at)||String(a.k||"").localeCompare(String(b.k||"")));return out.slice(0,80);}
 const ntfUnread=(it,st)=>it.syn?!st.syn[it.k]:(it.at>st.seen&&!(st.rd&&st.rd[it.k]));
 function ntfTick(){clearTimeout(NT.t);NT.t=setTimeout(ntfRun,400);}
 function ntfRun(){adminNameSync();const st=ntfState();NT.items=ntfCompute();const un=NT.items.filter(it=>ntfUnread(it,st));
@@ -8701,22 +8756,22 @@ window.libApi={sri:()=>window.WL_SRI,
   pdf:pdfLoad,verified:wlVerified,css:wlCss};
 
 /* ───────── 38차: 처음 사용 안내 둘러보기 (driver.js 1.10.2, MIT) ─────────
-   처음 로그인한 직원에게 한 번 — 화면 메뉴·빠른 기록·시설 일보·업무 등록·알림·전체 검색·인쇄·전자결재·내 정보·사용 안내를 차례로 짚어 줌.
+   처음 로그인한 직원에게 한 번 — 화면 메뉴·간편 등록·시설 일보·업무 등록·알림·전체 검색·인쇄·전자결재·내 정보·사용 안내를 차례로 짚어 줌.
    휴대폰이면 아래 탭바 기준. 사용 안내 화면 맨 위 '🧭 처음 사용 안내 다시 보기'로 언제든 다시. 자동 테스트 브라우저(webdriver)에서는 저절로 뜨지 않음. */
 const TOUR_V='1';
 const tourKey=()=>`wl.tour${TOUR_V}.${(S.me&&S.me.id)||'x'}`;
 const TOUR_STEPS=[
   {el:null,t:'👋 환영합니다',d:'관리부 통합 업무시스템를 1분 동안 둘러봅니다. 언제든 <b>사용 안내</b>에서 다시 볼 수 있습니다.'},
   {el:['nav.tabs','#mnav'],t:'화면 메뉴',d:'내 업무·팀 현황·칸반·달력·목록·보고서, 각종서류 올리기·법정 업무·전자결재·그룹웨어로 옮겨 갑니다. 휴대폰은 아래 탭바와 <b>더보기</b>.'},
-  {el:['#qa-text'],t:'빠른 기록',d:'오늘 한 일이나 할 일을 적고 <b>등록</b>(Enter 는 줄바꿈, Ctrl+Enter 도 등록). 분류(대·중·소)는 내용을 보고 자동으로 고르고, 날짜·상태·사진도 이 줄에서 바로 붙입니다.'},
+  {el:['#qa-text'],t:'⚡ 간편 등록',d:'"내일 오후 2시 3층 회의실에서 안전교육"처럼 문장으로 적고 <b>간편 등록</b>(Ctrl+Enter 도 등록). 날짜·시각·장소·사업장을 찾아 확인 창에 보여 주고, 분류(대·중·소)는 내용을 보고 자동으로 고릅니다.'},
   {el:['#qa [data-il-open-new]'],t:'📋 시설 일보',d:'현장 사진 몇 장 + 간단한 메모 → <b>✨ 자동 완성</b>으로 작업 일보·점검 일지·사진 대지를 만들고, 업무일지 저장·인쇄·전자결재까지 한 번에.'},
-  {el:['#btn-new','#fab'],t:'+ 업무 등록',d:'마감일·담당자·반복·사진까지 자세히 적을 때 씁니다. 업무를 등록한 사람만 고칠 수 있고, 담당자는 진행 상황을 적습니다.'},
+  {el:['#btn-new','#fab'],t:'+ 상세업무 등록',d:'마감일·시각·장소·담당자·반복·사진까지 자세히 적을 때 씁니다. 업무를 등록한 사람만 고칠 수 있고, 담당자는 진행 상황을 적습니다.'},
   {el:['#btn-ntf'],t:'알림',d:'나에게 온 결재, 그룹웨어 새 글, 마감이 다가온 업무, 자료실 변경 소식이 모입니다.'},
   {el:['#btn-search'],t:'전체 검색 (Ctrl+K)',d:'업무·자료실 서류·그룹웨어 소식·회사서식을 한 번에 찾습니다. <b>초성</b>(예: ㅅㅎㄱ → 소화기)으로도 찾을 수 있습니다.'},
   {el:['#btn-print'],t:'인쇄·PDF',d:'지금 화면을 인쇄하거나 PDF로 저장합니다. 업무 창이 열려 있으면 그 업무 한 장, 보고서 화면이면 보고서 용지만.'},
   {el:['a[data-view="appr"]','#mnav [data-mnav="more"]'],t:'전자결재',d:'회사서식을 직접 작성하거나 스캔을 올려 결재를 올립니다. 결재선은 직무별로 자동, 연차·휴일근무는 승인되면 달력에 표시됩니다.'},
   {el:['#me-chip'],t:'내 정보',d:'내 이름 확인·바꾸기, 글자 크게, 휴대폰 홈 화면에 추가하는 방법이 있습니다.'},
-  {el:['a[href="#help"]'],t:'사용 안내',d:'기능별 설명이 있습니다. 이 둘러보기는 사용 안내 맨 위 <b>🧭 처음 사용 안내 다시 보기</b>로 다시 볼 수 있습니다.'}];
+  {el:['a[href="#help"]'],t:'📖 활용방법 안내',d:'<b>기초 · 성숙 · 전문</b> 단계별로 화면 사진과 함께 사용법을 봅니다. 내 업무 위 <b>📖 활용방법 안내</b>도 같습니다. 이 둘러보기는 안내 왼쪽 아래 <b>🧭 1분 둘러보기</b>로 다시 볼 수 있습니다.'}];
 const tourVis=el=>{if(!el)return false;const r=el.getBoundingClientRect();if(r.width<2||r.height<2)return false;const cs=getComputedStyle(el);return cs.visibility!=='hidden'&&cs.display!=='none'&&!el.closest('[hidden]');};
 function tourPick(c){if(!c)return null;for(const s of c){const el=$(s);if(tourVis(el))return el;}return null;}
 let TOUR_ON=false;
@@ -8734,7 +8789,7 @@ function tourAuto(){if(TOUR_ON||navigator.webdriver||!S.me||!S.me.id||!S.myStaff
   if(!$('#qa-text'))return;tourStart(false);}
 let _tourT=0;
 {const _r=render;render=function(){const r=_r.apply(this,arguments);if(!_tourT&&!navigator.webdriver){_tourT=setTimeout(()=>{_tourT=0;tourAuto();},2800);}return r;};}
-{const _h=renderHelp;renderHelp=function(v){const r=_h.apply(this,arguments);try{if(v&&!$('[data-tour-start]',v))v.insertAdjacentHTML('afterbegin','<div class="tour-bar"><button type="button" class="btn" data-tour-start>🧭 처음 사용 안내 다시 보기</button><span class="help">화면 메뉴·빠른 기록·시설 일보·알림·검색 등을 1분 동안 짚어 줍니다.</span></div>');}catch{}return r;};}
+{const _h=renderHelp;renderHelp=function(v){const r=_h.apply(this,arguments);try{if(v&&!$('[data-tour-start]',v))v.insertAdjacentHTML('afterbegin','<div class="tour-bar"><button type="button" class="btn" data-tour-start>🧭 처음 사용 안내 다시 보기</button><span class="help">화면 메뉴·간편 등록·시설 일보·알림·검색 등을 1분 동안 짚어 줍니다.</span></div>');}catch{}return r;};}
 document.addEventListener('click',e=>{if(e.target&&e.target.closest&&e.target.closest('[data-tour-start]')){tourStart(true);}});
 window.tourApi={start:tourStart,reset:()=>{try{localStorage.removeItem(tourKey());}catch{}}};
 
@@ -9995,15 +10050,15 @@ document.addEventListener('click',e=>{if(!S.guard)return;const t=e.target;if(!t|
 /* 홈 빠른 기록 줄: ✅ 점검 일보 왼쪽 */
 {const _q=qaShell;qaShell=function(){const h=_q.apply(this,arguments);return h.replace('<button type="button" class="btn qa-insp" data-in-open','<button type="button" class="btn qa-guard" data-gd-open title="경비 근무일지 · 방문 차량 · 택배 접수 — 경비원 계정은 이 일지만 봅니다">🛡 경비 일지</button><button type="button" class="btn qa-insp" data-in-open');};}
 window.gdApi={get T(){return gdTpl();},base:GD_T0,norm:gdNormTpl,state:()=>({site:GD.site,date:GD.date,key:GD.key,day:GD.day&&gdClone(GD.day),freq:GD.freq&&gdClone(GD.freq),patch:gdClone(GD.patch),editing:GD.editing,ed:GD.ed&&gdClone({T:GD.ed}).T,dirty:GD.edDirty,guard:S.guard||null,accts:GD.accts}),flush:gdFlush,shift:gdShift,doc:(site,date,v)=>gdDocBody(site,date,v).html};
-/* ───────── 46차: 📌 업무 지시 · 📨 보고 ─────────
-   · 관리자(이기도)가 등록한 업무를 ① 특정 직원에게 ② 직무(재무·회계·인사·총무·시설·공무·안전·보건, 직접 추가 가능)에게 지시 → 받는 사람 알림(🔔·화면 아래 알림·브라우저 알림)
-   · 직무 지시: 직무 담당자(기본값 — 재무·회계·시설·공무는 조직도 파트원, 인사·총무·안전·보건은 업무분장 정·부 담당 / 관리자가 고침) 중 업무 사업장 근무자(없으면 전원) + 직무 책임자에게 알림 → 한 사람이 '내가 맡기' → 담당자
+/* ───────── 46차: 📌 업무 요청 · 📨 보고 ─────────
+   · 관리자(이기도)가 등록한 업무를 ① 특정 직원에게 ② 직무(재무·회계·인사·총무·시설·공무·안전·보건, 직접 추가 가능)에게 요청 → 받는 사람 알림(🔔·화면 아래 알림·브라우저 알림)
+   · 직무 요청: 직무 담당자(기본값 — 재무·회계·시설·공무는 조직도 파트원, 인사·총무·안전·보건은 업무분장 정·부 담당 / 관리자가 고침) 중 업무 사업장 근무자(없으면 전원) + 직무 책임자에게 알림 → 한 사람이 '내가 맡기' → 담당자
    · 받은 사람: ✓ 확인 → 🙋 맡기(직무) → 📨 보고(중간·완료·문제·지연) → 관리자 알림 → ✅ 확인 완료 / ↩ 보완 요청 → 담당자 알림
    · 저장: 업무(task).ord {v,mode:'staff'|'role'|'self',by,at,to:[직원],role,rn,memo,ack:{직원:시각},claim,cAt,ok,okBy,cx,seen} + 진행 기록(logs) kind order·ack·claim·rep_mid·rep_done·rep_issue·approve·redo·ocancel
-   · 직무 설정: wl/_sys/cfg/ordroles {roles:[{id,n,sids,head}],at,by} · 화면 #ord (관리자: 확인할 보고·지시 현황·지시할 업무 / 직원: 받은 지시·내 보고) */
+   · 직무 설정: wl/_sys/cfg/ordroles {roles:[{id,n,sids,head}],at,by} · 화면 #ord (관리자: 확인할 보고·요청 현황·요청할 업무 / 직원: 받은 요청·내 보고) */
 const ORD_KINDS=new Set(['order','ack','claim','rep_mid','rep_done','rep_issue','approve','redo','ocancel']);
 const REP_N={rep_mid:'중간 보고',rep_done:'완료 보고',rep_issue:'문제·지연 보고'};
-const ORD_SN={sent:'미확인',acked:'확인함',open:'맡을 사람 미정',doing:'진행 중',reported:'완료 보고 · 확인 대기',redo:'보완 요청',closed:'완료 확인',cancel:'지시 취소'};
+const ORD_SN={sent:'미확인',acked:'확인함',open:'맡을 사람 미정',doing:'진행 중',reported:'완료 보고 · 확인 대기',redo:'보완 요청',closed:'완료 확인',cancel:'요청 취소'};
 const ORD_ROLE0=[{id:'fin',n:'재무·회계',unit:'fin',head:'fin',specs:['fin']},
   {id:'hr',n:'인사',unit:'',head:'hr',specs:['hr|채용·입퇴사','hr|인사관리','hr|근태·휴가','hr|급여·4대보험','hr|노무관리','hr|도급·용역 관리']},
   {id:'ga',n:'총무',unit:'',head:'hr',specs:['hr|문서·사무행정','hr|비품·구매','hr|자산·보험','hr|행사·복리후생','hr|차량관리','hr|전산','hr|교육훈련']},
@@ -10044,7 +10099,7 @@ function ordSt(t){const o=ordOf(t);if(!o)return '';if(o.cx)return 'cancel';if(o.
   if(t.status==='doing'||t.status==='done'||t.logs.some(l=>l.kind==='rep_mid'||l.kind==='rep_issue'))return 'doing';if(Object.keys(o.ack||{}).length)return 'acked';return 'sent';}
 const ordLive=t=>{const s=ordSt(t);return !!s&&s!=='closed'&&s!=='cancel';};
 function ordTo(t){const o=ordOf(t);if(!o)return [];return [...new Set([...(o.to||[]),...t.assignees])];}
-const ordForMe=t=>{const o=ordOf(t);const me=myId();return !!o&&o.mode!=='self'&&ordTo(t).includes(me);};/* 50차: 나에게 한 지시도 받은 지시로 */
+const ordForMe=t=>{const o=ordOf(t);const me=myId();return !!o&&o.mode!=='self'&&ordTo(t).includes(me);};/* 50차: 나에게 한 요청도 받은 요청으로 */
 function ordTarget(t){const o=ordOf(t);if(!o)return '';if(o.mode==='role')return `🧩 ${o.rn||'직무'}${o.claim?` → ${odName(o.claim)}`:''}`;if(o.mode==='self')return `📨 ${odName(t.assignees[0]||'')} 자체 보고`;return `👤 ${odNames(o.to)}`;}
 function ordRepPending(t){const o=ordOf(t);if(!o||o.cx||o.ok)return null;const L=t.logs.filter(l=>/^rep_/.test(l.kind)&&l.at>(o.seen||''));return L.length?L[L.length-1]:null;}
 const odPill=t=>{const s=ordSt(t);return s?`<span class="od-st od-${s}">${ORD_SN[s]}</span>`:'';};
@@ -10055,10 +10110,10 @@ async function ordWrite(t,fn){let cur=t;try{const s=await S.db.doc(t.path).get()
   const r=fn(cur,{...(cur.ord||{}),ack:{...((cur.ord||{}).ack||{})}});if(!r)return false;const patch={...(r.patch||{})};if(r.logs&&r.logs.length)patch.logs=[...cur.logs,...r.logs];
   patch.updatedAt=nowISO();patch.updatedBy=myId();await dbUpdate(t.path,patch);return true;}
 function ordBuild(target,t,memo){const me=myId();const now=nowISO();let to=[],role=null;
-  if(target.mode==='staff'){to=[...new Set(target.sids||[])].filter(id=>S.staff[id]);if(!to.length)return null;}/* 50차: 나에게도 지시 */
+  if(target.mode==='staff'){to=[...new Set(target.sids||[])].filter(id=>S.staff[id]);if(!to.length)return null;}/* 50차: 나에게도 요청 */
   else{role=ordRoles().find(r=>r.id===target.role);if(!role)return null;to=ordRoleTo(role,target.siteOnly===false?'':t.site);if(!to.length)return null;}
   const ord={v:1,mode:target.mode,by:me,at:now,to,role:role?role.id:'',rn:role?role.n:'',memo:odStr(memo,500),ack:{},claim:'',cAt:'',ok:'',okBy:'',cx:'',seen:''};
-  const lbl=role?`🧩 ${role.n} 직무에 지시 (${odNames(to)})`:target.sites&&target.sites.length?`🏭 ${target.sites.join('·')} (${odNames(to)})에게 지시`:`👤 ${odNames(to)}에게 지시`;
+  const lbl=role?`🧩 ${role.n} 직무에 요청 (${odNames(to)})`:target.sites&&target.sites.length?`🏭 ${target.sites.join('·')} (${odNames(to)})에게 요청`:`👤 ${odNames(to)}에게 요청`;
   return {ord,assignees:role?[]:to,log:{at:now,by:me,kind:'order',text:`${lbl}${ord.memo?' — '+ord.memo:''}`}};}
 async function ordSend(tasks,target,memo){let n=0,bad=0;setSync('saving');
   try{for(const t of tasks){if(!t||t.priv){bad++;continue;}const b=ordBuild(target,t,memo);if(!b){bad++;continue;}
@@ -10086,32 +10141,32 @@ async function ordAct(t,kind,text){const me=myId();const now=nowISO();if(!t||t.p
 /* ── 알림 (🔔·화면 아래·브라우저) */
 function ordNtf(){const me=myId();if(!me)return [];const out=[];const since=new Date(Date.now()-14*864e5).toISOString();const admin=odAdmin();const td=today();let unack=0;
   for(const t of S.tasks){const o=ordOf(t);if(!o)continue;const to=ordTo(t);const mineTo=to.includes(me);const st=ordSt(t);
-    if(o.mode!=='self'&&mineTo&&o.by!==me&&o.at>=since)out.push({k:`od|${t.path}|${o.at}`,at:o.at,type:'ord',t,text:o.mode==='role'?`${o.rn} 직무 업무 지시${o.claim?'':' — 맡을 사람을 정하세요'}${t.due?` · 마감 ${fmtMD(t.due)}`:''}`:`${odName(o.by)}님 업무 지시${t.due?` · 마감 ${fmtMD(t.due)}`:''}`,sub:o.memo});
+    if(o.mode!=='self'&&mineTo&&o.by!==me&&o.at>=since)out.push({k:`od|${t.path}|${o.at}`,at:o.at,type:'ord',t,text:o.mode==='role'?`${o.rn} 직무 업무 요청${o.claim?'':' — 맡을 사람을 정하세요'}${t.due?` · 마감 ${fmtMD(t.due)}`:''}`:`${odName(o.by)}님 업무 요청${t.due?` · 마감 ${fmtMD(t.due)}`:''}`,sub:o.memo});
     for(const l of t.logs){if(!ORD_KINDS.has(l.kind)||l.by===me||l.at<since)continue;const nm=odName(l.by);
       if(/^rep_/.test(l.kind)){if(admin||o.by===me)out.push({k:`orp|${t.path}|${l.at}|${l.by}`,at:l.at,type:'rep',t,by:l.by,text:`${nm}님 ${REP_N[l.kind]}`,sub:l.text});continue;}
       if(l.kind==='claim'&&(mineTo||o.by===me))out.push({k:`ocl|${t.path}|${l.at}`,at:l.at,type:'ord',t,text:`${nm}님이 맡았습니다 (${o.rn||'직무'})`});
       if((l.kind==='redo'||l.kind==='approve')&&(t.assignees.includes(me)||(o.claim===me)))out.push({k:`ox|${t.path}|${l.at}`,at:l.at,type:l.kind==='redo'?'ord':'rep',t,text:l.kind==='redo'?`${nm}님 보완 요청`:`${nm}님이 보고를 확인했습니다 (완료)`,sub:l.text});
-      if(l.kind==='ocancel'&&mineTo)out.push({k:`ocx|${t.path}|${l.at}`,at:l.at,type:'ord',t,text:`${nm}님이 지시를 취소했습니다`,sub:l.text});}
+      if(l.kind==='ocancel'&&mineTo)out.push({k:`ocx|${t.path}|${l.at}`,at:l.at,type:'ord',t,text:`${nm}님이 요청을 취소했습니다`,sub:l.text});}
     if(!ordLive(t))continue;
     if(st==='open'&&t.due&&(mineTo||admin)&&diffDays(td,t.due)<=1)out.push({k:`oopen|${t.path}|${td}`,syn:1,at:td+'T00:00:05',type:'ord',t,text:`맡을 사람 미정 · ${o.rn} · ${diffDays(td,t.due)<0?'지연':'마감 '+fmtMD(t.due)}`});
     if(admin&&st==='sent'&&Date.now()-Date.parse(o.at)>864e5)unack++;}
-  if(admin&&unack)out.push({k:`ounack|${td}|${unack}`,syn:1,at:td+'T00:00:06',type:'ord',title:'업무 지시',text:`하루 넘게 확인 안 한 지시 ${unack}건`});
+  if(admin&&unack)out.push({k:`ounack|${td}|${unack}`,syn:1,at:td+'T00:00:06',type:'ord',title:'업무 요청',text:`하루 넘게 확인 안 한 요청 ${unack}건`});
   return out;}
 {const _c=ntfCompute;ntfCompute=function(){const out=_c.apply(this,arguments).filter(it=>{if(!it.t)return true;if(it.type==='assign'&&ordOf(it.t))return false;
     if(it.k&&it.k.startsWith('n|')){const L=it.t.logs.find(l=>`n|${it.t.path}|${l.at}|${l.by}`===it.k);if(L&&ORD_KINDS.has(L.kind))return false;}return true;});
-  try{out.push(...ordNtf());}catch(e){console.warn(e);}out.sort((a,b)=>b.at.localeCompare(a.at));return out.slice(0,80);};}
-NT_ICON.ord='지시';NT_ICON.rep='보고';
-{const _h=logActHTML,_t=logActText;const T={order:'📌 업무 지시',ack:'✓ 지시 확인',claim:'🙋 맡음',rep_mid:'📨 중간 보고',rep_done:'📨 완료 보고',rep_issue:'⚠ 문제·지연 보고',approve:'✅ 보고 확인 (완료)',redo:'↩ 보완 요청',ocancel:'지시 취소'};
+  try{out.push(...ordNtf());}catch(e){console.warn(e);}out.sort((a,b)=>b.at.localeCompare(a.at)||String(a.k||"").localeCompare(String(b.k||"")));return out.slice(0,80);};}
+NT_ICON.ord='요청';NT_ICON.rep='보고';
+{const _h=logActHTML,_t=logActText;const T={order:'📌 업무 요청',ack:'✓ 요청 확인',claim:'🙋 맡음',rep_mid:'📨 중간 보고',rep_done:'📨 완료 보고',rep_issue:'⚠ 문제·지연 보고',approve:'✅ 보고 확인 (완료)',redo:'↩ 보완 요청',ocancel:'요청 취소'};
   logActHTML=function(l){return T[l.kind]?`<span class="od-lk od-lk-${l.kind}">${T[l.kind]}</span>`:_h.apply(this,arguments);};
   logActText=function(l){return T[l.kind]?`${T[l.kind]}${l.text?' · '+l.text:''}`:_t.apply(this,arguments);};}
 
 /* ── 업무 한 줄 */
 function odRow(t,ctx){const o=ordOf(t);const me=myId();const p=esc(t.path);const st=ordSt(t);const btn=(a,l,c)=>`<button type="button" class="btn sm${c?' '+c:''}" data-od-${a}="${p}">${l}</button>`;let acts='';
   if(ctx==='todo'){const sg=ordSuggest(t);const r=ordRoles().find(x=>x.id===ordRoleOf(t));
-    acts=`${sg?`<button type="button" class="btn sm primary" data-od-quick="${p}" data-to="s:${esc(sg.sid)}" title="업무분장 ${esc(sg.duty)} ${sg.main?'정':'부'} 담당">⚡ ${esc(odName(sg.sid))}에게</button>`:''}${r?`<button type="button" class="btn sm" data-od-quick="${p}" data-to="r:${esc(r.id)}">🧩 ${esc(r.n)} 직무에</button>`:''}${btn('order','📌 지시…')}`;}
+    acts=`${sg?`<button type="button" class="btn sm primary" data-od-quick="${p}" data-to="s:${esc(sg.sid)}" title="업무분장 ${esc(sg.duty)} ${sg.main?'정':'부'} 담당">⚡ ${esc(odName(sg.sid))}에게</button>`:''}${r?`<button type="button" class="btn sm" data-od-quick="${p}" data-to="r:${esc(r.id)}">🧩 ${esc(r.n)} 직무에</button>`:''}${btn('order','📌 요청…')}`;}
   else if(ctx==='staff'){if(o&&!(o.ack||{})[me]&&st!=='open')acts+=btn('ack','✓ 확인','primary');if(st==='open')acts+=btn('claim','🙋 내가 맡기','primary');if(ordLive(t))acts+=btn('rep','📨 보고');}
   else if(ctx==='rep'){acts=st==='reported'?`${btn('ok','✅ 확인 완료','primary')}${btn('redo','↩ 보완 요청')}`:`${btn('seen','✓ 읽음','primary')}${btn('redo','↩ 보완 요청')}`;}
-  else if(ctx==='list'){if(ordLive(t)&&o&&(odAdmin()||o.by===me))acts=`${btn('order','↻ 다시 지시')}${btn('cancel','지시 취소','ghost')}`;}
+  else if(ctx==='list'){if(ordLive(t)&&o&&(odAdmin()||o.by===me))acts=`${btn('order','↻ 다시 요청')}${btn('cancel','요청 취소','ghost')}`;}
   const ack=o&&o.mode!=='self'?(o.to||[]).map(id=>`<span class="od-ack${(o.ack||{})[id]?' on':''}" title="${(o.ack||{})[id]?esc(hhmm(o.ack[id]))+' 확인':'아직 확인 안 함'}">${(o.ack||{})[id]?'✓':'·'} ${esc(odName(id))}</span>`).join(''):'';
   const lr=ctx==='rep'?ordRepPending(t):[...t.logs].reverse().find(l=>/^rep_/.test(l.kind));
   return `<div class="od-row${isLate(t)?' late':''}" data-od-r="${p}">${ctx==='todo'?`<input type="checkbox" class="od-ck" data-od-sel="${p}" ${OD.sel.has(t.path)?'checked':''} aria-label="선택">`:''}
@@ -10130,19 +10185,19 @@ function odLists(){const me=myId();const L=S.tasks.filter(t=>!t.priv);
   const todo=odAdmin()?L.filter(t=>!ordOf(t)&&t.createdBy===me&&t.status!=='done'&&t.status!=='hold'&&(!t.assignees.length||(t.assignees.length===1&&t.assignees[0]===me))).sort(sortTasks):[];
   return {mine,myRep,sent,rep,todo};}
 function renderOrd(v){if(!S.me||!S.me.id){v.innerHTML='<p class="empty">로그인한 뒤 쓸 수 있습니다.</p>';return;}odRolesSub();const A=odAdmin();const X=odLists();
-  const tabs=A?[['rep',`📨 확인할 보고`,X.rep.length],['sent','📌 지시 현황',X.sent.filter(ordLive).length],['todo','🗂 지시할 업무',X.todo.length],...(X.mine.length?[['mine','📥 받은 지시',X.mine.length]]:[])]:[['mine','📥 받은 지시',X.mine.length],['myrep','📨 내 보고',X.myRep.length]];
+  const tabs=A?[['rep',`📨 확인할 보고`,X.rep.length],['sent','📌 요청 현황',X.sent.filter(ordLive).length],['todo','🗂 요청할 업무',X.todo.length],...(X.mine.length?[['mine','📥 받은 요청',X.mine.length]]:[])]:[['mine','📥 받은 요청',X.mine.length],['myrep','📨 내 보고',X.myRep.length]];
   if(!tabs.some(x=>x[0]===OD.tab))OD.tab=A?(X.rep.length?'rep':X.todo.length&&!X.sent.length?'todo':'sent'):'mine';
   const cnt=k=>X.sent.filter(t=>ordSt(t)===k).length;const late=X.sent.filter(t=>ordLive(t)&&isLate(t)).length;
   const sum=A?`<div class="od-sum"><span>확인할 보고 <b>${X.rep.length}</b></span><span>미확인 <b>${cnt('sent')}</b></span><span>맡을 사람 미정 <b>${cnt('open')}</b></span><span>진행 중 <b>${cnt('acked')+cnt('doing')}</b></span><span>보완 요청 <b>${cnt('redo')}</b></span>${late?`<span class="late">지연 <b>${late}</b></span>`:''}<span>완료 확인 <b>${cnt('closed')}</b></span></div>`:'';
   let body='';const T=OD.tab;
   if(T==='rep')body=X.rep.length?X.rep.map(t=>odRow(t,'rep')).join(''):'<p class="empty">확인할 보고가 없습니다.</p>';
   else if(T==='sent'){const f=OD.who;const L=X.sent.filter(t=>!f||(f==='live'?ordLive(t):f.startsWith('r:')?ordOf(t).role===f.slice(2):ordTo(t).includes(f)));
-    body=`<div class="od-filt"><label>보기 <select id="od-who"><option value="">전체 ${X.sent.length}</option><option value="live" ${f==='live'?'selected':''}>진행 중인 지시만</option><optgroup label="직무">${ordRoles().map(r=>`<option value="r:${esc(r.id)}" ${f==='r:'+r.id?'selected':''}>${esc(r.n)}</option>`).join('')}</optgroup><optgroup label="직원">${staffList().filter(s=>s.id!==myId()).map(s=>`<option value="${esc(s.id)}" ${f===s.id?'selected':''}>${esc(s.name)}</option>`).join('')}</optgroup></select></label></div>`+(L.length?L.slice(0,150).map(t=>odRow(t,'list')).join(''):'<p class="empty">지시한 업무가 없습니다. 🗂 지시할 업무에서 보내 보세요.</p>');}
+    body=`<div class="od-filt"><label>보기 <select id="od-who"><option value="">전체 ${X.sent.length}</option><option value="live" ${f==='live'?'selected':''}>진행 중인 요청만</option><optgroup label="직무">${ordRoles().map(r=>`<option value="r:${esc(r.id)}" ${f==='r:'+r.id?'selected':''}>${esc(r.n)}</option>`).join('')}</optgroup><optgroup label="직원">${staffList().filter(s=>s.id!==myId()).map(s=>`<option value="${esc(s.id)}" ${f===s.id?'selected':''}>${esc(s.name)}</option>`).join('')}</optgroup></select></label></div>`+(L.length?L.slice(0,150).map(t=>odRow(t,'list')).join(''):'<p class="empty">요청한 업무가 없습니다. 🗂 요청할 업무에서 보내 보세요.</p>');}
   else if(T==='todo'){OD.sel=new Set([...OD.sel].filter(p=>X.todo.some(t=>t.path===p)));
-    body=`<p class="od-help">내가 등록하고 아직 아무에게도 지시하지 않은 업무입니다. <b>⚡</b>는 업무분장의 정(부) 담당자, <b>🧩</b>는 업무 분류의 직무입니다.</p><div class="od-bulk"><label class="chk"><input type="checkbox" id="od-all" ${X.todo.length&&OD.sel.size===X.todo.length?'checked':''}> 모두 고르기</label><button type="button" class="btn sm primary" data-od-bulk ${OD.sel.size?'':'disabled'}>📌 고른 ${OD.sel.size}건 지시…</button></div>`+(X.todo.length?X.todo.slice(0,150).map(t=>odRow(t,'todo')).join(''):'<p class="empty">지시할 업무가 없습니다.</p>');}
-  else if(T==='mine')body=X.mine.length?X.mine.map(t=>odRow(t,'staff')).join(''):'<p class="empty">받은 업무 지시가 없습니다.</p>';
+    body=`<p class="od-help">내가 등록하고 아직 아무에게도 요청하지 않은 업무입니다. <b>⚡</b>는 업무분장의 정(부) 담당자, <b>🧩</b>는 업무 분류의 직무입니다.</p><div class="od-bulk"><label class="chk"><input type="checkbox" id="od-all" ${X.todo.length&&OD.sel.size===X.todo.length?'checked':''}> 모두 고르기</label><button type="button" class="btn sm primary" data-od-bulk ${OD.sel.size?'':'disabled'}>📌 고른 ${OD.sel.size}건 요청…</button></div>`+(X.todo.length?X.todo.slice(0,150).map(t=>odRow(t,'todo')).join(''):'<p class="empty">요청할 업무가 없습니다.</p>');}
+  else if(T==='mine')body=X.mine.length?X.mine.map(t=>odRow(t,'staff')).join(''):'<p class="empty">받은 업무 요청이 없습니다.</p>';
   else if(T==='myrep')body=X.myRep.length?X.myRep.map(t=>odRow(t,'list')).join(''):'<p class="empty">보낸 보고가 없습니다.</p>';
-  v.innerHTML=`<div id="ord"><div class="home-head"><div><h1>📌 업무 지시 · 📨 보고</h1><p>${A?'업무를 직원 또는 직무(재무·회계·인사·총무·시설·공무·안전·보건)에 지시하면 받는 사람에게 알림이 가고, 직원이 보고하면 관리자에게 알림이 옵니다.':'관리자가 나 또는 내 직무에 지시한 업무입니다. 확인 → (직무 지시면) 내가 맡기 → 진행 → 📨 보고하면 관리자에게 알림이 갑니다.'}</p></div>
+  v.innerHTML=`<div id="ord"><div class="home-head"><div><h1>📌 업무 요청 · 📨 보고</h1><p>${A?'업무를 직원 또는 직무(재무·회계·인사·총무·시설·공무·안전·보건)에 요청하면 받는 사람에게 알림이 가고, 직원이 보고하면 관리자에게 알림이 옵니다.':'관리자가 나 또는 내 직무에 요청한 업무입니다. 확인 → (직무 요청면) 내가 맡기 → 진행 → 📨 보고하면 관리자에게 알림이 갑니다.'}</p></div>
     <div class="in-top">${A?'<button type="button" class="btn" data-od-roles>🧩 직무별 담당</button>':''}<a class="btn" href="#my">내 업무</a></div></div>${sum}
     <div class="seg od-tabs" role="tablist">${tabs.map(([k,l,n])=>`<button type="button" role="tab" data-od-tab="${k}" aria-pressed="${OD.tab===k}">${l} <em>${n}</em></button>`).join('')}</div>
     <div class="od-list">${body}</div></div>`;}
@@ -10150,16 +10205,16 @@ function renderOrd(v){if(!S.me||!S.me.id){v.innerHTML='<p class="empty">로그�
 /* ── 내 업무 카드 */
 function odCardHTML(){const A=odAdmin();const X=odLists();
   if(A){if(!X.rep.length&&!X.todo.length&&!X.sent.filter(ordLive).length)return '';const late=X.sent.filter(t=>ordLive(t)&&isLate(t)).length;const un=X.sent.filter(t=>ordSt(t)==='sent').length;
-    return `<section class="panel od-card"><div class="panel-h"><h2>📌 업무 지시 · 📨 보고</h2><span class="sub">진행 중 ${X.sent.filter(ordLive).length}건${un?` · 미확인 ${un}`:''}${late?` · <span class="late">지연 ${late}</span>`:''}</span><a class="btn sm" href="#ord" style="margin-left:auto">전체 보기</a></div>
+    return `<section class="panel od-card"><div class="panel-h"><h2>📌 업무 요청 · 📨 보고</h2><span class="sub">진행 중 ${X.sent.filter(ordLive).length}건${un?` · 미확인 ${un}`:''}${late?` · <span class="late">지연 ${late}</span>`:''}</span><a class="btn sm" href="#ord" style="margin-left:auto">전체 보기</a></div>
       ${X.rep.slice(0,4).map(t=>odRow(t,'rep')).join('')}${X.rep.length>4?`<p class="od-more"><a href="#ord" data-od-tab-go="rep">보고 ${X.rep.length-4}건 더 보기</a></p>`:''}
-      ${X.todo.length?`<p class="od-more">🗂 아직 지시하지 않은 내 업무 <b>${X.todo.length}</b>건 — <a href="#ord" data-od-tab-go="todo">지시하러 가기</a></p>`:''}</section>`;}
-  if(!X.mine.length)return '';return `<section class="panel od-card"><div class="panel-h"><h2>📥 받은 업무 지시</h2><span class="sub">${X.mine.length}건 · 확인하고 끝나면 📨 보고</span><a class="btn sm" href="#ord" style="margin-left:auto">전체 보기</a></div>${X.mine.slice(0,5).map(t=>odRow(t,'staff')).join('')}</section>`;}
+      ${X.todo.length?`<p class="od-more">🗂 아직 요청하지 않은 내 업무 <b>${X.todo.length}</b>건 — <a href="#ord" data-od-tab-go="todo">요청하러 가기</a></p>`:''}</section>`;}
+  if(!X.mine.length)return '';return `<section class="panel od-card"><div class="panel-h"><h2>📥 받은 업무 요청</h2><span class="sub">${X.mine.length}건 · 확인하고 끝나면 📨 보고</span><a class="btn sm" href="#ord" style="margin-left:auto">전체 보기</a></div>${X.mine.slice(0,5).map(t=>odRow(t,'staff')).join('')}</section>`;}
 {const _r=renderMy;renderMy=function(v){const r=_r.apply(this,arguments);try{const left=$('#my-left');if(left){const old=$('#od-card-box',left);if(old)old.remove();const h=odCardHTML();if(h)left.insertAdjacentHTML('afterbegin',`<div id="od-card-box">${h}</div>`);}
-    const hd=$('#view .home-head > div:last-child');if(hd&&!$('[data-od-go]',hd))hd.insertAdjacentHTML('afterbegin',`<a class="btn" href="#ord" data-od-go>📌 ${odAdmin()?'업무 지시':'받은 지시'}</a>`);}catch(e){console.warn(e);}return r;};}
+    const hd=$('#view .home-head > div:last-child');if(hd&&!$('[data-od-go]',hd))hd.insertAdjacentHTML('afterbegin',`<a class="btn" href="#ord" data-od-go>📌 ${odAdmin()?'업무 요청':'받은 요청'}</a>`);}catch(e){console.warn(e);}return r;};}
 
-/* ── 업무 창(상세·등록)의 지시 칸 */
+/* ── 업무 창(상세·등록)의 요청 칸 */
 function odTargetOptions(t){const me=myId();const sg=t?ordSuggest(t):null;const rr=t?ordRoleOf(t):'';const st=[...staffList().filter(s=>s.id===me),...staffList().filter(s=>s.id!==me&&working(s))];
-  return `<option value="">지시 안 함 (내가 할 일)</option><option value="pick">👤 위 담당자 칸의 직원에게</option><optgroup label="직원">${st.map(s=>`<option value="s:${esc(s.id)}">${sg&&sg.sid===s.id?'⚡ ':''}${esc(s.name)}${s.id===me?' (나)':''}${s.role?' · '+esc(s.role.split(/\s*-\s*/)[0]):''} (${esc(s.site)})</option>`).join('')}</optgroup><optgroup label="직무">${ordRoles().map(r=>`<option value="r:${esc(r.id)}">🧩 ${esc(r.n)}${r.id===rr?' ★':''}</option>`).join('')}</optgroup>`;}
+  return `<option value="">요청 안 함 (내가 할 일)</option><option value="pick">👤 위 담당자 칸의 직원에게</option><optgroup label="직원">${st.map(s=>`<option value="s:${esc(s.id)}">${sg&&sg.sid===s.id?'⚡ ':''}${esc(s.name)}${s.id===me?' (나)':''}${s.role?' · '+esc(s.role.split(/\s*-\s*/)[0]):''} (${esc(s.site)})</option>`).join('')}</optgroup><optgroup label="직무">${ordRoles().map(r=>`<option value="r:${esc(r.id)}">🧩 ${esc(r.n)}${r.id===rr?' ★':''}</option>`).join('')}</optgroup>`;}
 const odSites=()=>{const W=staffList().filter(s=>working(s));const L=[...S.config.sites.filter(x=>x!=='전사'),...W.map(s=>s.site)];return [...new Set(L)].filter(x=>x&&W.some(s=>s.site===x));};
 const odSiteStaff=sites=>staffList().filter(s=>working(s)&&sites.includes(s.site)&&s.id!==myId()).map(s=>s.id);
 function odSelTarget(v,site){if(!v)return null;if(v.startsWith('m:'))return {mode:'staff',sids:v.slice(2).split(',').filter(Boolean)};if(v.startsWith('f:')){const sites=v.slice(2).split(',').filter(Boolean);return {mode:'staff',sids:odSiteStaff(sites),sites};}if(v==='pick')return {mode:'staff',sids:((S.dlg&&S.dlg.assignees)||[]).filter(id=>id!==myId())};if(v.startsWith('s:'))return {mode:'staff',sids:[v.slice(2)]};if(v.startsWith('r:'))return {mode:'role',role:v.slice(2),siteOnly:true};return null;}
@@ -10171,35 +10226,35 @@ function odDlgRender(){const d=$('#dlg-task');if(!d||!S.dlg)return;let box=$('#t
   if(!t){if(!A||!S.canWrite){box.hidden=true;return;}const site=$('#t-site')?$('#t-site').value:'';box.hidden=false;box.innerHTML=odNewHTML(site);return;}
   const o=ordOf(t);const st=ordSt(t);const mineTo=ordTo(t).includes(me);const btn=(k,l,c)=>`<button type="button" class="btn sm${c?' '+c:''}" data-od-${k}="${esc(t.path)}">${l}</button>`;
   if(!o){const can=A&&t.status!=='done'&&S.canWrite;const rep=!A&&t.assignees.includes(me);if(!can&&!rep){box.hidden=true;return;}
-    box.hidden=false;box.innerHTML=`<div class="od-dh"><b>📌 업무 지시 · 📨 보고</b>${can?btn('order','📌 업무 지시하기','primary'):''}${rep?btn('rep','📨 관리자에게 보고'):''}</div>${can?`<small class="od-pv">${(()=>{const sg=ordSuggest(t);const r=ordRoles().find(x=>x.id===ordRoleOf(t));const L=[sg?`업무분장 ${odName(sg.sid)}(${sg.main?'정':'부'})`:'',r?`직무 ${r.n}`:''].filter(Boolean);return (L.length?'지시할 때 추천 — '+L.join(' · ')+'. ':'')+(typeof admOnly==='function'&&admOnly(t)?'🔒 아직 지시하지 않아 관리자만 볼 수 있습니다. 「업무 지시하기」를 누르면 받은 사람에게 알림이 가고 관리부에 공유됩니다.':'');})()}</small>`:''}`;return;}
+    box.hidden=false;box.innerHTML=`<div class="od-dh"><b>📌 업무 요청 · 📨 보고</b>${can?btn('order','📌 업무 요청하기','primary'):''}${rep?btn('rep','📨 관리자에게 보고'):''}</div>${can?`<small class="od-pv">${(()=>{const sg=ordSuggest(t);const r=ordRoles().find(x=>x.id===ordRoleOf(t));const L=[sg?`업무분장 ${odName(sg.sid)}(${sg.main?'정':'부'})`:'',r?`직무 ${r.n}`:''].filter(Boolean);return (L.length?'요청할 때 추천 — '+L.join(' · ')+'. ':'')+(typeof admOnly==='function'&&admOnly(t)?'🔒 아직 요청하지 않아 관리자만 볼 수 있습니다. 「업무 요청하기」를 누르면 받은 사람에게 알림이 가고 관리부에 공유됩니다.':'');})()}</small>`:''}`;return;}
   let acts='';if(mineTo){if(!(o.ack||{})[me]&&st!=='open')acts+=btn('ack','✓ 확인','primary');if(st==='open')acts+=btn('claim','🙋 내가 맡기','primary');if(ordLive(t))acts+=btn('rep','📨 보고');}
   else if(!A&&t.assignees.includes(me)&&ordLive(t))acts+=btn('rep','📨 보고');
-  if(A||o.by===me){if(st==='reported')acts+=btn('ok','✅ 확인 완료','primary')+btn('redo','↩ 보완 요청');else if(ordRepPending(t))acts+=btn('seen','✓ 보고 읽음')+btn('redo','↩ 보완 요청');if(ordLive(t)&&o.mode!=='self')acts+=btn('order','↻ 다시 지시','ghost')+btn('cancel','지시 취소','ghost');}
-  box.hidden=false;box.innerHTML=`<div class="od-dh"><b>📌 ${o.mode==='self'?'보고':'업무 지시'}</b>${odPill(t)}<span class="od-tg">${esc(ordTarget(t))}</span>${o.by?`<small>${esc(odName(o.by))} · ${esc(hhmm(o.at))}</small>`:''}</div>${o.memo?`<div class="od-memo">📝 ${esc(o.memo)}</div>`:''}
+  if(A||o.by===me){if(st==='reported')acts+=btn('ok','✅ 확인 완료','primary')+btn('redo','↩ 보완 요청');else if(ordRepPending(t))acts+=btn('seen','✓ 보고 읽음')+btn('redo','↩ 보완 요청');if(ordLive(t)&&o.mode!=='self')acts+=btn('order','↻ 다시 요청','ghost')+btn('cancel','요청 취소','ghost');}
+  box.hidden=false;box.innerHTML=`<div class="od-dh"><b>📌 ${o.mode==='self'?'보고':'업무 요청'}</b>${odPill(t)}<span class="od-tg">${esc(ordTarget(t))}</span>${o.by?`<small>${esc(odName(o.by))} · ${esc(hhmm(o.at))}</small>`:''}</div>${o.memo?`<div class="od-memo">📝 ${esc(o.memo)}</div>`:''}
     ${o.mode!=='self'?`<div class="od-acks">${(o.to||[]).map(id=>`<span class="od-ack${(o.ack||{})[id]?' on':''}">${(o.ack||{})[id]?'✓':'·'} ${esc(odName(id))}${(o.ack||{})[id]?` <small>${esc(hhmm(o.ack[id]))}</small>`:''}</span>`).join('')}</div>`:''}${acts?`<div class="od-acts">${acts}</div>`:''}`;}
 {const _o=openTask;openTask=function(){const r=_o.apply(this,arguments);try{if(S.dlg){S.dlg.ordSel='';S.dlg.ordMemo='';}odDlgRender();}catch(e){console.warn(e);}return r;};}
 {const _f=refreshDialog;refreshDialog=function(){const r=_f.apply(this,arguments);try{odDlgRender();}catch(e){console.warn(e);}return r;};}
 {const _c=createTask;createTask=async function(d){let sent=null;try{const dlg=$('#dlg-task');if(S.dlg&&!S.dlg.path&&S.dlg.ordSel&&dlg&&dlg.open&&odAdmin()&&!d.priv){const tg=odSelTarget(S.dlg.ordSel,d.site);const b=tg?ordBuild(tg,d,($('#t-ord-memo')||{}).value||''):null;
-      if(b){d={...d,ord:b.ord,assignees:b.assignees,logs:[...(d.logs||[]),b.log]};sent=b;}else setTimeout(()=>toast('받을 사람이 없어 지시하지 않고 등록만 했습니다. 업무 창에서 📌 업무 지시하기를 누르세요.','err'),700);S.dlg.ordSel='';}}catch(e){console.warn(e);}
-  const r=await _c.call(this,d);if(sent)setTimeout(()=>toast(`📌 ${sent.ord.mode==='role'?sent.ord.rn+' 직무('+odNames(sent.ord.to)+')':odNames(sent.ord.to)}에게 지시했습니다. 알림이 갑니다.`),600);return r;};}
+      if(b){d={...d,ord:b.ord,assignees:b.assignees,logs:[...(d.logs||[]),b.log]};sent=b;}else setTimeout(()=>toast('받을 사람이 없어 요청하지 않고 등록만 했습니다. 업무 창에서 📌 업무 요청하기를 누르세요.','err'),700);S.dlg.ordSel='';}}catch(e){console.warn(e);}
+  const r=await _c.call(this,d);if(sent)setTimeout(()=>toast(`📌 ${sent.ord.mode==='role'?sent.ord.rn+' 직무('+odNames(sent.ord.to)+')':odNames(sent.ord.to)}에게 요청했습니다. 알림이 갑니다.`),600);return r;};}
 document.addEventListener('change',e=>{const T=e.target;if(!T)return;if(T.id==='t-ord-sel'&&S.dlg){S.dlg.ordSel=T.value;const m=$('#t-ord-memo');if(m)m.hidden=!T.value;const pv=$('#t-ord-pv');if(pv)pv.textContent=odPreview(T.value,$('#t-site').value);
-    if(T.value==='pick'&&!((S.dlg.assignees||[]).filter(id=>id!==myId()).length))toast('위 담당자 칸에서 지시할 직원을 고르세요.');}
+    if(T.value==='pick'&&!((S.dlg.assignees||[]).filter(id=>id!==myId()).length))toast('위 담당자 칸에서 요청할 직원을 고르세요.');}
   if((T.id==='t-site'||T.id==='t-cat')&&S.dlg&&!S.dlg.path){const pv=$('#t-ord-pv');if(pv&&S.dlg.ordSel)pv.textContent=odPreview(S.dlg.ordSel,$('#t-site').value);}});
 document.addEventListener('input',e=>{if(e.target&&e.target.id==='t-ord-memo'&&S.dlg)S.dlg.ordMemo=e.target.value;});
 
-/* 52차: 등록 창 지시 — 직원 여러 명 · 공장별 · 직무 */
+/* 52차: 등록 창 요청 — 직원 여러 명 · 공장별 · 직무 */
 function odNewSel(){const D=S.dlg.od||(S.dlg.od={mode:'',sids:[],sites:[],role:''});S.dlg.ordSel=D.mode==='staff'?'m:'+D.sids.join(','):D.mode==='site'?'f:'+D.sites.join(','):D.mode==='role'?(D.role?'r:'+D.role:''):'';return S.dlg.ordSel;}
 function odNewHTML(site){const D=S.dlg.od||(S.dlg.od={mode:'',sids:[],sites:[],role:''});const v=odNewSel();const me=myId();
   const tt={cat:$('#t-cat')?$('#t-cat').value:'',sub:$('#t-sub')?$('#t-sub').value:'',leaf:$('#t-leaf')?$('#t-leaf').value:'',site};const sg=ordSuggest(tt);const rr=ordRoleOf(tt);
   const st=[...staffList().filter(s=>s.id===me),...staffList().filter(s=>s.id!==me&&working(s))];const SI=odSites();
-  const seg=[['','지시 안 함'],['staff','👤 직원 (여러 명)'],['site','🏭 공장별'],['role','🧩 직무']].map(([k,n])=>`<button type="button" data-tod-mode="${k}" aria-pressed="${D.mode===k}">${n}</button>`).join('');
+  const seg=[['','요청 안 함'],['staff','👤 직원 (여러 명)'],['site','🏭 공장별'],['role','🧩 직무']].map(([k,n])=>`<button type="button" data-tod-mode="${k}" aria-pressed="${D.mode===k}">${n}</button>`).join('');
   let body='';
   if(D.mode==='staff')body=`<div class="od-chips sm">${st.map(s=>`<button type="button" class="od-chip${s.id===me?' od-self':''}" data-tod-sid="${esc(s.id)}" aria-pressed="${D.sids.includes(s.id)}">${sg&&sg.sid===s.id?'⚡ ':''}${esc(s.name)}${s.id===me?' (나)':''}<small>${esc(odRank(s)||'')}${odRank(s)?' · ':''}${esc(s.site||'')}</small></button>`).join('')}</div>
     <div class="od-fq"><small>공장 전체 넣기·빼기</small>${SI.map(x=>{const ids=odSiteStaff([x]);const on=ids.length&&ids.every(id=>D.sids.includes(id));return `<button type="button" class="btn sm${on?' on':''}" data-tod-fadd="${esc(x)}" aria-pressed="${on}">🏭 ${esc(x)} ${ids.length}명</button>`;}).join('')}${D.sids.length?'<button type="button" class="btn sm ghost" data-tod-clear>모두 빼기</button>':''}</div>`;
   else if(D.mode==='site')body=`<div class="od-chips sm">${SI.map(x=>{const ids=odSiteStaff([x]);return `<button type="button" class="od-chip" data-tod-site="${esc(x)}" aria-pressed="${D.sites.includes(x)}">🏭 ${esc(x)}<small>${esc(odNames(ids))||'근무 직원 없음'}</small></button>`;}).join('')}</div>`;
   else if(D.mode==='role')body=`<div class="od-chips sm">${ordRoles().map(r=>`<button type="button" class="od-chip" data-tod-role="${esc(r.id)}" aria-pressed="${D.role===r.id}">🧩 ${esc(r.n)}${r.id===rr?' ★':''}</button>`).join('')}</div>`;
-  return `<div class="f od-new"><span class="lbl">📌 업무 지시 <small>저장하면 바로 알림 · 여러 명·공장별로 고를 수 있습니다</small></span><div class="seg sm od-tm" role="group" aria-label="지시 방법">${seg}</div>${body}
-    <input id="t-ord-memo" maxlength="500" placeholder="지시 메모 (선택) — 예) 금요일까지 견적 2곳 받아 보고" value="${esc(S.dlg.ordMemo||'')}" ${D.mode?'':'hidden'}><small class="od-pv" id="t-ord-pv">${esc(D.mode?(odPreview(v,site)||'받을 사람을 고르세요.'):'')}</small></div>`;}
+  return `<div class="f od-new"><span class="lbl">📌 업무 요청 <small>저장하면 바로 알림 · 여러 명·공장별로 고를 수 있습니다</small></span><div class="seg sm od-tm" role="group" aria-label="요청 방법">${seg}</div>${body}
+    <input id="t-ord-memo" maxlength="500" placeholder="요청 메모 (선택) — 예) 금요일까지 견적 2곳 받아 보고" value="${esc(S.dlg.ordMemo||'')}" ${D.mode?'':'hidden'}><small class="od-pv" id="t-ord-pv">${esc(D.mode?(odPreview(v,site)||'받을 사람을 고르세요.'):'')}</small></div>`;}
 document.addEventListener('click',e=>{const T=e.target;if(!T||!T.closest||!S.dlg||!T.closest('#t-ord'))return;const D=S.dlg.od||(S.dlg.od={mode:'',sids:[],sites:[],role:''});let b;
   if((b=T.closest('[data-tod-mode]'))){D.mode=b.dataset.todMode;if(D.mode==='staff'&&!D.sids.length){const sg=ordSuggest({cat:$('#t-cat').value,sub:$('#t-sub').value,leaf:$('#t-leaf')?$('#t-leaf').value:'',site:$('#t-site').value});if(sg)D.sids=[sg.sid];}if(D.mode==='role'&&!D.role)D.role=ordRoleOf({cat:$('#t-cat').value,sub:$('#t-sub').value,leaf:$('#t-leaf')?$('#t-leaf').value:''})||'';}
   else if((b=T.closest('[data-tod-sid]'))){const id=b.dataset.todSid;D.sids=D.sids.includes(id)?D.sids.filter(x=>x!==id):[...D.sids,id];}
@@ -10210,7 +10265,7 @@ document.addEventListener('click',e=>{const T=e.target;if(!T||!T.closest||!S.dlg
   else return;
   odNewSel();const box=$('#t-ord');if(box)box.innerHTML=odNewHTML($('#t-site')?$('#t-site').value:'');});
 {const _o=openTask;openTask=function(){if(S.dlg)S.dlg.od=null;const r=_o.apply(this,arguments);try{if(S.dlg){S.dlg.od={mode:'',sids:[],sites:[],role:''};S.dlg.ordSel='';const box=$('#t-ord');if(box&&!S.dlg.path&&!box.hidden)box.innerHTML=odNewHTML($('#t-site')?$('#t-site').value:'');}}catch(e){console.warn(e);}return r;};}
-/* ── 창: 지시 보내기 · 보고 · 보완 요청 · 직무 설정 */
+/* ── 창: 요청 보내기 · 보고 · 보완 요청 · 직무 설정 */
 function odDlg(html){let d=$('#dlg-ord');if(!d){d=document.createElement('dialog');d.className='modal narrow';d.id='dlg-ord';document.body.appendChild(d);d.addEventListener('close',()=>{OD.dlg=null;});}d.innerHTML=html;if(!d.open)d.showModal();return d;}
 function odOrderDlg(paths){const ts=paths.map(findTask).filter(Boolean);if(!ts.length)return;const t0=ts[0];const one=ts.length===1;const sg=one?ordSuggest(t0):null;const rr=ordRoleOf(t0);const o=ordOf(t0);
   const mode=OD.dlg&&OD.dlg.mode||(o&&o.mode==='role'?'role':o&&o.mode==='staff'?'staff':sg?'staff':rr?'role':'staff');
@@ -10218,31 +10273,31 @@ function odOrderDlg(paths){const ts=paths.map(findTask).filter(Boolean);if(!ts.l
   OD.dlg={k:'order',paths,mode,sids:sel,role,siteOnly:OD.dlg&&OD.dlg.siteOnly!=null?OD.dlg.siteOnly:true,memo:OD.dlg&&OD.dlg.memo!=null?OD.dlg.memo:(o&&o.memo)||'',due:OD.dlg&&OD.dlg.due!=null?OD.dlg.due:(one?t0.due:'')};const D=OD.dlg;
   const me=myId();const st=[...staffList().filter(s=>s.id===me),...staffList().filter(s=>s.id!==me&&working(s))];const R=ordRoles();const rObj=R.find(r=>r.id===D.role);
   const sites=[...new Set(ts.map(t=>t.site))];const to=D.mode==='role'&&rObj?(one?ordRoleTo(rObj,D.siteOnly?t0.site:''):ordRoleTo(rObj,'')):D.sids;
-  odDlg(`<form method="dialog" class="od-dlg"><header class="modal-h"><h2>📌 업무 지시${one?'':` — ${ts.length}건`}</h2><button type="button" class="icon-btn" data-od-x aria-label="닫기">✕</button></header><div class="modal-b one">
+  odDlg(`<form method="dialog" class="od-dlg"><header class="modal-h"><h2>📌 업무 요청${one?'':` — ${ts.length}건`}</h2><button type="button" class="icon-btn" data-od-x aria-label="닫기">✕</button></header><div class="modal-b one">
     <p class="od-dt">${one?`<b>${esc(t0.title)}</b><small>${esc(catText(t0))} · ${esc(t0.site)}</small>`:ts.slice(0,5).map(t=>esc(t.title)).join(' · ')+(ts.length>5?` 외 ${ts.length-5}건`:'')}</p>
-    <div class="seg" role="group" aria-label="지시 방법"><button type="button" data-odd-mode="staff" aria-pressed="${D.mode==='staff'}">👤 직원에게</button><button type="button" data-odd-mode="role" aria-pressed="${D.mode==='role'}">🧩 직무에게</button></div>
+    <div class="seg" role="group" aria-label="요청 방법"><button type="button" data-odd-mode="staff" aria-pressed="${D.mode==='staff'}">👤 직원에게</button><button type="button" data-odd-mode="role" aria-pressed="${D.mode==='role'}">🧩 직무에게</button></div>
     ${D.mode==='staff'?`<div class="od-chips">${st.map(s=>`<button type="button" class="od-chip${s.id===me?' od-self':''}" data-odd-sid="${esc(s.id)}" aria-pressed="${D.sids.includes(s.id)}">${sg&&sg.sid===s.id?'⚡ ':''}${esc(s.name)}${s.id===me?' (나)':''}<small>${esc((s.role||'').split(/\s*-\s*/)[0])} · ${esc(s.site)}</small></button>`).join('')}</div><div class="od-fq"><small>공장 전체 넣기·빼기</small>${odSites().map(x=>{const ids=odSiteStaff([x]);const on=ids.length&&ids.every(id=>D.sids.includes(id));return `<button type="button" class="btn sm${on?' on':''}" data-odd-fadd="${esc(x)}" aria-pressed="${on}">🏭 ${esc(x)} ${ids.length}명</button>`;}).join('')}</div>${sg?`<small class="od-pv">⚡ 업무분장 「${esc(sg.duty)}」 ${sg.main?'정':'부'} 담당</small>`:''}`
       :`<div class="od-chips">${R.map(r=>`<button type="button" class="od-chip" data-odd-role="${esc(r.id)}" aria-pressed="${D.role===r.id}">🧩 ${esc(r.n)}${r.id===rr?' ★':''}<small>${esc(odNames((r.sids||[]).filter(id=>S.staff[id]&&working(S.staff[id]))))||'담당 없음'}</small></button>`).join('')}</div>
         ${one&&t0.site&&t0.site!=='전사'?`<label class="chk"><input type="checkbox" id="odd-site" ${D.siteOnly?'checked':''}> ${esc(t0.site)} 근무자에게만 (직무 책임자는 늘 포함)</label>`:sites.length>1||!one?'<small class="od-pv">여러 건이면 업무마다 그 사업장 근무자에게 갑니다.</small>':''}`}
     <p class="od-to">${to.length?`알림 받을 사람: <b>${esc(odNames(to))}</b>${D.mode==='role'?' — 이 중 한 사람이 「내가 맡기」로 담당':''}`:'<span class="bad">받을 사람을 고르세요.</span>'}</p>
-    <label class="od-l">지시 메모<textarea id="odd-memo" rows="3" maxlength="500" placeholder="요청 사항·기한·보고 방법 (선택)">${esc(D.memo)}</textarea></label>
+    <label class="od-l">요청 메모<textarea id="odd-memo" rows="3" maxlength="500" placeholder="요청 사항·기한·보고 방법 (선택)">${esc(D.memo)}</textarea></label>
     ${one?`<label class="od-l">마감일 <input type="date" id="odd-due" value="${esc(D.due||'')}"></label>`:''}
-    </div><footer class="modal-f"><span class="spacer"></span><button type="button" class="btn" data-od-x>취소</button><button type="button" class="btn primary" data-odd-send ${to.length?'':'disabled'}>📌 지시 보내기</button></footer></form>`);}
+    </div><footer class="modal-f"><span class="spacer"></span><button type="button" class="btn" data-od-x>취소</button><button type="button" class="btn primary" data-odd-send ${to.length?'':'disabled'}>📌 요청 보내기</button></footer></form>`);}
 function odRepDlg(path){const t=findTask(path);if(!t)return;OD.dlg={k:'rep',path,kind:OD.dlg&&OD.dlg.k==='rep'&&OD.dlg.kind||'rep_done'};const o=ordOf(t);
   odDlg(`<form method="dialog" class="od-dlg"><header class="modal-h"><h2>📨 보고하기</h2><button type="button" class="icon-btn" data-od-x aria-label="닫기">✕</button></header><div class="modal-b one">
-    <p class="od-dt"><b>${esc(t.title)}</b><small>${o&&o.by?`${esc(odName(o.by))}님 지시`:'관리자에게 보고'}${o&&o.memo?' — '+esc(o.memo):''}</small></p>
+    <p class="od-dt"><b>${esc(t.title)}</b><small>${o&&o.by?`${esc(odName(o.by))}님 요청`:'관리자에게 보고'}${o&&o.memo?' — '+esc(o.memo):''}</small></p>
     <div class="seg" role="group" aria-label="보고 종류">${Object.entries(REP_N).map(([k,l])=>`<button type="button" data-odd-kind="${k}" aria-pressed="${OD.dlg.kind===k}">${k==='rep_done'?'✅ ':k==='rep_issue'?'⚠ ':'⏳ '}${l}</button>`).join('')}</div>
     <label class="od-l">보고 내용<textarea id="odd-text" rows="4" maxlength="1000" placeholder="${OD.dlg.kind==='rep_done'?'결과·처리 내용 (예: 견적 2곳 받아 A업체로 진행, 11.5 시공 완료)':OD.dlg.kind==='rep_issue'?'문제·지연 사유와 필요한 결정':'지금까지 진행 상황'}"></textarea></label>
     <small class="od-pv">${OD.dlg.kind==='rep_done'?'완료 보고하면 업무가 완료로 바뀌고, 관리자가 확인하거나 보완을 요청합니다.':'보내면 관리자에게 바로 알림이 갑니다. 사진은 업무 창의 진행 기록에 붙일 수 있습니다.'}</small>
     </div><footer class="modal-f"><span class="spacer"></span><button type="button" class="btn" data-od-x>취소</button><button type="button" class="btn primary" data-odd-rep>📨 보고 보내기</button></footer></form>`);setTimeout(()=>{const x=$('#odd-text');if(x)x.focus();},50);}
 function odNoteDlg(path,k){const t=findTask(path);if(!t)return;OD.dlg={k,path};const lr=ordRepPending(t)||[...t.logs].reverse().find(l=>/^rep_/.test(l.kind));
-  odDlg(`<form method="dialog" class="od-dlg"><header class="modal-h"><h2>${k==='redo'?'↩ 보완 요청':k==='cancel'?'지시 취소':'✅ 보고 확인 완료'}</h2><button type="button" class="icon-btn" data-od-x aria-label="닫기">✕</button></header><div class="modal-b one">
+  odDlg(`<form method="dialog" class="od-dlg"><header class="modal-h"><h2>${k==='redo'?'↩ 보완 요청':k==='cancel'?'요청 취소':'✅ 보고 확인 완료'}</h2><button type="button" class="icon-btn" data-od-x aria-label="닫기">✕</button></header><div class="modal-b one">
     <p class="od-dt"><b>${esc(t.title)}</b><small>${esc(ordTarget(t))}</small></p>${lr&&k!=='cancel'?`<div class="od-rep k-${lr.kind}"><b>${esc(REP_N[lr.kind]||'')}</b> ${esc(odName(lr.by))} · ${esc(hhmm(lr.at))}${lr.text?`<p>${esc(lr.text)}</p>`:''}</div>`:''}
     <label class="od-l">${k==='redo'?'보완할 내용 (필수)':'메모 (선택)'}<textarea id="odd-note" rows="3" maxlength="1000" placeholder="${k==='redo'?'예) 견적 1곳 더 받아 비교해 주세요':k==='cancel'?'취소 사유':'예) 수고했습니다'}"></textarea></label></div>
-    <footer class="modal-f"><span class="spacer"></span><button type="button" class="btn" data-od-x>닫기</button><button type="button" class="btn primary" data-odd-note>${k==='redo'?'↩ 보완 요청 보내기':k==='cancel'?'지시 취소':'✅ 확인 완료'}</button></footer></form>`);setTimeout(()=>{const x=$('#odd-note');if(x)x.focus();},50);}
+    <footer class="modal-f"><span class="spacer"></span><button type="button" class="btn" data-od-x>닫기</button><button type="button" class="btn primary" data-odd-note>${k==='redo'?'↩ 보완 요청 보내기':k==='cancel'?'요청 취소':'✅ 확인 완료'}</button></footer></form>`);setTimeout(()=>{const x=$('#odd-note');if(x)x.focus();},50);}
 function odRolesDlg(){if(!odAdmin())return;if(!OD.dlg||OD.dlg.k!=='roles')OD.dlg={k:'roles',R:JSON.parse(JSON.stringify(ordRoles()))};const R=OD.dlg.R;const st=staffList();
   odDlg(`<form method="dialog" class="od-dlg od-roles"><header class="modal-h"><h2>🧩 직무별 담당</h2><button type="button" class="icon-btn" data-od-x aria-label="닫기">✕</button></header><div class="modal-b one">
-    <p class="od-help">직무로 지시하면 그 직무 담당자 중 업무 사업장 근무자(없으면 전원)와 <b>책임자</b>에게 알림이 갑니다. ${OD.roles?`관리자가 고친 값 사용 중${OD.rolesAt?` · ${esc(hhmm(OD.rolesAt))} ${esc(OD.rolesBy)}`:''}`:'기본값: 재무·회계·시설·공무는 조직도 파트원, 인사·총무·안전·보건은 업무분장의 정·부 담당.'}</p>
+    <p class="od-help">직무로 요청하면 그 직무 담당자 중 업무 사업장 근무자(없으면 전원)와 <b>책임자</b>에게 알림이 갑니다. ${OD.roles?`관리자가 고친 값 사용 중${OD.rolesAt?` · ${esc(hhmm(OD.rolesAt))} ${esc(OD.rolesBy)}`:''}`:'기본값: 재무·회계·시설·공무는 조직도 파트원, 인사·총무·안전·보건은 업무분장의 정·부 담당.'}</p>
     ${R.map((r,i)=>`<div class="od-role"><div class="od-rh"><input data-odr-n="${i}" value="${esc(r.n)}" maxlength="20" aria-label="직무 이름"><label>책임자 <select data-odr-head="${i}"><option value="">없음</option>${st.map(s=>`<option value="${esc(s.id)}" ${r.head===s.id?'selected':''}>${esc(s.name)}</option>`).join('')}</select></label><button type="button" class="icon-btn" data-odr-del="${i}" aria-label="${esc(r.n)} 직무 빼기">✕</button></div>
       <div class="od-chips sm">${st.map(s=>`<button type="button" class="od-chip" data-odr-sid="${i}" data-sid="${esc(s.id)}" aria-pressed="${r.sids.includes(s.id)}">${esc(s.name)}<small>${esc(s.site)}${working(s)?'':' · '+esc(s.state)}</small></button>`).join('')}</div></div>`).join('')}
     <button type="button" class="btn sm" data-odr-add>＋ 직무 추가</button></div>
@@ -10253,7 +10308,7 @@ document.addEventListener('click',async e=>{const T=e.target;if(!T||!T.closest)r
   if((b=T.closest('[data-od-tab]'))){OD.tab=b.dataset.odTab;render();return;}
   if((b=T.closest('[data-od-tab-go]'))){OD.tab=b.dataset.odTabGo;return;}
   if(T.closest('[data-od-roles]')){OD.dlg=null;odRolesDlg();return;}
-  if((b=T.closest('[data-od-ack]'))){const t=findTask(b.dataset.odAck);if(t&&await ordAct(t,'ack'))toast('지시를 확인했습니다. 관리자 화면에 ✓ 표시됩니다.');return;}
+  if((b=T.closest('[data-od-ack]'))){const t=findTask(b.dataset.odAck);if(t&&await ordAct(t,'ack'))toast('요청을 확인했습니다. 관리자 화면에 ✓ 표시됩니다.');return;}
   if((b=T.closest('[data-od-claim]'))){const t=findTask(b.dataset.odClaim);if(t&&await ordAct(t,'claim'))toast('내가 맡았습니다. 담당자로 등록되고 같은 직무 동료·관리자에게 알림이 갑니다.');return;}
   if((b=T.closest('[data-od-rep]'))){e.preventDefault();OD.dlg=null;odRepDlg(b.dataset.odRep);return;}
   if((b=T.closest('[data-od-ok]'))){e.preventDefault();odNoteDlg(b.dataset.odOk,'approve');return;}
@@ -10263,7 +10318,7 @@ document.addEventListener('click',async e=>{const T=e.target;if(!T||!T.closest)r
   if((b=T.closest('[data-od-order]'))){e.preventDefault();OD.dlg=null;odOrderDlg([b.dataset.odOrder]);return;}
   if((b=T.closest('[data-od-bulk]'))){OD.dlg=null;odOrderDlg([...OD.sel]);return;}
   if((b=T.closest('[data-od-quick]'))){const t=findTask(b.dataset.odQuick);if(!t)return;const v=b.dataset.to;const tg=v.startsWith('s:')?{mode:'staff',sids:[v.slice(2)]}:{mode:'role',role:v.slice(2),siteOnly:true};
-    const r=await ordSend([t],tg,'');if(r.n)toast(`📌 「${t.title.slice(0,30)}」 ${tg.mode==='role'?(ordRoles().find(x=>x.id===tg.role)||{}).n+' 직무':odNames(tg.sids)}에게 지시했습니다.`);else toast('받을 사람이 없습니다. 🧩 직무별 담당을 확인하세요.','err');return;}
+    const r=await ordSend([t],tg,'');if(r.n)toast(`📌 「${t.title.slice(0,30)}」 ${tg.mode==='role'?(ordRoles().find(x=>x.id===tg.role)||{}).n+' 직무':odNames(tg.sids)}에게 요청했습니다.`);else toast('받을 사람이 없습니다. 🧩 직무별 담당을 확인하세요.','err');return;}
   if(!T.closest('#dlg-ord'))return;const D=OD.dlg;if(!D)return;
   if(T.closest('[data-od-x]')){e.preventDefault();$('#dlg-ord').close();return;}
   if(D.k==='order'){if((b=T.closest('[data-odd-mode]'))){D.mode=b.dataset.oddMode;D.memo=$('#odd-memo').value;if($('#odd-due'))D.due=$('#odd-due').value;odOrderDlg(D.paths);return;}
@@ -10273,12 +10328,12 @@ document.addEventListener('click',async e=>{const T=e.target;if(!T||!T.closest)r
     if(T.closest('[data-odd-send]')){e.preventDefault();const memo=$('#odd-memo').value;const due=$('#odd-due')?$('#odd-due').value:null;let ts=D.paths.map(findTask).filter(Boolean);
       if(ts.length===1&&due!=null&&due!==(ts[0].due||'')){try{const np=await updateTask(ts[0],{due});await sleep2(400);ts=[findTask(np)||{...ts[0],path:np,due}];}catch(err){writeError(err);return;}}
       const tg=D.mode==='role'?{mode:'role',role:D.role,siteOnly:D.siteOnly}:{mode:'staff',sids:D.sids};const r=await ordSend(ts,tg,memo);$('#dlg-ord').close();OD.sel.clear();
-      toast(r.n?`📌 ${r.n}건 지시했습니다${r.bad?` (받을 사람 없는 ${r.bad}건 제외)`:''}. 받는 사람에게 알림이 갑니다.`:'지시하지 못했습니다. 받을 사람을 확인하세요.',r.n?'':'err');return;}}
+      toast(r.n?`📌 ${r.n}건 요청했습니다${r.bad?` (받을 사람 없는 ${r.bad}건 제외)`:''}. 받는 사람에게 알림이 갑니다.`:'요청하지 못했습니다. 받을 사람을 확인하세요.',r.n?'':'err');return;}}
   if(D.k==='rep'){if((b=T.closest('[data-odd-kind]'))){D.kind=b.dataset.oddKind;const keep=$('#odd-text').value;odRepDlg(D.path);$('#odd-text').value=keep;return;}
     if(T.closest('[data-odd-rep]')){e.preventDefault();const text=$('#odd-text').value.trim();if(D.kind!=='rep_done'&&!text){toast('보고 내용을 적어 주세요.','err');$('#odd-text').focus();return;}const t=findTask(D.path);
       if(t&&await ordAct(t,D.kind,text)){$('#dlg-ord').close();toast(`📨 ${REP_N[D.kind]}를 보냈습니다. 관리자에게 알림이 갑니다.`);}return;}}
   if(['redo','approve','cancel'].includes(D.k)&&T.closest('[data-odd-note]')){e.preventDefault();const note=$('#odd-note').value.trim();if(D.k==='redo'&&!note){toast('보완할 내용을 적어 주세요.','err');$('#odd-note').focus();return;}const t=findTask(D.path);
-    if(t&&await ordAct(t,D.k,note)){$('#dlg-ord').close();toast(D.k==='redo'?'↩ 보완 요청을 보냈습니다.':D.k==='cancel'?'지시를 취소했습니다.':'✅ 보고를 확인했습니다. 업무가 완료로 정리됩니다.');}return;}
+    if(t&&await ordAct(t,D.k,note)){$('#dlg-ord').close();toast(D.k==='redo'?'↩ 보완 요청을 보냈습니다.':D.k==='cancel'?'요청을 취소했습니다.':'✅ 보고를 확인했습니다. 업무가 완료로 정리됩니다.');}return;}
   if(D.k==='roles'){const R=D.R;
     if((b=T.closest('[data-odr-sid]'))){const r=R[+b.dataset.odrSid];const id=b.dataset.sid;r.sids=r.sids.includes(id)?r.sids.filter(x=>x!==id):[...r.sids,id];b.setAttribute('aria-pressed',r.sids.includes(id));return;}
     if((b=T.closest('[data-odr-del]'))){R.splice(+b.dataset.odrDel,1);odRolesDlg();return;}
@@ -10290,18 +10345,21 @@ const sleep2=ms=>new Promise(r=>setTimeout(r,ms));
 document.addEventListener('change',e=>{const T=e.target;if(!T)return;
   if(T.id==='od-who'){OD.who=T.value;render();return;}
   if(T.id==='od-all'){const X=odLists();OD.sel=T.checked?new Set(X.todo.map(t=>t.path)):new Set();render();return;}
-  if(T.dataset&&T.dataset.odSel){if(T.checked)OD.sel.add(T.dataset.odSel);else OD.sel.delete(T.dataset.odSel);const b=$('[data-od-bulk]');if(b){b.disabled=!OD.sel.size;b.textContent=`📌 고른 ${OD.sel.size}건 지시…`;}return;}
+  if(T.dataset&&T.dataset.odSel){if(T.checked)OD.sel.add(T.dataset.odSel);else OD.sel.delete(T.dataset.odSel);const b=$('[data-od-bulk]');if(b){b.disabled=!OD.sel.size;b.textContent=`📌 고른 ${OD.sel.size}건 요청…`;}return;}
   if(T.id==='odd-site'&&OD.dlg&&OD.dlg.k==='order'){OD.dlg.siteOnly=T.checked;OD.dlg.memo=$('#odd-memo').value;if($('#odd-due'))OD.dlg.due=$('#odd-due').value;odOrderDlg(OD.dlg.paths);return;}
   if(OD.dlg&&OD.dlg.k==='roles'){if(T.dataset.odrHead!=null){OD.dlg.R[+T.dataset.odrHead].head=T.value;return;}}});
 document.addEventListener('input',e=>{const T=e.target;if(T&&T.dataset&&T.dataset.odrN!=null&&OD.dlg&&OD.dlg.k==='roles')OD.dlg.R[+T.dataset.odrN].n=T.value;});
 window.ordApi={roles:ordRoles,roleDefault:ordRoleDefault,roleTo:(id,site)=>ordRoleTo(ordRoles().find(r=>r.id===id),site),roleOf:ordRoleOf,suggest:ordSuggest,st:p=>ordSt(findTask(p)),lists:()=>{const X=odLists();return Object.fromEntries(Object.entries(X).map(([k,v])=>[k,v.map(t=>t.path)]));},send:(paths,tg,memo)=>ordSend(paths.map(findTask),tg,memo),act:(p,k,x)=>ordAct(findTask(p),k,x),ntf:()=>ordNtf()};
 
-/* 52차: 지시·보고 기록에 나오는 이름 → 이름 + 직급 (예: 박혜진에게 지시 → 박혜진 부장에게 지시) */
+/* 52차: 요청·보고 기록에 나오는 이름 → 이름 + 직급 (예: 박혜진에게 요청 → 박혜진 부장에게 요청) */
 const OD_LK=new Set(['order','ack','claim','rep_mid','rep_done','rep_issue','approve','redo','ocancel']);
 let _odRx=[],_odRxK='';
 function odRankify(txt){if(!txt)return txt;const L=staffList().map(s=>[s.name,odRank(s)]).filter(([n,r])=>n&&r).sort((a,b)=>b[0].length-a[0].length);const k=L.map(x=>x.join(':')).join('|');
   if(k!==_odRxK){_odRxK=k;const er=x=>x.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');_odRx=L.map(([n,r])=>[new RegExp(er(n)+'(?!\\s*'+er(r)+')(?=에게|님|·|,|\\s|\\)|$)','g'),n+' '+r]);}
-  let o=String(txt);for(const [re,rep] of _odRx)o=o.replace(re,rep);return o;}
+  let o=String(txt);for(const [re,rep] of _odRx)o=o.replace(re,rep);return odWord(o);}
+/* 55차: 저장된 예전 기록 글의 '요청'도 화면에서는 '요청' (글자 바꾸기에 걸리지 않게 유니코드로) */
+const OD_W=new RegExp('(?<!\\uBC29)\\uC9C0\\uC2DC(?!\\uC124)','g');
+function odWord(s){return String(s||'').replace(OD_W,'\uC694\uCCAD').replace(/\uC694\uCCAD(를|가|는|와|로)(?![가-힣])/g,(m,j)=>'\uC694\uCCAD'+({'를':'을','가':'이','는':'은','와':'과','로':'으로'}[j]));}
 {const _rb=rebuild;rebuild=function(){const r=_rb.apply(this,arguments);try{for(const t of [...(S.tasks||[]),...(S.privTasks||[])])for(const l of t.logs||[])if(OD_LK.has(l.kind)&&l.text)l.text=odRankify(l.text);}catch(e){console.warn(e);}return r;};}
 /* ───────── 47차: 모든 회사서식 고치기 (자료 관리자) ─────────
    · 한글·워드·엑셀 서식(칸에 바로 적기): ✏️ 서식 수정 → 글 고치기 + 도구줄(되돌리기·다시·굵게·고른 것 지우기·문단 지우기,
@@ -10557,19 +10615,19 @@ document.addEventListener('click',e=>{const T=e.target;if(!T||!T.closest)return;
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')upCheck();});
 setInterval(()=>upCheck(),30*60*1000);setTimeout(()=>upCheck(),90*1000);
 window.upApi={check:upCheck,show:upShow,build:WL_BUILD};
-/* ───────── 50차 (1): 관리자 업무는 지시할 때만 공유 · 빠른 기록 Enter = 줄바꿈 · 목록 정렬 ─────────
-   · 관리자(이기도)가 등록한 업무 중 담당이 관리자 자신뿐이고 지시(다른 사람에게)하지 않은 것은 관리자만 봄 —
-     직원 화면(내 업무·팀 현황·칸반·달력·목록·보고서·검색·알림)에서 빠지고, 「📌 업무 지시하기」를 누르면 받은 사람에게 알림이 가고 관리부에 공유됨
-     (법정 업무 자동 등록, 직원을 담당자로 넣은 업무는 지금처럼 공유). 관리자 화면에는 '🔒 지시 전' 표시
+/* ───────── 50차 (1): 관리자 업무는 요청할 때만 공유 · 빠른 기록 Enter = 줄바꿈 · 목록 정렬 ─────────
+   · 관리자(이기도)가 등록한 업무 중 담당이 관리자 자신뿐이고 요청(다른 사람에게)하지 않은 것은 관리자만 봄 —
+     직원 화면(내 업무·팀 현황·칸반·달력·목록·보고서·검색·알림)에서 빠지고, 「📌 업무 요청하기」를 누르면 받은 사람에게 알림이 가고 관리부에 공유됨
+     (법정 업무 자동 등록, 직원을 담당자로 넣은 업무는 지금처럼 공유). 관리자 화면에는 '🔒 요청 전' 표시
    · 내 업무 입력칸: Enter 는 줄바꿈(등록 안 함), 글이 길어지면 칸이 아래로 늘어남, 등록은 「등록」 단추(또는 Ctrl+Enter)
    · (업무 목록 정렬은 51차 ext49_vsort.js 로 옮김) */
 function admIds(){const m=S.members||{};const A=(m.admins||[]).map(x=>String(x).toLowerCase());const an=S.adminName||'';
   return new Set(Object.values(S.staff||{}).filter(s=>(s.email&&A.includes(String(s.email).toLowerCase()))||(an&&s.name===an)).map(s=>s.id));}
 function admOnlyA(t,A){if(!t||t.priv||t.legal||!A.has(t.createdBy))return false;if(!t.assignees.every(a=>a===t.createdBy))return false;
-  try{if(ordOf(t)&&ordTo(t).some(id=>id!==t.createdBy))return false;}catch{}return true;}/* 한 번 지시(공유)한 업무는 지시를 취소해도 받은 사람에게 보임(취소 알림) */
+  try{if(ordOf(t)&&ordTo(t).some(id=>id!==t.createdBy))return false;}catch{}return true;}/* 한 번 요청(공유)한 업무는 요청을 취소해도 받은 사람에게 보임(취소 알림) */
 const admOnly=t=>admOnlyA(t,admIds());
 {const _rb=rebuild;rebuild=function(){const r=_rb.apply(this,arguments);try{if(!S.canEdit){const A=admIds();if(A.size)S.tasks=S.tasks.filter(t=>!admOnlyA(t,A));}}catch(e){console.warn(e);}return r;};}
-{const _m=myRow;myRow=function(t){let h=_m.apply(this,arguments);try{if(S.canEdit&&admOnly(t))h=h.replace('<span class="mt">','<span class="mt"><span class="od-pre" title="아직 지시하지 않아 관리자만 볼 수 있습니다">🔒 지시 전</span>');}catch{}return h;};}
+{const _m=myRow;myRow=function(t){let h=_m.apply(this,arguments);try{if(S.canEdit&&admOnly(t))h=h.replace('<span class="mt">','<span class="mt"><span class="od-pre" title="아직 요청하지 않아 관리자만 볼 수 있습니다">🔒 요청 전</span>');}catch{}return h;};}
 
 /* ── 빠른 기록: 칸 자동 높이 ── */
 function qaGrow(){const ta=$('#qa-text');if(!ta)return;ta.style.height='auto';ta.style.height=Math.max(56,ta.scrollHeight+2)+'px';}
@@ -10739,7 +10797,7 @@ document.addEventListener('submit',e=>{const f=e.target;if(f.id!=='org-uf')retur
     for(const [id,p] of Object.entries(o.people))if(gone.includes(p.unit))p.unit='top';
     o.units=[top,...R.map(u=>({id:u.id,name:u.name,parent:'top',head:(o.units.find(x=>x.id===u.id)||{}).head||u.head||'',np:!!u.np,col:u.col||''}))];},
     `조직도 파트 편집: ${R.map(u=>u.name).join(' · ')}`).then(()=>{ORGX.rows=null;});});
-/* 50차 사용자 지시(10-31 22:34) 적용: 공창배 과장 → 4번째 칸(브리티카페 대표이사 겸직), 최호정 대리 → 5번째 칸(산재 병가) */
+/* 50차 사용자 요청(10-31 22:34) 적용: 공창배 과장 → 4번째 칸(브리티카페 대표이사 겸직), 최호정 대리 → 5번째 칸(산재 병가) */
 async function orgApply50(){const o0=orgCur();const kong=staffByName('공창배'),choi=staffByName('최호정');if(!kong||!choi)throw new Error('직원 이름을 찾지 못함');
   return orgEditSave(o=>{const base=o.units.filter(u=>u.id!=='brt'&&u.id!=='lv');base.push({id:'brt',name:'브리티카페',parent:'top',head:kong.id,np:true,col:'#8a6d3b'},{id:'lv',name:'산재 병가',parent:'top',head:choi.id,np:true,col:'#7a7f87'});
       for(const u of base)if(u.id!=='brt'&&u.id!=='lv'&&(u.head===kong.id||u.head===choi.id))u.head='';o.units=base;
@@ -10748,12 +10806,12 @@ async function orgApply50(){const o0=orgCur();const kong=staffByName('공창배'
     '조직도: 공창배 과장 4번째 칸(브리티카페 대표이사 겸직) · 최호정 대리 5번째 칸(산재 병가)');}
 window.orgxApi={apply50:orgApply50,units:()=>orgCur().units};
 /* ───────── 51차: 모든 업무 화면에 정렬 기준 · 비공개 업무는 아래에 따로 ─────────
-   · 내 업무·팀 현황·총괄·칸반·달력·목록·보고서·📌 업무 지시 — 화면마다 '↕ 정렬'(기준·방향·🔒 비공개는 아래로), 화면마다 이 기기에 기억(wl.vsort)
+   · 내 업무·팀 현황·총괄·칸반·달력·목록·보고서·📌 업무 요청 — 화면마다 '↕ 정렬'(기준·방향·🔒 비공개는 아래로), 화면마다 이 기기에 기억(wl.vsort)
    · 기본: 진행 날짜 최근순(날짜 없는 업무는 맨 끝), 🔒 비공개 업무는 공개 업무 아래에 따로 같은 기준(최근순)으로
    · 칸반 각 칸·달력 하루 칸 안 순서·목록 표·보고서 각 묶음·인쇄(업무 목록만)·엑셀 내려받기도 화면 정렬대로
    · 기존 sortTasks(지연·중요도·마감) 는 '중요도순' 기준으로 남김 */
 const sortTasks0=sortTasks;
-const VS_VIEWS={my:'내 업무',team:'팀 현황',overview:'총괄',board:'칸반',calendar:'달력',list:'목록',report:'보고서',ord:'업무 지시'};
+const VS_VIEWS={my:'내 업무',team:'팀 현황',overview:'총괄',board:'칸반',calendar:'달력',list:'목록',report:'보고서',ord:'업무 요청'};
 const VS_KEYS=[['wd','진행 날짜',-1],['reg','등록일',-1],['updatedAt','최근 진행',-1],['due','마감일',1],['imp','중요도 (지연·중요도·마감)',1],['status','상태',1],['title','업무명',1],['who','담당자',1],['site','사업장',1],['cat','분야',1],['scope','구분',1],['progress','진척',-1]];
 const VS_DATE=new Set(['wd','reg','updatedAt','due']);
 const VS_PRIV_VIEWS=new Set(['board','calendar','list','report']);
@@ -10968,8 +11026,8 @@ window.navApi={state:NAV,list:navList,neighbors:navNeighbors};
   const h=vsHTML('my','vs-hd');const old=hd.querySelector(':scope > .vsort');if(old){old.outerHTML=h;return;}
   const nb=hd.querySelector(':scope > [data-new]');if(nb)nb.insertAdjacentHTML('afterend',h);else hd.insertAdjacentHTML('beforeend',h);};}
 
-/* ①-2 「📌 업무 지시 / 받은 지시」 단추: 관리자 여부가 나중에 정해져도 글자 맞춤 */
-{const _r=renderMy;renderMy=function(){const r=_r.apply(this,arguments);try{const a=$('#view .home-head [data-od-go]');if(a&&typeof odAdmin==='function'){const t='📌 '+(odAdmin()?'업무 지시':'받은 지시');if(a.textContent!==t)a.textContent=t;}}catch(e){console.warn(e);}return r;};}
+/* ①-2 「📌 업무 요청 / 받은 요청」 단추: 관리자 여부가 나중에 정해져도 글자 맞춤 */
+{const _r=renderMy;renderMy=function(){const r=_r.apply(this,arguments);try{const a=$('#view .home-head [data-od-go]');if(a&&typeof odAdmin==='function'){const t='📌 '+(odAdmin()?'업무 요청':'받은 요청');if(a.textContent!==t)a.textContent=t;}}catch(e){console.warn(e);}return r;};}
 
 /* ② */
 function navFmPos(){const w=$('#fmw');if(!w)return;const P=w.querySelector(':scope > .nav-arrow.prev'),N=w.querySelector(':scope > .nav-arrow.next'),pos=w.querySelector(':scope > .nav-pos');if(!P&&!N)return;
@@ -10998,7 +11056,7 @@ function calEvMount(info){const vt=(info.view&&info.view.type)||'';if(!vt.starts
 window.polish53Api={navFmPos,calEvMount};
 /* ───────── 54차: 확인 · 수정 · 취소 — 업무시스템에 올리거나 등록·요청하는 일은 저장 전에 내용을 보여 주고 고르게 ─────────
    · cfm3({title,rows|html,ok,edit,cancel}) → 'ok' | 'edit' | 'cancel'
-   · 업무 등록·수정(업무 창), 진행 기록, 상태 단추(완료·시작), 특이사항, 업무 지시·보고·지시 확인·맡기·보고 확인, 파일·사진으로 올리기,
+   · 업무 등록·수정(업무 창), 진행 기록, 상태 단추(완료·시작), 특이사항, 업무 요청·보고·요청 확인·맡기·보고 확인, 파일·사진으로 올리기,
      각종서류 올리기(자료실 저장)·서류 창 저장, 회사서식 올리기, 전자결재 올리기, 설정 저장
    · 칸마다 바로 저장되는 점검 일보·경비 일지 기록표, 끌어서 옮기기(칸반·달력)는 제외
    · 시험(test)에서는 window.WL_AUTOCFM 이 있으면 묻지 않고 그 값('ok' 기본)으로 진행하고 window.__CFM 에 남김 */
@@ -11055,7 +11113,7 @@ function tfDiff(base,d,keys){const rows=[];const K=keys||['title','cat','site','
 function taskCfm(){if(!S.dlg)return null;const d=tfData();if(!d.title)return null;const t=S.dlg.path?findTask(S.dlg.path):null;
   if(!t){const ord=typeof odNewSel==='function'&&S.dlg.od&&S.dlg.od.mode?(odPreview(odNewSel(),d.site)||'받을 사람 없음'):'';
     return {title:S.dlg.priv?'🔒 비공개 업무 등록 확인':'업무 등록 확인',lead:'아래 내용으로 등록할까요?',rows:[['업무명',d.title],['분류',d.auto?catText(d)+' (자동)':catText(d)],['사업장',d.site],['장소',d.place],['일정',cfmWhen(d)],['진행 상태',ST[d.status]?ST[d.status].name:''],
-      ['담당',cfmWho(d.assignees)+(d.assigneeText?' · '+d.assigneeText:'')],['중요도',d.priority!=='normal'?PR[d.priority].name:''],['반복',d.repeat!=='none'?cfmVal('repeat',d.repeat):''],['내용',cfmVal('desc',d.desc)],['사진',(S.dlg.pending||[]).length?(S.dlg.pending.length+'장'):''],['📌 업무 지시',ord]],
+      ['담당',cfmWho(d.assignees)+(d.assigneeText?' · '+d.assigneeText:'')],['중요도',d.priority!=='normal'?PR[d.priority].name:''],['반복',d.repeat!=='none'?cfmVal('repeat',d.repeat):''],['내용',cfmVal('desc',d.desc)],['사진',(S.dlg.pending||[]).length?(S.dlg.pending.length+'장'):''],['📌 업무 요청',ord]],
       ok:'등록',edit:'수정',onEdit:()=>{const x=$('#t-title');if(x)x.focus();}};}
   const base=S.dlg.orig||t;const rows=tfDiff(base,d);if(!rows.length)return null;
   return {title:'업무 수정 확인',lead:`「${cfmEsc(t.title)}」을(를) 아래처럼 바꿀까요?`,html:cfmDiffHTML(rows),ok:'저장',edit:'수정',onEdit:()=>{const x=$('#t-title');if(x)x.focus();}};}
@@ -11074,13 +11132,13 @@ cfmClick('[data-act="done"],[data-act="doing"]',el=>{const t=findTask(el.dataset
   return {title:to==='done'?'완료 처리 확인':'진행 시작 확인',rows:[['업무',t.title],['진행 상태',`${ST[t.status]?ST[t.status].name:''} → ${ST[to].name}`],['일정',cfmWhen(t)]],ok:to==='done'?'완료':'시작',edit:false};});
 /* ── 특이사항 */
 cfmClick('#memo-save',()=>{const tx=($('#memo-text')||{}).value||'';if(!tx.trim())return null;return {title:'특이사항·건의 저장 확인',rows:[['날짜',fmtLong(today())],['내용',tx.trim()]],ok:'저장',onEdit:()=>$('#memo-text').focus()};});
-/* ── 업무 지시·보고 */
+/* ── 업무 요청·보고 */
 cfmClick('[data-odd-send]',el=>{if(el.disabled)return null;const to=($('.od-dlg .od-to')||{}).textContent||'';const ts=(OD.dlg&&OD.dlg.paths||[]).map(findTask).filter(Boolean);
-  return {title:'📌 업무 지시 확인',rows:[['업무',ts.map(t=>t.title).join('\n')],['받는 사람',to.replace(/^알림 받을 사람:\s*/,'')],['지시 메모',($('#odd-memo')||{}).value||''],['마감일',($('#odd-due')||{}).value?fmtMD($('#odd-due').value):'']],ok:'지시 보내기',onEdit:()=>{const m=$('#odd-memo');if(m)m.focus();}};});
+  return {title:'📌 업무 요청 확인',rows:[['업무',ts.map(t=>t.title).join('\n')],['받는 사람',to.replace(/^알림 받을 사람:\s*/,'')],['요청 메모',($('#odd-memo')||{}).value||''],['마감일',($('#odd-due')||{}).value?fmtMD($('#odd-due').value):'']],ok:'요청 보내기',onEdit:()=>{const m=$('#odd-memo');if(m)m.focus();}};});
 cfmClick('[data-odd-rep]',()=>{const t=OD.dlg&&findTask(OD.dlg.path);if(!t)return null;const k=OD.dlg.kind;
   return {title:'📨 보고 확인',rows:[['업무',t.title],['보고 종류',(typeof REP_N!=='undefined'&&REP_N[k])||k],['보고 내용',($('#odd-text')||{}).value||'']],ok:'보고 보내기',onEdit:()=>{const m=$('#odd-text');if(m)m.focus();}};});
 cfmClick('[data-od-ack],[data-od-claim],[data-od-ok]',el=>{const k=el.dataset.odAck?'ack':el.dataset.odClaim?'claim':'ok';const t=findTask(el.dataset.odAck||el.dataset.odClaim||el.dataset.odOk);if(!t)return null;
-  const L={ack:['✓ 지시 확인','지시를 확인했다고 알립니다'],claim:['🙋 내가 맡기','이 업무를 내가 맡아 담당자로 들어갑니다'],ok:['✅ 보고 확인','보고를 확인하고 업무를 완료로 닫습니다']}[k];
+  const L={ack:['✓ 요청 확인','요청을 확인했다고 알립니다'],claim:['🙋 내가 맡기','이 업무를 내가 맡아 담당자로 들어갑니다'],ok:['✅ 보고 확인','보고를 확인하고 업무를 완료로 닫습니다']}[k];
   return {title:L[0],rows:[['업무',t.title],['하는 일',L[1]]],ok:L[0].replace(/^\S+\s/,''),edit:false};});
 /* ── 파일·사진으로 올리기(여러 건) */
 cfmSubmit('imp-form',()=>{const I=S.imp;if(!I||!I.rows)return null;const on=I.rows.filter(r=>r.on&&String(r.text||'').trim());if(!on.length)return null;
@@ -11316,7 +11374,7 @@ if(memoMode()){window.addEventListener('beforeinstallprompt',e=>{e.preventDefaul
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mount);else mount();}
 /* ── 위쪽 📝 단추 · 휴대폰 더보기 */
 (function(){const bar=document.querySelector('.top-right');const s=document.getElementById('btn-search');if(!bar||!s||document.getElementById('btn-memo'))return;
-  s.insertAdjacentHTML('beforebegin','<button type="button" class="icon-btn memo-btn" id="btn-memo" aria-label="메모장" title="📝 메모장 — 업무로 정리하기 전 메모 (바탕 화면 메모장과 자동 연동)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M5 3h10l4 4v14H5z"/><path d="M15 3v4h4M8 11h8M8 15h8M8 19h5"/></svg><em class="memo-n" hidden></em></button>');})();
+  s.insertAdjacentHTML('beforebegin','<button type="button" class="icon-btn memo-btn" id="btn-memo" aria-label="메모장" title="📝 메모장 — 업무로 정리하기 전 메모 (바탕 화면 메모장과 자동 연동)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h10l4 4v14H5z"/><path d="M15 3v4h4M8 11h8M8 15h8M8 19h5"/></svg><em class="memo-n" hidden></em></button>');})();
 document.addEventListener('click',e=>{const T=e.target;if(!T.closest)return;if(T.closest('#btn-memo')||T.closest('[data-memo-open]')){const sh=document.getElementById('mnav-sheet');if(sh)sh.hidden=true;const d=document.getElementById('memo-drawer');if(d&&!d.hidden)memoClose();else memoOpen();}});
 {const _m=mnavMore;mnavMore=function(){const r=_m.apply(this,arguments);try{const sh=document.getElementById('mnav-sheet');const ms=sh&&sh.querySelector('.ms-in');if(ms&&!ms.querySelector('[data-memo-open]'))ms.insertAdjacentHTML('afterbegin','<button type="button" data-memo-open>📝 메모장</button>');}catch{}return r;};}
 document.addEventListener('keydown',e=>{if(e.altKey&&!e.ctrlKey&&(e.key==='m'||e.key==='M'||e.key==='ㅡ')&&!memoMode()&&S.ready){e.preventDefault();const d=document.getElementById('memo-drawer');if(d&&!d.hidden)memoClose();else memoOpen();}});
@@ -11409,10 +11467,10 @@ function chgNtf(){const out=[];const since=new Date(Date.now()-21*864e5).toISOSt
       if(chgIsMe(c.by)&&(c.st==='ok'||c.st==='no')&&c.dAt>=since)out.push({k:`chgr|${t.path}|${c.id}|${c.st}`,at:c.dAt,type:'chg',t,text:c.st==='ok'?`✅ 변경 요청이 승인되어 반영되었습니다 · ${chgSummary(c)}`:`⛔ 변경 승인 불가 · ${chgSummary(c)}`,sub:c.st==='no'?c.rmemo:''});}}
   return out;}
 {const _c=ntfCompute;ntfCompute=function(){const out=_c.apply(this,arguments).filter(it=>{if(!it.t||!it.k||!it.k.startsWith('n|'))return true;const L=it.t.logs.find(l=>`n|${it.t.path}|${l.at}|${l.by}`===it.k);return !(L&&CHG_LK.has(L.kind));});
-  try{out.push(...chgNtf());}catch(e){console.warn(e);}out.sort((a,b)=>b.at.localeCompare(a.at));return out.slice(0,80);};}
+  try{out.push(...chgNtf());}catch(e){console.warn(e);}out.sort((a,b)=>b.at.localeCompare(a.at)||String(a.k||"").localeCompare(String(b.k||"")));return out.slice(0,80);};}
 /* ── 기록 이름 */
 const CHG_T={chgreq:'✉ 변경 요청',chgok:'✅ 변경 승인',chgno:'⛔ 변경 승인 불가',chgx:'변경 요청 취소'};
-function logKindLabel(l){if(CHG_T[l.kind])return CHG_T[l.kind];if(typeof ORD_KINDS!=='undefined'&&ORD_KINDS.has&&ORD_KINDS.has(l.kind)){const T={order:'📌 업무 지시',ack:'✓ 지시 확인',claim:'🙋 맡음',rep_mid:'📨 중간 보고',rep_done:'📨 완료 보고',rep_issue:'⚠ 문제·지연 보고',approve:'✅ 보고 확인',redo:'↩ 보완 요청',ocancel:'지시 취소'};return T[l.kind]||'';}return '';}
+function logKindLabel(l){if(CHG_T[l.kind])return CHG_T[l.kind];if(typeof ORD_KINDS!=='undefined'&&ORD_KINDS.has&&ORD_KINDS.has(l.kind)){const T={order:'📌 업무 요청',ack:'✓ 요청 확인',claim:'🙋 맡음',rep_mid:'📨 중간 보고',rep_done:'📨 완료 보고',rep_issue:'⚠ 문제·지연 보고',approve:'✅ 보고 확인',redo:'↩ 보완 요청',ocancel:'요청 취소'};return T[l.kind]||'';}return '';}
 {const _h=logActHTML,_t=logActText;logActHTML=function(l){return CHG_T[l.kind]?`<span class="chg-lk chg-lk-${l.kind}">${CHG_T[l.kind]}</span>`:_h.apply(this,arguments);};
   logActText=function(l){return CHG_T[l.kind]?`${CHG_T[l.kind]}${l.text?' · '+l.text:''}`:_t.apply(this,arguments);};}
 /* ── 내 업무 카드: 내가 처리할 변경 요청 · 내가 보낸 요청 */
@@ -11423,6 +11481,293 @@ function chgCardHTML(){const me=myId();const todo=[],sent=[];for(const t of S.ta
   return `<section class="panel od-card chg-card"><div class="panel-h"><h2>✉ 변경 요청</h2><span class="sub">${todo.length?`처리할 요청 ${todo.length}건`:''}${todo.length&&sent.length?' · ':''}${sent.length?`보낸 요청 대기 ${sent.length}건`:''}</span></div>${todo.map(x=>row(x,false)).join('')}${sent.map(x=>row(x,true)).join('')}</section>`;}
 {const _r=renderMy;renderMy=function(v){const r=_r.apply(this,arguments);try{const left=$('#my-left');if(left){const old=$('#chg-card-box',left);if(old)old.remove();const h=chgCardHTML();if(h)left.insertAdjacentHTML('afterbegin',`<div id="chg-card-box">${h}</div>`);}}catch(e){console.warn(e);}return r;};}
 window.chgApi={pending:p=>chgPending(findTask(p)||{chg:[]}),decide:chgDecide,cancel:chgCancel,send:(p,to,memo)=>{const t=findTask(p);const from={};for(const k of Object.keys(to))from[k]=t[k]??'';const c={id:rid().slice(0,12),by:myId(),at:nowISO(),memo:memo||'',from,to,st:'wait'};return chgWrite(t,{at:c.at,by:myId(),kind:'chgreq',text:`${chgSummary(c)} 변경 요청`,cid:c.id},{chg:[...(t.chg||[]),c]});},keys:CHG_KEYS};
+
+/* ───────── 55차: 📖 활용방법 안내 — 단계별(기초·성숙·전문) · 화면 사진 · 화면에서 보기 ─────────
+   · 오픈소스 확인: driver.js 1.10.2(MIT, 38차 둘러보기와 같은 도구)로 실제 화면의 그 자리를 강조,
+     화면 사진 자동 갱신은 shot-scraper(Apache-2.0) 방식 — Playwright로 정해진 화면을 열고 요소 영역만 잘라 찍음.
+     Intro.js는 AGPL이라 쓰지 않음.
+   · 항목(GU)마다 설명(단계별) + 사진 찍는 방법(shot: 누가·어느 화면·무엇을 열고·어디를 강조·어디를 자를지).
+     배포할 때마다 test/guide_shots.js가 시연 자료(가상의 직원·업무)로 사진을 다시 찍어 guide/<id>.webp,
+     guide/manifest.json(빌드·사진 지문·글 지문·바뀐 날·바뀐 내용 기록)을 함께 올림 → 화면이 바뀐 항목은 사진이 저절로 새것으로,
+     🆕 표시와 「최근 바뀐 내용」에 나오고, 없어진 기능은 목록에서 빠지며 「없어진 기능」으로 알려 줌.
+   · 사진을 찍을 때 강조할 자리를 못 찾으면 사진 찍기가 실패 → 안내 글을 고치지 않은 채 배포되지 않음. */
+const GU_LV={1:{k:'기초',d:'꼭 알아야 할 기능만 간단히'},2:{k:'성숙',d:'모든 기능을 빠짐없이'},3:{k:'전문',d:'응용해서 더 빠르게 쓰는 방법'}};
+const GU_QA='내일 오후 2시 군포공장 3층 기계실에서 공조기 필터 교체';
+const GU_QA3='다음 주 화요일 10시~12시 군포공장 3층 회의실에서 강민서 과장과 소방 점검 결과 회의';
+const GU=[
+ {id:'login',sec:'시작하기',t:'접속하고 로그인하기',
+  lv:{1:'관리자에게 받은 주소를 크롬·엣지·사파리로 열고 <b>Google 계정으로 로그인</b>을 누릅니다. 처음 한 번은 명단에서 <b>내 이름</b>을 누르면 끝입니다.',
+      2:'관리자에게 받은 주소를 크롬·엣지·사파리로 열고 <b>Google 계정으로 로그인</b>을 누릅니다. 구글이 아닌 회사 메일은 <b>이메일로 가입</b> → 메일함의 인증 링크 → 로그인. 카카오톡 안에서 열었다면 메뉴의 <b>다른 브라우저로 열기</b>를 누르세요(카카오톡 안에서는 구글 로그인이 막힙니다). "접속 허용 전"이 나오면 화면의 이메일을 관리자에게 알려 주고, 허용되면 <b>다시 확인</b>. 처음 한 번은 명단에서 내 이름을 누르고, 다른 기기에서 처음 열 때도 이름을 한 번 더 누릅니다.'},
+  shot:{who:'',clip:['#gate-card'],hi:['#gate-card button|Google']},show:{}},
+ {id:'home',sec:'시작하기',t:'내 업무 화면 한눈에',
+  lv:{1:'로그인하면 <b>내 업무</b>가 열립니다. 맨 위 <b>간편 등록</b> 칸, 받은 업무 요청, <b>진행 중·오늘 할 일</b>, 다가오는 일정, 오늘 한 일이 차례로 모여 있습니다. 위쪽 탭으로 팀 현황·달력·전자결재 등으로 옮겨 갑니다.',
+      2:'로그인하면 <b>내 업무</b>가 열립니다. 맨 위 <b>간편 등록</b> 칸, 오늘의 브리핑·정기 일정, 받은 <b>📌 업무 요청</b>, <b>진행 중·오늘 할 일</b>, 다가오는 일정, 🔒 비공개 업무, 오늘 한 일, 오늘 특이사항·건의가 차례로 모여 있습니다. 위쪽 탭으로 팀 현황·칸반·달력·목록·보고서·각종서류·법정 업무·전자결재·그룹웨어로 옮기고, 오른쪽 위 기호는 왼쪽부터 <b>?</b> 활용방법 안내 · ⚙ 설정 · 🖨 인쇄 · 📝 메모장 · 🔍 전체 검색 · 🔔 알림 · 내 이름(내 정보)입니다.'},
+  shot:{go:'#my',clip:'screen'},show:{go:'#my',hi:['#qa']}},
+ {id:'qa',sec:'업무 기록',t:'⚡ 간편 등록 — 한 줄로 업무 등록',
+  lv:{1:'내 업무 맨 위 칸에 <i>"'+GU_QA+'"</i>처럼 적고 <b>간편 등록</b>을 누르면 날짜·시각·장소·사업장을 알아서 찾아 줍니다. 이미 한 일은 <b>완료</b>, 하는 중이면 <b>진행 중</b>, 앞으로 할 일은 <b>할 예정</b>을 먼저 고르세요.',
+      2:'내 업무 맨 위 칸에 문장으로 적고 <b>간편 등록</b>을 누르면 날짜(오늘·내일·모레·다음 주 ○요일·11월 5일·11/5·~까지), 시각(오전·오후 ○시·14:00·10시~12시), 장소(○○에서·회의실·현장·○층), 사업장, 담당(문장에 나온 직원)을 찾아 확인 창에 보여 줍니다. 상태는 완료·진행 중·할 예정 중에서 고르고, 분류(대·중·소)는 <b>자동 분류</b>로 두면 내용을 읽고 정합니다. 날짜·시각·사업장 칸을 직접 고르면 그 값이 먼저입니다. 📷로 사진을 붙이고, <b>🔒 나만 보기</b>를 켜면 비공개 업무가 됩니다. Enter는 줄바꿈, <b>Ctrl+Enter</b>도 등록입니다.'},
+  shot:{go:'#my',fill:[['type','#qa-text',GU_QA]],clip:['#qa'],hi:['#qa-text','#qa-go']},show:{go:'#my',hi:['#qa-text']}},
+ {id:'cfm',sec:'업무 기록',t:'✅ 확인 · 수정 · 취소',
+  lv:{1:'등록·저장·올리기 전에는 항상 <b>확인 창</b>이 먼저 떠서 들어갈 내용을 보여 줍니다. 맞으면 <b>확인</b>, 고칠 것이 있으면 <b>수정</b>, 그만두려면 <b>취소</b>를 누릅니다.',
+      2:'업무 등록·수정, 진행 기록, 완료·시작 단추, 특이사항, 업무 요청·보고, 파일·사진으로 올리기, 각종서류 올리기, 회사서식 올리기, 전자결재 올리기, 설정 저장은 저장하기 전에 <b>확인 창</b>으로 내용을 보여 줍니다. <b>확인</b>=그대로 저장, <b>수정</b>=칸별로 고치기, <b>취소</b>=저장 안 함. 고칠 때는 바뀌는 항목만 「지금 → 바꿀 내용」으로 보입니다. 칸마다 바로 저장되는 점검 일보·경비 일지 기록표와 끌어서 옮기기는 묻지 않습니다.'},
+  shot:{go:'#my',fill:[['type','#qa-text',GU_QA],['click','#qa-go'],['wait',900]],clip:['#dlg-cfm3'],hi:['#dlg-cfm3 [data-c3="ok"]','#dlg-cfm3 [data-c3="edit"]','#dlg-cfm3 button|취소']},show:{go:'#my',hi:['#qa-go']}},
+ {id:'new',sec:'업무 기록',t:'+ 상세업무 등록',
+  lv:{1:'마감일·시각·장소·담당자·반복·사진까지 자세히 적을 때는 위쪽 <b>+ 상세업무 등록</b>(휴대폰은 오른쪽 아래 ＋)을 누릅니다. 업무명과 날짜만 적어도 등록됩니다.',
+      2:'위쪽 <b>+ 상세업무 등록</b>(휴대폰은 오른쪽 아래 ＋)에서 업무명·분류·사업장·중요도·장소·시작일/마감일과 시각·반복·상태·진척률·담당자·내용·사진을 적습니다. <b>항목 더 보기 ▾</b>를 누르면 범위·중요도·반복·진척률 칸이 더 나옵니다. 시작일만 넣으면 마감일이 같게 들어갑니다. 담당자는 여러 명 고를 수 있고, <b>📌 업무 요청</b>에서 직원·공장·직무를 고르면 저장과 함께 요청이 갑니다. 반복을 정하면 완료할 때 다음 회차가 이어집니다. 내용은 등록한 사람만 고칠 수 있고, 다른 사람은 ✉ 변경 요청을 보냅니다.'},
+  shot:{go:'#my',open:[['click','#btn-new']],clip:['#dlg-task'],hi:['#t-title']},show:{go:'#my',hi:['#btn-new','#fab']}},
+ {id:'prog',sec:'업무 기록',t:'진행 기록 남기고 완료하기',
+  lv:{1:'내 업무의 업무 줄에서 <b>시작</b> → 중간에 <b>기록</b>(진행 상황·사진) → 끝나면 <b>완료</b>를 누릅니다. 업무 이름을 누르면 상세 창이 열립니다.',
+      2:'업무 줄의 <b>시작</b>·<b>기록</b>·<b>완료</b>로 진행을 남깁니다. 업무 이름을 누르면 상세 창에서 진척률(%)·진행 기록·사진(작업 전·중·후, 날짜·현장 표시)·파일을 함께 남길 수 있고, 남긴 기록은 팀 현황 실시간 피드와 보고서에 자동으로 들어갑니다. 완료한 업무는 마감일이 지나도 지연으로 표시되지 않습니다. 오른쪽 아래 <b>오늘 특이사항·건의</b>에 적은 글은 일일 업무일지에 들어갑니다.'},
+  shot:{go:'#my',clip:['section.panel|진행 중·오늘 할 일'],hi:['section.panel|진행 중·오늘 할 일|[data-act="log"]','section.panel|진행 중·오늘 할 일|[data-act="done"]']},show:{go:'#my',hi:['[data-act="done"]']}},
+ {id:'ord',sec:'함께 일하기',t:'📌 받은 요청 · 📨 보고',
+  lv:{1:'관리자나 동료가 업무를 요청하면 내 업무 위쪽에 <b>받은 업무 요청</b> 카드가 생기고 알림이 옵니다. <b>✓ 확인</b>을 누르고 일을 한 뒤 <b>📨 보고</b>(중간·완료·문제·지연)로 알려 주세요.',
+      2:'요청이 오면 알림(🔔·화면 아래·브라우저)과 함께 내 업무 위쪽 <b>받은 업무 요청</b> 카드에 모입니다. <b>✓ 확인</b> → 일을 하고 <b>📨 보고</b>(중간·완료·문제·지연) → 요청한 사람에게 알림 → <b>✅ 확인 완료</b> 또는 <b>↩ 보완 요청</b>이 다시 알림으로 옵니다. 직무 요청은 그 직무 담당자 여럿에게 함께 가고, 먼저 <b>🙋 내가 맡기</b>를 누른 사람이 담당자가 됩니다. 내 업무 위 <b>📌 받은 요청</b>(관리자는 📌 업무 요청)을 누르면 받은 요청 전체를 봅니다.'},
+  shot:{go:'#my',clip:['#od-card-box'],hi:['#od-card-box [data-od-ack]']},show:{go:'#my',hi:['#od-card-box']}},
+ {id:'ntf',sec:'함께 일하기',t:'🔔 알림 확인',
+  lv:{1:'오른쪽 위 <b>🔔</b>에 받은 요청·결재·마감 임박·변경 요청이 모입니다. 숫자는 아직 안 본 알림 수입니다. 새 알림은 화면 오른쪽 아래에도 카드로 뜹니다.',
+      2:'오른쪽 위 <b>🔔</b>에 받은 요청·보고, 결재할 차례, 마감이 다가온 업무, 변경 요청, 그룹웨어 새 글, 법정 업무, 자료실 변경 소식이 모입니다. 새 알림은 화면 오른쪽 아래에 카드로 떠서 ✕(확인)을 누르거나 눌러 열 때까지 남고, 3건이 넘으면 「알림 n건 더」로 묶입니다. <b>알림 켜기</b>를 누르면 다른 탭을 보고 있어도 브라우저 알림이 옵니다.'},
+  shot:{go:'#my',open:[['fn','ntf']],clip:['#ntf-pop','#btn-ntf'],hi:['#btn-ntf']},show:{go:'#my',hi:['#btn-ntf']}},
+ {id:'memo',sec:'함께 일하기',t:'📝 메모장',
+  lv:{1:'위쪽 <b>📝</b>(단축키 Alt+M)를 누르면 오른쪽에 메모장이 열립니다. 전화 내용·할 일을 적어 두면 저절로 저장되고, 나만 봅니다.',
+      2:'위쪽 <b>📝</b>(휴대폰은 더보기, 단축키 Alt+M)를 누르면 오른쪽에 메모장이 열립니다. 쓰는 대로 자동 저장되고 나만 봅니다(관리자도 못 봄). 메모마다 📌 고정, 🎨 색, <b>➜ 업무로</b>(간편 등록 확인 창을 거쳐 업무로 등록), 🗑 삭제(6초 안에 되돌리기). <b>🖥 바탕 화면 메모장</b>으로 작은 창을 띄우거나 바탕 화면 앱으로 설치할 수 있고, 휴대폰·PC·바탕 화면 어디서 고쳐도 같은 내용입니다.'},
+  shot:{go:'#my',open:[['fn','memo']],clip:['#memo-drawer .md-in'],hi:['#memo-drawer [data-mp="add"]']},show:{go:'#my',hi:['#btn-memo']},need:()=>!!window.memoApi},
+ {id:'mobile',sec:'시작하기',t:'📱 휴대폰에서 쓰기',
+  lv:{1:'휴대폰에서는 아래쪽 탭(내 업무·팀 현황·달력·그룹웨어·더보기)으로 옮겨 다니고, 오른쪽 아래 <b>＋</b>로 업무를 등록합니다. 브라우저 메뉴의 <b>홈 화면에 추가</b>를 해 두면 앱처럼 열립니다.',
+      2:'휴대폰에서는 아래쪽 탭(내 업무·팀 현황·달력·그룹웨어·<b>더보기</b>)으로 옮겨 다니고, 오른쪽 아래 <b>＋</b>로 상세업무를 등록합니다. 더보기에 칸반·목록·보고서·각종서류·법정 업무·전자결재·📝 메모장·📖 활용방법 안내·인쇄·글자 크게가 있습니다. 브라우저 메뉴의 <b>홈 화면에 추가</b>(아이폰은 사파리 공유 › 홈 화면에 추가)를 해 두면 앱처럼 아이콘으로 열립니다.'},
+  shot:{dev:'m',go:'#my',clip:'screen',hi:['#mnav','#fab']},show:{go:'#my',hi:['#mnav']}},
+ /* ── 성숙: 모든 기능 ── */
+ {id:'search',sec:'찾기·보기',t:'🔍 전체 검색',
+  lv:{2:'오른쪽 위 <b>🔍</b>(Ctrl+K)로 업무·진행 기록·특이사항·자료실 서류 내용·회사서식·법정 업무·그룹웨어 소식을 한 번에 찾습니다. 띄어쓰기는 상관없고, <b>초성</b>(ㅅㅂ → 소방)으로도 찾습니다. 한/영 전환을 깜빡해 영문으로 찍히면 한글 낱말로 찾기를 제안합니다.'},
+  shot:{go:'#my',open:[['fn','search']],fill:[['type','#gs-q','소방']],clip:['#dlg-search'],hi:['#gs-q']},show:{go:'#my',hi:['#btn-search']}},
+ {id:'team',sec:'찾기·보기',t:'👥 팀 현황',
+  lv:{2:'사업장별 직원의 오늘 기록과 오늘 할 일·진행 중·이번 주 마감·이번 주 완료·지연 숫자(누르면 목록)를 봅니다. 아래에 지연 업무, 이번 주 일정, 분야별 진행 현황, 실시간 진행 피드가 이어집니다. 직원 이름을 누르면 그 사람의 업무가 나옵니다.'},
+  shot:{go:'#team',clip:'screen',hi:['[data-kpi="late"]']},show:{go:'#team',hi:['[data-kpi]']}},
+ {id:'org',sec:'찾기·보기',t:'🏢 조직도 · 업무분장',
+  lv:{2:'팀 현황 맨 위 <b>조직도·업무분장</b>에서 관리부 조직도, 사업장별 조직도(법정 선임 현황 포함), 업무분장표(정·부·대행 담당, 최근 12주 실적)를 봅니다. 이름을 누르면 그 사람의 업무분장이 나옵니다. 매주 업무일지 기록과 직원 명단을 비교해 바뀐 담당을 자동 반영하고 알려 줍니다.'},
+  shot:{go:'#org',clip:'screen'},show:{go:'#org'}},
+ {id:'board',sec:'찾기·보기',t:'🗂 칸반',
+  lv:{2:'할 예정·진행 중·완료·보류 칸으로 업무를 봅니다. 카드를 끌어 다른 칸에 놓으면 상태가 바뀝니다(내가 담당하거나 등록한 업무). 완료 칸은 이번 주 완료만 보이고 <b>지난 완료 보기</b>로 더 봅니다. 위쪽 대분류 탭과 거르기 줄(기간·분류·사업장·담당·검색)로 좁히고, <b>↕ 정렬</b>로 순서를 고릅니다.'},
+  shot:{go:'#board',clip:'screen'},show:{go:'#board'}},
+ {id:'cal',sec:'찾기·보기',t:'📅 달력',
+  lv:{2:'업무를 날짜에 막대로 보여 주고(시각이 있으면 앞에 표시), 정기 일정(월례조회·업무회의), 연차·반차·휴일근무(🌴·🛠), 💰 결제 예정도 함께 나옵니다. 월·주·목록으로 바꿔 보고, 아래에서 내 업무만·완료 숨김·여러 날 업무는 마감일에만을 고릅니다(이 기기에 기억). 날짜 칸을 누르면 그날 업무를 등록합니다.'},
+  shot:{go:'#calendar',clip:'screen'},show:{go:'#calendar'}},
+ {id:'list',sec:'찾기·보기',t:'📋 목록 · ↕ 정렬',
+  lv:{2:'모든 업무를 표로 봅니다. 머리글을 누르거나 <b>↕ 정렬</b>에서 기준(진행 날짜·등록일·최근 진행·마감일·중요도·상태·업무명·담당자·사업장·분야)과 방향을 고릅니다. 화면마다 이 기기에 기억되고, 인쇄·<b>엑셀로 내려받기</b>도 지금 정렬대로 나옵니다. 🔒 비공개 업무는 공개 업무 아래에 따로 모입니다.'},
+  shot:{go:'#list',clip:'screen',hi:['#list-xlsx']},show:{go:'#list',hi:['#list-xlsx']}},
+ {id:'report',sec:'찾기·보기',t:'📊 보고서',
+  lv:{2:'일일·주간·월간·연간 보고서(업무 요약·실적·진행 중·지연·차주 계획·이슈·종합 의견)를 자동으로 만듭니다. 왼쪽에서 기간·사업장·분야·담당자를 고르고 <b>🖨 인쇄(PDF)</b>, 보고서·엑셀 내려받기, <b>메신저용 텍스트 복사</b>를 씁니다. <b>👤 내 업무 보고서</b>는 내가 담당하거나 기록한 업무만 모읍니다.'},
+  shot:{go:'#report',clip:'screen',hi:['#r-mine']},show:{go:'#report',hi:['#rep-ctl']}},
+ {id:'print',sec:'찾기·보기',t:'🖨 인쇄 · PDF',
+  lv:{2:'위쪽 <b>🖨</b>는 지금 화면을 A4로 인쇄합니다. 업무가 나오는 화면에서는 <b>현재 양식 그대로</b>와 <b>업무 목록만</b>(날짜순 한 표) 중에서 고르고, 인쇄 창에서 <b>PDF로 저장</b>을 고르면 파일로 남습니다. 업무 상세 창의 🖨는 그 업무 한 장(정보·내용·진행 기록·사진), 보고서 화면은 보고서 용지만 인쇄합니다.'},
+  shot:{go:'#board',open:[['click','#btn-print']],clip:['#dlg-print']},show:{go:'#my',hi:['#btn-print']}},
+ {id:'priv',sec:'업무 기록',t:'🔒 비공개 업무',
+  lv:{2:'간편 등록 줄의 <b>🔒 나만 보기</b>를 켜고 등록하거나 <b>+ 비공개 업무</b>를 누르면 나만 보는 업무가 됩니다. 관리자·다른 직원에게 보이지 않고 팀 현황·총괄에도 들어가지 않습니다. 칸반·달력·목록에는 나에게만 🔒 표시로 나오고, 보고서·인쇄·엑셀에도 넣을 수 있습니다. 업무 창의 <b>팀에 공개하기</b>로 언제든 공개합니다.'},
+  shot:{go:'#my',clip:['#my-priv'],hi:['#my-priv [data-new-priv]']},show:{go:'#my',hi:['#qa-priv']}},
+ {id:'chg',sec:'함께 일하기',t:'✉ 변경 요청 · 변경 승인',
+  lv:{2:'다른 직원이 등록한 업무는 바로 고쳐지지 않습니다. 업무 창에서 업무명·일정·시각·장소·담당·내용을 고친 뒤 <b>✉ 변경 요청 보내기</b>를 누르면 이유 메모와 함께 등록한 직원에게 알림이 갑니다. 등록한 직원은 내 업무 위 <b>✉ 변경 요청</b> 카드에서 「지금 → 바꿀 내용」을 보고 <b>✅ 변경 승인</b>(바로 반영) 또는 <b>⛔ 변경 승인 불가</b>(이유를 적으면 함께 알림)를 누릅니다. 담당자의 진행 상태·기록·사진은 바로 저장됩니다.'},
+  shot:{go:'#my',clip:['#chg-card-box'],hi:['#chg-card-box [data-chg-ok]','#chg-card-box [data-chg-no]']},show:{go:'#my',hi:['#chg-card-box']}},
+ {id:'import',sec:'업무 기록',t:'📂 파일·사진으로 올리기',
+  lv:{2:'종이 업무일지 사진, 엑셀·한글(hwp·hwpx)·워드·PDF 업무일지를 입력칸에 끌어다 놓거나 <b>파일·사진으로 올리기</b>를 누르면 내용을 읽어 업무 목록으로 보여 줍니다. 한 가지 업무에 관한 문서는 📄 업무 1건으로 정리하고 원본을 업무에 첨부합니다. 확인 창을 거쳐 등록합니다.'},
+  shot:{go:'#my',clip:['#qa'],hi:['#qa-import']},show:{go:'#my',hi:['#qa-import']}},
+ {id:'upload',sec:'서류·결재',t:'📤 각종서류 올리기',
+  lv:{2:'PDF·스캔 사진·한글·워드·엑셀 파일을 끌어다 놓으면 어떤 서류인지(사업자등록증·공장등록증·인증서 등) 알아내고 사업장·발급일·유효기간을 찾아 자료실에 정리합니다. 확실하지 않은 서류는 확인을 받고 저장합니다. 현장 사진첩도 이 화면에서 봅니다. 서류를 올리고 지우는 일은 자료 관리자가 합니다.'},
+  shot:{who:'s01',go:'#upload',clip:'screen',hi:['#up-drop']},show:{go:'#upload',hi:['#up-drop']}},
+ {id:'docs',sec:'서류·결재',t:'🗄 자료실',
+  lv:{2:'회사 기본 서류·인증서·확인서·사업장별 서류를 최신본으로 보관합니다. 다시 올리면 새 버전으로 쌓이고, 유효기간이 있는 서류는 만료 전에 알려 줍니다. 🔒 서류는 허용된 사람만 엽니다. 파일 보기 창 양옆 <b>‹ ›</b>로 이전·다음 서류로 넘깁니다.'},
+  shot:{go:'#docs',clip:'screen'},show:{go:'#docs'}},
+ {id:'forms',sec:'서류·결재',t:'📝 회사서식',
+  lv:{2:'<b>회사서식(작성 가능)</b>은 서식을 열어 파란 칸을 눌러 바로 적고(PDF·스캔 서식은 적을 곳을 눌러 글상자) 인쇄하거나 전자결재로 올립니다. <b>회사서식(작성 불가)</b>은 인쇄해서 손으로 적는 서식입니다. 적던 내용은 이 기기에 자동 보관되고, 양옆 <b>‹ ›</b>로 이전·다음 서식을 엽니다.'},
+  shot:{go:'#formd',clip:'screen'},show:{go:'#formd'}},
+ {id:'appr',sec:'서류·결재',t:'✍ 전자결재',
+  lv:{2:'<b>＋ 새 기안</b>에서 서식에 직접 적거나(기안서·품의서·지출결의서·휴가 신청서 등) 스캔·파일을 올려 결재를 올립니다. 결재선은 직무별 팀원 → 직무별 총괄 → 전체 총괄로 자동으로 정해지고, 필요할 때만 바꿉니다. 결재할 차례가 되면 알림이 오고 문서에서 승인·반려(사유)를 누릅니다. 아무도 결재하기 전이면 회수, 반려되면 고쳐서 다시 올립니다. 연차·휴일근무는 최종 승인되면 달력에 표시됩니다.'},
+  shot:{go:'#appr',clip:'screen',hi:['[data-ap-new]']},show:{go:'#appr',hi:['[data-ap-new]']}},
+ {id:'legal',sec:'서류·결재',t:'⚖ 법정 업무',
+  lv:{2:'세무·4대보험·노무·교육·안전보건·소방·전기 설비·환경 일정을 달별로 봅니다. 켜 둔 항목은 마감 전에 담당자 할 일로 자동 등록되고, <b>지금 등록</b>으로 바로 업무를 만들 수도 있습니다. 아래 항목 설정에서 우리 회사에 해당하는 항목을 켜고 끕니다.'},
+  shot:{go:'#legal',clip:'screen'},show:{go:'#legal'}},
+ {id:'gw',sec:'서류·결재',t:'🌐 그룹웨어 소식',
+  lv:{2:'회사 그룹웨어 새 글(공지사항·업무연락·경조사 등)을 평일 근무 시간에 자동으로 확인해 요약·일정·관리부 할 일로 보여 줍니다. 필요한 글은 <b>업무로 등록</b>을 누르면 내용이 채워진 등록 창이 열립니다. 그룹웨어 근태계의 연차·출장 등은 달력에 표시됩니다.'},
+  shot:{go:'#gw',clip:'screen'},show:{go:'#gw'}},
+ {id:'insp',sec:'현장 업무',t:'✅ 점검 일보',
+  lv:{2:'간편 등록 줄의 <b>✅ 점검 일보</b>에서 사업장별 매일·주간·월간·분기 점검 항목을 한 화면에 적습니다. 오늘 할 점검과 밀린 구역(⏰)이 위에 모이고, 기준을 벗어난 수치는 주황으로 표시되며, 계량기는 전월 지침으로 사용량을 계산합니다. 적으면 바로 저장되고, <b>📋 업무일지에 기록</b>하면 업무와 점검 일보 서류(인쇄·전자결재)가 생기며 불량은 할 예정 후속 업무가 됩니다. 📈 수치 추이로 그래프를 봅니다.'},
+  shot:{go:'#insp',clip:'screen',hi:['[data-in-rec]']},show:{go:'#insp',hi:['[data-in-rec]']}},
+ {id:'ilbo',sec:'현장 업무',t:'📋 시설 일보 (자동 완성)',
+  lv:{2:'간편 등록 줄의 <b>📋 시설 일보</b>에서 현장 사진을 올리고 메모를 한 줄에 하나씩 적은 뒤 <b>✨ 자동 완성</b>을 누르면 회사 로고·결재란이 있는 작업 일보·점검 일지·사진 대지가 만들어집니다. 서류의 글자는 눌러서 바로 고치고, 💾 업무일지에 저장 · 🖨 인쇄·PDF · 📝 전자결재로 올리기를 고릅니다. 🏷 설비 QR을 붙여 두면 휴대폰 카메라로 찍어 그 설비 일보를 바로 씁니다.'},
+  shot:{go:'#my',open:[['click','[data-il-open-new]']],clip:['#dlg-ilbo']},show:{go:'#my',hi:['[data-il-open-new]']}},
+ {id:'guard',sec:'현장 업무',t:'🛡 경비 일지',adm:1,
+  lv:{2:'사업장·근무일(아침 9시 전이면 전날 밤 근무)별로 근무자·교대·순찰·순찰 점검·주차 현황과 🚗 방문 차량·직원 비등록 차량·우편물·택배를 적습니다. 경비원 계정은 이 화면만 보이고 어제·오늘만 적습니다. 관리자는 <b>👮 경비원 계정</b>을 등록하고 <b>✏️ 항목 편집</b>으로 구역·순찰 장소를 바꾸며, 🖨 인쇄·📤 이달 기록 엑셀로 냅니다.'},
+  shot:{who:'s01',go:'#guard',clip:'screen'},show:{go:'#guard'}},
+ {id:'lv',sec:'찾기·보기',t:'🗓 연차 사용 계획',
+  lv:{2:'달력 위 <b>🗓 연차 사용 계획(촉진)</b>에서 연차 예정일을 적으면 달력에 연차(예정)로 보입니다. 전자결재로 올린 연차·반차·휴일근무는 최종 승인된 뒤 달력에 🌴·🛠로 표시되고, 사유는 달력에 나오지 않습니다.'},
+  shot:{go:'#calendar',open:[['click','[data-lv-plan]']],clip:['#dlg-lvplan']},show:{go:'#calendar',hi:['[data-lv-plan]']}},
+ {id:'me',sec:'시작하기',t:'👤 내 정보 · 글자 크게',
+  lv:{2:'오른쪽 위 내 이름을 누르면 내 이름 확인·바꾸기, <b>글자 크게</b>, 휴대폰 홈 화면에 추가하는 방법, 알림 켜기가 있습니다.'},
+  shot:{go:'#my',open:[['click','#me-chip']],clip:['#dlg-me']},show:{go:'#my',hi:['#me-chip']}},
+ {id:'ordv',sec:'관리자',t:'📌 업무 요청 화면',adm:1,
+  lv:{2:'내 업무 위 <b>📌 업무 요청</b>을 누르면 <b>🗂 요청할 업무</b>, <b>📌 요청 현황</b>(미확인·진행·지연·완료), <b>📨 확인할 보고</b>를 한 화면에서 봅니다. 업무분장 담당자에게(⚡) 또는 직무에(🧩) 여러 건을 한꺼번에 요청하고, 직무별 담당 직원·책임자는 <b>🧩 직무별 담당</b>에서 바꿉니다. 관리자 본인만 담당인 업무는 🔒 요청 전으로 관리자만 봅니다.'},
+  shot:{who:'s01',go:'#ord',clip:'screen'},show:{go:'#ord'}},
+ {id:'ov',sec:'관리자',t:'🧭 총괄 현황',adm:1,
+  lv:{2:'직원별 기록·지연·이슈를 한눈에 보고, 단톡방 양식 <b>주간업무일지</b>와 <b>일일 현황</b> 텍스트를 바로 복사합니다.'},
+  shot:{who:'s01',go:'#overview',clip:'screen'},show:{go:'#overview'}},
+ {id:'set',sec:'관리자',t:'⚙ 설정',adm:1,
+  lv:{2:'직원 명단(「이름, 근무 건물, 담당」을 붙여 넣으면 한 번에 등록), 접속 허용 이메일(여기서 지우면 바로 차단), 부서·사업장, 결재 단계, 자료 관리 권한, 사업장 위치를 정합니다. 저장 전에 확인 창이 뜹니다.'},
+  shot:{who:'s01',go:'#my',open:[['click','#btn-settings']],clip:['#dlg-settings']},show:{go:'#my',hi:['#btn-settings']}},
+ /* ── 전문: 응용 ── */
+ {id:'xqa',sec:'빠르게 쓰기',t:'간편 등록 문장 요령',
+  lv:{3:'한 문장에 <b>날짜 · 시각 · 장소 · 사람 · 할 일</b>을 넣으면 칸이 모두 채워집니다. 예) <i>"'+GU_QA3+'"</i> → 날짜·시각 범위·장소·사업장·담당이 한 번에 들어갑니다. 날짜는 오늘·내일·모레·다음 주 ○요일·11월 5일·11/5·"○일까지", 시각은 오전·오후 ○시·14:00·10시~12시, 장소는 "○○에서"나 회의실·현장·○층·○호로 씁니다. 확인 창에서 <b>수정</b>을 누르면 칸별로 고칠 수 있고, 위 칸에서 직접 고른 값이 문장보다 먼저입니다.'},
+  shot:{go:'#my',fill:[['type','#qa-text',GU_QA3],['click','#qa-go'],['wait',900]],clip:['#dlg-cfm3']},show:{go:'#my',hi:['#qa-text']}},
+ {id:'xmemo',sec:'빠르게 쓰기',t:'메모 → 업무로',
+  lv:{3:'통화하면서 📝 메모장에 대충 적어 두고, 정리할 때 메모의 <b>➜ 업무로</b>를 누르면 그 문장을 간편 등록처럼 읽어 확인 창을 띄웁니다. 업무로 옮긴 메모는 표시가 남아 두 번 등록하지 않고, 📌 고정한 메모는 맨 위에 남습니다. 여러 줄 메모는 첫 줄이 업무명, 나머지는 내용이 됩니다.'},
+  shot:{go:'#my',open:[['fn','memo']],clip:['#memo-drawer .md-in'],hi:['#memo-drawer [data-mp="task"]']},show:{go:'#my',hi:['#btn-memo']},need:()=>!!window.memoApi},
+ {id:'xdesk',sec:'빠르게 쓰기',t:'🖥 바탕 화면 메모장 · 항상 위에',
+  lv:{3:'메모장의 <b>🖥 바탕 화면 메모장</b>을 누르면 작은 메모장 창이 열립니다. 그 창의 <b>바탕 화면 앱으로 설치</b>(크롬·엣지 주소창 ⊕도 같음)로 윈도우 바탕 화면·작업 표시줄 아이콘을 만들고, <b>📌 항상 위에 띄우기</b>로 다른 프로그램 위에 띄워 둡니다. 업무 시스템·휴대폰과 같은 메모가 이어집니다.'},
+  shot:{url:'./?memo=1',vp:[440,640],go:'',clip:'screen',hi:['[data-mp="pip"]']},show:{go:'#my',hi:['#btn-memo']},need:()=>!!window.memoApi},
+ {id:'xord',sec:'함께 일하기',t:'공장별 · 직무별로 한꺼번에 요청',adm:1,
+  lv:{3:'상세업무 등록 창의 <b>📌 업무 요청</b>에서 👤 직원(여러 명), 🏭 공장 전체 넣기, 🏭 공장별(그 공장 근무 직원 모두), 🧩 직무를 고르고 요청 메모를 적으면 저장과 함께 요청이 갑니다. 이미 있는 업무는 📌 업무 요청 화면의 🗂 요청할 업무에서 여러 건을 골라 ⚡ 업무분장 담당자에게 한 번에 보냅니다. 받은 사람의 확인·보고는 📌 요청 현황에서 추적합니다.'},
+  shot:{who:'s01',go:'#my',open:[['click','#btn-new'],['fn','ordbox']],clip:['#dlg-task'],hi:['#t-ord']},show:{go:'#my',hi:['#btn-new']}},
+ {id:'xrep',sec:'응용',t:'보고서 응용 — 메신저 텍스트 · 내 업무 보고서',
+  lv:{3:'주간 회의 전에 보고서를 <b>주간</b>으로 놓고 <b>메신저용 텍스트 복사</b> → 단톡방에 붙여 넣으면 됩니다. <b>👤 내 업무 보고서</b>는 내가 담당하거나 기록한 업무만으로 개인 실적을 만들고, 업무 범위 › 🔒 내 비공개만으로 개인 일정만 뽑습니다. 엑셀로 내려받아 표를 다듬어도 되고, 관리자는 총괄 화면의 주간업무일지 텍스트를 그대로 씁니다.'},
+  shot:{go:'#report',open:[['click','#rep-ctl [data-v="week"]']],clip:'screen',hi:['#r-copy','#r-mine']},show:{go:'#report',hi:['#r-copy']}},
+ {id:'xrepeat',sec:'응용',t:'반복 업무 · 빠뜨리지 않기',
+  lv:{3:'매주·매월 같은 일은 상세업무 등록의 <b>항목 더 보기 ▾</b> › <b>반복</b>을 정해 두면 완료할 때 다음 회차가 자동으로 생깁니다(확인 창에 다음 회차 날짜가 보임). 정기 점검은 ✅ 점검 일보, 정기 신고·교육은 ⚖ 법정 업무 자동 등록, 회의는 달력의 정기 일정을 쓰면 빠뜨리지 않습니다. 마감이 다가오면 🔔 알림이 옵니다.'},
+  shot:{go:'#my',open:[['click','#btn-new'],['fn','adv']],clip:['#dlg-task'],hi:['#t-repeat']},show:{go:'#my',hi:['#btn-new']}},
+ {id:'xkey',sec:'빠르게 쓰기',t:'⌨ 단축키 · 초성 검색',
+  lv:{3:'<b>Ctrl+K</b> 전체 검색 · <b>Alt+M</b> 메모장 · 간편 등록 칸에서 <b>Ctrl+Enter</b> 등록 · <b>Esc</b> 창 닫기 · 브라우저 <b>←</b>(휴대폰 뒤로)는 화면의 ← 목록과 같습니다. 검색은 초성(ㅅㅂ → 소방)과 한/영 실수로 찍힌 영문도 알아듣습니다.'},
+  shot:{go:'#my',open:[['fn','search']],fill:[['type','#gs-q','ㅅㅂ']],clip:['#dlg-search'],hi:['#gs-q']},show:{go:'#my',hi:['#btn-search']}},
+ {id:'xxlsx',sec:'응용',t:'엑셀로 내보내기 · 가져오기',
+  lv:{3:'목록·보고서의 <b>엑셀로 내려받기</b>는 지금 정렬·거르기 그대로 내보냅니다. 예전 엑셀·한글 업무일지는 <b>파일·사진으로 올리기</b>로 한꺼번에 가져오고, 점검 일보·경비 일지 항목은 📤 엑셀로 내보내 고친 뒤 📥 엑셀에서 가져오기로 한 번에 바꿉니다(관리자·자료 관리자).'},
+  shot:{go:'#list',clip:['#filters','#list-xlsx'],hi:['#list-xlsx']},show:{go:'#list',hi:['#list-xlsx']}},
+ {id:'xmob',sec:'응용',t:'현장에서 휴대폰으로',
+  lv:{3:'현장에서는 휴대폰 홈 화면 아이콘으로 열어 <b>📷 현장 사진 기록</b>으로 사진부터 찍고 한 줄 메모 → 간편 등록. 시설 일보는 주소 끝에 <b>#ilbo</b>를 붙인 바로가기를 홈 화면에 두면 바로 열리고, 설비 QR은 기본 카메라로 찍기만 하면 그 설비 기록이 열립니다. 바탕 화면 앱(설치)에서는 아이콘을 오른쪽 클릭하면 📝 메모장 바로가기가 있습니다.'},
+  shot:{dev:'m',go:'#my',clip:'screen',hi:['#qa-cam-btn']},show:{go:'#my',hi:['#qa-cam-btn']}},
+ {id:'xadm',sec:'관리자',t:'관리자 — 결재선 · 서식 · 탭 · 항목 편집',adm:1,
+  lv:{3:'전자결재 <b>⚙ 결재선 설정</b>·<b>📄 서식 관리</b>, 자료실·회사서식 <b>⚙ 탭 편집</b>(탭 이름·순서·새 탭), 회사서식 <b>✏️ 서식 수정</b>(모든 직원에게 반영), 조직도 <b>🧩 파트 편집</b>·업무분장 담당 고치기, 점검 일보·경비 일지 <b>✏️ 항목 편집</b>을 씁니다. 바꾼 내용은 바로 모든 직원 화면에 반영되고, 서식·항목은 직전 저장본으로 되돌릴 수 있습니다.'},
+  shot:{who:'s01',go:'#appr',clip:'screen',hi:['[data-ap-panel="line"]','[data-ap-panel="tpl"]']},show:{go:'#appr',hi:['[data-ap-panel="line"]']}}
+];
+/* 기초에서 보여 줄 순서 */
+const GU_ORDER1=['login','home','qa','cfm','new','prog','ord','ntf','memo','mobile'];
+const GU_SECS=['시작하기','업무 기록','함께 일하기','찾기·보기','서류·결재','현장 업무','빠르게 쓰기','응용','관리자'];
+const GU_ST={lv:1,man:null,manP:null,at:'',zoom:null};
+const guItem=id=>GU.find(x=>x.id===id);
+function guRole(it){if(it.adm&&!S.canEdit)return false;if(it.need){try{if(!it.need())return false;}catch{return false;}}return true;}
+function guList(lv){const L=GU.filter(x=>x.lv[lv]&&guRole(x));
+  if(lv===1)return GU_ORDER1.map(guItem).filter(x=>x&&L.includes(x));
+  return GU_SECS.flatMap(s=>L.filter(x=>x.sec===s)).concat(L.filter(x=>!GU_SECS.includes(x.sec)));}
+function guText(it,lv){return it.lv[lv]||it.lv[2]||it.lv[1]||'';}
+/* 사진 목록(manifest) — 배포 때 함께 올라간 guide/manifest.json */
+function guMan(){if(GU_ST.man)return Promise.resolve(GU_ST.man);if(GU_ST.manP)return GU_ST.manP;
+  const b=(typeof WL_BUILD==='string'&&WL_BUILD)||'';
+  GU_ST.manP=fetch('guide/manifest.json?b='+encodeURIComponent(b),{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null).then(j=>{GU_ST.man=j&&typeof j==='object'&&j.items?j:{items:{},log:[]};GU_ST.manP=null;return GU_ST.man;});return GU_ST.manP;}
+function guNew(id){const m=GU_ST.man;if(!m||!m.items||!m.items[id])return false;const u=m.items[id].upd||'';const last=(m.log&&m.log[0]&&m.log[0].at)||'';if(!u||!last)return false;
+  const d=(new Date(last.slice(0,10)+'T00:00:00')-new Date(u.slice(0,10)+'T00:00:00'))/864e5;return d<=14&&m.log.length>1;}
+function guFig(it){const m=GU_ST.man;const s=m&&m.items&&m.items[it.img||it.id];
+  if(!s)return `<div class="gu-noimg">🖼 화면 사진 준비 중 — 다음 배포 때 자동으로 들어갑니다.</div>`;
+  const src=`guide/${esc(s.f||((it.img||it.id)+'.webp'))}?v=${esc(s.h||'')}`;
+  return `<figure class="gu-fig"><button type="button" class="gu-zoom" data-gu-zoom="${esc(src)}" aria-label="크게 보기"><img src="${src}" alt="${esc(it.t)} 화면" loading="lazy" decoding="async" width="${+s.w||''}" height="${+s.ht||''}"></button><figcaption>${s.dev==='m'?'📱 휴대폰 화면':'🖥 PC 화면'} · 주황 테두리가 누를 곳 · 눌러서 크게 보기</figcaption></figure>`;}
+function guLogHTML(){const m=GU_ST.man;if(!m||!Array.isArray(m.log)||m.log.length<2)return '';const g=m.log[0];
+  const nm=id=>{const it=guItem(id);return it?it.t:id;};
+  const ch=[...(g.add||[]).map(id=>({id,k:'새 기능'})),...(g.chg||[]).map(id=>({id,k:'화면·설명 바뀜'}))].filter(x=>guItem(x.id)&&guRole(guItem(x.id)));
+  const del=(g.del||[]).map(x=>typeof x==='string'?{t:x}:x);if(!ch.length&&!del.length)return '';
+  return `<section class="gu-news"><b>🆕 최근 바뀐 내용 <small>${esc((g.at||'').slice(0,10).replace(/-/g,'.'))} 업데이트</small></b><ul>${ch.map(x=>`<li><button type="button" class="linklike" data-gu-jump="${esc(x.id)}">${esc(nm(x.id))}</button> <small>${x.k}</small></li>`).join('')}${del.map(x=>`<li class="gu-del">${esc(x.t||x.id||'')} <small>없어진 기능 — 안내에서 뺐습니다</small></li>`).join('')}</ul></section>`;}
+function guBody(){const lv=GU_ST.lv;const L=guList(lv);let sec='',n=0;
+  const idx=[],cards=[];
+  for(const it of L){n++;if(lv>1&&it.sec!==sec){sec=it.sec;idx.push(`<li class="gu-ih">${esc(sec)}</li>`);cards.push(`<h3 class="gu-sh">${esc(sec)}</h3>`);}
+    const nw=guNew(it.id)?'<em class="gu-new">🆕 바뀜</em>':'';const ad=it.adm?'<em class="gu-adm">관리자</em>':'';
+    idx.push(`<li><button type="button" data-gu-jump="${esc(it.id)}"><span>${n}</span>${esc(it.t)}${nw}</button></li>`);
+    cards.push(`<article class="gu-card" id="gu-${esc(it.id)}" data-gu-id="${esc(it.id)}"><header><span class="gu-n">${lv===1?'STEP ':''}${n}</span><h4>${esc(it.t)}</h4>${ad}${nw}</header><p>${guText(it,lv)}</p>${guFig(it)}<div class="gu-acts">${it.show?`<button type="button" class="btn" data-gu-show="${esc(it.id)}">▶ 화면에서 보기</button>`:''}</div></article>`);}
+  return {idx:idx.join(''),cards:cards.join(''),n:L.length};}
+function guDlg(){let d=$('#dlg-guide');if(d)return d;d=document.createElement('dialog');d.id='dlg-guide';d.className='modal gu-dlg';d.setAttribute('aria-label','활용방법 안내');
+  d.innerHTML=`<div class="gu-top"><h2>📖 활용방법 안내</h2><div class="gu-lvs" role="tablist">${[1,2,3].map(l=>`<button type="button" role="tab" data-gu-lv="${l}"><b>${GU_LV[l].k}</b><small>${GU_LV[l].d}</small></button>`).join('')}</div><button type="button" class="icon-btn gu-x" data-gu-close aria-label="닫기">✕</button></div>
+  <div class="gu-main"><nav class="gu-idx" aria-label="차례"><ol></ol><a href="#help" class="gu-help" data-gu-help>📄 기능별 설명 전체(사용 안내)</a><button type="button" class="linklike gu-tour" data-gu-tour>🧭 1분 둘러보기</button></nav><div class="gu-body" tabindex="0"></div></div>
+  <div class="gu-lb" hidden><img alt=""><button type="button" class="btn" data-gu-lbx>✕ 닫기</button></div>`;
+  document.body.appendChild(d);
+  d.addEventListener('click',e=>{const T=e.target;if(!T.closest)return;
+    const lvb=T.closest('[data-gu-lv]');if(lvb){GU_ST.lv=+lvb.dataset.guLv;lsSet('wl.gu.lv',String(GU_ST.lv));guRender();$('.gu-body',d).scrollTop=0;return;}
+    if(T.closest('[data-gu-close]')){d.close();return;}
+    const j=T.closest('[data-gu-jump]');if(j){const c=document.getElementById('gu-'+j.dataset.guJump);if(c){c.scrollIntoView({block:'start',behavior:'smooth'});c.classList.add('gu-flash');setTimeout(()=>c.classList.remove('gu-flash'),1400);}return;}
+    const z=T.closest('[data-gu-zoom]');if(z){const lb=$('.gu-lb',d);$('img',lb).src=z.dataset.guZoom;lb.hidden=false;return;}
+    if(T.closest('[data-gu-lbx]')||T.classList.contains('gu-lb')){$('.gu-lb',d).hidden=true;return;}
+    const sh=T.closest('[data-gu-show]');if(sh){guShow(sh.dataset.guShow);return;}
+    if(T.closest('[data-gu-help]')){d.close();return;}
+    if(T.closest('[data-gu-tour]')){d.close();if(window.tourApi&&tourApi.start)tourApi.start(true);return;}});
+  d.addEventListener('cancel',e=>{const lb=$('.gu-lb',d);if(!lb.hidden){e.preventDefault();lb.hidden=true;}});
+  return d;}
+function guRender(){const d=guDlg();const b=guBody();
+  for(const x of $$('[data-gu-lv]',d)){const on=+x.dataset.guLv===GU_ST.lv;x.classList.toggle('on',on);x.setAttribute('aria-selected',on?'true':'false');}
+  $('.gu-idx ol',d).innerHTML=b.idx;
+  $('.gu-body',d).innerHTML=`<p class="gu-lead"><b>${GU_LV[GU_ST.lv].k}</b> — ${GU_LV[GU_ST.lv].d} · ${b.n}단계${GU_ST.lv<3?` <button type="button" class="linklike" data-gu-lv="${GU_ST.lv+1}">다음 단계(${GU_LV[GU_ST.lv+1].k}) ›</button>`:''}</p>${guLogHTML()}${b.cards}<p class="gu-foot">화면 사진은 시스템이 바뀔 때마다 자동으로 다시 찍어 바뀝니다${GU_ST.man&&GU_ST.man.at?` · 사진 기준 ${esc(String(GU_ST.man.at).slice(0,10).replace(/-/g,'.'))}`:''}.${GU_ST.man&&GU_ST.man.build&&typeof WL_BUILD==='string'&&WL_BUILD&&GU_ST.man.build!==WL_BUILD?' <small>(새 버전 사진을 준비하는 중일 수 있습니다)</small>':''}</p>`;}
+async function guOpen(o={}){if(o.lv)GU_ST.lv=o.lv;else{const v=+lsGet('wl.gu.lv');if(v>=1&&v<=3)GU_ST.lv=v;}
+  const d=guDlg();guRender();if(!d.open)d.showModal();await guMan();if(d.open){guRender();if(o.id){const c=document.getElementById('gu-'+o.id);if(c)c.scrollIntoView({block:'start'});}}return d;}
+/* 화면 사진 찍기·화면에서 보기 공용: 화면 이동 · 열기 · 채우기 */
+const guSleep=ms=>new Promise(r=>setTimeout(r,ms));
+const guVis=e=>{if(!e)return false;const r=e.getBoundingClientRect();if(r.width<1||r.height<1)return false;const cs=getComputedStyle(e);return cs.visibility!=='hidden'&&cs.display!=='none';};
+function guQ(s,all){/* "선택자|들어 있는 글자|그 안의 선택자" */
+  const P=String(s).split('|');let els;
+  if(P.length>1){const base=[...document.querySelectorAll(P[0])].filter(e=>guVis(e)&&(e.textContent||'').includes(P[1]));els=P[2]?base.flatMap(b=>[...b.querySelectorAll(P[2])]):base;}
+  else els=[...document.querySelectorAll(s)];
+  const v=els.filter(guVis);return all?v:(v[0]||null);}
+const GU_FN={
+  ntf:()=>{const p=$('#ntf-pop');if(p&&p.hidden&&typeof ntfOpen==='function')ntfOpen();},
+  memo:()=>{const d=$('#memo-drawer');if((!d||d.hidden)&&typeof memoOpen==='function')memoOpen();},
+  search:()=>{if(typeof gsOpen==='function')gsOpen('');},
+  adv:()=>{const d=$('#dlg-task');const b=$('#t-adv');if(d&&b&&d.classList.contains('simple'))b.click();},
+  ordbox:()=>{const b=$('#t-ord');if(!b)return;b.hidden=false;const sw=b.querySelector('summary,[data-od-toggle],input[type=checkbox]');if(sw&&!b.querySelector('#t-ord-memo'))sw.click();b.scrollIntoView({block:'center'});}};
+async function guAct(list){for(const a of list||[]){const [k,x,y]=a;
+  if(k==='wait'){await guSleep(x);continue;}
+  if(k==='fn'){try{await (GU_FN[x]&&GU_FN[x]());}catch(e){console.warn(e);}await guSleep(450);continue;}
+  const el=guQ(x);if(!el)return {ok:false,miss:x};
+  if(k==='click'){el.click();await guSleep(500);}
+  else if(k==='type'){el.focus();el.value=y;el.dispatchEvent(new Event('input',{bubbles:true}));await guSleep(200);}}
+  return {ok:true};}
+function guReset(){try{if(window.driverObj&&driverObj.destroy)driverObj.destroy();}catch{}
+  for(const d of $$('dialog[open]'))try{const c=d.querySelector('[data-c3="cancel"]');if(c)c.click();else d.close();}catch{}
+  const p=$('#ntf-pop');if(p)p.hidden=true;const sh=$('#mnav-sheet');if(sh)sh.hidden=true;
+  const md=$('#memo-drawer');if(md&&!md.hidden&&typeof memoClose==='function')memoClose();
+  try{window.scrollTo(0,0);}catch{}const q=$('#qa-text');if(q&&q.value){q.value='';q.dispatchEvent(new Event('input',{bubbles:true}));}}
+async function guGo(h){if(h==null||h==='')return;if(location.hash!==h){go(h);await guSleep(1100);}else await guSleep(200);}
+/* 사진 찍기용(테스트·배포 도구만 씀): 화면을 준비하고 자를 영역·강조할 영역을 돌려줌 */
+async function guPrep(id){const it=guItem(id);if(!it||!it.shot)return {ok:false,err:'no item'};const sh=it.shot;
+  guReset();await guSleep(250);await guGo(sh.go);let r=await guAct(sh.open);if(!r.ok)return {ok:false,err:'열기 실패: '+r.miss};
+  r=await guAct(sh.fill);if(!r.ok)return {ok:false,err:'채우기 실패: '+r.miss};await guSleep(500);
+  return guMeasure(id);}
+function guMeasure(id){const it=guItem(id);const sh=it.shot;const W=innerWidth,H=innerHeight,pad=sh.pad==null?10:sh.pad;
+  let clip;if(sh.clip==='screen'||!sh.clip)clip={x:0,y:0,w:W,h:H};
+  else{const els=sh.clip.map(s=>guQ(s));const miss=sh.clip.filter((s,i)=>!els[i]);if(miss.length)return {ok:false,err:'자를 영역 없음: '+miss.join(', ')};
+    if(!els[0].closest('dialog')){els[0].scrollIntoView({block:'nearest'});}
+    const rs=els.map(e=>e.getBoundingClientRect());let x0=Math.min(...rs.map(r=>r.left))-pad,y0=Math.min(...rs.map(r=>r.top))-pad,x1=Math.max(...rs.map(r=>r.right))+pad,y1=Math.max(...rs.map(r=>r.bottom))+pad;
+    x0=Math.max(0,x0);y0=Math.max(0,y0);x1=Math.min(W,x1);y1=Math.min(H,y1);clip={x:Math.round(x0),y:Math.round(y0),w:Math.round(x1-x0),h:Math.round(y1-y0)};}
+  const hi=[];for(const s of sh.hi||[]){const e=guQ(s);if(!e)return {ok:false,err:'강조할 곳 없음: '+s};const r=e.getBoundingClientRect();hi.push({x:Math.round(r.left-clip.x),y:Math.round(r.top-clip.y),w:Math.round(r.width),h:Math.round(r.height)});}
+  return {ok:true,clip,hi};}
+/* ▶ 화면에서 보기 — 안내를 닫고 그 화면으로 가서 실제 자리를 강조 (driver.js 1.10.2, MIT) */
+async function guShow(id){const it=guItem(id);if(!it)return;const s=it.show||{};const d=$('#dlg-guide');if(d&&d.open)d.close();
+  guReset();await guGo(s.go!=null?s.go:(it.shot&&it.shot.go));await guAct(s.open);
+  const el=(s.hi||[]).map(x=>guQ(x)).find(Boolean);
+  const back=()=>guOpen({id});
+  if(!el){toast(`「${it.t}」 화면입니다. 안내로 돌아가려면 ?를 누르세요.`);return;}
+  el.scrollIntoView({block:'center'});
+  try{await Promise.all([needLib('driver'),wlCss(LIBJ+'driver.js@1.10.2/dist/driver.css')]);}catch{}
+  const D=window.driver&&window.driver.js&&window.driver.js.driver;
+  if(!D){el.classList.add('gu-pulse');setTimeout(()=>el.classList.remove('gu-pulse'),3200);return;}
+  const tx=(it.lv[1]||it.lv[2]||it.lv[3]||'');
+  const dv=D({allowClose:true,overlayOpacity:.5,stagePadding:6,popoverClass:'wl-tour gu-pop',showButtons:['next','close'],nextBtnText:'📖 안내로 돌아가기',doneBtnText:'📖 안내로 돌아가기',
+    steps:[{element:el,popover:{title:it.t,description:tx.length>220?tx.slice(0,tx.lastIndexOf('.',220)+1||220):tx,onNextClick:()=>{dv.destroy();back();}}}]});
+  window.driverObj=dv;dv.drive();}
+/* 들어가는 곳: 내 업무 머리 · 위쪽 ? · 휴대폰 더보기 · 사용 안내 맨 위 */
+const guHidden=()=>!!(S.guard&&!S.myStaff);
+{const _r=renderMy;renderMy=function(){const r=_r.apply(this,arguments);try{const hd=$('#view .home-head > div:last-child');if(hd&&!guHidden()&&!$('[data-guide-open]',hd))hd.insertAdjacentHTML('afterbegin','<button type="button" class="btn gu-open-btn" data-guide-open title="단계별(기초·성숙·전문) 화면 사진으로 보는 사용법">📖 활용방법 안내</button>');}catch(e){console.warn(e);}return r;};}
+{const _m=mnavMore;mnavMore=function(){const r=_m.apply(this,arguments);try{const sh=document.getElementById('mnav-sheet');const ms=sh&&sh.querySelector('.ms-in');if(ms&&!guHidden()&&!ms.querySelector('[data-guide-open]'))ms.insertAdjacentHTML('afterbegin','<button type="button" data-guide-open>📖 활용방법 안내</button>');}catch{}return r;};}
+{const _h=renderHelp;renderHelp=function(v){const r=_h.apply(this,arguments);try{const bar=v&&$('.tour-bar',v);if(bar&&!$('[data-guide-open]',bar))bar.insertAdjacentHTML('afterbegin','<button type="button" class="btn primary" data-guide-open>📖 활용방법 안내 (단계별 · 화면 사진)</button>');}catch{}return r;};}
+(function(){const a=document.querySelector('.top-right a[href="#help"]');if(a){a.setAttribute('title','📖 활용방법 안내 — 기초·성숙·전문 단계별 사용법');a.setAttribute('aria-label','활용방법 안내');a.dataset.guideOpen='';}})();
+document.addEventListener('click',e=>{const T=e.target;if(!T.closest)return;const b=T.closest('[data-guide-open]');if(!b)return;e.preventDefault();e.stopPropagation();const sh=$('#mnav-sheet');if(sh)sh.hidden=true;guOpen();},true);
+window.guideApi={items:()=>GU.map(x=>({id:x.id,t:x.t,sec:x.sec,adm:!!x.adm,lv:{...x.lv},img:x.img||'',shot:x.shot?{...x.shot}:null})),order1:GU_ORDER1.slice(),list:lv=>guList(lv).map(x=>x.id),open:guOpen,show:guShow,prep:guPrep,measure:guMeasure,reset:guReset,manifest:guMan,
+  _setMan:m=>{GU_ST.man=m;}};
+/* 55차: 위쪽 줄 맞춤 — 탭 줄이 넘치면(알림 숫자·이름 길이·관리자 탭 등) 단계별로 좁혀 모든 탭이 한 줄에 보이게 */
+function topFit(){const top=document.querySelector('header.top'),n=document.querySelector('nav.tabs');if(!top||!n)return;const L=['fit1','fit2','fit3'];
+  top.classList.remove(...L);if(innerWidth<=760)return;for(const c of L){if(n.scrollWidth-n.clientWidth<=1)break;top.classList.add(c);}}
+let _tfT=0;const topFitSoon=()=>{clearTimeout(_tfT);_tfT=setTimeout(topFit,60);};
+addEventListener('resize',topFitSoon);try{document.fonts&&document.fonts.ready.then(topFitSoon);}catch{}
+{const _r=render;render=function(){const r=_r.apply(this,arguments);topFitSoon();return r;};}
+try{const n=document.querySelector('nav.tabs'),tr=document.querySelector('.top-right');const mo=new MutationObserver(topFitSoon);if(n)mo.observe(n,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['hidden','class']});if(tr)mo.observe(tr,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['hidden']});}catch{}
+setTimeout(topFit,300);window.topFit=topFit;
 
 /* ───────── 시작 ───────── */
 function boot(){
