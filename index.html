@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="wl-build" content="14407dfab641">
+<meta name="wl-build" content="df2e6c675b03">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="manifest" href="manifest.webmanifest"><script>if(/[?&]memo=1(&|$)/.test(location.search)){document.querySelector('link[rel=manifest]').href='memo.webmanifest';document.documentElement.classList.add('memo-mode');}</script>
 <meta name="theme-color" content="#1f3a5f">
@@ -2277,6 +2277,45 @@ dialog.modal.gu-dlg[open]{display:flex}
 #print-sheet.fm-meas .fmx .fm-pb{border:0;margin:0}#print-sheet.fm-meas .fmx .fm-pb::after{display:none}
 #print-sheet.fm-meas .fmx .fm-date{border-bottom:0}#print-sheet.fm-meas .fmx .fm-hd{display:flex}
 #print-sheet .fmx .fm-pg{display:flow-root}
+/* ═════ 60차: 🙂 간편모드 (html.ez) ═════ */
+/* 위쪽 단추 — 가장 눈에 띄게: 노란 바탕·굵은 글자·스위치, 켜지면 초록 */
+.ez-btn{display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 10px 0 11px;border-radius:999px;border:2px solid #e8a200;background:#ffe27a;color:#3d2a00;font-weight:800;font-size:15px;line-height:1;font-family:inherit;cursor:pointer;white-space:nowrap;flex:none;box-shadow:0 1px 0 rgba(0,0,0,.08)}
+.ez-btn:hover{background:#ffd84a}.ez-btn:focus-visible{outline:3px solid #2563eb;outline-offset:2px}
+.ez-btn .ez-ic{font-size:16px;line-height:1}
+.ez-btn .ez-sw{position:relative;width:30px;height:17px;border-radius:999px;background:#9a8a5c;flex:none}
+.ez-btn .ez-sw i{position:absolute;top:2px;left:2px;width:13px;height:13px;border-radius:50%;background:#fff;transition:left .15s}
+.ez-btn[aria-pressed="true"]{background:#16a34a;border-color:#0f7a37;color:#fff}.ez-btn[aria-pressed="true"]:hover{background:#15803d}
+.ez-btn[aria-pressed="true"] .ez-sw{background:#bbf7d0}.ez-btn[aria-pressed="true"] .ez-sw i{left:15px;background:#0f7a37}
+@media (min-width:761px){header.top.fitA .sync>span{display:none!important}header.top.fitA:not(.fit2) .top-right{gap:6px}header.top.fit2 .ez-btn .ez-ic{display:none}header.top.fit3 .ez-btn{font-size:14px;padding:0 8px;gap:5px;height:34px}header.top.fit5 .ez-btn .ez-m{display:none}header.top.fit5 .sync{display:none!important}header.top.fit6 #btn-new .bn-x{display:none}header.top.fit7 .ez-btn .ez-sw{display:none}header.top.fit7 .ez-btn{padding:0 10px}header.top.fit8 .top-right>a.icon-btn[data-guide-open]{display:none}}
+@media (max-width:760px){header.top #btn-easy{position:absolute;top:9px;right:10px;height:36px;font-size:14px;padding:0 9px;z-index:2}header.top #btn-easy .ez-ic{display:none}}
+@media (max-width:380px){header.top #btn-easy .ez-sw{display:none}}
+.mnav-sheet .ez-mnav{grid-column:1/-1;background:#ffe27a!important;border-color:#e8a200!important;color:#3d2a00!important;font-weight:800}
+html.ez .mnav-sheet .ez-mnav{background:#16a34a!important;border-color:#0f7a37!important;color:#fff!important}
+/* 「▾ 자세히」 단추 — 간편모드에서만 */
+.ez-more{display:none}
+html.ez .ez-more{display:inline-flex;align-items:center;gap:4px;margin:6px 0 0;padding:5px 12px;border-radius:8px;border:1px solid #9db4dc;background:#eef4ff;color:#1d4ed8;font-weight:700;font-size:14px;line-height:1.2;font-family:inherit;cursor:pointer;width:max-content}
+html.ez .ez-more:hover{background:#dde9ff}
+html.ez .ez-more[aria-expanded="true"]{background:#fff;color:#475569;border-color:#cbd5e1}
+html.ez .ez-sec{margin:10px 0 0}
+html.ez .ez-dlg{margin:2px 0 10px}html.ez #t-adv{display:none!important}
+/* ① 흐리고 작은 설명·예시 글 숨김 (안내서·설정·관리 화면은 그대로) */
+html.ez :is(#view,#dlg-task,#memo-drawer,#dlg-print,#dlg-view,#dlg-doc,#dlg-ntc) :is(.qa-hint,.priv-note,.il-tip,.mp-help,.fm-tree-tip,.fmr-hint,.vw-note,.hint:not([id]),.help:not([id]):not(.warn),#t-photo-opt):not(.help-wrap *),
+html.ez #view .od-card .od-more,html.ez #view .ez-x,html.ez #memo-drawer .ez-x,html.ez #dlg-ntc .od-help{display:none!important}
+html.ez .ez-short{display:inline}html:not(.ez) .ez-short{display:none}html.ez .ez-full{display:none}
+/* ② 카드·줄 2~3줄 — 세부는 「▾ 자세히」 */
+html.ez .od-row:not(.ez-open) :is(.od-acks,.od-rep,.od-chips){display:none!important}
+html.ez .od-row:not(.ez-open) :is(.ntc-body,.od-memo){display:block!important;white-space:nowrap!important;overflow:hidden;text-overflow:ellipsis;width:0;min-width:100%;box-sizing:border-box;-webkit-line-clamp:unset}
+html.ez .feed > li:not(.ez-open) .wd-f{display:none}
+html.ez .feed > li:not(.ez-open) .txt{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:0;min-width:100%}
+html.ez :is(.od-meta,.feed > li .line) .ez-more{margin:0 0 0 4px;padding:2px 10px;font-size:13px;vertical-align:middle}
+html.ez .mrow .mt .catchip,html.ez .mrow .mt .wd-reg,html.ez .card .catchip,html.ez .card .wd-reg,html.ez .card .plc{display:none!important}
+html.ez .card .c2>.tag[class="tag"]{display:none!important}
+html.ez #view .home-head>div>p:not(:has(button,a,select,input,label)){display:none!important}
+/* ③ 간편 등록 — 고르는 칸은 접어 둠 */
+html.ez #qa:not(.ez-open) .qa-opts{display:none!important}
+/* ④ 업무 창 — 꼭 필요한 칸만 (「▾ 자세히」로 나머지) */
+html.ez #dlg-task:not(.ez-open) :is(#t-priv-row,.form>.r3:not(.r3-dt),#t-auto,.t-place-f,#t-stime,#t-dtime,.r3-dt>.f:nth-child(3),#t-wd-hint,#t-ord,#t-who-f,.f:has(>#t-assignee-text),#t-ph-tools,#t-pii-row,.pii-help){display:none!important}
+@media (min-width:761px){html.ez #dlg-task:not(.ez-open) .r3.r3-dt{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -11724,8 +11763,13 @@ const GU=[
   shot:{who:'',clip:['#gate-card'],hi:['#g-email','#gate-card [data-g="signup"]']},show:{}},
  {id:'home',sec:'시작하기',t:'내 업무 화면 한눈에',
   lv:{1:'로그인하면 <b>내 업무</b>가 열립니다. 맨 위 <b>간편 등록</b> 칸, 받은 업무 요청, <b>진행 중·오늘 할 일</b>, 다가오는 일정, 오늘 한 일이 차례로 모여 있습니다. 위쪽 탭으로 팀 현황·달력·전자결재 등으로 옮겨 갑니다.',
-      2:'로그인하면 <b>내 업무</b>가 열립니다. 맨 위 <b>간편 등록</b> 칸, 오늘의 브리핑·정기 일정, 받은 <b>📢 업무 공지</b>·<b>📌 업무 요청</b>, <b>진행 중·오늘 할 일</b>, 다가오는 일정, 🔒 비공개 업무, 오늘 한 일, 오늘 특이사항·건의가 차례로 모여 있습니다. 위쪽 탭으로 팀 현황·칸반·달력·목록·보고서·각종서류·법정 업무·전자결재·그룹웨어로 옮기고, 오른쪽 위 기호는 왼쪽부터 <b>?</b> 활용방법 안내 · <b>☑🔓</b> 비공개 업무 잠금 · ⚙ 설정 · 🖨 인쇄 · 🔍 전체 검색 · 📝 메모장 · 🔔 알림 · 내 이름(내 정보)입니다.'},
+      2:'로그인하면 <b>내 업무</b>가 열립니다. 맨 위 <b>간편 등록</b> 칸, 오늘의 브리핑·정기 일정, 받은 <b>📢 업무 공지</b>·<b>📌 업무 요청</b>, <b>진행 중·오늘 할 일</b>, 다가오는 일정, 🔒 비공개 업무, 오늘 한 일, 오늘 특이사항·건의가 차례로 모여 있습니다. 위쪽 탭으로 팀 현황·칸반·달력·목록·보고서·각종서류·법정 업무·전자결재·그룹웨어로 옮기고, 오른쪽 위는 노란 <b>🙂 간편모드</b> 단추(설명을 숨기고 2~3줄로 간단히)와, 왼쪽부터 <b>?</b> 활용방법 안내 · <b>☑🔓</b> 비공개 업무 잠금 · ⚙ 설정 · 🖨 인쇄 · 🔍 전체 검색 · 📝 메모장 · 🔔 알림 · 내 이름(내 정보)입니다.'},
   shot:{go:'#my',clip:'screen'},show:{go:'#my',hi:['#qa']}},
+ {id:'easy',sec:'시작하기',t:'🙂 간편모드 — 화면을 간단하게',
+  lv:{1:'컴퓨터가 익숙하지 않으면 맨 위 노란 <b>🙂 간편모드</b> 단추를 누르세요. 흐린 설명 글과 예시가 사라지고, 업무 카드는 2~3줄로 간단히 보입니다. 더 보고 싶은 카드는 <b>▾ 자세히</b>를 누르면 그 카드만 전부 보입니다. 단추가 초록 <b>간편모드 켜짐</b>일 때 다시 누르면 원래 화면입니다.',
+      2:'맨 위 노란 <b>🙂 간편모드</b>(휴대폰은 오른쪽 위 · 더보기)를 누르면 초록 <b>간편모드 켜짐</b>이 되고 이 기기에 기억됩니다. ① 흐리고 작은 설명·사용법 글과 입력칸의 「예: …」 예시를 숨깁니다. ② 업무 공지·업무 요청 카드는 제목 · 요약 한 줄 · 내용 한 줄, 오늘 한 일은 무엇·시각 · 업무명 · 기록 한 줄, 내 업무 줄과 칸반 카드는 업무명 · 상태 · 일정 · D-day 만 보입니다 — 카드의 <b>▾ 자세히</b>를 누르면 숨긴 내용(받은 사람·확인 현황·보고·긴 내용)이 보이고 <b>▴ 접기</b>로 다시 접습니다. 업무명을 누르면 전체 창이 열립니다. ③ 간편 등록은 입력칸과 <b>간편 등록</b> 단추만 — 상태·날짜·분류·일보 단추는 <b>⚙ 상태·날짜·분류 고르기</b>를 눌러야 보입니다. ④ 업무 창은 업무명·날짜·진행 상태·진척·내용·사진·진행 기록만 — 분류·사업장·장소·시각·반복·담당자는 <b>▾ 자세히</b>. 저장되는 내용·권한은 그대로이고 화면만 바뀝니다.',
+      3:'직원 PC에 미리 켜 두려면 업무시스템 주소 끝에 <b>?easy=1</b> 을 붙여 한 번 열면 그 기기는 간편모드로 시작합니다(<b>?easy=0</b> 은 끔). 기기·브라우저마다 따로 기억합니다.'},
+  shot:{go:'#my',open:[['fn','easyon']],clip:'screen',hi:['#btn-easy']},show:{go:'#my',hi:['#btn-easy']}},
  {id:'qa',sec:'업무 기록',t:'⚡ 간편 등록 — 한 줄로 업무 등록',
   lv:{1:'내 업무 맨 위 칸에 <i>"'+GU_QA+'"</i>처럼 적고 <b>간편 등록</b>을 누르면 날짜·시각·장소·사업장을 알아서 찾아 줍니다. 이미 한 일은 <b>완료</b>, 하는 중이면 <b>진행 중</b>, 앞으로 할 일은 <b>할 예정</b>을 먼저 고르세요.',
       2:'내 업무 맨 위 칸에 문장으로 적고 <b>간편 등록</b>을 누르면 날짜(오늘·내일·모레·다음 주 ○요일·11월 5일·11/5·~까지), 시각(오전·오후 ○시·14:00·10시~12시), 장소(○○에서·회의실·현장·○층), 사업장, 담당(문장에 나온 직원)을 찾아 확인 창에 보여 줍니다. 상태는 완료·진행 중·할 예정 중에서 고르고, 분류(대·중·소)는 <b>자동 분류</b>로 두면 내용을 읽고 정합니다. 날짜·시각·사업장 칸을 직접 고르면 그 값이 먼저입니다. 📷로 사진을 붙이고, <b>🔒 나만 보기</b>를 켜면 비공개 업무가 됩니다. Enter는 줄바꿈, <b>Ctrl+Enter</b>도 등록입니다.'},
@@ -11877,7 +11921,7 @@ const GU=[
   shot:{who:'s01',go:'#appr',clip:'screen',hi:['[data-ap-panel="line"]','[data-ap-panel="tpl"]']},show:{go:'#appr',hi:['[data-ap-panel="line"]']}}
 ];
 /* 기초에서 보여 줄 순서 */
-const GU_ORDER1=['login','home','qa','cfm','new','prog','ntc','ord','ntf','memo','mobile'];
+const GU_ORDER1=['login','home','easy','qa','cfm','new','prog','ntc','ord','ntf','memo','mobile'];
 const GU_SECS=['시작하기','업무 기록','함께 일하기','찾기·보기','서류·결재','현장 업무','빠르게 쓰기','응용','관리자'];
 const GU_ST={lv:1,man:null,manP:null,at:'',zoom:null};
 const guItem=id=>GU.find(x=>x.id===id);
@@ -11939,6 +11983,7 @@ function guQ(s,all){/* "선택자|들어 있는 글자|그 안의 선택자" */
   else els=[...document.querySelectorAll(s)];
   const v=els.filter(guVis);return all?v:(v[0]||null);}
 const GU_FN={
+  easyon:()=>{if(window.easyApi&&!easyApi.on())easyApi.set(true);},
   ntf:()=>{const p=$('#ntf-pop');if(p&&p.hidden&&typeof ntfOpen==='function')ntfOpen();},
   memo:()=>{const d=$('#memo-drawer');if((!d||d.hidden)&&typeof memoOpen==='function')memoOpen();},
   search:()=>{if(typeof gsOpen==='function')gsOpen('');},
@@ -11959,7 +12004,7 @@ function guReset(){try{if(window.driverObj&&driverObj.destroy)driverObj.destroy(
   try{window.scrollTo(0,0);}catch{}const q=$('#qa-text');if(q&&q.value){q.value='';q.dispatchEvent(new Event('input',{bubbles:true}));}}
 async function guGo(h){if(h==null||h==='')return;if(location.hash!==h){go(h);await guSleep(1100);}else await guSleep(200);}
 /* 사진 찍기용(테스트·배포 도구만 씀): 화면을 준비하고 자를 영역·강조할 영역을 돌려줌 */
-async function guPrep(id){const it=guItem(id);if(!it||!it.shot)return {ok:false,err:'no item'};const sh=it.shot;
+async function guPrep(id){const it=guItem(id);if(!it||!it.shot)return {ok:false,err:'no item'};const sh=it.shot;try{if(typeof ezShot==='function')ezShot(id);}catch{}
   guReset();await guSleep(250);await guGo(sh.go);let r=await guAct(sh.open);if(!r.ok)return {ok:false,err:'열기 실패: '+r.miss};
   r=await guAct(sh.fill);if(!r.ok)return {ok:false,err:'채우기 실패: '+r.miss};await guSleep(500);
   return guMeasure(id);}
@@ -11995,7 +12040,7 @@ document.addEventListener('click',e=>{const T=e.target;if(!T.closest)return;cons
 window.guideApi={items:()=>GU.map(x=>({id:x.id,t:x.t,sec:x.sec,adm:!!x.adm,lv:{...x.lv},img:x.img||'',shot:x.shot?{...x.shot}:null})),order1:GU_ORDER1.slice(),list:lv=>guList(lv).map(x=>x.id),open:guOpen,show:guShow,prep:guPrep,measure:guMeasure,reset:guReset,manifest:guMan,
   _setMan:m=>{GU_ST.man=m;}};
 /* 55차: 위쪽 줄 맞춤 — 탭 줄이 넘치면(알림 숫자·이름 길이·관리자 탭 등) 단계별로 좁혀 모든 탭이 한 줄에 보이게 */
-function topFit(){const top=document.querySelector('header.top'),n=document.querySelector('nav.tabs');if(!top||!n)return;const L=['fit0','fit0b','fit1','fit2','fit3','fit4'];/* 58차: 굵은 탭 글자 — 넘치면 탭 여백을 9px → 6px → 4px 차례로 */
+function topFit(){const top=document.querySelector('header.top'),n=document.querySelector('nav.tabs');if(!top||!n)return;const L=['fitA','fit0','fit0b','fit1','fit2','fit6','fit5','fit3','fit4','fit7','fit8'];/* 60차: 탭 글자를 줄이기(fit3) 전에 「+ 등록」(fit6)·「간편」(fit5)부터 *//* 58차: 굵은 탭 글자 — 넘치면 탭 여백을 9px → 6px → 4px 차례로 */
   top.classList.remove(...L);if(innerWidth<=760)return;for(const c of L){if(n.scrollWidth-n.clientWidth<=1)break;top.classList.add(c);}}
 let _tfT=0;const topFitSoon=()=>{clearTimeout(_tfT);_tfT=setTimeout(topFit,60);};
 addEventListener('resize',topFitSoon);try{document.fonts&&document.fonts.ready.then(topFitSoon);}catch{}
@@ -12294,6 +12339,97 @@ window.ntcApi={all:ntcAll,lists:ntcLists,to:ntcTo,sub:ntcSub,find:ntcFind,
   /* 시험·시연 자료용: 확인 창 없이 */
   send:async o=>{NTC.dlg={title:o.title||'',body:o.body||'',m:o.m||'all',sids:o.sids||[],roles:o.roles||[],sites:o.sites||[],need:!!o.need,due:o.due||''};await ntcSend({quiet:true});},
   ack:id=>ntcAck(id,{quiet:true}),renotify:id=>ntcRenotify(id),cancel:id=>ntcCancel(id),view:id=>ntcViewDlg(id)};
+
+/* ═════════ 60차: 🙂 간편모드 — 컴퓨터가 익숙하지 않은 직원용 단순 화면 ═════════
+   · 위쪽에 가장 눈에 띄는 [🙂 간편모드] 단추(노란 바탕, 켜지면 초록 「간편모드 켜짐」). 이 기기에 기억(wl.easy).
+     주소 끝에 ?easy=1 을 붙여 열면 그 기기는 간편모드로 시작(?easy=0 은 끔) — 관리자가 직원 PC 에 바로 켜 줄 때
+   · 켜면 <html class="ez">
+     ① 흐리고 작은 설명·예시 글(간편 등록 사용법, 비공개 안내, 사진 안내 등)과 입력칸의 「예: …」 예시를 숨김
+     ② 카드·줄은 2~3줄만 — 업무 공지·요청 카드: 제목 · 요약 한 줄 · 내용 한 줄 / 오늘 한 일: 무엇·시각 · 업무명 · 기록 한 줄 /
+        내 업무 줄·칸반 카드: 업무명 · 상태·일정·D-day. 숨긴 것은 그 카드의 「▾ 자세히」를 눌러야 보임(▴ 접기), 업무명을 누르면 전체 창
+     ③ 간편 등록은 입력칸 + 「간편 등록」 단추만 — 상태·날짜·분류·일보 단추는 「⚙ 상태·날짜·분류 고르기」를 눌러야 보임(이 기기에 기억)
+     ④ 업무 창은 업무명·일정(날짜)·진행 상태·진척·내용·사진·진행 기록만 — 분류·사업장·장소·시각·반복·담당자·요청/보고는 「▾ 자세히」
+   · 데이터·권한·저장 방식은 그대로(화면만 바뀜), 보안 규칙 변경 없음
+   · 오픈소스 확인(방식만 참고, 코드·라이브러리 추가 없음): Readmore.js(jedfoster, MIT — 긴 글을 몇 줄로 접고 「더 보기/접기」),
+     Aydin Studio(royerlab, BSD-3 — Basic/Advanced 모드 전환으로 일반 사용자에게는 꼭 필요한 항목만), Plane(makeplane — 카드에 보일 항목 고르기 Display properties),
+     Fern 「Sequence」 노인 친화 설계 원칙(한 화면 정보량 줄이기·큰 단추·쉬운 말) */
+const EZ={open:new Set(),sec:new Set((()=>{try{const a=JSON.parse(lsGet('wl.ez.sec')||'[]');return Array.isArray(a)?a.slice(0,20):[];}catch{return [];}})())};
+const ezOn=()=>document.documentElement.classList.contains('ez');
+(function ezInit(){let v=lsGet('wl.easy')==='1';try{const q=new URLSearchParams(location.search).get('easy');if(q==='1'||q==='0'){v=q==='1';lsSet('wl.easy',v?'1':null);}}catch{}
+  document.documentElement.classList.toggle('ez',v);})();
+function ezBtnHTML(){const on=ezOn();return `<span class="ez-ic" aria-hidden="true">${on?'✅':'🙂'}</span><span class="ez-l">간편<span class="ez-m">모드</span></span><span class="ez-sw" aria-hidden="true"><i></i></span>`;}
+function ezBtn(){const tr=document.querySelector('header.top .top-right');if(!tr)return;let b=document.getElementById('btn-easy');
+  if(!b){b=document.createElement('button');b.type='button';b.id='btn-easy';b.className='ez-btn';tr.insertBefore(b,tr.firstChild);}
+  const on=ezOn();b.setAttribute('aria-pressed',on?'true':'false');b.title=on?'간편모드 켜짐 — 누르면 원래 화면(설명·세부 내용 모두 보임)으로 돌아갑니다':'간편모드 — 설명 글을 숨기고 내용을 2~3줄로 간단히 보여 줍니다. 「▾ 자세히」를 누르면 전부 보입니다';
+  b.innerHTML=ezBtnHTML();}
+function ezSet(on,o){o=o||{};document.documentElement.classList.toggle('ez',!!on);lsSet('wl.easy',on?'1':null);ezBtn();ezPh();
+  try{render();}catch{}try{ezDlg();}catch{}try{if(typeof topFitSoon==='function')topFitSoon();}catch{}
+  if(!o.quiet)toast(on?'🙂 간편모드를 켰습니다 — 설명 글을 숨기고 내용을 간단히 보여 줍니다. 더 보고 싶으면 「▾ 자세히」를 누르세요.':'간편모드를 껐습니다 — 모든 설명과 세부 내용이 보입니다.');}
+/* 입력칸 예시(placeholder 「예: …」) — 간편모드에서는 짧게, 끄면 원래대로 */
+const EZ_PH={'qa-text':'할 일이나 한 일을 적으세요'};
+function ezPh(){const on=ezOn();for(const el of document.querySelectorAll('[placeholder],[data-ez-ph]')){if(!(el instanceof HTMLInputElement||el instanceof HTMLTextAreaElement))continue;
+    if(on){const ph=el.getAttribute('placeholder')||'';if(el.dataset.ezPh==null){if(!/예\s*[:)]|예시|\(Enter|누르세요/.test(ph)&&!EZ_PH[el.id])continue;el.dataset.ezPh=ph;}
+      let s=EZ_PH[el.id];if(s==null){s=(el.dataset.ezPh.split(/\s*(?:예\s*[:)]|예시)/)[0]||'').replace(/\(Enter[^)]*\)/,'').replace(/[\s(·,—-]+$/,'').trim();if(/누르세요|하세요\s*$/.test(s)&&s.length>18)s='';}
+      el.setAttribute('placeholder',s);}
+    else if(el.dataset.ezPh!=null){el.setAttribute('placeholder',el.dataset.ezPh);delete el.dataset.ezPh;}}}
+/* 요약 줄(.sub) — 숫자가 든 마디만 남김(「1건 · 마감일이 지났지만 완료되지 않음」 → 「1건」), 설명만 있는 줄은 숨김 */
+function ezSub(root){for(const el of root.querySelectorAll('.panel-h .sub, .site-h .sub')){if(el.dataset.ez)continue;el.dataset.ez='1';if([...el.childNodes].some(n=>n.nodeType!==3))continue;
+    const full=el.textContent;const parts=full.split(' · ');const keep=parts.filter(x=>/\d/.test(x));if(keep.length===parts.length)continue;
+    if(!keep.length){el.classList.add('ez-x');continue;}
+    el.innerHTML=`<span class="ez-full">${esc(full)}</span><span class="ez-short">${esc(keep.join(' · '))}</span>`;}}
+/* 빈 칸 안내 — 첫 문장(「…없습니다.」)만 남기고 사용법 문장은 숨김 */
+function ezEmpty(root){for(const el of root.querySelectorAll('.empty')){if(el.dataset.ez)continue;el.dataset.ez='1';const ns=[...el.childNodes];let cut=-1,split=null;
+    for(let i=0;i<ns.length;i++){const n=ns[i];if(n.nodeType===1&&n.tagName==='BR'){cut=i;break;}if(n.nodeType===3){const m=n.nodeValue.match(/^([\s\S]*?(?:다|요)\.)\s+(\S[\s\S]*)$/);if(m){split={i,a:m[1],b:m[2]};break;}}}
+    if(split){const n=ns[split.i];n.nodeValue=split.a;const sp=document.createElement('span');sp.className='ez-x';sp.append(' '+split.b,...ns.slice(split.i+1));el.append(sp);}
+    else if(cut>=0){const sp=document.createElement('span');sp.className='ez-x';sp.append(...ns.slice(cut));el.append(sp);}}}
+/* 카드·줄 — 숨길 세부 표시(.ez-x)와 「▾ 자세히」 단추 */
+const ezMoreBtn=(k,open,label)=>`<button type="button" class="ez-more" data-ez-k="${esc(k)}" aria-expanded="${open}">${open?'▴ 접기':(label||'▾ 자세히')}</button>`;
+function ezRows(root){
+  /* 업무 공지·업무 요청·변경 요청 카드 */
+  for(const r of root.querySelectorAll('.od-row')){const k='od:'+(r.dataset.odR||r.dataset.ntcR||r.dataset.chgR||r.querySelector('[data-open],[data-ntc-open]')?.getAttribute('data-open')||r.textContent.slice(0,40));
+    const open=EZ.open.has(k);r.classList.toggle('ez-open',open);const main=r.querySelector('.od-main')||r;if(r.querySelector('.ez-more'))continue;
+    const body=r.querySelector('.ntc-body,.od-memo');const more=r.querySelector('.od-acks,.od-rep,.od-chips')||(body&&(body.textContent.length>34||/\n/.test(body.textContent)));
+    if(more)(r.querySelector('.od-meta')||main).insertAdjacentHTML('beforeend',ezMoreBtn(k,open));}
+  /* 오늘 한 일 등 기록 줄 */
+  for(const li of root.querySelectorAll('.feed > li')){const tx=li.querySelector('.txt');const t=li.querySelector('[data-open]');const k='fd:'+(t?t.getAttribute('data-open'):'')+'|'+((li.querySelector('time')||{}).textContent||'');
+    const open=EZ.open.has(k);li.classList.toggle('ez-open',open);if(li.querySelector('.ez-more'))continue;
+    if(tx&&(tx.textContent.length>34||/\n/.test(tx.textContent))){const box=li.querySelector('.line')||tx.parentElement;box.insertAdjacentHTML('beforeend',ezMoreBtn(k,open));}}
+  /* 내 업무 줄: 상태·일정·D-day 만 (분류·사업장·장소·진척·등록일은 숨김 — 줄을 누르면 업무 창에 전부) */
+  for(const mt of root.querySelectorAll('.mrow .mt')){if(mt.dataset.ez)continue;mt.dataset.ez='1';
+    for(const s of mt.children){if(s.classList.contains('pill')||s.classList.contains('dday')||s.querySelector('.wd')||s.classList.contains('wd'))continue;s.classList.add('ez-x');}}}
+/* 간편 등록 — 고르는 칸(상태·날짜·분류·일보 단추)을 접음 */
+function ezSecs(root){const qa=root.querySelector('#qa')||document.getElementById('qa');if(qa&&qa.querySelector('.qa-opts')){const on=EZ.sec.has('qa');qa.classList.toggle('ez-open',on);
+    if(!qa.querySelector('.ez-sec')){const top=qa.querySelector('.qa-top');(top||qa.firstElementChild).insertAdjacentHTML('afterend',`<button type="button" class="ez-more ez-sec" data-ez-s="qa" aria-expanded="${on}">${on?'▴ 고르는 칸 접기':'⚙ 상태·날짜·분류 고르기'}</button>`);}}}
+/* 화면 고침은 간편모드일 때만(끄면 render() 가 원래 화면을 새로 그림) */
+function ezApply(){ezPh();if(!ezOn())return;const v=document.getElementById('view');if(v){ezSub(v);ezEmpty(v);ezRows(v);ezSecs(v);}const md=document.getElementById('memo-drawer');if(md)ezEmpty(md);}
+/* 업무 창 — 「▾ 자세히」 전에는 꼭 필요한 칸만 */
+function ezDlg(){const d=document.getElementById('dlg-task');if(!d)return;const f=d.querySelector('.form');if(!f)return;
+  if(!ezOn()){const b0=f.querySelector('.ez-dlg');if(b0)b0.remove();if(d.classList.contains('ez-open')){d.classList.remove('ez-open');if(d.dataset.ezSimple){d.classList.add('simple');delete d.dataset.ezSimple;}}return;}
+  if(!f.querySelector('.ez-dlg')){const t=f.querySelector('.f');if(t)t.insertAdjacentHTML('afterend','<button type="button" class="ez-more ez-dlg" data-ez-d aria-expanded="false">▾ 자세히 — 분류·사업장·장소·시각·반복·담당자</button>');}
+  const b=f.querySelector('.ez-dlg');const on=d.classList.contains('ez-open');if(b){b.setAttribute('aria-expanded',on);b.textContent=on?'▴ 자세히 접기':'▾ 자세히 — 분류·사업장·장소·시각·반복·담당자';}}
+{const _r=render;render=function(){const r=_r.apply(this,arguments);try{ezApply();}catch(e){console.warn('ezApply',e);}return r;};}
+{const _o=openTask;openTask=function(){const d=document.getElementById('dlg-task');if(d){d.classList.remove('ez-open');delete d.dataset.ezSimple;}const r=_o.apply(this,arguments);try{ezDlg();ezPh();}catch{}Promise.resolve(r).then(()=>{try{ezDlg();ezPh();}catch{}});return r;};}
+/* 활용방법 안내 사진 찍기(guide_shots): 간편모드 항목이 아니면 원래 화면으로 */
+function ezShot(id){if(id!=='easy'&&ezOn())ezSet(false,{quiet:true});}
+document.addEventListener('click',e=>{const T=e.target;if(!T||!T.closest)return;
+  if(T.closest('#btn-easy')){e.preventDefault();ezSet(!ezOn());return;}
+  if(T.closest('[data-ez-mnav]')){e.preventDefault();const sh=document.getElementById('mnav-sheet');if(sh)sh.hidden=true;ezSet(!ezOn());return;}
+  const k=T.closest('[data-ez-k]');if(k){e.preventDefault();e.stopPropagation();const key=k.dataset.ezK;const it=k.closest('.od-row,.feed > li');const on=!EZ.open.has(key);if(on)EZ.open.add(key);else EZ.open.delete(key);
+    if(it)it.classList.toggle('ez-open',on);k.setAttribute('aria-expanded',on);k.textContent=on?'▴ 접기':'▾ 자세히';return;}
+  const s=T.closest('[data-ez-s]');if(s){e.preventDefault();const key=s.dataset.ezS;const on=!EZ.sec.has(key);if(on)EZ.sec.add(key);else EZ.sec.delete(key);lsSet('wl.ez.sec',JSON.stringify([...EZ.sec]));
+    const sec=key==='qa'?document.getElementById('qa'):null;if(sec)sec.classList.toggle('ez-open',on);s.setAttribute('aria-expanded',on);s.textContent=on?'▴ 고르는 칸 접기':'⚙ 상태·날짜·분류 고르기';return;}
+  if(T.closest('[data-ez-d]')){e.preventDefault();const d=document.getElementById('dlg-task');if(d){const on=!d.classList.contains('ez-open');d.classList.toggle('ez-open',on);
+      /* 새 업무 창의 「간단히」(16차 simple)도 함께 — 자세히 = 모든 칸, 접기 = 다시 간단히 */
+      if(on&&d.classList.contains('simple')){d.dataset.ezSimple='1';d.classList.remove('simple');}else if(!on&&d.dataset.ezSimple){d.classList.add('simple');delete d.dataset.ezSimple;}ezDlg();}return;}},true);
+/* 휴대폰 더보기에도 켜고 끄기 */
+function ezMnav(){const sh=document.getElementById('mnav-sheet');if(!sh)return;const box=sh.querySelector('.ms-in')||sh;let a=box.querySelector('[data-ez-mnav]');
+  if(!a){a=document.createElement('button');a.type='button';a.className='ez-mnav';a.setAttribute('data-ez-mnav','');box.insertBefore(a,box.firstChild);}a.textContent=ezOn()?'✅ 간편모드 끄기':'🙂 간편모드 켜기';}
+try{new MutationObserver(()=>{const sh=document.getElementById('mnav-sheet');if(sh&&!sh.hidden)ezMnav();}).observe(document.getElementById('mnav-sheet')||document.body,{attributes:true,attributeFilter:['hidden'],childList:true});}catch{}
+document.addEventListener('click',e=>{if(e.target&&e.target.closest&&e.target.closest('#mnav [data-mnav="more"]'))setTimeout(ezMnav,0);});
+/* 위쪽 줄이 좁을 때 「+ 상세업무 등록」 → 「+ 등록」(topFit fit6) */
+{const bn=document.getElementById('btn-new');if(bn&&bn.textContent.trim()==='+ 상세업무 등록')bn.innerHTML='+ <span class="bn-x">상세업무 </span>등록';}
+ezBtn();setTimeout(()=>{ezBtn();ezApply();},400);
+window.easyApi={on:ezOn,set:(v)=>ezSet(!!v,{quiet:true}),apply:ezApply,open:EZ.open,sec:EZ.sec};
 
 /* ───────── 시작 ───────── */
 function boot(){
