@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="wl-build" content="90851b87df31">
+<meta name="wl-build" content="abcde00337b0">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="manifest" href="manifest.webmanifest"><script>if(/[?&]memo=1(&|$)/.test(location.search)){document.querySelector('link[rel=manifest]').href='memo.webmanifest';document.documentElement.classList.add('memo-mode');}</script>
 <meta name="theme-color" content="#1f3a5f">
@@ -2195,6 +2195,54 @@ dialog.modal.gu-dlg[open]{display:flex}
 .mp-tx{overflow-y:hidden}
 .mp-app{font-size:12.5px;color:#166534;font-weight:700;align-self:center}.mp-help{margin:0 0 8px;padding-left:20px;line-height:1.7}.mp-help li{margin:4px 0}
 .mp-new{align-items:flex-start}
+/* ───────── 57차: 🔒 위쪽 비공개 잠금 · 화면 제목 옆 켜고 끄기 ───────── */
+.plock{display:inline-flex;align-items:center;gap:3px;flex:none;height:34px;padding:0 7px 0 6px;border:1.5px solid var(--line);border-radius:9px;background:var(--surface,#fff);color:#5b3f86;cursor:pointer;user-select:none}
+.plock[hidden]{display:none!important}
+.plock input{margin:0;width:16px;height:16px;accent-color:#5b3f86;cursor:pointer}
+.plock .pl-ic{display:inline-grid;place-items:center;width:20px;height:20px}.plock .pl-ic svg{width:20px;height:20px}
+.plock:hover,.plock:focus-within{border-color:#5b3f86;background:#f6f1fc}
+.plock.locked{color:#b45309;border-color:#d97706;background:#fff7ed}.plock.locked input{accent-color:#b45309}
+@media (max-width:1680px) and (min-width:761px){.plock{height:32px;padding:0 5px}.plock .pl-ic,.plock .pl-ic svg{width:18px;height:18px}}
+@media (max-width:760px){.plock{height:32px;padding:0 4px}.plock input{width:15px;height:15px}}
+@media print{.plock{display:none!important}}
+.pv-h1row{display:flex;align-items:center;flex-wrap:wrap;gap:4px 14px}.pv-h1row h1{margin:0}
+.pv-tg{font-size:13px;padding:3px 9px;border:1px solid color-mix(in srgb,#5b3f86 30%,var(--line));border-radius:999px;background:#faf7fe;cursor:pointer}
+.pv-tg input{margin:0;accent-color:#5b3f86}
+.pv-locked{opacity:.75;cursor:not-allowed}.pv-locked input{cursor:not-allowed}
+.f-priv.pv-locked small{color:#b45309;font-weight:700}
+.sc .cnt.pv{background:#f6f1fc;color:#5b3f86;border:1px dashed #b9a3d9}
+.agenda .chip.pv{border-style:dashed;border-color:#b9a3d9;background:#faf7fe}
+@media print{.pv-tg{display:none!important}}
+/* ───────── 57차: 📢 업무 공지 ───────── */
+.ntc-go em.ntc-n,.od-tabs .ntc-n{display:inline-block;min-width:18px;padding:0 5px;margin-left:4px;border-radius:9px;background:#c0261d;color:#fff;font-size:11px;font-style:normal;font-weight:700;line-height:17px;text-align:center}
+.ntc-card{border-color:#c9d6ea}.ntc-card.has-todo{border-color:#e7a29c;box-shadow:inset 4px 0 0 #c0261d}
+.ntc-card .ntc-todo{color:#c0261d}
+.ntc-row .od-t{font-size:14.5px}.ntc-row.imp .od-t{color:#8f1d16}.ntc-row.todo{background:#fff8f7}.ntc-row.cx{opacity:.6}.ntc-row.cx .od-t{text-decoration:line-through}
+.ntc-body{font-size:13px;color:var(--ink-2);white-space:pre-wrap;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;background:#f7f8fa;border-radius:7px;padding:5px 8px}
+.ntc-full{font-size:14px;line-height:1.65;white-space:pre-wrap;word-break:keep-all;overflow-wrap:anywhere;background:#f7f8fa;border:1px solid var(--line);border-radius:9px;padding:10px 12px;margin:6px 0;max-height:46vh;overflow:auto}
+.od-st.ntc-ref{background:#eef4fb;color:#1f4f96}
+.ntc-alert{margin:0 0 10px;padding:9px 12px;border-radius:10px;background:#fff1f0;border:1px solid #f1b8b2;color:#8f1d16;font-size:13.5px}
+.ntc-dlg .od-l{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:600;color:var(--ink-2);margin:0 0 10px}
+.ntc-dlg .od-l small{font-weight:400;color:var(--ink-3)}
+.ntc-dlg input:not([type=checkbox]),.ntc-dlg textarea{font:inherit;font-size:14px;font-weight:400;padding:8px 10px;border:1px solid var(--line);border-radius:8px;color:var(--ink);background:var(--surface,#fff)}
+.ntc-dlg textarea{resize:none;min-height:96px;overflow-y:hidden}
+.ntc-need{display:flex;gap:9px;align-items:flex-start;padding:9px 11px;border:1px solid #f1c9a0;background:#fff8ef;border-radius:10px;margin:6px 0;cursor:pointer}
+.ntc-need input{margin-top:3px;width:17px;height:17px;accent-color:#c0261d}.ntc-need span{display:flex;flex-direction:column;gap:2px}.ntc-need b{color:#8f1d16}.ntc-need small{font-size:12px;color:var(--ink-2)}
+.ntc-due input{max-width:200px}
+.ntc-ackh{margin:10px 0 4px;font-size:13px;font-weight:600;color:var(--ink-2)}
+.ntc-mo{text-align:center;margin-top:10px}
+.ntf-pop .ic.t-ntc{background:#c2410c;color:#fff}.ntf-pop .ic.t-ntcok{background:#1d7a46;color:#fff}
+.nb-ic.t-ntc{background:#c2410c}.nb-ic.t-ntcok{background:#1d7a46}
+#my-brief .ntc-bf{font-weight:700}
+@media (max-width:760px){.ntc-row{flex-direction:column}.ntc-row .od-acts{max-width:none;justify-content:flex-start}}
+#ntc .in-top{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+/* 57차: 좁은 휴대폰(≤420px)에서 🔒 자물쇠가 늘어 위쪽 줄이 넘치지 않게 — 간격·자물쇠를 조금 줄임 */
+@media (max-width:420px){.top-right,.top-right:has(#gw-chip),html.big .top-right{gap:3px!important}.plock{padding:0 3px;gap:1px;border-width:1px}.plock .pl-ic,.plock .pl-ic svg{width:17px;height:17px}.plock input{width:14px;height:14px}}
+.ntc-dlg .od-dt{margin:0 0 8px;display:flex;flex-direction:column;gap:2px}.ntc-dlg .od-dt small{color:var(--ink-3)}
+.ntc-dlg .modal-b{overflow-x:hidden}
+.ntc-dlg input:not([type=checkbox]),.ntc-dlg textarea{width:100%;max-width:100%;box-sizing:border-box;min-width:0}
+.ntc-dlg .seg{display:flex;flex-wrap:wrap;max-width:100%;margin-bottom:6px}.ntc-dlg .seg button{flex:1 1 auto}
+.ntc-need{box-sizing:border-box;max-width:100%}.ntc-dlg .od-meta{margin:2px 0 4px}
 </style>
 <style id="report-css">
 .paper{--pi:#151a21;--pi2:#4a5260;--pl:#c7cdd6;--pl2:#e3e7ec;--ph:#1f3a5f;--pbg:#ffffff;--pz:#f2f4f7;
@@ -2854,7 +2902,7 @@ function render(){
   if(S.view!=='report'){S.charts.forEach(c=>c.destroy());S.charts=[];}
   $('#tab-overview').hidden=!(S.canEdit||S.preview);
   if(S.view==='legal'){const ae=document.activeElement;if(ae&&ae.closest&&ae.closest('.lg-set')&&/^(INPUT|SELECT)$/.test(ae.tagName)&&ae.type!=='checkbox'){S.pendingLegal=true;fillWhoOptions();updateMeChip();return;}}
-  if(S.view==='my')renderMy(v);else if(S.view==='team')renderTeam(v);else if(S.view==='board')renderBoard(v);else if(S.view==='calendar')renderCalendar(v);else if(S.view==='list')renderList(v);else if(S.view==='report')renderReport(v);else if(S.view==='help')renderHelp(v);else if(S.view==='overview')renderOverview(v);else if(S.view==='photos')renderPhotos(v);else if(S.view==='upload')renderUpload(v);else if(S.view==='docs')renderDocs(v);else if(S.view==='legal')renderLegal(v);else if(S.view==='gw')renderGw(v);else if(S.view==='org')renderOrg(v);else if(S.view==='appr')renderAppr(v);else if(S.view==='formp'||S.view==='formd')renderForms(v);else if(S.view==='insp')renderInsp(v);else if(S.view==='guard')renderGuard(v);else if(S.view==='ord')renderOrd(v);
+  if(S.view==='my')renderMy(v);else if(S.view==='team')renderTeam(v);else if(S.view==='board')renderBoard(v);else if(S.view==='calendar')renderCalendar(v);else if(S.view==='list')renderList(v);else if(S.view==='report')renderReport(v);else if(S.view==='help')renderHelp(v);else if(S.view==='overview')renderOverview(v);else if(S.view==='photos')renderPhotos(v);else if(S.view==='upload')renderUpload(v);else if(S.view==='docs')renderDocs(v);else if(S.view==='legal')renderLegal(v);else if(S.view==='gw')renderGw(v);else if(S.view==='org')renderOrg(v);else if(S.view==='appr')renderAppr(v);else if(S.view==='formp'||S.view==='formd')renderForms(v);else if(S.view==='insp')renderInsp(v);else if(S.view==='guard')renderGuard(v);else if(S.view==='ord')renderOrd(v);else if(S.view==='ntc')renderNtc(v);
   fillWhoOptions();updateMeChip();patchNames();}
 
 function rowHTML(t){const d=ddayInfo(t);const late=isLate(t);
@@ -3634,7 +3682,7 @@ function showBanner(msg){const b=$('#banner');b.textContent=msg;b.hidden=!msg;}
 
 /* ───────── 이벤트 ───────── */
 function go(h){if(location.hash===h)route();else location.hash=h;}
-function route(){let h=(location.hash||'').slice(1);if(h==='home')h='team';S.view=['my','team','org','overview','board','calendar','list','report','upload','photos','docs','formp','formd','legal','gw','appr','insp','guard','ord','help'].includes(h)?h:'my';if(S.view==='gw'&&GW.pv!=='gw')GW.seenNow='';GW.pv=S.view;const np=$('#ntf-pop');if(np)np.hidden=true;render();gwNav();mnavSync();}
+function route(){let h=(location.hash||'').slice(1);if(h==='home')h='team';S.view=['my','team','org','overview','board','calendar','list','report','upload','photos','docs','formp','formd','legal','gw','appr','insp','guard','ord','ntc','help'].includes(h)?h:'my';if(S.view==='gw'&&GW.pv!=='gw')GW.seenNow='';GW.pv=S.view;const np=$('#ntf-pop');if(np)np.hidden=true;render();gwNav();mnavSync();}
 window.addEventListener('hashchange',route);
 document.addEventListener('click',async e=>{
   const o=e.target.closest('[data-open]');if(o&&!e.target.closest('[data-lb]')){const t=findTask(o.dataset.open);if(t)openTask(t);return;}
@@ -4999,22 +5047,29 @@ const privBase=()=>`priv/${S.me.id}`;
 function phDoc(id,kind){if(isPiiPh(id))return `pii/${id}/c/${kind==='thumbs'?'th':'0'}`;return isPrivPh(id)&&S.me.id?`${privBase()}/${kind}/${id}`:`${kind}/${id}`;}
 /* 18차: 비공개 업무를 칸반·달력·목록·보고서에 — 본인 화면에만(다른 사람은 규칙상 읽을 수 없음), 🔒 비공개 표시 */
 S.showPriv=lsGet('wl.showPriv')!=='0';
-const privVisible=()=>privOK()&&S.showPriv&&(S.privTasks||[]).length>0;
+/* 57차: 위쪽 🔒 전체 잠금(이 기기) — 잠그면 모든 화면(내 업무·팀 현황·칸반·달력·목록·보고서·검색·알림)에서 비공개 업무를 숨김,
+   풀면 모두 보이고 화면마다(내 업무·팀 현황·칸반/달력/목록·보고서) 지금처럼 따로 켜고 끔 */
+S.privLock=lsGet('wl.privLock')==='1';S.privMy=lsGet('wl.privMy')!=='0';S.privTeam=lsGet('wl.privTeam')!=='0';
+function privShow(v){if(!privOK()||S.privLock)return false;return v==='my'?!!S.privMy:v==='team'?!!S.privTeam:v==='report'||v==='search'?true:!!S.showPriv;}
+const privVisible=()=>privShow('board')&&(S.privTasks||[]).length>0;
 function withPriv(list){return privVisible()?list.concat(S.privTasks):list;}
 /* 보고서 업무 범위: all 공개+내 비공개 / pub 공개만 / priv 내 비공개만 (19차) */
-function repPrivMode(p){if(p&&['all','pub','priv'].includes(p.pmode))return p.pmode;const m=lsGet('wl.repPmode');if(['all','pub','priv'].includes(m))return m;return lsGet('wl.repPriv')==='0'?'pub':'all';}
+function repPrivMode(p){if(S.privLock)return 'pub';if(p&&['all','pub','priv'].includes(p.pmode))return p.pmode;const m=lsGet('wl.repPmode');if(['all','pub','priv'].includes(m))return m;return lsGet('wl.repPriv')==='0'?'pub':'all';}
 function repTasks(p){const m=repPrivMode(p);const has=privOK()&&(S.privTasks||[]).length>0;const pv=has?S.privTasks.map(t=>({...t,title:'🔒 '+t.title,_pv:1})):[];
   if(m==='priv')return pv;if(m==='pub'||!has)return S.tasks;return S.tasks.concat(pv);}
-function privFilterSync(){const l=$('#f-priv-l');if(!l)return;const n=privOK()?(S.privTasks||[]).length:0;l.hidden=!n;const c=$('#f-priv');if(c)c.checked=!!S.showPriv;const m=$('#f-priv-n');if(m)m.textContent=n?`${n}건`:'';}
-function repPrivSync(v){if(!S.rep)return;if(!['all','pub','priv'].includes(S.rep.pmode))S.rep.pmode=repPrivMode({});const c=$('#r-pmode',v);if(!c)return;const n=privOK()?(S.privTasks||[]).length:0;c.value=S.rep.pmode;$('#r-priv-l',v).hidden=!n;$('#r-priv-n',v).textContent=n?`(내 비공개 ${n}건)`:'';}
-document.addEventListener('change',e=>{if(e.target.id==='f-priv'){S.showPriv=e.target.checked;lsSet('wl.showPriv',S.showPriv?'1':'0');render();}});
+const PRIV_LOCK_TIP='위쪽 자물쇠가 잠겨 있어 모든 화면에서 비공개 업무를 숨기는 중입니다. 위쪽 자물쇠를 풀면 다시 켜고 끌 수 있습니다.';
+function privFilterSync(){const l=$('#f-priv-l');if(!l)return;const n=privOK()?(S.privTasks||[]).length:0;l.hidden=!n;const lk=!!S.privLock;l.classList.toggle('pv-locked',lk);l.title=lk?PRIV_LOCK_TIP:'나만 보는 비공개 업무를 함께 표시 (다른 사람 화면에는 나오지 않습니다)';
+  const c=$('#f-priv');if(c){c.checked=!lk&&!!S.showPriv;c.disabled=lk;}const m=$('#f-priv-n');if(m)m.textContent=lk?'잠김':n?`${n}건`:'';}
+function repPrivSync(v){if(!S.rep)return;if(!['all','pub','priv'].includes(S.rep.pmode))S.rep.pmode=repPrivMode({});const c=$('#r-pmode',v);if(!c)return;const n=privOK()?(S.privTasks||[]).length:0;const lk=!!S.privLock;
+  c.value=lk?'pub':S.rep.pmode;c.disabled=lk;c.title=lk?PRIV_LOCK_TIP:'나만 보는 비공개 업무를 이 보고서(화면·인쇄·엑셀·텍스트 복사)에 🔒 표시로 넣을지 고릅니다';$('#r-priv-l',v).hidden=!n;$('#r-priv-n',v).textContent=lk?'(🔒 위쪽 자물쇠 잠김 — 공개 업무만)':n?`(내 비공개 ${n}건)`:'';}
+document.addEventListener('change',e=>{if(e.target.id==='f-priv'){if(S.privLock){e.target.checked=false;return;}S.showPriv=e.target.checked;lsSet('wl.showPriv',S.showPriv?'1':'0');render();}});
 const qaPriv=()=>!!(S.qa&&S.qa.priv&&privOK());
 const myName=()=>(S.staff[S.myStaff]&&S.staff[S.myStaff].name)||S.me.name||'';
 let PVU=null;
 function privSub(){if(PVU){try{PVU();}catch{}PVU=null;}S.privTasks=[];S.privDenied=false;if(!privOK()||!S.db)return;const cp=`${privBase()}/tasks`;
   PVU=S.db.collection(cp).onSnapshot(snap=>{S.privTasks=snap.docs.filter(d=>d.exists).map(d=>{const t=normTask({...d.data(),id:d.id,path:`${cp}/${d.id}`});t.year=yearOf(t);t.priv=true;return t;});S.privDenied=false;
     if(['my','board','calendar','list','report'].includes(S.view))scheduleRender();privFilterSync();refreshDialog();ntfTick();},()=>{S.privDenied=true;if(S.view==='my')scheduleRender();});}
-function privPanelHTML(){if(!privOK())return '';const open=S.privTasks.filter(t=>t.status!=='done').sort(sortTasks);const done=S.privTasks.filter(t=>t.status==='done').sort(sortTasks);
+function privPanelHTML(){if(!privShow('my'))return '';const open=S.privTasks.filter(t=>t.status!=='done').sort(sortTasks);const done=S.privTasks.filter(t=>t.status==='done').sort(sortTasks);
   return `<section class="panel priv-panel" id="my-priv"><div class="panel-h"><h2>🔒 비공개 업무</h2><span class="sub">나만 보입니다 · ${open.length}건</span><div class="act">${S.privTasks.length?'<button type="button" class="btn sm prt-btn" data-priv-report title="비공개 업무만 모아 보고서로 출력(인쇄·엑셀)">🖨 비공개 업무만 출력</button>':''}${S.canWrite?'<button type="button" class="btn sm" data-new-priv>+ 비공개 업무</button>':''}</div></div>
     <p class="priv-note">관리자와 다른 직원에게는 보이지 않습니다. 칸반·달력·목록·보고서(인쇄)에는 나에게만 🔒 비공개 표시로 함께 나옵니다.</p>
     ${S.privDenied?'<div class="banner" style="margin:0 12px 10px">비공개 업무를 불러올 권한이 없습니다. 관리자에게 새 보안 규칙(firestore.rules) 게시를 요청하세요.</div>':''}
@@ -5400,7 +5455,7 @@ function gsMark(text,terms){const s=String(text||'');if(!terms.length)return esc
 function gsSnip(text,terms,len=110){const s=String(text||'').replace(/\s+/g,' ').trim();if(!s)return '';const low=s.toLowerCase();let at=-1;for(const t of terms){const i=low.indexOf(t);if(i>=0&&(at<0||i<at))at=i;}
   if(at<0)return gsMark(s.slice(0,len)+(s.length>len?'…':''),terms);const a=Math.max(0,at-40);const b=Math.min(s.length,a+len);return (a?'…':'')+gsMark(s.slice(a,b),terms)+(b<s.length?'…':'');}
 function gsRun(q){const terms=gsTerms(q);const R={task:[],log:[],memo:[],file:[],legal:[],gw:[]};if(!terms.length)return R;
-  const tasks=[...S.tasks,...(S.privTasks||[])];
+  const tasks=[...S.tasks,...(privShow('search')?(S.privTasks||[]):[])];/* 57차: 위쪽 자물쇠 잠금이면 비공개 업무 빼고 찾음 */
   for(const t of tasks){const who=[...t.assignees.map(nameOf),t.assigneeText].filter(Boolean).join(' ');
     const hay=[t.title,t.desc,catText(t),t.site,who,ST[t.status]?ST[t.status].name:'',t.legal?'법정 업무':''].join(' ');
     if(gsHit(hay,terms))R.task.push({t,score:(gsHit(t.title,terms)?2:0)+(t.priv?0:.1),at:t.updatedAt||t.createdAt||''});
@@ -6033,7 +6088,7 @@ function prListTasks(){const v=S.view;let L=[],label='';const td=today();const m
   if(['board','list'].includes(v)){L=applyFilters(withPriv(S.tasks));label=prFilterTxt();}
   else if(v==='calendar'){let a='',b='';try{a=toStr(S.cal.view.activeStart);b=addDays(toStr(S.cal.view.activeEnd),-1);}catch{}L=applyFilters(withPriv(S.tasks),{ignorePeriod:true}).filter(t=>(typeof calOk!=='function'||calOk(t))&&(!a||overlaps(t,a,b)));label=prFilterTxt();}
   else if(v==='report'&&S.lastReport){const R=S.lastReport;L=[...new Set([...R.done,...R.doing,...R.late,...R.plan,...R.hold,...R.next])];label=`${R.title} · ${R.periodText} · ${R.scopeTxt}`;}
-  else if(v==='my'){const me=S.myStaff;L=[...S.tasks.filter(t=>me&&t.assignees.includes(me)),...(privOK()?S.privTasks:[])].filter(recent);label=`${nameOf(me)} · 진행 중·예정 업무 + 이번 달 완료`;}
+  else if(v==='my'){const me=S.myStaff;L=[...S.tasks.filter(t=>me&&t.assignees.includes(me)),...(privShow('my')?S.privTasks:[])].filter(recent);label=`${nameOf(me)} · 진행 중·예정 업무 + 이번 달 완료`;}
   else if(v==='team'||v==='overview'){L=S.tasks.filter(t=>!t.sample).filter(recent);label='전체 직원 · 진행 중·예정 업무 + 이번 달 완료';}
   const key=t=>(t.start||t.due||t.doneAt||'9999-99-99');L=L.slice().sort((a,b)=>key(a).localeCompare(key(b))||(a.due||'9999').localeCompare(b.due||'9999')||a.title.localeCompare(b.title,'ko'));return {L,label};}
 async function printList(){const {L,label,org}=prListTasks();const s=prSheet();const me=S.staff[S.myStaff];const st=t=>isLate(t)?'지연':ST[t.status].name;
@@ -10931,7 +10986,7 @@ function vsCap(items,n){const o=vsGet(vsView());if(!o.pl||!items.some(t=>t.priv)
   const a=items.filter(t=>!t.priv).slice(0,n),b=items.filter(t=>t.priv).slice(0,n);return {items:a.concat(b),more:items.length-a.length-b.length};}
 /* 정렬 칸 */
 function vsDirTxt(o){return VS_DATE.has(o.key)?(o.dir<0?'↓ 최근 날짜 먼저':'↑ 이른 날짜 먼저'):(o.dir<0?'↓ 내림차순':'↑ 오름차순');}
-function vsHTML(v,cls){const o=vsGet(v);const pv=VS_PRIV_VIEWS.has(v)&&privOK()&&(S.privTasks||[]).length>0;
+function vsHTML(v,cls){const o=vsGet(v);const pv=VS_PRIV_VIEWS.has(v)&&privOK()&&!S.privLock&&(S.privTasks||[]).length>0;
   return `<div class="vsort ${cls||''}" data-vsv="${v}" role="group" aria-label="${esc(VS_VIEWS[v]||'')} 정렬"><label><span class="vs-l">↕ 정렬</span><select data-vs-key aria-label="정렬 기준">${VS_KEYS.map(([id,n])=>`<option value="${id}" ${id===o.key?'selected':''}>${n}</option>`).join('')}</select></label><button type="button" class="btn sm vs-dir" data-vs-dir title="정렬 방향 바꾸기">${vsDirTxt(o)}</button>${pv?`<label class="chk vs-pl" title="🔒 비공개 업무를 공개 업무 아래에 따로 모아 같은 기준으로 정렬"><input type="checkbox" data-vs-pl ${o.pl?'checked':''}> 🔒 비공개는 아래로</label>`:''}</div>`;}
 function vsPut(host,where,html){const old=host.querySelector(':scope > .vsort, :scope > .vs-fld');if(old){old.outerHTML=html;return;}host.insertAdjacentHTML(where,html);}
 function vsMount(){const v=S.view;if(!VS_VIEWS[v])return;const view=$('#view');if(!view)return;
@@ -11463,7 +11518,7 @@ if(memoMode()){window.addEventListener('beforeinstallprompt',e=>{e.preventDefaul
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mount);else mount();}
 /* ── 위쪽 📝 단추 · 휴대폰 더보기 */
 (function(){const bar=document.querySelector('.top-right');const s=document.getElementById('btn-search');if(!bar||!s||document.getElementById('btn-memo'))return;
-  s.insertAdjacentHTML('beforebegin','<button type="button" class="icon-btn memo-btn" id="btn-memo" aria-label="메모장" title="📝 메모장 — 업무로 정리하기 전 메모 (바탕 화면 메모장과 자동 연동)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h10l4 4v14H5z"/><path d="M15 3v4h4M8 11h8M8 15h8M8 19h5"/></svg><em class="memo-n" hidden></em></button>');})();
+  /* 57차: 🔍 검색 오른쪽(🔔 알림 왼쪽)으로 — 메모장 ↔ 검색 자리 바꿈 */s.insertAdjacentHTML('afterend','<button type="button" class="icon-btn memo-btn" id="btn-memo" aria-label="메모장" title="📝 메모장 — 업무로 정리하기 전 메모 (바탕 화면 메모장과 자동 연동)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h10l4 4v14H5z"/><path d="M15 3v4h4M8 11h8M8 15h8M8 19h5"/></svg><em class="memo-n" hidden></em></button>');})();
 document.addEventListener('click',e=>{const T=e.target;if(!T.closest)return;if(T.closest('#btn-memo')||T.closest('[data-memo-open]')){const sh=document.getElementById('mnav-sheet');if(sh)sh.hidden=true;const d=document.getElementById('memo-drawer');if(d&&!d.hidden)memoClose();else memoOpen();}});
 {const _m=mnavMore;mnavMore=function(){const r=_m.apply(this,arguments);try{const sh=document.getElementById('mnav-sheet');const ms=sh&&sh.querySelector('.ms-in');if(ms&&!ms.querySelector('[data-memo-open]'))ms.insertAdjacentHTML('afterbegin','<button type="button" data-memo-open>📝 메모장</button>');}catch{}return r;};}
 document.addEventListener('keydown',e=>{if(e.altKey&&!e.ctrlKey&&(e.key==='m'||e.key==='M'||e.key==='ㅡ')&&!memoMode()&&S.ready){e.preventDefault();const d=document.getElementById('memo-drawer');if(d&&!d.hidden)memoClose();else memoOpen();}});
@@ -11590,7 +11645,7 @@ const GU=[
   shot:{who:'',clip:['#gate-card'],hi:['#gate-card button|Google']},show:{}},
  {id:'home',sec:'시작하기',t:'내 업무 화면 한눈에',
   lv:{1:'로그인하면 <b>내 업무</b>가 열립니다. 맨 위 <b>간편 등록</b> 칸, 받은 업무 요청, <b>진행 중·오늘 할 일</b>, 다가오는 일정, 오늘 한 일이 차례로 모여 있습니다. 위쪽 탭으로 팀 현황·달력·전자결재 등으로 옮겨 갑니다.',
-      2:'로그인하면 <b>내 업무</b>가 열립니다. 맨 위 <b>간편 등록</b> 칸, 오늘의 브리핑·정기 일정, 받은 <b>📌 업무 요청</b>, <b>진행 중·오늘 할 일</b>, 다가오는 일정, 🔒 비공개 업무, 오늘 한 일, 오늘 특이사항·건의가 차례로 모여 있습니다. 위쪽 탭으로 팀 현황·칸반·달력·목록·보고서·각종서류·법정 업무·전자결재·그룹웨어로 옮기고, 오른쪽 위 기호는 왼쪽부터 <b>?</b> 활용방법 안내 · ⚙ 설정 · 🖨 인쇄 · 📝 메모장 · 🔍 전체 검색 · 🔔 알림 · 내 이름(내 정보)입니다.'},
+      2:'로그인하면 <b>내 업무</b>가 열립니다. 맨 위 <b>간편 등록</b> 칸, 오늘의 브리핑·정기 일정, 받은 <b>📢 업무 공지</b>·<b>📌 업무 요청</b>, <b>진행 중·오늘 할 일</b>, 다가오는 일정, 🔒 비공개 업무, 오늘 한 일, 오늘 특이사항·건의가 차례로 모여 있습니다. 위쪽 탭으로 팀 현황·칸반·달력·목록·보고서·각종서류·법정 업무·전자결재·그룹웨어로 옮기고, 오른쪽 위 기호는 왼쪽부터 <b>?</b> 활용방법 안내 · <b>☑🔓</b> 비공개 업무 잠금 · ⚙ 설정 · 🖨 인쇄 · 🔍 전체 검색 · 📝 메모장 · 🔔 알림 · 내 이름(내 정보)입니다.'},
   shot:{go:'#my',clip:'screen'},show:{go:'#my',hi:['#qa']}},
  {id:'qa',sec:'업무 기록',t:'⚡ 간편 등록 — 한 줄로 업무 등록',
   lv:{1:'내 업무 맨 위 칸에 <i>"'+GU_QA+'"</i>처럼 적고 <b>간편 등록</b>을 누르면 날짜·시각·장소·사업장을 알아서 찾아 줍니다. 이미 한 일은 <b>완료</b>, 하는 중이면 <b>진행 중</b>, 앞으로 할 일은 <b>할 예정</b>을 먼저 고르세요.',
@@ -11650,11 +11705,18 @@ const GU=[
   lv:{2:'위쪽 <b>🖨</b>는 지금 화면을 A4로 인쇄합니다. 업무가 나오는 화면에서는 <b>현재 양식 그대로</b>와 <b>업무 목록만</b>(날짜순 한 표) 중에서 고르고, 인쇄 창에서 <b>PDF로 저장</b>을 고르면 파일로 남습니다. 업무 상세 창의 🖨는 그 업무 한 장(정보·내용·진행 기록·사진), 보고서 화면은 보고서 용지만 인쇄합니다.'},
   shot:{go:'#board',open:[['click','#btn-print']],clip:['#dlg-print']},show:{go:'#my',hi:['#btn-print']}},
  {id:'priv',sec:'업무 기록',t:'🔒 비공개 업무',
-  lv:{2:'간편 등록 줄의 <b>🔒 나만 보기</b>를 켜고 등록하거나 <b>+ 비공개 업무</b>를 누르면 나만 보는 업무가 됩니다. 관리자·다른 직원에게 보이지 않고 팀 현황·총괄에도 들어가지 않습니다. 칸반·달력·목록에는 나에게만 🔒 표시로 나오고, 보고서·인쇄·엑셀에도 넣을 수 있습니다. 업무 창의 <b>팀에 공개하기</b>로 언제든 공개합니다.'},
+  lv:{2:'간편 등록 줄의 <b>🔒 나만 보기</b>를 켜고 등록하거나 <b>+ 비공개 업무</b>를 누르면 나만 보는 업무가 됩니다. 관리자·다른 직원에게 보이지 않고 총괄·팀 숫자에도 들어가지 않습니다. 내 업무·팀 현황(내 칸·이번 주 일정)·칸반·달력·목록에는 나에게만 🔒 표시로 나오고, 보고서·인쇄·엑셀에도 넣을 수 있습니다. 화면마다 제목 옆(칸반·달력·목록은 거르기 줄) <b>🔒 비공개 업무</b> 체크로 숨기고 보이며, 위쪽 자물쇠를 잠그면 모든 화면에서 한꺼번에 숨겨집니다. 업무 창의 <b>팀에 공개하기</b>로 언제든 공개합니다.'},
   shot:{go:'#my',clip:['#my-priv'],hi:['#my-priv [data-new-priv]']},show:{go:'#my',hi:['#qa-priv']}},
  {id:'chg',sec:'함께 일하기',t:'✉ 변경 요청 · 변경 승인',
   lv:{2:'다른 직원이 등록한 업무는 바로 고쳐지지 않습니다. 업무 창에서 업무명·일정·시각·장소·담당·내용을 고친 뒤 <b>✉ 변경 요청 보내기</b>를 누르면 이유 메모와 함께 등록한 직원에게 알림이 갑니다. 등록한 직원은 내 업무 위 <b>✉ 변경 요청</b> 카드에서 「지금 → 바꿀 내용」을 보고 <b>✅ 변경 승인</b>(바로 반영) 또는 <b>⛔ 변경 승인 불가</b>(이유를 적으면 함께 알림)를 누릅니다. 담당자의 진행 상태·기록·사진은 바로 저장됩니다.'},
   shot:{go:'#my',clip:['#chg-card-box'],hi:['#chg-card-box [data-chg-ok]','#chg-card-box [data-chg-no]']},show:{go:'#my',hi:['#chg-card-box']}},
+ {id:'ntc',sec:'함께 일하기',t:'📢 업무 공지 · 참조 확인',
+  lv:{1:'관리부 전체나 공장·직무에 알릴 일은 내 업무 위 <b>📢 업무 공지</b>로 보냅니다. 받은 공지는 내 업무 맨 위 <b>📢 업무 공지</b> 카드와 🔔 알림에 오고, <b>⚠ 참조 확인 요청</b>이 붙은 공지는 읽은 뒤 <b>✓ 참조 확인</b>을 눌러 주세요.',
+      2:'내 업무 위 <b>📢 업무 공지</b> → <b>＋ 공지 쓰기</b>에서 제목·내용을 적고 받는 사람을 고릅니다 — <b>👥 관리부 전체</b> · <b>👤 직원</b>(여러 명, 공장 전체 넣기) · <b>🧩 직무</b>(재무·회계·인사·총무·시설·공무·안전·보건, 여러 개) · <b>🏭 공장별</b>. 받은 사람에게 「참조」 알림(🔔·화면 아래·브라우저)이 가고 내 업무 맨 위 카드에 모입니다(다 읽은 공지는 <b>✓ 읽음</b>으로 카드에서 치움). 꼭 알아야 할 내용이면 <b>⚠ 중요 — 참조 확인 요청</b>을 켜세요. 받은 사람이 <b>✓ 참조 확인</b>을 누를 때마다 보낸 사람에게 「✓ 이름 참조 확인 (3/8)」 알림이 오고, 모두 확인하면 「모두 확인 ✅」, 확인하지 않은 사람에게는 매일 다시 알립니다. 보낸 사람은 ✓·미확인 이름을 보고 <b>🔔 다시 알림</b>(미확인자에게만)·<b>공지 취소</b>를 누릅니다.'},
+  shot:{go:'#my',clip:['#ntc-card-box'],hi:['#ntc-card-box [data-ntc-ack]']},show:{go:'#my',hi:['[data-ntc-go]']}},
+ {id:'plock',sec:'찾기·보기',t:'🔒 비공개 업무 한꺼번에 숨기기',
+  lv:{2:'위쪽 ⚙ 설정 왼쪽의 <b>☑🔓</b>(체크 상자와 자물쇠)를 끄면 자물쇠가 <b>🔒</b>로 잠기고 내 업무·팀 현황·칸반·달력·목록·보고서·전체 검색·알림에서 비공개 업무가 한꺼번에 숨겨집니다(화면 공유·회의 때). 다시 체크하면 모든 화면에 보이고, 그다음은 화면마다 따로 숨기고 보입니다 — 내 업무·팀 현황은 제목 오른쪽 <b>🔒 비공개 업무</b>, 칸반·달력·목록은 거르기 줄의 <b>🔒 내 비공개 업무</b>, 보고서는 <b>업무 범위</b>. 이 기기에만 기억됩니다(휴대폰은 더보기).'},
+  shot:{go:'#my',clip:['header.top','.pv-h1row'],hi:['#plock','#my-pv-l']},show:{go:'#my',hi:['#plock']},need:()=>typeof privOK==='function'&&privOK()},
  {id:'import',sec:'업무 기록',t:'📂 파일·사진으로 올리기',
   lv:{2:'종이 업무일지 사진, 엑셀·한글(hwp·hwpx)·워드·PDF 업무일지를 입력칸에 끌어다 놓거나 <b>파일·사진으로 올리기</b>를 누르면 내용을 읽어 업무 목록으로 보여 줍니다. 한 가지 업무에 관한 문서는 📄 업무 1건으로 정리하고 원본을 업무에 첨부합니다. 확인 창을 거쳐 등록합니다.'},
   shot:{go:'#my',clip:['#qa'],hi:['#qa-import']},show:{go:'#my',hi:['#qa-import']}},
@@ -11713,6 +11775,9 @@ const GU=[
  {id:'xord',sec:'함께 일하기',t:'공장별 · 직무별로 한꺼번에 요청',adm:1,
   lv:{3:'상세업무 등록 창의 <b>📌 업무 요청</b>에서 👤 직원(여러 명), 🏭 공장 전체 넣기, 🏭 공장별(그 공장 근무 직원 모두), 🧩 직무를 고르고 요청 메모를 적으면 저장과 함께 요청이 갑니다. 이미 있는 업무는 📌 업무 요청 화면의 🗂 요청할 업무에서 여러 건을 골라 ⚡ 업무분장 담당자에게 한 번에 보냅니다. 받은 사람의 확인·보고는 📌 요청 현황에서 추적합니다.'},
   shot:{who:'s01',go:'#my',open:[['click','#btn-new'],['fn','ordbox']],clip:['#dlg-task'],hi:['#t-ord']},show:{go:'#my',hi:['#btn-new']}},
+ {id:'xntc',sec:'함께 일하기',t:'공지 쓰기 — 직무·공장별 · 참조 확인 기한',
+  lv:{3:'<b>＋ 공지 쓰기</b>에서 <b>🧩 직무</b>는 업무 요청의 「직무별 담당」(관리자가 고침)과 같은 명단이라 여러 직무를 한꺼번에 고를 수 있고, <b>👤 직원</b>에서는 <b>🏭 공장 전체 넣기·빼기</b>로 한 공장 사람을 한 번에 넣은 뒤 몇 명만 빼도 됩니다. 보내기 전에 받을 사람 이름이 모두 보이는 확인 창(확인·수정·취소)이 뜨고, 취소해도 쓰던 글은 남아 있어 다시 열면 이어 씁니다. <b>⚠ 참조 확인 요청</b>에는 <b>확인 기한</b>을 붙일 수 있고, 기한이 지나도록 확인하지 않은 사람이 있으면 보낸 사람에게 「확인 기한 지남 · 미확인 n명」 알림이 옵니다. <b>📢 업무 공지</b> 화면의 📥 받은 공지·📤 보낸 공지(관리자는 📋 전체 공지)에서 지난 공지를 다시 보고, 오래된 공지는 <b>이전 3달 더 보기</b>로 불러옵니다.'},
+  shot:{go:'#ntc',open:[['fn','ntcnew']],clip:['#dlg-ntc .ntc-dlg'],hi:['#dlg-ntc [data-ntd-m="site"]','#dlg-ntc .ntc-need']},show:{go:'#ntc',hi:['[data-ntc-new]']}},
  {id:'xrep',sec:'응용',t:'보고서 응용 — 메신저 텍스트 · 내 업무 보고서',
   lv:{3:'주간 회의 전에 보고서를 <b>주간</b>으로 놓고 <b>메신저용 텍스트 복사</b> → 단톡방에 붙여 넣으면 됩니다. <b>👤 내 업무 보고서</b>는 내가 담당하거나 기록한 업무만으로 개인 실적을 만들고, 업무 범위 › 🔒 내 비공개만으로 개인 일정만 뽑습니다. 엑셀로 내려받아 표를 다듬어도 되고, 관리자는 총괄 화면의 주간업무일지 텍스트를 그대로 씁니다.'},
   shot:{go:'#report',open:[['click','#rep-ctl [data-v="week"]']],clip:'screen',hi:['#r-copy','#r-mine']},show:{go:'#report',hi:['#r-copy']}},
@@ -11733,7 +11798,7 @@ const GU=[
   shot:{who:'s01',go:'#appr',clip:'screen',hi:['[data-ap-panel="line"]','[data-ap-panel="tpl"]']},show:{go:'#appr',hi:['[data-ap-panel="line"]']}}
 ];
 /* 기초에서 보여 줄 순서 */
-const GU_ORDER1=['login','home','qa','cfm','new','prog','ord','ntf','memo','mobile'];
+const GU_ORDER1=['login','home','qa','cfm','new','prog','ntc','ord','ntf','memo','mobile'];
 const GU_SECS=['시작하기','업무 기록','함께 일하기','찾기·보기','서류·결재','현장 업무','빠르게 쓰기','응용','관리자'];
 const GU_ST={lv:1,man:null,manP:null,at:'',zoom:null};
 const guItem=id=>GU.find(x=>x.id===id);
@@ -11799,6 +11864,7 @@ const GU_FN={
   memo:()=>{const d=$('#memo-drawer');if((!d||d.hidden)&&typeof memoOpen==='function')memoOpen();},
   search:()=>{if(typeof gsOpen==='function')gsOpen('');},
   adv:()=>{const d=$('#dlg-task');const b=$('#t-adv');if(d&&b&&d.classList.contains('simple'))b.click();},
+  ntcnew:()=>{if(typeof ntcNewDlg!=='function')return;const d=$('#dlg-ntc');if(d&&d.open)d.close();NTC.dlg={demo:1,title:'11월 소방 합동훈련 참석 안내',body:'11월 셋째 주 수요일 오후 2시, 전 사업장 동시 대피 훈련을 합니다.\n사업장별 집결지와 인원 점검표를 미리 확인해 주세요.',m:'site',sids:[],roles:[],sites:['군포공장','화성공장'],need:true,due:''};ntcNewDlg();setTimeout(()=>{const b=$('#dlg-ntc .modal-b'),k=$('#dlg-ntc .seg');if(b&&k)b.scrollTop=Math.max(0,k.getBoundingClientRect().top-b.getBoundingClientRect().top+b.scrollTop-34);const t=$('#ntd-title');if(t)t.blur();},120);},
   ordbox:()=>{const b=$('#t-ord');if(!b)return;b.hidden=false;const sw=b.querySelector('summary,[data-od-toggle],input[type=checkbox]');if(sw&&!b.querySelector('#t-ord-memo'))sw.click();b.scrollIntoView({block:'center'});}};
 async function guAct(list){for(const a of list||[]){const [k,x,y]=a;
   if(k==='wait'){await guSleep(x);continue;}
@@ -11891,6 +11957,249 @@ document.addEventListener('click',async e=>{const b=e.target.closest&&e.target.c
     <li>바탕 화면·작업 표시줄의 <b>「관리부 메모장」</b> 아이콘으로 열면 됩니다. (작업 표시줄 아이콘을 오른쪽 클릭 › 작업 표시줄에 고정)</li></ol>
     <p class="c3-note">새 탭에서 처음 열면 브라우저가 설치 창을 바로 띄우기도 합니다(그때는 「설치」만 누르면 됨). 휴대폰은 홈 화면에 추가.</p>`,ok:'↗ 새 탭에서 열기',cancel:'닫기',edit:false});
   if(r==='ok'){const w=window.open('./?memo=1','_blank');if(!w)toast('팝업이 막혔습니다. 주소창에 이 주소 끝 ?memo=1 을 붙여 새 탭에서 여세요.','err');}},true);
+/* ───────── 57차: 🔒 비공개 업무 — 위쪽 전체 잠금 + 내 업무·팀 현황에서도 켜고 끄기 ─────────
+   · 위쪽 ⚙ 설정 왼쪽: 체크 상자 + 자물쇠(글자 없음). 체크 = 🔓 열림(비공개 업무 모든 화면에 보임), 체크 끔 = 🔒 잠김(모든 화면에서 숨김)
+     잠그면 내 업무·팀 현황·칸반·달력·목록·보고서(공개 업무만)·전체 검색·🔔 알림·인쇄에서 비공개 업무가 빠짐
+     풀면 화면별 켜기(내 업무·팀 현황·칸반/달력/목록·보고서 범위)를 모두 「보임」으로 돌려놓고, 그다음은 화면마다 지금처럼 따로 숨기고 보임
+   · 내 업무: 제목 오른쪽 「☑ 🔒 비공개 업무 n건」 — 끄면 🔒 비공개 업무 칸을 숨김
+   · 팀 현황: 제목 오른쪽 「☑ 🔒 내 비공개 업무 n건」 — 켜면 나에게만 내 칸에 🔒 개수, 이번 주 일정에 🔒 업무, 「🔒 내 비공개 업무」 칸
+     (팀 숫자(오늘 할 일·진행 중·지연 등)·분야별 현황·피드는 모두가 보는 공개 업무 그대로)
+   · 이 기기에 기억(wl.privLock·wl.privMy·wl.privTeam) — 저장(쓰기) 없음
+   · 오픈소스 확인: 여러 곳의 숨김 설정 위에 「마스터 스위치」를 두는 개인정보 보호 모드 방식(예: discord-vscode 이슈 #642 'Quick privacy switch')을
+     참고해 직접 구현 — 라이브러리 추가 없음 */
+const PL_SVG={lock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/><circle cx="12" cy="16" r="1.2" fill="currentColor"/></svg>',
+  open:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7.5a4 4 0 0 1 7.6-1.7"/><circle cx="12" cy="16" r="1.2" fill="currentColor"/></svg>'};
+const plTip=()=>S.privLock?'🔒 비공개 업무 잠김 — 모든 화면(내 업무·팀 현황·칸반·달력·목록·보고서·검색·알림)에서 숨기는 중입니다. 체크하면 다시 모두 보입니다.':'🔓 비공개 업무 보이는 중 — 체크를 끄면 모든 화면에서 한꺼번에 숨깁니다(화면 공유·회의 때). 열려 있을 때는 화면마다 따로 숨기고 보일 수 있습니다.';
+function plockMount(){const bar=document.querySelector('.top-right');const g=document.getElementById('btn-settings');if(!bar||!g)return null;let el=document.getElementById('plock');
+  if(!el){g.insertAdjacentHTML('beforebegin','<label class="plock" id="plock" hidden><input type="checkbox" id="plock-cb"><span class="pl-ic"></span></label>');el=document.getElementById('plock');}return el;}
+function plockSync(){const el=plockMount();if(!el)return;const on=privOK()&&!S.guard;el.hidden=!on;if(!on)return;const lk=!!S.privLock;
+  const cb=el.querySelector('input');if(cb){cb.checked=!lk;cb.setAttribute('aria-label',lk?'비공개 업무 잠김 — 체크하면 모든 화면에 보이기':'비공개 업무 모든 화면에 보이는 중 — 체크를 끄면 모두 숨기기');}
+  el.classList.toggle('locked',lk);el.title=plTip();const ic=el.querySelector('.pl-ic');const want=lk?'lock':'open';if(ic&&ic.dataset.k!==want){ic.dataset.k=want;ic.innerHTML=PL_SVG[want];}}
+function plockSet(lock){lock=!!lock;if(lock===!!S.privLock){plockSync();return;}S.privLock=lock;lsSet('wl.privLock',lock?'1':'0');
+  if(!lock){S.privMy=true;S.privTeam=true;S.showPriv=true;lsSet('wl.privMy','1');lsSet('wl.privTeam','1');lsSet('wl.showPriv','1');if(S.rep)S.rep.pmode='all';lsSet('wl.repPmode','all');}
+  plockSync();privFilterSync();try{render();}catch(e){console.warn(e);}try{ntfRun();}catch{}
+  toast(lock?'🔒 비공개 업무를 모든 화면에서 숨겼습니다.':'🔓 비공개 업무를 모든 화면에 다시 보입니다. 화면마다 따로 숨길 수 있습니다.');}
+document.addEventListener('change',e=>{const T=e.target;if(!T)return;
+  if(T.id==='plock-cb'){plockSet(!T.checked);return;}
+  if(T.id==='my-pv'){if(S.privLock){T.checked=false;return;}S.privMy=T.checked;lsSet('wl.privMy',S.privMy?'1':'0');render();return;}
+  if(T.id==='team-pv'){if(S.privLock){T.checked=false;return;}S.privTeam=T.checked;lsSet('wl.privTeam',S.privTeam?'1':'0');render();return;}});
+/* 휴대폰 더보기에도 */
+{const _m=mnavMore;mnavMore=function(){const r=_m.apply(this,arguments);try{const ms=document.querySelector('#mnav-sheet .ms-in');if(ms&&privOK()&&!ms.querySelector('[data-plock]'))ms.insertAdjacentHTML('afterbegin',`<button type="button" data-plock>${S.privLock?'🔓 비공개 업무 보이기':'🔒 비공개 업무 모두 숨기기'}</button>`);}catch(e){console.warn(e);}return r;};}
+document.addEventListener('click',e=>{const b=e.target&&e.target.closest&&e.target.closest('[data-plock]');if(!b)return;const sh=document.getElementById('mnav-sheet');if(sh)sh.hidden=true;plockSet(!S.privLock);});
+/* 화면 제목 오른쪽 켜고 끄기 */
+function pvToggleHTML(id,label,on){const n=(S.privTasks||[]).length;const lk=!!S.privLock;
+  return `<label class="chk f-priv pv-tg${lk?' pv-locked':''}" id="${id}-l" title="${lk?esc(PRIV_LOCK_TIP):'나만 보는 비공개 업무를 이 화면에 함께 표시 (다른 사람 화면에는 나오지 않습니다)'}"><input type="checkbox" id="${id}" ${!lk&&on?'checked':''} ${lk?'disabled':''}> 🔒 ${label} <small>${lk?'잠김':n?n+'건':''}</small></label>`;}
+function pvTitleMount(id,label,on){const h=$('#view .home-head h1');if(!h)return;let row=h.parentElement;
+  if(!row.classList.contains('pv-h1row')){const w=document.createElement('div');w.className='pv-h1row';h.before(w);w.appendChild(h);row=w;}
+  const old=$('#'+id+'-l',row);const html=privOK()?pvToggleHTML(id,label,on):'';if(old){if(old.outerHTML!==html)old.outerHTML=html;}else if(html)h.insertAdjacentHTML('afterend',html);}
+{const _r=renderMy;renderMy=function(){const r=_r.apply(this,arguments);try{pvTitleMount('my-pv','비공개 업무',S.privMy);}catch(e){console.warn(e);}return r;};}
+/* 팀 현황: 나에게만 — 내 칸 🔒 개수 · 이번 주 일정 🔒 업무 · 🔒 내 비공개 업무 칸 */
+function teamPrivMount(){if(!privShow('team'))return;const L=(S.privTasks||[]).filter(t=>t.status!=='done'&&t.status!=='hold');const me=S.myStaff;const td=today();
+  const card=me&&$(`#view .sc[data-person="${CSS.escape(me)}"] .cnts`);if(card&&L.length&&!$('.cnt.pv',card))card.insertAdjacentHTML('beforeend',`<span class="cnt pv" title="나만 보이는 비공개 업무 (다른 직원 화면에는 없음)">🔒 비공개 ${L.length}</span>`);
+  const [ws]=periodRange('week',td);const days=$$('#view .agenda .day');days.forEach((el,i)=>{const d=addDays(ws,i);const items=(S.privTasks||[]).filter(t=>(t.due||t.start)===d).sort(sortTasks);if(!items.length)return;
+    el.insertAdjacentHTML('beforeend',items.map(t=>`<button type="button" class="chip pv cat-${esc(t.cat)} ${t.status==='done'?'done':''} ${isLate(t)?'late':''}" data-open="${esc(t.path)}" title="🔒 ${esc(t.title)} (나만 보임)">🔒 ${esc(t.title)}</button>`).join(''));
+    const c=el.querySelector('h3 span:last-child');if(c)c.textContent=String((+c.textContent||0)+items.length);});
+  if(!L.length)return;const late=L.filter(isLate).sort(sortTasks),rest=L.filter(t=>!isLate(t)).sort(sortTasks);const show=[...late,...rest].slice(0,10);
+  const st=$('#view .home .stack');if(!st||$('#team-pvp'))return;
+  st.insertAdjacentHTML('afterbegin',`<section class="panel priv-panel" id="team-pvp"><div class="panel-h"><h2>🔒 내 비공개 업무</h2><span class="sub">나만 보입니다 · 진행 중·예정 ${L.length}건${late.length?` · <b style="color:var(--late)">지연 ${late.length}</b>`:''}</span><div class="act"><a class="btn sm ghost" href="#my">내 업무</a></div></div>${show.map(myRow).join('')}${L.length>show.length?`<p class="od-more" style="padding:0 14px">그 밖에 ${L.length-show.length}건은 내 업무의 🔒 비공개 업무 칸에 있습니다.</p>`:''}</section>`);}
+{const _r=renderTeam;renderTeam=function(){const r=_r.apply(this,arguments);try{pvTitleMount('team-pv','내 비공개 업무',S.privTeam);teamPrivMount();}catch(e){console.warn(e);}return r;};}
+/* 알림: 잠그면 비공개 업무 알림(마감·지연)도 숨김 */
+{const _c=ntfCompute;ntfCompute=function(){const out=_c.apply(this,arguments);return S.privLock?out.filter(it=>!(it.t&&it.t.priv)):out;};}
+{const _r=render;render=function(){const r=_r.apply(this,arguments);try{plockSync();}catch(e){console.warn(e);}return r;};}
+{const _p=privFilterSync;privFilterSync=function(){const r=_p.apply(this,arguments);try{plockSync();}catch{}return r;};}
+setTimeout(plockSync,0);
+/* ───────── 57차: 📢 업무 공지 · 참조 확인 ─────────
+   · 관리부 직원 누구나 공지를 보냄(📢 업무 공지 화면 「＋ 공지 쓰기」) → 받는 사람: 👥 관리부 전체 · 👤 직원(여러 명, 공장 전체 넣기) · 🧩 직무(업무 요청의 직무별 담당) · 🏭 공장별
+   · 받은 사람에게 「참조」 알림(🔔·화면 아래·브라우저) + 내 업무 맨 위 「📢 업무 공지」 카드
+   · ⚠ 중요 — 참조 확인 요청: 받은 사람마다 「✓ 참조 확인」 단추 → 누르면 보낸 사람에게 확인 알림(몇 명째/전체, 모두 확인), 확인할 때까지 매일 알림,
+     보낸 사람은 확인 현황(✓·미확인)을 보고 「🔔 다시 알림」(미확인자에게만), 확인 기한이 지나면 보낸 사람에게 알림
+   · 오픈소스 확인: Mattermost(github.com/mattermost/mattermost)의 메시지 중요도·확인 요청(Request acknowledgement) —
+     「확인」 단추, 확인한 사람 목록, 확인할 때까지 되풀이 알림 — 을 우리 알림(🔔·Notyf·브라우저)에 맞춰 직접 구현(코드 가져오지 않음, 라이브러리 추가 없음)
+   · 저장: wl/_sys/ntc/{YYYY-MM} {n:{[id]:{by,uid,at,title,body,need,due,tg:{m,sids,roles,sites},tl,to:[직원],ack:{직원:시각},rn,cx:{at,by}}}}
+     한 달 묶음 문서(읽기 사용량 적게) · 이번 달과 지난 2달만 실시간 · 확인은 그 칸만 합쳐 씀(set merge) · wl 규칙 그대로(보안 규칙 변경 없음) */
+const NTC={box:{},u:{},more:0,ready:false,tab:'',dlg:null,draft:null,view:''};
+const ntcPath=m=>`wl/_sys/ntc/${m}`;
+const ntcMon=iso=>localDate(iso).slice(0,7);
+function ntcMonths(){const d=new Date();const out=[];for(let i=0;i<3+NTC.more;i++){const x=new Date(d.getFullYear(),d.getMonth()-i,1);out.push(`${x.getFullYear()}-${pad(x.getMonth()+1)}`);}return out;}
+function ntcNorm(id,d,mon){if(!d||typeof d!=='object')return null;const s=(v,n)=>typeof v==='string'?v.replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g,'').slice(0,n):'';
+  const arr=(a,n)=>Array.isArray(a)?a.filter(x=>typeof x==='string'&&x).map(x=>x.slice(0,60)).slice(0,n):[];const tg=d.tg&&typeof d.tg==='object'?d.tg:{};
+  const ack={};if(d.ack&&typeof d.ack==='object')for(const [k,v] of Object.entries(d.ack))if(typeof v==='string'&&v)ack[k]=v.slice(0,40);
+  const n={id,mon,by:s(d.by,60),uid:s(d.uid,80),at:s(d.at,40),title:s(d.title,120),body:s(d.body,3000),need:d.need===true,due:/^\d{4}-\d{2}-\d{2}$/.test(d.due||'')?d.due:'',
+    tg:{m:['all','staff','role','site'].includes(tg.m)?tg.m:'staff',sids:arr(tg.sids,120),roles:arr(tg.roles,20),sites:arr(tg.sites,20)},tl:s(d.tl,200),to:arr(d.to,120),ack,rn:s(d.rn,40),
+    cx:d.cx&&typeof d.cx==='object'&&typeof d.cx.at==='string'&&d.cx.at?{at:s(d.cx.at,40),by:s(d.cx.by,60)}:null};
+  return n.title&&n.at?n:null;}
+/* ── 구독 */
+function ntcSubMon(m){if(NTC.u[m]||!S.db)return;try{NTC.u[m]=S.db.doc(ntcPath(m)).onSnapshot(sn=>{const d=sn.exists?sn.data():null;const L=[];if(d&&d.n&&typeof d.n==='object')for(const [id,x] of Object.entries(d.n)){const n=ntcNorm(id,x,m);if(n)L.push(n);}
+    NTC.box[m]=L;NTC.ready=true;ntcChanged();},e=>{console.warn('ntc',e);NTC.ready=true;});}catch(e){console.warn(e);}}
+function ntcUnsub(){for(const k of Object.keys(NTC.u)){try{NTC.u[k]();}catch{}}NTC.u={};NTC.box={};NTC.ready=false;}
+function ntcSub(){ntcUnsub();if(!S.db||S.guard||!(S.mode==='firebase'||S.preview))return;for(const m of ntcMonths())ntcSubMon(m);}
+let _ntcT=0;function ntcChanged(){clearTimeout(_ntcT);_ntcT=setTimeout(()=>{try{ntfTick();}catch{}if(['my','ntc'].includes(S.view))scheduleRender();const d=$('#dlg-ntcv');if(d&&d.open&&NTC.view)ntcViewDlg(NTC.view);},60);}
+{const _es=extSubs;extSubs=function(){_es.apply(this,arguments);try{ntcSub();S.unsubs.push(ntcUnsub);}catch(e){console.warn(e);}};}
+const ntcAll=()=>Object.values(NTC.box).flat().sort((a,b)=>b.at.localeCompare(a.at)||a.title.localeCompare(b.title)||a.id.localeCompare(b.id));
+const ntcFind=id=>ntcAll().find(n=>n.id===id)||null;
+const ntcForMe=n=>n.to.includes(myId())&&n.by!==myId();
+const ntcMine=n=>n.by===myId();
+const ntcPend=n=>n.need&&!n.cx?n.to.filter(id=>!n.ack[id]):[];
+const ntcTodo=n=>!n.cx&&n.need&&ntcForMe(n)&&!n.ack[myId()];
+const ntcCanAdmin=n=>!!(n&&(ntcMine(n)||S.canEdit));
+function ntcLists(){const all=ntcAll();const inbox=all.filter(ntcForMe).sort((a,b)=>(ntcTodo(b)-ntcTodo(a))||b.at.localeCompare(a.at));return {all,inbox,sent:all.filter(ntcMine),todo:inbox.filter(ntcTodo)};}
+/* ── 저장: 그 공지 칸만 합쳐 씀 */
+async function ntcPut(m,id,patch){const p=ntcPath(m);
+  return runWrite(p,async()=>{if(S.mode==='firebase'&&S.fs)return fbWrite(S.fs.doc(p).set({n:{[id]:patch}},{merge:true}));
+    const d=S.db.doc(p);const sn=await d.get();return sn.exists?d.update({n:{[id]:patch}}):d.set({n:{[id]:patch}});});}
+/* ── 받는 사람 */
+const ntcWorkers=()=>staffList().filter(s=>working(s));
+function ntcTo(tg){const me=myId();let L=[];
+  if(tg.m==='all')L=ntcWorkers().map(s=>s.id);
+  else if(tg.m==='staff')L=tg.sids||[];
+  else if(tg.m==='site')L=ntcWorkers().filter(s=>(tg.sites||[]).includes(s.site)).map(s=>s.id);
+  else if(tg.m==='role'){const R=ordRoles();for(const id of tg.roles||[]){const r=R.find(x=>x.id===id);if(r)L.push(...(r.sids||[]),...(r.head?[r.head]:[]));}}
+  return [...new Set(L)].filter(id=>id!==me&&S.staff[id]&&working(S.staff[id]));}
+function ntcTgLabel(tg){if(tg.m==='all')return '👥 관리부 전체';if(tg.m==='site')return '🏭 '+(tg.sites||[]).join('·');
+  if(tg.m==='role'){const R=ordRoles();return '🧩 '+(tg.roles||[]).map(id=>(R.find(r=>r.id===id)||{n:id}).n).join('·');}
+  const L=tg.sids||[];return '👤 '+odNames(L.slice(0,4))+(L.length>4?` 외 ${L.length-4}명`:'');}
+/* ── 한 줄 */
+function ntcSt(n){const me=myId();const pend=ntcPend(n);const tot=n.to.length;
+  if(n.cx)return '<span class="od-st od-cancel">취소됨</span>';
+  if(!n.need)return '<span class="od-st ntc-ref">참조</span>';
+  if(ntcForMe(n))return n.ack[me]?`<span class="od-st od-closed">✓ 확인함 ${esc(hhmm(n.ack[me]))}</span>`:'<span class="od-st od-sent">⚠ 참조 확인 요청</span>';
+  return `<span class="od-st ${pend.length?'od-reported':'od-closed'}">확인 ${tot-pend.length}/${tot}${pend.length?'':' ✅'}</span>`;}
+function ntcAcksHTML(n){return `<div class="od-acks">${n.to.map(id=>`<span class="od-ack${n.ack[id]?' on':''}" title="${n.ack[id]?esc(hhmm(n.ack[id]))+' 확인':'아직 확인 안 함'}">${n.ack[id]?'✓':'·'} ${esc(odName(id))}</span>`).join('')}</div>`;}
+function ntcRow(n,ctx){const me=myId();const p=esc(n.id);const pend=ntcPend(n);let acts='';
+  if(!n.cx){if(ntcTodo(n))acts+=`<button type="button" class="btn sm primary" data-ntc-ack="${p}">✓ 참조 확인</button>`;
+    if(ntcCanAdmin(n)&&pend.length)acts+=`<button type="button" class="btn sm" data-ntc-rn="${p}" title="아직 확인하지 않은 ${pend.length}명에게 다시 알림">🔔 다시 알림</button>`;
+    if(ctx==='card'&&ntcForMe(n)&&!ntcTodo(n))acts+=`<button type="button" class="btn sm ghost" data-ntc-hide="${p}" title="이 카드에서 치우기 (📢 업무 공지 화면에는 남습니다)">✓ 읽음</button>`;
+    if(ctx==='list'&&ntcCanAdmin(n))acts+=`<button type="button" class="btn sm ghost" data-ntc-cx="${p}">공지 취소</button>`;}
+  const who=ntcMine(n)?`보낸 공지 → ${esc(n.tl||ntcTgLabel(n.tg))}`:`${esc(odName(n.by))} → ${esc(n.tl||'')}`;
+  return `<div class="od-row ntc-row${n.need?' imp':''}${ntcTodo(n)?' todo':''}${n.cx?' cx':''}" data-ntc-r="${p}"><div class="od-main"><button type="button" class="od-t" data-ntc-open="${p}">${n.need?'⚠ ':'📢 '}${esc(n.title)}</button>
+    <div class="od-meta">${ntcSt(n)}<span>${who}</span><span>${esc(hhmm(n.at))}</span>${n.need&&n.due?`<span class="od-dd${!n.cx&&pend.length&&n.due<today()?' late':''}">확인 기한 ${esc(fmtMD(n.due))}</span>`:''}</div>
+    ${n.body?`<div class="ntc-body">${esc(n.body)}</div>`:''}${n.need&&ntcCanAdmin(n)&&!n.cx?ntcAcksHTML(n):''}</div><div class="od-acts">${acts}</div></div>`;}
+/* ── 내 업무 카드 (맨 위) */
+const ntcHideKey=()=>'wl.ntc.hide.'+(S.me&&S.me.id||'p');
+function ntcHideSet(){try{return new Set(JSON.parse(lsGet(ntcHideKey())||'[]'));}catch{return new Set();}}
+function ntcHide(id){const h=[...ntcHideSet()].filter(x=>ntcFind(x));h.push(id);lsSet(ntcHideKey(),JSON.stringify(h.slice(-300)));render();}
+function ntcCardHTML(){if(!NTC.ready||!myId())return '';const since=new Date(Date.now()-14*864e5).toISOString();const hide=ntcHideSet();const X=ntcLists();
+  const inb=X.inbox.filter(n=>!n.cx&&(ntcTodo(n)||(n.at>=since&&!hide.has(n.id))));const sent=X.sent.filter(n=>!n.cx&&n.at>=since&&ntcPend(n).length);
+  if(!inb.length&&!sent.length)return '';const todo=inb.filter(ntcTodo).length;
+  return `<section class="panel od-card ntc-card${todo?' has-todo':''}"><div class="panel-h"><h2>📢 업무 공지</h2><span class="sub">${todo?`<b class="ntc-todo">⚠ 참조 확인 ${todo}건</b> · `:''}받은 공지 ${inb.length}건${sent.length?` · 확인 기다리는 보낸 공지 ${sent.length}건`:''}</span><a class="btn sm" href="#ntc" style="margin-left:auto">전체 보기</a></div>
+    ${inb.slice(0,5).map(n=>ntcRow(n,'card')).join('')}${inb.length>5?`<p class="od-more"><a href="#ntc">받은 공지 ${inb.length-5}건 더 보기</a></p>`:''}${sent.slice(0,3).map(n=>ntcRow(n,'card')).join('')}</section>`;}
+{const _r=renderMy;renderMy=function(){const r=_r.apply(this,arguments);try{const left=$('#my-left');if(left&&S.myStaff){const old=$('#ntc-card-box',left);if(old)old.remove();const h=ntcCardHTML();if(h)left.insertAdjacentHTML('afterbegin',`<div id="ntc-card-box">${h}</div>`);}
+    const hd=$('#view .home-head > div:last-child');if(hd&&myId()){const todo=NTC.ready?ntcLists().todo.length:0;const html=`<a class="btn ntc-go" href="#ntc" data-ntc-go title="업무 공지 보내기 · 받은 공지 · 참조 확인">📢 업무 공지${todo?` <em class="ntc-n">${todo}</em>`:''}</a>`;
+      const old=$('[data-ntc-go]',hd);if(old){if(old.outerHTML!==html)old.outerHTML=html;}else{const od=$('[data-od-go]',hd);if(od)od.insertAdjacentHTML('afterend',html);else hd.insertAdjacentHTML('afterbegin',html);}}}catch(e){console.warn(e);}return r;};}
+/* ── 화면 #ntc */
+function renderNtc(v){if(!S.me||!S.me.id||!myId()){v.innerHTML='<p class="empty">로그인하고 본인을 등록한 뒤 쓸 수 있습니다.</p>';return;}if(!Object.keys(NTC.u).length)ntcSub();try{odRolesSub();}catch{}const X=ntcLists();const A=!!S.canEdit;
+  const tabs=[['in','📥 받은 공지',X.inbox.length,X.todo.length],['sent','📤 보낸 공지',X.sent.length,0],...(A?[['all','📋 전체 공지',X.all.length,0]]:[])];
+  if(!tabs.some(t=>t[0]===NTC.tab))NTC.tab='in';
+  const L=NTC.tab==='in'?X.inbox:NTC.tab==='sent'?X.sent:X.all;const mons=ntcMonths();const last=mons[mons.length-1];
+  const emp={in:'받은 공지가 없습니다.',sent:'보낸 공지가 없습니다. 「＋ 공지 쓰기」로 관리부 전체·직원·직무·공장에 알릴 수 있습니다.',all:'공지가 없습니다.'}[NTC.tab];
+  v.innerHTML=`<div id="ntc"><div class="home-head"><div><h1>📢 업무 공지</h1><p>관리부 전체·직원·직무·공장에 「참조」로 알립니다. 꼭 알아야 할 내용은 <b>⚠ 참조 확인 요청</b>을 켜면 받은 사람이 「✓ 참조 확인」을 누를 때마다 보낸 사람에게 알림이 옵니다.</p></div>
+    <div class="in-top">${S.canWrite?'<button type="button" class="btn primary" data-ntc-new>＋ 공지 쓰기</button>':''}<a class="btn" href="#my">내 업무</a></div></div>
+    ${X.todo.length?`<div class="ntc-alert">⚠ 참조 확인할 공지 <b>${X.todo.length}</b>건 — 내용을 읽고 「✓ 참조 확인」을 눌러 주세요.</div>`:''}
+    <div class="seg od-tabs" role="tablist">${tabs.map(([k,l,n,t])=>`<button type="button" role="tab" data-ntc-tab="${k}" aria-pressed="${NTC.tab===k}">${l} <em>${n}</em>${t?` <b class="ntc-n">확인 ${t}</b>`:''}</button>`).join('')}</div>
+    <div class="od-list">${L.length?L.slice(0,200).map(n=>ntcRow(n,'list')).join(''):`<p class="empty">${emp}</p>`}</div>
+    <p class="od-more ntc-mo">${+last.slice(0,4)}년 ${+last.slice(5,7)}월부터의 공지입니다. <button type="button" class="btn sm ghost" data-ntc-more>이전 3달 더 보기</button></p></div>`;}
+/* ── 창: 공지 쓰기 */
+function ntcDlgEl(id){let d=$('#'+id);if(!d){d=document.createElement('dialog');d.className='modal narrow';d.id=id;document.body.appendChild(d);
+  if(id==='dlg-ntcv')d.addEventListener('close',()=>{NTC.view='';});
+  /* 쓰던 공지는 창을 닫아도(✕·Esc) 남겨 두었다가 다시 「＋ 공지 쓰기」 때 이어 씀 */
+  if(id==='dlg-ntc')d.addEventListener('close',()=>{const D=NTC.dlg;if(D&&!D.demo&&(D.title.trim()||D.body.trim()))NTC.draft=D;NTC.dlg=null;});}return d;}
+function ntcNewDlg(){try{odRolesSub();}catch{}const D=NTC.dlg||(NTC.dlg=NTC.draft||{title:'',body:'',m:'all',sids:[],roles:[],sites:[],need:false,due:''});NTC.draft=null;const me=myId();
+  const W=ntcWorkers().filter(s=>s.id!==me);const R=ordRoles();const SI=odSites();const tg={m:D.m,sids:D.sids,roles:D.roles,sites:D.sites};const to=ntcTo(tg);
+  const seg=[['all','👥 관리부 전체'],['staff','👤 직원'],['role','🧩 직무'],['site','🏭 공장별']].map(([k,l])=>`<button type="button" data-ntd-m="${k}" aria-pressed="${D.m===k}">${l}</button>`).join('');
+  let pick='';
+  if(D.m==='all')pick=`<p class="od-help">근무 중인 관리부 직원 모두(나 빼고 ${to.length}명)에게 갑니다. 휴직·파견 중인 직원은 빠집니다.</p>`;
+  else if(D.m==='staff')pick=`<div class="od-chips sm">${W.map(s=>`<button type="button" class="od-chip" data-ntd-sid="${esc(s.id)}" aria-pressed="${D.sids.includes(s.id)}">${esc(s.name)}<small>${esc(odRank(s)||'')}${odRank(s)?' · ':''}${esc(s.site||'')}</small></button>`).join('')}</div>
+    <div class="od-fq"><small>공장 전체 넣기·빼기</small>${SI.map(x=>{const ids=odSiteStaff([x]);const on=ids.length&&ids.every(id=>D.sids.includes(id));return `<button type="button" class="btn sm${on?' on':''}" data-ntd-fadd="${esc(x)}" aria-pressed="${on}">🏭 ${esc(x)} ${ids.length}명</button>`;}).join('')}${D.sids.length?'<button type="button" class="btn sm ghost" data-ntd-clear>모두 빼기</button>':''}</div>`;
+  else if(D.m==='role')pick=`<div class="od-chips sm">${R.map(r=>`<button type="button" class="od-chip" data-ntd-role="${esc(r.id)}" aria-pressed="${D.roles.includes(r.id)}">🧩 ${esc(r.n)}<small>${esc(odNames([...(r.sids||[]),...(r.head&&!(r.sids||[]).includes(r.head)?[r.head]:[])].filter(id=>S.staff[id]&&working(S.staff[id]))))||'담당 없음'}</small></button>`).join('')}</div><small class="od-pv">여러 직무를 고를 수 있습니다 · 직무 담당자와 책임자에게 갑니다</small>`;
+  else pick=`<div class="od-chips sm">${SI.map(x=>`<button type="button" class="od-chip" data-ntd-site="${esc(x)}" aria-pressed="${D.sites.includes(x)}">🏭 ${esc(x)}<small>${esc(odNames(odSiteStaff([x])))||'근무 직원 없음'}</small></button>`).join('')}</div><small class="od-pv">여러 공장을 고를 수 있습니다 · 그 공장에 근무하는 관리부 직원에게 갑니다</small>`;
+  const d=ntcDlgEl('dlg-ntc');const a=document.activeElement;const keep=a&&d.contains(a)&&a.id?a.id:'';
+  d.innerHTML=`<form method="dialog" class="od-dlg ntc-dlg"><header class="modal-h"><h2>📢 업무 공지 쓰기</h2><button type="button" class="icon-btn" data-ntd-x aria-label="닫기">✕</button></header><div class="modal-b one">
+    <label class="od-l">제목<input id="ntd-title" maxlength="120" placeholder="예) 11월 소방 합동훈련 일정 안내" value="${esc(D.title)}"></label>
+    <label class="od-l">내용<textarea id="ntd-body" rows="4" maxlength="3000" placeholder="알릴 내용 — 일정·장소·준비물·문의처 등">${esc(D.body)}</textarea></label>
+    <div class="od-l"><span>받는 사람 <small>참조로 알림이 갑니다</small></span><div class="seg" role="group" aria-label="받는 사람">${seg}</div>${pick}</div>
+    <p class="od-to">${to.length?`알림 받을 사람 <b>${to.length}명</b>: ${esc(odNames(to))}`:'<span class="bad">받을 사람을 고르세요.</span>'}</p>
+    <label class="ntc-need"><input type="checkbox" id="ntd-need" ${D.need?'checked':''}><span><b>⚠ 중요 — 참조 확인 요청</b><small>받은 사람마다 「✓ 참조 확인」 단추가 생기고, 누르면 나에게 확인 알림이 옵니다. 확인할 때까지 매일 다시 알립니다.</small></span></label>
+    ${D.need?`<label class="od-l ntc-due">확인 기한 (선택) <input type="date" id="ntd-due" value="${esc(D.due||'')}" min="${today()}"></label>`:''}
+    </div><footer class="modal-f"><span class="spacer"></span><button type="button" class="btn" data-ntd-x>닫기</button><button type="button" class="btn primary" data-ntd-send ${to.length?'':'disabled'}>📢 공지 보내기</button></footer></form>`;
+  const fresh=!d.open;if(fresh)d.showModal();const ta=$('#ntd-body',d);if(ta)ntcGrow(ta);const f=keep&&$('#'+keep,d);
+  setTimeout(()=>{const el=f||(fresh||!D.title?$('#ntd-title',d):null);if(el){el.focus();if(fresh&&el.setSelectionRange){const n=el.value.length;try{el.setSelectionRange(n,n);}catch{}}}},20);}
+function ntcGrow(t){t.style.height='auto';const mx=Math.max(160,Math.round(innerHeight*.45));t.style.height=Math.min(t.scrollHeight+2,mx)+'px';t.style.overflowY=t.scrollHeight+2>mx?'auto':'hidden';}
+async function ntcSend(o){o=o||{};const D=NTC.dlg;if(!D)return;const tg={m:D.m,sids:D.m==='staff'?[...D.sids]:[],roles:D.m==='role'?[...D.roles]:[],sites:D.m==='site'?[...D.sites]:[]};const to=ntcTo(tg);const title=D.title.trim(),body=D.body.trim();
+  if(!title){toast('공지 제목을 적어 주세요.','err');const t=$('#ntd-title');if(t)t.focus();return;}if(!to.length){toast('받을 사람을 고르세요.','err');return;}
+  const r=o.quiet?'ok':await cfm3({title:'📢 업무 공지 보내기',rows:[['제목',title],['받는 사람',`${ntcTgLabel(tg)} — ${to.length}명`],['알림 받을 사람',odNames(to)],['참조 확인',D.need?`⚠ 요청함 — 확인하면 나에게 알림${D.due?` · 기한 ${fmtMD(D.due)}`:''}`:'요청 안 함 (참조로 알림만)'],['내용',body||'(없음)']],ok:'공지 보내기',edit:'수정',cancel:'취소'});
+  if(r==='edit'){const t=$('#ntd-title');if(t)t.focus();return;}
+  if(r!=='ok'){const d=$('#dlg-ntc');if(d&&d.open)d.close();else{NTC.draft=NTC.dlg;NTC.dlg=null;}toast('보내지 않았습니다. 「＋ 공지 쓰기」를 다시 누르면 쓰던 내용이 남아 있습니다.');return;}
+  const at=nowISO();const id='n'+rid().slice(0,12);const data={by:myId(),uid:S.me.id||'',at,title,body,need:!!D.need,due:D.need&&D.due?D.due:'',tg,tl:ntcTgLabel(tg),to,ack:{}};
+  try{await ntcPut(ntcMon(at),id,data);}catch{return;}
+  NTC.dlg=null;const d=$('#dlg-ntc');if(d&&d.open)d.close();if(S.view==='ntc')NTC.tab='sent';toast(`📢 공지를 보냈습니다 — ${to.length}명에게 알림${D.need?' · 참조 확인하면 알려 드립니다':''}.`);render();}
+/* ── 창: 공지 보기 */
+function ntcViewDlg(id){const n=ntcFind(id);if(!n){toast('공지를 찾을 수 없습니다(취소되었거나 3달보다 오래된 공지).','err');return;}NTC.view=id;const pend=ntcPend(n);const adm=ntcCanAdmin(n);
+  const d=ntcDlgEl('dlg-ntcv');
+  d.innerHTML=`<form method="dialog" class="od-dlg ntc-dlg"><header class="modal-h"><h2>${n.need?'⚠ ':'📢 '}업무 공지</h2><button type="button" class="icon-btn" data-ntv-x aria-label="닫기">✕</button></header><div class="modal-b one">
+    <p class="od-dt"><b>${esc(n.title)}</b><small>${esc(odName(n.by))} · ${esc(hhmm(n.at))} → ${esc(n.tl||ntcTgLabel(n.tg))} (${n.to.length}명)</small></p>
+    <div class="od-meta">${ntcSt(n)}${n.need&&n.due?`<span class="od-dd${!n.cx&&pend.length&&n.due<today()?' late':''}">확인 기한 ${esc(fmtMD(n.due))}</span>`:''}${n.rn?`<span>🔔 다시 알림 ${esc(hhmm(n.rn))}</span>`:''}${n.cx?`<span>${esc(odName(n.cx.by))} 취소 · ${esc(hhmm(n.cx.at))}</span>`:''}</div>
+    ${n.body?`<div class="ntc-full">${esc(n.body)}</div>`:'<p class="od-help">(내용 없음)</p>'}
+    ${n.need&&adm?`<div class="ntc-ackh">참조 확인 <b>${n.to.length-pend.length}/${n.to.length}</b>${pend.length?` · 미확인 ${pend.length}명`:' · 모두 확인 ✅'}</div>${ntcAcksHTML(n)}`:adm?`<div class="ntc-ackh">받은 사람</div><p class="od-help">${esc(odNames(n.to))}</p>`:''}
+    </div><footer class="modal-f">${!n.cx&&adm?`<button type="button" class="btn ghost" data-ntc-cx="${esc(n.id)}">공지 취소</button>`:''}<span class="spacer"></span>${!n.cx&&adm&&pend.length?`<button type="button" class="btn" data-ntc-rn="${esc(n.id)}">🔔 미확인 ${pend.length}명 다시 알림</button>`:''}<button type="button" class="btn" data-ntv-x>닫기</button>${ntcTodo(n)?`<button type="button" class="btn primary" data-ntc-ack="${esc(n.id)}">✓ 참조 확인</button>`:''}</footer></form>`;
+  if(!d.open)d.showModal();}
+/* ── 확인 · 다시 알림 · 취소 */
+async function ntcAck(id,o){o=o||{};const n=ntcFind(id);if(!n||!ntcTodo(n))return;const me=myId();
+  const r=o.quiet?'ok':await cfm3({title:'✓ 참조 확인',lead:'이 공지를 읽고 확인했다고 보낸 사람에게 알립니다.',rows:[['공지',n.title],['보낸 사람',`${odName(n.by)} · ${hhmm(n.at)}`],['내용',n.body.slice(0,400)+(n.body.length>400?'…':'')]],ok:'참조 확인',edit:false,cancel:'닫기'});if(r!=='ok')return;
+  try{await ntcPut(n.mon,n.id,{ack:{[me]:nowISO()}});toast('✓ 참조 확인했습니다. 보낸 사람에게 알림이 갑니다.');}catch{}}
+async function ntcRenotify(id){const n=ntcFind(id);if(!n||!ntcCanAdmin(n))return;const pend=ntcPend(n);if(!pend.length)return;
+  const r=await cfm3({title:'🔔 다시 알림',rows:[['공지',n.title],['받을 사람',`아직 확인하지 않은 ${pend.length}명 — ${odNames(pend)}`]],ok:'다시 알림',edit:false});if(r!=='ok')return;
+  try{await ntcPut(n.mon,n.id,{rn:nowISO()});toast(`🔔 미확인 ${pend.length}명에게 다시 알렸습니다.`);}catch{}}
+async function ntcCancel(id){const n=ntcFind(id);if(!n||n.cx||!ntcCanAdmin(n))return;
+  const r=await cfm3({title:'공지 취소',lead:'받은 사람에게 「공지가 취소되었습니다」 알림이 갑니다. 목록에는 「취소됨」으로 남습니다.',rows:[['공지',n.title],['받은 사람',`${n.tl||ntcTgLabel(n.tg)} — ${n.to.length}명`]],ok:'공지 취소',edit:false,cancel:'닫기'});if(r!=='ok')return;
+  try{await ntcPut(n.mon,n.id,{cx:{at:nowISO(),by:myId()}});toast('공지를 취소했습니다.');}catch{}}
+/* ── 알림 (🔔·화면 아래·브라우저) */
+function ntcNtf(){const me=myId();if(!me||!NTC.ready)return [];const out=[];const since=new Date(Date.now()-14*864e5).toISOString();const td=today();
+  for(const n of ntcAll()){const ttl=(n.need?'⚠ ':'📢 ')+n.title;const by=odName(n.by);
+    if(ntcForMe(n)){
+      if(n.cx){if(n.cx.at>=since)out.push({k:`ntcx|${n.id}`,at:n.cx.at,type:'ntc',ntc:n.id,title:ttl,text:`${odName(n.cx.by||n.by)}님이 공지를 취소했습니다`});continue;}
+      const todo=n.need&&!n.ack[me];
+      if(n.at>=since||todo)out.push({k:`ntc|${n.id}`,at:n.at,type:'ntc',ntc:n.id,title:ttl,text:n.need?`${by}님 · ⚠ 중요 — 참조 확인 요청${n.due?` (기한 ${fmtMD(n.due)})`:''}`:`${by}님 업무 공지 (참조)`,sub:n.body});
+      if(todo){if(n.rn&&n.rn>n.at)out.push({k:`ntcrn|${n.id}|${n.rn}`,at:n.rn,type:'ntc',ntc:n.id,title:ttl,text:`${by}님 다시 알림 — 참조 확인을 기다립니다`});
+        if(localDate(n.at)<td)out.push({k:`ntcd|${n.id}|${td}`,syn:1,at:td+'T00:00:07',type:'ntc',ntc:n.id,title:ttl,text:`참조 확인 전${n.due?` · 기한 ${n.due<td?'지남':fmtMD(n.due)}`:''} · ${by}님 공지`});}}
+    if(ntcMine(n)&&n.need&&!n.cx){const tot=n.to.length;const acks=Object.entries(n.ack).filter(([id])=>n.to.includes(id)).sort((a,b)=>a[1].localeCompare(b[1]));
+      acks.forEach(([id,at],i)=>{if(at>=since)out.push({k:`ntca|${n.id}|${id}`,at,type:'ntcok',ntc:n.id,title:ttl,text:`✓ ${odName(id)} 참조 확인 (${i+1}/${tot})${i+1===tot?' — 모두 확인 ✅':''}`});});
+      const pend=ntcPend(n);if(pend.length&&n.due&&n.due<td)out.push({k:`ntcp|${n.id}|${td}`,syn:1,at:td+'T00:00:08',type:'ntc',ntc:n.id,title:ttl,text:`확인 기한 지남 · 미확인 ${pend.length}명`,sub:odNames(pend)});}}
+  return out;}
+{const _c=ntfCompute;ntfCompute=function(){const out=_c.apply(this,arguments);try{out.push(...ntcNtf());}catch(e){console.warn(e);}
+  out.sort((a,b)=>b.at.localeCompare(a.at)||String((a.t&&a.t.title)||a.title||'').localeCompare(String((b.t&&b.t.title)||b.title||''))||String(a.k||'').localeCompare(String(b.k||'')));return out.slice(0,80);};}
+NT_ICON.ntc='공지';NT_ICON.ntcok='확인';
+/* 오늘의 브리핑에 참조 확인 */
+{const _b=ntfBrief;ntfBrief=function(){const r=_b.apply(this,arguments);try{const box=$('#my-brief');const n=NTC.ready?ntcLists().todo.length:0;if(box&&!box.hidden&&n&&!$('.ntc-bf',box)){const sp=$('.sp',box);const h=`<span class="s-late ntc-bf">참조 확인 ${n}건</span>`;if(sp)sp.insertAdjacentHTML('beforebegin',h);else box.insertAdjacentHTML('beforeend',h);}}catch(e){console.warn(e);}return r;};}
+/* ── 이벤트 */
+document.addEventListener('click',async e=>{const T=e.target;if(!T||!T.closest)return;let b;
+  if((b=T.closest('[data-ntf-go]'))){const it=NT.items.find(i=>i.k===b.dataset.ntfGo);if(it&&it.ntc)setTimeout(()=>ntcViewDlg(it.ntc),0);return;}
+  if(T.closest('[data-ntc-new]')){e.preventDefault();if(!S.canWrite){toast('보기 전용 권한이라 공지를 보낼 수 없습니다.','err');return;}ntcNewDlg();return;}
+  if((b=T.closest('[data-ntc-tab]'))){NTC.tab=b.dataset.ntcTab;render();return;}
+  if(T.closest('[data-ntc-more]')){NTC.more+=3;for(const m of ntcMonths())ntcSubMon(m);render();return;}
+  if((b=T.closest('[data-ntc-open]'))){e.preventDefault();ntcViewDlg(b.dataset.ntcOpen);return;}
+  if((b=T.closest('[data-ntc-ack]'))){e.preventDefault();await ntcAck(b.dataset.ntcAck);return;}
+  if((b=T.closest('[data-ntc-rn]'))){e.preventDefault();await ntcRenotify(b.dataset.ntcRn);return;}
+  if((b=T.closest('[data-ntc-cx]'))){e.preventDefault();await ntcCancel(b.dataset.ntcCx);return;}
+  if((b=T.closest('[data-ntc-hide]'))){e.preventDefault();ntcHide(b.dataset.ntcHide);return;}
+  if(T.closest('[data-ntv-x]')){e.preventDefault();const d=$('#dlg-ntcv');if(d)d.close();return;}
+  if(!T.closest('#dlg-ntc'))return;const D=NTC.dlg;if(!D)return;
+  if(T.closest('[data-ntd-x]')){e.preventDefault();$('#dlg-ntc').close();return;}
+  if(T.closest('[data-ntd-send]')){e.preventDefault();await ntcSend();return;}
+  if((b=T.closest('[data-ntd-m]'))){D.m=b.dataset.ntdM;}
+  else if((b=T.closest('[data-ntd-sid]'))){const id=b.dataset.ntdSid;D.sids=D.sids.includes(id)?D.sids.filter(x=>x!==id):[...D.sids,id];}
+  else if((b=T.closest('[data-ntd-fadd]'))){const ids=odSiteStaff([b.dataset.ntdFadd]);const on=ids.length&&ids.every(id=>D.sids.includes(id));D.sids=on?D.sids.filter(x=>!ids.includes(x)):[...new Set([...D.sids,...ids])];}
+  else if(T.closest('[data-ntd-clear]'))D.sids=[];
+  else if((b=T.closest('[data-ntd-role]'))){const x=b.dataset.ntdRole;D.roles=D.roles.includes(x)?D.roles.filter(y=>y!==x):[...D.roles,x];}
+  else if((b=T.closest('[data-ntd-site]'))){const x=b.dataset.ntdSite;D.sites=D.sites.includes(x)?D.sites.filter(y=>y!==x):[...D.sites,x];}
+  else return;
+  e.preventDefault();ntcNewDlg();});
+document.addEventListener('input',e=>{const T=e.target;const D=NTC.dlg;if(!D||!T)return;if(T.id==='ntd-title')D.title=T.value;else if(T.id==='ntd-body'){D.body=T.value;ntcGrow(T);}else if(T.id==='ntd-due')D.due=T.value;});
+document.addEventListener('change',e=>{const T=e.target;const D=NTC.dlg;if(!D||!T)return;if(T.id==='ntd-need'){D.need=T.checked;if(!D.need)D.due='';ntcNewDlg();}else if(T.id==='ntd-due')D.due=T.value;});
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target&&e.target.id==='ntd-title'&&!e.isComposing&&e.keyCode!==229){e.preventDefault();const b=$('#ntd-body');if(b)b.focus();}});
+window.ntcApi={all:ntcAll,lists:ntcLists,to:ntcTo,sub:ntcSub,find:ntcFind,
+  /* 시험·시연 자료용: 확인 창 없이 */
+  send:async o=>{NTC.dlg={title:o.title||'',body:o.body||'',m:o.m||'all',sids:o.sids||[],roles:o.roles||[],sites:o.sites||[],need:!!o.need,due:o.due||''};await ntcSend({quiet:true});},
+  ack:id=>ntcAck(id,{quiet:true}),renotify:id=>ntcRenotify(id),cancel:id=>ntcCancel(id),view:id=>ntcViewDlg(id)};
 
 /* ───────── 시작 ───────── */
 function boot(){
