@@ -10,6 +10,7 @@ rules_version = '2';
 // · 자료실 서류·회사서식(각종서류 올리기)의 올리기·삭제·이름 바꾸기·폴더 정리는 자료 관리자(app/members.docmgr·docmgrU)와 관리자만 합니다.
 //   올리기·삭제 기록(doclog)은 고칠 수 없고, 구성원 모두 읽어 알림으로 받습니다.
 // · 비공개 업무(priv/{uid})는 본인만 읽고 쓸 수 있습니다. 관리자도 볼 수 없습니다.
+// · (62차) 권한 설정(wl/_sys/cfg/perm)은 총괄 관리자만, 재고관리·자산관리(wl/_sys/inv·invf)는 권한 설정에서 권한을 받은 사람만 고칩니다.
 // · 그룹웨어 소식(gw)은 구성원 모두 읽고, 기록은 관리자만 합니다.
 // · 전자결재(appr)는 결재선·참조에 든 사람과 관리자만 볼 수 있습니다. 결재 서식·결재선 설정은 관리자만 고칩니다.
 // · 회사서식(forms)은 구성원 모두 보고 인쇄·작성하며, 올리기·분류·삭제는 자료 관리자만 합니다.
@@ -87,9 +88,36 @@ service cloud.firestore {
           || (resource.data.get('uid', '') == '' && request.resource.data.get('uid', '') == request.auth.uid)));
     }
 
-    // 업무 · 특이사항 · 보고서 종합의견
-    match /wl/{rest=**} {
-      allow read, write: if isMember();
+    // 업무 · 특이사항 · 보고서 종합의견 (62차: wl/_sys 아래는 다음 블록에서 따로 — 권한 설정·재고·자산 문서는 권한 있는 사람만)
+    match /wl/{top}/{rest=**} {
+      allow read: if isMember();
+      allow write: if isMember() && top != '_sys';
+    }
+    // wl/_sys/{모음}/{문서}: 업무 공지·점검 일보·설비·화면 오류 기록·직무 설정 등은 구성원 모두, 아래 셋은 제외
+    match /wl/_sys/{col}/{doc} {
+      allow read: if isMember();
+      allow write: if isMember() && !(col in ['inv', 'invf'] || (col == 'cfg' && doc == 'perm'));
+    }
+    // 62차: 권한 설정(파트 관리자·개인별 권한)은 총괄 관리자만
+    match /wl/_sys/cfg/perm {
+      allow write: if isAdmin();
+    }
+    // 62차: 재고관리·자산관리 — 관리자 화면이 권한 설정에 맞춰 app/members 의 uid 목록(invMU·invWU·asMU·asWU)을 맞춰 둠
+    //   cfg(탭·폴더·품목·암호) = 재고 관리 · L{연-월}(입출고 대장) = 입출고 기록 이상 · asset·A(자산 분류·자산) = 자산 관리 · R(대여·반납) = 대여 기록 이상
+    //   H{연-월}(수정 이력) = 재고·자산 기록 이상 · invf(기부영수증 사진) = 입출고 기록 이상. 읽기는 구성원 모두
+    function myUidIn(k) {
+      return request.auth.uid in members().get(k, []);
+    }
+    match /wl/_sys/inv/{doc} {
+      allow write: if isAdmin() || (isMember() && (
+           (doc == 'cfg' && myUidIn('invMU'))
+        || (doc in ['asset', 'A'] && myUidIn('asMU'))
+        || (doc == 'R' && myUidIn('asWU'))
+        || (doc.matches('L[0-9]{4}-[0-9]{2}') && myUidIn('invWU'))
+        || (doc.matches('H[0-9]{4}-[0-9]{2}') && (myUidIn('invWU') || myUidIn('asWU')))));
+    }
+    match /wl/_sys/invf/{doc} {
+      allow write: if isAdmin() || (isMember() && myUidIn('invWU'));
     }
 
     // 경비원 (45차) — 관리자가 경비 일지 화면 '경비원 계정'에서 등록. 문서 id = 로그인 이메일(소문자)
